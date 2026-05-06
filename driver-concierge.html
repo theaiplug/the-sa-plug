@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driver + Concierge Help | The SA Plug</title>
+  <meta name="description" content="Driver and San Antonio concierge help by appointment and availability." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">SA</span>
+      <span><strong>The SA Plug</strong><small>Real picks from the road</small></span>
+    </a>
+    <nav class="nav">
+      <a href="start-here.html">Start</a>
+      <a href="downtown.html">Downtown</a>
+      <a href="where-to-eat.html">Eat</a>
+      <a href="resort-food.html">Resorts</a>
+      <a href="summer-family.html">Family</a>
+      <a href="driver-concierge.html">Driver</a>
+      <a href="business-services.html" class="nav-cta">Business</a>
+    </nav>
+    <button class="menu-btn" aria-label="Open menu">☰</button>
+  </header>
+  <main>
+    <section class="hero page-hero">
+  <p class="eyebrow">Driver + concierge help</p>
+  <h1>Need more than a recommendation?</h1>
+  <p class="hero-text">Local driver and San Antonio visitor help by appointment and availability.</p>
+</section>
+<section class="section split">
+  <div>
+    <h2>Local help for visitors, resort guests, and convention travelers.</h2>
+    <p class="section-text">The SA Plug can help with airport pickups, resort transfers, convention rides, night-out routes, day trips, and custom San Antonio visitor guidance.</p>
+    <div class="pill-row"><span>Airport pickup</span><span>Resort transfer</span><span>Convention ride</span><span>Night out</span><span>Day trip</span></div>
+  </div>
+  <form class="lead-form" onsubmit="return fakeSubmit(event, 'driver-message')">
+    <label>Service needed
+      <select required><option value="">Choose one</option><option>Airport pickup</option><option>Resort transfer</option><option>Convention ride</option><option>Night-out plan</option><option>Day trip</option><option>Custom concierge help</option></select>
+    </label>
+    <label>Where are you staying?<input type="text" placeholder="Hotel / resort / area" required /></label>
+    <label>Details<textarea placeholder="Date, time, number of people, and what you need."></textarea></label>
+    <button class="btn btn-primary" type="submit">Request Help</button>
+    <p id="driver-message" class="form-message"></p>
+  </form>
+</section>
+  </main>
+  <footer class="footer">
+    <strong>The SA Plug</strong>
+    <span>Real San Antonio recommendations from the road.</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

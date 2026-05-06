@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Business Services | The SA Plug</title>
+  <meta name="description" content="AI websites, phone agents, lead systems, automations, apps, and business consulting." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">SA</span>
+      <span><strong>The SA Plug</strong><small>Real picks from the road</small></span>
+    </a>
+    <nav class="nav">
+      <a href="start-here.html">Start</a>
+      <a href="downtown.html">Downtown</a>
+      <a href="where-to-eat.html">Eat</a>
+      <a href="resort-food.html">Resorts</a>
+      <a href="summer-family.html">Family</a>
+      <a href="driver-concierge.html">Driver</a>
+      <a href="business-services.html" class="nav-cta">Business</a>
+    </nav>
+    <button class="menu-btn" aria-label="Open menu">☰</button>
+  </header>
+  <main>
+    <section class="hero page-hero">
+  <p class="eyebrow">Work with Willie</p>
+  <h1>Own, manage, or want to start a business?</h1>
+  <p class="hero-text">The SA Plug is also a live example of a modern local website, recommendation system, lead form, and future AI concierge.</p>
+</section>
+<section class="section business-band">
+  <div class="grid-3">
+    <article class="card"><h3>AI Websites</h3><p>Modern websites built around leads, content, and conversion.</p></article>
+    <article class="card"><h3>AI Phone Agents</h3><p>Answer calls, qualify leads, book appointments, and summarize calls.</p></article>
+    <article class="card"><h3>Apps + Automations</h3><p>Dashboards, lead systems, follow-up, forms, and custom tools.</p></article>
+  </div>
+</section>
+<section class="section split">
+  <div>
+    <h2>Through The AI Plug, I help businesses build smarter systems.</h2>
+    <p class="section-text">AI websites, phone agents, lead systems, automations, apps, business consulting, startup help, and AI training.</p>
+  </div>
+  <form class="lead-form" onsubmit="return fakeSubmit(event, 'business-message')">
+    <label>What are you interested in?
+      <select required><option value="">Choose one</option><option>AI website</option><option>Phone agent</option><option>Lead system</option><option>Automation</option><option>App idea</option><option>Business startup help</option></select>
+    </label>
+    <label>Business or idea<input type="text" placeholder="Tell me what you're building" required /></label>
+    <label>Message<textarea placeholder="What do you want AI to help with?"></textarea></label>
+    <button class="btn btn-primary" type="submit">Ask About AI Services</button>
+    <p id="business-message" class="form-message"></p>
+  </form>
+</section>
+  </main>
+  <footer class="footer">
+    <strong>The SA Plug</strong>
+    <span>Real San Antonio recommendations from the road.</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

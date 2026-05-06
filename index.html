@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The SA Plug | Real San Antonio Recommendations</title>
+  <meta name="description" content="Real San Antonio recommendations for visitors who don't want to guess." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">SA</span>
+      <span><strong>The SA Plug</strong><small>Real picks from the road</small></span>
+    </a>
+    <nav class="nav">
+      <a href="start-here.html">Start</a>
+      <a href="downtown.html">Downtown</a>
+      <a href="where-to-eat.html">Eat</a>
+      <a href="resort-food.html">Resorts</a>
+      <a href="summer-family.html">Family</a>
+      <a href="driver-concierge.html">Driver</a>
+      <a href="business-services.html" class="nav-cta">Business</a>
+    </nav>
+    <button class="menu-btn" aria-label="Open menu">☰</button>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">San Antonio recommendations for visitors</p>
+        <h1>Real San Antonio recommendations from your local plug.</h1>
+        <p class="hero-text">Food, downtown shortcuts, resort dinner ideas, summer family plans, day trips, and local guidance from someone who talks to San Antonio visitors every week.</p>
+        <div class="hero-actions">
+          <a href="start-here.html" class="btn btn-primary">Start Here</a>
+          <a href="#ask" class="btn btn-secondary">Ask The SA Plug</a>
+        </div>
+        <div class="note-card">
+          <p><strong>Just landed?</strong> Start with the same route I explain from the airport: Zoo corridor, Pearl, downtown, River Walk, Market Square, Tower, and where to eat.</p>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="card-top"><span class="live-dot"></span><span>Quick Visitor Choices</span></div>
+        <a href="downtown.html">I’m staying downtown</a>
+        <a href="where-to-eat.html">I need dinner tonight</a>
+        <a href="resort-food.html">I’m at a resort</a>
+        <a href="summer-family.html">I’m here with kids</a>
+        <a href="driver-concierge.html">I need driver + concierge help</a>
+        <a href="business-services.html">I own or want to start a business</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="eyebrow">Main guide lanes</p>
+      <h2>Pick the situation that fits your trip.</h2>
+      <div class="grid-4">
+        <article class="card pink"><h3>First Time Here</h3><p>River Walk cruise, Alamo, Pearl, Market Square, Tower, and the airport-to-downtown route.</p><a href="start-here.html">Open guide →</a></article>
+        <article class="card gold"><h3>Downtown</h3><p>Convention Center, River Walk, business dinner, late night, breakfast, drinks, and one-night plans.</p><a href="downtown.html">Open guide →</a></article>
+        <article class="card turq"><h3>Where To Eat</h3><p>Tex-Mex, steakhouse, BBQ, Italian, Brazilian, seafood, Pearl, breakfast, and drinks.</p><a href="where-to-eat.html">Open guide →</a></article>
+        <article class="card green"><h3>Resort Food</h3><p>JW Marriott, La Cantera, Hyatt Hill Country, SeaWorld, The Rim, Stone Oak, and nearby dinner ideas.</p><a href="resort-food.html">Open guide →</a></article>
+      </div>
+    </section>
+
+    <section id="ask" class="section band">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Ask The SA Plug</p>
+          <h2>Need a recommendation right now?</h2>
+          <p class="section-text">Tell me where you are, who you’re with, how much time you have, and what kind of vibe you want.</p>
+        </div>
+        <form class="lead-form" onsubmit="return fakeSubmit(event, 'ask-message')">
+          <label>What do you need?
+            <select required><option value="">Choose one</option><option>Dinner tonight</option><option>Business dinner</option><option>Family activity</option><option>Resort food nearby</option><option>Nightlife / drinks</option><option>Before flight idea</option></select>
+          </label>
+          <label>Where are you starting from?
+            <input type="text" placeholder="Downtown, River Walk, JW, La Cantera, Hyatt..." required />
+          </label>
+          <label>What’s the vibe?
+            <textarea placeholder="Example: two adults, one night, want Tex-Mex but not touristy."></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Get Recommendation</button>
+          <p id="ask-message" class="form-message"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <strong>The SA Plug</strong>
+    <span>Real San Antonio recommendations from the road.</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
