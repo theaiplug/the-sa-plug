@@ -5,45 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Summer Family Guide | The SA Plug</title>
   <meta name="description" content="SeaWorld, Fiesta Texas, zoo corridor, caverns, and summer family ideas in San Antonio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <a href="index.html" class="brand">
-      <span class="brand-mark">SA</span>
-      <span><strong>The SA Plug</strong><small>Real picks from the road</small></span>
+      <span class="brand-icon" aria-hidden="true">
+        <img src="assets/images/sa-plug/sa-plug-icon.png" alt="" class="site-logo-img brand-icon-img" />
+      </span>
+      <span class="brand-text"><strong>The SA Plug</strong><small>Real picks from the road.</small></span>
     </a>
     <nav class="nav">
-      <a href="start-here.html">Start</a>
+      <a href="index.html">Home</a>
+      <a href="start-here.html">Start Here</a>
+      <a href="where-to-eat.html">Where To Eat</a>
       <a href="downtown.html">Downtown</a>
-      <a href="where-to-eat.html">Eat</a>
       <a href="resort-food.html">Resorts</a>
       <a href="summer-family.html">Family</a>
-      <a href="driver-concierge.html">Driver</a>
-      <a href="business-services.html" class="nav-cta">Business</a>
+      <a href="index.html#ask">Ask</a>
+      <a href="driver-concierge.html">Transport</a>
+      <a href="business-services.html" class="nav-cta">AI Services</a>
     </nav>
-    <button class="menu-btn" aria-label="Open menu">☰</button>
+    <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
   <main>
-    <section class="hero page-hero">
-  <p class="eyebrow">Summer family guide</p>
-  <h1>Families coming in for summer need a simple plan.</h1>
-  <p class="hero-text">SeaWorld, Fiesta Texas, downtown with kids, the zoo corridor, caverns, and resort-pool logic.</p>
-</section>
-<section class="section">
-  <div class="grid-3">
-    <article class="card pink"><h3>Theme parks</h3><p>SeaWorld for Hyatt / west-side families. Six Flags Fiesta Texas for La Cantera / Rim guests.</p></article>
-    <article class="card gold"><h3>Downtown with kids</h3><p>River barge cruise, Hemisfair, Tower of the Americas, Market Square, and the Alamo during the day.</p></article>
-    <article class="card green"><h3>Zoo + museum corridor</h3><p>Zoo, Japanese Tea Garden, Brackenridge Park, Witte Museum, and The DoSeum.</p></article>
-    <article class="card turq"><h3>Natural Bridge Caverns</h3><p>A strong family half-day memory maker when they want something outside downtown.</p></article>
-    <article class="card orange"><h3>Resort family rule</h3><p>If they paid for a resort, use the resort. Add one strong off-property activity, not five.</p></article>
-    <article class="card purple"><h3>Before flight with kids</h3><p>Keep it simple: breakfast, one nearby attraction, or a short stop that does not risk missing the flight.</p></article>
-  </div>
-</section>
+    <section class="hero hero-fiesta-dark hero-inner secondary-hero">
+      <div class="hero-fiesta-inner hero-inner-band">
+        <div class="hero-shell hero-inner-grid secondary-hero-grid">
+          <div class="hero-content secondary-hero-copy">
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Summer Family Guide</p>
+            <h1 class="hero-title">Family trips need a simple, heat-smart plan.</h1>
+            <p class="hero-text hero-text-on-dark">Theme parks, zoo corridor, downtown kid moves, and resort rhythm recommendations for summer weekends.</p>
+            <div class="hero-cue-grid" aria-label="Family trip focus">
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Heat-smart timing</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Kid-friendly stops</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Easy logistics</strong></div>
+            </div>
+            <div class="hero-cta-row">
+              <a class="btn btn-primary" href="https://tally.so/r/GxYPNQ" target="_blank" rel="noopener">Start a family plan</a>
+              <a class="btn btn-secondary hero-secondary-btn" href="index.html#ask">Ask The SA Plug</a>
+            </div>
+          </div>
+          <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
+            <div class="hero-visual-panel hero-inner-panel">
+              <img src="assets/images/sa-plug/family-summer.png" alt="Summer family fun in San Antonio" class="hero-visual-img hero-inner-img img-pos-family" width="800" height="1000" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="feature-grid">
+        <article class="image-card img-family"><div class="image-card-content"><h3>Theme Park Day</h3><p>SeaWorld and Fiesta Texas strategies by hotel zone.</p></div></article>
+        <article class="image-card img-resort"><div class="image-card-content"><h3>Cool-Down Plan</h3><p>Balance high-energy activities with pool and shorter evening routes.</p></div></article>
+      </div>
+      <div class="grid-3">
+        <article class="card pink"><h3>Theme parks</h3><p>SeaWorld for west-side families and Fiesta Texas for La Cantera and Rim guests.</p></article>
+        <article class="card gold"><h3>Downtown with kids</h3><p>River barge cruise, Hemisfair, Tower of the Americas, Market Square, and daytime Alamo.</p></article>
+        <article class="card green"><h3>Zoo + museum corridor</h3><p>Zoo, Japanese Tea Garden, Brackenridge Park, Witte Museum, and The DoSeum.</p></article>
+        <article class="card turq"><h3>Natural Bridge Caverns</h3><p>A strong half-day family memory when you want to get outside downtown.</p></article>
+        <article class="card orange"><h3>Resort family rule</h3><p>If you paid for the resort, enjoy the resort and add one strong off-property activity.</p></article>
+        <article class="card purple"><h3>Before-flight plan</h3><p>Keep it simple: breakfast, one nearby stop, and protect airport timing.</p></article>
+      </div>
+    </section>
   </main>
-  <footer class="footer">
-    <strong>The SA Plug</strong>
-    <span>Real San Antonio recommendations from the road.</span>
+  <footer class="footer dark-showcase">
+    <div>
+      <strong>The SA Plug</strong>
+      <span>Your premium local San Antonio guide.</span>
+      <p class="footer-cta">Also built as live capability proof by The AI Plug.</p>
+    </div>
+    <nav class="footer-links">
+      <a href="start-here.html">Start Here</a>
+      <a href="where-to-eat.html">Where To Eat</a>
+      <a href="downtown.html">Downtown</a>
+      <a href="summer-family.html">Family</a>
+      <a href="driver-concierge.html">Transport + Concierge</a>
+      <a href="business-services.html">AI Business Services</a>
+    </nav>
+    <p class="footer-note">Real local picks for visitors and locals, powered by The AI Plug systems.</p>
   </footer>
   <script src="script.js"></script>
 </body>

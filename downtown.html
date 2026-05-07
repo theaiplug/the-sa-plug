@@ -5,48 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Downtown San Antonio Guide | The SA Plug</title>
   <meta name="description" content="Downtown, River Walk, Convention Center, and one-night San Antonio plans." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <a href="index.html" class="brand">
-      <span class="brand-mark">SA</span>
-      <span><strong>The SA Plug</strong><small>Real picks from the road</small></span>
+      <span class="brand-icon" aria-hidden="true">
+        <img src="assets/images/sa-plug/sa-plug-icon.png" alt="" class="site-logo-img brand-icon-img" />
+      </span>
+      <span class="brand-text"><strong>The SA Plug</strong><small>Real picks from the road.</small></span>
     </a>
     <nav class="nav">
-      <a href="start-here.html">Start</a>
+      <a href="index.html">Home</a>
+      <a href="start-here.html">Start Here</a>
+      <a href="where-to-eat.html">Where To Eat</a>
       <a href="downtown.html">Downtown</a>
-      <a href="where-to-eat.html">Eat</a>
       <a href="resort-food.html">Resorts</a>
       <a href="summer-family.html">Family</a>
-      <a href="driver-concierge.html">Driver</a>
-      <a href="business-services.html" class="nav-cta">Business</a>
+      <a href="index.html#ask">Ask</a>
+      <a href="driver-concierge.html">Transport</a>
+      <a href="business-services.html" class="nav-cta">AI Services</a>
     </nav>
-    <button class="menu-btn" aria-label="Open menu">☰</button>
+    <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
   <main>
-    <section class="hero page-hero">
-  <p class="eyebrow">Downtown guide</p>
-  <h1>Downtown, River Walk, Convention Center, and one-night plans.</h1>
-  <p class="hero-text">For convention guests, downtown hotel visitors, and anyone trying to make the right move without wasting the night.</p>
-</section>
-<section class="section">
-  <div class="grid-3">
-    <article class="card pink"><h3>First move</h3><p>River Walk barge cruise. It’s one of the easiest ways to understand downtown quickly.</p></article>
-    <article class="card gold"><h3>Classic stops</h3><p>Alamo during the day, Tower of the Americas, Market Square, Mi Tierra, and Spurs games during season.</p></article>
-    <article class="card turq"><h3>Downtown food anchors</h3><p>Bohanan’s for steak, Paesanos for River Walk Italian, Pinkerton’s for BBQ, Domingo or Ácenar for downtown Mexican.</p></article>
-  </div>
-  <div class="grid-4">
-    <article class="card"><h3>Business dinner</h3><p>Bohanan’s, Paesanos, Biga, Nonna, or Pearl if they’ll ride.</p></article>
-    <article class="card"><h3>Drinks</h3><p>Esquire Tavern, 1Watson, Tenfold, or Mad Dogs for bar-hopping.</p></article>
-    <article class="card"><h3>Late night</h3><p>Mi Tierra when they want a memorable cultural late-night stop.</p></article>
-    <article class="card"><h3>Breakfast</h3><p>La Panadería or Alamo Biscuit.</p></article>
-  </div>
-</section>
+    <section class="hero hero-fiesta-dark hero-inner secondary-hero">
+      <div class="hero-fiesta-inner hero-inner-band">
+        <div class="hero-shell hero-inner-grid secondary-hero-grid">
+          <div class="hero-content secondary-hero-copy">
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Downtown Guide</p>
+            <h1 class="hero-title">Downtown, River Walk, Convention Center, and one-night plans.</h1>
+            <p class="hero-text hero-text-on-dark">Built for convention travelers, downtown hotel guests, and anyone trying to make the right move fast.</p>
+            <div class="hero-cue-grid" aria-label="Downtown priorities">
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>River Walk timing</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Convention-friendly</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>One-night plan</strong></div>
+            </div>
+            <div class="hero-cta-row">
+              <a class="btn btn-primary" href="where-to-eat.html">Open food picks</a>
+              <a class="btn btn-secondary hero-secondary-btn" href="index.html#ask">Ask The SA Plug</a>
+            </div>
+          </div>
+          <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
+            <div class="hero-visual-panel hero-inner-panel">
+              <img src="assets/images/sa-plug/downtown-riverwalk.png" alt="Downtown San Antonio riverfront and walkways" class="hero-visual-img hero-inner-img img-pos-riverwalk" width="800" height="1000" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="feature-grid">
+        <article class="image-card img-downtown"><div class="image-card-content"><h3>Convention District Logic</h3><p>Fast routes for meetings, breaks, and easy evening pivots.</p></div></article>
+        <article class="image-card img-food"><div class="image-card-content"><h3>Dinner + Drinks Arc</h3><p>From business-safe dining to relaxed River Walk cocktails.</p></div></article>
+      </div>
+      <div class="grid-3">
+        <article class="card pink"><h3>First move</h3><p>Take the River Walk barge cruise first for fast orientation and easy next-stop planning.</p></article>
+        <article class="card gold"><h3>Classic stops</h3><p>Alamo, Tower of the Americas, Market Square, and Mi Tierra anchor a complete downtown day.</p></article>
+        <article class="card turq"><h3>Food anchors</h3><p>Bohanan’s, Paesanos, Pinkerton’s, Domingo, and Acenar for reliable downtown options.</p></article>
+      </div>
+      <div class="grid-4">
+        <article class="card"><h3>Business dinner</h3><p>Bohanan’s, Biga, Nonna, or Pearl when the group wants a polished ride-out option.</p></article>
+        <article class="card"><h3>Drinks</h3><p>Esquire Tavern, 1Watson, Tenfold, and Mad Dogs for walkable night flow.</p></article>
+        <article class="card"><h3>Late-night stop</h3><p>Mi Tierra remains a memorable cultural late stop for visitors.</p></article>
+        <article class="card"><h3>Breakfast reset</h3><p>La Panaderia or Alamo Biscuit to restart day two cleanly.</p></article>
+      </div>
+    </section>
   </main>
-  <footer class="footer">
-    <strong>The SA Plug</strong>
-    <span>Real San Antonio recommendations from the road.</span>
+  <footer class="footer dark-showcase">
+    <div>
+      <strong>The SA Plug</strong>
+      <span>Your premium local San Antonio guide.</span>
+      <p class="footer-cta">Also built as live capability proof by The AI Plug.</p>
+    </div>
+    <nav class="footer-links">
+      <a href="start-here.html">Start Here</a>
+      <a href="where-to-eat.html">Where To Eat</a>
+      <a href="downtown.html">Downtown</a>
+      <a href="summer-family.html">Family</a>
+      <a href="driver-concierge.html">Transport + Concierge</a>
+      <a href="business-services.html">AI Business Services</a>
+    </nav>
+    <p class="footer-note">Real local picks for visitors and locals, powered by The AI Plug systems.</p>
   </footer>
   <script src="script.js"></script>
 </body>

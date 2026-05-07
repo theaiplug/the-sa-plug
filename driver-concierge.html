@@ -3,64 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Driver + Concierge Help | The SA Plug</title>
-  <meta name="description" content="Driver and San Antonio concierge help by appointment and availability." />
+  <title>Transportation + Concierge | The SA Plug</title>
+  <meta name="description" content="Visitor transportation and San Antonio concierge support by appointment and availability." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <a href="index.html" class="brand">
-      <span class="brand-mark">SA</span>
-      <span><strong>The SA Plug</strong><small>Real picks from the road</small></span>
+      <span class="brand-icon" aria-hidden="true">
+        <img src="assets/images/sa-plug/sa-plug-icon.png" alt="" class="site-logo-img brand-icon-img" />
+      </span>
+      <span class="brand-text"><strong>The SA Plug</strong><small>Real picks from the road.</small></span>
     </a>
     <nav class="nav">
-      <a href="start-here.html">Start</a>
+      <a href="index.html">Home</a>
+      <a href="start-here.html">Start Here</a>
+      <a href="where-to-eat.html">Where To Eat</a>
       <a href="downtown.html">Downtown</a>
-      <a href="where-to-eat.html">Eat</a>
       <a href="resort-food.html">Resorts</a>
       <a href="summer-family.html">Family</a>
-      <a href="driver-concierge.html">Driver</a>
-      <a href="business-services.html" class="nav-cta">Business</a>
+      <a href="index.html#ask">Ask</a>
+      <a href="driver-concierge.html">Transport</a>
+      <a href="business-services.html" class="nav-cta">AI Services</a>
     </nav>
-    <button class="menu-btn" aria-label="Open menu">☰</button>
+    <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
   <main>
-    <section class="hero page-hero">
-  <p class="eyebrow">Driver + concierge help</p>
-  <h1>Need more than a recommendation?</h1>
-  <p class="hero-text">Local driver and San Antonio visitor help by appointment and availability.</p>
-</section>
-<section class="section split">
-  <div>
-    <h2>Local help for visitors, resort guests, and convention travelers.</h2>
-    <p class="section-text">
-      The SA Plug can help with airport pickups, resort transfers, convention rides, night-out routes,
-      day trips, and custom San Antonio visitor guidance by appointment and availability.
-    </p>
-    <div class="pill-row">
-      <span>Airport pickup</span>
-      <span>Resort transfer</span>
-      <span>Convention ride</span>
-      <span>Night out</span>
-      <span>Day trip</span>
-    </div>
-  </div>
-
-  <div class="note-card">
-    <h3>Request driver + concierge help</h3>
-    <p>
-      Use this form for airport pickups, resort transfers, convention rides, night-out plans,
-      day trips, or custom San Antonio visitor help.
-    </p>
-    <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">
-      Request Driver + Concierge Help
-    </a>
-  </div>
-</section>
+    <section class="hero hero-fiesta-dark hero-inner secondary-hero">
+      <div class="hero-fiesta-inner hero-inner-band">
+        <div class="hero-shell hero-inner-grid secondary-hero-grid">
+          <div class="hero-content secondary-hero-copy">
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Transportation + Concierge</p>
+            <h1 class="hero-title">Visitor Transportation + Local Concierge</h1>
+            <p class="hero-text hero-text-on-dark">A premium support option for airport arrivals, resort transfers, convention schedules, dinner drops, and custom local routing.</p>
+            <div class="hero-cue-grid" aria-label="Transportation coverage">
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Airport pickup</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Resort transfer</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Convention route</strong></div>
+            </div>
+            <div class="hero-cta-row">
+              <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request Transportation + Concierge</a>
+              <a class="btn btn-secondary hero-secondary-btn" href="index.html#ask">Ask The SA Plug</a>
+            </div>
+          </div>
+          <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
+            <div class="hero-visual-panel hero-inner-panel">
+              <img src="assets/images/sa-plug/resort-arrival.png" alt="Upscale arrivals and traveler transportation mood" class="hero-visual-img hero-inner-img img-pos-arrival" width="800" height="1000" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section split split-sub-cta split-driver-services">
+      <div class="split-sub-copy">
+        <h2>Local support for visitors, resort guests, and convention travelers.</h2>
+        <p class="section-text">Request appointment-based transportation and concierge support by availability. Share your route, timing, and group details so the plan can be confirmed quickly.</p>
+        <div class="pill-row pill-row-split"><span>Airport pickup</span><span>Resort transfer</span><span>Convention route</span><span>Dinner drop-off</span><span>Night-out plan</span><span>Day trip</span></div>
+        <p class="required-note required-note-split">All requests are subject to availability, route details, and applicable transportation, insurance, and local requirements.</p>
+      </div>
+      <article class="image-cta image-cta-split img-downtown">
+        <div class="image-cta-content">
+          <h3>Request transportation help</h3>
+          <p>Submit your trip details to confirm availability and next steps.</p>
+          <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request Transportation + Concierge</a>
+        </div>
+      </article>
+    </section>
   </main>
-  <footer class="footer">
-    <strong>The SA Plug</strong>
-    <span>Real San Antonio recommendations from the road.</span>
+  <footer class="footer dark-showcase">
+    <div>
+      <strong>The SA Plug</strong>
+      <span>Your premium local San Antonio guide.</span>
+      <p class="footer-cta">Also built as live capability proof by The AI Plug.</p>
+    </div>
+    <nav class="footer-links">
+      <a href="start-here.html">Start Here</a>
+      <a href="where-to-eat.html">Where To Eat</a>
+      <a href="downtown.html">Downtown</a>
+      <a href="summer-family.html">Family</a>
+      <a href="driver-concierge.html">Transport + Concierge</a>
+      <a href="business-services.html">AI Business Services</a>
+    </nav>
+    <p class="footer-note">Real local picks for visitors and locals, powered by The AI Plug systems.</p>
   </footer>
   <script src="script.js"></script>
 </body>

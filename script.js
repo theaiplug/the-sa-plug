@@ -19,4 +19,11 @@ if (menuBtn && nav) {
     const isOpen = nav.classList.contains("nav-open");
     menuBtn.setAttribute("aria-expanded", String(isOpen));
   });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("nav-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+    });
+  });
 }

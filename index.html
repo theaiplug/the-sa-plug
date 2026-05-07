@@ -4,96 +4,308 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The SA Plug | Real San Antonio Recommendations</title>
-  <meta name="description" content="Real San Antonio recommendations for visitors who don't want to guess." />
+  <meta name="description" content="Premium San Antonio recommendations for visitors and locals, food, River Walk, resorts, families, and routing. Built as a live capability showcase by The AI Plug." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <a href="index.html" class="brand">
-      <span class="brand-mark">SA</span>
-      <span><strong>The SA Plug</strong><small>Real picks from the road</small></span>
+      <span class="brand-icon" aria-hidden="true">
+        <img src="assets/images/sa-plug/sa-plug-icon.png" alt="" class="site-logo-img brand-icon-img" />
+      </span>
+      <span class="brand-text"><strong>The SA Plug</strong><small>Real picks from the road.</small></span>
     </a>
     <nav class="nav">
-      <a href="start-here.html">Start</a>
+      <a href="index.html">Home</a>
+      <a href="start-here.html">Start Here</a>
+      <a href="where-to-eat.html">Where To Eat</a>
       <a href="downtown.html">Downtown</a>
-      <a href="where-to-eat.html">Eat</a>
       <a href="resort-food.html">Resorts</a>
       <a href="summer-family.html">Family</a>
-      <a href="driver-concierge.html">Driver</a>
-      <a href="business-services.html" class="nav-cta">Business</a>
+      <a href="#ask">Ask</a>
+      <a href="driver-concierge.html">Transport</a>
+      <a href="business-services.html" class="nav-cta">AI Services</a>
     </nav>
-    <button class="menu-btn" aria-label="Open menu">☰</button>
+    <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
   <main>
-    <section class="hero">
-      <div>
-        <p class="eyebrow">San Antonio recommendations for visitors</p>
-        <h1>Real San Antonio recommendations from your local plug.</h1>
-        <p class="hero-text">Food, downtown shortcuts, resort dinner ideas, summer family plans, day trips, and local guidance from someone who talks to San Antonio visitors every week.</p>
-        <div class="hero-actions">
-          <a href="start-here.html" class="btn btn-primary">Start Here</a>
-          <a href="#ask" class="btn btn-secondary">Ask The SA Plug</a>
-        </div>
-        <div class="note-card">
-          <p><strong>Just landed?</strong> Start with the same route I explain from the airport: Zoo corridor, Pearl, downtown, River Walk, Market Square, Tower, and where to eat.</p>
-        </div>
-      </div>
-      <div class="hero-card">
-        <div class="card-top"><span class="live-dot"></span><span>Quick Visitor Choices</span></div>
-        <a href="downtown.html">I’m staying downtown</a>
-        <a href="where-to-eat.html">I need dinner tonight</a>
-        <a href="resort-food.html">I’m at a resort</a>
-        <a href="summer-family.html">I’m here with kids</a>
-        <a href="driver-concierge.html">I need driver + concierge help</a>
-        <a href="business-services.html">I own or want to start a business</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <p class="eyebrow">Main guide lanes</p>
-      <h2>Pick the situation that fits your trip.</h2>
-      <div class="grid-4">
-        <article class="card pink"><h3>First Time Here</h3><p>River Walk cruise, Alamo, Pearl, Market Square, Tower, and the airport-to-downtown route.</p><a href="start-here.html">Open guide →</a></article>
-        <article class="card gold"><h3>Downtown</h3><p>Convention Center, River Walk, business dinner, late night, breakfast, drinks, and one-night plans.</p><a href="downtown.html">Open guide →</a></article>
-        <article class="card turq"><h3>Where To Eat</h3><p>Tex-Mex, steakhouse, BBQ, Italian, Brazilian, seafood, Pearl, breakfast, and drinks.</p><a href="where-to-eat.html">Open guide →</a></article>
-        <article class="card green"><h3>Resort Food</h3><p>JW Marriott, La Cantera, Hyatt Hill Country, SeaWorld, The Rim, Stone Oak, and nearby dinner ideas.</p><a href="resort-food.html">Open guide →</a></article>
-      </div>
-    </section>
-
-    <section id="ask" class="section band">
-      <div class="split">
-        <div>
-          <p class="eyebrow">Ask The SA Plug</p>
-          <h2>Need a recommendation right now?</h2>
-          <p class="section-text">
-            Tell me where you are, who you’re with, how much time you have, and what kind of vibe you want.
-            I’ll help point you in the right direction.
-          </p>
-          <div class="pill-row">
-            <span>Dinner tonight</span>
-            <span>Business dinner</span>
-            <span>Family activity</span>
-            <span>Resort food nearby</span>
-            <span>Nightlife / drinks</span>
+    <section class="hero hero-fiesta-dark">
+      <div class="hero-fiesta-inner">
+        <div class="hero-shell">
+          <div class="hero-content">
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero">San Antonio recommendations for visitors + locals</p>
+            <h1 class="hero-title">Your San Antonio plug for where to go, what to eat, and how to move.</h1>
+            <p class="hero-text hero-text-on-dark">Premium picks for visitors and locals&mdash;food, routes, and moves that match how you actually travel.</p>
+            <ul class="hero-proof-row" aria-label="How we plan recommendations">
+              <li class="hero-proof-item"><span class="hero-proof-icon" aria-hidden="true"></span>Real local picks</li>
+              <li class="hero-proof-item"><span class="hero-proof-icon" aria-hidden="true"></span>Route-first planning</li>
+              <li class="hero-proof-item"><span class="hero-proof-icon" aria-hidden="true"></span>Visitor + local friendly</li>
+            </ul>
+            <div class="hero-actions">
+              <a href="start-here.html" class="btn btn-primary">Start Here</a>
+              <a href="https://tally.so/r/GxYPNQ" class="btn btn-secondary-hero" target="_blank" rel="noopener">Ask The SA Plug</a>
+            </div>
+            <div class="route-chip-row route-chip-row-hero" aria-label="Quick routes">
+              <a class="route-chip" href="start-here.html">Just landed</a>
+              <a class="route-chip" href="where-to-eat.html">Dinner tonight</a>
+              <a class="route-chip" href="downtown.html">Downtown now</a>
+              <a class="route-chip" href="resort-food.html">Resort area</a>
+              <a class="route-chip" href="summer-family.html">Family plans</a>
+              <a class="route-chip" href="downtown.html">Night out</a>
+            </div>
+          </div>
+          <div class="hero-visual-frame">
+            <div class="hero-visual-panel">
+              <img src="assets/images/sa-plug/hero-river-fiesta.png" alt="San Antonio River Walk and Fiesta-inspired city energy" class="hero-visual-img" width="800" height="900" decoding="async" />
+            </div>
+            <aside class="hero-mini hero-mini-a" aria-label="Local coverage">
+              <span class="hero-mini-eyebrow">On the ground</span>
+              <p class="hero-mini-title">
+                <span class="hero-mini-title-line">River Walk &middot; Pearl</span>
+                <span class="hero-mini-title-line">La Cantera &amp; corridors</span>
+              </p>
+            </aside>
           </div>
         </div>
-    
-        <div class="note-card">
-          <h3>Get a local recommendation</h3>
-          <p>
-            Use this form if you need help choosing food, drinks, family activities, resort-area dinner,
-            before-flight ideas, or a quick San Antonio plan.
-          </p>
-          <a class="btn btn-primary" href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">
-            Ask The SA Plug
-          </a>
+      </div>
+    </section>
+
+    <section class="section section-navy-routes">
+      <div class="routes-band-inner">
+      <header class="routes-intro">
+      <p class="eyebrow eyebrow-light">Fast routing</p>
+      <h2>What do you need right now?</h2>
+      <p class="section-text section-text-light">Choose the situation and jump straight to the next best move.</p>
+      </header>
+      <div class="route-selector-grid">
+        <article class="route-selector-card route-sel-coral">
+          <div class="route-card-head">
+            <span class="route-selector-dot" aria-hidden="true"></span>
+            <h3>Just landed</h3>
+            <span class="route-selector-chip">Arrival</span>
+          </div>
+          <p>Airport-to-city rhythm, first food stop, and a sane path to your hotel or resort.</p>
+          <a href="start-here.html" class="btn btn-primary btn-block">Open route</a>
+        </article>
+        <article class="route-selector-card route-sel-gold">
+          <div class="route-card-head">
+            <span class="route-selector-dot" aria-hidden="true"></span>
+            <h3>Dinner tonight</h3>
+            <span class="route-selector-chip">Dining</span>
+          </div>
+          <p>Picks by zone, budget, and group vibe - from Tex-Mex to steak and River Walk energy.</p>
+          <a href="where-to-eat.html" class="btn btn-primary btn-block">Find dinner</a>
+        </article>
+        <article class="route-selector-card route-sel-turq">
+          <div class="route-card-head">
+            <span class="route-selector-dot" aria-hidden="true"></span>
+            <h3>Downtown now</h3>
+            <span class="route-selector-chip">River Walk</span>
+          </div>
+          <p>River Walk, convention center proximity, and evening moves without the guesswork.</p>
+          <a href="downtown.html" class="btn btn-primary btn-block">Go downtown</a>
+        </article>
+        <article class="route-selector-card route-sel-orange">
+          <div class="route-card-head">
+            <span class="route-selector-dot" aria-hidden="true"></span>
+            <h3>Resort area</h3>
+            <span class="route-selector-chip">Resorts</span>
+          </div>
+          <p>Strong nearby meals and realistic routes from JW Marriott, La Cantera, and Hill Country corridors.</p>
+          <a href="resort-food.html" class="btn btn-primary btn-block">Resort picks</a>
+        </article>
+        <article class="route-selector-card route-sel-pink">
+          <div class="route-card-head">
+            <span class="route-selector-dot" aria-hidden="true"></span>
+            <h3>Family plans</h3>
+            <span class="route-selector-chip">Kid-friendly</span>
+          </div>
+          <p>Heat-smart timing, kid-friendly rhythm, and one memorable off-property moment.</p>
+          <a href="summer-family.html" class="btn btn-primary btn-block">Family guide</a>
+        </article>
+        <article class="route-selector-card route-sel-plum">
+          <div class="route-card-head">
+            <span class="route-selector-dot" aria-hidden="true"></span>
+            <h3>Night out</h3>
+            <span class="route-selector-chip">Evening</span>
+          </div>
+          <p>Downtown nights, late bites, and walkable plans once the sun goes down.</p>
+          <a href="downtown.html" class="btn btn-primary btn-block">Night moves</a>
+        </article>
+      </div>
+      </div>
+    </section>
+
+    <section class="section band section-fiesta-featured section-explore-dark">
+      <div class="explore-head explore-head-row">
+        <div>
+        <p class="eyebrow eyebrow-on-dark">Explore the guide</p>
+        <h2 class="explore-title">Featured routes &amp; local picks</h2>
+        <p class="section-text section-text-explore">Every section is tuned for real San Antonio visitor decisions&mdash;not generic tourism lists.</p>
+        </div>
+        <a href="start-here.html" class="btn btn-outline-light explore-view-all">View all guides</a>
+      </div>
+      <div class="explore-editorial" role="list">
+        <article class="image-card img-downtown explore-card-featured" role="listitem">
+          <img src="assets/images/sa-plug/downtown-riverwalk.png" alt="Downtown San Antonio and River Walk" class="image-card-media" width="640" height="720" decoding="async" />
+          <div class="image-card-content">
+            <span class="explore-card-badge">Featured</span>
+            <h3>Downtown + River Walk</h3>
+            <p>Walkable landmarks, evening plans, and convention-friendly picks.</p>
+            <a href="downtown.html" class="btn btn-on-image">Open guide</a>
+          </div>
+        </article>
+        <article class="image-card img-food explore-card-medium" role="listitem">
+          <img src="assets/images/sa-plug/food-river-dining.png" alt="San Antonio dining near the river" class="image-card-media" width="640" height="720" decoding="async" />
+          <div class="image-card-content">
+            <h3>Where To Eat</h3>
+            <p>Tex-Mex, steak, BBQ, brunch, and local dinner moves.</p>
+            <a href="where-to-eat.html" class="btn btn-on-image">See food picks</a>
+          </div>
+        </article>
+        <article class="image-card img-resort explore-card-medium" role="listitem">
+          <img src="assets/images/sa-plug/resort-arrival.png" alt="Resort arrival and Hill Country hospitality" class="image-card-media" width="640" height="720" decoding="async" />
+          <div class="image-card-content">
+            <h3>Resort Food Nearby</h3>
+            <p>Strong nearby options around JW, La Cantera, and Hill Country.</p>
+            <a href="resort-food.html" class="btn btn-on-image">View resort guide</a>
+          </div>
+        </article>
+        <article class="image-card img-family explore-card-wide" role="listitem">
+          <img src="assets/images/sa-plug/family-summer.png" alt="Family summer plans in San Antonio" class="image-card-media" width="640" height="720" decoding="async" />
+          <div class="image-card-content image-card-content-wide">
+            <h3>Family + Summer</h3>
+            <p>Kid-friendly plans built for heat, timing, and easy logistics.</p>
+            <a href="summer-family.html" class="btn btn-on-image">Open family guide</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-ask section-ask-premium" id="ask">
+      <div class="ask-split">
+        <div class="ask-copy">
+          <p class="eyebrow eyebrow-ask">Ask The SA Plug</p>
+          <h2 class="ask-headline">Your on-demand San Antonio concierge.</h2>
+          <p class="section-text section-text-ask">Share where you are, who you&rsquo;re with, timing, and vibe. Get practical picks grounded in real route logic&mdash;not generic lists.</p>
+          <ol class="ask-flow" aria-label="How it works">
+            <li class="ask-flow-step">
+              <span class="ask-flow-num" aria-hidden="true">1</span>
+              <span class="ask-flow-copy"><strong>Tell me where you are</strong><span class="ask-flow-sub">Airport, hotel, corridor, or neighborhood.</span></span>
+            </li>
+            <li class="ask-flow-step">
+              <span class="ask-flow-num" aria-hidden="true">2</span>
+              <span class="ask-flow-copy"><strong>Pick your vibe</strong><span class="ask-flow-sub">Family, date night, convention rush, or resort pace.</span></span>
+            </li>
+            <li class="ask-flow-step">
+              <span class="ask-flow-num" aria-hidden="true">3</span>
+              <span class="ask-flow-copy"><strong>Get a local plan</strong><span class="ask-flow-sub">Structured picks you can execute today.</span></span>
+            </li>
+          </ol>
+        </div>
+        <div class="ask-prompt-stack">
+          <div class="ask-prompt-shell">
+            <div class="ask-intake-card">
+              <p class="ask-intake-label">Start with a prompt</p>
+              <p class="ask-intake-sub">Tap any chip to open the concierge intake&mdash;built for quick, structured requests.</p>
+              <div class="prompt-chip-grid">
+                <a class="prompt-chip prompt-chip-turq" href="https://tally.so/r/GxYPNQ" target="_blank" rel="noopener">Dinner near River Walk</a>
+                <a class="prompt-chip prompt-chip-coral" href="https://tally.so/r/GxYPNQ" target="_blank" rel="noopener">Family plan today</a>
+                <a class="prompt-chip prompt-chip-gold" href="https://tally.so/r/GxYPNQ" target="_blank" rel="noopener">Resort-area food</a>
+                <a class="prompt-chip prompt-chip-pink" href="https://tally.so/r/GxYPNQ" target="_blank" rel="noopener">Before-flight stop</a>
+                <a class="prompt-chip prompt-chip-orange" href="https://tally.so/r/GxYPNQ" target="_blank" rel="noopener">Night out downtown</a>
+                <a class="prompt-chip prompt-chip-teal" href="https://tally.so/r/GxYPNQ" target="_blank" rel="noopener">Business dinner</a>
+              </div>
+              <a class="btn btn-primary btn-block ask-cta" href="https://tally.so/r/GxYPNQ" target="_blank" rel="noopener">Get a Recommendation</a>
+            </div>
+          </div>
+          <aside class="ask-sample-preview" aria-label="Sample recommendation preview">
+            <div class="ask-sample-preview-head">
+              <span class="ask-sample-badge">Sample reply</span>
+              <span class="ask-sample-context">Dinner &middot; Downtown &middot; Date night</span>
+            </div>
+            <p class="ask-sample-lede">Pearl District for patio energy while it&rsquo;s still light, then slide toward the River Walk corridor for dessert or a slow walk back toward your hotel.</p>
+            <ul class="ask-sample-list">
+              <li>Timing note for heat + weekend lines.</li>
+              <li>One backup corridor if waits spike.</li>
+              <li>Walk-out plan so you aren&rsquo;t guessing parking twice.</li>
+            </ul>
+          </aside>
+        </div>
+        <p class="proof-note proof-note-on-dark proof-note-business">
+          <span class="proof-note-kicker">For business owners</span>
+          <span class="proof-note-body">The same concierge intake pattern can ship as quotes, bookings, fulfillment details, or lead routing.</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section dark-showcase transport-section">
+      <div class="split split-transport transport-grid">
+        <div class="transport-copy transport-col">
+          <p class="eyebrow">Transportation + concierge</p>
+          <h2>Visitor Transportation + Local Concierge</h2>
+          <p class="section-text transport-lead">Request appointment-based transportation and local concierge support for airport pickups, resort transfers, convention rides, dinner drop-offs, and day-route planning.</p>
+          <p class="required-note required-note-dark required-note-transport">All requests are subject to availability, route details, and applicable transportation, insurance, and local requirements.</p>
+          <a class="btn btn-secondary btn-on-dark hide-on-desktop transport-mobile-cta" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation</a>
+        </div>
+        <article class="image-cta img-transport image-cta-balanced transport-col">
+          <img src="assets/images/sa-plug/resort-arrival.png" alt="" class="image-cta-media" width="640" height="720" decoding="async" aria-hidden="true" />
+          <div class="image-cta-content">
+            <h3>Plan a route with confidence</h3>
+            <p>Share your timeline and details. Availability and next steps come back fast.</p>
+            <a class="btn btn-primary btn-transport-cta" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section ai-proof-section dark-showcase dark-showcase-alt">
+      <div class="ai-proof-shell ai-proof-case-study">
+        <div class="ai-proof-left">
+          <p class="eyebrow label-gold ai-proof-eyebrow">Built by The AI Plug</p>
+          <h2 class="ai-proof-headline">Built as a live capability stack by The AI Plug.</h2>
+          <p class="section-text ai-proof-lead">This site is living proof that AI-assisted builds can feel bespoke, capture demand, route requests cleanly, and scale with real operations.</p>
+          <div class="ai-proof-badge-row" aria-label="Capability focus">
+            <span class="ai-badge">Lead capture</span>
+            <span class="ai-badge">Automation</span>
+            <span class="ai-badge">Mobile-first</span>
+          </div>
+          <a class="btn btn-primary ai-proof-cta" href="business-services.html">See The AI Plug Services</a>
+          <div class="ai-proof-visual-wrap">
+            <img src="assets/images/sa-plug/ai-business-proof.png" alt="The AI Plug business and automation imagery" class="ai-proof-visual" width="560" height="640" decoding="async" />
+          </div>
+        </div>
+        <div class="ai-proof-cap-grid" aria-label="Capabilities">
+          <article class="card dark-variant glass-cap gold ai-cap-cell"><h3>Lead capture systems</h3><p>Funnels tuned for serious inquiries, not fluff.</p></article>
+          <article class="card dark-variant glass-cap turq ai-cap-cell"><h3>Intake + request flows</h3><p>Structured asks that route cleanly to your team.</p></article>
+          <article class="card dark-variant glass-cap pink ai-cap-cell"><h3>Mobile-first UX</h3><p>Built for thumbs, transit, and on-site decisions.</p></article>
+          <article class="card dark-variant glass-cap orange ai-cap-cell"><h3>QR funnels + campaigns</h3><p>Offline prompts that convert online without friction.</p></article>
+          <article class="card dark-variant glass-cap coral ai-cap-cell"><h3>Local content systems</h3><p>Guide layouts that mirror how cities are actually used.</p></article>
+          <article class="card dark-variant glass-cap green ai-cap-cell"><h3>Transportation request logic</h3><p>Structured detail capture ready for fulfillment.</p></article>
+          <article class="card dark-variant glass-cap purple ai-cap-cell"><h3>AI-assisted websites</h3><p>Ship fast without sacrificing brand polish.</p></article>
+          <article class="card dark-variant glass-cap navy ai-cap-cell"><h3>Automation-ready foundations</h3><p>CRM, SMS, email, and workflow hooks when you expand.</p></article>
         </div>
       </div>
     </section>
   </main>
-  <footer class="footer">
-    <strong>The SA Plug</strong>
-    <span>Real San Antonio recommendations from the road.</span>
+  <footer class="footer dark-showcase">
+    <div>
+      <strong>The SA Plug</strong>
+      <span>Your premium local San Antonio guide.</span>
+      <p class="footer-cta">Also built as live capability proof by The AI Plug.</p>
+    </div>
+    <nav class="footer-links">
+      <a href="start-here.html">Start Here</a>
+      <a href="where-to-eat.html">Where To Eat</a>
+      <a href="downtown.html">Downtown</a>
+      <a href="summer-family.html">Family</a>
+      <a href="driver-concierge.html">Transport + Concierge</a>
+      <a href="business-services.html">AI Business Services</a>
+    </nav>
+    <p class="footer-note">Real local picks for visitors and locals, powered by The AI Plug systems.</p>
   </footer>
   <script src="script.js"></script>
 </body>
