@@ -23,9 +23,57 @@
       padding-bottom: clamp(36px, 5vw, 56px);
     }
 
+    .eat-food-move-shell {
+      padding: clamp(20px, 3.1vw, 30px);
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid rgba(242, 178, 26, 0.32);
+      background:
+        radial-gradient(760px 280px at 0% 0%, rgba(20, 184, 166, 0.1), transparent 58%),
+        linear-gradient(170deg, rgba(255, 253, 248, 0.95), rgba(255, 246, 230, 0.92));
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Light panel: override global main > .section “on dark” copy (high specificity) */
+    #food-move-finder .eat-food-move-shell {
+      color: #0B1D3A;
+    }
+
+    #food-move-finder .eat-food-move-shell h2.eat-move-headline {
+      color: #0B1D3A;
+    }
+
+    #food-move-finder .eat-food-move-shell p.eat-move-sub {
+      color: #344054;
+    }
+
+    #food-move-finder .eat-food-move-shell > p.eyebrow {
+      color: #FF6A4D;
+    }
+
     .eat-top-section {
       padding-top: clamp(8px, 2vw, 16px);
       padding-bottom: clamp(40px, 5vw, 64px);
+    }
+
+    .eat-top-shell {
+      position: relative;
+      padding: clamp(18px, 3vw, 26px);
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid rgba(242, 178, 26, 0.35);
+      background:
+        radial-gradient(1100px 400px at 0% -10%, rgba(20, 184, 166, 0.16), transparent 54%),
+        radial-gradient(900px 340px at 100% 0%, rgba(255, 72, 140, 0.14), transparent 56%),
+        linear-gradient(165deg, rgba(10, 24, 48, 0.96), rgba(13, 34, 66, 0.92));
+      box-shadow: var(--shadow-lg);
+    }
+
+    .eat-top-shell .eat-section-head h2,
+    .eat-top-shell .eat-section-head .section-text {
+      color: var(--on-dark-heading);
+    }
+
+    .eat-top-shell .eat-section-head .section-text {
+      color: var(--on-dark-body);
     }
 
     .eat-guide-page {
@@ -179,6 +227,11 @@
       font-size: 1.12rem;
     }
 
+    .eat-top-card .eat-status-pill {
+      padding: 5px 11px;
+      font-size: 0.74rem;
+    }
+
     .eat-status-pill {
       display: inline-block;
       padding: 4px 10px;
@@ -256,80 +309,93 @@
     }
 
     /* Recommendation lanes */
-    .eat-rec-grid {
+    .eat-lane-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 14px;
+      gap: 24px;
       align-items: stretch;
       margin-top: clamp(14px, 2vw, 20px);
     }
 
-    @media (min-width: 860px) {
-      .eat-rec-grid {
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-        gap: 18px;
-      }
-    }
-
-    .eat-lane-main {
-      min-height: 100%;
-    }
-
-    .eat-lane-feature {
-      min-height: 100%;
-      border-width: 2px;
-      box-shadow: var(--shadow-md);
-    }
-
-    .eat-support-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      min-height: 100%;
-    }
-
-    @media (min-width: 640px) {
-      .eat-support-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    .eat-support-grid.eat-support-grid--three {
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 640px) {
-      .eat-support-grid.eat-support-grid--three {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .eat-support-grid.eat-support-grid--three {
+    @media (min-width: 900px) {
+      .eat-lane-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
-    /* Pearl lane should behave like standard 3-card sections (single clean row on desktop). */
-    .eat-pearl-grid {
+    .eat-lane-grid-compact {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 14px;
+      gap: 16px;
+      margin-top: 16px;
       align-items: stretch;
-      margin-top: clamp(14px, 2vw, 20px);
     }
 
-    @media (min-width: 600px) {
-      .eat-pearl-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (min-width: 860px) {
-      .eat-pearl-grid {
+    @media (min-width: 720px) {
+      .eat-lane-grid-compact {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
       }
+    }
+
+    .eat-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 24px;
+      gap: 0;
+    }
+
+    .eat-card p {
+      margin-bottom: 16px;
+    }
+
+    .eat-card .eat-rating-badge {
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+
+    .eat-top-card h3 {
+      font-size: 1.08rem;
+    }
+
+    .eat-choose-strip {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: calc(var(--radius) - 2px);
+      border: 1px solid rgba(11, 29, 58, 0.2);
+      background: linear-gradient(165deg, rgba(255, 255, 255, 0.94), rgba(241, 247, 255, 0.88));
+    }
+
+    .eat-choose-strip p {
+      margin: 0;
+      color: var(--navy);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .eat-utility-strip {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    @media (min-width: 700px) {
+      .eat-utility-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .eat-utility-item {
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(11, 29, 58, 0.06);
+      border: 1px solid rgba(11, 29, 58, 0.14);
+      color: var(--navy);
+      font-size: 0.9rem;
+      line-height: 1.45;
     }
 
     .eat-guide-page .eat-rec-card,
@@ -340,6 +406,16 @@
       min-height: 0;
       padding: 18px 20px;
       gap: 0;
+    }
+
+    .eat-card-badge {
+      margin: 0 0 10px;
+    }
+
+    .eat-rec-card .eat-status-pill {
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      font-weight: 780;
     }
 
     .eat-rec-card h3 {
@@ -386,10 +462,10 @@
 
     .eat-also-strip {
       margin-top: clamp(16px, 2.2vw, 22px);
-      padding: 14px 16px;
+      padding: 16px 18px;
       border-radius: calc(var(--radius) - 4px);
       border: 1px solid rgba(11, 29, 58, 0.2);
-      background: #fff7e8;
+      background: linear-gradient(160deg, #fff7e8, #fff0d4);
     }
 
     .eat-also-strip .eat-also-label {
@@ -405,9 +481,15 @@
 
     .eat-also-strip p {
       margin: 0;
-      font-size: 0.92rem;
-      line-height: 1.55;
+      font-size: 0.94rem;
+      line-height: 1.6;
       color: var(--navy);
+    }
+
+    @media (max-width: 899px) {
+      .eat-lane-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .eat-caveat-grid {
@@ -455,8 +537,78 @@
       margin-top: clamp(32px, 4vw, 44px);
     }
 
+    .eat-lane--lead .eat-rec-card:first-child {
+      border-width: 2px;
+      box-shadow: var(--shadow-md);
+      background: linear-gradient(165deg, rgba(255, 250, 240, 0.98), rgba(255, 242, 220, 0.94));
+    }
+
+    .eat-rules-panel {
+      margin-top: clamp(8px, 1.8vw, 14px);
+      padding: clamp(20px, 3vw, 28px);
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid rgba(11, 29, 58, 0.2);
+      background:
+        radial-gradient(680px 260px at 100% 0%, rgba(20, 184, 166, 0.1), transparent 56%),
+        linear-gradient(170deg, rgba(255, 255, 255, 0.98), rgba(241, 247, 255, 0.95));
+      box-shadow: var(--shadow-md);
+    }
+
+    .eat-rules-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .eat-rules-list li {
+      margin: 0;
+      padding: 11px 13px;
+      border-radius: 12px;
+      border: 1px solid rgba(11, 29, 58, 0.14);
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--navy);
+      font-size: 0.95rem;
+      line-height: 1.52;
+      font-weight: 540;
+    }
+
     .eat-river-wait-note {
       margin-top: 18px;
+    }
+
+    .eat-concierge-cta {
+      margin-top: clamp(34px, 4.8vw, 54px);
+      padding: clamp(22px, 3.2vw, 34px);
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid rgba(242, 178, 26, 0.34);
+      background:
+        radial-gradient(600px 300px at 0% 0%, rgba(255, 72, 140, 0.13), transparent 60%),
+        radial-gradient(520px 260px at 100% 100%, rgba(20, 184, 166, 0.15), transparent 60%),
+        linear-gradient(170deg, rgba(10, 24, 48, 0.96), rgba(12, 31, 60, 0.94));
+      box-shadow: var(--shadow-md);
+    }
+
+    .eat-concierge-cta h2 {
+      margin: 0 0 10px;
+      color: var(--on-dark-heading);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      letter-spacing: -0.02em;
+    }
+
+    .eat-concierge-cta p {
+      margin: 0;
+      max-width: 68ch;
+      color: var(--on-dark-body);
+      line-height: 1.62;
+    }
+
+    .eat-concierge-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
   </style>
 </head>
@@ -509,219 +661,155 @@
     </section>
 
     <section class="section eat-food-move-section" id="food-move-finder" aria-labelledby="eat-move-title">
-      <p class="eyebrow">Start here</p>
-      <h2 class="eat-move-headline" id="eat-move-title">Choose your food move</h2>
-      <p class="eat-move-sub">Start with the situation, then pick the lane. This guide is built for visitors who need the right move fast—downtown, resort area, date night, business dinner, family plan, or late-night.</p>
-      <div class="eat-move-grid">
-        <div class="eat-move-card">
-          <h3>First San Antonio meal</h3>
-          <p>Land somewhere memorable on night one—upscale Tex-Mex, steak, or a River Walk drink stop.</p>
-          <a class="eat-move-jump" href="#top-picks">Willie Approved picks</a>
-        </div>
-        <div class="eat-move-card">
-          <h3>Business dinner</h3>
-          <p>Walkable classics and wine-room polish when the table needs to feel considered.</p>
-          <a class="eat-move-jump" href="#lane-steak">Steakhouses</a>
-        </div>
-        <div class="eat-move-card">
-          <h3>Date night</h3>
-          <p>Mexican corridors, cocktails, rooftops, or Pearl lounge energy without leaving the vibe.</p>
-          <a class="eat-move-jump" href="#lane-drinks">Drinks &amp; rooftops</a>
-        </div>
-        <div class="eat-move-card">
-          <h3>Family-friendly</h3>
-          <p>Bakery mornings, shared plates, and easy logistics when schedules do not negotiate.</p>
-          <a class="eat-move-jump" href="#lane-breakfast">Breakfast lane</a>
-        </div>
-        <div class="eat-move-card">
-          <h3>Resort-area dinner</h3>
-          <p>Corridor picks around La Cantera, JW, and Hill Country when you are not driving downtown.</p>
-          <a class="eat-move-jump" href="resort-food.html">Resort food guide</a>
-        </div>
-        <div class="eat-move-card">
-          <h3>Late-night / after drinks</h3>
-          <p>Market Square tradition, sensible carry-out, and fast pickup moves when kitchens wind down.</p>
-          <a class="eat-move-jump" href="#lane-late">Late-night lane</a>
+      <div class="eat-food-move-shell">
+        <p class="eyebrow">Start here</p>
+        <h2 class="eat-move-headline" id="eat-move-title">Choose your food move</h2>
+        <p class="eat-move-sub">Pick a lane, lock one anchor reservation, then stack the rest of the night around it. This keeps the plan premium without turning dinner into a spreadsheet.</p>
+        <div class="eat-move-grid">
+          <div class="eat-move-card">
+            <h3>First San Antonio meal</h3>
+            <p>Lead with a table that feels like San Antonio from the start: polished Tex-Mex, steak, or a River Walk sequence.</p>
+            <a class="eat-move-jump" href="#top-picks">Willie Approved picks</a>
+          </div>
+          <div class="eat-move-card">
+            <h3>Business dinner</h3>
+            <p>Choose a room that handles clients cleanly, then layer drinks and a walk after dinner if needed.</p>
+            <a class="eat-move-jump" href="#lane-steak">Steakhouses</a>
+          </div>
+          <div class="eat-move-card">
+            <h3>Date night</h3>
+            <p>Start with a strong dinner move, then finish with cocktails in a district built for pacing the night.</p>
+            <a class="eat-move-jump" href="#lane-pearl">Pearl route</a>
+          </div>
+          <div class="eat-move-card">
+            <h3>Family-friendly</h3>
+            <p>Bakery mornings, shareable menus, and logistics that work for mixed ages without friction.</p>
+            <a class="eat-move-jump" href="#lane-breakfast">Breakfast lane</a>
+          </div>
+          <div class="eat-move-card">
+            <h3>Seafood / ceviche</h3>
+            <p>When the table wants bright flavor over heavy cuts, this lane gives you clean, bold seafood moves.</p>
+            <a class="eat-move-jump" href="#lane-seafood">Seafood lane</a>
+          </div>
+          <div class="eat-move-card">
+            <h3>River Walk drinks</h3>
+            <p>Build the handoff from drinks to dinner with practical stops that still feel like a San Antonio night.</p>
+            <a class="eat-move-jump" href="#lane-drinks">Drinks lane</a>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section eat-top-section" id="top-picks" aria-labelledby="eat-top-title">
-      <div class="eat-section-head">
-        <p class="eyebrow">Curated first</p>
-        <h2 class="eat-move-headline" id="eat-top-title">Willie Approved starting points</h2>
-        <p class="section-text">Six dependable openers—each one earns a reservation or a plan before you default to the busiest strip.</p>
-      </div>
-      <div class="eat-top-grid">
-        <article class="card orange eat-guide-card eat-top-card">
-          <div class="eat-top-card-top">
-            <h3>Soluna</h3>
-            <span class="eat-status-pill">Willie Approved</span>
-          </div>
-          <p class="eat-guide-meta">Mexican / upscale local favorite</p>
-          <p class="eat-rec-desc">A polished room with local credibility, not a generic visitor pick. Reliable for a first serious meal when you want Tex-Mex depth with a sharper finish.</p>
-          <p class="eat-rec-best"><strong>Best for:</strong> first San Antonio dinner, date-forward Tex-Mex.</p>
-          <p class="eat-rating-badge">Google rating: verify</p>
-        </article>
-        <article class="card pink eat-guide-card eat-top-card">
-          <div class="eat-top-card-top">
-            <h3>Bohanan&rsquo;s</h3>
-            <span class="eat-status-pill">Willie Approved</span>
-          </div>
-          <p class="eat-guide-meta">Downtown steakhouse / business dinner</p>
-          <p class="eat-rec-desc">A downtown classic that handles business tables with confidence and pace. Service and room tone make it easy to host clients without overexplaining the choice.</p>
-          <p class="eat-rec-best"><strong>Best for:</strong> business dinners, polished downtown hosting.</p>
-          <p class="eat-rating-badge">Google rating: verify</p>
-        </article>
-        <article class="card gold eat-guide-card eat-top-card">
-          <div class="eat-top-card-top">
-            <h3>J-Prime</h3>
-            <span class="eat-status-pill">Willie Approved</span>
-          </div>
-          <p class="eat-guide-meta">North-side steakhouse / polished splurge</p>
-          <p class="eat-rec-desc">North-side steakhouse energy with a modern, high-end finish. Strong choice when the dinner should feel premium and worth the drive.</p>
-          <p class="eat-rec-best"><strong>Best for:</strong> celebration dinners, north-side executive nights.</p>
-          <p class="eat-rating-badge">Google rating: verify</p>
-        </article>
-        <article class="card turq eat-guide-card eat-top-card">
-          <div class="eat-top-card-top">
-            <h3>Brasão</h3>
-            <span class="eat-status-pill">Willie Approved</span>
-          </div>
-          <p class="eat-guide-meta">Brazilian steakhouse / best rodizio option</p>
-          <p class="eat-rec-desc">The rodizio pick when you want quality cuts, rhythm, and a complete premium table experience. Easy win for groups that want one memorable feast night.</p>
-          <p class="eat-rec-best"><strong>Best for:</strong> group celebrations, high-appetite dinners.</p>
-          <p class="eat-rating-badge">Google rating: verify</p>
-        </article>
-        <article class="card green eat-guide-card eat-top-card">
-          <div class="eat-top-card-top">
-            <h3>El Bucanero</h3>
-            <span class="eat-status-pill">Willie Approved</span>
-          </div>
-          <p class="eat-guide-meta">Ceviche / seafood</p>
-          <p class="eat-rec-desc">One of the most dependable flavor-forward seafood moves in town. Great for diners who want bright ceviche and serious spice over formality.</p>
-          <p class="eat-rec-best"><strong>Best for:</strong> seafood-focused nights, casual bold flavor runs.</p>
-          <p class="eat-rating-badge">Google rating: verify</p>
-        </article>
-        <article class="card purple eat-guide-card eat-top-card">
-          <div class="eat-top-card-top">
-            <h3>Paesanos</h3>
-            <span class="eat-status-pill">Willie Approved</span>
-          </div>
-          <p class="eat-guide-meta">Italian / River Walk classic</p>
-          <p class="eat-rec-desc">A classic River Walk Italian room that works for mixed groups and easy reservations. Useful when the itinerary needs a break from tacos and steak without sacrificing location.</p>
-          <p class="eat-rec-best"><strong>Best for:</strong> River Walk dinner plans, mixed-diet groups.</p>
-          <p class="eat-rating-badge">Google rating: verify</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section eat-situation-section" id="best-by-situation" aria-labelledby="best-by-situation-title">
-      <div class="eat-section-head">
-        <p class="eyebrow">Route first</p>
-        <h2 class="eat-move-headline" id="best-by-situation-title">Best by situation</h2>
-        <p class="section-text">Use these concierge lanes when you need the right move quickly. Each route gives you dependable options without scrolling an endless list.</p>
-      </div>
-      <div class="eat-situation-grid">
-        <article class="card orange eat-situation-card">
-          <h3>Business dinner</h3>
-          <p class="eat-rec-desc">Lead with downtown confidence or north-side polish, then move to Pearl if the group wants a strong finish.</p>
-          <ul class="eat-route-list">
-            <li>Bohanan&rsquo;s</li>
-            <li>J-Prime</li>
-            <li>Hotel Emma / Supper</li>
-          </ul>
-        </article>
-        <article class="card pink eat-situation-card">
-          <h3>Date night</h3>
-          <p class="eat-rec-desc">A balanced mix of polished Mexican, River Walk Italian, and Pearl dining when conversation and atmosphere matter equally.</p>
-          <ul class="eat-route-list">
-            <li>Soluna</li>
-            <li>Paesanos</li>
-            <li>Supper at Hotel Emma</li>
-          </ul>
-        </article>
-        <article class="card gold eat-situation-card">
-          <h3>Family-friendly</h3>
-          <p class="eat-rec-desc">Keep logistics easy with dependable breakfast and all-day options that work across ages and appetites.</p>
-          <ul class="eat-route-list">
-            <li>La Panadería</li>
-            <li>Alamo Biscuit</li>
-            <li>Mi Tierra</li>
-          </ul>
-        </article>
-        <article class="card turq eat-situation-card">
-          <h3>Seafood / ceviche</h3>
-          <p class="eat-rec-desc">Build this lane around bright, citrus-forward seafood and rotate based on table size and preferred heat level.</p>
-          <ul class="eat-route-list">
-            <li>El Bucanero</li>
-            <li>El Cevichero</li>
-            <li>Leche de Tigre</li>
-          </ul>
-        </article>
-        <article class="card green eat-situation-card">
-          <h3>Drinks / lounge</h3>
-          <p class="eat-rec-desc">Start downtown for classic cocktail rooms, then pivot to Pearl when the night needs a more polished lounge sequence.</p>
-          <ul class="eat-route-list">
-            <li>Sternewirth</li>
-            <li>Esquire Tavern</li>
-            <li>1Watson</li>
-            <li>Tenfold</li>
-          </ul>
-        </article>
-        <article class="card purple eat-situation-card">
-          <h3>Pearl route</h3>
-          <p class="eat-rec-desc">Pearl is one of the strongest moves for business dinners, conference visitors, date nights, polished cocktails, and walkable after-dinner pacing.</p>
-          <ul class="eat-route-list">
-            <li>Hotel Emma</li>
-            <li>Supper</li>
-            <li>Sternewirth</li>
-            <li>Larder</li>
-            <li>Amelia Social Lounge</li>
-          </ul>
-        </article>
+      <div class="eat-top-shell">
+        <div class="eat-section-head">
+          <p class="eyebrow eyebrow-on-dark">Top picks</p>
+          <h2 class="eat-move-headline" id="eat-top-title">Willie Approved starting points</h2>
+          <p class="section-text">These six are the premium anchor moves. Start here when the meal has to land right the first time.</p>
+        </div>
+        <div class="eat-top-grid">
+          <article class="card orange eat-guide-card eat-top-card eat-card">
+            <div class="eat-top-card-top">
+              <h3>Soluna</h3>
+              <span class="eat-status-pill">Willie Approved</span>
+            </div>
+            <p class="eat-guide-meta">Mexican / upscale local favorite</p>
+            <p class="eat-rec-desc">The strongest first recommendation when visitors want polished Tex-Mex with local credibility.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> first city dinner, date night, and guests who want a confident San Antonio start.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card pink eat-guide-card eat-top-card eat-card">
+            <div class="eat-top-card-top">
+              <h3>Bohanan&rsquo;s</h3>
+              <span class="eat-status-pill">Willie Approved</span>
+            </div>
+            <p class="eat-guide-meta">Downtown steakhouse</p>
+            <p class="eat-rec-desc">Classic downtown polish for business tables, special dinners, and nights that need real weight.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> business dinners, client meals, and formal downtown pacing.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card gold eat-guide-card eat-top-card eat-card">
+            <div class="eat-top-card-top">
+              <h3>J-Prime</h3>
+              <span class="eat-status-pill">Willie Approved</span>
+            </div>
+            <p class="eat-guide-meta">North-side steakhouse</p>
+            <p class="eat-rec-desc">High-end steakhouse energy with a polished room and strong splurge appeal.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> north-side stays, polished groups, and steak-first nights.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card turq eat-guide-card eat-top-card eat-card">
+            <div class="eat-top-card-top">
+              <h3>Brasão</h3>
+              <span class="eat-status-pill">Willie Approved</span>
+            </div>
+            <p class="eat-guide-meta">Brazilian steakhouse</p>
+            <p class="eat-rec-desc">The best rodizio lane when the group wants range, abundance, and a memorable table.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> celebrations, hungry groups, and resort / business dinners.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card green eat-guide-card eat-top-card eat-card">
+            <div class="eat-top-card-top">
+              <h3>El Bucanero</h3>
+              <span class="eat-status-pill">Willie Approved</span>
+            </div>
+            <p class="eat-guide-meta">Ceviche / seafood</p>
+            <p class="eat-rec-desc">Best ceviche lane when the group wants seafood, spice, and a true local flavor-first meal.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> seafood nights, adventurous groups, and visitors wanting something different.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card purple eat-guide-card eat-top-card eat-card">
+            <div class="eat-top-card-top">
+              <h3>Paesanos</h3>
+              <span class="eat-status-pill">Willie Approved</span>
+            </div>
+            <p class="eat-guide-meta">Italian / River Walk classic</p>
+            <p class="eat-rec-desc">Reliable Italian anchor with broad appeal and useful River Walk compatibility.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> mixed groups, classic dinner pacing, and visitors who want a comfortable win.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="section eat-guide-page" aria-label="Where to eat by category">
-      <p class="section-text eat-lanes-intro">Curated lane guide: one Willie pick lead card, supporting moves, then a clean also-consider strip so decisions stay fast and clear.</p>
+      <p class="section-text eat-lanes-intro">Use these lanes like a concierge playbook: clear anchors, fast comparisons, and readable decision strips so each food move lands cleanly.</p>
 
       <div class="eat-lane" id="lane-mexican">
         <div class="eat-section-head">
           <p class="eyebrow">Flavor anchor</p>
           <h2>Mexican &amp; Tex-Mex</h2>
-          <p class="section-text">Upscale local favorites and classic rooms that work for first-timers and repeat visitors.</p>
+          <p class="section-text">Start here when the first meal needs to feel like San Antonio, not a generic downtown dinner.</p>
         </div>
-        <div class="eat-rec-grid">
-          <div class="eat-lane-main">
-            <article class="card orange eat-guide-card eat-rec-card eat-lane-feature">
-              <h3>Soluna</h3>
-              <p class="eat-guide-meta">Mexican / upscale local favorite</p>
-              <p class="eat-rec-desc">Polished Tex-Mex with local credibility and consistently strong execution. This remains the cleanest first pick when you want a premium San Antonio table.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> first city dinner, polished group reservations.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
-          <div class="eat-support-grid">
-            <article class="card pink eat-guide-card eat-rec-card">
-              <h3>La Fogata</h3>
-              <p class="eat-guide-meta">Mexican · Hill Country patio</p>
-              <p class="eat-rec-desc">A longtime local classic with patio energy and broad appeal. Useful when the group wants a comfortable, proven room.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> larger parties, classic local tempo.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-            <article class="card gold eat-guide-card eat-rec-card">
-              <h3>La Fonda</h3>
-              <p class="eat-guide-meta">Classic San Antonio Mexican</p>
-              <p class="eat-rec-desc">Refined classic option with long-standing local trust. A strong third featured move when the table wants heritage and polish.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> business lunches, classic-date pacing.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
+        <div class="eat-lane-grid">
+          <article class="card orange eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+            <h3>Soluna</h3>
+            <p class="eat-guide-meta">Mexican &bull; upscale local favorite</p>
+            <p class="eat-rec-desc">The strongest Willie Approved Mexican move when the night needs flavor, polish, and a real San Antonio feel.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> first city dinner, date-night energy, and visitors who want the meal to feel memorable.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card pink eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+            <h3>La Fogata / La Fonda</h3>
+            <p class="eat-guide-meta">Classic San Antonio Mexican</p>
+            <p class="eat-rec-desc">La Fogata brings the patio energy; La Fonda keeps the classic San Antonio dining-room feel.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> larger parties, familiar local pacing, and groups that want a dependable Mexican room.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card gold eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
+            <h3>Domingo / Ácenar</h3>
+            <p class="eat-guide-meta">River Walk / downtown Mexican</p>
+            <p class="eat-rec-desc">Useful downtown-adjacent options when the group wants Mexican flavor without leaving the River Walk orbit.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> visitors staying near downtown hotels or convention corridors.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Also consider</span>
-          <p>Rosario&rsquo;s · Domingo · Ácenar</p>
+          <p>Also consider: Rosario&rsquo;s for King William energy, Mexico City as a Needs Visit research pick, and Casa Rio only as a classic River Walk name &mdash; not currently a Willie Approved food-first pick.</p>
         </div>
       </div>
 
@@ -731,36 +819,34 @@
           <h2>Steakhouses</h2>
           <p class="section-text">Business-ready rooms with clear differences in location, pacing, and spend level.</p>
         </div>
-        <div class="eat-rec-grid">
-          <div class="eat-lane-main">
-            <article class="card turq eat-guide-card eat-rec-card eat-lane-feature">
-              <h3>Bohanan&rsquo;s</h3>
-              <p class="eat-guide-meta">Downtown steakhouse / business dinner</p>
-              <p class="eat-rec-desc">Downtown anchor for serious hosting and polished service flow. The most dependable recommendation when a client table needs confidence.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> executive dinners, downtown walkable tables.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
-          <div class="eat-support-grid">
-            <article class="card green eat-guide-card eat-rec-card">
-              <h3>J-Prime</h3>
-              <p class="eat-guide-meta">North-side steakhouse / polished splurge</p>
-              <p class="eat-rec-desc">Modern north-side room with premium pacing. Strong for dinners that should feel elevated outside downtown.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> polished splurge nights, resort-area business tables.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-            <article class="card purple eat-guide-card eat-rec-card">
-              <h3>Ruth&rsquo;s Chris</h3>
-              <p class="eat-guide-meta">Steakhouse · familiar polished standard</p>
-              <p class="eat-rec-desc">Useful backup for visitors who prefer recognizable premium steakhouse format and predictable service pacing.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> familiar-name comfort, backup reservations.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
+        <div class="eat-lane-grid">
+          <article class="card turq eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+            <h3>Bohanan&rsquo;s</h3>
+            <p class="eat-guide-meta">Downtown steakhouse / business dinner</p>
+            <p class="eat-rec-desc">Downtown anchor for serious hosting and polished service flow. The dependable call when a client table needs confidence.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> executive dinners, downtown walkable tables.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card green eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+            <h3>J-Prime</h3>
+            <p class="eat-guide-meta">North-side steakhouse / polished splurge</p>
+            <p class="eat-rec-desc">Modern north-side room with premium pacing and strong dinner-service rhythm.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> polished splurge nights, resort-area business tables.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card purple eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
+            <h3>Ruth&rsquo;s Chris</h3>
+            <p class="eat-guide-meta">Steakhouse &bull; familiar polished standard</p>
+            <p class="eat-rec-desc">Useful backup for visitors who prefer recognizable premium steakhouse format and predictable pacing.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> familiar-name comfort, backup reservations.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
         </div>
-        <div class="eat-also-strip">
-          <span class="eat-also-label">Also consider</span>
-          <p>Perry&rsquo;s</p>
+        <div class="eat-choose-strip">
+          <p><strong>When to choose each:</strong> Downtown polish: Bohanan&rsquo;s. North-side splurge: J-Prime. Familiar brand comfort: Ruth&rsquo;s Chris.</p>
         </div>
       </div>
 
@@ -770,75 +856,71 @@
           <h2>Brazilian steakhouses</h2>
           <p class="section-text">Use this lane for groups, celebrations, and visitors who want the table experience.</p>
         </div>
-        <div class="eat-rec-grid">
-          <div class="eat-lane-main">
-            <article class="card orange eat-guide-card eat-rec-card eat-lane-feature">
-              <h3>Brasão</h3>
-              <p class="eat-guide-meta">Brazilian steakhouse / best rodizio option</p>
-              <p class="eat-rec-desc">Top rodizio recommendation for quality, consistency, and premium room feel. Reliable first call when one meal should feel memorable.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> milestone dinners, high-appetite groups.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
-          <div class="eat-support-grid">
-            <article class="card pink eat-guide-card eat-rec-card">
-              <h3>Chama Gaúcha</h3>
-              <p class="eat-guide-meta">Brazilian · rodizio</p>
-              <p class="eat-rec-desc">Polished service and dependable pacing for guests who want a classic rodizio sequence.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> large groups, celebration alternatives.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-            <article class="card gold eat-guide-card eat-rec-card">
-              <h3>Fogo de Chão</h3>
-              <p class="eat-guide-meta">Brazilian · national brand</p>
-              <p class="eat-rec-desc">Familiar brand format with consistent table rhythm. Useful when group comfort skews toward known names.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> mixed comfort levels, convention-friendly plans.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
+        <div class="eat-lane-grid">
+          <article class="card orange eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+            <h3>Brasão</h3>
+            <p class="eat-guide-meta">Brazilian steakhouse / best rodizio option</p>
+            <p class="eat-rec-desc">Top rodizio recommendation for quality, consistency, and premium room feel.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> milestone dinners, high-appetite groups.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card pink eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
+            <h3>Chama Gaúcha</h3>
+            <p class="eat-guide-meta">Brazilian &bull; rodizio</p>
+            <p class="eat-rec-desc">Polished service and dependable pacing for guests who want a classic rodizio sequence.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> large groups, celebration alternatives.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card gold eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
+            <h3>Fogo de Chão</h3>
+            <p class="eat-guide-meta">Brazilian &bull; national brand</p>
+            <p class="eat-rec-desc">Familiar brand format with consistent table rhythm when group comfort skews toward known names.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> mixed comfort levels, convention-friendly plans.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
         </div>
-        <div class="eat-also-strip">
-          <span class="eat-also-label">Also consider</span>
-          <p>Use this lane for groups, celebrations, and visitors who want the table experience.</p>
+        <div class="eat-choose-strip">
+          <p><strong>Difference maker:</strong> Best overall local feel: Brasão. Polished group room: Chama Gaúcha. Familiar national brand: Fogo de Chão.</p>
         </div>
       </div>
 
-      <div class="eat-lane" id="lane-seafood">
+      <div class="eat-lane eat-lane--lead" id="lane-seafood">
         <div class="eat-section-head">
           <p class="eyebrow">Gulf &amp; lime</p>
           <h2>Seafood &amp; ceviche</h2>
           <p class="section-text">Bright, spice-forward seafood choices when the table wants something sharper than another steak night.</p>
         </div>
-        <div class="eat-rec-grid">
-          <div class="eat-lane-main">
-            <article class="card turq eat-guide-card eat-rec-card eat-lane-feature">
-              <h3>El Bucanero</h3>
-              <p class="eat-guide-meta">Ceviche / seafood</p>
-              <p class="eat-rec-desc">Core pick for this lane when the group wants citrus-forward seafood and bold seasoning over heavy formality.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> seafood-first dinners, shareable plates.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
-          <div class="eat-support-grid">
-            <article class="card green eat-guide-card eat-rec-card">
-              <h3>El Cevichero</h3>
-              <p class="eat-guide-meta">Seafood · ceviche</p>
-              <p class="eat-rec-desc">Strong ceviche-forward alternate with a lighter, casual pace that works well for lunch or early dinner.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> flexible seafood plans, smaller groups.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-            <article class="card purple eat-guide-card eat-rec-card">
-              <h3>Leche de Tigre</h3>
-              <p class="eat-guide-meta">Peruvian-accented ceviche</p>
-              <p class="eat-rec-desc">Peruvian-accented ceviche with composed plating and quieter room energy.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> date-night seafood, refined casual dinners.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
+        <div class="eat-lane-grid">
+          <article class="card turq eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+            <h3>El Bucanero</h3>
+            <p class="eat-guide-meta">Ceviche / seafood</p>
+            <p class="eat-rec-desc">Willie Approved best ceviche move in this lane when the table wants citrus-forward seafood and confident seasoning.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> seafood-first dinners, shareable plates.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card green eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
+            <h3>El Cevichero</h3>
+            <p class="eat-guide-meta">Seafood &bull; ceviche</p>
+            <p class="eat-rec-desc">Strong ceviche-forward alternate with a lighter pace that works well for lunch or early dinner.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> flexible seafood plans, smaller groups.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card purple eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
+            <h3>Leche de Tigre</h3>
+            <p class="eat-guide-meta">Peruvian-accented ceviche</p>
+            <p class="eat-rec-desc">Peruvian-accented ceviche with composed plating and quieter room energy.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> date-night seafood, refined casual dinners.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
         </div>
-        <div class="eat-also-strip">
-          <span class="eat-also-label">Also consider</span>
-          <p>Best when the group wants bright seafood instead of another steak or Tex-Mex meal.</p>
+        <div class="eat-choose-strip">
+          <p><strong>Seafood read:</strong> Start with El Bucanero when ceviche is the reason for dinner, then pivot to El Cevichero or Leche de Tigre for style and pacing preference.</p>
         </div>
       </div>
 
@@ -848,36 +930,34 @@
           <h2>Breakfast</h2>
           <p class="section-text">Three dependable starts depending on whether your group wants pastry, heft, or Market Square culture.</p>
         </div>
-        <div class="eat-rec-grid">
-          <div class="eat-lane-main">
-            <article class="card orange eat-guide-card eat-rec-card eat-lane-feature">
-              <h3>La Panadería</h3>
-              <p class="eat-guide-meta">Breakfast · bakery-forward</p>
-              <p class="eat-rec-desc">Quality-first bakery stop that consistently works for visitors and locals. The strongest premium morning opener in this lane.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> family mornings, pastry-led breakfast.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
-          <div class="eat-support-grid">
-            <article class="card pink eat-guide-card eat-rec-card">
-              <h3>Alamo Biscuit</h3>
-              <p class="eat-guide-meta">Breakfast · biscuits</p>
-              <p class="eat-rec-desc">Hearty portions and straightforward ordering when the table needs a real fuel-up start.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> active sightseeing days, bigger appetites.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-            <article class="card gold eat-guide-card eat-rec-card">
-              <h3>Mi Tierra</h3>
-              <p class="eat-guide-meta">Market Square · bakery &amp; late-night</p>
-              <p class="eat-rec-desc">Strong culture move in Market Square with bakery depth and all-day flexibility.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> visitors wanting atmosphere and story.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
+        <div class="eat-lane-grid">
+          <article class="card orange eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+            <h3>La Panadería</h3>
+            <p class="eat-guide-meta">Breakfast &bull; premium pastry/cafe stop</p>
+            <p class="eat-rec-desc">Quality-first bakery stop that consistently works for visitors and locals.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> family mornings, pastry-led breakfast.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card pink eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
+            <h3>Alamo Biscuit</h3>
+            <p class="eat-guide-meta">Breakfast &bull; hearty local breakfast</p>
+            <p class="eat-rec-desc">Hearty portions and straightforward ordering when the table needs a real fuel-up start.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> active sightseeing days, bigger appetites.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card gold eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
+            <h3>Mi Tierra</h3>
+            <p class="eat-guide-meta">Market Square &bull; cultural / late-night or morning stop</p>
+            <p class="eat-rec-desc">Strong culture move in Market Square with bakery depth and flexible timing.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> visitors wanting atmosphere and story.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
         </div>
-        <div class="eat-also-strip">
-          <span class="eat-also-label">Also consider</span>
-          <p>Mi Tierra is stronger as late-night culture or Market Square story than a quiet breakfast.</p>
+        <div class="eat-choose-strip">
+          <p><strong>Morning logic:</strong> La Panadería for premium pastry pacing, Alamo Biscuit for hearty starts, Mi Tierra for cultural Market Square utility.</p>
         </div>
       </div>
 
@@ -887,36 +967,35 @@
           <h2>River Walk drinks / rooftops / bar hop</h2>
           <p class="section-text">Build a clean downtown sequence: classic cocktail anchor, modern stop, then rooftop finish.</p>
         </div>
-        <div class="eat-rec-grid">
-          <div class="eat-lane-main">
-            <article class="card turq eat-guide-card eat-rec-card eat-lane-feature">
-              <h3>Esquire Tavern</h3>
-              <p class="eat-guide-meta">Cocktails · historic bar</p>
-              <p class="eat-rec-desc">Historic River Walk cocktail anchor with depth and room character. Dependable first stop before or after dinner.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> classic cocktails, conversation-friendly tables.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
-          <div class="eat-support-grid">
-            <article class="card green eat-guide-card eat-rec-card">
-              <h3>1Watson</h3>
-              <p class="eat-guide-meta">Drinks · River proximity</p>
-              <p class="eat-rec-desc">Modern stop near the River corridor with cleaner design and calmer pacing.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> pre-dinner drinks, modern lounge tone.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-            <article class="card purple eat-guide-card eat-rec-card">
-              <h3>Tenfold</h3>
-              <p class="eat-guide-meta">Rooftop · Kimpton Santo</p>
-              <p class="eat-rec-desc">Rooftop finisher for skyline views and a polished hotel setting.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> sunset cocktails, elevated night caps.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
+        <div class="eat-lane-grid">
+          <article class="card turq eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+            <h3>Esquire Tavern</h3>
+            <p class="eat-guide-meta">Cocktails &bull; historic bar</p>
+            <p class="eat-rec-desc">Historic River Walk cocktail anchor with depth and room character.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> classic cocktails, conversation-friendly tables.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card green eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+            <h3>1Watson</h3>
+            <p class="eat-guide-meta">Drinks &bull; River proximity</p>
+            <p class="eat-rec-desc">Modern stop near the River corridor with cleaner design and calmer pacing.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> pre-dinner drinks, modern lounge tone.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
+          <article class="card purple eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+            <h3>Tenfold</h3>
+            <p class="eat-guide-meta">Rooftop &bull; Kimpton Santo</p>
+            <p class="eat-rec-desc">Rooftop finisher for skyline views and a polished hotel setting.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> sunset cocktails, elevated night caps.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
+          </article>
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Also consider</span>
-          <p>Mad Dogs · Sternewirth (if the night is shifting toward Pearl)</p>
+          <p>Also consider: Mad Dogs first for River Walk bar-hop energy; Sternewirth if the night shifts toward Pearl.</p>
         </div>
       </div>
 
@@ -924,116 +1003,66 @@
         <div class="eat-section-head">
           <p class="eyebrow">PEARL DISTRICT</p>
           <h2>Pearl food &amp; lounge</h2>
-          <p class="section-text">Pearl is one of the strongest moves for business dinners, conference visitors, date nights, polished cocktails, and walkable after-dinner pacing.</p>
+          <p class="section-text">Pearl works when the night needs to feel considered: dinner, drinks, and a walkable district without overcomplicating the plan.</p>
         </div>
-        <div class="eat-pearl-grid">
-          <article class="card orange eat-guide-card eat-rec-card">
+        <div class="eat-lane-grid">
+          <article class="card orange eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
             <h3>Hotel Emma / Supper</h3>
-            <p class="eat-guide-meta">Willie Approved · Pearl dinner anchor</p>
-            <p class="eat-rec-desc">Polished Pearl anchor for business dinners, conference visitors, and date nights. A strong upscale move when you want dinner, drinks, and a walkable district all in one place.</p>
-            <p class="eat-rec-best"><strong>Best for:</strong> business dinners, conference tables, and date-night anchor plans in Pearl.</p>
-            <p class="eat-rating-badge">GOOGLE RATING: VERIFY</p>
+            <p class="eat-guide-meta">Pearl dinner anchor</p>
+            <p class="eat-rec-desc">Hotel Emma and Supper set the tone for polished business dinners, conference hosting, and premium date-night pacing.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> business dinners, polished groups, date-night anchor plans.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
           </article>
-          <article class="card pink eat-guide-card eat-rec-card">
+          <article class="card pink eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
             <h3>Brasserie Mon Chou Chou</h3>
-            <p class="eat-guide-meta">Research Pick · Pearl favorite</p>
-            <p class="eat-rec-desc">French brasserie energy in Pearl. Great for polished groups, date night, and visitors who want a memorable dinner without leaving the district.</p>
-            <p class="eat-rec-best"><strong>Best for:</strong> polished groups, date nights, and visitors who want a memorable Pearl dinner.</p>
-            <p class="eat-rating-badge">GOOGLE RATING: VERIFY</p>
+            <p class="eat-guide-meta">Pearl brasserie energy</p>
+            <p class="eat-rec-desc">French brasserie atmosphere with strong date-night and polished-group utility in the heart of Pearl.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> conference visitors, date nights, polished group dinners.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
           </article>
-          <article class="card gold eat-guide-card eat-rec-card">
+          <article class="card gold eat-guide-card eat-rec-card eat-card">
+            <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
             <h3>Ladino</h3>
-            <p class="eat-guide-meta">Research Pick · Top Pearl dining</p>
-            <p class="eat-rec-desc">One of the strongest food-forward Pearl options. Best when visitors want a highly rated, memorable dinner with a little more destination feel inside the district.</p>
-            <p class="eat-rec-best"><strong>Best for:</strong> food-focused visitors, date nights, and Pearl dinner plans that need more character.</p>
-            <p class="eat-rating-badge">GOOGLE RATING: VERIFY</p>
+            <p class="eat-guide-meta">Food-forward Pearl option</p>
+            <p class="eat-rec-desc">Food-forward destination feel that still fits a walkable Pearl night without adding logistical complexity.</p>
+            <p class="eat-rec-best"><strong>Best for:</strong> food-focused visitors, polished date nights, memorable Pearl dinners.</p>
+            <p class="eat-rating-badge">Google rating: verify before publishing.</p>
           </article>
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Also consider</span>
-          <p>Sternewirth for cocktails and after-dinner pacing, Amelia Social Lounge for lounge energy, and Larder for coffee / pastry / market-stop utility.</p>
+          <p>Amelia Social Lounge for drinks, Sternewirth when the night shifts toward Hotel Emma, and Larder for coffee, pastry, or market-stop utility.</p>
         </div>
       </div>
 
-      <div class="eat-lane" id="lane-italian">
+      <div class="eat-lane" id="lane-food-rules">
         <div class="eat-section-head">
-          <p class="eyebrow">River Walk classic</p>
-          <h2>Italian / River Walk classics</h2>
-          <p class="section-text">Use this lane when the group needs a break from steak, seafood, and Tex-Mex without losing a central location.</p>
+          <p class="eyebrow">Local utility</p>
+          <h2>Local food rules that save the night</h2>
+          <p class="section-text">Use this checklist before you book, walk, or rideshare. It prevents most avoidable dinner misses.</p>
         </div>
-        <div class="eat-rec-grid">
-          <div class="eat-lane-main">
-            <article class="card pink eat-guide-card eat-rec-card eat-lane-feature">
-              <h3>Paesanos</h3>
-              <p class="eat-guide-meta">Italian / River Walk classic</p>
-              <p class="eat-rec-desc">Reliable River Walk Italian anchor with strong reservation utility and broad group compatibility.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> River Walk dinner plans, mixed palates.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
-          <div class="eat-support-grid">
-            <article class="card orange eat-guide-card eat-rec-card">
-              <h3>Nonna Osteria</h3>
-              <p class="eat-guide-meta">Italian · downtown</p>
-              <p class="eat-rec-desc">Refined downtown Italian option with clean pacing and easy date-night utility.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> downtown Italian dinners, small-group nights.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-            <article class="card gold eat-guide-card eat-rec-card">
-              <h3>Battalion</h3>
-              <p class="eat-guide-meta">Italian · Southtown</p>
-              <p class="eat-rec-desc">Stylish Southtown Italian room for groups that want a modern atmosphere and shareable pacing.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> Southtown dinner routes, social groups.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
-        </div>
-        <div class="eat-also-strip">
-          <span class="eat-also-label">Also consider</span>
-          <p>Use Italian when the group needs a break from steak, seafood, and Tex-Mex.</p>
+        <div class="eat-rules-panel" role="group" aria-label="Local food rules checklist">
+          <ul class="eat-rules-list">
+            <li>Reserve dinner before you start walking.</li>
+            <li>Downtown: pick one anchor meal, not three backups.</li>
+            <li>Pearl works best when dinner and drinks stay in the same corridor.</li>
+            <li>River Walk bar hopping is easier when you choose one start point first.</li>
+            <li>For big groups, choose the room before the menu.</li>
+            <li>If the night is tired, close-and-easy beats &ldquo;worth the ride.&rdquo;</li>
+          </ul>
         </div>
       </div>
 
-      <div class="eat-lane" id="lane-late">
-        <div class="eat-section-head">
-          <p class="eyebrow">After midnight</p>
-          <h2>Late-night</h2>
-          <p class="section-text">Simple late-night options that keep your night moving without overcomplicating transport or timing.</p>
-        </div>
-        <div class="eat-rec-grid">
-          <div class="eat-lane-main">
-            <article class="card turq eat-guide-card eat-rec-card eat-lane-feature">
-              <h3>Mi Tierra (late-night)</h3>
-              <p class="eat-guide-meta">Market Square</p>
-              <p class="eat-rec-desc">Classic Market Square move with late service and strong local identity when visitors still want a San Antonio experience after hours.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> first-time visitors after midnight, group resets.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
-          <div class="eat-support-grid">
-            <article class="card green eat-guide-card eat-rec-card">
-              <h3>River Walk carry-out</h3>
-              <p class="eat-guide-meta">Late-night · corridor</p>
-              <p class="eat-rec-desc">When full kitchens close, nearby carry-out keeps logistics simple. Use <a href="index.html#ask">Ask</a> for what is open in real time.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> late arrivals, hotel-near pickups.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-            <article class="card purple eat-guide-card eat-rec-card">
-              <h3>Rideshare pickup tip</h3>
-              <p class="eat-guide-meta">Route · River Walk</p>
-              <p class="eat-rec-desc">Set pickup pins just off heavy bridge corners to reduce wait friction, especially on busy weekends.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> busy nights, smoother exits.</p>
-              <p class="eat-rating-badge">Google rating: verify</p>
-            </article>
-          </div>
-        </div>
-        <div class="eat-also-strip">
-          <span class="eat-also-label">Also consider</span>
-          <p>Mi Tierra bakery counter · hotel lobby kitchens · 24-hour diner backups</p>
+      <div class="eat-concierge-cta" id="food-concierge-ask">
+        <h2>Ask The SA Plug for your exact food move</h2>
+        <p>Tell us where you&rsquo;re staying, party size, budget, food mood, and timing - we&rsquo;ll point you to the right move with a clean plan you can use immediately.</p>
+        <div class="eat-concierge-actions">
+          <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-primary">Ask The SA Plug</a>
+          <a href="resort-food.html" class="btn btn-secondary">Need resort-area picks?</a>
         </div>
       </div>
-
-      <div class="note-card eat-guide-downtown-tie"><p><strong>Downtown tie-in:</strong> Layer multiple meals along the horseshoe with <a href="downtown.html">Downtown routes</a> so transit timing stays as tight as the reservations.</p></div>
     </section>
   </main>
   <footer class="footer dark-showcase">
