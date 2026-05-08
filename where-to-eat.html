@@ -288,6 +288,91 @@
       font-size: 1.04rem;
     }
 
+    .eat-visual-band {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: stretch;
+      margin-top: clamp(16px, 2.5vw, 24px);
+    }
+
+    @media (max-width: 800px) {
+      .eat-visual-band {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .eat-image-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      min-height: 280px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: var(--shadow-md);
+      background: #0b1d3a;
+    }
+
+    .eat-image-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      object-fit: cover;
+      display: block;
+      opacity: 1;
+      filter: none;
+    }
+
+    .eat-image-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11, 29, 58, 0.72), rgba(11, 29, 58, 0.08), transparent);
+      pointer-events: none;
+    }
+
+    .eat-image-card-content {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      z-index: 2;
+      color: #ffffff;
+    }
+
+    .eat-image-card-content h3 {
+      margin: 0;
+      font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+      line-height: 1.2;
+      color: #ffffff;
+    }
+
+    .eat-lane-anchor {
+      margin-top: 14px;
+      margin-bottom: clamp(16px, 2.3vw, 24px);
+      min-height: 300px;
+    }
+
+    .eat-lane-anchor img {
+      min-height: 300px;
+    }
+
+    .eat-lane-anchor .eat-image-card-content p {
+      margin: 8px 0 0;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .secondary-hero-visual .hero-inner-panel::after {
+      background: linear-gradient(to top, rgba(11, 29, 58, 0.22), rgba(11, 29, 58, 0.04), transparent);
+    }
+
+    .secondary-hero-visual .hero-inner-img {
+      object-fit: cover;
+      opacity: 1;
+      filter: none;
+    }
+
     .eat-route-list {
       margin: 0;
       padding: 0;
@@ -653,7 +738,7 @@
           </div>
           <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
             <div class="hero-visual-panel hero-inner-panel">
-              <img src="assets/images/sa-plug/food-river-dining.png" alt="River Walk dining and San Antonio food scene" class="hero-visual-img hero-inner-img img-pos-food" width="800" height="1000" decoding="async" />
+              <img src="assets/images/sa-plug/WHERE_TO_EAT_01_hero_premium_dining.png" alt="Premium San Antonio dining table setting" class="hero-visual-img hero-inner-img img-pos-food" width="800" height="1000" decoding="async" />
             </div>
           </div>
         </div>
@@ -697,6 +782,28 @@
             <a class="eat-move-jump" href="#lane-drinks">Drinks lane</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section eat-situation-section" aria-labelledby="eat-visual-band-title">
+      <div class="eat-section-head">
+        <p class="eyebrow">Decision visuals</p>
+        <h2 id="eat-visual-band-title">Choose the dinner energy</h2>
+        <p class="section-text">Use the room vibe to call the lane fast: polished and business-ready, or River Walk-adjacent with date-night momentum.</p>
+      </div>
+      <div class="eat-visual-band">
+        <article class="eat-image-card">
+          <img src="assets/images/sa-plug/WHERE_TO_EAT_03_visual_band_business_dinner.png" alt="Polished business dinner atmosphere in San Antonio" loading="lazy" decoding="async" />
+          <div class="eat-image-card-content">
+            <h3>Polished dinner energy</h3>
+          </div>
+        </article>
+        <article class="eat-image-card">
+          <img src="assets/images/sa-plug/WHERE_TO_EAT_02_visual_band_date_night.png" alt="San Antonio date night dining atmosphere near the River Walk" loading="lazy" decoding="async" />
+          <div class="eat-image-card-content">
+            <h3>San Antonio night energy</h3>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -781,6 +888,13 @@
           <h2>Mexican &amp; Tex-Mex</h2>
           <p class="section-text">Start here when the first meal needs to feel like San Antonio, not a generic downtown dinner.</p>
         </div>
+        <article class="eat-image-card eat-lane-anchor">
+          <img src="assets/images/sa-plug/WHERE_TO_EAT_04_mexican_texmex_anchor.png" alt="Mexican and Tex-Mex dining spread in San Antonio" loading="lazy" decoding="async" />
+          <div class="eat-image-card-content">
+            <h3>Mexican &amp; Tex-Mex anchor</h3>
+            <p>Lead the night with a flavor-first table that feels local and premium from the first round.</p>
+          </div>
+        </article>
         <div class="eat-lane-grid">
           <article class="card orange eat-guide-card eat-rec-card eat-card">
             <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
@@ -893,6 +1007,13 @@
           <h2>Seafood &amp; ceviche</h2>
           <p class="section-text">Bright, spice-forward seafood choices when the table wants something sharper than another steak night.</p>
         </div>
+        <article class="eat-image-card eat-lane-anchor">
+          <img src="assets/images/sa-plug/WHERE_TO_EAT_05_seafood_ceviche_anchor.png" alt="Fresh seafood and ceviche presentation in San Antonio" loading="lazy" decoding="async" />
+          <div class="eat-image-card-content">
+            <h3>Seafood / ceviche anchor</h3>
+            <p>El Bucanero is the strongest Willie Approved ceviche lane when seafood is the reason for dinner.</p>
+          </div>
+        </article>
         <div class="eat-lane-grid">
           <article class="card turq eat-guide-card eat-rec-card eat-card">
             <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
@@ -1005,6 +1126,13 @@
           <h2>Pearl food &amp; lounge</h2>
           <p class="section-text">Pearl works when the night needs to feel considered: dinner, drinks, and a walkable district without overcomplicating the plan.</p>
         </div>
+        <article class="eat-image-card eat-lane-anchor">
+          <img src="assets/images/sa-plug/WHERE_TO_EAT_06_pearl_district_anchor.png" alt="Pearl District dinner and lounge atmosphere in San Antonio" loading="lazy" decoding="async" />
+          <div class="eat-image-card-content">
+            <h3>Pearl district anchor</h3>
+            <p>Pearl works when the night needs to feel considered: dinner, drinks, and a walkable district without overcomplicating the plan.</p>
+          </div>
+        </article>
         <div class="eat-lane-grid">
           <article class="card orange eat-guide-card eat-rec-card eat-card">
             <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
@@ -1033,7 +1161,7 @@
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Also consider</span>
-          <p>Amelia Social Lounge for drinks, Sternewirth when the night shifts toward Hotel Emma, and Larder for coffee, pastry, or market-stop utility.</p>
+          <p>Also consider: Amelia Social Lounge for drinks, Sternewirth when the night shifts toward Hotel Emma, and Larder for coffee, pastry, or market-stop utility.</p>
         </div>
       </div>
 
