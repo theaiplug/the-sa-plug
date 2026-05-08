@@ -9,6 +9,256 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .downtown-guide {
+      margin-top: 1.5rem;
+      padding: clamp(1.25rem, 2vw, 2rem);
+      border-radius: 1.25rem;
+      background:
+        radial-gradient(130% 120% at 0% 0%, rgba(255, 130, 74, 0.24), transparent 46%),
+        radial-gradient(120% 120% at 100% 0%, rgba(26, 215, 207, 0.18), transparent 52%),
+        linear-gradient(155deg, #081a35 0%, #112447 52%, #1d1640 100%);
+      color: #fef4e8;
+      box-shadow: 0 24px 52px rgba(6, 12, 29, 0.45);
+    }
+
+    .downtown-guide .section-text {
+      color: rgba(254, 244, 232, 0.94);
+      max-width: 74ch;
+      line-height: 1.7;
+    }
+
+    .downtown-guide .eyebrow {
+      color: #ff9d4f;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .downtown-guide h2 {
+      color: #fff4e6;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      line-height: 1.2;
+      margin-bottom: 0.65rem;
+    }
+
+    .guide-section {
+      margin-top: clamp(1.6rem, 2.9vw, 2.45rem);
+    }
+
+    .route-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+      margin-top: 0.85rem;
+    }
+
+    .route-selector-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 157, 79, 0.34);
+      background: #fff4e7;
+      color: #1f2538;
+      box-shadow: 0 12px 28px rgba(6, 12, 29, 0.24);
+      padding: 1rem;
+    }
+
+    .route-selector-card h3,
+    .route-selector-card p,
+    .route-selector-card strong {
+      color: #1b2132;
+    }
+
+    .route-card-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .route-selector-chip {
+      margin-left: auto;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      line-height: 1;
+      padding: 0.4rem 0.62rem;
+      background: rgba(13, 31, 64, 0.12);
+      color: #0e2e57;
+      border: 1px solid rgba(14, 46, 87, 0.18);
+    }
+
+    .route-selector-card .btn-block {
+      margin-top: auto;
+      align-self: flex-start;
+      padding: 0.58rem 0.86rem;
+      border-radius: 0.6rem;
+      background: linear-gradient(130deg, #ff8f3c, #f26f2b);
+      color: #fff9f3;
+      border: 1px solid rgba(243, 107, 32, 0.8);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .featured-route {
+      border-radius: 1.1rem;
+      background: linear-gradient(160deg, rgba(255, 150, 70, 0.18), rgba(248, 119, 194, 0.14));
+      border: 1px solid rgba(255, 163, 78, 0.3);
+      padding: clamp(0.9rem, 2vw, 1.25rem);
+      margin-top: 0.85rem;
+    }
+
+    .featured-route-timeline {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .route-step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    .route-step-marker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.1rem;
+      min-height: 2.1rem;
+      border-radius: 0.72rem;
+      background: linear-gradient(150deg, #ff8d39, #e5558b);
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 8px 16px rgba(10, 19, 44, 0.28);
+    }
+
+    .route-step-card {
+      border-left: 4px solid #1ec7bc;
+      border-radius: 0.9rem;
+      background: #fff4e7;
+      color: #1b2132;
+      padding: 0.95rem 1rem;
+      box-shadow: 0 10px 24px rgba(10, 19, 44, 0.2);
+    }
+
+    .route-step-card h3,
+    .route-step-card p,
+    .route-step-card strong {
+      color: #1b2132;
+    }
+
+    .situation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+      margin-top: 0.85rem;
+    }
+
+    .situation-grid .card {
+      height: 100%;
+      background: #fff4e7;
+      color: #1b2132;
+      border: 1px solid rgba(255, 157, 79, 0.28);
+      box-shadow: 0 12px 26px rgba(6, 12, 29, 0.22);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .situation-grid .card h3,
+    .situation-grid .card p,
+    .situation-grid .card strong {
+      color: #1b2132;
+    }
+
+    .one-night-strips {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 0.85rem;
+    }
+
+    .itinerary-strip {
+      border-radius: 0.95rem;
+      border: 1px solid rgba(255, 166, 88, 0.32);
+      background: linear-gradient(145deg, #fff4e7, #ffe9ce);
+      color: #1b2132;
+      padding: 0.92rem 1rem;
+      box-shadow: 0 10px 24px rgba(7, 16, 37, 0.2);
+    }
+
+    .itinerary-strip h3,
+    .itinerary-strip p {
+      color: #1b2132;
+    }
+
+    .local-rules-card {
+      margin-top: 0.85rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(45, 236, 224, 0.28);
+      background: linear-gradient(165deg, #132947, #0f1d38);
+      color: #f7efe4;
+      padding: 1rem;
+      box-shadow: 0 12px 30px rgba(6, 12, 29, 0.28);
+    }
+
+    .local-rules-checklist {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.58rem;
+    }
+
+    .local-rules-checklist li {
+      position: relative;
+      padding-left: 1.5rem;
+      color: #f7efe4;
+      line-height: 1.55;
+    }
+
+    .local-rules-checklist li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #3ee6d8;
+      font-weight: 900;
+    }
+
+    .live-pivots-note {
+      margin-top: 0.75rem;
+      border-radius: 0.82rem;
+      padding: 0.8rem 0.92rem;
+      background: rgba(255, 244, 229, 0.95);
+      color: #1b2132;
+      border: 1px solid rgba(255, 166, 88, 0.36);
+    }
+
+    .live-pivots-note p,
+    .live-pivots-note strong {
+      color: #1b2132;
+    }
+
+    .live-pivots-note a {
+      color: #b2440f;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .route-selector-grid,
+      .situation-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -57,21 +307,174 @@
         </div>
       </div>
     </section>
-    <section class="section">
-      <div class="feature-grid">
-        <article class="image-card img-downtown"><div class="image-card-content"><h3>Convention District Logic</h3><p>Fast routes for meetings, breaks, and easy evening pivots.</p></div></article>
-        <article class="image-card img-food"><div class="image-card-content"><h3>Dinner + Drinks Arc</h3><p>From business-safe dining to relaxed River Walk cocktails.</p></div></article>
+    <section class="section downtown-guide">
+      <p class="section-text">Downtown works best when your route is set before the night starts. Use this page as a concierge map for first-time visits, convention schedules, family timing, and polished evenings.</p>
+
+      <div class="guide-section">
+        <p class="eyebrow">Route selector</p>
+        <h2>Start with the right downtown move</h2>
+        <div class="route-selector-grid">
+          <article class="route-selector-card route-sel-coral">
+            <div class="route-card-head">
+              <span class="route-selector-dot" aria-hidden="true"></span>
+              <h3>First time in SA</h3>
+              <span class="route-selector-chip">Postcard route</span>
+            </div>
+            <p>Build around Alamo, River Walk orientation, and one reliable dinner reservation so the city feels clear on night one.</p>
+            <p><strong>Best for:</strong> first-time visitors and short-stay travelers.</p>
+            <p><strong>Recommended first move:</strong> Start at the Alamo when doors open.</p>
+            <span class="btn btn-primary btn-block" aria-hidden="true">Starter route</span>
+          </article>
+          <article class="route-selector-card route-sel-gold">
+            <div class="route-card-head">
+              <span class="route-selector-dot" aria-hidden="true"></span>
+              <h3>Convention night</h3>
+              <span class="route-selector-chip">Time tight</span>
+            </div>
+            <p>Keep it walkable from the convention corridor, lock dinner first, and finish with a controlled drinks stop near your hotel.</p>
+            <p><strong>Best for:</strong> conference guests and business travel schedules.</p>
+            <p><strong>Recommended first move:</strong> Reserve dinner before your final session ends.</p>
+            <span class="btn btn-primary btn-block" aria-hidden="true">Conference move</span>
+          </article>
+          <article class="route-selector-card route-sel-turq">
+            <div class="route-card-head">
+              <span class="route-selector-dot" aria-hidden="true"></span>
+              <h3>Family / heat-smart day</h3>
+              <span class="route-selector-chip">Summer safe</span>
+            </div>
+            <p>Front-load outdoor stops, schedule one indoor reset, and leave room for flexible pacing between River Walk and Market Square.</p>
+            <p><strong>Best for:</strong> families, older guests, and heat-sensitive visitors.</p>
+            <p><strong>Recommended first move:</strong> Do Alamo and River Walk before midday heat.</p>
+            <span class="btn btn-primary btn-block" aria-hidden="true">Family route</span>
+          </article>
+          <article class="route-selector-card route-sel-plum">
+            <div class="route-card-head">
+              <span class="route-selector-dot" aria-hidden="true"></span>
+              <h3>Date night / drinks</h3>
+              <span class="route-selector-chip">Evening plan</span>
+            </div>
+            <p>Anchor the evening with a quality table, then move to one strong bar or rooftop instead of overextending the route.</p>
+            <p><strong>Best for:</strong> couples, small groups, and business-hosted evenings.</p>
+            <p><strong>Recommended first move:</strong> Choose dinner and nightcap in the same corridor.</p>
+            <span class="btn btn-primary btn-block" aria-hidden="true">Night route</span>
+          </article>
+        </div>
       </div>
-      <div class="grid-3">
-        <article class="card pink"><h3>First move</h3><p>Take the River Walk barge cruise first for fast orientation and easy next-stop planning.</p></article>
-        <article class="card gold"><h3>Classic stops</h3><p>Alamo, Tower of the Americas, Market Square, and Mi Tierra anchor a complete downtown day.</p></article>
-        <article class="card turq"><h3>Food anchors</h3><p>Bohanan’s, Paesanos, Pinkerton’s, Domingo, and Acenar for reliable downtown options.</p></article>
+
+      <div class="guide-section">
+        <p class="eyebrow">Featured route</p>
+        <h2>Willie Approved downtown route</h2>
+        <p class="section-text">Use this sequence when you want downtown to feel memorable without overplanning the day.</p>
+        <div class="featured-route">
+          <ol class="featured-route-timeline">
+            <li class="route-step">
+              <span class="route-step-marker" aria-hidden="true">1</span>
+              <article class="route-step-card">
+                <h3>Alamo + gardens</h3>
+                <p>Start early before the heat and crowds. Use this as the history anchor, not the whole day.</p>
+                <p><strong>Best for:</strong> first-timers, families, and visitors who want the San Antonio postcard moment.</p>
+              </article>
+            </li>
+            <li class="route-step">
+              <span class="route-step-marker" aria-hidden="true">2</span>
+              <article class="route-step-card">
+                <h3>River Walk barge cruise</h3>
+                <p>Take the barge early to understand the layout, bridges, exits, and dinner zones before walking aimlessly.</p>
+                <p><strong>Best for:</strong> first-time visitors, older guests, families, and anyone short on time.</p>
+              </article>
+            </li>
+            <li class="route-step">
+              <span class="route-step-marker" aria-hidden="true">3</span>
+              <article class="route-step-card">
+                <h3>Dinner lock</h3>
+                <p>Book the food before the night gets loose. Bohanan&rsquo;s, Domingo, &Aacute;cenar, Paesanos, or Pearl are stronger moves than wandering hungry.</p>
+                <p><strong>Best for:</strong> convention travelers, date nights, and visitors with one good dinner slot.</p>
+              </article>
+            </li>
+            <li class="route-step">
+              <span class="route-step-marker" aria-hidden="true">4</span>
+              <article class="route-step-card">
+                <h3>Nightcap / view</h3>
+                <p>Finish with Esquire, 1Watson, Tenfold, Sternewirth, or Tower of the Americas depending on the group.</p>
+                <p><strong>Best for:</strong> business guests, couples, and visitors who want the city to feel memorable.</p>
+              </article>
+            </li>
+          </ol>
+        </div>
       </div>
-      <div class="grid-4">
-        <article class="card"><h3>Business dinner</h3><p>Bohanan’s, Biga, Nonna, or Pearl when the group wants a polished ride-out option.</p></article>
-        <article class="card"><h3>Drinks</h3><p>Esquire Tavern, 1Watson, Tenfold, and Mad Dogs for walkable night flow.</p></article>
-        <article class="card"><h3>Late-night stop</h3><p>Mi Tierra remains a memorable cultural late stop for visitors.</p></article>
-        <article class="card"><h3>Breakfast reset</h3><p>La Panaderia or Alamo Biscuit to restart day two cleanly.</p></article>
+
+      <div class="guide-section">
+        <p class="eyebrow">Use case guide</p>
+        <h2>Downtown by situation</h2>
+        <div class="situation-grid">
+          <article class="card pink">
+            <h3>Business dinner</h3>
+            <p>Lead with downtown polish: Bohanan&rsquo;s for a classic client dinner, or Pearl when the group wants a stronger district finish.</p>
+            <p><strong>Best for:</strong> conference guests, client dinners, and polished evening plans.</p>
+          </article>
+          <article class="card gold">
+            <h3>River Walk drinks</h3>
+            <p>Use Esquire, 1Watson, Tenfold, or Mad Dogs depending on the crowd and energy.</p>
+            <p><strong>Best for:</strong> hotel guests, date nights, pre-dinner drinks, and walkable night plans.</p>
+          </article>
+          <article class="card turq">
+            <h3>Market Square culture stop</h3>
+            <p>Use El Mercado and Mi Tierra for color, history, pan dulce, and a San Antonio cultural stop.</p>
+            <p><strong>Best for:</strong> families, first-timers, and visitors who want local flavor without over-planning.</p>
+          </article>
+          <article class="card green">
+            <h3>Tower of the Americas</h3>
+            <p>Use it as a skyline/view play, especially near sunset. Dinner at the top works best when the view matters most.</p>
+            <p><strong>Best for:</strong> first-timers, families, skyline photos, and special occasion energy.</p>
+          </article>
+          <article class="card purple">
+            <h3>Spurs game night</h3>
+            <p>Eat downtown first, then plan rideshare or transit around game traffic. Wembanyama season makes this a strong visitor draw.</p>
+            <p><strong>Best for:</strong> sports fans, convention visitors, and families during basketball season.</p>
+          </article>
+          <article class="card orange">
+            <h3>Rainy / heat-smart backup</h3>
+            <p>Use Rivercenter, hotel reset time, Briscoe, SAMA, Witte, La Panader&iacute;a, or Alamo Biscuit as weather-smart pivots.</p>
+            <p><strong>Best for:</strong> summer afternoons, storms, older guests, families, and heat-sensitive travelers.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="guide-section">
+        <p class="eyebrow">One-night plans</p>
+        <h2>One-night downtown game plans</h2>
+        <div class="one-night-strips">
+          <article class="itinerary-strip">
+            <h3>Classic first-timer</h3>
+            <p>Alamo &rarr; barge cruise &rarr; Domingo, &Aacute;cenar, or Paesanos &rarr; Esquire or Tower of the Americas.</p>
+          </article>
+          <article class="itinerary-strip">
+            <h3>Business / conference</h3>
+            <p>Hotel corridor start &rarr; Bohanan&rsquo;s or Pearl dinner &rarr; 1Watson or Tenfold &rarr; easy rideshare pickup away from bridge exits.</p>
+          </article>
+          <article class="itinerary-strip">
+            <h3>Family heat-smart</h3>
+            <p>Alamo early &rarr; barge cruise &rarr; Rivercenter or hotel reset &rarr; Market Square or Tower of the Americas.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="guide-section">
+        <p class="eyebrow">Concierge rules</p>
+        <h2>Local rules that save the night</h2>
+        <div class="local-rules-card">
+          <ul class="local-rules-checklist">
+            <li>Book dinner before walking.</li>
+            <li>Use the barge cruise early, not last.</li>
+            <li>Do not let parking decide the entire plan.</li>
+            <li>Plan one indoor reset in summer.</li>
+            <li>Pick rideshare pickup points away from bridge crowds.</li>
+            <li>At Market Square, time-box the stop so dinner stays on track.</li>
+          </ul>
+          <div class="live-pivots-note">
+            <p><strong>Live pivots:</strong> If downtown conditions shift, use <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">Ask The SA Plug</a> for a same-night route adjustment.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>

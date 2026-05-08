@@ -9,8 +9,363 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body.resort-food-page {
+      background:
+        radial-gradient(circle at 15% 0%, rgba(255, 142, 66, 0.14) 0%, rgba(8, 13, 28, 0) 48%),
+        radial-gradient(circle at 85% 8%, rgba(54, 214, 205, 0.12) 0%, rgba(8, 13, 28, 0) 45%),
+        linear-gradient(180deg, #070f22 0%, #08162f 42%, #091328 100%);
+      color: #f7f4eb;
+    }
+
+    .resort-food-page .section-after-inner-hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 4.4rem 1.25rem 5.4rem;
+      display: grid;
+      gap: 2.75rem;
+    }
+
+    .resort-food-page .hero-cta-row {
+      align-items: stretch;
+    }
+
+    .resort-food-page .hero-cta-row .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .resort-food-page .decision-intro {
+      background:
+        radial-gradient(circle at 8% 10%, rgba(173, 255, 208, 0.3), rgba(173, 255, 208, 0) 42%),
+        linear-gradient(135deg, #0f5f57 0%, #148173 50%, #0d3f4b 100%);
+      border: 1px solid rgba(166, 255, 214, 0.52);
+      border-radius: 24px;
+      padding: 1.9rem;
+      display: grid;
+      gap: 0.85rem;
+      box-shadow: 0 18px 42px rgba(2, 11, 18, 0.4);
+    }
+
+    .resort-food-page .decision-intro .eyebrow {
+      margin: 0;
+      color: #d0ffef;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.76rem;
+      font-weight: 750;
+    }
+
+    .resort-food-page .decision-intro h2,
+    .resort-food-page .section-title {
+      margin: 0;
+      color: #fefaf0;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .resort-food-page .decision-intro p,
+    .resort-food-page .section-subcopy {
+      margin: 0;
+      color: rgba(248, 252, 248, 0.96);
+      max-width: 76ch;
+      line-height: 1.62;
+    }
+
+    .resort-food-page .decision-grid,
+    .resort-food-page .corridor-grid,
+    .resort-food-page .highlight-grid,
+    .resort-food-page .fallback-grid,
+    .resort-food-page .story-grid {
+      display: grid;
+      gap: 1.15rem;
+    }
+
+    .resort-food-page .decision-grid,
+    .resort-food-page .corridor-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .resort-food-page .highlight-grid,
+    .resort-food-page .story-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .resort-food-page .fallback-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .resort-food-page .premium-card {
+      background: #fff8eb;
+      color: #1b2238;
+      border-radius: 18px;
+      border: 1px solid #ead8bf;
+      border-top: 4px solid #ff8f47;
+      padding: 1.05rem 1rem;
+      box-shadow: 0 8px 24px rgba(2, 6, 16, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      height: 100%;
+    }
+
+    .resort-food-page .premium-card h3 {
+      margin: 0;
+      color: #0f1731;
+      font-size: 1.06rem;
+      line-height: 1.25;
+    }
+
+    .resort-food-page .premium-card p {
+      margin: 0;
+      color: #2c3348;
+      line-height: 1.55;
+    }
+
+    .resort-food-page .premium-card .meta {
+      margin-top: auto;
+      color: #4a5368;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .resort-food-page .accent-orange { border-top-color: #ff9545; }
+    .resort-food-page .accent-turq { border-top-color: #29cfc8; }
+    .resort-food-page .accent-pink { border-top-color: #ee6fb2; }
+    .resort-food-page .accent-gold { border-top-color: #e7bb52; }
+
+    .resort-food-page .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .resort-food-page .image-card {
+      height: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 248, 236, 0.24);
+      box-shadow: 0 14px 32px rgba(3, 9, 22, 0.34);
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+    }
+
+    .resort-food-page .image-card::before,
+    .resort-food-page .image-card::after {
+      content: none;
+      background: none;
+      box-shadow: none;
+    }
+
+    .resort-food-page .image-card-media {
+      height: 260px;
+      min-height: 260px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      opacity: 1;
+      filter: none;
+      mix-blend-mode: normal;
+    }
+
+    .resort-food-page .image-card-media::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 26%;
+      background: linear-gradient(to top, rgba(5, 10, 25, 0.52) 0%, rgba(5, 10, 25, 0.2) 55%, rgba(5, 10, 25, 0) 100%);
+      pointer-events: none;
+    }
+
+    .resort-food-page .image-card-content {
+      flex: 1;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0.58rem;
+      padding: 22px 24px 24px;
+      color: #18213a;
+    }
+
+    .resort-food-page .image-card-content h3,
+    .resort-food-page .image-card-content p {
+      margin: 0;
+      color: #18213a;
+    }
+
+    .resort-food-page .image-card-content p {
+      line-height: 1.56;
+      color: #303a53;
+    }
+
+    .resort-food-page .concierge-note {
+      background: #fff8ea;
+      color: #1a2236;
+      border-left: 5px solid #24cbc4;
+      border-radius: 16px;
+      padding: 1rem 1rem;
+      line-height: 1.55;
+    }
+
+    .resort-food-page .concierge-note p {
+      margin: 0;
+      color: #1c253d;
+    }
+
+    .resort-food-page .concierge-note a {
+      color: #174a80;
+      font-weight: 700;
+    }
+
+    .resort-food-page .section-block {
+      display: grid;
+      gap: 1.15rem;
+      padding: 1.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(9, 21, 45, 0.8), rgba(8, 19, 39, 0.95));
+      box-shadow: 0 14px 34px rgba(2, 8, 18, 0.34);
+    }
+
+    .resort-food-page .section-block .eyebrow {
+      margin: 0;
+      color: #99f8f1;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+
+    .resort-food-page .section-block h2 {
+      margin: 0;
+      font-size: clamp(1.55rem, 2.4vw, 2rem);
+      color: #fff8ea;
+      line-height: 1.2;
+    }
+
+    .resort-food-page .highlight-wrap {
+      display: grid;
+      gap: 1.1rem;
+      padding: 1.8rem;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: linear-gradient(130deg, rgba(19, 30, 58, 0.95), rgba(13, 24, 49, 0.92));
+      box-shadow: 0 14px 34px rgba(2, 8, 18, 0.34);
+    }
+
+    .resort-food-page .highlight-wrap .section-title {
+      font-size: clamp(1.55rem, 2.2vw, 2rem);
+    }
+
+    .resort-food-page .approval-tag {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-top: 0.1rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      background: #132143;
+      color: #f7d480;
+      font-size: 0.73rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .resort-food-page .decision-grid .premium-card h3 {
+      font-size: 1.1rem;
+    }
+
+    .resort-food-page .section-lead {
+      display: grid;
+      gap: 0.5rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .resort-food-page .section-lead .section-subcopy {
+      max-width: 68ch;
+    }
+
+    .resort-food-page .logic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+
+    .resort-food-page .logic-card {
+      border-radius: 18px;
+      border: 1px solid rgba(255, 245, 231, 0.22);
+      background: linear-gradient(145deg, rgba(9, 20, 42, 0.96), rgba(13, 26, 53, 0.92));
+      padding: 1.1rem;
+      box-shadow: 0 12px 26px rgba(3, 8, 18, 0.3);
+      display: grid;
+      gap: 0.52rem;
+    }
+
+    .resort-food-page .logic-card h3 {
+      margin: 0;
+      color: #fff5e5;
+      font-size: 1.08rem;
+    }
+
+    .resort-food-page .logic-card p {
+      margin: 0;
+      color: rgba(247, 242, 232, 0.95);
+      line-height: 1.56;
+    }
+
+    @media (max-width: 1060px) {
+      .resort-food-page .fallback-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      .resort-food-page .decision-grid,
+      .resort-food-page .corridor-grid,
+      .resort-food-page .highlight-grid,
+      .resort-food-page .story-grid,
+      .resort-food-page .feature-grid,
+      .resort-food-page .logic-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .resort-food-page .section-after-inner-hero {
+        padding: 3.35rem 1rem 4.3rem;
+        gap: 1.85rem;
+      }
+
+      .resort-food-page .section-block,
+      .resort-food-page .highlight-wrap,
+      .resort-food-page .decision-intro {
+        padding: 1.25rem;
+      }
+
+      .resort-food-page .image-card-media {
+        height: 220px;
+        min-height: 220px;
+      }
+
+      .resort-food-page .fallback-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="resort-food-page">
   <header class="site-header">
     <a href="index.html" class="brand">
       <span class="brand-icon" aria-hidden="true">
@@ -58,16 +413,143 @@
       </div>
     </section>
     <section class="section section-after-inner-hero">
-      <p class="section-text">The core decision: easy nearby dinner or worth-the-ride destination. This page helps you choose quickly.</p>
+      <div class="decision-intro">
+        <p class="eyebrow">Decision Layer</p>
+        <h2>Start with the resort food decision</h2>
+        <p>Resort nights usually come down to two questions: how far should you drive after a travel day, and whether 1604 / 281 traffic punishes the reservation window.</p>
+      </div>
+      <div class="decision-grid">
+        <article class="premium-card accent-orange"><h3>Close &amp; easy</h3><p>Stay near the resort when arrival fatigue, kids, golf schedules, or conference overlap make distance the enemy.</p><p class="meta"><strong>Best for:</strong> first night, families, groups arriving late.</p></article>
+        <article class="premium-card accent-turq"><h3>Short rideshare</h3><p>Use nearby high-quality zones when the group wants a better meal without turning dinner into a downtown mission.</p><p class="meta"><strong>Best for:</strong> business dinners, couples, polished groups.</p></article>
+        <article class="premium-card accent-pink"><h3>Worth the ride</h3><p>Drive farther only when the restaurant is the story: Soluna, Bohanan’s, J-Prime, Brasão, El Bucanero, or a strong Pearl dinner.</p><p class="meta"><strong>Best for:</strong> one big night, celebrations, visitors who want the real San Antonio memory.</p></article>
+      </div>
+
       <div class="feature-grid">
-        <article class="image-card img-resort"><div class="image-card-content"><h3>Resort route logic</h3><p>Build plans around distance, traffic windows, and group energy.</p></div></article>
-        <article class="image-card img-food"><div class="image-card-content"><h3>Dinner decision panel</h3><p>Use easy-now vs worth-the-ride as your first split.</p></div></article>
+        <article class="image-card">
+          <div class="image-card-media img-resort" role="img" aria-label="Resort corridor evening planning view"></div>
+          <div class="image-card-content">
+            <h3>Canyon Ridge logic</h3>
+            <p>JW / TPC guests should match tee times, spa windows, and 281 traffic before committing to a steakhouse departure.</p>
+          </div>
+        </article>
+        <article class="image-card">
+          <div class="image-card-media img-food" role="img" aria-label="San Antonio dinner spread and local food scene"></div>
+          <div class="image-card-content">
+            <h3>Easy vs. epic</h3>
+            <p>Close-and-easy protects tired groups. Worth-the-ride earns the story when you have one free evening.</p>
+          </div>
+        </article>
       </div>
-      <div class="grid-3">
-        <article class="card green"><h3>JW Marriott / Stone Oak / 281</h3><p><strong>Easy:</strong> 18 Oaks, Cibolo Moon, FIAMME, High Velocity. <strong>Nearby:</strong> J-Prime, Chama Gaucha, La Panaderia, Lupe Tortilla.</p><small>Ask guests if they want easy tonight or destination dining.</small></article>
-        <article class="card turq"><h3>La Cantera / The Rim</h3><p><strong>Approved:</strong> Brasao, J-Prime, Parry’s, La Panaderia, Lupe Tortilla. <strong>Extra options:</strong> Signature, Perry’s, Haywire, Whiskey Cake.</p><small>One of the easiest zones for close high-quality dinner picks.</small></article>
-        <article class="card purple"><h3>Hyatt Hill Country / SeaWorld</h3><p><strong>Easy:</strong> Antlers Lodge, Springhouse Cafe. <strong>Nearby:</strong> Fish City Grill, The Jerk Shack, Via 313, Alamo Ranch options.</p><small>For serious dinner variety, plan a longer ride.</small></article>
-      </div>
+
+      <div class="concierge-note"><p><strong>Ask The SA Plug:</strong> Tell us your hotel, party size, timing, and dinner mood. We’ll map distance, traffic, dress code, and the safest route so you’re not guessing rideshare minutes in the lobby. <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">Send the note</a>.</p></div>
+
+      <section class="section-block">
+        <div class="section-lead">
+        <p class="eyebrow">Canyon Ridge &amp; 281</p>
+        <h2>JW Marriott · TPC · North 281</h2>
+        <p class="section-subcopy">Use this lane when golf, spa timing, and north-side traffic windows decide whether you stay close or stage a polished rideshare dinner.</p>
+        </div>
+        <div class="corridor-grid">
+          <article class="premium-card accent-orange"><h3>On-property comfort</h3><p>18 Oaks, Cibolo Moon, FIAMME, and High Velocity keep the night easy when golf, spa, conference, or family timing matters.</p><p class="meta"><strong>Best for:</strong> arrival night, resort groups, low-friction dinners.</p></article>
+          <article class="premium-card accent-turq"><h3>Short rideshare upgrade</h3><p>J-Prime and Chama Gaúcha work when the group wants a polished meal without going downtown.</p><p class="meta"><strong>Best for:</strong> business dinners, celebrations, steakhouse energy.</p></article>
+          <article class="premium-card accent-pink"><h3>Casual backup</h3><p>La Panadería, Lupe Tortilla, and nearby casual options help when kids, weather, or timing make white-tablecloth plans unrealistic.</p><p class="meta"><strong>Best for:</strong> families, flexible nights, reset meals.</p></article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-lead">
+        <p class="eyebrow">La Cantera Playground</p>
+        <h2>La Cantera · The Rim</h2>
+        <p class="section-subcopy">This corridor is the easiest upscale lane outside downtown: strong steakhouses, practical family backups, and polished options without River Walk logistics.</p>
+        </div>
+        <div class="corridor-grid">
+          <article class="premium-card accent-gold"><h3>Rodizio &amp; steak</h3><p>Brasão and J-Prime anchor the zone when the group wants a strong dinner without downtown parking or River Walk traffic.</p><p class="meta"><strong>Best for:</strong> date nights, business groups, polished resort dinners.</p></article>
+          <article class="premium-card accent-turq"><h3>Comfort hits</h3><p>Parry’s Pizza, Lupe Tortilla, La Panadería, and easy Rim-area choices keep the night practical when the group is hungry now.</p><p class="meta"><strong>Best for:</strong> families, shoppers, casual resets.</p></article>
+          <article class="premium-card accent-pink"><h3>Extra credit</h3><p>Signature, Perry’s, Haywire, and Whiskey Cake can work when Hill Country polish matters more than staying close to the hotel.</p><p class="meta"><strong>Best for:</strong> planned dinners, couples, elevated casual nights.</p></article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-lead">
+        <p class="eyebrow">Resort Drive &amp; SeaWorld</p>
+        <h2>Hyatt Hill Country · SeaWorld side</h2>
+        <p class="section-subcopy">Keep this side practical first. Save long drives for true story nights and use the nearby ring for reliable family pace.</p>
+        </div>
+        <div class="corridor-grid">
+          <article class="premium-card accent-orange"><h3>On-property eats</h3><p>Antlers Lodge and Springhouse keep families close when pool time, theme parks, or tired kids make proximity the priority.</p><p class="meta"><strong>Best for:</strong> splash-day families, early nights.</p></article>
+          <article class="premium-card accent-turq"><h3>Nearby ring</h3><p>Fish City Grill, The Jerk Shack, Via 313, Alamo Ranch casuals, and easy local stops stretch the palate without hauling downtown.</p><p class="meta"><strong>Best for:</strong> teens, casual groups, no-reservation nights.</p></article>
+          <article class="premium-card accent-pink"><h3>Worth-the-ride flag</h3><p>If you only have one big San Antonio dinner, consider staging downtown, Pearl, or The Rim instead of forcing a nearby compromise.</p><p class="meta"><strong>Best for:</strong> celebrations, date nights, visitors with one open evening.</p></article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-lead">
+        <p class="eyebrow">1604 &amp; 281 Blend</p>
+        <h2>Stone Oak · North San Antonio</h2>
+        <p class="section-subcopy">North-side stays work best when you decide early whether this is a steakhouse night, research-driven food night, or traffic-control night.</p>
+        </div>
+        <div class="corridor-grid">
+          <article class="premium-card accent-gold"><h3>North-side steak lane</h3><p>J-Prime, Chama Gaúcha, and Fogo cluster well for groups staying north who want polish without crossing the city.</p><p class="meta"><strong>Best for:</strong> business dinners, suburban stays, steakhouse nights.</p></article>
+          <article class="premium-card accent-pink"><h3>Needs Visit / Research picks</h3><p>Chef counters, sushi, omakase, and new hot spots change quickly. Use this lane for updated week-of recommendations.</p><p class="meta"><strong>Best for:</strong> locals, repeat visitors, food-focused explorers.</p></article>
+          <article class="premium-card accent-turq"><h3>Traffic reality</h3><p>Rush peaks can turn a simple plan into two separate rideshare moves. Book earlier or split groups when timing is tight.</p><p class="meta"><strong>Best for:</strong> conference groups, large parties, north-side meetings.</p></article>
+        </div>
+      </section>
+
+      <section class="highlight-wrap">
+        <p class="eyebrow">Story dinner shortlist</p>
+        <h2 class="section-title">Worth-the-ride dinners</h2>
+        <p class="section-subcopy">These are the meals worth leaving the resort bubble for when the night needs to feel memorable.</p>
+        <div class="highlight-grid">
+          <article class="premium-card accent-orange"><h3>Soluna</h3><span class="approval-tag">Willie Approved</span><p>Ribeye tacos and chispas make this the personal favorite when the group wants San Antonio flavor with upscale energy.</p><p class="meta"><strong>Best for:</strong> date night, visitors who trust local picks.</p></article>
+          <article class="premium-card accent-gold"><h3>Bohanan’s</h3><span class="approval-tag">Willie Approved</span><p>Classic downtown steakhouse polish when the table needs to feel important.</p><p class="meta"><strong>Best for:</strong> business dinners, client meals, special occasions.</p></article>
+          <article class="premium-card accent-turq"><h3>J-Prime</h3><span class="approval-tag">Willie Approved</span><p>North-side steakhouse glamour when the resort corridor points away from downtown.</p><p class="meta"><strong>Best for:</strong> La Cantera, Stone Oak, polished groups.</p></article>
+          <article class="premium-card accent-pink"><h3>Brasão</h3><span class="approval-tag">Willie Approved</span><p>Best Brazilian steakhouse lane when the group wants rodizio energy and a big-night table.</p><p class="meta"><strong>Best for:</strong> celebrations, hungry groups, resort dinners.</p></article>
+          <article class="premium-card accent-orange"><h3>El Bucanero</h3><span class="approval-tag">Willie Approved</span><p>Best ceviche lane when seafood, spice, and local flavor matter more than white-tablecloth energy.</p><p class="meta"><strong>Best for:</strong> adventurous groups, casual flavor hunts.</p></article>
+          <article class="premium-card accent-gold"><h3>Paesanos</h3><span class="approval-tag">Willie Approved</span><p>River Walk Italian comfort when the group wants classic San Antonio dining without overthinking the night.</p><p class="meta"><strong>Best for:</strong> mixed groups, date nights, reliable downtown energy.</p></article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-lead">
+        <p class="eyebrow">Practical logic</p>
+        <h2>Close &amp; easy picks for tired nights</h2>
+        <p class="section-subcopy">When timing slips or the day runs long, use this playbook to protect energy and still eat well.</p>
+        </div>
+        <div class="fallback-grid">
+          <article class="premium-card accent-orange"><h3>Hotel lobby steaks</h3><p>Use on-property kitchens when thunderstorms, flight delays, golf schedules, or group fatigue make distance a bad bet.</p><p class="meta"><strong>Zones:</strong> JW / Hyatt / resort signatures.</p></article>
+          <article class="premium-card accent-turq"><h3>Tex-Mex tether</h3><p>Lupe Tortilla and practical nearby Tex-Mex options keep the group fed without turning dinner into a production.</p><p class="meta"><strong>Zones:</strong> Rim, Stone Oak, north-side feeders.</p></article>
+          <article class="premium-card accent-pink"><h3>Seafood fast</h3><p>Fish City Grill and casual seafood options work when the group wants lighter food without a long drive.</p><p class="meta"><strong>Zones:</strong> Alamo Ranch loop, northwest side.</p></article>
+          <article class="premium-card accent-gold"><h3>Sleep-first rule</h3><p>Sometimes room service, a nearby casual stop, and La Panadería tomorrow beats forcing a late reservation.</p><p class="meta"><strong>Zones:</strong> anywhere with an early start.</p></article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-lead">
+        <p class="eyebrow">Story-night planning</p>
+        <h2>Story nights worth planning</h2>
+        <p class="section-subcopy">Pick one story lane and commit. This keeps resort nights memorable without exhausting the group.</p>
+        </div>
+        <div class="logic-grid">
+          <article class="logic-card">
+            <h3>Worth-the-ride filters</h3>
+            <p>Say yes when the dinner itself is the memory, everyone is aligned on timing, and you can reserve around traffic peaks.</p>
+            <p><strong>Best for:</strong> celebrations, hosted business nights, and one free evening in the trip.</p>
+          </article>
+          <article class="logic-card">
+            <h3>Close-and-easy filters</h3>
+            <p>Stay local when arrivals run late, kids are fading, weather is unstable, or your next morning starts early.</p>
+            <p><strong>Best for:</strong> first night, theme-park days, and conference-heavy itineraries.</p>
+          </article>
+        </div>
+        <div class="story-grid">
+          <article class="premium-card accent-orange"><h3>Downtown flex</h3><p>Bohanan’s, Domingo, Ácenar, Paesanos, or Esquire when you want River Walk energy and a complete night.</p><p class="meta"><strong>Drive note:</strong> medium, payoff high.</p></article>
+          <article class="premium-card accent-turq"><h3>Pearl polish</h3><p>Hotel Emma / Supper, Brasserie Mon Chou Chou, Ladino, Amelia Social Lounge, or Sternewirth when the night needs district energy.</p><p class="meta"><strong>Drive note:</strong> medium, strong payoff.</p></article>
+          <article class="premium-card accent-pink"><h3>Ceviche run</h3><p>El Bucanero or El Cevichero when the group wants a flavor-first local meal.</p><p class="meta"><strong>Drive note:</strong> appetite dependent.</p></article>
+          <article class="premium-card accent-gold"><h3>Soluna trophy</h3><p>Soluna is worth punching into maps when ribeye tacos and chispas are the move.</p><p class="meta"><strong>Drive note:</strong> plan rideshare both ways.</p></article>
+          <article class="premium-card accent-turq"><h3>281 north reminder</h3><p>J-Prime and Chama Gaúcha live naturally between JW-style stays, Stone Oak, and north-side business plans.</p><p class="meta"><strong>Drive note:</strong> easier north of downtown.</p></article>
+          <article class="premium-card accent-pink"><h3>Rim encore</h3><p>If night one is polished, use night two for a casual contrast around The Rim or La Cantera.</p><p class="meta"><strong>Drive note:</strong> flexible.</p></article>
+        </div>
+      </section>
     </section>
   </main>
   <footer class="footer dark-showcase">
