@@ -3338,11 +3338,6 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   padding-bottom: clamp(22px, 3vw, 34px);
 }
 
-.page-business-services main > .section.ai-bs-sec-hero {
-  padding-top: clamp(24px, 3.8vw, 44px);
-  padding-bottom: clamp(12px, 2.2vw, 22px);
-}
-
 .page-business-services main > .section.section-cream.ai-capabilities-section {
   background:
     radial-gradient(circle at 12% 0%, rgba(20, 184, 166, 0.1), transparent 40%),
@@ -3358,16 +3353,43 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
     linear-gradient(180deg, #fffdfb 0%, var(--cream) 100%);
 }
 
-/* --- Business services hero: full-bleed cinematic hero (scoped) --- */
+/* --- Business services hero: full-width banner (scoped) --- */
 .page-business-services .ai-bs-hero.hero-fiesta-dark {
   isolation: isolate;
-  min-height: min(72vh, 820px);
-  background:
-    radial-gradient(ellipse 85% 55% at 78% 8%, rgba(255, 92, 168, 0.14), transparent 52%),
-    radial-gradient(ellipse 70% 50% at 12% 45%, rgba(20, 184, 166, 0.12), transparent 50%),
-    radial-gradient(ellipse 55% 40% at 92% 78%, rgba(255, 106, 77, 0.1), transparent 48%),
-    radial-gradient(circle at 50% 100%, rgba(242, 178, 26, 0.08), transparent 55%),
-    linear-gradient(165deg, #030712 0%, #0a1528 32%, #0f2038 55%, #071018 88%, #04060c 100%);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-x: clip;
+  overflow-y: visible;
+  background-color: #071022;
+  background-image:
+    linear-gradient(90deg, rgba(5, 10, 24, 0.92) 0%, rgba(5, 10, 24, 0.76) 42%, rgba(5, 10, 24, 0.25) 100%),
+    url("assets/the-ai-plug-hero-background.png");
+  background-repeat: no-repeat;
+  background-position: 0 0, center right;
+  /* Full-bleed scrim + contained art (single cover value would scale the gradient incorrectly) */
+  background-size: 100% 100%, contain;
+}
+
+@media (max-width: 767px) {
+  .page-business-services .ai-bs-hero.hero-fiesta-dark {
+    min-height: 720px;
+    max-height: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-business-services .ai-bs-hero.hero-fiesta-dark {
+    min-height: 620px;
+    max-height: 820px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-business-services .ai-bs-hero.hero-fiesta-dark {
+    min-height: 680px;
+    max-height: 820px;
+  }
 }
 
 /* Omit default fiesta rainbow footer bar — custom accent handles finish */
@@ -3376,144 +3398,51 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 .page-business-services .secondary-hero.hero-fiesta-dark.ai-bs-hero::after {
-  background:
-    radial-gradient(ellipse 80% 50% at 70% -10%, rgba(255, 250, 240, 0.05), transparent 45%),
-    linear-gradient(180deg, transparent 55%, rgba(2, 6, 14, 0.75) 100%);
   pointer-events: none;
-}
-
-.page-business-services .ai-bs-hero-atmos {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.page-business-services .ai-bs-hero-atmos-blur {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(72px);
-  opacity: 0.55;
-  animation: ai-bs-hero-atmos-drift 22s ease-in-out infinite alternate;
-}
-
-.page-business-services .ai-bs-hero-atmos-blur--gold {
-  width: min(520px, 55vw);
-  height: min(420px, 48vh);
-  top: -12%;
-  right: -6%;
-  background: radial-gradient(circle, rgba(242, 178, 26, 0.42) 0%, transparent 70%);
-}
-
-.page-business-services .ai-bs-hero-atmos-blur--turq {
-  width: min(480px, 50vw);
-  height: min(380px, 42vh);
-  bottom: -8%;
-  left: -10%;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.38) 0%, transparent 68%);
-  animation-delay: -7s;
-}
-
-.page-business-services .ai-bs-hero-atmos-blur--coral {
-  width: min(400px, 45vw);
-  height: min(320px, 36vh);
-  top: 38%;
-  right: 14%;
-  background: radial-gradient(circle, rgba(255, 106, 77, 0.28) 0%, transparent 72%);
-  animation-delay: -14s;
-  opacity: 0.42;
-}
-
-.page-business-services .ai-bs-hero-atmos-grid {
-  position: absolute;
-  inset: -1px;
-  opacity: 0.22;
-  background-image:
-    linear-gradient(rgba(255, 246, 230, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 246, 230, 0.03) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 72% 65% at 28% 40%, black 18%, transparent 72%);
-}
-
-.page-business-services .ai-bs-hero-atmos-routes {
-  position: absolute;
-  inset: 0;
-  opacity: 0.55;
-  background:
-    repeating-linear-gradient(
-      118deg,
-      transparent,
-      transparent 59px,
-      rgba(242, 178, 26, 0.045) 59px,
-      rgba(242, 178, 26, 0.045) 60px,
-      transparent 60px,
-      transparent 138px,
-      rgba(20, 184, 166, 0.04) 138px,
-      rgba(20, 184, 166, 0.04) 139px
-    ),
-    repeating-linear-gradient(
-      34deg,
-      transparent,
-      transparent 120px,
-      rgba(255, 92, 168, 0.025) 120px,
-      rgba(255, 92, 168, 0.025) 121px
-    );
-  mask-image: radial-gradient(ellipse 90% 80% at 45% 50%, rgba(0, 0, 0, 0.55), transparent 70%);
-}
-
-@keyframes ai-bs-hero-atmos-drift {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(-2.5%, 3%) scale(1.05);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page-business-services .ai-bs-hero-atmos-blur {
-    animation: none;
-  }
-}
-
-.page-business-services .ai-bs-hero .hero-fiesta-inner.hero-inner-band.ai-hero-band.ai-bs-hero-band {
-  position: relative;
   z-index: 1;
-  padding-top: clamp(32px, 5vw, 56px);
-  padding-bottom: clamp(36px, 6vw, 72px);
+  background: linear-gradient(180deg, transparent 62%, rgba(2, 6, 14, 0.45) 100%);
+}
+
+.page-business-services .ai-bs-hero .hero-fiesta-inner.hero-inner-band.ai-bs-hero-band {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  min-height: 0;
+  width: 100%;
   max-width: min(1320px, 100%);
+  margin-inline: auto;
+  box-sizing: border-box;
+  padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 48px);
 }
 
 .page-business-services .ai-bs-hero-shell {
-  display: grid;
-  grid-template-columns:
-    1fr
-    minmax(0, min(760px, 100%))
-    minmax(0, 1.15fr);
-  column-gap: clamp(16px, 3vw, 40px);
-  row-gap: clamp(14px, 2vw, 22px);
-  align-items: start;
+  width: 100%;
 }
 
-.page-business-services .ai-bs-hero-copy.hero-content.secondary-hero-copy {
-  grid-column: 2;
-  max-width: none;
+.page-business-services .ai-bs-hero-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
-  gap: clamp(14px, 2vw, 20px);
+  max-width: 720px;
+  gap: clamp(14px, 2vw, 18px);
 }
 
 .page-business-services .ai-bs-hero-accent {
-  grid-column: 1 / -1;
-  width: 100vw;
-  max-width: none;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 1px;
-  margin: clamp(8px, 1.8vw, 16px) 0 clamp(4px, 1.6vw, 12px);
+  width: 100%;
+  max-width: 100%;
+  height: 3px;
+  flex-shrink: 0;
+  margin: 0 0 clamp(12px, 2vw, 18px);
   border: none;
   border-radius: 2px;
+  transform: none;
+  left: auto;
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -3526,18 +3455,9 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
     transparent 100%
   );
   box-shadow:
-    0 0 24px rgba(242, 178, 26, 0.22),
-    0 0 40px rgba(20, 184, 166, 0.12),
+    0 0 18px rgba(242, 178, 26, 0.2),
+    0 0 28px rgba(20, 184, 166, 0.1),
     0 0 1px rgba(255, 246, 230, 0.35);
-}
-
-.page-business-services .ai-bs-hero-after-copy {
-  grid-column: 2;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(16px, 2.6vw, 24px);
-  width: 100%;
-  max-width: min(760px, 100%);
 }
 
 .page-business-services .ai-bs-hero .hero-title {
@@ -3561,7 +3481,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services .ai-hero-lead {
   margin: 0;
-  max-width: min(42rem, 100%);
+  max-width: 100%;
   font-size: clamp(0.98rem, 0.35vw + 0.88rem, 1.08rem);
   line-height: 1.67;
   color: rgba(255, 246, 230, 0.9);
@@ -3569,13 +3489,14 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services .ai-hero-proof-line {
   margin: 0;
-  max-width: min(42rem, 100%);
+  max-width: 100%;
   font-size: clamp(0.94rem, 0.3vw + 0.85rem, 1.03rem);
   line-height: 1.63;
   color: rgba(255, 246, 230, 0.82);
 }
 
 .page-business-services .ai-hero-chips.route-chip-row-hero {
+  align-self: stretch;
   margin-top: 0;
   padding-top: clamp(12px, 2vw, 18px);
   border-top: none;
@@ -3618,24 +3539,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   background: rgba(255, 246, 230, 0.08);
 }
 
-@media (max-width: 959px) {
-  .page-business-services .ai-bs-hero-shell {
-    grid-template-columns: 1fr;
-  }
-
-  .page-business-services .ai-bs-hero-copy.hero-content.secondary-hero-copy,
-  .page-business-services .ai-bs-hero-after-copy {
-    grid-column: 1;
-    max-width: min(760px, 100%);
-    margin-inline: 0;
-  }
-}
-
 @media (max-width: 520px) {
-  .page-business-services .ai-bs-hero.hero-fiesta-dark {
-    min-height: 0;
-  }
-
   .page-business-services .ai-bs-hero-cta.hero-cta-row .btn {
     width: 100%;
     justify-content: center;
@@ -3644,7 +3548,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 /* System flow strip (under hero) */
 .page-business-services .ai-bs-system-flow-strip {
-  margin-top: clamp(8px, 1.4vw, 16px);
+  margin-top: 0;
   background:
     radial-gradient(ellipse 100% 120% at 50% 0%, rgba(242, 178, 26, 0.12), transparent 42%),
     linear-gradient(180deg, #040a18 0%, #0a1a32 48%, #071018 100%);
