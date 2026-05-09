@@ -90,7 +90,8 @@
       border: 1px solid rgba(14, 46, 87, 0.18);
     }
 
-    .route-selector-card .btn-block {
+    /* Route foot label (not a button — avoids misleading clickable styling) */
+    .route-selector-foot {
       margin-top: auto;
       align-self: flex-start;
       padding: 0.58rem 0.86rem;
@@ -100,6 +101,8 @@
       border: 1px solid rgba(243, 107, 32, 0.8);
       font-weight: 700;
       letter-spacing: 0.02em;
+      font-size: 0.82rem;
+      line-height: 1.25;
     }
 
     .featured-route {
@@ -272,7 +275,7 @@
       <a href="index.html">Home</a>
       <a href="start-here.html">Start Here</a>
       <a href="where-to-eat.html">Where To Eat</a>
-      <a href="downtown.html">Downtown</a>
+      <a href="downtown.html" aria-current="page">Downtown</a>
       <a href="resort-food.html">Resorts</a>
       <a href="summer-family.html">Family</a>
       <a href="index.html#ask">Ask</a>
@@ -323,7 +326,7 @@
             <p>Build around Alamo, River Walk orientation, and one reliable dinner reservation so the city feels clear on night one.</p>
             <p><strong>Best for:</strong> first-time visitors and short-stay travelers.</p>
             <p><strong>Recommended first move:</strong> Start at the Alamo when doors open.</p>
-            <span class="btn btn-primary btn-block" aria-hidden="true">Starter route</span>
+            <p class="route-selector-foot">Starter route</p>
           </article>
           <article class="route-selector-card route-sel-gold">
             <div class="route-card-head">
@@ -334,7 +337,7 @@
             <p>Keep it walkable from the convention corridor, lock dinner first, and finish with a controlled drinks stop near your hotel.</p>
             <p><strong>Best for:</strong> conference guests and business travel schedules.</p>
             <p><strong>Recommended first move:</strong> Reserve dinner before your final session ends.</p>
-            <span class="btn btn-primary btn-block" aria-hidden="true">Conference move</span>
+            <p class="route-selector-foot">Conference move</p>
           </article>
           <article class="route-selector-card route-sel-turq">
             <div class="route-card-head">
@@ -345,7 +348,7 @@
             <p>Front-load outdoor stops, schedule one indoor reset, and leave room for flexible pacing between River Walk and Market Square.</p>
             <p><strong>Best for:</strong> families, older guests, and heat-sensitive visitors.</p>
             <p><strong>Recommended first move:</strong> Do Alamo and River Walk before midday heat.</p>
-            <span class="btn btn-primary btn-block" aria-hidden="true">Family route</span>
+            <p class="route-selector-foot">Family route</p>
           </article>
           <article class="route-selector-card route-sel-plum">
             <div class="route-card-head">
@@ -356,7 +359,7 @@
             <p>Anchor the evening with a quality table, then move to one strong bar or rooftop instead of overextending the route.</p>
             <p><strong>Best for:</strong> couples, small groups, and business-hosted evenings.</p>
             <p><strong>Recommended first move:</strong> Choose dinner and nightcap in the same corridor.</p>
-            <span class="btn btn-primary btn-block" aria-hidden="true">Night route</span>
+            <p class="route-selector-foot">Night route</p>
           </article>
         </div>
       </div>
