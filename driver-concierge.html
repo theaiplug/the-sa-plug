@@ -3,12 +3,610 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transportation + Concierge | The SA Plug</title>
-  <meta name="description" content="Visitor transportation and San Antonio concierge support by appointment and availability." />
+  <title>Visitor Transportation + Local Concierge | The SA Plug</title>
+  <meta name="description" content="Availability-based visitor transportation guidance and local concierge help for San Antonio: airport, resort, convention, dinner, and night-out route planning from The SA Plug." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Transport + Concierge — page-scoped */
+
+    .transport-concierge-main > .section {
+      padding-top: clamp(34px, 4vw, 48px);
+      padding-bottom: clamp(34px, 4vw, 48px);
+    }
+
+    .transport-concierge-main .secondary-hero .hero-fiesta-inner.hero-inner-band {
+      padding-top: clamp(20px, 2.8vw, 36px);
+      padding-bottom: calc(clamp(20px, 2.8vw, 34px) + 4px);
+    }
+
+    .transport-concierge-main .hero-inner-panel.tc-hero-panel {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(120% 80% at 80% 20%, rgba(255, 106, 77, 0.22), transparent 50%),
+        radial-gradient(90% 70% at 10% 80%, rgba(20, 184, 166, 0.2), transparent 45%),
+        linear-gradient(155deg, #061022 0%, #0b1d3a 42%, #1a1530 100%);
+    }
+
+    .transport-concierge-main .tc-hero-panel.tc-hero-panel--fallback {
+      min-height: min(420px, 52vw);
+    }
+
+    .transport-concierge-main .tc-hero-panel .hero-visual-img {
+      position: relative;
+      z-index: 1;
+    }
+
+    .transport-concierge-main .tc-hero-lead {
+      margin: 0 0 clamp(10px, 1.4vw, 14px);
+      max-width: 38rem;
+      font-size: clamp(1.02rem, 0.55vw + 0.9rem, 1.14rem);
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.9);
+      font-weight: 560;
+    }
+
+    .transport-concierge-main .tc-hero-support {
+      margin: 0;
+      max-width: 40rem;
+      font-size: clamp(0.88rem, 0.45vw + 0.78rem, 0.97rem);
+      line-height: 1.62;
+      color: rgba(255, 246, 230, 0.76);
+    }
+
+    .transport-concierge-main .tc-hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin: 0;
+      padding: clamp(14px, 2vw, 18px) 0 0;
+      border-top: 1px solid rgba(255, 246, 230, 0.12);
+      list-style: none;
+    }
+
+    .transport-concierge-main .tc-hero-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      color: rgba(255, 246, 230, 0.88);
+      background: rgba(255, 246, 230, 0.07);
+      border: 1px solid rgba(242, 178, 26, 0.28);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .transport-concierge-main .tc-hero-chip:hover {
+      background: rgba(255, 246, 230, 0.12);
+      border-color: rgba(20, 184, 166, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .transport-concierge-main .hero-cta-row {
+      margin-top: clamp(14px, 2vw, 20px);
+    }
+
+    .transport-concierge-main .tc-section-head {
+      max-width: 44rem;
+      margin-bottom: clamp(20px, 2.5vw, 28px);
+    }
+
+    .transport-concierge-main .tc-section-head .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .transport-concierge-main .tc-section-head .section-text {
+      margin-bottom: 0;
+      max-width: 42rem;
+    }
+
+    .transport-concierge-main .section-cream h2,
+    .transport-concierge-main .section-cream h3 {
+      color: var(--navy);
+    }
+
+    .transport-concierge-main .section-cream .section-text {
+      color: var(--slate);
+    }
+
+    .transport-concierge-main .section-turquoise-wash h2,
+    .transport-concierge-main .section-turquoise-wash h3 {
+      color: var(--navy);
+    }
+
+    .transport-concierge-main .section-turquoise-wash .section-text {
+      color: var(--slate);
+    }
+
+    .transport-concierge-main .section-blush h2,
+    .transport-concierge-main .section-blush h3 {
+      color: var(--navy);
+    }
+
+    .transport-concierge-main .section-blush .section-text {
+      color: var(--slate);
+    }
+
+    /* Need help — 6 premium cards */
+    .transport-concierge-main .tc-need-grid {
+      display: grid;
+      gap: clamp(14px, 1.6vw, 18px);
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+
+    @media (min-width: 640px) {
+      .transport-concierge-main .tc-need-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .transport-concierge-main .tc-need-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .transport-concierge-main .tc-need-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 100%;
+      padding: clamp(18px, 2vw, 22px) clamp(18px, 2vw, 22px) 16px;
+      border-radius: var(--radius);
+      background: linear-gradient(165deg, #fffefb 0%, var(--cream-peach) 100%);
+      border: 1px solid rgba(11, 29, 58, 0.09);
+      box-shadow:
+        0 4px 0 rgba(242, 178, 26, 0.35),
+        0 18px 40px rgba(11, 29, 58, 0.12);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .transport-concierge-main .tc-need-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 4px;
+      background: var(--tc-accent, linear-gradient(90deg, var(--turquoise), var(--gold)));
+      z-index: 1;
+    }
+
+    .transport-concierge-main .tc-need-card--gold {
+      --tc-accent: linear-gradient(90deg, var(--gold), var(--orange));
+    }
+
+    .transport-concierge-main .tc-need-card--turq {
+      --tc-accent: linear-gradient(90deg, var(--turquoise), #0d9488);
+    }
+
+    .transport-concierge-main .tc-need-card--coral {
+      --tc-accent: linear-gradient(90deg, var(--coral), var(--orange));
+    }
+
+    .transport-concierge-main .tc-need-card--pink {
+      --tc-accent: linear-gradient(90deg, var(--pink), var(--coral));
+    }
+
+    .transport-concierge-main .tc-need-card--orange {
+      --tc-accent: linear-gradient(90deg, var(--orange), var(--gold));
+    }
+
+    .transport-concierge-main .tc-need-card--plum {
+      --tc-accent: linear-gradient(90deg, var(--plum), var(--pink));
+    }
+
+    .transport-concierge-main .tc-need-card:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 4px 0 rgba(20, 184, 166, 0.45),
+        0 22px 48px rgba(11, 29, 58, 0.16);
+    }
+
+    .transport-concierge-main .tc-need-card h3 {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+
+    .transport-concierge-main .tc-need-card p {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 10px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--slate);
+      flex-grow: 0;
+    }
+
+    .transport-concierge-main .tc-need-best {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 14px;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: #1e3a5f;
+    }
+
+    .transport-concierge-main .tc-need-best strong {
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .transport-concierge-main .tc-need-card .tc-card-action {
+      margin-top: auto;
+      position: relative;
+      z-index: 2;
+      align-self: flex-start;
+    }
+
+    .transport-concierge-main .tc-text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      color: #0d5c54;
+      text-decoration: none;
+      border-bottom: 2px solid rgba(20, 184, 166, 0.45);
+      padding-bottom: 2px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .transport-concierge-main .tc-text-link:hover {
+      color: var(--navy);
+      border-color: var(--orange);
+    }
+
+    /* How it works — dark OS band */
+    .transport-concierge-main .tc-os-band {
+      max-width: none;
+      margin: 0;
+      padding: clamp(40px, 4.5vw, 56px) clamp(16px, 4.5vw, 74px);
+      background:
+        radial-gradient(circle at 10% 20%, rgba(20, 184, 166, 0.18), transparent 38%),
+        radial-gradient(circle at 92% 78%, rgba(255, 92, 168, 0.14), transparent 36%),
+        linear-gradient(168deg, #050d1c 0%, #0b1d3a 48%, #142a4a 100%);
+      border-top: 1px solid rgba(255, 246, 230, 0.14);
+      border-bottom: 1px solid rgba(255, 246, 230, 0.12);
+      color: rgba(255, 246, 230, 0.84);
+    }
+
+    .transport-concierge-main .tc-os-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .transport-concierge-main .tc-os-band h2 {
+      color: var(--on-dark-heading);
+      font-size: clamp(1.65rem, 3vw + 0.5rem, 2.35rem);
+      letter-spacing: -0.028em;
+      line-height: 1.12;
+      margin-bottom: 10px;
+    }
+
+    .transport-concierge-main .tc-os-band .eyebrow {
+      color: var(--on-dark-eyebrow);
+    }
+
+    .transport-concierge-main .tc-os-band .section-text {
+      color: var(--on-dark-body);
+      max-width: 42rem;
+      margin-bottom: clamp(22px, 2.8vw, 30px);
+    }
+
+    .transport-concierge-main .tc-process {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: clamp(12px, 1.5vw, 16px);
+    }
+
+    .transport-concierge-main .tc-process-step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: clamp(12px, 1.8vw, 16px);
+      align-items: stretch;
+    }
+
+    .transport-concierge-main .tc-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.35rem;
+      min-height: 2.35rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(145deg, var(--orange), var(--gold));
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      flex-shrink: 0;
+    }
+
+    .transport-concierge-main .tc-step-body {
+      border-radius: calc(var(--radius) - 2px);
+      background: rgba(255, 251, 242, 0.97);
+      color: var(--navy);
+      padding: 14px 16px 16px;
+      border-left: 4px solid var(--turquoise);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .transport-concierge-main .tc-step-body h3 {
+      margin: 0 0 6px;
+      font-size: 1.02rem;
+      color: var(--navy);
+    }
+
+    .transport-concierge-main .tc-step-body p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--slate);
+    }
+
+    /* Popular routes — horizontal rhythm */
+    .transport-concierge-main .tc-routes-grid {
+      display: grid;
+      gap: clamp(14px, 1.6vw, 18px);
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+
+    @media (min-width: 720px) {
+      .transport-concierge-main .tc-routes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .transport-concierge-main .tc-route-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(16px, 2vw, 20px);
+      border-radius: var(--radius);
+      background: linear-gradient(155deg, #fffdfb 0%, #fff4e8 100%);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .transport-concierge-main .tc-route-card h3 {
+      font-size: 1.02rem;
+      margin-bottom: 8px;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .transport-concierge-main .tc-route-meta {
+      font-size: 0.82rem;
+      font-weight: 780;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #0e4f6b;
+      margin-bottom: 8px;
+    }
+
+    .transport-concierge-main .tc-route-card p {
+      margin: 0 0 8px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--slate);
+      flex-grow: 1;
+    }
+
+    .transport-concierge-main .tc-route-tip {
+      margin: 10px 0 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(20, 184, 166, 0.1);
+      border: 1px solid rgba(20, 184, 166, 0.28);
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: #134e4a;
+    }
+
+    .transport-concierge-main .tc-route-tip strong {
+      color: var(--navy);
+    }
+
+    /* Add-ons — compact strip grid */
+    .transport-concierge-main .tc-addon-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 560px) {
+      .transport-concierge-main .tc-addon-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 960px) {
+      .transport-concierge-main .tc-addon-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .transport-concierge-main .tc-addon-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 16px 16px 14px;
+      border-radius: calc(var(--radius) - 2px);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(11, 29, 58, 0.08);
+      box-shadow: 0 8px 22px rgba(11, 29, 58, 0.08);
+    }
+
+    .transport-concierge-main .tc-addon-card h3 {
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+      color: var(--navy);
+    }
+
+    .transport-concierge-main .tc-addon-card p {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.5;
+      color: var(--slate);
+      flex-grow: 1;
+    }
+
+    /* What to send — checklist */
+    .transport-concierge-main .tc-check-panel {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: clamp(22px, 3vw, 30px);
+      border-radius: var(--radius);
+      background: linear-gradient(165deg, #fffefb 0%, var(--cream-peach) 100%);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+      box-shadow:
+        0 4px 0 rgba(242, 178, 26, 0.32),
+        0 20px 44px rgba(11, 29, 58, 0.12);
+    }
+
+    .transport-concierge-main .tc-check-panel h2 {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .transport-concierge-main .tc-check-panel > .section-text {
+      text-align: center;
+      margin: 0 auto 22px;
+      max-width: 36rem;
+    }
+
+    .transport-concierge-main .tc-checklist {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .transport-concierge-main .tc-checklist li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(11, 29, 58, 0.08);
+      color: var(--navy);
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .transport-concierge-main .tc-checklist li::before {
+      content: "";
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      margin-top: 2px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--turquoise), #0d9488);
+      box-shadow: 0 2px 8px rgba(20, 184, 166, 0.35);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3.5 8.5l3 3 6-7' stroke='%23fff6e6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 12px 12px;
+    }
+
+    .transport-concierge-main .tc-check-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .transport-concierge-main .tc-check-cta .btn {
+      min-width: min(100%, 12rem);
+    }
+
+    /* Final CTA */
+    .transport-concierge-main .tc-final {
+      max-width: none;
+      margin: 0;
+      padding: clamp(44px, 5vw, 60px) clamp(16px, 4.5vw, 74px);
+      text-align: center;
+      background:
+        radial-gradient(ellipse 70% 80% at 50% 0%, rgba(255, 106, 77, 0.2), transparent 55%),
+        linear-gradient(165deg, #060f1f 0%, #0b1d3a 55%, #102a50 100%);
+      border-top: 1px solid rgba(255, 246, 230, 0.12);
+    }
+
+    .transport-concierge-main .tc-final-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .transport-concierge-main .tc-final h2 {
+      color: var(--on-dark-heading);
+      font-size: clamp(1.55rem, 2.8vw + 0.5rem, 2.15rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .transport-concierge-main .tc-final .section-text {
+      color: var(--on-dark-body);
+      margin: 0 auto 20px;
+      font-size: clamp(1rem, 0.45vw + 0.9rem, 1.08rem);
+      line-height: 1.62;
+    }
+
+    .transport-concierge-main .tc-final-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      justify-content: center;
+    }
+
+    .transport-concierge-main .tc-final-actions .btn {
+      min-width: min(100%, 12rem);
+    }
+
+    .transport-concierge-main .tc-disclaimer {
+      margin: clamp(28px, 3vw, 36px) auto 0;
+      max-width: 52rem;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.82);
+      background: rgba(6, 12, 22, 0.45);
+      border: 1px solid rgba(255, 246, 230, 0.14);
+    }
+
+    .transport-concierge-main .section-cream .tc-disclaimer {
+      color: var(--slate);
+      background: rgba(255, 255, 255, 0.65);
+      border-color: rgba(11, 29, 58, 0.1);
+    }
+
+    @media (max-width: 419px) {
+      .transport-concierge-main .hero-cta-row .btn,
+      .transport-concierge-main .tc-final-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -31,46 +629,246 @@
     </nav>
     <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
-  <main>
+  <main class="transport-concierge-main">
     <section class="hero hero-fiesta-dark hero-inner secondary-hero">
       <div class="hero-fiesta-inner hero-inner-band">
         <div class="hero-shell hero-inner-grid secondary-hero-grid">
           <div class="hero-content secondary-hero-copy">
-            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Transportation + Concierge</p>
-            <h1 class="hero-title">Visitor Transportation + Local Concierge</h1>
-            <p class="hero-text hero-text-on-dark">A premium support option for airport arrivals, resort transfers, convention schedules, dinner drops, and custom local routing.</p>
-            <div class="hero-cue-grid" aria-label="Transportation coverage">
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Airport pickup</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Resort transfer</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Convention route</strong></div>
-            </div>
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero">San Antonio visitor desk</p>
+            <h1 class="hero-title">Visitor transportation + local concierge</h1>
+            <p class="tc-hero-lead">Airport, resort, convention, dinner, and night-out routing for San Antonio visitors who want the right move fast.</p>
+            <p class="tc-hero-support">Tell The SA Plug where you&rsquo;re staying, who you&rsquo;re with, what time you need to move, and what kind of night you want. We&rsquo;ll help you choose the cleanest route, safest pickup logic, and best local next step.</p>
+            <ul class="tc-hero-chips" aria-label="Common visitor situations">
+              <li><span class="tc-hero-chip">Airport arrivals</span></li>
+              <li><span class="tc-hero-chip">Convention travelers</span></li>
+              <li><span class="tc-hero-chip">Resort routes</span></li>
+              <li><span class="tc-hero-chip">Dinner plans</span></li>
+              <li><span class="tc-hero-chip">Night out</span></li>
+              <li><span class="tc-hero-chip">Family timing</span></li>
+            </ul>
             <div class="hero-cta-row">
-              <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request Transportation + Concierge</a>
+              <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation help</a>
               <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-secondary hero-secondary-btn">Ask The SA Plug</a>
             </div>
           </div>
           <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
-            <div class="hero-visual-panel hero-inner-panel">
-              <img src="assets/images/sa-plug/resort-arrival.png" alt="Upscale arrivals and traveler transportation mood" class="hero-visual-img hero-inner-img img-pos-arrival" width="800" height="1000" decoding="async" />
+            <div class="hero-visual-panel hero-inner-panel tc-hero-panel">
+              <img src="assets/images/sa-plug/downtown-riverwalk.png" alt="Downtown San Antonio streets and River Walk energy for visitor route planning" class="hero-visual-img hero-inner-img img-pos-riverwalk" width="800" height="1000" decoding="async" onerror="this.closest('.tc-hero-panel').classList.add('tc-hero-panel--fallback'); this.remove();" />
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="section split split-sub-cta split-driver-services">
-      <div class="split-sub-copy">
-        <h2>Local support for visitors, resort guests, and convention travelers.</h2>
-        <p class="section-text">Request appointment-based transportation and concierge support by availability. Share your route, timing, and group details so the plan can be confirmed quickly.</p>
-        <div class="pill-row pill-row-split"><span>Airport pickup</span><span>Resort transfer</span><span>Convention route</span><span>Dinner drop-off</span><span>Night-out plan</span><span>Day trip</span></div>
-        <p class="required-note required-note-split">All requests are subject to availability, route details, and applicable transportation, insurance, and local requirements.</p>
+
+    <section class="section section-cream transport-section" aria-labelledby="tc-need-heading">
+      <div class="tc-section-head">
+        <p class="eyebrow">What do you need help with?</p>
+        <h2 id="tc-need-heading">Pick the situation. We&rsquo;ll help point you toward the right move.</h2>
+        <p class="section-text">Availability-based visitor transportation guidance and local concierge help &mdash; not a ride-hail app. Send your hotel, timing, group size, and destination so we can tighten your route plan and your night.</p>
       </div>
-      <article class="image-cta image-cta-split img-downtown">
-        <div class="image-cta-content">
-          <h3>Request transportation help</h3>
-          <p>Submit your trip details to confirm availability and next steps.</p>
-          <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request Transportation + Concierge</a>
+      <div class="tc-need-grid">
+        <article class="tc-need-card tc-need-card--turq">
+          <h3>Airport arrival</h3>
+          <p>Arrival windows, luggage reality, and the smoothest path toward your stay &mdash; with clear next steps before you leave baggage claim.</p>
+          <p class="tc-need-best"><strong>Best for:</strong> first-time SAT arrivals and tight turnarounds.</p>
+          <a class="tc-card-action tc-text-link" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation support <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="tc-need-card tc-need-card--gold">
+          <h3>Downtown dinner route</h3>
+          <p>Hotel-to-table timing, River Walk pacing, and post-dinner moves without losing the thread of your night.</p>
+          <p class="tc-need-best"><strong>Best for:</strong> reservations, drinks after, and one clean loop.</p>
+          <a class="tc-card-action tc-text-link" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Plan the dinner route <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="tc-need-card tc-need-card--coral">
+          <h3>Resort to River Walk</h3>
+          <p>Distance, traffic windows, and a simple A-to-B story so the group knows what to expect before anyone opens a maps app.</p>
+          <p class="tc-need-best"><strong>Best for:</strong> La Cantera, Rim, and resort-side crews heading core-ward.</p>
+          <a class="tc-card-action tc-text-link" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Shape the resort leg <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="tc-need-card tc-need-card--orange">
+          <h3>Convention schedule</h3>
+          <p>Session blocks, client dinners, and the smartest handoffs between the center, hotels, and evening plans.</p>
+          <p class="tc-need-best"><strong>Best for:</strong> badge days with more than one place to be.</p>
+          <a class="tc-card-action tc-text-link" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Tighten the schedule <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="tc-need-card tc-need-card--pink">
+          <h3>Night out plan</h3>
+          <p>Neighborhood order, pacing, and backup pivots so the night feels intentional &mdash; not improvised in the lobby.</p>
+          <p class="tc-need-best"><strong>Best for:</strong> groups who want one clear storyline for the evening.</p>
+          <a class="tc-card-action tc-text-link" href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">Ask The SA Plug <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="tc-need-card tc-need-card--plum">
+          <h3>Family / group timing</h3>
+          <p>Stroller steps, car seats, slower walks, and meet-up math so nobody is stranded between two corners downtown.</p>
+          <p class="tc-need-best"><strong>Best for:</strong> mixed ages, bigger parties, and conservative buffers.</p>
+          <a class="tc-card-action tc-text-link" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Send group details <span aria-hidden="true">&rarr;</span></a>
+        </article>
+      </div>
+      <p class="tc-disclaimer">All support is availability-based and depends on your details, timing, and what&rsquo;s realistic that day. Nothing here is a promise of on-demand pickup; we&rsquo;ll help point you toward the right move and confirm next steps together.</p>
+    </section>
+
+    <section class="tc-os-band transport-section" aria-labelledby="tc-process-heading">
+      <div class="tc-os-inner">
+        <div class="tc-section-head">
+          <p class="eyebrow">How the request works</p>
+          <h2 id="tc-process-heading">The same concierge rhythm as Start Here &mdash; built for movement.</h2>
+          <p class="section-text">Five beats. You bring the facts; we help you compress the decision noise into one cleaner route recommendation.</p>
         </div>
-      </article>
+        <ol class="tc-process">
+          <li class="tc-process-step">
+            <span class="tc-step-num" aria-hidden="true">1</span>
+            <div class="tc-step-body">
+              <h3>Send your starting point</h3>
+              <p>Hotel, resort, airport terminal context, or convention hall &mdash; whatever anchors the first move.</p>
+            </div>
+          </li>
+          <li class="tc-process-step">
+            <span class="tc-step-num" aria-hidden="true">2</span>
+            <div class="tc-step-body">
+              <h3>Share your group size + timing</h3>
+              <p>Headcount, kids, luggage, and the real window you can commit to (not the fantasy minute).</p>
+            </div>
+          </li>
+          <li class="tc-process-step">
+            <span class="tc-step-num" aria-hidden="true">3</span>
+            <div class="tc-step-body">
+              <h3>Tell us the mood</h3>
+              <p>Dinner, drinks, family, business, resort night, or downtown energy &mdash; so pacing matches the group.</p>
+            </div>
+          </li>
+          <li class="tc-process-step">
+            <span class="tc-step-num" aria-hidden="true">4</span>
+            <div class="tc-step-body">
+              <h3>Get a cleaner route recommendation</h3>
+              <p>Visitor transportation guidance with pickup logic spelled in plain language &mdash; not a black box pin drop.</p>
+            </div>
+          </li>
+          <li class="tc-process-step">
+            <span class="tc-step-num" aria-hidden="true">5</span>
+            <div class="tc-step-body">
+              <h3>Confirm the next move</h3>
+              <p>We align on the follow-up that fits your night, then you run the plan with confidence.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-blush transport-section" aria-labelledby="tc-routes-heading">
+      <div class="tc-section-head">
+        <p class="eyebrow">Popular routes</p>
+        <h2 id="tc-routes-heading">Starter legs visitors ask about all the time.</h2>
+        <p class="section-text">Use these as templates. Swap your hotel, your reservation time, and your group size when you reach out &mdash; same-day route questions welcome when bandwidth allows.</p>
+      </div>
+      <div class="tc-routes-grid">
+        <article class="tc-route-card">
+          <p class="tc-route-meta">Template route</p>
+          <h3>SAT airport &rarr; downtown hotel</h3>
+          <p><strong>Best use:</strong> first landing, one hotel, need a simple story from curb to check-in.</p>
+          <p><strong>Timing note:</strong> build extra slack on holidays, big weekends, and storm nights.</p>
+          <p class="tc-route-tip"><strong>Local tip:</strong> say whether you&rsquo;re River Walk-adjacent or a few blocks off &mdash; pickup logic changes.</p>
+        </article>
+        <article class="tc-route-card">
+          <p class="tc-route-meta">Template route</p>
+          <h3>SAT airport &rarr; JW Marriott / TPC corridor</h3>
+          <p><strong>Best use:</strong> golf, resort blocks, and stays west of the core.</p>
+          <p><strong>Timing note:</strong> afternoon rush on loops 410/160 deserves an honest buffer.</p>
+          <p class="tc-route-tip"><strong>Local tip:</strong> mention if you have clubs or oversized bags before we suggest a path.</p>
+        </article>
+        <article class="tc-route-card">
+          <p class="tc-route-meta">Template route</p>
+          <h3>La Cantera / Rim &rarr; Pearl or downtown</h3>
+          <p><strong>Best use:</strong> resort guests who want one big city night without guesswork.</p>
+          <p><strong>Timing note:</strong> plan the return window before the night gets loud &mdash; especially on weekends.</p>
+          <p class="tc-route-tip"><strong>Local tip:</strong> Pearl vs. River Walk is a different drop story; name the anchor stop first.</p>
+        </article>
+        <article class="tc-route-card">
+          <p class="tc-route-meta">Template route</p>
+          <h3>Downtown hotel &rarr; dinner + drinks</h3>
+          <p><strong>Best use:</strong> date nights and small groups who want one loop, not three U-turns.</p>
+          <p><strong>Timing note:</strong> pad 10&ndash;15 minutes for River Walk bridges and event spill.</p>
+          <p class="tc-route-tip"><strong>Local tip:</strong> send reservation time + dress code; we&rsquo;ll sequence the walk vs. ride legs.</p>
+        </article>
+        <article class="tc-route-card">
+          <p class="tc-route-meta">Template route</p>
+          <h3>Convention Center &rarr; dinner route</h3>
+          <p><strong>Best use:</strong> client-facing nights when you cannot afford a chaotic handoff.</p>
+          <p><strong>Timing note:</strong> session-end surges are real &mdash; share your hard stop time.</p>
+          <p class="tc-route-tip"><strong>Local tip:</strong> tell us if you need quiet conversation vs. a scene &mdash; routing follows the vibe.</p>
+        </article>
+        <article class="tc-route-card">
+          <p class="tc-route-meta">Template route</p>
+          <h3>Resort stay &rarr; one big San Antonio night</h3>
+          <p><strong>Best use:</strong> when you want dinner, a stroll, and a clean finale without re-planning at 10 p.m.</p>
+          <p><strong>Timing note:</strong> start with your must-hit, then we fill the edges.</p>
+          <p class="tc-route-tip"><strong>Local tip:</strong> heat, rain, and event nights all change the &ldquo;easy&rdquo; answer &mdash; say the month.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-turquoise-wash transport-section" aria-labelledby="tc-addon-heading">
+      <div class="tc-section-head">
+        <p class="eyebrow">Visitor concierge add-ons</p>
+        <h2 id="tc-addon-heading">Local recommendation support layered on your route.</h2>
+        <p class="section-text">Small extras that keep the night coherent &mdash; still grounded in what&rsquo;s realistic for your crew and the weather on the ground.</p>
+      </div>
+      <div class="tc-addon-grid">
+        <article class="tc-addon-card">
+          <h3>Restaurant direction</h3>
+          <p>Neighborhood fit, distance from your anchor, and how it pairs with the rest of the loop.</p>
+        </article>
+        <article class="tc-addon-card">
+          <h3>Night-out pacing</h3>
+          <p>Order of stops so you do not burn the best energy too early.</p>
+        </article>
+        <article class="tc-addon-card">
+          <h3>Family-friendly timing</h3>
+          <p>Shorter walks, earlier wraps, and calmer handoffs when little legs are in the mix.</p>
+        </article>
+        <article class="tc-addon-card">
+          <h3>Rain / heat backup</h3>
+          <p>Indoor pivots and shorter outdoor segments without losing the night.</p>
+        </article>
+        <article class="tc-addon-card">
+          <h3>Business dinner support</h3>
+          <p>Conservative timing, quieter table logic, and a clean story for clients.</p>
+        </article>
+        <article class="tc-addon-card">
+          <h3>Local quick picks</h3>
+          <p>When you just need a pointed suggestion, not another open-ended search tab.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-cream transport-section" aria-labelledby="tc-check-heading">
+      <div class="tc-check-panel">
+        <p class="eyebrow">What to send us</p>
+        <h2 id="tc-check-heading">Copy this checklist into your note.</h2>
+        <p class="section-text">The cleaner the message, the faster we can answer. Send your hotel, timing, group size, and destination &mdash; then we&rsquo;ll help point you toward the right move.</p>
+        <ul class="tc-checklist">
+          <li>Hotel or starting location</li>
+          <li>Destination or kind of night</li>
+          <li>Date + time window</li>
+          <li>Number of people</li>
+          <li>Any kids, luggage, mobility, or timing concerns</li>
+          <li>Food preference / budget if dinner is involved</li>
+        </ul>
+        <div class="tc-check-cta">
+          <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation help</a>
+          <a class="btn btn-secondary" href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">Ask The SA Plug</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tc-final transport-section" aria-labelledby="tc-final-heading">
+      <div class="tc-final-inner">
+        <h2 id="tc-final-heading">Need the right route before you waste the night?</h2>
+        <p class="section-text">Send the details and The SA Plug will help you make the cleanest San Antonio move.</p>
+        <div class="tc-final-actions">
+          <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation help</a>
+          <a class="btn btn-secondary hero-secondary-btn" href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">Ask The SA Plug</a>
+        </div>
+      </div>
     </section>
   </main>
   <footer class="footer dark-showcase">
