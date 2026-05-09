@@ -4,11 +4,743 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Start Here | The SA Plug</title>
-  <meta name="description" content="First-time San Antonio visitor guide from The SA Plug." />
+  <meta name="description" content="Start here for San Antonio: first-time visitor hub, downtown guide, food picks, resort zones, family things to do, and transportation help from The SA Plug." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Start Here — page-scoped flagship onboarding */
+
+    /* Tighter section rhythm so the decision grid appears sooner */
+    .start-here-main > .section {
+      padding-top: clamp(34px, 4vw, 46px);
+      padding-bottom: clamp(34px, 4vw, 46px);
+    }
+
+    .start-here-main > .section.band.section-navy-routes {
+      padding-top: clamp(40px, 4.4vw, 52px);
+      padding-bottom: clamp(40px, 4.4vw, 52px);
+    }
+
+    /* Hero: reduce excess vertical padding by ~12–15% (premium, not cramped) */
+    .start-here-main.start-here-main .secondary-hero .hero-fiesta-inner.hero-inner-band {
+      padding-top: clamp(20px, 2.8vw, 36px);
+      padding-bottom: calc(clamp(20px, 2.8vw, 34px) + 4px);
+    }
+
+    .start-here-main .sh-hero-helper {
+      margin: 0;
+      max-width: 38rem;
+      font-size: clamp(0.88rem, 0.9vw + 0.72rem, 0.98rem);
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.72);
+    }
+
+    .start-here-main .sh-hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin: 0;
+      padding: clamp(14px, 2vw, 18px) 0 0;
+      border-top: 1px solid rgba(255, 246, 230, 0.12);
+      list-style: none;
+    }
+
+    .start-here-main .sh-hero-chips li {
+      margin: 0;
+      padding: 0;
+    }
+
+    .start-here-main .sh-hero-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      color: rgba(255, 246, 230, 0.88);
+      background: rgba(255, 246, 230, 0.07);
+      border: 1px solid rgba(242, 178, 26, 0.28);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .start-here-main .sh-hero-chip:hover {
+      background: rgba(255, 246, 230, 0.12);
+      border-color: rgba(20, 184, 166, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .start-here-main .sh-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      margin: 0;
+      padding-top: clamp(4px, 1vw, 8px);
+    }
+
+    .start-here-main .sh-hero-actions .btn {
+      min-width: min(100%, 11rem);
+    }
+
+    @media (max-width: 419px) {
+      .start-here-main .sh-hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .start-here-main .hero-visual-frame::before {
+      opacity: 0.38;
+    }
+
+    .start-here-main .hero-inner-panel::after {
+      box-shadow: inset 0 0 0 1px rgba(242, 178, 26, 0.22);
+    }
+
+    /* Unified section-head rhythm + section-level H2 scale across the page */
+    .start-here-main > .section h2 {
+      font-size: clamp(1.7rem, 3.4vw + 0.4rem, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin-bottom: 14px;
+    }
+
+    .start-here-main .sh-section-head {
+      max-width: 44rem;
+      margin-bottom: clamp(22px, 2.8vw, 30px);
+    }
+
+    .start-here-main .sh-section-head .eyebrow {
+      margin-bottom: 12px;
+    }
+
+    .start-here-main .sh-section-head .section-text {
+      margin-bottom: 0;
+      font-size: clamp(1rem, 0.6vw + 0.86rem, 1.08rem);
+      line-height: 1.62;
+      max-width: 42rem;
+    }
+
+    .start-here-main .sh-orient-copy {
+      max-width: 44rem;
+    }
+
+    .start-here-main .sh-orient-copy .eyebrow {
+      margin-bottom: 12px;
+    }
+
+    .start-here-main .sh-orient-copy .section-text,
+    .start-here-main .sh-orient-copy .routes-intro {
+      font-size: clamp(1rem, 0.6vw + 0.86rem, 1.08rem);
+      line-height: 1.62;
+      max-width: 42rem;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .start-here-main .sh-final-cta h2 {
+      font-size: clamp(1.7rem, 3.4vw + 0.4rem, 2.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+
+    /* Smooth dark/light rhythm: soft fade at the bottom of the wash before the next dark section */
+    .start-here-main .section.section-turquoise-wash {
+      position: relative;
+    }
+
+    .start-here-main .section.section-turquoise-wash::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 56px;
+      background: linear-gradient(180deg, transparent, rgba(7, 19, 38, 0.18));
+      pointer-events: none;
+    }
+
+    .start-here-main .sh-decision-grid {
+      display: grid;
+      gap: clamp(14px, 1.6vw, 18px);
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+
+    @media (min-width: 600px) {
+      .start-here-main .sh-decision-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .start-here-main .sh-decision-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .start-here-main .sh-decision-card {
+      position: relative;
+      border-radius: var(--radius);
+      background: linear-gradient(165deg, #fffefb 0%, var(--cream-peach) 100%);
+      border: 1px solid rgba(11, 29, 58, 0.09);
+      box-shadow:
+        0 4px 0 rgba(242, 178, 26, 0.4),
+        0 22px 46px rgba(11, 29, 58, 0.14);
+      overflow: hidden;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .start-here-main .sh-decision-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 4px;
+      background: var(--sh-accent, linear-gradient(90deg, var(--turquoise), var(--coral)));
+      z-index: 1;
+    }
+
+    .start-here-main .sh-decision-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      background: radial-gradient(circle at 100% 0%, rgba(242, 178, 26, 0.08), transparent 45%);
+      z-index: 1;
+    }
+
+    .start-here-main .sh-decision-card--turq {
+      --sh-accent: linear-gradient(90deg, var(--turquoise), #0d9488);
+    }
+
+    .start-here-main .sh-decision-card--coral {
+      --sh-accent: linear-gradient(90deg, var(--coral), var(--orange));
+    }
+
+    .start-here-main .sh-decision-card--gold {
+      --sh-accent: linear-gradient(90deg, var(--gold), var(--orange));
+    }
+
+    .start-here-main .sh-decision-card--pink {
+      --sh-accent: linear-gradient(90deg, var(--pink), var(--coral));
+    }
+
+    .start-here-main .sh-decision-card--orange {
+      --sh-accent: linear-gradient(90deg, var(--orange), var(--gold));
+    }
+
+    .start-here-main .sh-decision-card--plum {
+      --sh-accent: linear-gradient(90deg, var(--plum), var(--pink));
+    }
+
+    .start-here-main .sh-decision-card:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 4px 0 rgba(20, 184, 166, 0.5),
+        0 26px 54px rgba(11, 29, 58, 0.18);
+    }
+
+    .start-here-main .sh-decision-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: clamp(20px, 2.4vw, 24px) clamp(18px, 2.2vw, 22px) clamp(20px, 2.4vw, 24px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .start-here-main .sh-decision-kicker {
+      margin: 0 0 10px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--navy);
+      opacity: 0.6;
+    }
+
+    .start-here-main .sh-decision-title {
+      margin: 0 0 10px;
+      font-size: 1.12rem;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      line-height: 1.22;
+    }
+
+    .start-here-main .sh-decision-desc {
+      margin: 0;
+      flex: 1 1 auto;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--slate);
+    }
+
+    .start-here-main .sh-decision-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: clamp(14px, 1.8vw, 18px);
+      font-size: 0.88rem;
+      font-weight: 820;
+      color: var(--navy);
+      text-decoration: none;
+      width: fit-content;
+      max-width: 100%;
+      padding: 8px 0 2px;
+      border-bottom: 2px solid rgba(255, 106, 77, 0.5);
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .start-here-main .sh-decision-cta::after {
+      content: "\2192";
+      font-size: 1rem;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .start-here-main .sh-decision-cta:hover {
+      color: var(--coral);
+      border-bottom-color: var(--turquoise);
+    }
+
+    .start-here-main .sh-decision-cta:hover::after {
+      transform: translateX(4px);
+    }
+
+    .start-here-main .sh-orient-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(22px, 3vw, 32px);
+    }
+
+    .start-here-main .sh-orient-editorial {
+      display: grid;
+      gap: clamp(16px, 2vw, 20px);
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 900px) {
+      .start-here-main .sh-orient-editorial {
+        grid-template-columns: 1.18fr 0.82fr;
+        align-items: stretch;
+      }
+    }
+
+    .start-here-main .sh-orient-lead {
+      position: relative;
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      min-height: clamp(300px, 44vw, 440px);
+      border: 1px solid rgba(255, 246, 230, 0.2);
+      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.35);
+      height: 100%;
+    }
+
+    .start-here-main .sh-orient-lead img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 58%;
+      min-height: clamp(300px, 44vw, 440px);
+    }
+
+    .start-here-main .sh-orient-lead::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 42%, rgba(6, 12, 24, 0.55) 100%);
+    }
+
+    .start-here-main .sh-orient-lead-body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      padding: clamp(20px, 3vw, 28px);
+    }
+
+    .start-here-main .sh-orient-lead-body h3 {
+      margin: 0 0 8px;
+      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+      color: var(--cream);
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    .start-here-main .sh-orient-lead-body p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.92);
+      max-width: 36ch;
+    }
+
+    .start-here-main .sh-orient-stack {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(16px, 2vw, 20px);
+      height: 100%;
+    }
+
+    .start-here-main .sh-orient-card {
+      position: relative;
+      flex: 1 1 0;
+      min-height: clamp(170px, 22vw, 210px);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(255, 246, 230, 0.16);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .start-here-main .sh-orient-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 44px rgba(0, 0, 0, 0.34);
+    }
+
+    .start-here-main .sh-orient-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .start-here-main .sh-orient-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(165deg, rgba(6, 10, 20, 0.05) 20%, rgba(11, 29, 58, 0.5) 100%);
+      pointer-events: none;
+    }
+
+    .start-here-main .sh-orient-card-body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      padding: 16px 18px;
+    }
+
+    .start-here-main .sh-orient-card-body h3 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      color: var(--white);
+    }
+
+    .start-here-main .sh-orient-card-body p {
+      margin: 0;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .start-here-main .sh-moves-wrap {
+      position: relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255, 246, 230, 0.14);
+      background:
+        radial-gradient(ellipse 70% 55% at 8% 0%, rgba(20, 184, 166, 0.22), transparent 55%),
+        radial-gradient(circle at 96% 100%, rgba(255, 106, 77, 0.18), transparent 45%),
+        linear-gradient(160deg, #091a34 0%, #0b1d3a 52%, #16122a 100%);
+      box-shadow:
+        0 32px 64px rgba(11, 29, 58, 0.32),
+        inset 0 1px 0 rgba(255, 246, 230, 0.06);
+      padding: clamp(28px, 3.6vw, 44px) clamp(22px, 3.2vw, 40px);
+      overflow: hidden;
+    }
+
+    @media (max-width: 540px) {
+      .start-here-main .sh-moves-wrap {
+        padding: 24px 18px;
+      }
+    }
+
+    .start-here-main .sh-moves-wrap::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--turquoise), var(--coral), var(--gold));
+    }
+
+    .start-here-main .sh-moves-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(18px, 2.4vw, 22px);
+    }
+
+    .start-here-main .sh-moves-list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px 18px;
+      align-items: start;
+      padding-bottom: clamp(18px, 2.4vw, 22px);
+      border-bottom: 1px solid rgba(255, 246, 230, 0.1);
+    }
+
+    .start-here-main .sh-moves-list li:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .start-here-main .sh-moves-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.95rem;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--turquoise), var(--coral));
+      border: 1px solid rgba(255, 246, 230, 0.22);
+      box-shadow: 0 10px 22px rgba(20, 184, 166, 0.32);
+      flex-shrink: 0;
+    }
+
+    .start-here-main .sh-moves-list strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--cream);
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .start-here-main .sh-moves-list p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.62;
+      color: rgba(255, 246, 230, 0.82);
+      max-width: 60ch;
+    }
+
+    .start-here-main .sh-moves-list a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 760;
+      border-bottom: 1px solid rgba(242, 178, 26, 0.5);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .start-here-main .sh-moves-list a:hover {
+      color: var(--cream);
+      border-bottom-color: var(--turquoise);
+    }
+
+    .start-here-main .sh-route-grid {
+      display: grid;
+      gap: clamp(16px, 2vw, 20px);
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+
+    @media (min-width: 720px) {
+      .start-here-main .sh-route-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .start-here-main .sh-route-card {
+      position: relative;
+      border-radius: var(--radius);
+      padding: clamp(22px, 2.6vw, 28px) clamp(20px, 2.4vw, 26px) clamp(22px, 2.6vw, 28px);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255, 106, 77, 0.1), transparent 48%),
+        linear-gradient(155deg, #fffefb 0%, #f3faf8 100%);
+      border: 1px solid rgba(11, 29, 58, 0.09);
+      box-shadow:
+        0 4px 0 rgba(242, 178, 26, 0.4),
+        0 22px 46px rgba(11, 29, 58, 0.14);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 100%;
+      overflow: hidden;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .start-here-main .sh-route-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--turquoise), var(--coral), var(--gold));
+      z-index: 1;
+    }
+
+    .start-here-main .sh-route-card:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 4px 0 rgba(20, 184, 166, 0.5),
+        0 26px 54px rgba(11, 29, 58, 0.18);
+    }
+
+    .start-here-main .sh-route-eyebrow {
+      margin: 0 0 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--navy);
+      opacity: 0.6;
+    }
+
+    .start-here-main .sh-route-eyebrow::before {
+      content: "";
+      width: 18px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--turquoise), var(--coral));
+      border-radius: 2px;
+    }
+
+    .start-here-main .sh-route-card h3 {
+      margin: 0;
+      font-size: 1.12rem;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      font-weight: 850;
+      line-height: 1.22;
+    }
+
+    .start-here-main .sh-route-desc {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--slate);
+      flex: 1 1 auto;
+    }
+
+    .start-here-main .sh-route-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: clamp(14px, 1.8vw, 18px);
+      font-size: 0.88rem;
+      font-weight: 820;
+      color: var(--navy);
+      text-decoration: none;
+      width: fit-content;
+      max-width: 100%;
+      padding: 8px 0 2px;
+      border-bottom: 2px solid rgba(255, 106, 77, 0.5);
+      align-self: flex-start;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .start-here-main .sh-route-link::after {
+      content: "\2192";
+      font-size: 1rem;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .start-here-main .sh-route-link:hover {
+      color: var(--coral);
+      border-bottom-color: var(--turquoise);
+    }
+
+    .start-here-main .sh-route-link:hover::after {
+      transform: translateX(4px);
+    }
+
+    /* Final CTA section: extra bottom breathing room above the footer / install prompts */
+    .start-here-main > .section.sh-final-section {
+      padding-bottom: clamp(56px, 6vw, 84px);
+    }
+
+    .start-here-main .sh-final-cta {
+      position: relative;
+      overflow: hidden;
+      border-radius: calc(var(--radius) + 8px);
+      padding: clamp(36px, 4.5vw, 52px) clamp(22px, 4vw, 40px);
+      border: 1px solid rgba(255, 246, 230, 0.16);
+      background:
+        radial-gradient(ellipse 80% 60% at 12% 0%, rgba(255, 106, 77, 0.2), transparent 50%),
+        radial-gradient(circle at 92% 80%, rgba(20, 184, 166, 0.18), transparent 42%),
+        linear-gradient(158deg, #050910 0%, #0b1d3a 48%, #1a1530 100%);
+      box-shadow:
+        0 32px 64px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 246, 230, 0.06);
+    }
+
+    .start-here-main .sh-final-cta::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--turquoise), var(--coral), var(--pink), var(--orange), var(--gold));
+    }
+
+    .start-here-main .sh-final-cta h2 {
+      color: var(--cream);
+      margin-bottom: 12px;
+      max-width: 26ch;
+    }
+
+    .start-here-main .sh-final-cta .section-text {
+      color: rgba(255, 246, 230, 0.86);
+      max-width: 40rem;
+      margin-bottom: clamp(20px, 2.5vw, 26px);
+    }
+
+    .start-here-main .sh-final-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+    }
+
+    .start-here-main .sh-final-actions .btn-secondary-hero {
+      border-color: rgba(255, 246, 230, 0.35);
+    }
+
+    /* Gold eyebrow on final CTA bookends the hero for a premium thematic frame */
+    .start-here-main .sh-final-cta .sh-final-eyebrow {
+      color: var(--gold) !important;
+      margin-bottom: 12px;
+    }
+
+    .start-here-main .sh-final-trust {
+      margin: clamp(16px, 2vw, 20px) 0 0;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: rgba(255, 246, 230, 0.62);
+      letter-spacing: 0.01em;
+    }
+
+    @media (max-width: 419px) {
+      .start-here-main .sh-final-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -31,43 +763,236 @@
     </nav>
     <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
-  <main>
+  <main class="start-here-main" id="top">
     <section class="hero hero-fiesta-dark hero-inner secondary-hero">
       <div class="hero-fiesta-inner hero-inner-band">
         <div class="hero-shell hero-inner-grid secondary-hero-grid">
           <div class="hero-content secondary-hero-copy">
-            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Start Here</p>
-            <h1 class="hero-title">First time in San Antonio? Here is the move.</h1>
-            <p class="hero-text hero-text-on-dark">Use this route to go from airport arrival to your first memorable stop without wasting time on generic picks.</p>
-            <div class="hero-cue-grid" aria-label="Quick arrival route">
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Airport arrival</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>First food stop</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Easy downtown move</strong></div>
-            </div>
-            <div class="hero-cta-row">
-              <a class="btn btn-primary" href="downtown.html">Open downtown guide</a>
-              <a class="btn btn-secondary hero-secondary-btn" href="where-to-eat.html">See food picks</a>
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Visitor hub</p>
+            <h1 class="hero-title">Start here for San Antonio</h1>
+            <p class="hero-text hero-text-on-dark">New to the city? Pick your situation and get the fastest route to the right plan &mdash; food, downtown, family ideas, resort moves, or transportation help.</p>
+            <p class="sh-hero-helper">Built for first-time visitors, convention travelers, resort guests, families, and anyone who wants a better local plan.</p>
+            <ul class="sh-hero-chips" aria-label="Common trip types">
+              <li><a class="sh-hero-chip" href="#trip-lanes">First-time visitor</a></li>
+              <li><a class="sh-hero-chip" href="#lane-convention">Convention traveler</a></li>
+              <li><a class="sh-hero-chip" href="#lane-family">Family trip</a></li>
+              <li><a class="sh-hero-chip" href="#lane-resort">Resort stay</a></li>
+              <li><a class="sh-hero-chip" href="#lane-food">Food-first</a></li>
+            </ul>
+            <div class="sh-hero-actions">
+              <a class="btn btn-primary" href="#trip-lanes">Pick my route</a>
+              <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-secondary hero-secondary-btn">Ask The SA Plug</a>
             </div>
           </div>
           <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
             <div class="hero-visual-panel hero-inner-panel">
-              <img src="assets/images/sa-plug/downtown-riverwalk.png" alt="San Antonio River Walk and downtown river corridor" class="hero-visual-img hero-inner-img img-pos-riverwalk" width="800" height="1000" decoding="async" />
+              <img src="assets/images/sa-plug/hero-river-fiesta.png" alt="San Antonio River Walk and Fiesta-inspired city energy" class="hero-visual-img hero-inner-img img-pos-riverwalk" width="800" height="900" decoding="async" />
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="section">
-      <div class="note-card note-card-post-hero"><p><strong>Local plug note:</strong> Start with the River Walk barge cruise, then choose Pearl, downtown, Market Square, or Tower based on your group and timing.</p></div>
-      <div class="feature-grid">
-        <article class="image-card img-family"><div class="image-card-content"><h3>Airport to Zoo Corridor</h3><p>Zoo, Tea Garden, Brackenridge Park, Witte, and The DoSeum in one clean daytime lane.</p></div></article>
-        <article class="image-card img-food"><div class="image-card-content"><h3>Pearl + Evening Plan</h3><p>Premium local atmosphere for business travelers, date nights, and polished first-night dinners.</p></div></article>
+
+    <section class="section" id="trip-lanes" aria-labelledby="trip-lanes-heading">
+      <div class="sh-section-head">
+        <p class="eyebrow">Start here</p>
+        <h2 id="trip-lanes-heading">What kind of San Antonio visit is this?</h2>
+        <p class="section-text">Pick the lane that sounds most like your trip. The SA Plug will point you toward the fastest next step.</p>
       </div>
-      <div class="grid-4">
-        <article class="card green"><h3>Airport to Zoo Corridor</h3><p>Great first-day route when families or daytime explorers want close stops with low friction.</p></article>
-        <article class="card turq"><h3>Pearl + Hotel Emma</h3><p>A premium local zone for food, drinks, and an elevated San Antonio feel.</p></article>
-        <article class="card pink"><h3>Downtown + River Walk</h3><p>Best first move for orientation, photos, and easy planning for the rest of the trip.</p></article>
-        <article class="card gold"><h3>Market Square + Tower</h3><p>Culture, color, and skyline views when you want classic San Antonio energy.</p></article>
+      <div class="sh-decision-grid">
+        <article class="sh-decision-card sh-decision-card--turq" id="lane-landed">
+          <div class="sh-decision-inner">
+            <p class="sh-decision-kicker">Arrival</p>
+            <h3 class="sh-decision-title">I just landed</h3>
+            <p class="sh-decision-desc">Fast first-move ideas after the airport: where to eat, what to do, and how to skip a wasted first night.</p>
+            <a class="sh-decision-cta" href="#starter-routes">Start here</a>
+          </div>
+        </article>
+        <article class="sh-decision-card sh-decision-card--coral" id="lane-downtown">
+          <div class="sh-decision-inner">
+            <p class="sh-decision-kicker">One night</p>
+            <h3 class="sh-decision-title">I have one night downtown</h3>
+            <p class="sh-decision-desc">A strong downtown route for dinner, River Walk pacing, drinks, and first-time visitor energy.</p>
+            <a class="sh-decision-cta" href="downtown.html">View downtown guide</a>
+          </div>
+        </article>
+        <article class="sh-decision-card sh-decision-card--gold" id="lane-convention">
+          <div class="sh-decision-inner">
+            <p class="sh-decision-kicker">Business</p>
+            <h3 class="sh-decision-title">I&rsquo;m here for a convention</h3>
+            <p class="sh-decision-desc">Clean moves for conference guests, client dinners, and tight evening windows.</p>
+            <a class="sh-decision-cta" href="downtown.html">Best convention moves</a>
+          </div>
+        </article>
+        <article class="sh-decision-card sh-decision-card--pink" id="lane-family">
+          <div class="sh-decision-inner">
+            <p class="sh-decision-kicker">Crew</p>
+            <h3 class="sh-decision-title">I&rsquo;m with family</h3>
+            <p class="sh-decision-desc">Heat-smart, family-friendly ideas for kids, museums, parks, theme parks, and flexible group pacing.</p>
+            <a class="sh-decision-cta" href="summer-family.html">Family ideas</a>
+          </div>
+        </article>
+        <article class="sh-decision-card sh-decision-card--orange" id="lane-resort">
+          <div class="sh-decision-inner">
+            <p class="sh-decision-kicker">Hotel zone</p>
+            <h3 class="sh-decision-title">I&rsquo;m staying at a resort</h3>
+            <p class="sh-decision-desc">Match your property zone with the best dinner, easy picks, and worth-the-ride nights.</p>
+            <a class="sh-decision-cta" href="resort-food.html">Resort guide</a>
+          </div>
+        </article>
+        <article class="sh-decision-card sh-decision-card--plum" id="lane-food">
+          <div class="sh-decision-inner">
+            <p class="sh-decision-kicker">Flavor</p>
+            <h3 class="sh-decision-title">I want food first</h3>
+            <p class="sh-decision-desc">Strong local food picks, Willie Approved anchors, and district-based restaurant lanes.</p>
+            <a class="sh-decision-cta" href="where-to-eat.html">Where to eat</a>
+          </div>
+        </article>
+        <article class="sh-decision-card sh-decision-card--turq" id="lane-local">
+          <div class="sh-decision-inner">
+            <p class="sh-decision-kicker">San Antonio</p>
+            <h3 class="sh-decision-title">I want something local</h3>
+            <p class="sh-decision-desc">San Antonio flavor, culture stops, and picks visitors often miss on a generic list.</p>
+            <a class="sh-decision-cta" href="downtown.html">Local favorites</a>
+          </div>
+        </article>
+        <article class="sh-decision-card sh-decision-card--coral" id="lane-transport">
+          <div class="sh-decision-inner">
+            <p class="sh-decision-kicker">Support</p>
+            <h3 class="sh-decision-title">I need transportation + concierge help</h3>
+            <p class="sh-decision-desc">Airport pickups, routing help, local guidance, and premium visitor support.</p>
+            <a class="sh-decision-cta" href="driver-concierge.html">Transportation help</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section band section-navy-routes" aria-labelledby="orient-heading">
+      <div class="sh-orient-inner routes-band-inner">
+        <div class="sh-orient-copy">
+          <p class="eyebrow">How visitors plan</p>
+          <h2 id="orient-heading">How most visitors use The SA Plug</h2>
+          <p class="section-text routes-intro">Some visitors want the best first dinner. Some want a downtown route. Some want resort guidance, family ideas, or transportation help. Start with the lane that matches your trip, then go deeper where you need it.</p>
+        </div>
+        <div class="sh-orient-editorial">
+          <div class="sh-orient-lead">
+            <img src="assets/images/sa-plug/downtown-riverwalk.png" alt="Downtown San Antonio and River Walk at dusk" width="900" height="700" decoding="async" />
+            <div class="sh-orient-lead-body">
+              <h3>Downtown &amp; first-night energy</h3>
+              <p>River Walk pacing, Pearl detours, and a clean read on what to do when you only have one evening.</p>
+            </div>
+          </div>
+          <div class="sh-orient-stack">
+            <article class="sh-orient-card">
+              <img src="assets/images/sa-plug/food-river-dining.png" alt="San Antonio dining near the river" width="640" height="400" decoding="async" />
+              <div class="sh-orient-card-body">
+                <h3>Food &amp; districts</h3>
+                <p>Anchor dinners, Willie Approved rooms, and follow-up nights by neighborhood.</p>
+              </div>
+            </article>
+            <article class="sh-orient-card">
+              <img src="assets/images/sa-plug/resort-arrival.png" alt="Resort arrival and Hill Country hospitality" width="640" height="400" decoding="async" />
+              <div class="sh-orient-card-body">
+                <h3>Resort &amp; corridor pacing</h3>
+                <p>When distance and traffic matter, start with zone-matched picks before you chase downtown.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-turquoise-wash" aria-labelledby="first-moves-heading">
+      <div class="sh-section-head">
+        <p class="eyebrow">Concierge operating instructions</p>
+        <h2 id="first-moves-heading">Five moves that make every San Antonio trip easier</h2>
+        <p class="section-text">Concierge-style routing so you spend less time scrolling and more time in the right room.</p>
+      </div>
+      <div class="sh-moves-wrap">
+        <ul class="sh-moves-list">
+          <li>
+            <span class="sh-moves-icon" aria-hidden="true">1</span>
+            <div>
+              <strong>Match trip type or hotel zone first</strong>
+              <p>Use the eight lanes above, or jump straight to downtown, food, family, or resorts if you already know your constraint.</p>
+            </div>
+          </li>
+          <li>
+            <span class="sh-moves-icon" aria-hidden="true">2</span>
+            <div>
+              <strong>When dinner is the priority, open the food guide</strong>
+              <p>The <a href="where-to-eat.html">Where To Eat</a> page is built for anchors, districts, and group-safe picks.</p>
+            </div>
+          </li>
+          <li>
+            <span class="sh-moves-icon" aria-hidden="true">3</span>
+            <div>
+              <strong>One night near the River Walk? Use the downtown guide</strong>
+              <p>The <a href="downtown.html">Downtown</a> page is the tightest route for walkable pacing and convention-adjacent evenings.</p>
+            </div>
+          </li>
+          <li>
+            <span class="sh-moves-icon" aria-hidden="true">4</span>
+            <div>
+              <strong>Resort or La Cantera zone? Distance matters</strong>
+              <p>Open <a href="resort-food.html">Resorts</a> before you burn an hour in traffic for a meal you could nail closer to the property.</p>
+            </div>
+          </li>
+          <li>
+            <span class="sh-moves-icon" aria-hidden="true">5</span>
+            <div>
+              <strong>When timing, party size, or vibe is uncertain, ask</strong>
+              <p><a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">Ask The SA Plug</a> with your hotel, crew, and window &mdash; get a pointed move instead of guessing.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="starter-routes" aria-labelledby="starter-routes-heading">
+      <div class="sh-section-head">
+        <p class="eyebrow">Tonight&rsquo;s playbook</p>
+        <h2 id="starter-routes-heading">Featured starter routes</h2>
+        <p class="section-text">Four common arcs you can run tonight. Tap through when one matches your night.</p>
+      </div>
+      <div class="sh-route-grid">
+        <article class="sh-route-card">
+          <p class="sh-route-eyebrow">Route 01</p>
+          <h3>Airport arrival route</h3>
+          <p class="sh-route-desc">Airport &rarr; first meal &rarr; quick city feel &rarr; easy next step</p>
+          <a href="driver-concierge.html" class="sh-route-link">Open transport + routing</a>
+        </article>
+        <article class="sh-route-card">
+          <p class="sh-route-eyebrow">Route 02</p>
+          <h3>Convention evening route</h3>
+          <p class="sh-route-desc">Hotel / convention corridor &rarr; polished dinner &rarr; drinks / easy return</p>
+          <a href="downtown.html" class="sh-route-link">Open downtown guide</a>
+        </article>
+        <article class="sh-route-card">
+          <p class="sh-route-eyebrow">Route 03</p>
+          <h3>Family San Antonio route</h3>
+          <p class="sh-route-desc">Day activity &rarr; food &rarr; low-stress evening move</p>
+          <a href="summer-family.html" class="sh-route-link">Open family guide</a>
+        </article>
+        <article class="sh-route-card">
+          <p class="sh-route-eyebrow">Route 04</p>
+          <h3>Food-first visitor route</h3>
+          <p class="sh-route-desc">Pick your lane &rarr; best anchors &rarr; district follow-up</p>
+          <a href="where-to-eat.html" class="sh-route-link">Open food guide</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section sh-final-section">
+      <div class="sh-final-cta">
+        <p class="eyebrow sh-final-eyebrow">Concierge ask</p>
+        <h2>Need a better recommendation than a random search result?</h2>
+        <p class="section-text">Tell The SA Plug where you&rsquo;re staying, who you&rsquo;re with, what kind of night you want, and how much time you have &mdash; get pointed toward the right move faster.</p>
+        <div class="sh-final-actions">
+          <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-primary">Ask The SA Plug</a>
+          <a href="index.html" class="btn btn-secondary-hero">View all guides</a>
+        </div>
+        <p class="sh-final-trust">Real local picks. Built for visitors who want a better plan.</p>
       </div>
     </section>
   </main>
