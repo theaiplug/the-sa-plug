@@ -307,6 +307,29 @@
 }
 
 /* ----- Pick your family day — intro panel + image-overlay route tiles ----- */
+/*
+ * Global styles.css treats main > .section (without section-* utility classes) as
+ * “type on dark canvas”, which forces light h2/body colors. This band is cream —
+ * override inherited colors so the intro (Pick your family lane…) stays readable.
+ */
+body.page-family-summer.family-page main#main-content > .section.fam-pick-section {
+  color: rgba(7, 22, 39, 0.94);
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-pick-section h2.fam-section-title,
+body.page-family-summer.family-page main#main-content > .section.fam-pick-section .fam-pick-head h2 {
+  color: #031627;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-pick-section .fam-pick-head .fam-section-sub,
+body.page-family-summer.family-page main#main-content > .section.fam-pick-section .fam-pick-head .fam-pick-lead {
+  color: rgba(3, 22, 39, 0.94);
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-pick-section .fam-pick-head .fam-eyebrow {
+  color: #9a3412;
+}
+
 .page-family-summer .fam-pick-section {
   position: relative;
   isolation: isolate;
@@ -570,7 +593,7 @@
   width: 100%;
   min-height: clamp(260px, 52vw, 320px);
   overflow: hidden;
-  background: rgba(11, 29, 58, 0.5);
+  background: rgba(11, 29, 58, 0.14);
 }
 
 @media (min-width: 640px) {
@@ -624,7 +647,7 @@
   object-position: 58% 42%;
 }
 
-/* Bottom-weighted scrim only — keeps photos bright */
+/* Bottom-weighted scrim — strong enough for white copy, leaves photos vivid */
 .page-family-summer .fam-pick-section .fam-day-card-overlay {
   position: absolute;
   inset: 0;
@@ -632,9 +655,9 @@
   pointer-events: none;
   background: linear-gradient(
     to top,
-    rgba(5, 10, 24, 0.78) 0%,
-    rgba(5, 10, 24, 0.35) 42%,
-    rgba(5, 10, 24, 0.05) 72%,
+    rgba(5, 10, 24, 0.62) 0%,
+    rgba(5, 10, 24, 0.26) 44%,
+    rgba(5, 10, 24, 0.04) 74%,
     transparent 100%
   );
 }
@@ -1944,25 +1967,9 @@
   }
 }
 
-/* Intro panel: force “Pick the family lane…” headline to dark navy on cream */
-.family-page .family-lane-heading,
-body .family-page .family-lane-heading {
-  color: #071225 !important;
-  background: transparent !important;
-  text-shadow: none !important;
-  -webkit-text-fill-color: #071225 !important;
-  opacity: 1 !important;
-  mix-blend-mode: normal !important;
-  filter: none !important;
-}
-
-.family-page .family-lane-heading *,
-body .family-page .family-lane-heading * {
-  color: #071225 !important;
-  background: transparent !important;
-  text-shadow: none !important;
-  -webkit-text-fill-color: #071225 !important;
-  opacity: 1 !important;
-  mix-blend-mode: normal !important;
-  filter: none !important;
+/* Intro headline: stay navy on cream (see override above for global .section h2) */
+.page-family-summer .fam-pick-section .fam-pick-head .family-lane-heading {
+  color: #031627;
+  background: transparent;
+  text-shadow: none;
 }
