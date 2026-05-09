@@ -19,142 +19,140 @@
   scroll-margin-top: 5.5rem;
 }
 
-/* ----- Hero: bright photo + readable panel on text zone only ----- */
-.page-family-summer .fam-hero.fam-hero--premium {
+/* ----- Hero: cinematic full-bleed (Business Services benchmark, family scenic) ----- */
+.page-family-summer .fam-hero.hero-fiesta-dark.fam-hero--cinematic {
   isolation: isolate;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   overflow-x: clip;
   overflow-y: visible;
-  position: relative;
-  background-color: #7ec8e8;
-  background-image: url("assets/sa-plug-family-hero-riverwalk-zoo-alamo.png");
+  background-color: #0a1628;
+  /* Readability on the left; photo stays bright on the right + warm Fiesta lift */
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(8, 14, 28, 0.88) 0%,
+      rgba(8, 14, 28, 0.62) 34%,
+      rgba(8, 14, 28, 0.28) 52%,
+      rgba(8, 14, 28, 0.08) 68%,
+      transparent 82%
+    ),
+    radial-gradient(ellipse 90% 85% at 92% 45%, rgba(255, 139, 31, 0.14), transparent 58%),
+    radial-gradient(ellipse 70% 60% at 78% 18%, rgba(20, 184, 166, 0.1), transparent 52%),
+    url("assets/sa-plug-family-hero-riverwalk-zoo-alamo.png");
   background-repeat: no-repeat;
-  background-position: center right;
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    center 42%;
   background-size: cover;
 }
 
-.page-family-summer .fam-hero.fam-hero--premium::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 70% 50% at 90% 20%, rgba(255, 255, 255, 0.12), transparent 55%),
-    linear-gradient(
-      165deg,
-      transparent 52%,
-      rgba(255, 255, 255, 0.22) 100%
-    );
-}
-
 @media (max-width: 767px) {
-  .page-family-summer .fam-hero.fam-hero--premium {
-    background-position: 62% center;
+  .page-family-summer .fam-hero.hero-fiesta-dark.fam-hero--cinematic {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(8, 14, 28, 0.92) 0%,
+        rgba(8, 14, 28, 0.72) 42%,
+        rgba(8, 14, 28, 0.38) 62%,
+        rgba(8, 14, 28, 0.12) 100%
+      ),
+      radial-gradient(ellipse 100% 80% at 85% 40%, rgba(255, 139, 31, 0.12), transparent 55%),
+      radial-gradient(ellipse 85% 55% at 70% 12%, rgba(20, 184, 166, 0.09), transparent 50%),
+      url("assets/sa-plug-family-hero-riverwalk-zoo-alamo.png");
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      58% center;
+    min-height: 720px;
+    max-height: none;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1099px) {
-  .page-family-summer .fam-hero.fam-hero--premium {
-    min-height: clamp(560px, 56vh, 680px);
+@media (min-width: 768px) {
+  .page-family-summer .fam-hero.hero-fiesta-dark.fam-hero--cinematic {
+    min-height: 620px;
+    max-height: 820px;
   }
 }
 
-@media (min-width: 1100px) {
-  .page-family-summer .fam-hero.fam-hero--premium {
-    min-height: clamp(620px, 68vh, 760px);
+@media (min-width: 1024px) {
+  .page-family-summer .fam-hero.hero-fiesta-dark.fam-hero--cinematic {
+    min-height: 680px;
+    max-height: 820px;
   }
 }
 
-.page-family-summer .fam-hero-band {
+/* Omit default fiesta rainbow bar — accent line + photo carry the finish */
+.page-family-summer .fam-hero.hero-fiesta-dark.fam-hero--cinematic::before {
+  display: none;
+}
+
+.page-family-summer .secondary-hero.hero-fiesta-dark.fam-hero.fam-hero--cinematic::after {
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 58%, rgba(2, 6, 14, 0.38) 100%);
+}
+
+.page-family-summer .fam-hero .hero-fiesta-inner.hero-inner-band.fam-hero-band {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
   z-index: 2;
+  min-height: 0;
   width: 100%;
-  max-width: min(1240px, 100%);
+  max-width: min(1320px, 100%);
   margin-inline: auto;
   box-sizing: border-box;
-  padding: clamp(28px, 5vw, 56px) clamp(16px, 4vw, 44px);
+  padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 48px);
 }
 
-@media (min-width: 980px) {
-  .page-family-summer .fam-hero-band {
-    display: grid;
-    grid-template-columns: minmax(280px, 1.06fr) minmax(240px, 0.94fr);
-    align-items: center;
-    gap: clamp(24px, 4vw, 48px);
-  }
+.page-family-summer .fam-hero-shell {
+  width: 100%;
 }
 
-.page-family-summer .fam-hero-copy {
+.page-family-summer .fam-hero-body {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  max-width: min(640px, 100%);
-  gap: clamp(11px, 1.9vw, 14px);
-  padding: clamp(18px, 3vw, 28px) clamp(18px, 3.2vw, 30px);
-  border-radius: clamp(18px, 2.4vw, 26px);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow:
-    0 24px 60px rgba(11, 29, 58, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.65);
-}
-
-.page-family-summer .fam-hero-copy::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  z-index: -1;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 253, 248, 0.94) 0%,
-      rgba(255, 248, 238, 0.9) 45%,
-      rgba(253, 244, 255, 0.82) 100%
-    );
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-@media (max-width: 979px) {
-  .page-family-summer .fam-hero-copy {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 520px) {
-  .page-family-summer .fam-hero-copy {
-    padding-inline: clamp(14px, 4vw, 18px);
-  }
+  max-width: 720px;
+  gap: clamp(14px, 2vw, 18px);
 }
 
 .page-family-summer .fam-hero-accent {
   width: 100%;
-  max-width: min(420px, 100%);
+  max-width: 100%;
   height: 3px;
   flex-shrink: 0;
-  margin: 0 0 clamp(6px, 1vw, 11px);
+  margin: 0 0 clamp(12px, 2vw, 18px);
   border: none;
   border-radius: 2px;
+  transform: none;
+  left: auto;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(242, 178, 26, 0.95) 12%,
-    rgba(255, 139, 31, 0.95) 30%,
-    rgba(236, 72, 153, 0.55) 50%,
-    rgba(20, 184, 166, 0.95) 78%,
-    rgba(242, 178, 26, 0.45) 92%,
+    rgba(242, 178, 26, 0.85) 12%,
+    rgba(255, 139, 31, 0.9) 30%,
+    rgba(255, 106, 77, 0.88) 48%,
+    rgba(255, 92, 168, 0.55) 58%,
+    rgba(20, 184, 166, 0.92) 78%,
+    rgba(242, 178, 26, 0.35) 92%,
     transparent 100%
   );
+  box-shadow:
+    0 0 18px rgba(242, 178, 26, 0.2),
+    0 0 28px rgba(20, 184, 166, 0.1),
+    0 0 1px rgba(255, 246, 230, 0.35);
 }
 
 .page-family-summer .fam-hero-eyebrow {
@@ -162,59 +160,50 @@
   text-transform: uppercase;
   font-weight: 800;
   font-size: clamp(0.68rem, 0.35vw + 0.62rem, 0.76rem);
-  color: #9a3412;
+  color: rgba(255, 230, 200, 0.95);
   margin: 0;
 }
 
-.page-family-summer .fam-hero-title {
+.page-family-summer .fam-hero .hero-title.fam-hero-title {
   margin: 0;
   max-width: none;
   width: 100%;
-  font-size: clamp(1.85rem, 3.2vw + 0.88rem, 3rem);
-  line-height: 1.08;
-  letter-spacing: -0.034em;
+  font-size: clamp(2rem, 3.85vw + 0.85rem, 3.55rem);
+  line-height: 1.06;
+  letter-spacing: -0.038em;
   font-weight: 860;
-  color: #081c3f;
+  color: #fff8eb;
+  text-shadow: 0 2px 36px rgba(0, 0, 0, 0.35);
 }
 
-.page-family-summer .fam-hero-lead {
+.page-family-summer .fam-hero .hero-text-on-dark.fam-hero-lead {
   margin: 0;
   max-width: 100%;
-  font-size: clamp(0.97rem, 0.28vw + 0.89rem, 1.08rem);
-  line-height: 1.62;
-  color: rgba(11, 29, 58, 0.84);
+  font-size: clamp(0.98rem, 0.35vw + 0.88rem, 1.08rem);
+  line-height: 1.67;
+  color: rgba(255, 246, 230, 0.9);
 }
 
-/* Chips on light panel */
-.page-family-summer .fam-hero-chips--on-light.route-chip-row-hero {
+.page-family-summer .fam-hero-chips.route-chip-row-hero {
   align-self: stretch;
-  margin-top: 6px;
-  padding-top: clamp(10px, 1.6vw, 16px);
-  border-top: 1px solid rgba(11, 29, 58, 0.1);
-  column-gap: 9px;
-  row-gap: 8px;
+  margin-top: 0;
+  padding-top: clamp(12px, 2vw, 18px);
+  border-top: none;
+  column-gap: 10px;
+  row-gap: 9px;
 }
 
-.page-family-summer .fam-hero-chips--on-light.route-chip-row-hero .route-chip {
-  color: #0f2744;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(236, 72, 153, 0.2);
-  font-size: 0.76rem;
-  font-weight: 750;
-  padding: 7px 12px;
-  border-radius: 999px;
-  box-shadow: 0 2px 8px rgba(11, 29, 58, 0.06);
+.page-family-summer .fam-hero-chips.route-chip-row-hero .route-chip {
+  border-color: rgba(255, 246, 230, 0.22);
+  box-shadow: 0 0 0 1px rgba(242, 178, 26, 0.08);
 }
 
-.page-family-summer .fam-hero-chips--on-light.route-chip-row-hero .route-chip:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(20, 184, 166, 0.45);
-  transform: translateY(-1px);
-  color: #062a54;
+.page-family-summer .fam-hero-chips.route-chip-row-hero .route-chip:hover {
+  border-color: rgba(242, 178, 26, 0.42);
 }
 
 .page-family-summer .fam-hero-cta.hero-cta-row {
-  margin-top: clamp(6px, 1.2vw, 12px);
+  margin-top: clamp(8px, 1.8vw, 14px);
   margin-bottom: 0;
   flex-wrap: wrap;
   gap: 12px 14px;
@@ -229,24 +218,24 @@
   background: linear-gradient(135deg, #f2b21a 0%, #ff8b1f 55%, #ff6f31 100%);
   border: 1px solid rgba(255, 210, 130, 0.7);
   color: #1a2338;
-  box-shadow: 0 12px 26px rgba(255, 139, 31, 0.28);
+  box-shadow: 0 12px 26px rgba(255, 139, 31, 0.34);
 }
 
 .page-family-summer .fam-hero .fam-hero-secondary,
 .page-family-summer .fam-hero .btn-secondary.hero-secondary-btn {
-  background: rgba(255, 255, 255, 0.88);
-  color: #0b2747;
-  border: 1px solid rgba(11, 29, 58, 0.18);
+  background: rgba(4, 12, 26, 0.45);
+  color: rgba(255, 248, 235, 0.96);
+  border: 1px solid rgba(255, 246, 230, 0.28);
   box-shadow:
-    0 8px 24px rgba(11, 29, 58, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
+    0 10px 28px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .page-family-summer .fam-hero .fam-hero-secondary:hover,
 .page-family-summer .fam-hero .btn-secondary.hero-secondary-btn:hover {
-  border-color: rgba(20, 184, 166, 0.55);
-  color: #06253d;
-  background: #fffdf8;
+  border-color: rgba(20, 184, 166, 0.45);
+  color: rgba(255, 250, 240, 0.99);
+  background: rgba(255, 246, 230, 0.08);
 }
 
 @media (max-width: 520px) {
