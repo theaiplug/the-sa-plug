@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Summer Family Guide | The SA Plug</title>
-  <meta name="description" content="SeaWorld, Fiesta Texas, zoo corridor, caverns, and summer family ideas in San Antonio." />
+  <title>Family San Antonio Guide | The SA Plug</title>
+  <meta name="description" content="What to do in San Antonio with kids: theme parks, SeaWorld, Fiesta Texas, the zoo corridor, downtown River Walk, Natural Bridge Caverns plus Natural Bridge Wildlife Ranch / safari park, resort rhythm, heat-smart family routes — from a San Antonio concierge guide." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="summer-family.css" />
 </head>
-<body>
+<body class="page-family-summer family-page">
   <header class="site-header">
     <a href="index.html" class="brand">
       <span class="brand-icon" aria-hidden="true">
@@ -24,54 +25,618 @@
       <a href="where-to-eat.html">Where To Eat</a>
       <a href="downtown.html">Downtown</a>
       <a href="resort-food.html">Resorts</a>
-      <a href="summer-family.html">Family</a>
+      <a href="summer-family.html" aria-current="page">Family</a>
       <a href="index.html#ask">Ask</a>
       <a href="driver-concierge.html">Transport</a>
       <a href="business-services.html" class="nav-cta">AI Services</a>
     </nav>
     <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
-  <main>
-    <section class="hero hero-fiesta-dark hero-inner secondary-hero">
-      <div class="hero-fiesta-inner hero-inner-band">
-        <div class="hero-shell hero-inner-grid secondary-hero-grid">
-          <div class="hero-content secondary-hero-copy">
-            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Summer Family Guide</p>
-            <h1 class="hero-title">Family trips need a simple, heat-smart plan.</h1>
-            <p class="hero-text hero-text-on-dark">Theme parks, zoo corridor, downtown kid moves, and resort rhythm recommendations for summer weekends.</p>
-            <div class="hero-cue-grid" aria-label="Family trip focus">
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Heat-smart timing</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Kid-friendly stops</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Easy logistics</strong></div>
-            </div>
-            <div class="hero-cta-row">
-              <a class="btn btn-primary" href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">Start a family plan</a>
-              <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-secondary hero-secondary-btn">Ask The SA Plug</a>
-            </div>
+
+  <main id="main-content">
+    <section class="fam-hero fam-hero--premium" aria-labelledby="fam-hero-heading">
+      <div class="fam-hero-band">
+        <div class="fam-hero-copy">
+          <div class="fam-hero-accent" aria-hidden="true"></div>
+          <p class="fam-hero-eyebrow">Summer family guide</p>
+          <h1 id="fam-hero-heading" class="fam-hero-title">Family trips need a simple, heat-smart San Antonio plan.</h1>
+          <p class="fam-hero-lead">
+            Theme parks, downtown kid stops, zoo and museum routes, Natural Bridge Caverns + Safari Park, resort rhythm, and before-flight plans &mdash; built around time, heat, distance, and tired kids.
+          </p>
+          <div class="route-chip-row route-chip-row-hero fam-hero-chips fam-hero-chips--on-light" aria-label="Planning focus">
+            <span class="route-chip">Heat-smart timing</span>
+            <span class="route-chip">Kid-friendly stops</span>
+            <span class="route-chip">Easy logistics</span>
+            <span class="route-chip">Resort-ready</span>
+            <span class="route-chip">Downtown loops</span>
+            <span class="route-chip">Before-flight moves</span>
           </div>
-          <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
-            <div class="hero-visual-panel hero-inner-panel">
-              <img src="assets/images/sa-plug/family-summer.png" alt="Summer family fun in San Antonio" class="hero-visual-img hero-inner-img img-pos-family" width="800" height="1000" decoding="async" />
-            </div>
+          <div class="hero-cta-row fam-hero-cta">
+            <a class="btn btn-primary" href="#pick-your-family-day">Start a family plan</a>
+            <a href="index.html#ask" class="btn btn-secondary hero-secondary-btn fam-hero-secondary">Ask The SA Plug</a>
           </div>
         </div>
       </div>
     </section>
-    <section class="section">
-      <div class="feature-grid">
-        <article class="image-card img-family"><div class="image-card-content"><h3>Theme Park Day</h3><p>SeaWorld and Fiesta Texas strategies by hotel zone.</p></div></article>
-        <article class="image-card img-resort"><div class="image-card-content"><h3>Cool-Down Plan</h3><p>Balance high-energy activities with pool and shorter evening routes.</p></div></article>
+
+    <section class="section fam-pick-section" id="pick-your-family-day" aria-labelledby="pick-day-heading">
+      <div class="routes-band-inner">
+        <header class="fam-band-head fam-band-head--wide fam-pick-head">
+          <p class="fam-eyebrow fam-pick-eyebrow">What should we do in San Antonio with kids?</p>
+          <h2 id="pick-day-heading" class="fam-section-title fam-pick-title family-lane-heading">Pick the family lane that matches your day.</h2>
+          <p class="fam-section-sub fam-pick-lead">
+            Most families do not need a giant list first. They need the right move for the heat, kid ages, hotel zone, meal timing, and how much energy the group has left.
+          </p>
+          <div class="fam-pick-tags" aria-label="Family day types">
+            <span class="fam-pick-tag">Theme parks</span>
+            <span class="fam-pick-tag">Downtown loop</span>
+            <span class="fam-pick-tag">Zoo + museums</span>
+            <span class="fam-pick-tag">Hill Country</span>
+            <span class="fam-pick-tag">Resort reset</span>
+            <span class="fam-pick-tag">Before-flight plan</span>
+          </div>
+        </header>
+        <div class="fam-day-bento">
+          <a class="fam-day-card fam-day-card--feat" href="#theme-park-day">
+            <div class="fam-day-card-media-wrap">
+              <img src="assets/sa-plug-family-theme-park-day.png" alt="" class="fam-day-card-media" width="800" height="600" decoding="async" />
+              <div class="fam-day-card-overlay" aria-hidden="true"></div>
+              <div class="fam-day-card-body">
+                <span class="fam-day-route-tag">Theme park day</span>
+                <h3 class="fam-day-card-title">Theme park day</h3>
+                <p class="fam-day-card-copy">When the crew wants coasters, shows, and a full-day memory &mdash; pick one park, pace for heat, and plan a clean exit.</p>
+                <p class="fam-day-card-meta"><span class="fam-day-card-meta-label">Best for</span> older kids, teens, resort families, full-day stamina</p>
+                <span class="fam-day-card-cta">Open route guide →</span>
+              </div>
+            </div>
+          </a>
+          <a class="fam-day-card fam-day-card--dt-slot" href="#downtown-with-kids">
+            <div class="fam-day-card-media-wrap">
+              <img src="assets/sa-plug-family-downtown-riverwalk.png" alt="" class="fam-day-card-media fam-day-media--dt" width="560" height="420" decoding="async" />
+              <div class="fam-day-card-overlay" aria-hidden="true"></div>
+              <div class="fam-day-card-body">
+                <span class="fam-day-route-tag">Downtown with kids</span>
+                <h3 class="fam-day-card-title">Downtown with kids</h3>
+                <p class="fam-day-card-copy">A short loop with kid-friendly anchors, a food reset, and one photo moment &mdash; without a downtown death march.</p>
+                <p class="fam-day-card-meta"><span class="fam-day-card-meta-label">Best for</span> first-time visitors, one-night downtown, convention families</p>
+                <span class="fam-day-card-cta">Open route guide →</span>
+              </div>
+            </div>
+          </a>
+          <a class="fam-day-card fam-day-card--zoo-slot" href="#zoo-museum-corridor">
+            <div class="fam-day-card-media-wrap">
+              <img src="assets/sa-plug-family-zoo-corridor.png" alt="" class="fam-day-card-media fam-day-media--zoo" width="560" height="420" decoding="async" />
+              <div class="fam-day-card-overlay" aria-hidden="true"></div>
+              <div class="fam-day-card-body">
+                <span class="fam-day-route-tag">Zoo + museum corridor</span>
+                <h3 class="fam-day-card-title">Zoo + museum corridor</h3>
+                <p class="fam-day-card-copy">Zoo, Brackenridge Park, Japanese Tea Garden, Witte, DoSeum &mdash; one compact corridor, not a five-stop sprint.</p>
+                <p class="fam-day-card-meta"><span class="fam-day-card-meta-label">Best for</span> little kids, grandparents, mixed ages, half-day plans</p>
+                <span class="fam-day-card-cta">Open route guide →</span>
+              </div>
+            </div>
+          </a>
+          <a class="fam-day-card fam-day-card--wide" href="#natural-bridge-safari">
+            <div class="fam-day-card-media-wrap">
+              <img src="assets/sa-plug-family-natural-bridge-safari-park.png" alt="" class="fam-day-card-media fam-day-media--nb" width="960" height="480" decoding="async" />
+              <div class="fam-day-card-overlay" aria-hidden="true"></div>
+              <div class="fam-day-card-body">
+                <span class="fam-day-route-tag">Hill Country day</span>
+                <h3 class="fam-day-card-title">Natural Bridge Caverns + Safari Park</h3>
+                <p class="fam-day-card-copy">Pair the caverns with Natural Bridge Wildlife Ranch / the safari park next door &mdash; one Hill Country outing, planned as a single route.</p>
+                <p class="fam-day-card-meta"><span class="fam-day-card-meta-label">Best for</span> animal lovers, nature day, older kids, half-day adventure</p>
+                <span class="fam-day-card-cta">Open route guide →</span>
+              </div>
+            </div>
+          </a>
+          <a class="fam-day-card fam-day-card--resort fam-day-card--resort-photo" href="#resort-family-rhythm">
+            <div class="fam-day-card-media-wrap">
+              <img src="assets/family-resort-jw-marriott-waterpark-style.png" alt="Family-friendly San Antonio resort water park scene with lazy river, slides, palm trees, and Hill Country sunset." class="fam-day-card-media fam-day-media--resort" width="960" height="540" decoding="async" />
+              <div class="fam-day-card-overlay" aria-hidden="true"></div>
+              <div class="fam-day-card-body">
+                <span class="fam-day-route-tag">Resort family rhythm</span>
+                <h3 class="fam-day-card-title">Resort family rhythm</h3>
+                <p class="fam-day-card-copy">Protect pool time, add one strong off-property win, and get everyone home before the meltdown window.</p>
+                <p class="fam-day-card-meta"><span class="fam-day-card-meta-label">Best for</span> JW Marriott, Hyatt Hill Country, La Cantera, resort weekends</p>
+                <span class="fam-day-card-cta">Open route guide →</span>
+              </div>
+            </div>
+          </a>
+          <a class="fam-day-card fam-day-card--bf" href="#before-flight-plan">
+            <div class="fam-day-card-media-wrap">
+              <img src="assets/sa-plug-family-hero-riverwalk-zoo-alamo.png" alt="" class="fam-day-card-media fam-day-media--bf" width="1200" height="800" decoding="async" />
+              <div class="fam-day-card-overlay" aria-hidden="true"></div>
+              <div class="fam-day-card-body">
+                <span class="fam-day-route-tag">Before-flight plan</span>
+                <h3 class="fam-day-card-title">Before-flight plan</h3>
+                <p class="fam-day-card-copy">Breakfast, one nearby stop, and real airport-timing padding &mdash; built for bags, car seats, and tired kids.</p>
+                <p class="fam-day-card-meta"><span class="fam-day-card-meta-label">Best for</span> afternoon flights, luggage days, low-stress final morning</p>
+                <span class="fam-day-card-cta">Open route guide →</span>
+              </div>
+            </div>
+          </a>
+        </div>
       </div>
-      <div class="grid-3">
-        <article class="card pink"><h3>Theme parks</h3><p>SeaWorld for west-side families and Fiesta Texas for La Cantera and Rim guests.</p></article>
-        <article class="card gold"><h3>Downtown with kids</h3><p>River barge cruise, Hemisfair, Tower of the Americas, Market Square, and daytime Alamo.</p></article>
-        <article class="card green"><h3>Zoo + museum corridor</h3><p>Zoo, Japanese Tea Garden, Brackenridge Park, Witte Museum, and The DoSeum.</p></article>
-        <article class="card turq"><h3>Natural Bridge Caverns</h3><p>A strong half-day family memory when you want to get outside downtown.</p></article>
-        <article class="card orange"><h3>Resort family rule</h3><p>If you paid for the resort, enjoy the resort and add one strong off-property activity.</p></article>
-        <article class="card purple"><h3>Before-flight plan</h3><p>Keep it simple: breakfast, one nearby stop, and protect airport timing.</p></article>
+    </section>
+
+    <section class="fam-detail-strip" aria-label="Family route guides">
+      <article class="fam-route-detail route-section image-backed image-backed--theme" id="theme-park-day">
+        <div class="routes-band-inner fam-route-detail-inner">
+          <header class="fam-route-detail-head fam-route-detail-head--on-image">
+            <p class="fam-route-kicker"><span class="fam-route-kicker-label">Route</span> Theme park day</p>
+            <h2 class="fam-route-detail-title">Theme park day</h2>
+            <p class="fam-route-detail-intro">SeaWorld or Fiesta Texas when the family wants a full-energy day and you can build the schedule around tickets, drive time, meals, and a reset.</p>
+          </header>
+          <div class="fam-route-detail-chips" aria-label="Best for">
+            <span class="fam-route-chip">Older kids</span>
+            <span class="fam-route-chip">Teens</span>
+            <span class="fam-route-chip">Full-day energy</span>
+            <span class="fam-route-chip">Resort families</span>
+          </div>
+          <div class="fam-route-detail-grid">
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">How to make it work</h3>
+              <p class="fam-route-detail-p">Pick one park, not two heavy days stacked. Build around tickets and parking, front-load rides when lines are shorter, hydrate like it&rsquo;s a sport, and name a dinner zone before anyone is starving.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Food / reset note</h3>
+              <p class="fam-route-detail-p">After a long park day, easy food near the hotel or resort usually beats dragging the crew downtown. Use <a class="fam-inline-link" href="where-to-eat.html">Where To Eat</a> when you need a zone-matched backup.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Timing tip</h3>
+              <p class="fam-route-detail-p">Pick one park, and don&rsquo;t stack it with a heavy downtown night unless the group still has real gas left.</p>
+            </div>
+            <div class="fam-route-prompt-suite ask-card">
+              <p class="fam-route-prompt-label">Ask The SA Plug</p>
+              <blockquote class="fam-route-prompt-card">
+                <p class="fam-route-prompt">&ldquo;We&rsquo;re staying at <em>[hotel]</em> with kids ages <em>[ages]</em> and have <em>[time window]</em>. Build us the best theme park plan for our crew.&rdquo;</p>
+              </blockquote>
+              <a class="btn btn-primary fam-route-prompt-btn" href="index.html#ask">Send this plan request</a>
+              <p class="fam-route-prompt-hint">Copy this into the request form.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="fam-route-detail route-section image-backed image-backed--downtown" id="downtown-with-kids">
+        <div class="routes-band-inner fam-route-detail-inner">
+          <header class="fam-route-detail-head fam-route-detail-head--on-image">
+            <p class="fam-route-kicker"><span class="fam-route-kicker-label">Route</span> Downtown with kids</p>
+            <h2 class="fam-route-detail-title">Downtown with kids</h2>
+            <p class="fam-route-detail-intro">A short smart loop beats a downtown death march &mdash; one anchor, one food reset, one photo beat, done while everyone still likes each other.</p>
+          </header>
+          <div class="fam-route-detail-chips" aria-label="Best for">
+            <span class="fam-route-chip">First-time visitors</span>
+            <span class="fam-route-chip">One-night downtown</span>
+            <span class="fam-route-chip">Convention families</span>
+            <span class="fam-route-chip">Mixed-age groups</span>
+          </div>
+          <div class="fam-route-detail-grid fam-route-detail-grid--loop-first">
+            <div class="fam-route-detail-block fam-route-dest-card fam-route-dest-card--span">
+              <h3 class="fam-route-detail-h">The short smart loop</h3>
+              <ul class="fam-route-stop-list">
+                <li>Hemisfair / Yanaguana Garden</li>
+                <li>Short River Walk loop</li>
+                <li>Tower of the Americas</li>
+                <li>Market Square / Mi Tierra energy</li>
+                <li>Daytime Alamo when it fits</li>
+              </ul>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">How to make it work</h3>
+              <p class="fam-route-detail-p">Start with one kid-friendly anchor, then add one food stop and one photo stop. Do not try to &ldquo;do all of downtown&rdquo; in one push.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Food / reset note</h3>
+              <p class="fam-route-detail-p">Plan food before everyone is hungry. Market Square, Mi Tierra energy, or the <a class="fam-inline-link" href="where-to-eat.html">Where To Eat</a> guide can become the reset point.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Timing tip</h3>
+              <p class="fam-route-detail-p">Morning or early evening is better than mid-afternoon heat, especially with little kids.</p>
+            </div>
+            <div class="fam-route-prompt-suite ask-card">
+              <p class="fam-route-prompt-label">Ask The SA Plug</p>
+              <blockquote class="fam-route-prompt-card">
+                <p class="fam-route-prompt">&ldquo;We&rsquo;re staying at <em>[hotel]</em> with kids ages <em>[ages]</em> and have <em>[time window]</em>. Build us the best downtown loop with kid-friendly pacing and food.&rdquo;</p>
+              </blockquote>
+              <a class="btn btn-primary fam-route-prompt-btn" href="index.html#ask">Send this plan request</a>
+              <p class="fam-route-prompt-hint">Copy this into the request form.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="fam-route-detail route-section image-backed image-backed--zoo" id="zoo-museum-corridor">
+        <div class="routes-band-inner fam-route-detail-inner">
+          <header class="fam-route-detail-head fam-route-detail-head--on-image">
+            <p class="fam-route-kicker"><span class="fam-route-kicker-label">Route</span> Zoo + museum corridor</p>
+            <h2 class="fam-route-detail-title">Zoo + museum corridor</h2>
+            <p class="fam-route-detail-intro">An easy family win: everything sits close enough to feel like one zone. Pick one anchor and one nearby bonus &mdash; that&rsquo;s the whole trick.</p>
+          </header>
+          <div class="fam-route-detail-chips" aria-label="Best for">
+            <span class="fam-route-chip">Little kids</span>
+            <span class="fam-route-chip">Grandparents</span>
+            <span class="fam-route-chip">Mixed ages</span>
+            <span class="fam-route-chip">Half-day plans</span>
+          </div>
+          <div class="fam-route-detail-grid fam-route-detail-grid--zoo-pair">
+            <div class="fam-route-detail-block fam-route-dest-card fam-route-dest-card--span">
+              <h3 class="fam-route-detail-h">Build your pocket in one corridor</h3>
+              <ul class="fam-route-stop-list">
+                <li>San Antonio Zoo</li>
+                <li>Brackenridge Park</li>
+                <li>Japanese Tea Garden</li>
+                <li>Witte Museum</li>
+                <li>The DoSeum</li>
+              </ul>
+              <p class="fam-route-detail-p fam-route-detail-p--tight">Winning rhythm: zoo + Tea Garden &bull; Witte + park time &bull; DoSeum + a short outdoor cooldown &mdash; not all five.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">How to make it work</h3>
+              <p class="fam-route-detail-p">Pick one main anchor, then add one nearby bonus. Zoo plus Japanese Tea Garden works. Witte plus park time works. Trying to do everything usually backfires.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Food / reset note</h3>
+              <p class="fam-route-detail-p">Plan lunch or a hotel reset before the late-afternoon slump. Little legs hit a wall faster in heat.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Timing tip</h3>
+              <p class="fam-route-detail-p">This lane is strongest as a morning or early-afternoon plan.</p>
+            </div>
+            <div class="fam-route-prompt-suite ask-card">
+              <p class="fam-route-prompt-label">Ask The SA Plug</p>
+              <blockquote class="fam-route-prompt-card">
+                <p class="fam-route-prompt">&ldquo;We&rsquo;re staying at <em>[hotel]</em> with kids ages <em>[ages]</em> and have <em>[time window]</em>. Build our best zoo corridor half-day with one anchor and one bonus.&rdquo;</p>
+              </blockquote>
+              <a class="btn btn-primary fam-route-prompt-btn" href="index.html#ask">Send this plan request</a>
+              <p class="fam-route-prompt-hint">Copy this into the request form.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="fam-route-detail route-section image-backed image-backed--safari" id="natural-bridge-safari">
+        <div class="routes-band-inner fam-route-detail-inner">
+          <header class="fam-route-detail-head fam-route-detail-head--on-image">
+            <p class="fam-route-kicker"><span class="fam-route-kicker-label">Route</span> Hill Country lane</p>
+            <h2 class="fam-route-detail-title">Natural Bridge Caverns + Safari Park</h2>
+            <p class="fam-route-detail-intro">Pair Natural Bridge Caverns with Natural Bridge Wildlife Ranch / safari park next door &mdash; one Hill Country route with two different kid highs, not two random pins.</p>
+          </header>
+          <div class="fam-route-detail-chips" aria-label="Best for">
+            <span class="fam-route-chip">Animal lovers</span>
+            <span class="fam-route-chip">Older kids</span>
+            <span class="fam-route-chip">Nature day</span>
+            <span class="fam-route-chip">Half-day adventure</span>
+          </div>
+          <div class="fam-route-detail-grid">
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">How to make it work</h3>
+              <p class="fam-route-detail-p">Treat this like a planned Hill Country lane combining Natural Bridge Caverns with the safari park next door. Pick the order, check timing for both stops, bring water, and don&rsquo;t stack it with a heavy downtown night.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Food / reset note</h3>
+              <p class="fam-route-detail-p">Eat before or after the route instead of gambling on hungry kids between Natural Bridge Caverns and Natural Bridge Wildlife Ranch / safari park.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Timing tip</h3>
+              <p class="fam-route-detail-p">Earlier is better in warm months. Build in drive time both ways.</p>
+            </div>
+            <div class="fam-route-prompt-suite ask-card">
+              <p class="fam-route-prompt-label">Ask The SA Plug</p>
+              <blockquote class="fam-route-prompt-card">
+                <p class="fam-route-prompt">&ldquo;We&rsquo;re staying at <em>[hotel]</em> with kids ages <em>[ages]</em> and have <em>[time window]</em>. Build us the best Hill Country day for Natural Bridge Caverns <em>and</em> the safari park next door.&rdquo;</p>
+              </blockquote>
+              <a class="btn btn-primary fam-route-prompt-btn" href="index.html#ask">Send this plan request</a>
+              <p class="fam-route-prompt-hint">Copy this into the request form.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="fam-route-detail route-section image-backed image-backed--resort" id="resort-family-rhythm">
+        <div class="routes-band-inner fam-route-detail-inner">
+          <header class="fam-route-detail-head fam-route-detail-head--on-image">
+            <p class="fam-route-kicker"><span class="fam-route-kicker-label">Family move</span> Resort family rhythm</p>
+            <h2 class="fam-route-detail-title">Resort family rhythm</h2>
+            <p class="fam-route-detail-intro">Protect the resort, add one off-property win, come back before everyone is cooked &mdash; pool credit stays real, and the day still gets a story.</p>
+          </header>
+          <div class="fam-route-detail-chips" aria-label="Best for">
+            <span class="fam-route-chip">JW Marriott</span>
+            <span class="fam-route-chip">Hyatt Hill Country</span>
+            <span class="fam-route-chip">La Cantera</span>
+            <span class="fam-route-chip">Resort weekends</span>
+          </div>
+          <div class="fam-route-detail-grid">
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">How to make it work</h3>
+              <p class="fam-route-detail-p">Use the resort as the anchor. Add one nearby activity or food move, not a packed citywide itinerary.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Food / reset note</h3>
+              <p class="fam-route-detail-p">Plan dinner near the resort or on the route back instead of forcing a late downtown drive. For campus dining shortcuts, jump to <a class="fam-inline-link" href="resort-food.html">Resort Food</a>.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Timing tip</h3>
+              <p class="fam-route-detail-p">Morning activity, afternoon pool, easier evening food usually beats a full-day sprint.</p>
+            </div>
+            <div class="fam-route-prompt-suite ask-card">
+              <p class="fam-route-prompt-label">Ask The SA Plug</p>
+              <blockquote class="fam-route-prompt-card">
+                <p class="fam-route-prompt">&ldquo;We&rsquo;re staying at <em>[hotel / resort]</em> with kids ages <em>[ages]</em> and have <em>[time window]</em>. Build one off-property win, then bring us home before burnout.&rdquo;</p>
+              </blockquote>
+              <a class="btn btn-primary fam-route-prompt-btn" href="index.html#ask">Send this plan request</a>
+              <p class="fam-route-prompt-hint">Copy this into the request form.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="fam-route-detail fam-route-detail--checkout-soft" id="before-flight-plan">
+        <div class="routes-band-inner fam-route-detail-inner">
+          <header class="fam-route-detail-head fam-route-detail-head--checkout">
+            <p class="fam-route-kicker"><span class="fam-route-kicker-label">Plan</span> Before-flight playbook</p>
+            <h2 class="fam-route-detail-title">Before-flight plan</h2>
+            <p class="fam-route-detail-intro">Breakfast, one nearby stop, and airport timing protection &mdash; the anti-chaos playbook for checkout day.</p>
+          </header>
+          <div class="fam-route-detail-chips" aria-label="Best for">
+            <span class="fam-route-chip">Checkout day</span>
+            <span class="fam-route-chip">Early afternoon flights</span>
+            <span class="fam-route-chip">Families with luggage</span>
+            <span class="fam-route-chip">No-stress final day</span>
+          </div>
+          <div class="fam-route-detail-grid">
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">How to make it work</h3>
+              <p class="fam-route-detail-p">Protect your airport cushion first. Fit one reachable stop near your hotel corridor &mdash; not a heroic cross-town tour &mdash; then close the trip calm instead of sweaty.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Food / reset note</h3>
+              <p class="fam-route-detail-p">Pick breakfast and a lunch or snack lane with parking sanity. Last-day hanger at TSA is avoidable.</p>
+            </div>
+            <div class="fam-route-detail-block fam-route-dest-card">
+              <h3 class="fam-route-detail-h">Timing tip</h3>
+              <p class="fam-route-detail-p">Don&rsquo;t gamble the last day on a far route; keep it close, shaded or indoor, and easy to abort if timing tightens.</p>
+            </div>
+            <div class="fam-route-prompt-suite ask-card">
+              <p class="fam-route-prompt-label">Ask The SA Plug</p>
+              <blockquote class="fam-route-prompt-card">
+                <p class="fam-route-prompt">&ldquo;We&rsquo;re staying at <em>[hotel]</em> with kids ages <em>[ages]</em> and have <em>[time window]</em> before our flight. Checkout <em>[time]</em>, flight <em>[time]</em> &mdash; one sane last stop plus SAT timing protection.&rdquo;</p>
+              </blockquote>
+              <a class="btn btn-primary fam-route-prompt-btn" href="index.html#ask">Send this plan request</a>
+              <p class="fam-route-prompt-hint">Copy this into the request form.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section dark-showcase fam-heat-band" id="heat-plan" aria-labelledby="heat-heading">
+      <div class="routes-band-inner">
+        <header class="fam-band-head fam-band-head--wide">
+          <p class="fam-eyebrow">Heat-smart concierge</p>
+          <h2 id="heat-heading" class="fam-section-title">Build the day around heat and family energy</h2>
+          <p class="fam-section-sub section-text section-text-light">
+            Keep your headline adventure &mdash; but treat resets as scheduled infrastructure, not a backup plan nobody talks about until it&rsquo;s too late.
+          </p>
+        </header>
+
+        <ol class="fam-heat-timeline" aria-label="Heat-smart day rhythm">
+          <li class="fam-heat-step">
+            <span class="fam-heat-step-label">Morning</span>
+            <strong class="fam-heat-step-title">Outdoor anchor / big activity</strong>
+            <p class="fam-heat-step-copy">Park the hardest outdoor stops here while energy (and tolerance) are highest.</p>
+          </li>
+          <li class="fam-heat-step">
+            <span class="fam-heat-step-label">Midday</span>
+            <strong class="fam-heat-step-title">AC, museum, pool, or lunch reset</strong>
+            <p class="fam-heat-step-copy">This block protects parents as much as kids &mdash; log it like a reservation.</p>
+          </li>
+          <li class="fam-heat-step">
+            <span class="fam-heat-step-label">Late afternoon</span>
+            <strong class="fam-heat-step-title">Easy win only</strong>
+            <p class="fam-heat-step-copy">A snack, splash pad, shaded loop, or one short scenic stop beats a surprise second marathon.</p>
+          </li>
+          <li class="fam-heat-step">
+            <span class="fam-heat-step-label">Evening</span>
+            <strong class="fam-heat-step-title">Dinner anchor + graceful exit</strong>
+            <p class="fam-heat-step-copy">Cooler walks and River Walk vibes land better once everyone isn&rsquo;t sun-drained.</p>
+          </li>
+        </ol>
+
+        <p class="fam-heat-highlight">
+          San Antonio summer works better when the reset is planned on purpose &mdash; the same way you&rsquo;d plan a reservation.
+        </p>
+      </div>
+    </section>
+
+    <section class="section fam-quick-match" id="situation-routes" aria-labelledby="quick-match-heading">
+      <div class="routes-band-inner fam-quick-match-shell">
+        <header class="fam-band-head fam-band-head--wide fam-quick-match-head">
+          <p class="fam-quick-match-eyebrow">Quick match</p>
+          <h2 id="quick-match-heading" class="fam-section-title fam-quick-match-title">What kind of family day are you trying to build?</h2>
+          <p class="fam-section-sub fam-quick-match-lead">
+            Choose the lane that matches your crew, heat tolerance, hotel zone, and time window.
+          </p>
+        </header>
+
+        <div class="fam-qm-grid">
+          <article class="fam-qm-card fam-qm-card--fiesta">
+            <span class="fam-qm-route-badge">Full-day energy</span>
+            <h3 class="fam-qm-card-title">Full-energy day</h3>
+            <p class="fam-qm-card-body">Theme park, tickets, water breaks, dinner near the hotel.</p>
+            <div class="fam-qm-best" aria-label="Best for">
+              <span class="fam-qm-pill">Big-kid stamina</span>
+              <span class="fam-qm-pill">Ticket days</span>
+              <span class="fam-qm-pill">Resort bases</span>
+            </div>
+            <a class="fam-qm-cta" href="#theme-park-day">Theme park plan</a>
+          </article>
+
+          <article class="fam-qm-card fam-qm-card--river">
+            <span class="fam-qm-route-badge">Urban loop</span>
+            <h3 class="fam-qm-card-title">Downtown kid loop</h3>
+            <p class="fam-qm-card-body">Hemisfair, Yanaguana Garden, River Walk loop, Tower, Market Square.</p>
+            <div class="fam-qm-best" aria-label="Best for">
+              <span class="fam-qm-pill">First-timers</span>
+              <span class="fam-qm-pill">Walkable cores</span>
+              <span class="fam-qm-pill">Half-day pace</span>
+            </div>
+            <a class="fam-qm-cta" href="#downtown-with-kids">Downtown with kids</a>
+          </article>
+
+          <article class="fam-qm-card fam-qm-card--zoo">
+            <span class="fam-qm-route-badge">Corridor morning</span>
+            <h3 class="fam-qm-card-title">Zoo + museum morning</h3>
+            <p class="fam-qm-card-body">Zoo, Japanese Tea Garden, Brackenridge Park, Witte, DoSeum &mdash; pick your pocket, not the whole map.</p>
+            <div class="fam-qm-best" aria-label="Best for">
+              <span class="fam-qm-pill">Little kids</span>
+              <span class="fam-qm-pill">Grandparents</span>
+              <span class="fam-qm-pill">AC breaks</span>
+            </div>
+            <a class="fam-qm-cta" href="#zoo-museum-corridor">Zoo + museum route</a>
+          </article>
+
+          <article class="fam-qm-card fam-qm-card--hill">
+            <span class="fam-qm-route-badge">Hill Country</span>
+            <h3 class="fam-qm-card-title">Hill Country adventure</h3>
+            <p class="fam-qm-card-body">Natural Bridge Caverns plus Natural Bridge Wildlife Ranch / safari park.</p>
+            <div class="fam-qm-best" aria-label="Best for">
+              <span class="fam-qm-pill">Nature day</span>
+              <span class="fam-qm-pill">Animal lovers</span>
+              <span class="fam-qm-pill">Older kids</span>
+            </div>
+            <a class="fam-qm-cta" href="#natural-bridge-safari">Caverns + safari</a>
+          </article>
+
+          <article class="fam-qm-card fam-qm-card--resort fam-qm-card--span">
+            <span class="fam-qm-route-badge">Pool-first</span>
+            <h3 class="fam-qm-card-title">Resort reset day</h3>
+            <p class="fam-qm-card-body">Protect pool time, add one off-property win, avoid overplanning.</p>
+            <div class="fam-qm-best" aria-label="Best for">
+              <span class="fam-qm-pill">Resort weekends</span>
+              <span class="fam-qm-pill">Heat resets</span>
+              <span class="fam-qm-pill">Low drama</span>
+            </div>
+            <a class="fam-qm-cta" href="#resort-family-rhythm">Resort family rhythm</a>
+          </article>
+        </div>
+
+        <div class="fam-family-ask-rail fam-family-ask-rail--dark" role="note">
+          <p class="fam-family-ask-rail-text">Pick your lane, then let us tighten timing and food to your hotel and kids.</p>
+          <a class="fam-family-ask-rail-link" href="index.html#ask">Ask The SA Plug</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fam-stacks-section" id="willie-routes" aria-labelledby="stacks-heading">
+      <div class="routes-band-inner fam-stacks-shell">
+        <header class="fam-band-head fam-band-head--wide fam-stacks-head">
+          <p class="fam-stacks-eyebrow">Recommended stacks</p>
+          <h2 id="stacks-heading" class="fam-section-title fam-stacks-title">Recommended family stacks</h2>
+          <p class="fam-section-sub fam-stacks-lead">
+            Simple combinations that work better than trying to do everything in one day. Swap meals with <a class="fam-inline-link fam-inline-link--stacks" href="where-to-eat.html">Where To Eat</a> when you need a zone match.
+          </p>
+        </header>
+
+        <div class="fam-stack-list">
+          <article class="fam-stack-card fam-stack-card--accent-sunset">
+            <span class="fam-stack-route-badge">River Walk starter</span>
+            <h3 class="fam-stack-title">First-time San Antonio family</h3>
+            <p class="fam-stack-path">Hemisfair &rarr; River Walk short loop &rarr; Market Square &rarr; easy dinner</p>
+            <div class="fam-stack-best" aria-label="Best for">
+              <span class="fam-stack-pill">First visits</span>
+              <span class="fam-stack-pill">Downtown bases</span>
+              <span class="fam-stack-pill">Photo-friendly</span>
+            </div>
+            <a class="fam-stack-cta" href="#downtown-with-kids">Open downtown route</a>
+          </article>
+
+          <article class="fam-stack-card fam-stack-card--accent-coast">
+            <span class="fam-stack-route-badge">Coasters &amp; shows</span>
+            <h3 class="fam-stack-title">Theme park family</h3>
+            <p class="fam-stack-path">SeaWorld or Fiesta Texas &rarr; hotel/pool reset &rarr; nearby dinner</p>
+            <div class="fam-stack-best" aria-label="Best for">
+              <span class="fam-stack-pill">Full-day energy</span>
+              <span class="fam-stack-pill">Big-kid days</span>
+              <span class="fam-stack-pill">Rim / resort side</span>
+            </div>
+            <a class="fam-stack-cta" href="#theme-park-day">Open theme park route</a>
+          </article>
+
+          <article class="fam-stack-card fam-stack-card--accent-garden">
+            <span class="fam-stack-route-badge">Museum row</span>
+            <h3 class="fam-stack-title">Zoo + museum morning</h3>
+            <p class="fam-stack-path">Zoo &rarr; Japanese Tea Garden &rarr; Witte or DoSeum &rarr; lunch reset</p>
+            <div class="fam-stack-best" aria-label="Best for">
+              <span class="fam-stack-pill">Little kids</span>
+              <span class="fam-stack-pill">Half-day stamina</span>
+              <span class="fam-stack-pill">Hot afternoons</span>
+            </div>
+            <a class="fam-stack-cta" href="#zoo-museum-corridor">Open zoo + museum route</a>
+          </article>
+
+          <article class="fam-stack-card fam-stack-card--accent-stone">
+            <span class="fam-stack-route-badge">Hill Country</span>
+            <h3 class="fam-stack-title">Hill Country half-day</h3>
+            <p class="fam-stack-path">Natural Bridge Caverns &rarr; Natural Bridge Wildlife Ranch / safari park &rarr; early dinner</p>
+            <div class="fam-stack-best" aria-label="Best for">
+              <span class="fam-stack-pill">Nature lovers</span>
+              <span class="fam-stack-pill">Half-day outing</span>
+              <span class="fam-stack-pill">Drive days</span>
+            </div>
+            <a class="fam-stack-cta" href="#natural-bridge-safari">Open Hill Country route</a>
+          </article>
+
+          <article class="fam-stack-card fam-stack-card--accent-pool">
+            <span class="fam-stack-route-badge">Staycation pace</span>
+            <h3 class="fam-stack-title">Resort weekend</h3>
+            <p class="fam-stack-path">Pool morning &rarr; one planned outing &rarr; resort dinner or nearby food</p>
+            <div class="fam-stack-best" aria-label="Best for">
+              <span class="fam-stack-pill">Resort guests</span>
+              <span class="fam-stack-pill">Lazy mornings</span>
+              <span class="fam-stack-pill">One big win</span>
+            </div>
+            <a class="fam-stack-cta" href="#resort-family-rhythm">Open resort rhythm</a>
+          </article>
+
+          <article class="fam-stack-card fam-stack-card--accent-flight">
+            <span class="fam-stack-route-badge">Checkout day</span>
+            <h3 class="fam-stack-title">Before-flight plan</h3>
+            <p class="fam-stack-path">Breakfast &rarr; one nearby stop &rarr; protect airport timing</p>
+            <div class="fam-stack-best" aria-label="Best for">
+              <span class="fam-stack-pill">SAT flyers</span>
+              <span class="fam-stack-pill">Car seats &amp; bags</span>
+              <span class="fam-stack-pill">Low stress</span>
+            </div>
+            <a class="fam-stack-cta" href="#before-flight-plan">Open before-flight playbook</a>
+          </article>
+        </div>
+
+        <div class="fam-family-ask-rail fam-family-ask-rail--cream" role="note">
+          <p class="fam-family-ask-rail-text">Stacks are starter scripts &mdash; tell us ages, heat tolerance, and hotel and we will tune the sequence.</p>
+          <a class="fam-family-ask-rail-link" href="index.html#ask">Ask The SA Plug</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta dark-showcase fam-final-cta" id="ask-family" aria-labelledby="fam-final-heading">
+      <div class="fam-final-shell">
+        <header class="fam-band-head fam-band-head--center">
+          <p class="fam-eyebrow">Concierge-ready</p>
+          <h2 id="fam-final-heading" class="fam-section-title">Want a family plan that fits your hotel, kids, and timing?</h2>
+          <p class="fam-section-sub section-text section-text-light">
+            Tell The SA Plug where you&rsquo;re staying, kids&rsquo; ages, how much time you have, and whether you want easy, active, indoor, outdoor, food-first, or resort-friendly pacing.
+          </p>
+        </header>
+        <div class="fam-final-actions hero-cta-row">
+          <a class="btn btn-primary" href="index.html#ask">Ask The SA Plug</a>
+          <a class="btn btn-secondary hero-secondary-btn fam-final-secondary" href="#pick-your-family-day">Start a family plan</a>
+          <a class="btn btn-outline-light fam-final-outline" href="where-to-eat.html">View food guide</a>
+        </div>
       </div>
     </section>
   </main>
+
   <footer class="footer dark-showcase">
     <div>
       <strong>The SA Plug</strong>
