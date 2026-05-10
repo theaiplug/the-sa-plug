@@ -215,7 +215,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      min-height: 100%;
+      min-height: 0;
       padding: 16px 16px 16px 18px;
       border-radius: calc(var(--radius) + 2px);
       text-decoration: none;
@@ -330,12 +330,17 @@
       margin-top: clamp(14px, 2.2vw, 20px);
     }
 
+    .food-move-board__resort .decision-card {
+      min-height: 0;
+    }
+
     .decision-card--resort-wide {
       flex-direction: row;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px 20px;
+      gap: 10px 20px;
       padding: 14px 18px;
+      min-height: 0;
     }
 
     .decision-card--resort-wide::before {
@@ -347,7 +352,7 @@
       flex: 1 1 260px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       margin-left: 12px;
     }
 
@@ -357,20 +362,26 @@
 
     .decision-card--resort-wide .decision-card__copy {
       margin: 0;
+      flex: 0 0 auto;
     }
 
     .decision-card--resort-wide .decision-card__cta {
+      margin-top: 0;
       margin-left: 12px;
+      align-self: center;
     }
 
     @media (max-width: 559px) {
       .decision-card--resort-wide {
         flex-direction: column;
         align-items: flex-start;
+        gap: 10px;
       }
 
       .decision-card--resort-wide .decision-card__cta {
+        margin-top: 4px;
         margin-left: 12px;
+        align-self: flex-start;
       }
     }
 
@@ -912,91 +923,8 @@
       background: linear-gradient(165deg, rgba(255, 250, 240, 0.98), rgba(255, 242, 220, 0.94));
     }
 
-    .eat-rules-panel {
-      margin-top: clamp(8px, 1.8vw, 14px);
-      padding: clamp(20px, 3vw, 28px);
-      border-radius: calc(var(--radius) + 4px);
-      border: 1px solid rgba(11, 29, 58, 0.2);
-      background:
-        radial-gradient(680px 260px at 100% 0%, rgba(20, 184, 166, 0.1), transparent 56%),
-        linear-gradient(170deg, rgba(255, 255, 255, 0.98), rgba(241, 247, 255, 0.95));
-      box-shadow: var(--shadow-md);
-    }
-
-    .eat-rules-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .eat-rules-list li {
-      margin: 0;
-      padding: 11px 13px;
-      border-radius: 12px;
-      border: 1px solid rgba(11, 29, 58, 0.14);
-      background: rgba(255, 255, 255, 0.86);
-      color: var(--navy);
-      font-size: 0.95rem;
-      line-height: 1.52;
-      font-weight: 540;
-    }
-
     .eat-river-wait-note {
       margin-top: 18px;
-    }
-
-    .eat-concierge-cta {
-      margin-top: clamp(34px, 4.8vw, 54px);
-      padding: clamp(22px, 3.2vw, 34px);
-      border-radius: calc(var(--radius) + 6px);
-      border: 1px solid rgba(242, 178, 26, 0.34);
-      background:
-        radial-gradient(600px 300px at 0% 0%, rgba(255, 72, 140, 0.13), transparent 60%),
-        radial-gradient(520px 260px at 100% 100%, rgba(20, 184, 166, 0.15), transparent 60%),
-        linear-gradient(170deg, rgba(10, 24, 48, 0.96), rgba(12, 31, 60, 0.94));
-      box-shadow: var(--shadow-md);
-    }
-
-    .eat-concierge-cta h2 {
-      margin: 0 0 10px;
-      color: var(--on-dark-heading);
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      letter-spacing: -0.02em;
-    }
-
-    .eat-concierge-cta p {
-      margin: 0;
-      max-width: 68ch;
-      color: var(--on-dark-body);
-      line-height: 1.62;
-    }
-
-    .eat-concierge-actions {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .eat-late-night-anchor {
-      margin-top: 1.25rem;
-      padding: 1rem 1.1rem;
-      border-radius: var(--radius);
-      border: 1px solid rgba(11, 29, 58, 0.12);
-      background: rgba(255, 251, 242, 0.96);
-    }
-
-    .eat-late-night-title {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-      color: var(--navy);
-    }
-
-    .eat-late-night-anchor .section-text {
-      margin: 0;
-      color: var(--slate);
     }
 
     /* Premium recommendation cards (visitor-first deck) */
@@ -1339,6 +1267,347 @@
       margin-top: 14px;
       max-width: 560px;
     }
+
+    /* Compact "How to use these lanes" note (premium dark glass strip) */
+    .eat-use-lanes-note {
+      max-width: 1120px;
+      margin: 0 auto clamp(28px, 4vw, 40px);
+      padding: clamp(14px, 2vw, 18px) clamp(16px, 2.4vw, 22px);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 12px 16px;
+      border-radius: calc(var(--radius) + 2px);
+      border: 1px solid rgba(20, 184, 166, 0.42);
+      background:
+        radial-gradient(620px 200px at 0% 0%, rgba(20, 184, 166, 0.18), transparent 60%),
+        linear-gradient(168deg, rgba(10, 24, 48, 0.96), rgba(7, 18, 36, 0.92));
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.05) inset,
+        0 14px 32px rgba(0, 0, 0, 0.28);
+    }
+
+    .eat-use-lanes-note__icon {
+      flex: 0 0 auto;
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #14b8a6, #0d9488);
+      color: #fff8eb;
+      font-weight: 900;
+      font-size: 1.05rem;
+      box-shadow: 0 6px 14px rgba(20, 184, 166, 0.32);
+    }
+
+    .eat-use-lanes-note__body {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+
+    .eat-use-lanes-note__label {
+      margin: 0 0 4px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(94, 234, 212, 0.95);
+    }
+
+    .eat-use-lanes-note h3 {
+      margin: 0 0 6px;
+      color: #fff8eb;
+      font-size: clamp(1rem, 0.4vw + 0.92rem, 1.12rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.22;
+    }
+
+    .eat-use-lanes-note p {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.88);
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    /* Tighten transition out of the food-move board */
+    .eat-food-move-section + .eat-use-lanes-note {
+      margin-top: clamp(-6px, -1vw, -2px);
+    }
+
+    .eat-use-lanes-note + .eat-top-section {
+      padding-top: clamp(20px, 3vw, 30px);
+    }
+
+    /* Late-night lane — premium dark band */
+    .eat-late-night-band {
+      max-width: 1120px;
+      margin: clamp(36px, 5.5vw, 56px) auto clamp(34px, 5vw, 50px);
+      padding: clamp(24px, 3.6vw, 36px);
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid rgba(255, 138, 31, 0.36);
+      background:
+        radial-gradient(720px 320px at 100% 0%, rgba(255, 92, 168, 0.14), transparent 56%),
+        radial-gradient(560px 260px at 0% 100%, rgba(20, 184, 166, 0.16), transparent 60%),
+        linear-gradient(165deg, #0a1628 0%, #060d18 60%, #050a14 100%);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.05) inset,
+        0 22px 44px rgba(0, 0, 0, 0.34);
+      scroll-margin-top: calc(var(--header-h, 64px) + 16px);
+    }
+
+    .eat-late-night-band__head {
+      max-width: 60ch;
+      margin-bottom: clamp(16px, 2.4vw, 22px);
+    }
+
+    .eat-late-night-band__eyebrow {
+      margin: 0 0 10px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 200, 150, 0.95);
+    }
+
+    .eat-late-night-band h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.55rem, 3vw, 2rem);
+      letter-spacing: -0.025em;
+      color: #fff8eb;
+      line-height: 1.18;
+    }
+
+    .eat-late-night-band__lead {
+      margin: 0;
+      max-width: 64ch;
+      font-size: 1rem;
+      line-height: 1.62;
+      color: rgba(255, 246, 230, 0.9);
+    }
+
+    .eat-late-night-band__moves {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 720px) {
+      .eat-late-night-band__moves {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .eat-late-night-move {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 246, 230, 0.18);
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .eat-late-night-move__label {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff8eb;
+      background: rgba(255, 138, 31, 0.18);
+      border: 1px solid rgba(255, 138, 31, 0.42);
+    }
+
+    .eat-late-night-move h3 {
+      margin: 0;
+      font-size: 1.02rem;
+      color: #fff8eb;
+      font-weight: 800;
+      line-height: 1.22;
+      letter-spacing: -0.01em;
+    }
+
+    .eat-late-night-move p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.9);
+    }
+
+    /* Concierge OS band — premium 5-step system replacing the checklist */
+    .eat-os-band {
+      max-width: 1120px;
+      margin: clamp(40px, 6vw, 60px) auto clamp(40px, 5vw, 60px);
+      padding: clamp(28px, 4vw, 44px);
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255, 214, 93, 0.28);
+      background:
+        radial-gradient(800px 360px at 0% 0%, rgba(20, 184, 166, 0.16), transparent 56%),
+        radial-gradient(680px 320px at 100% 100%, rgba(255, 92, 168, 0.14), transparent 58%),
+        linear-gradient(168deg, #0a1628 0%, #060d18 56%, #050a14 100%);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.05) inset,
+        0 24px 56px rgba(0, 0, 0, 0.36);
+    }
+
+    .eat-os-band__head {
+      max-width: 58ch;
+      margin-bottom: clamp(20px, 3vw, 28px);
+    }
+
+    .eat-os-band__eyebrow {
+      margin: 0 0 10px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 200, 150, 0.95);
+    }
+
+    .eat-os-band h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.7rem, 3.4vw, 2.2rem);
+      letter-spacing: -0.025em;
+      color: #fff8eb;
+      line-height: 1.16;
+    }
+
+    .eat-os-band__lead {
+      margin: 0;
+      max-width: 60ch;
+      font-size: 1rem;
+      line-height: 1.62;
+      color: rgba(255, 246, 230, 0.9);
+    }
+
+    .eat-os-steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(12px, 2vw, 16px);
+    }
+
+    @media (min-width: 720px) {
+      .eat-os-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1080px) {
+      .eat-os-steps {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
+
+    .eat-os-step {
+      position: relative;
+      padding: clamp(16px, 2vw, 20px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 246, 230, 0.14);
+      background:
+        radial-gradient(120% 80% at 100% 0%, rgba(242, 178, 26, 0.12), transparent 48%),
+        linear-gradient(170deg, rgba(255, 246, 230, 0.07) 0%, rgba(4, 12, 28, 0.5) 100%);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.05) inset,
+        0 14px 32px rgba(0, 0, 0, 0.28);
+    }
+
+    .eat-os-step__num {
+      display: inline-flex;
+      min-width: 2.4rem;
+      width: 2.4rem;
+      height: 2.4rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 1.05rem;
+      color: rgba(11, 29, 58, 0.96);
+      background: linear-gradient(135deg, var(--orange, #ff8b1f), var(--gold, #f2b21a));
+      box-shadow:
+        0 8px 20px rgba(255, 139, 31, 0.32),
+        0 0 0 1px rgba(255, 246, 230, 0.35);
+    }
+
+    .eat-os-step h3 {
+      margin: 0;
+      font-size: clamp(1rem, 0.3vw + 0.94rem, 1.08rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #fff8eb;
+      line-height: 1.22;
+    }
+
+    .eat-os-step p {
+      margin: 0;
+      font-size: 0.93rem;
+      line-height: 1.58;
+      color: rgba(255, 246, 230, 0.88);
+    }
+
+    .eat-os-cta {
+      margin-top: clamp(22px, 3.2vw, 30px);
+      padding: clamp(20px, 3vw, 28px);
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid rgba(20, 184, 166, 0.42);
+      background:
+        radial-gradient(620px 240px at 0% 0%, rgba(20, 184, 166, 0.2), transparent 60%),
+        linear-gradient(165deg, rgba(255, 246, 230, 0.08), rgba(4, 12, 28, 0.4));
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px 22px;
+      justify-content: space-between;
+    }
+
+    .eat-os-cta__copy {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+
+    .eat-os-cta h3 {
+      margin: 0 0 6px;
+      font-size: clamp(1.1rem, 0.4vw + 1rem, 1.24rem);
+      color: #fff8eb;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      line-height: 1.22;
+    }
+
+    .eat-os-cta p {
+      margin: 0;
+      max-width: 60ch;
+      color: rgba(255, 246, 230, 0.88);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .eat-os-cta__actions {
+      flex: 0 1 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Tighter transitions: keep the page rhythm intentional */
+    .eat-food-move-section {
+      padding-bottom: clamp(20px, 3vw, 32px);
+    }
+
+    .eat-guide-page .eat-lane:first-of-type {
+      margin-top: clamp(8px, 1.6vw, 14px);
+    }
   </style>
 </head>
 <body>
@@ -1548,6 +1817,15 @@
       </div>
     </section>
 
+    <aside class="eat-use-lanes-note" role="note" aria-label="How to use these lanes">
+      <span class="eat-use-lanes-note__icon" aria-hidden="true">&rarr;</span>
+      <div class="eat-use-lanes-note__body">
+        <p class="eat-use-lanes-note__label">How to use these lanes</p>
+        <h3>Pick the situation, then the strongest proof-backed pick.</h3>
+        <p><strong>Willie Approved</strong> shows personal confidence. <strong>Google proof</strong> shows public confidence. Each card pairs both so you can scan fast on mobile and book with intent.</p>
+      </div>
+    </aside>
+
     <section class="section eat-top-section" id="top-picks" aria-labelledby="eat-top-title">
       <div class="eat-top-shell">
         <div class="eat-section-head">
@@ -1711,8 +1989,6 @@
     </section>
 
     <section class="section eat-guide-page" aria-label="Where to eat by category">
-      <p class="section-text eat-lanes-intro">Use these lanes like a concierge playbook: each card shows Google proof, price when it matters, zone, and an honest badge — so you can scan fast on mobile without reading a brochure.</p>
-
       <div class="eat-lane" id="lane-mexican">
         <div class="eat-section-head">
           <p class="eyebrow">Flavor anchor</p>
@@ -2307,11 +2583,7 @@
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Route note</span>
-          <p>For River Walk pub pace, <strong>Mad Dogs</strong> is covered in the River Walk classics lane.</p>
-        </div>
-        <div id="lane-late-night" class="eat-late-night-anchor">
-          <h3 class="eat-late-night-title">Late-night lane</h3>
-          <p class="section-text">Late nights need one start bar, one backup corner, and realistic rideshare timing — use the picks above, then favor close-and-easy over ambitious hops.</p>
+          <p>For River Walk pub pace, <strong>Mad Dogs</strong> is covered in the River Walk classics lane. For after-hours moves, see the <a href="#lane-late-night">late-night lane</a> below.</p>
         </div>
       </div>
 
@@ -2384,29 +2656,72 @@
           <p><strong>Sternewirth</strong> is detailed in Drinks / rooftops — same Emma-corner lane, stronger rating than Amelia for most visitors.</p>
         </div>
       </div>
+    </section>
 
-      <div class="eat-lane" id="lane-food-rules">
-        <div class="eat-section-head">
-          <p class="eyebrow">Local utility</p>
-          <h2>Local food rules that save the night</h2>
-          <p class="section-text">Use this checklist before you book, walk, or rideshare. It prevents most avoidable dinner misses.</p>
-        </div>
-        <div class="eat-rules-panel" role="group" aria-label="Local food rules checklist">
-          <ul class="eat-rules-list">
-            <li>Reserve dinner before you start walking.</li>
-            <li>Downtown: pick one anchor meal, not three backups.</li>
-            <li>Pearl works best when dinner and drinks stay in the same corridor.</li>
-            <li>River Walk bar hopping is easier when you choose one start point first.</li>
-            <li>For big groups, choose the room before the menu.</li>
-            <li>If the night is tired, close-and-easy beats &ldquo;worth the ride.&rdquo;</li>
-          </ul>
-        </div>
+    <section class="eat-late-night-band" id="lane-late-night" aria-labelledby="late-night-title">
+      <header class="eat-late-night-band__head">
+        <p class="eat-late-night-band__eyebrow">After hours</p>
+        <h2 id="late-night-title">Late-night lane</h2>
+        <p class="eat-late-night-band__lead">Late nights need one smart backup, not a wishlist. Anchor the food, keep one drink nearby, and only stack a rooftop if the group still has real energy left.</p>
+      </header>
+      <div class="eat-late-night-band__moves">
+        <article class="eat-late-night-move">
+          <span class="eat-late-night-move__label">Food anchor</span>
+          <h3>Mi Tierra Cafe y Panaderia</h3>
+          <p>Market Square institution with cultural weight and late-friendly pacing — the cleanest sit-down reset when the night runs long.</p>
+        </article>
+        <article class="eat-late-night-move">
+          <span class="eat-late-night-move__label">Drinks backup</span>
+          <h3>The Esquire Tavern</h3>
+          <p>Historic River Walk cocktail spine — the steady classic move for one strong drink before you call the ride.</p>
+        </article>
+        <article class="eat-late-night-move">
+          <span class="eat-late-night-move__label">Skyline finish</span>
+          <h3>Tenfold Rooftop</h3>
+          <p>Top-rated rooftop nightcap when the crew still has energy for one more view before sleep.</p>
+        </article>
       </div>
+    </section>
 
-      <div class="eat-concierge-cta" id="food-concierge-ask">
-        <h2>Ask The SA Plug for your exact food move</h2>
-        <p>Tell us where you&rsquo;re staying, party size, budget, food mood, and timing - we&rsquo;ll point you to the right move with a clean plan you can use immediately.</p>
-        <div class="eat-concierge-actions">
+    <section class="eat-os-band" id="lane-os" aria-labelledby="eat-os-title">
+      <header class="eat-os-band__head">
+        <p class="eat-os-band__eyebrow">Concierge system</p>
+        <h2 id="eat-os-title">How The SA Plug builds a better food night</h2>
+        <p class="eat-os-band__lead">The goal is not a giant list. The goal is the right first move, a backup lane, and a clean night that fits the group, the zone, and the clock.</p>
+      </header>
+      <ol class="eat-os-steps" aria-label="Five-step food night system">
+        <li class="eat-os-step">
+          <span class="eat-os-step__num" aria-hidden="true">1</span>
+          <h3>Pick the moment</h3>
+          <p>First meal, business dinner, date night, family reset, seafood lane, or drinks route.</p>
+        </li>
+        <li class="eat-os-step">
+          <span class="eat-os-step__num" aria-hidden="true">2</span>
+          <h3>Choose one anchor</h3>
+          <p>Start with one strong restaurant instead of gambling on three random options.</p>
+        </li>
+        <li class="eat-os-step">
+          <span class="eat-os-step__num" aria-hidden="true">3</span>
+          <h3>Match the zone</h3>
+          <p>Downtown, Pearl, River Walk, resort corridor, or North Side &mdash; distance matters.</p>
+        </li>
+        <li class="eat-os-step">
+          <span class="eat-os-step__num" aria-hidden="true">4</span>
+          <h3>Stack the next move</h3>
+          <p>Add a walk, cocktail, dessert, or rideshare plan only after dinner is anchored.</p>
+        </li>
+        <li class="eat-os-step">
+          <span class="eat-os-step__num" aria-hidden="true">5</span>
+          <h3>Keep a backup</h3>
+          <p>If wait times, weather, or energy shifts, move to the next lane without restarting the night.</p>
+        </li>
+      </ol>
+      <div class="eat-os-cta" id="food-concierge-ask">
+        <div class="eat-os-cta__copy">
+          <h3>Need a cleaner dinner route?</h3>
+          <p>Send your hotel, group size, timing, and food mood. We&rsquo;ll send back the right anchor, the next move, and a backup lane &mdash; all in one short reply.</p>
+        </div>
+        <div class="eat-os-cta__actions">
           <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-primary">Ask The SA Plug</a>
           <a href="resort-food.html" class="btn btn-secondary">Need resort-area picks?</a>
         </div>
