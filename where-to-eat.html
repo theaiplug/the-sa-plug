@@ -222,7 +222,7 @@
     }
 
     .food-move-board .decision-card__cta {
-      margin-top: 10px;
+      margin-top: clamp(14px, 2.2vw, 20px);
     }
 
     .decision-card {
@@ -1259,10 +1259,20 @@
     }
 
     /* Lanes helper sits inside food-move-board shell → same gutter as decision cards */
+    .eat-lanes-helper-wrap {
+      margin-top: clamp(32px, 5vw + 12px, 44px);
+    }
+
+    @media (min-width: 640px) {
+      .eat-lanes-helper-wrap {
+        margin-top: clamp(40px, 4vw + 24px, 56px);
+      }
+    }
 
     /* Compact "How to use these lanes" note (premium dark glass strip) */
     .eat-use-lanes-note {
-      margin: 0 0 clamp(28px, 4vw, 40px);
+      margin: 0;
+      margin-bottom: clamp(28px, 4vw, 40px);
       padding: clamp(14px, 2vw, 18px) clamp(16px, 2.4vw, 22px);
       display: flex;
       flex-wrap: wrap;
@@ -1324,7 +1334,7 @@
     }
 
     .eat-food-move-section + .eat-top-section {
-      padding-top: clamp(20px, 3vw, 30px);
+      padding-top: clamp(28px, 4vw, 42px);
     }
 
     /* Late-night lane — premium dark band */
@@ -1796,14 +1806,16 @@
             <span class="decision-card__cta">Open resort food guide</span>
           </a>
         </div>
-        <aside class="eat-use-lanes-note" role="note" aria-label="How to use these lanes">
-          <span class="eat-use-lanes-note__icon" aria-hidden="true">&rarr;</span>
-          <div class="eat-use-lanes-note__body">
-            <p class="eat-use-lanes-note__label">How to use these lanes</p>
-            <h3>Pick the situation, then the strongest proof-backed pick.</h3>
-            <p><strong>Willie Approved</strong> is personal confidence when you see it on the card &mdash; not the default label for everything on this page. <strong>Research Pick</strong>, <strong>Needs Visit</strong>, and <strong>Reliable Pick</strong> flags cover strong public proof, promising-but-unverified rooms, or safe visitor lanes. Each row still carries Google pills so mobile scanning stays grounded.</p>
-          </div>
-        </aside>
+        <div class="eat-lanes-helper-wrap">
+          <aside class="eat-use-lanes-note" role="note" aria-label="How to use these lanes">
+            <span class="eat-use-lanes-note__icon" aria-hidden="true">&rarr;</span>
+            <div class="eat-use-lanes-note__body">
+              <p class="eat-use-lanes-note__label">How to use these lanes</p>
+              <h3>Pick the situation, then the strongest proof-backed pick.</h3>
+              <p><strong>Willie Approved</strong> is personal confidence when you see it on the card &mdash; not the default label for everything on this page. <strong>Research Pick</strong>, <strong>Needs Visit</strong>, and <strong>Reliable Pick</strong> flags cover strong public proof, promising-but-unverified rooms, or safe visitor lanes. Each row still carries Google pills so mobile scanning stays grounded.</p>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
