@@ -5252,3 +5252,440 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
     justify-content: center;
   }
 }
+
+/* ----- A++ shared system: route cards, cinematic hub, CTA bands ----- */
+.route-card-grid {
+  display: grid;
+  gap: clamp(14px, 1.8vw, 18px);
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 560px) {
+  .route-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .route-card-grid.route-card-grid--dense {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .route-card-grid:not(.route-card-grid--dense) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.image-route-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: clamp(220px, 42vw, 300px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 230, 0.18);
+  box-shadow: 0 18px 40px rgba(5, 10, 24, 0.35);
+  text-decoration: none;
+  color: inherit;
+  isolation: isolate;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.image-route-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 52px rgba(5, 10, 24, 0.42);
+  border-color: rgba(242, 178, 26, 0.45);
+}
+
+.image-route-card:focus-visible {
+  outline: 3px solid rgba(242, 178, 26, 0.85);
+  outline-offset: 3px;
+}
+
+.image-route-card__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.image-route-card__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(5, 10, 22, 0.88) 0%,
+    rgba(5, 10, 22, 0.35) 38%,
+    rgba(5, 10, 22, 0.06) 62%,
+    transparent 100%
+  );
+}
+
+.image-route-card__body {
+  position: relative;
+  z-index: 2;
+  padding: clamp(16px, 2.4vw, 22px);
+  color: #fff8eb;
+}
+
+.image-route-card__body .eyebrow {
+  margin: 0 0 6px;
+  color: rgba(255, 200, 150, 0.95);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.image-route-card__body h3 {
+  margin: 0 0 8px;
+  font-size: clamp(1.05rem, 1.2vw + 0.85rem, 1.22rem);
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  color: #fff8eb;
+}
+
+.image-route-card__body p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(255, 246, 230, 0.88);
+  max-width: 36ch;
+}
+
+.image-route-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 0.82rem;
+  font-weight: 820;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+
+.image-route-card:hover .image-route-card__cta {
+  color: #ffe7a8;
+}
+
+.section.path-hub-section {
+  max-width: none;
+  margin: 0;
+  padding: clamp(36px, 5vw, 56px) clamp(16px, 4.5vw, 70px);
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(20, 184, 166, 0.12), transparent 50%),
+    linear-gradient(168deg, #050a14 0%, #0a162c 45%, #071018 100%);
+  border-block: 1px solid rgba(255, 246, 230, 0.08);
+}
+
+.path-hub-section .path-hub-head {
+  max-width: 48rem;
+  margin-bottom: clamp(22px, 3vw, 30px);
+}
+
+.path-hub-section .path-hub-head h2 {
+  color: var(--on-dark-heading);
+}
+
+.path-hub-section .path-hub-head .section-text {
+  color: var(--on-dark-body);
+}
+
+/* .premium-dark-section / .proof-section: use .dark-showcase + section headings */
+
+.concierge-cta-band {
+  border-radius: calc(var(--radius) + 6px);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  background:
+    radial-gradient(ellipse 70% 50% at 12% 0%, rgba(20, 184, 166, 0.15), transparent 50%),
+    linear-gradient(158deg, #050910 0%, #0b1d3a 48%, #1a1530 100%);
+  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.32);
+}
+
+.image-detail-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-info-card {
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 251, 242, 0.94);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+  box-shadow: 0 14px 36px rgba(2, 6, 14, 0.18);
+}
+
+/* Start Here hub: cinematic hero (full-bleed photography) */
+.page-start-here .cinematic-hero.hero-fiesta-dark.secondary-hero {
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-x: clip;
+  background-color: #071022;
+  background-image:
+    linear-gradient(90deg, rgba(5, 10, 24, 0.9) 0%, rgba(5, 10, 24, 0.62) 40%, rgba(5, 10, 24, 0.22) 72%, rgba(5, 10, 24, 0.06) 100%),
+    url("assets/hero-golden-hour-riverwalk.png");
+  background-repeat: no-repeat;
+  background-position: 0 0, center;
+  background-size: cover, cover;
+}
+
+.page-start-here .cinematic-hero.hero-fiesta-dark::before {
+  display: none;
+}
+
+.page-start-here .secondary-hero.hero-fiesta-dark.cinematic-hero::after {
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 58%, rgba(2, 6, 14, 0.4) 100%);
+}
+
+.page-start-here .cinematic-hero .hero-fiesta-inner.hero-inner-band {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: min(1320px, 100%);
+  margin-inline: auto;
+  box-sizing: border-box;
+  padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 48px);
+}
+
+.page-start-here .sh-cinematic-shell {
+  width: 100%;
+  max-width: 720px;
+}
+
+.page-start-here .sh-cinematic-accent {
+  width: 100%;
+  max-width: 100%;
+  height: 3px;
+  flex-shrink: 0;
+  margin: 0 0 clamp(12px, 2vw, 18px);
+  border: none;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(242, 178, 26, 0.85) 12%,
+    rgba(255, 139, 31, 0.9) 30%,
+    rgba(255, 106, 77, 0.88) 48%,
+    rgba(255, 92, 168, 0.55) 58%,
+    rgba(20, 184, 166, 0.92) 78%,
+    rgba(242, 178, 26, 0.35) 92%,
+    transparent 100%
+  );
+}
+
+.page-start-here .cinematic-hero .hero-title {
+  max-width: none;
+  font-size: clamp(2rem, 3.85vw + 0.85rem, 3.45rem);
+  line-height: 1.06;
+  letter-spacing: -0.038em;
+  font-weight: 860;
+  color: #fff8eb;
+  text-shadow: 0 2px 36px rgba(0, 0, 0, 0.35);
+}
+
+.page-start-here .cinematic-hero .hero-text-on-dark,
+.page-start-here .cinematic-hero .sh-hero-helper {
+  font-size: clamp(0.98rem, 0.35vw + 0.88rem, 1.06rem);
+  line-height: 1.65;
+  color: rgba(255, 246, 230, 0.9);
+  max-width: 40rem;
+}
+
+.page-start-here .cinematic-hero .sh-hero-chips.route-chip-row-hero {
+  align-self: stretch;
+  padding-top: clamp(12px, 2vw, 16px);
+  border-top: none;
+}
+
+.page-start-here .cinematic-hero .sh-hero-chips .route-chip {
+  border-color: rgba(255, 246, 230, 0.22);
+}
+
+.page-start-here .cinematic-hero .sh-hero-actions {
+  margin-top: clamp(8px, 1.6vw, 14px);
+}
+
+@media (max-width: 767px) {
+  .page-start-here .cinematic-hero.hero-fiesta-dark {
+    min-height: clamp(560px, 88vh, 720px);
+    max-height: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-start-here .cinematic-hero.hero-fiesta-dark {
+    min-height: clamp(520px, 68vh, 760px);
+    max-height: 820px;
+  }
+}
+
+@media (max-width: 520px) {
+  .page-start-here .cinematic-hero .sh-hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Trust strip (home + shared) */
+.trust-strip {
+  padding: clamp(40px, 5vw, 56px) clamp(16px, 4.5vw, 70px);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(20, 184, 166, 0.14), transparent 40%),
+    radial-gradient(circle at 92% 80%, rgba(255, 106, 77, 0.1), transparent 42%),
+    linear-gradient(165deg, #060d1c 0%, #0b1d3a 55%, #0a1428 100%);
+  border-block: 1px solid rgba(255, 246, 230, 0.08);
+}
+
+.trust-strip-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.trust-strip-head {
+  max-width: 44rem;
+  margin-bottom: clamp(22px, 3vw, 28px);
+}
+
+.trust-strip-eyebrow {
+  margin-bottom: 10px;
+}
+
+.trust-strip-head h2 {
+  color: var(--on-dark-heading);
+}
+
+.trust-strip-head .section-text {
+  color: var(--on-dark-body);
+}
+
+.trust-grid {
+  display: grid;
+  gap: clamp(14px, 2vw, 18px);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .trust-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.trust-card {
+  padding: clamp(18px, 2.2vw, 22px);
+  border-radius: var(--radius);
+  background: rgba(255, 251, 242, 0.96);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+  box-shadow: 0 14px 32px rgba(2, 6, 14, 0.22);
+}
+
+.trust-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+
+.trust-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.58;
+  color: var(--slate);
+}
+
+/* Downtown: image spot grid */
+.dt-spots-section {
+  padding: clamp(36px, 4.5vw, 52px) clamp(16px, 4vw, 48px);
+  background:
+    linear-gradient(180deg, rgba(6, 12, 24, 0.55), rgba(6, 12, 24, 0.92)),
+    url("assets/sa-plug-family-downtown-riverwalk.png") center / cover no-repeat;
+  border-block: 1px solid rgba(255, 246, 230, 0.1);
+}
+
+.dt-spots-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.dt-spots-head h2 {
+  color: #fff8eb;
+  margin: 0 0 10px;
+}
+
+.dt-spots-head .section-text {
+  color: rgba(255, 246, 230, 0.86);
+  max-width: 48rem;
+}
+
+/* Where to eat: category image grid */
+.eat-cat-band {
+  padding: clamp(32px, 4vw, 48px) clamp(16px, 4vw, 40px);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(242, 178, 26, 0.08), transparent 45%),
+    linear-gradient(180deg, #070f1c 0%, #050a12 100%);
+  border-block: 1px solid rgba(255, 246, 230, 0.06);
+}
+
+.eat-cat-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.eat-cat-head {
+  margin-bottom: clamp(20px, 2.5vw, 26px);
+}
+
+.eat-cat-head h2 {
+  margin: 0 0 8px;
+  color: #fff8eb;
+  font-size: clamp(1.35rem, 2.5vw + 0.5rem, 1.85rem);
+}
+
+.eat-cat-head .section-text {
+  margin: 0;
+  color: rgba(255, 246, 230, 0.82);
+  max-width: 52ch;
+}
+
+/* Transport: image situation row */
+.tc-situation-band {
+  padding: clamp(32px, 4vw, 48px) clamp(16px, 4vw, 40px);
+  background:
+    linear-gradient(105deg, rgba(5, 10, 22, 0.92) 0%, rgba(5, 10, 22, 0.75) 45%, rgba(5, 10, 22, 0.55) 100%),
+    url("assets/hero-elegant-urban-arrival-sunset.png") center / cover no-repeat;
+  border-block: 1px solid rgba(255, 246, 230, 0.08);
+}
+
+.tc-situation-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.tc-situation-head h2 {
+  color: #fff8eb;
+  margin: 0 0 8px;
+}
+
+.tc-situation-head .section-text {
+  color: rgba(255, 246, 230, 0.85);
+  max-width: 52ch;
+  margin: 0 0 clamp(18px, 2.5vw, 24px);
+}

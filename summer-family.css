@@ -461,6 +461,13 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
     align-items: stretch;
   }
 
+  /* Align top-row route card heights for a calmer grid */
+  .page-family-summer .fam-pick-section .fam-day-card--feat .fam-day-card-media-wrap,
+  .page-family-summer .fam-pick-section .fam-day-card--dt-slot .fam-day-card-media-wrap,
+  .page-family-summer .fam-pick-section .fam-day-card--zoo-slot .fam-day-card-media-wrap {
+    min-height: clamp(340px, 28vw, 400px);
+  }
+
   .page-family-summer .fam-pick-section .fam-day-card--feat {
     grid-column: 1 / 2;
     grid-row: 1 / 2;

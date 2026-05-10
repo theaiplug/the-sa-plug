@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- A++ SITE SYSTEM POLISH DEPLOY TEST 2026-05-09 -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -743,7 +744,7 @@
     }
   </style>
 </head>
-<body>
+<body class="page-start-here">
   <header class="site-header">
     <a href="index.html" class="brand">
       <span class="brand-icon brand-icon--textmark" aria-hidden="true"><span class="brand-textmark">SA</span></span>
@@ -754,115 +755,122 @@
       <a href="start-here.html" aria-current="page">Start Here</a>
       <a href="where-to-eat.html">Where To Eat</a>
       <a href="downtown.html">Downtown</a>
-      <a href="resort-food.html">Resorts</a>
+      <a href="resort-food.html">Resort Food</a>
       <a href="summer-family.html">Family</a>
       <a href="index.html#ask">Ask</a>
-      <a href="driver-concierge.html">Transport</a>
-      <a href="business-services.html" class="nav-cta">AI Services</a>
+      <a href="driver-concierge.html">Transport + Concierge</a>
+      <a href="business-services.html" class="nav-cta">AI Business Services</a>
     </nav>
     <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
   <main class="start-here-main" id="top">
-    <section class="hero hero-fiesta-dark hero-inner secondary-hero">
+    <section class="hero hero-fiesta-dark secondary-hero cinematic-hero" aria-labelledby="sh-hero-heading">
       <div class="hero-fiesta-inner hero-inner-band">
-        <div class="hero-shell hero-inner-grid secondary-hero-grid">
+        <div class="hero-shell sh-cinematic-shell">
           <div class="hero-content secondary-hero-copy">
-            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Visitor hub</p>
-            <h1 class="hero-title">Start here for San Antonio</h1>
-            <p class="hero-text hero-text-on-dark">New to the city? Pick your situation and get the fastest route to the right plan &mdash; food, downtown, family ideas, resort moves, or transportation help.</p>
-            <p class="sh-hero-helper">Built for first-time visitors, convention travelers, resort guests, families, and anyone who wants a better local plan.</p>
-            <ul class="sh-hero-chips" aria-label="Common trip types">
-              <li><a class="sh-hero-chip" href="#trip-lanes">First-time visitor</a></li>
-              <li><a class="sh-hero-chip" href="#lane-convention">Convention traveler</a></li>
-              <li><a class="sh-hero-chip" href="#lane-family">Family trip</a></li>
-              <li><a class="sh-hero-chip" href="#lane-resort">Resort stay</a></li>
-              <li><a class="sh-hero-chip" href="#lane-food">Food-first</a></li>
-            </ul>
-            <div class="sh-hero-actions">
-              <a class="btn btn-primary" href="#trip-lanes">Pick my route</a>
-              <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-secondary hero-secondary-btn">Ask The SA Plug</a>
+            <div class="sh-cinematic-accent" aria-hidden="true"></div>
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Start here</p>
+            <h1 id="sh-hero-heading" class="hero-title">Tell The SA Plug what kind of San Antonio day you need.</h1>
+            <p class="hero-text hero-text-on-dark">Food, downtown plans, family routes, resort-area ideas, transportation help, and AI business services &mdash; routed by your situation, not a generic tourist list.</p>
+            <p class="sh-hero-helper">Built for first-time visitors, convention travelers, resort guests, families, and anyone who wants a faster local plan.</p>
+            <div class="route-chip-row route-chip-row-hero sh-hero-chips" aria-label="Trip types">
+              <a class="route-chip" href="downtown.html">Business trip</a>
+              <a class="route-chip" href="summer-family.html">Family day</a>
+              <a class="route-chip" href="where-to-eat.html">Food now</a>
+              <a class="route-chip" href="downtown.html">Downtown</a>
+              <a class="route-chip" href="resort-food.html">Resort stay</a>
+              <a class="route-chip" href="driver-concierge.html">Airport timing</a>
+              <a class="route-chip" href="driver-concierge.html">Local concierge</a>
+              <a class="route-chip" href="business-services.html">AI business systems</a>
             </div>
-          </div>
-          <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
-            <div class="hero-visual-panel hero-inner-panel">
-              <img src="assets/hero-golden-hour-riverwalk.png" alt="San Antonio River Walk at golden hour" class="hero-visual-img hero-inner-img img-pos-riverwalk" width="800" height="900" decoding="async" fetchpriority="high" />
+            <div class="sh-hero-actions hero-cta-row">
+              <a class="btn btn-primary" href="#choose-path">Find my route</a>
+              <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-secondary-hero">Ask The SA Plug</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="trip-lanes" aria-labelledby="trip-lanes-heading">
-      <div class="sh-section-head">
-        <p class="eyebrow">Start here</p>
-        <h2 id="trip-lanes-heading">What kind of San Antonio visit is this?</h2>
-        <p class="section-text">Pick the lane that sounds most like your trip. The SA Plug will point you toward the fastest next step.</p>
-      </div>
-      <div class="sh-decision-grid">
-        <article class="sh-decision-card sh-decision-card--turq" id="lane-landed">
-          <div class="sh-decision-inner">
-            <p class="sh-decision-kicker">Arrival</p>
-            <h3 class="sh-decision-title">I just landed</h3>
-            <p class="sh-decision-desc">Fast first-move ideas after the airport: where to eat, what to do, and how to skip a wasted first night.</p>
-            <a class="sh-decision-cta" href="#starter-routes">Start here</a>
-          </div>
-        </article>
-        <article class="sh-decision-card sh-decision-card--coral" id="lane-downtown">
-          <div class="sh-decision-inner">
-            <p class="sh-decision-kicker">One night</p>
-            <h3 class="sh-decision-title">I have one night downtown</h3>
-            <p class="sh-decision-desc">A strong downtown route for dinner, River Walk pacing, drinks, and first-time visitor energy.</p>
-            <a class="sh-decision-cta" href="downtown.html">View downtown guide</a>
-          </div>
-        </article>
-        <article class="sh-decision-card sh-decision-card--gold" id="lane-convention">
-          <div class="sh-decision-inner">
-            <p class="sh-decision-kicker">Business</p>
-            <h3 class="sh-decision-title">I&rsquo;m here for a convention</h3>
-            <p class="sh-decision-desc">Clean moves for conference guests, client dinners, and tight evening windows.</p>
-            <a class="sh-decision-cta" href="downtown.html">Best convention moves</a>
-          </div>
-        </article>
-        <article class="sh-decision-card sh-decision-card--pink" id="lane-family">
-          <div class="sh-decision-inner">
-            <p class="sh-decision-kicker">Crew</p>
-            <h3 class="sh-decision-title">I&rsquo;m with family</h3>
-            <p class="sh-decision-desc">Heat-smart, family-friendly ideas for kids, museums, parks, theme parks, and flexible group pacing.</p>
-            <a class="sh-decision-cta" href="summer-family.html">Family ideas</a>
-          </div>
-        </article>
-        <article class="sh-decision-card sh-decision-card--orange" id="lane-resort">
-          <div class="sh-decision-inner">
-            <p class="sh-decision-kicker">Hotel zone</p>
-            <h3 class="sh-decision-title">I&rsquo;m staying at a resort</h3>
-            <p class="sh-decision-desc">Match your property zone with the best dinner, easy picks, and worth-the-ride nights.</p>
-            <a class="sh-decision-cta" href="resort-food.html">Resort guide</a>
-          </div>
-        </article>
-        <article class="sh-decision-card sh-decision-card--plum" id="lane-food">
-          <div class="sh-decision-inner">
-            <p class="sh-decision-kicker">Flavor</p>
-            <h3 class="sh-decision-title">I need food now</h3>
-            <p class="sh-decision-desc">Strong local food picks, Willie Approved anchors, and district-based restaurant lanes.</p>
-            <a class="sh-decision-cta" href="where-to-eat.html">Where to eat</a>
-          </div>
-        </article>
-        <article class="sh-decision-card sh-decision-card--turq" id="lane-ai-business">
-          <div class="sh-decision-inner">
-            <p class="sh-decision-kicker">Operators</p>
-            <h3 class="sh-decision-title">I want AI business systems</h3>
-            <p class="sh-decision-desc">Websites, intake, QR funnels, phone and chat workflows, automations, and dashboards built like this guide.</p>
-            <a class="sh-decision-cta" href="business-services.html">The AI Plug</a>
-          </div>
-        </article>
-        <article class="sh-decision-card sh-decision-card--coral" id="lane-transport">
-          <div class="sh-decision-inner">
-            <p class="sh-decision-kicker">Support</p>
-            <h3 class="sh-decision-title">I need transportation + concierge help</h3>
-            <p class="sh-decision-desc">Airport pickups, routing help, local guidance, and premium visitor support.</p>
-            <a class="sh-decision-cta" href="driver-concierge.html">Transportation help</a>
-          </div>
-        </article>
+    <section class="section path-hub-section image-detail-section" id="choose-path" aria-labelledby="choose-path-heading">
+      <div class="routes-band-inner">
+        <header class="path-hub-head sh-section-head">
+          <p class="eyebrow eyebrow-on-dark">Choose your path</p>
+          <h2 id="choose-path-heading">Front desk routing for the whole city</h2>
+          <p class="section-text section-text-light">Tap the lane that matches your crew. Each card opens the guide built for that situation.</p>
+        </header>
+        <div class="route-card-grid route-card-grid--dense" role="list">
+          <a href="downtown.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/hero-elegant-urban-arrival-sunset.png" alt="Downtown San Antonio at sunset" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Business &amp; convention</span>
+              <h3>I&rsquo;m here for business or a convention</h3>
+              <p>Client dinners, tight evening windows, and walkable downtown pacing.</p>
+              <span class="image-route-card__cta">Open downtown guide</span>
+            </span>
+          </a>
+          <a href="summer-family.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/family-river-stroll-sunset.png" alt="Family walking along the San Antonio River Walk at sunset" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Family crew</span>
+              <h3>I&rsquo;m with family</h3>
+              <p>Heat-smart routes, kid logistics, theme parks, zoo corridor, and resort rhythm.</p>
+              <span class="image-route-card__cta">Open family guide</span>
+            </span>
+          </a>
+          <a href="where-to-eat.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/dining-riverside-warm-string-lights.png" alt="Riverside dining with warm string lights" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Flavor first</span>
+              <h3>I need food now</h3>
+              <p>Willie Approved anchors, districts, and backup lanes when the table is hungry tonight.</p>
+              <span class="image-route-card__cta">Open food guide</span>
+            </span>
+          </a>
+          <a href="downtown.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/downtown-river-promenade-twilight.png" alt="River Walk promenade at twilight" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Walkable core</span>
+              <h3>I&rsquo;m downtown</h3>
+              <p>River Walk loops, Alamo timing, Market Square energy, and one-night plans.</p>
+              <span class="image-route-card__cta">Open downtown guide</span>
+            </span>
+          </a>
+          <a href="resort-food.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/resort-dining-tropical-sunset.png" alt="Resort dining at golden hour" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Resort guest</span>
+              <span class="h3-like">I&rsquo;m staying at a resort</span>
+              <p>Zone-matched dinners, traffic-smart nights, and tired-family backups.</p>
+              <span class="image-route-card__cta">Open resort food guide</span>
+            </span>
+          </a>
+          <a href="driver-concierge.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/transport-luxury-city-arrival-night.png" alt="City arrival at night" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Movement</span>
+              <h3>Transportation or concierge help</h3>
+              <p>Availability-based routing for airport, resort, convention, and night-out timing.</p>
+              <span class="image-route-card__cta">Open transport desk</span>
+            </span>
+          </a>
+          <a href="business-services.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/sa-plug-family-hero-riverwalk-zoo-alamo.png" alt="San Antonio skyline and landmarks" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Operators</span>
+              <h3>I want AI business systems</h3>
+              <p>Websites, intake, automations, and dashboards &mdash; The SA Plug is live proof.</p>
+              <span class="image-route-card__cta">Open The AI Plug</span>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -913,7 +921,7 @@
             <span class="sh-moves-icon" aria-hidden="true">1</span>
             <div>
               <strong>Match trip type or hotel zone first</strong>
-              <p>Use the eight lanes above, or jump straight to downtown, food, family, or resorts if you already know your constraint.</p>
+              <p>Use the seven path cards above, or jump straight to downtown, food, family, or resorts if you already know your constraint.</p>
             </div>
           </li>
           <li>
@@ -948,37 +956,55 @@
       </div>
     </section>
 
-    <section class="section" id="starter-routes" aria-labelledby="starter-routes-heading">
-      <div class="sh-section-head">
-        <p class="eyebrow">Tonight&rsquo;s playbook</p>
-        <h2 id="starter-routes-heading">Featured starter routes</h2>
-        <p class="section-text">Four common arcs you can run tonight. Tap through when one matches your night.</p>
-      </div>
-      <div class="sh-route-grid">
-        <article class="sh-route-card">
-          <p class="sh-route-eyebrow">Route 01</p>
-          <h3>Airport arrival route</h3>
-          <p class="sh-route-desc">Airport &rarr; first meal &rarr; quick city feel &rarr; easy next step</p>
-          <a href="driver-concierge.html" class="sh-route-link">Open transport + routing</a>
-        </article>
-        <article class="sh-route-card">
-          <p class="sh-route-eyebrow">Route 02</p>
-          <h3>Convention evening route</h3>
-          <p class="sh-route-desc">Hotel / convention corridor &rarr; polished dinner &rarr; drinks / easy return</p>
-          <a href="downtown.html" class="sh-route-link">Open downtown guide</a>
-        </article>
-        <article class="sh-route-card">
-          <p class="sh-route-eyebrow">Route 03</p>
-          <h3>Family San Antonio route</h3>
-          <p class="sh-route-desc">Day activity &rarr; food &rarr; low-stress evening move</p>
-          <a href="summer-family.html" class="sh-route-link">Open family guide</a>
-        </article>
-        <article class="sh-route-card">
-          <p class="sh-route-eyebrow">Route 04</p>
-          <h3>Food-first visitor route</h3>
-          <p class="sh-route-desc">Pick your lane &rarr; best anchors &rarr; district follow-up</p>
-          <a href="where-to-eat.html" class="sh-route-link">Open food guide</a>
-        </article>
+    <section class="section band section-navy-routes" id="starter-routes" aria-labelledby="starter-routes-heading">
+      <div class="routes-band-inner">
+        <header class="sh-section-head">
+          <p class="eyebrow eyebrow-light">Tonight&rsquo;s playbook</p>
+          <h2 id="starter-routes-heading">Featured starter routes</h2>
+          <p class="section-text section-text-light">Four common arcs you can run tonight. Tap through when one matches your night.</p>
+        </header>
+        <div class="route-card-grid" role="list">
+          <a href="driver-concierge.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/transport-luxury-city-arrival-night.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Route 01</span>
+              <h3>Airport arrival</h3>
+              <p>Airport &rarr; first meal &rarr; quick city feel &rarr; easy next step.</p>
+              <span class="image-route-card__cta">Open transport + routing</span>
+            </span>
+          </a>
+          <a href="downtown.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/hero-golden-hour-riverwalk.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Route 02</span>
+              <h3>Convention evening</h3>
+              <p>Hotel corridor &rarr; polished dinner &rarr; drinks &rarr; easy return.</p>
+              <span class="image-route-card__cta">Open downtown guide</span>
+            </span>
+          </a>
+          <a href="summer-family.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/sa-plug-family-theme-park-day.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Route 03</span>
+              <h3>Family day arc</h3>
+              <p>Day activity &rarr; food &rarr; low-stress evening move.</p>
+              <span class="image-route-card__cta">Open family guide</span>
+            </span>
+          </a>
+          <a href="where-to-eat.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/dining-riverside-warm-string-lights.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Route 04</span>
+              <h3>Food-first visitor</h3>
+              <p>Pick your lane &rarr; best anchors &rarr; district follow-up.</p>
+              <span class="image-route-card__cta">Open food guide</span>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -1002,10 +1028,12 @@
       <p class="footer-cta">Also built as live capability proof by The AI Plug.</p>
     </div>
     <nav class="footer-links">
+      <a href="index.html">Home</a>
       <a href="start-here.html">Start Here</a>
       <a href="where-to-eat.html">Where To Eat</a>
       <a href="downtown.html">Downtown</a>
       <a href="summer-family.html">Family</a>
+      <a href="resort-food.html">Resort Food</a>
       <a href="driver-concierge.html">Transport + Concierge</a>
       <a href="business-services.html">AI Business Services</a>
     </nav>

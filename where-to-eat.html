@@ -798,6 +798,25 @@
       flex-wrap: wrap;
       gap: 10px;
     }
+
+    .eat-late-night-anchor {
+      margin-top: 1.25rem;
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(11, 29, 58, 0.12);
+      background: rgba(255, 251, 242, 0.96);
+    }
+
+    .eat-late-night-title {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--navy);
+    }
+
+    .eat-late-night-anchor .section-text {
+      margin: 0;
+      color: var(--slate);
+    }
   </style>
 </head>
 <body>
@@ -811,11 +830,11 @@
       <a href="start-here.html">Start Here</a>
       <a href="where-to-eat.html" aria-current="page">Where To Eat</a>
       <a href="downtown.html">Downtown</a>
-      <a href="resort-food.html">Resorts</a>
+      <a href="resort-food.html">Resort Food</a>
       <a href="summer-family.html">Family</a>
       <a href="index.html#ask">Ask</a>
-      <a href="driver-concierge.html">Transport</a>
-      <a href="business-services.html" class="nav-cta">AI Services</a>
+      <a href="driver-concierge.html">Transport + Concierge</a>
+      <a href="business-services.html" class="nav-cta">AI Business Services</a>
     </nav>
     <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
@@ -853,7 +872,99 @@
           <a class="eat-visitor-chip" href="#lane-seafood">Seafood / ceviche</a>
           <a class="eat-visitor-chip" href="#lane-drinks">Rooftop / drinks</a>
           <a class="eat-visitor-chip" href="#lane-breakfast">Breakfast</a>
-          <a class="eat-visitor-chip" href="#lane-drinks">Late-night</a>
+          <a class="eat-visitor-chip" href="#lane-late-night">Late-night</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="eat-cat-band" aria-labelledby="eat-cat-grid-title">
+      <div class="eat-cat-inner">
+        <header class="eat-cat-head">
+          <p class="eyebrow eyebrow-on-dark">Visitor needs</p>
+          <h2 id="eat-cat-grid-title">Image lanes by appetite</h2>
+          <p class="section-text">Tap straight into downtown energy, resort corridors, Mexican, steak, seafood, rooftops, breakfast, and late-night moves.</p>
+        </header>
+        <div class="route-card-grid route-card-grid--dense" role="list">
+          <a href="#eat-visual-band-title" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/downtown-river-promenade-twilight.png" alt="Downtown dining near the River Walk" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Downtown</span>
+              <h3>Downtown food</h3>
+              <p>River Walk pacing, polished tables, and Willie Approved anchors.</p>
+              <span class="image-route-card__cta">Jump to dinner energy</span>
+            </span>
+          </a>
+          <a href="resort-food.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/resort-dining-tropical-sunset.png" alt="Resort-area dining" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Resort guest</span>
+              <h3>Resort nearby</h3>
+              <p>Zone-smart picks when distance and tired crews matter.</p>
+              <span class="image-route-card__cta">Open resort food guide</span>
+            </span>
+          </a>
+          <a href="#lane-mexican" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/dining-riverside-warm-string-lights.png" alt="Mexican dinner atmosphere" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Flavor</span>
+              <h3>Mexican</h3>
+              <p>Polished Tex-Mex and upscale San Antonio flavor lanes.</p>
+              <span class="image-route-card__cta">Open Mexican lane</span>
+            </span>
+          </a>
+          <a href="#lane-steak" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/hero-elegant-urban-arrival-sunset.png" alt="Upscale steakhouse evening" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Splurge</span>
+              <h3>Steakhouse</h3>
+              <p>Client dinners, celebrations, and north-side polish.</p>
+              <span class="image-route-card__cta">Open steak lane</span>
+            </span>
+          </a>
+          <a href="#lane-seafood" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/sa-plug-family-zoo-corridor.png" alt="Bright day out before seafood dinner" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Coastal</span>
+              <h3>Seafood / ceviche</h3>
+              <p>Citrus-forward seafood when the table wants spice.</p>
+              <span class="image-route-card__cta">Open seafood lane</span>
+            </span>
+          </a>
+          <a href="#lane-drinks" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/hero-golden-hour-riverwalk.png" alt="Golden hour on the River Walk" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Skyline</span>
+              <h3>Rooftop / drinks</h3>
+              <p>Classic cocktail anchors, modern lounges, rooftop finishes.</p>
+              <span class="image-route-card__cta">Open drinks lane</span>
+            </span>
+          </a>
+          <a href="#lane-breakfast" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/family-river-stroll-sunset.png" alt="Easy morning stroll before breakfast" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Morning</span>
+              <h3>Breakfast</h3>
+              <p>Bakery pacing, hearty plates, and Market Square utility.</p>
+              <span class="image-route-card__cta">Open breakfast lane</span>
+            </span>
+          </a>
+          <a href="#lane-late-night" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/transport-luxury-city-arrival-night.png" alt="City lights after dinner" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">After hours</span>
+              <h3>Late-night</h3>
+              <p>Bar-hop energy, nightcaps, and safe pivots downtown.</p>
+              <span class="image-route-card__cta">Open late-night lane</span>
+            </span>
+          </a>
         </div>
       </div>
     </section>
@@ -1231,6 +1342,10 @@
           <span class="eat-also-label">Also consider</span>
           <p>Also consider: Mad Dogs first for River Walk bar-hop energy; Sternewirth if the night shifts toward Pearl.</p>
         </div>
+        <div id="lane-late-night" class="eat-late-night-anchor">
+          <h3 class="eat-late-night-title">Late-night lane</h3>
+          <p class="section-text">Use the picks above for rooftops and bar-hop pacing. Late nights still need a named start bar, one backup corner, and realistic rideshare timing.</p>
+        </div>
       </div>
 
       <div class="eat-lane" id="lane-pearl">
@@ -1313,10 +1428,12 @@
       <p class="footer-cta">Also built as live capability proof by The AI Plug.</p>
     </div>
     <nav class="footer-links">
+      <a href="index.html">Home</a>
       <a href="start-here.html">Start Here</a>
       <a href="where-to-eat.html">Where To Eat</a>
       <a href="downtown.html">Downtown</a>
       <a href="summer-family.html">Family</a>
+      <a href="resort-food.html">Resort Food</a>
       <a href="driver-concierge.html">Transport + Concierge</a>
       <a href="business-services.html">AI Business Services</a>
     </nav>
