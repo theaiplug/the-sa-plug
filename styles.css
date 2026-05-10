@@ -2388,7 +2388,49 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   min-height: unset;
 }
 
+/* Homepage: seven-guide image grid (image-card-grid) */
+.page-home .home-guide-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(14px, 2vw, 20px);
+  margin-top: clamp(10px, 2vw, 18px);
+  grid-template-columns: 1fr;
+}
 
+@media (min-width: 520px) {
+  .page-home .home-guide-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 860px) {
+  .page-home .home-guide-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1180px) {
+  .page-home .home-guide-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.page-home .home-guide-grid .image-card {
+  min-height: clamp(260px, 32vw, 340px);
+  aspect-ratio: 4 / 5;
+}
+
+.page-home .home-guide-grid .image-card::before {
+  background: linear-gradient(185deg, rgba(11, 29, 58, 0.02) 35%, rgba(11, 29, 58, 0.55) 72%, rgba(11, 29, 58, 0.88) 100%);
+}
+
+@media (max-width: 519px) {
+  .page-home .home-guide-grid .image-card {
+    aspect-ratio: 16 / 11;
+    min-height: 220px;
+  }
+}
 
 .dark-showcase {
   max-width: none;
@@ -3368,10 +3410,12 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services main > .section.ai-bs-section--capabilities {
   background:
-    radial-gradient(circle at 10% 18%, rgba(20, 184, 166, 0.16), transparent 38%),
-    radial-gradient(circle at 92% 8%, rgba(255, 92, 168, 0.12), transparent 32%),
-    radial-gradient(ellipse 80% 55% at 50% 110%, rgba(242, 178, 26, 0.1), transparent 45%),
-    linear-gradient(165deg, #070c18 0%, #0b1d3a 48%, #101a32 100%);
+    linear-gradient(165deg, rgba(5, 10, 22, 0.82) 0%, rgba(5, 10, 22, 0.88) 45%, rgba(5, 10, 22, 0.92) 100%),
+    radial-gradient(circle at 10% 18%, rgba(20, 184, 166, 0.14), transparent 38%),
+    radial-gradient(circle at 92% 8%, rgba(255, 92, 168, 0.1), transparent 32%),
+    url("assets/futuristic_digital_network_visualization.png");
+  background-size: cover;
+  background-position: center;
   border-block: 1px solid rgba(255, 246, 230, 0.07);
 }
 
@@ -3379,9 +3423,12 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .page-business-services main > .section.ai-bs-owner-dark {
   border-block: 1px solid rgba(255, 246, 230, 0.08);
   background:
-    radial-gradient(ellipse 85% 55% at 20% 0%, rgba(242, 178, 26, 0.1), transparent 48%),
-    radial-gradient(circle at 96% 92%, rgba(20, 184, 166, 0.12), transparent 40%),
-    linear-gradient(172deg, #050a14 0%, #0b1a32 45%, #081222 100%);
+    linear-gradient(168deg, rgba(5, 8, 18, 0.88) 0%, rgba(5, 10, 22, 0.82) 50%, rgba(5, 10, 22, 0.9) 100%),
+    radial-gradient(ellipse 85% 55% at 20% 0%, rgba(242, 178, 26, 0.08), transparent 48%),
+    radial-gradient(circle at 96% 92%, rgba(20, 184, 166, 0.1), transparent 40%),
+    url("assets/futuristic_command_room_with_city_view.png");
+  background-size: cover;
+  background-position: center;
 }
 
 /* --- Business services hero: full-width banner (scoped) --- */
@@ -3393,10 +3440,9 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   overflow-x: clip;
   overflow-y: visible;
   background-color: #071022;
-  /* Fallback: assets/the-ai-plug-hero-background.png when added; use elegant urban night until then */
   background-image:
-    linear-gradient(90deg, rgba(5, 10, 24, 0.92) 0%, rgba(5, 10, 24, 0.72) 38%, rgba(5, 10, 24, 0.35) 62%, rgba(5, 10, 24, 0.12) 100%),
-    url("assets/hero-elegant-urban-arrival-sunset.png");
+    linear-gradient(90deg, rgba(5, 10, 24, 0.9) 0%, rgba(5, 10, 24, 0.68) 38%, rgba(5, 10, 24, 0.32) 62%, rgba(5, 10, 24, 0.1) 100%),
+    url("assets/the-ai-plug-hero-background.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
   background-size: cover, cover;
@@ -3587,8 +3633,8 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   overflow-y: visible;
   background-color: #071022;
   background-image:
-    linear-gradient(90deg, rgba(5, 10, 24, 0.9) 0%, rgba(5, 10, 24, 0.62) 40%, rgba(5, 10, 24, 0.22) 72%, rgba(5, 10, 24, 0.06) 100%),
-    url("assets/hero-golden-hour-riverwalk.png");
+    linear-gradient(90deg, rgba(5, 10, 24, 0.88) 0%, rgba(5, 10, 24, 0.58) 40%, rgba(5, 10, 24, 0.2) 72%, rgba(5, 10, 24, 0.06) 100%),
+    url("assets/tranquil_riverwalk_at_twilight.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
   background-size: cover, cover;
@@ -3760,22 +3806,24 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services .ai-bs-pillar-section--contact {
   background:
-    linear-gradient(105deg, rgba(5, 10, 22, 0.94) 0%, rgba(5, 10, 22, 0.88) 52%, rgba(5, 10, 22, 0.55) 100%),
-    url("assets/transport-luxury-city-arrival-night.png");
+    linear-gradient(105deg, rgba(5, 10, 22, 0.88) 0%, rgba(5, 10, 22, 0.78) 48%, rgba(5, 10, 22, 0.52) 100%),
+    url("assets/futuristic_tech_workspace_with_glowing_ui.png");
   background-size: cover;
   background-position: center;
 }
 
 .page-business-services .ai-bs-pillar-section--content {
   background:
-    radial-gradient(circle at 12% 20%, rgba(242, 178, 26, 0.12), transparent 40%),
-    linear-gradient(168deg, #0a1428 0%, #0c1a32 48%, #081018 100%);
+    linear-gradient(118deg, rgba(5, 10, 22, 0.82) 0%, rgba(5, 10, 22, 0.55) 55%, rgba(5, 10, 22, 0.42) 100%),
+    url("assets/futuristic_tech_studio_workspace_at_night.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .page-business-services .ai-bs-pillar-section--voice {
   background:
-    linear-gradient(115deg, rgba(6, 12, 24, 0.93) 0%, rgba(6, 12, 24, 0.82) 45%, rgba(6, 12, 24, 0.55) 100%),
-    url("assets/hero-elegant-urban-arrival-sunset.png");
+    linear-gradient(115deg, rgba(6, 12, 24, 0.88) 0%, rgba(6, 12, 24, 0.72) 45%, rgba(6, 12, 24, 0.48) 100%),
+    url("assets/interactive_business_interface_in_a_modern_setting.png");
   background-size: cover;
   background-position: center right;
 }
@@ -4444,6 +4492,87 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services .ai-capability-card p:last-child {
   margin-bottom: 0;
+}
+
+/* Capability grid: image-backed cards (assigned AI art per row order in business-services.html) */
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card {
+  --cap-thumb: none;
+  min-height: clamp(300px, 48vw, 380px);
+  padding-top: clamp(118px, 26vw, 148px);
+  background:
+    linear-gradient(180deg, rgba(4, 12, 26, 0.02) 0%, rgba(4, 12, 26, 0.38) 48%, rgba(4, 12, 26, 0.88) 100%),
+    var(--cap-thumb);
+  background-size: cover, cover;
+  background-position: center, top center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(12px);
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(1) {
+  --cap-thumb: url("assets/modern_office_with_holographic_ui_setup.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(2) {
+  --cap-thumb: url("assets/futuristic_scan_and_digital_flow.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(3) {
+  --cap-thumb: url("assets/interactive_business_interface_in_a_modern_setting.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(4) {
+  --cap-thumb: url("assets/futuristic_tech_workspace_with_glowing_ui.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(5) {
+  --cap-thumb: url("assets/futuristic_workstation_with_glowing_ui_elements.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(6) {
+  --cap-thumb: url("assets/futuristic_digital_network_visualization.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(7) {
+  --cap-thumb: url("assets/futuristic_tech_studio_workspace_at_night.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(8) {
+  --cap-thumb: url("assets/futuristic_command_center_with_ai_interface.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(9) {
+  --cap-thumb: url("assets/futuristic_data_dashboard_interface_design.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(10) {
+  --cap-thumb: url("assets/futuristic_analytics_dashboard_workspace_at_night.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(11) {
+  --cap-thumb: url("assets/futuristic_tech_studio_workspace_at_night.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(12) {
+  --cap-thumb: url("assets/futuristic_digital_workspace_at_night.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(13) {
+  --cap-thumb: url("assets/futuristic_command_room_with_city_view.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(14) {
+  --cap-thumb: url("assets/futuristic_command_center_with_glowing_interfaces.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(15) {
+  --cap-thumb: url("assets/futuristic_digital_network_visualization.png");
+}
+
+@media (max-width: 520px) {
+  .page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card {
+    min-height: 0;
+    padding-top: clamp(100px, 36vw, 128px);
+  }
 }
 
 .page-business-services .ai-cap-label {
@@ -5437,7 +5566,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   background-color: #071022;
   background-image:
     linear-gradient(90deg, rgba(5, 10, 24, 0.9) 0%, rgba(5, 10, 24, 0.62) 40%, rgba(5, 10, 24, 0.22) 72%, rgba(5, 10, 24, 0.06) 100%),
-    url("assets/hero-golden-hour-riverwalk.png");
+    url("assets/golden_hour_along_the_riverwalk.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
   background-size: cover, cover;

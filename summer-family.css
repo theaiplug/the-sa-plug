@@ -40,7 +40,7 @@
     ),
     radial-gradient(ellipse 90% 85% at 92% 45%, rgba(255, 139, 31, 0.14), transparent 58%),
     radial-gradient(ellipse 70% 60% at 78% 18%, rgba(20, 184, 166, 0.1), transparent 52%),
-    url("assets/family-river-stroll-sunset.png");
+    url("assets/sunlit_family_stroll_along_riverside_path.png");
   background-repeat: no-repeat;
   background-position:
     0 0,
@@ -62,7 +62,7 @@
       ),
       radial-gradient(ellipse 100% 80% at 85% 40%, rgba(255, 139, 31, 0.12), transparent 55%),
       radial-gradient(ellipse 85% 55% at 70% 12%, rgba(20, 184, 166, 0.09), transparent 50%),
-      url("assets/family-river-stroll-sunset.png");
+      url("assets/sunlit_family_stroll_along_riverside_path.png");
     background-position:
       0 0,
       0 0,
@@ -842,27 +842,27 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
 }
 
 .page-family-summer .image-backed--theme {
-  background-image: url("assets/sa-plug-family-theme-park-day.png");
+  background-image: url("assets/family_fun_at_sunset_in_the_park.png");
   background-position: center 35%;
 }
 
 .page-family-summer .image-backed--downtown {
-  background-image: url("assets/sa-plug-family-downtown-riverwalk.png");
+  background-image: url("assets/sunny_riverside_family_adventure_day.png");
   background-position: center 42%;
 }
 
 .page-family-summer .image-backed--zoo {
-  background-image: url("assets/sa-plug-family-zoo-corridor.png");
+  background-image: url("assets/golden_hour_stroll_through_the_zoo.png");
   background-position: center 38%;
 }
 
 .page-family-summer .image-backed--safari {
-  background-image: url("assets/sa-plug-family-natural-bridge-safari-park.png");
+  background-image: url("assets/safari_sunset_view_with_family_and_animals.png");
   background-position: 52% 40%;
 }
 
 .page-family-summer .image-backed--resort {
-  background-image: url("assets/family-resort-jw-marriott-waterpark-style.png");
+  background-image: url("assets/sunny_resort_waterpark_fun_day.png");
   background-position: center 48%;
 }
 
@@ -880,12 +880,31 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   }
 }
 
+.page-family-summer .image-backed--bf-garden {
+  background-image: url("assets/family_stroll_in_a_serene_garden.png");
+  background-position: center 40%;
+}
+
+.page-family-summer .image-backed--bf-garden::before {
+  background:
+    linear-gradient(90deg, rgba(5, 10, 24, 0.18), rgba(5, 10, 24, 0.1)),
+    linear-gradient(180deg, rgba(5, 10, 24, 0.08), rgba(5, 10, 24, 0.22));
+}
+
 .page-family-summer .fam-route-detail--checkout-soft {
   border-block-color: rgba(11, 29, 58, 0.07);
   background:
     radial-gradient(ellipse 80% 70% at 12% 0%, rgba(255, 220, 180, 0.35), transparent 50%),
     radial-gradient(ellipse 60% 50% at 95% 100%, rgba(20, 184, 166, 0.12), transparent 48%),
     linear-gradient(180deg, #fff9f0 0%, #efeae3 100%);
+}
+
+.page-family-summer .fam-route-detail--checkout-soft.image-backed.image-backed--bf-garden {
+  background-color: #5a6d58;
+  background-image: url("assets/family_stroll_in_a_serene_garden.png");
+  background-size: cover;
+  background-position: center 38%;
+  border-block-color: transparent;
 }
 
 .page-family-summer .fam-route-detail-inner {
@@ -1537,6 +1556,14 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
 /* ----- Heat timeline ----- */
 .page-family-summer .fam-heat-band {
   padding-block: clamp(42px, 6.8vw, 72px);
+}
+
+.page-family-summer .fam-heat-band.dark-showcase {
+  background:
+    linear-gradient(165deg, rgba(5, 12, 26, 0.88) 0%, rgba(7, 18, 38, 0.9) 55%, rgba(5, 10, 20, 0.92) 100%),
+    url("assets/family_stroll_by_river_at_sunset.png");
+  background-size: cover;
+  background-position: center 42%;
 }
 
 .page-family-summer .fam-heat-highlight {
