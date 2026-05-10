@@ -174,6 +174,9 @@
       line-height: 1.12;
       letter-spacing: -0.03em;
       color: #fff8eb;
+      text-shadow:
+        0 2px 26px rgba(0, 0, 0, 0.55),
+        0 0 44px rgba(20, 184, 166, 0.2);
     }
 
     .food-move-board .eat-move-sub {
@@ -215,15 +218,11 @@
     /* Keep decision cards content-driven — avoid equal-height rows pinning CTAs to the baseline */
     .food-move-board .decision-card__copy {
       flex: 0 1 auto;
+      flex-grow: 0;
     }
 
     .food-move-board .decision-card__cta {
-      margin-top: 0;
-    }
-
-    .food-move-board .decision-card--resort-wide .decision-card__body {
-      flex: 0 1 auto;
-      min-width: 0;
+      margin-top: 10px;
     }
 
     .decision-card {
@@ -340,65 +339,13 @@
       --lane-b: #0369a1;
     }
 
-    .food-move-board__resort {
-      position: relative;
-      z-index: 1;
-      margin-top: clamp(14px, 2.2vw, 20px);
+    /* Full-width resort card stacks like other moves — avoids body flex-grow / row layout hollow */
+    .food-move-board__grid .decision-card--resort-span {
+      grid-column: 1 / -1;
     }
 
-    .food-move-board__resort .decision-card {
-      min-height: 0;
-    }
-
-    .decision-card--resort-wide {
-      flex-direction: row;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px 20px;
-      padding: 14px 18px;
-      min-height: 0;
-    }
-
-    .decision-card--resort-wide::before {
-      top: 12px;
-      bottom: 12px;
-    }
-
-    .decision-card--resort-wide .decision-card__body {
-      flex: 1 1 260px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-left: 12px;
-    }
-
-    .decision-card--resort-wide h3 {
-      margin: 0;
-    }
-
-    .decision-card--resort-wide .decision-card__copy {
-      margin: 0;
-      flex: 0 0 auto;
-    }
-
-    .decision-card--resort-wide .decision-card__cta {
-      margin-top: 0;
-      margin-left: 12px;
-      align-self: center;
-    }
-
-    @media (max-width: 559px) {
-      .decision-card--resort-wide {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .decision-card--resort-wide .decision-card__cta {
-        margin-top: 4px;
-        margin-left: 12px;
-        align-self: flex-start;
-      }
+    .food-move-board__grid .decision-card--resort-span .decision-card__copy {
+      margin-bottom: 0;
     }
 
     /* Light panel overrides removed — food move board is intentionally dark-on-page */
@@ -490,6 +437,10 @@
       gap: clamp(16px, 2.4vw, 20px);
       align-items: start;
       margin-top: clamp(18px, 2.8vw, 26px);
+    }
+
+    .eat-top-grid > article {
+      min-width: 0;
     }
 
     @media (min-width: 720px) {
@@ -997,15 +948,33 @@
       flex-direction: column;
       gap: 0;
       min-height: 0;
+      overflow-wrap: anywhere;
+      word-wrap: break-word;
     }
 
     /* Shared primitives: readable Google / proof badges on warm cards */
     .eat-rec-card__rating-row {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px 10px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
       margin-bottom: 12px;
+    }
+
+    .eat-rec-card__rating-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 8px;
+      align-items: center;
+    }
+
+    .eat-rec-card__rating-trust .eat-card-badge {
+      margin: 0;
+    }
+
+    .eat-rec-card--premium .eat-google-pill {
+      align-self: flex-start;
+      max-width: 100%;
     }
 
     .eat-google-pill,
@@ -1015,16 +984,16 @@
       gap: 5px;
       max-width: 100%;
       width: fit-content;
-      padding: 0.45rem 0.75rem;
+      padding: 0.5rem 0.8rem;
       border-radius: 999px;
-      font-size: clamp(0.78rem, 0.72rem + 0.45vw, 0.875rem);
+      font-size: clamp(0.82rem, 0.74rem + 0.42vw, 0.92rem);
       font-weight: 800;
       letter-spacing: 0.06em;
       line-height: 1.28;
       text-transform: none;
-      color: #fff7e8;
-      background: rgba(7, 17, 32, 0.92);
-      border: 1px solid rgba(255, 214, 93, 0.45);
+      color: #fffdfb;
+      background: rgba(4, 10, 22, 0.96);
+      border: 1px solid rgba(255, 220, 120, 0.55);
       box-shadow: 0 2px 10px rgba(7, 17, 32, 0.18);
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
@@ -1043,9 +1012,9 @@
       align-items: center;
       max-width: 100%;
       width: fit-content;
-      padding: 0.4rem 0.65rem;
+      padding: 0.45rem 0.72rem;
       border-radius: 999px;
-      font-size: clamp(0.72rem, 0.68rem + 0.35vw, 0.8rem);
+      font-size: clamp(0.78rem, 0.72rem + 0.38vw, 0.875rem);
       font-weight: 800;
       letter-spacing: 0.045em;
       line-height: 1.26;
@@ -1085,9 +1054,9 @@
 
     .eat-chip {
       display: inline-block;
-      padding: 4px 9px;
+      padding: 5px 10px;
       border-radius: 999px;
-      font-size: 0.74rem;
+      font-size: 0.79rem;
       font-weight: 700;
       color: var(--navy);
       background: rgba(20, 184, 166, 0.11);
@@ -1289,18 +1258,7 @@
       max-width: 560px;
     }
 
-    /* Aligns with .section.eat-food-move-section horizontal padding + width */
-    .eat-lanes-guide-shell {
-      max-width: 1120px;
-      margin-inline: auto;
-      padding-inline: clamp(16px, 4.5vw, 74px);
-      box-sizing: border-box;
-    }
-
-    .eat-lanes-guide-shell .eat-use-lanes-note {
-      max-width: none;
-      width: 100%;
-    }
+    /* Lanes helper sits inside food-move-board shell → same gutter as decision cards */
 
     /* Compact "How to use these lanes" note (premium dark glass strip) */
     .eat-use-lanes-note {
@@ -1342,9 +1300,9 @@
 
     .eat-use-lanes-note__label {
       margin: 0 0 4px;
-      font-size: 0.74rem;
+      font-size: 0.8rem;
       font-weight: 800;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: rgba(94, 234, 212, 0.95);
     }
@@ -1365,12 +1323,7 @@
       line-height: 1.55;
     }
 
-    /* Tighten transition out of the food-move board */
-    .eat-food-move-section + .eat-lanes-guide-shell {
-      margin-top: clamp(-6px, -1vw, -2px);
-    }
-
-    .eat-lanes-guide-shell + .eat-top-section {
+    .eat-food-move-section + .eat-top-section {
       padding-top: clamp(20px, 3vw, 30px);
     }
 
@@ -1446,11 +1399,11 @@
     .eat-late-night-move__label {
       display: inline-block;
       align-self: flex-start;
-      padding: 4px 11px;
+      padding: 5px 12px;
       border-radius: 999px;
-      font-size: clamp(0.72rem, 0.68rem + 0.3vw, 0.8rem);
+      font-size: clamp(0.78rem, 0.72rem + 0.32vw, 0.86rem);
       font-weight: 800;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.035em;
       text-transform: uppercase;
       color: #fff8eb;
       background: rgba(255, 138, 31, 0.18);
@@ -1468,9 +1421,9 @@
 
     .eat-late-night-move p {
       margin: 0;
-      font-size: 0.92rem;
-      line-height: 1.55;
-      color: rgba(255, 246, 230, 0.9);
+      font-size: 0.94rem;
+      line-height: 1.58;
+      color: rgba(255, 246, 230, 0.92);
     }
 
     /* Concierge OS band — premium 5-step system replacing the checklist */
@@ -1837,29 +1790,22 @@
             <p class="decision-card__copy">Classic cocktail anchors, pub pacing, and rooftop finishers when you want skyline.</p>
             <span class="decision-card__cta">Drinks lane</span>
           </a>
-        </div>
-        <div class="food-move-board__resort">
-          <a href="resort-food.html" class="decision-card decision-card--plum decision-card--resort-wide">
-            <div class="decision-card__body">
-              <h3>Resort-area dinner</h3>
-              <p class="decision-card__copy">When distance and tired crews matter, zone the meal before you overcommit downtown.</p>
-            </div>
+          <a href="resort-food.html" class="decision-card decision-card--plum decision-card--resort-span">
+            <h3>Resort-area dinner</h3>
+            <p class="decision-card__copy">When distance and tired crews matter, zone the meal before you overcommit downtown.</p>
             <span class="decision-card__cta">Open resort food guide</span>
           </a>
         </div>
+        <aside class="eat-use-lanes-note" role="note" aria-label="How to use these lanes">
+          <span class="eat-use-lanes-note__icon" aria-hidden="true">&rarr;</span>
+          <div class="eat-use-lanes-note__body">
+            <p class="eat-use-lanes-note__label">How to use these lanes</p>
+            <h3>Pick the situation, then the strongest proof-backed pick.</h3>
+            <p><strong>Willie Approved</strong> is personal confidence when you see it on the card &mdash; not the default label for everything on this page. <strong>Research Pick</strong>, <strong>Needs Visit</strong>, and <strong>Reliable Pick</strong> flags cover strong public proof, promising-but-unverified rooms, or safe visitor lanes. Each row still carries Google pills so mobile scanning stays grounded.</p>
+          </div>
+        </aside>
       </div>
     </section>
-
-    <div class="eat-lanes-guide-shell">
-      <aside class="eat-use-lanes-note" role="note" aria-label="How to use these lanes">
-        <span class="eat-use-lanes-note__icon" aria-hidden="true">&rarr;</span>
-        <div class="eat-use-lanes-note__body">
-          <p class="eat-use-lanes-note__label">How to use these lanes</p>
-          <h3>Pick the situation, then the strongest proof-backed pick.</h3>
-          <p><strong>Willie Approved</strong> is personal confidence when you see it on the card. <strong>Research Pick</strong> and <strong>Reliable Pick</strong> flags are for strong public proof or safe visitor lanes without implying a personal visit. Each card still pairs labels with Google proof so you can scan fast on mobile.</p>
-        </div>
-      </aside>
-    </div>
 
     <section class="section eat-top-section" id="top-picks" aria-labelledby="eat-top-title">
       <div class="eat-top-shell">
@@ -1874,15 +1820,17 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.9 ★ · 10K reviews</span>
-                <span class="eat-proof-pill">Top-rated</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Top-rated</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
               <h3>Brasão Brazilian Steakhouse</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Brazilian steakhouse</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Stone Oak corridor · <strong>Vibe:</strong> premium rodizio, high appetite</p>
-              <p class="eat-rec-desc">Willie&rsquo;s preferred Brazilian steakhouse move with elite review strength and a memorable rodizio room — listed first on intent, not because review count beats Chama.</p>
+              <p class="eat-rec-desc">Willie&rsquo;s preferred Brazilian steakhouse with elite rating strength and memorable rodizio pacing — strongest personal confidence in this pairing even though Chama posts the bigger review total.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> hungry groups, resort-area nights, business crews, memorable tables.</p>
               <p class="eat-rec-extra"><strong>Proof note:</strong> Chama Gaúcha still owns the biggest review volume city-wide when raw headcount is the tie-breaker.</p>
             </div>
@@ -1891,10 +1839,12 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.9 ★ · 15K reviews</span>
-                <span class="eat-proof-pill">Strongest review depth</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Strongest review depth</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
-              <h3>Chama Gaúcha</h3>
+              <h3>Chama Gaúcha Brazilian Steakhouse</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Brazilian steakhouse</span>
               </div>
@@ -1908,9 +1858,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.8 ★ · 4.5K reviews</span>
-                <span class="eat-proof-pill">Top-rated steakhouse</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Top-rated steakhouse</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>J-Prime Steakhouse</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Steakhouse</span>
@@ -1926,9 +1878,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.8 ★ · 1.5K reviews</span>
-                <span class="eat-proof-pill">Top-rated rooftop</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Top-rated rooftop</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Skyline Pick</span><span class="eat-status-pill is-muted">Research Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Skyline Pick</span><span class="eat-status-pill is-muted">Research Pick</span></p>
               <h3>Tenfold Rooftop</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Rooftop bar</span>
@@ -1943,9 +1897,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.7 ★ · 2.6K reviews</span>
-                <span class="eat-proof-pill">Strong proof</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Strong proof</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>Bohanan&rsquo;s Prime Steaks and Seafood</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Steakhouse / seafood</span>
@@ -1961,26 +1917,30 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.7 ★ · 9.4K reviews</span>
-                <span class="eat-proof-pill">Strong downtown proof</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">River Walk proof pick</span>
+                  <span class="eat-proof-pill">Research Pick</span>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Research Pick</span><span class="eat-status-pill is-muted">River Walk proof pick</span></p>
               <h3>Domingo Restaurant</h3>
               <div class="eat-zone-chips">
-                <span class="eat-chip">Restaurant</span>
+                <span class="eat-chip">Modern Mexican / Tex-Mex</span>
+                <span class="eat-chip is-price">$30–50</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Downtown core · <strong>Vibe:</strong> modern San Antonio energy</p>
-              <p class="eat-rec-desc">A high-proof downtown and River Walk-adjacent option when the group wants modern energy — a research-led anchor, not positioned as a personal favorite unless Willie labels it elsewhere.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> downtown stays, first-night meals, convention visitors, walkable plans.</p>
-              <p class="eat-rec-extra"><strong>Good when:</strong> You want a modern anchor without gambling on an unknown name.</p>
+              <p class="eat-rec-desc">Top Google-proof downtown pick for Mexican-adjacent dining when visitors want polish near the river and conventions.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> downtown stays, first-night dinners, convention crowds, confident walk-off-the-hotel nights.</p>
             </div>
           </article>
           <article class="card turq eat-guide-card eat-top-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.7 ★ · 6.6K reviews</span>
-                <span class="eat-proof-pill">Strong breakfast proof</span>
+                <span class="eat-google-pill">Google: 4.7 ★ · 6,585 reviews</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Strong breakfast proof</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>La Panadería Bakery Café</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Bakery / café</span>
@@ -1996,9 +1956,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.5 ★ · 5.8K reviews</span>
-                <span class="eat-proof-pill">Reliable pick</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Reliable pick</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>El Bucanero — Blanco</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Seafood</span>
@@ -2028,101 +1990,108 @@
         <div class="eat-section-head">
           <p class="eyebrow">Flavor anchor</p>
           <h2>Mexican &amp; Tex-Mex</h2>
-          <p class="section-text">Ordered for Google proof and visitor usefulness first — personal favorites stay labeled, not implied. La Fonda leads on balanced rating and review depth; Rosario&rsquo;s adds huge volume; Soluna stays a Willie Approved favorite without outranking that proof stack.</p>
+          <p class="section-text">Ranked for visitor usefulness and Google proof first. Willie Approved picks are clearly labeled so you can see the difference between public confidence and personal local confidence.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/golden_hour_riverside_dining_with_fajitas.png" alt="Mexican and Tex-Mex dining spread in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
             <h3>Mexican &amp; Tex-Mex anchor</h3>
-            <p>Proof-first picks, patio classics, and downtown-modern options — split so you choose by situation, not habit.</p>
+            <p>Highest-review downtown option first, then classic rooms and personal favorites labeled on their own terms.</p>
           </div>
         </article>
         <div class="eat-lane-grid">
+          <article class="card turq eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.7 ★ · 9.4K reviews</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">River Walk proof pick</span>
+                  <span class="eat-proof-pill">Research Pick</span>
+                </div>
+              </div>
+              <h3>Domingo Restaurant</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Modern Mexican / Tex-Mex</span>
+                <span class="eat-chip is-price">$30–50</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River Walk orbit · <strong>Vibe:</strong> modern South Texas energy</p>
+              <p class="eat-rec-desc">Strongest public-proof Mexican-adjacent downtown pick when you want a polished room near the river, conventions, or a confident first-night city welcome.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> downtown and River Walk plans, convention guests, visitors anchoring stays in the urban core.</p>
+            </div>
+          </article>
           <article class="card orange eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.5 ★ · 4.2K reviews</span>
-                <span class="eat-proof-pill">Reliable pick</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Reliable pick</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>La Fonda On Main</h3>
               <div class="eat-zone-chips">
-                <span class="eat-chip">Mexican</span>
+                <span class="eat-chip">Mexican / Tex-Mex</span>
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Southtown / King William · <strong>Vibe:</strong> classic dining room, city tradition</p>
-              <p class="eat-rec-desc">Strongest balance of rating, review depth, and classic San Antonio credibility for a first-city Mexican dinner.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> first San Antonio meal, patio energy, traditional Mexican, polished local feel.</p>
-              <p class="eat-rec-extra"><strong>Reservation move:</strong> Weekend prime time — book before you stack River Walk walks.</p>
-            </div>
-          </article>
-          <article class="card gold eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
-            <div class="eat-rec-card__inner">
-              <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.3 ★ · 7.8K reviews</span>
-                <span class="eat-proof-pill">Reliable pick</span>
-              </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Reliable Pick</span></p>
-              <h3>Rosario&rsquo;s ComidaMex &amp; Bar</h3>
-              <div class="eat-zone-chips">
-                <span class="eat-chip">Mexican</span>
-                <span class="eat-chip is-price">$20–30</span>
-              </div>
-              <p class="eat-guide-meta"><strong>Zone:</strong> Southtown / King William · <strong>Vibe:</strong> energetic, festive, locals + visitors</p>
-              <p class="eat-rec-desc">Huge review depth with strong San Antonio energy — a practical win when the group wants crowds, color, and a walkable King William night.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> groups, pre-event dinners, nights when you want the room loud and fun.</p>
+              <p class="eat-rec-desc">Classic San Antonio Mexican room with strong rating balance, tradition, and visitor confidence.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> first-city dinners, family tables, polished local feel.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Weekend prime — book before you stack River Walk walks.</p>
             </div>
           </article>
           <article class="card pink eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.4 ★ · 1.8K reviews</span>
-                <span class="eat-proof-pill">Willie Approved favorite</span>
+                <div class="eat-rec-card__rating-trust">
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved favorite</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved favorite</span></p>
               <h3>Soluna</h3>
               <div class="eat-zone-chips">
-                <span class="eat-chip">Mexican</span>
+                <span class="eat-chip">Mexican / Tex-Mex</span>
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Midtown access · <strong>Vibe:</strong> polished-casual, local favorite</p>
-              <p class="eat-rec-desc">Willie&rsquo;s personal Mexican pick when the night calls for ribeye tacos, chispas, and confident local flavor — third here because review volume trails La Fonda and Rosario&rsquo;s.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> trusted personal pick nights, casual date energy, visitors who want a named local lane.</p>
-              <p class="eat-rec-extra"><strong>Willie note:</strong> Order like a regular — shareable heat and sizzle are the point.</p>
+              <p class="eat-rec-desc">Willie&rsquo;s personal Mexican favorite for ribeye tacos, chispas, and neighborly energy — labeled as a personal pick, not the top Google-proof pick in this lane.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> dinners when you want Willie&rsquo;s flavor shorthand, casual date nights, travelers asking for a named local room.</p>
+            </div>
+          </article>
+          <article class="card gold eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.3 ★ · 7.8K reviews</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Reliable pick</span>
+                </div>
+              </div>
+              <h3>Rosario&rsquo;s ComidaMex &amp; Bar</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Mexican / Tex-Mex</span>
+                <span class="eat-chip is-price">$20–30</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Southtown / King William · <strong>Vibe:</strong> big San Antonio festive energy</p>
+              <p class="eat-rec-desc">Big San Antonio personality with huge review volume and a festive dining room built for bustling nights.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> groups, King William and Southtown evenings, celebrations that want crowds and color.</p>
             </div>
           </article>
           <article class="card green eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.2 ★ · 4.7K reviews</span>
-                <span class="eat-proof-pill">Reliable pick</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Patio classic</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>La Fogata Mexican Cuisine</h3>
               <div class="eat-zone-chips">
-                <span class="eat-chip">Mexican</span>
+                <span class="eat-chip">Mexican / Tex-Mex</span>
                 <span class="eat-chip is-price">$20–30</span>
               </div>
-              <p class="eat-guide-meta"><strong>Zone:</strong> North · <strong>Vibe:</strong> patio classic, festive</p>
-              <p class="eat-rec-desc">Willie Approved classic patio energy when the group wants traditional Mexican under the lights — rating sits under the top stack but the patio story is real.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> visitors who want a patio classic, family gatherings, traditional tone.</p>
-            </div>
-          </article>
-          <article class="card turq eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
-            <div class="eat-rec-card__inner">
-              <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.7 ★ · 9.4K reviews</span>
-                <span class="eat-proof-pill">River Walk proof pick</span>
-              </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Research Pick</span><span class="eat-status-pill is-muted">River Walk proof pick</span></p>
-              <h3>Domingo Restaurant</h3>
-              <div class="eat-zone-chips">
-                <span class="eat-chip">Restaurant</span>
-              </div>
-              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River Walk orbit · <strong>Vibe:</strong> modern downtown room</p>
-              <p class="eat-rec-desc">Very strong public proof for a contemporary downtown meal — useful when you want a modern River Walk-corridor anchor without marketing it as a personal Willie favorite.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> walkable downtown plans, convention visitors, modern first-night city energy.</p>
-              <p class="eat-rec-extra"><strong>Listed last in this lane by intent:</strong> Mexican-forward booths still start with La Fonda, Rosario&rsquo;s, Soluna, and La Fogata — Domingo is the downtown-modern flex.</p>
+              <p class="eat-guide-meta"><strong>Zone:</strong> North · <strong>Vibe:</strong> festive patio tradition</p>
+              <p class="eat-rec-desc">Classic patio energy and traditional San Antonio feel, but lower public-proof ranking than the options above.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> patio-first dinners, visitors chasing garden lights and shareable classics.</p>
             </div>
           </article>
         </div>
@@ -2150,9 +2119,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.8 ★ · 4.5K reviews</span>
-                <span class="eat-proof-pill">Top-rated steakhouse</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Top-rated steakhouse</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>J-Prime Steakhouse</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Steakhouse</span>
@@ -2168,9 +2139,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.7 ★ · 2.6K reviews</span>
-                <span class="eat-proof-pill">Strong proof</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Strong proof</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>Bohanan&rsquo;s Prime Steaks and Seafood</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Steakhouse / seafood</span>
@@ -2185,9 +2158,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.7 ★ · 3.5K reviews</span>
-                <span class="eat-proof-pill">Strong proof</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Strong proof</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable Pick</span></p>
               <h3>Ruth&rsquo;s Chris Steak House</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Steakhouse</span>
@@ -2223,15 +2198,17 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.9 ★ · 10K reviews</span>
-                <span class="eat-proof-pill">Top-rated</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Top-rated</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
               <h3>Brasão Brazilian Steakhouse</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Brazilian steakhouse</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Stone Oak · <strong>Vibe:</strong> premium rodizio</p>
-              <p class="eat-rec-desc">Willie&rsquo;s preferred Brazilian steakhouse with elite review strength — listed first because taste and intent lead, even though Chama posts the biggest review total.</p>
+              <p class="eat-rec-desc">Willie&rsquo;s preferred Brazilian steakhouse with elite rating strength and the rodizio pacing he trusts — Chama still carries the heavier review totals when raw headcount is the tie-breaker.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> hungry groups, resort nights, memorable tables.</p>
               <p class="eat-rec-extra"><strong>Proof honesty:</strong> Chama Gaúcha still wins raw headcount when that is the only scoreboard.</p>
             </div>
@@ -2240,10 +2217,12 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.9 ★ · 15K reviews</span>
-                <span class="eat-proof-pill">Strongest review depth</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Strongest review depth</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
-              <h3>Chama Gaúcha — San Antonio</h3>
+              <h3>Chama Gaúcha Brazilian Steakhouse</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Brazilian steakhouse</span>
               </div>
@@ -2258,9 +2237,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.6 ★ · 9K reviews</span>
-                <span class="eat-proof-pill">Reliable chain pick</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Reliable chain pick</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable chain pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable Pick</span></p>
               <h3>Fogo de Chão Brazilian Steakhouse</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Brazilian steakhouse</span>
@@ -2281,7 +2262,7 @@
         <div class="eat-section-head">
           <p class="eyebrow">Gulf &amp; lime</p>
           <h2>Seafood / ceviche</h2>
-          <p class="section-text">El Bucanero leads seafood proof; Leche de Tigre tilts upscale Peruvian; El Cevichero fits a lighter local seafood lane.</p>
+          <p class="section-text">El Bucanero leads proof and Willie&rsquo;s top ceviche pick; Leche de Tigre carries elevated Peruvian finesse and a smaller review stack; El Cevichero is the second ceviche-forward pick with lighter spend.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/riverside_seafood_dining_at_golden_hour.png" alt="Fresh seafood and ceviche presentation in San Antonio" loading="lazy" decoding="async" />
@@ -2295,9 +2276,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.5 ★ · 5.8K reviews</span>
-                <span class="eat-proof-pill">Strong seafood proof</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Strong seafood proof</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>El Bucanero — Blanco</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Seafood</span>
@@ -2312,9 +2295,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.5 ★ · 939 reviews</span>
-                <span class="eat-proof-pill">Elevated ceviche lane</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Elevated ceviche lane</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>Leche de Tigre Cebicheria Peruana</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Peruvian / ceviche</span>
@@ -2328,22 +2313,24 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.5 ★ · 575 reviews</span>
-                <span class="eat-proof-pill">Reliable pick</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Second ceviche pick</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>El Cevichero Restaurant y Cantina</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Seafood / Mexican seafood</span>
                 <span class="eat-chip is-price">$10–20</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Neighborhood · <strong>Vibe:</strong> cantina ease</p>
-              <p class="eat-rec-desc">Local seafood and ceviche lane with lighter spend — great when you want lime and seafood without a steakhouse bill.</p>
+              <p class="eat-rec-desc">Willie&rsquo;s second-best ceviche pick in this lane &mdash; smaller review count than El Bucanero, still a strong citrus-seafood room when you want cantina pacing without a steakhouse bill.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> lunch pivots, smaller groups, casual seafood cravings.</p>
             </div>
           </article>
         </div>
         <div class="eat-choose-strip">
-          <p><strong>Seafood read:</strong> Start at El Bucanero for proof + Willie pick, move to Leche de Tigre for Peruvian finesse, or El Cevichero for easygoing Mexican seafood.</p>
+          <p><strong>Seafood read:</strong> El Bucanero first for proof + Willie&rsquo;s top ceviche move, Leche de Tigre for elevated Peruvian finesse, El Cevichero as the second ceviche-forward pick with lighter spend.</p>
         </div>
       </div>
 
@@ -2364,10 +2351,12 @@
           <article class="card orange eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.7 ★ · 6.6K reviews</span>
-                <span class="eat-proof-pill">Strong breakfast proof</span>
+                <span class="eat-google-pill">Google: 4.7 ★ · 6,585 reviews</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Strong breakfast proof</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>La Panadería Bakery Café</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Bakery / café</span>
@@ -2382,9 +2371,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.7 ★ · 5.1K reviews</span>
-                <span class="eat-proof-pill">River Walk breakfast pick</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">River Walk Breakfast Pick</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">River Walk Breakfast Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">River Walk breakfast pick</span></p>
               <h3>Alamo Biscuit Company &amp; Panaderia River Walk</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Breakfast</span>
@@ -2399,9 +2390,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.4 ★ · 25K reviews</span>
-                <span class="eat-proof-pill">Cultural classic</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Cultural classic</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Cultural Classic</span><span class="eat-status-pill is-muted">Late-night Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Cultural Classic</span><span class="eat-status-pill is-muted">Late-night Pick</span></p>
               <h3>Mi Tierra Cafe y Panaderia</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Mexican / Market Square</span>
@@ -2422,46 +2415,50 @@
         <div class="eat-section-head">
           <p class="eyebrow">Walkable core</p>
           <h2>River Walk / downtown classics</h2>
-          <p class="section-text"><strong>Domingo Restaurant</strong> already anchors downtown proof in the confidence deck and Mexican lane. This row focuses on Italian River utility, classic cocktails, and pub energy when you refuse to leave the corridor.</p>
+          <p class="section-text">Same ranking approach as drinks: strongest proof finishes first — Tenfold for rooftop depth, Esquire for historic River cocktails, Mad Dogs for pub pacing, 1Watson when you want a skyline view with lighter proof. <strong>Domingo Restaurant</strong> leads the Mexican &amp; Tex-Mex lane on Google proof for downtown visitors.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/riverside_dining_under_warm_lights.png" alt="River Walk dining under warm lights in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
             <h3>River Walk classics anchor</h3>
-            <p>Walkable wins when you are already downtown — fewer surprises, clearer logistics.</p>
+            <p>Skyline when you want elevation, River bars when you want history, pub energy when you want easy pace — all without leaving the corridor.</p>
           </div>
         </article>
         <div class="eat-lane-grid eat-lane-grid--2">
-          <article class="card turq eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
+          <article class="card pink eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.5 ★ · 5.6K reviews</span>
-                <span class="eat-proof-pill">Reliable pick</span>
+                <span class="eat-google-pill">Google: 4.8 ★ · 1.5K reviews</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Top-rated rooftop</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Skyline Pick</span><span class="eat-status-pill is-muted">Research Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
-              <h3>Paesanos Riverwalk</h3>
+              <h3>Tenfold Rooftop</h3>
               <div class="eat-zone-chips">
-                <span class="eat-chip">Italian</span>
+                <span class="eat-chip">Rooftop bar</span>
               </div>
-              <p class="eat-guide-meta"><strong>Zone:</strong> River Walk · <strong>Vibe:</strong> classic Italian crowd-pleaser</p>
-              <p class="eat-rec-desc">High-proof Italian anchor when the group wants a safe River Walk dinner without a quirky concept.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> mixed groups, visitors who want familiar Italian energy, walkable hotel plans.</p>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Santo · <strong>Vibe:</strong> skyline cocktails, nightcap energy</p>
+              <p class="eat-rec-desc">Strongest rating in this corridor set &mdash; premium rooftop finish when downtown plans need proof-backed elevation.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> sunset drinks, post-dinner skyline finish, hotel guests nearby.</p>
             </div>
           </article>
           <article class="card purple eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.4 ★ · 5.2K reviews</span>
-                <span class="eat-proof-pill">Reliable River Walk pick</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Historic River Walk bar</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>The Esquire Tavern</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Bar</span>
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> River Walk / downtown · <strong>Vibe:</strong> historic cocktail room</p>
-              <p class="eat-rec-desc">Historic River Walk bar spine with huge review proof — Willie Approved backbone for a serious drink before or after dinner.</p>
+              <p class="eat-rec-desc">Historic River Walk bar backbone with huge review depth &mdash; the steady classic-drink move before or after dinner.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> cocktail clarity, conversation, River Walk handoffs.</p>
             </div>
           </article>
@@ -2469,19 +2466,43 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.2 ★ · 4.2K reviews</span>
-                <span class="eat-proof-pill">Reliable River Walk pub</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Reliable River Walk pub</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable River Walk Pub</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable River Walk Pub</span></p>
               <h3>Mad Dogs British Pub River Walk</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Pub</span>
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> River Walk · <strong>Vibe:</strong> casual pub, live energy</p>
-              <p class="eat-rec-desc">Honest pub-and-bite utility when the night stays informal — also listed in drinks for bar-hop sequencing.</p>
+              <p class="eat-rec-desc">Useful bar-hop fuel when the night stays informal &mdash; honest pub-and-bite pacing lower on the rating stack than Esquire.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> bar-hop nights, easygoing groups, beer-and-bite stops.</p>
             </div>
           </article>
+          <article class="card gold eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.1 ★ · 460 reviews</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Lower proof · view lane</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Rooftop Research Pick</span></p>
+                </div>
+              </div>
+              <h3>1Watson</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Rooftop restaurant / bar</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River proximity · <strong>Vibe:</strong> modern rooftop lounge</p>
+              <p class="eat-rec-desc">Lower Google proof than Tenfold with a skyline view profile some crews prefer — use when novelty matters more than the rating stack.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> skyline curiosity, pre-dinner drinks, modern lounge pacing.</p>
+            </div>
+          </article>
+        </div>
+        <div class="eat-also-strip">
+          <span class="eat-also-label">Also useful</span>
+          <p>Italian-first River Walk dinners: <strong>Paesanos Riverwalk</strong> (Research Pick, Google: 4.5 ★ · 5.6K reviews) when the table wants predictable pasta polish on the corridor.</p>
         </div>
       </div>
 
@@ -2503,9 +2524,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.8 ★ · 1.5K reviews</span>
-                <span class="eat-proof-pill">Top-rated rooftop</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Top-rated rooftop</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Skyline Pick</span><span class="eat-status-pill is-muted">Research Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Skyline Pick</span><span class="eat-status-pill is-muted">Research Pick</span></p>
               <h3>Tenfold Rooftop</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Rooftop bar</span>
@@ -2519,9 +2542,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.4 ★ · 5.2K reviews</span>
-                <span class="eat-proof-pill">Historic River Walk bar</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Historic River Walk bar</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
               <h3>The Esquire Tavern</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Bar</span>
@@ -2536,9 +2561,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.2 ★ · 4.2K reviews</span>
-                <span class="eat-proof-pill">Reliable River Walk pub</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Reliable River Walk pub</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable River Walk Pub</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable River Walk Pub</span></p>
               <h3>Mad Dogs British Pub River Walk</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Pub</span>
@@ -2553,9 +2580,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.1 ★ · 460 reviews</span>
-                <span class="eat-proof-pill">Lower proof · view lane</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Lower proof · view lane</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Rooftop Research Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill is-muted">Rooftop Research Pick</span></p>
               <h3>1Watson</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Rooftop restaurant / bar</span>
@@ -2590,9 +2619,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.7 ★ · 948 reviews</span>
-                <span class="eat-proof-pill">Pearl lounge proof</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Pearl lounge proof</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-warn">Needs Visit</span><span class="eat-status-pill is-muted">Research Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-warn">Needs Visit</span><span class="eat-status-pill is-muted">Research Pick</span></p>
               <h3>Sternewirth</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Bar</span>
@@ -2607,9 +2638,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.6 ★ · 1.5K reviews</span>
-                <span class="eat-proof-pill">Pearl Proof Pick</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Pearl Proof Pick</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Research Pick</span><span class="eat-status-pill is-muted">Pearl Proof Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Research Pick</span><span class="eat-status-pill is-muted">Pearl Proof Pick</span></p>
               <h3>Brasserie Mon Chou Chou</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">French restaurant</span>
@@ -2624,9 +2657,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.5 ★ · 1.8K reviews</span>
-                <span class="eat-proof-pill">Pearl Reliable Pick</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Pearl Reliable Pick</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Pearl Reliable Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill is-muted">Pearl Reliable Pick</span></p>
               <h3>Supper</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">American</span>
@@ -2641,9 +2676,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.5 ★ · 4.3K reviews</span>
-                <span class="eat-proof-pill">Strong Pearl proof</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Strong Pearl proof</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Pearl Proof Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge"><span class="eat-status-pill is-muted">Pearl Proof Pick</span></p>
               <h3>Southerleigh Fine Food &amp; Brewery</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Restaurant / brewery</span>
@@ -2658,9 +2695,11 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.5 ★ · 867 reviews</span>
-                <span class="eat-proof-pill">Pearl Research Pick</span>
+                <div class="eat-rec-card__rating-trust">
+                  <span class="eat-proof-pill">Pearl Research Pick</span>
+                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Research Pick</span><span class="eat-status-pill is-muted">Pearl Research Pick</span></p>
+                </div>
               </div>
-              <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Research Pick</span><span class="eat-status-pill is-muted">Pearl Research Pick</span></p>
               <h3>Ladino</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Mediterranean</span>
