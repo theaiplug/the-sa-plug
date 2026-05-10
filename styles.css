@@ -5817,6 +5817,16 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   color: #fff8eb;
 }
 
+.image-route-card__body .h3-like {
+  display: block;
+  margin: 0 0 8px;
+  font-size: clamp(1.05rem, 1.2vw + 0.85rem, 1.22rem);
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  color: #fff8eb;
+}
+
 .image-route-card__body p {
   margin: 0;
   font-size: 0.88rem;
@@ -5852,7 +5862,24 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .path-hub-section .path-hub-head {
   max-width: 48rem;
-  margin-bottom: clamp(22px, 3vw, 30px);
+  /* Space to the card grid lives on .routes-band-inner gap alone (avoid flex gap + head margin stacking). */
+  margin-bottom: 0;
+}
+
+/* Start Here / choose-path: editorial rhythm headline → cards (scoped: path-hub appears only here). */
+.path-hub-section > .routes-band-inner {
+  gap: clamp(28px, 5vw + 10px, 40px);
+}
+
+@media (min-width: 720px) {
+  .path-hub-section > .routes-band-inner {
+    gap: clamp(36px, 4.5vw + 8px, 52px);
+  }
+}
+
+/* Beats Start Here scoped .start-here-main .sh-section-head margin so stacked gap does not return. */
+.start-here-main .path-hub-section .path-hub-head.sh-section-head {
+  margin-bottom: 0;
 }
 
 .path-hub-section .path-hub-head h2 {
