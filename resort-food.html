@@ -10,6 +10,56 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
+    .rf-hero--cinematic.hero-fiesta-dark.secondary-hero {
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      overflow-x: clip;
+      background-color: #071022;
+      background-image:
+        linear-gradient(90deg, rgba(5, 10, 24, 0.92) 0%, rgba(5, 10, 24, 0.62) 42%, rgba(5, 10, 24, 0.2) 100%),
+        url("assets/resort-dining-tropical-sunset.png");
+      background-repeat: no-repeat;
+      background-position: 0 0, center;
+      background-size: cover, cover;
+      min-height: clamp(520px, 70vh, 780px);
+    }
+
+    .rf-hero--cinematic.hero-fiesta-dark::before {
+      display: none;
+    }
+
+    .rf-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(180deg, transparent 55%, rgba(2, 6, 14, 0.45) 100%);
+    }
+
+    .rf-hero--cinematic .hero-fiesta-inner.hero-inner-band {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: min(1180px, 100%);
+      margin-inline: auto;
+      box-sizing: border-box;
+      padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 48px);
+    }
+
+    .rf-hero--cinematic .hero-shell {
+      display: block;
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .rf-hero--cinematic .hero-title {
+      text-shadow: 0 2px 36px rgba(0, 0, 0, 0.35);
+    }
+
     body.resort-food-page {
       background:
         radial-gradient(circle at 15% 0%, rgba(255, 142, 66, 0.14) 0%, rgba(8, 13, 28, 0) 48%),
@@ -368,9 +418,7 @@
 <body class="resort-food-page">
   <header class="site-header">
     <a href="index.html" class="brand">
-      <span class="brand-icon" aria-hidden="true">
-        <img src="assets/images/sa-plug/sa-plug-icon.png" alt="" class="site-logo-img brand-icon-img" />
-      </span>
+      <span class="brand-icon brand-icon--textmark" aria-hidden="true"><span class="brand-textmark">SA</span></span>
       <span class="brand-text"><strong>The SA Plug</strong><small>Real picks from the road.</small></span>
     </a>
     <nav class="nav">
@@ -387,26 +435,21 @@
     <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
   <main>
-    <section class="hero hero-fiesta-dark hero-inner secondary-hero">
+    <section class="hero hero-fiesta-dark hero-inner secondary-hero rf-hero--cinematic" aria-labelledby="rf-hero-heading">
       <div class="hero-fiesta-inner hero-inner-band">
-        <div class="hero-shell hero-inner-grid secondary-hero-grid">
+        <div class="hero-shell">
           <div class="hero-content secondary-hero-copy">
             <p class="eyebrow eyebrow-on-dark eyebrow-hero">Resort Food Guide</p>
-            <h1 class="hero-title">What is good near your resort corridor?</h1>
-            <p class="hero-text hero-text-on-dark">JW Marriott, La Cantera, Hyatt Hill Country, The Rim, Stone Oak, and SeaWorld dinner decisions in one place.</p>
+            <h1 id="rf-hero-heading" class="hero-title">Polished dining near JW, Hyatt Hill Country, La Cantera, and airport traffic.</h1>
+            <p class="hero-text hero-text-on-dark">For guests who do not want to gamble on distance after pool, golf, or a long travel day &mdash; plus quick moves before downtown, the airport, or a convention night.</p>
             <div class="hero-cue-grid" aria-label="Resort zones">
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>JW Marriott</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>La Cantera / Rim</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Stone Oak / SeaWorld</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Families</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Business travelers</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>After pool / golf</strong></div>
             </div>
             <div class="hero-cta-row">
               <a class="btn btn-primary" href="index.html#ask">Ask for a route</a>
               <a class="btn btn-secondary hero-secondary-btn" href="where-to-eat.html">View food picks</a>
-            </div>
-          </div>
-          <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
-            <div class="hero-visual-panel hero-inner-panel">
-              <img src="assets/images/sa-plug/resort-arrival.png" alt="Resort arrival and Hill Country hospitality corridor" class="hero-visual-img hero-inner-img img-pos-resort" width="800" height="1000" decoding="async" />
             </div>
           </div>
         </div>
@@ -426,14 +469,14 @@
 
       <div class="feature-grid">
         <article class="image-card">
-          <div class="image-card-media img-resort" role="img" aria-label="Resort corridor evening planning view"></div>
+          <img src="assets/resort-dining-tropical-sunset.png" alt="" class="image-card-media" width="960" height="640" decoding="async" loading="lazy" />
           <div class="image-card-content">
             <h3>Canyon Ridge logic</h3>
             <p>JW / TPC guests should match tee times, spa windows, and 281 traffic before committing to a steakhouse departure.</p>
           </div>
         </article>
         <article class="image-card">
-          <div class="image-card-media img-food" role="img" aria-label="San Antonio dinner spread and local food scene"></div>
+          <img src="assets/dining-riverside-warm-string-lights.png" alt="" class="image-card-media" width="960" height="640" decoding="async" loading="lazy" />
           <div class="image-card-content">
             <h3>Easy vs. epic</h3>
             <p>Close-and-easy protects tired groups. Worth-the-ride earns the story when you have one free evening.</p>

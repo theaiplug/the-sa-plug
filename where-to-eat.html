@@ -10,6 +10,109 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
+    /* Cinematic hero (Business Services benchmark) */
+    .eat-hero--cinematic.hero-fiesta-dark.secondary-hero {
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      overflow-x: clip;
+      background-color: #071022;
+      background-image:
+        linear-gradient(90deg, rgba(5, 10, 24, 0.92) 0%, rgba(5, 10, 24, 0.68) 40%, rgba(5, 10, 24, 0.28) 72%, rgba(5, 10, 24, 0.08) 100%),
+        url("assets/dining-riverside-warm-string-lights.png");
+      background-repeat: no-repeat;
+      background-position: 0 0, center;
+      background-size: cover, cover;
+      min-height: clamp(520px, 72vh, 760px);
+    }
+
+    .eat-hero--cinematic.hero-fiesta-dark::before {
+      display: none;
+    }
+
+    .eat-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(180deg, transparent 58%, rgba(2, 6, 14, 0.42) 100%);
+    }
+
+    .eat-hero--cinematic .hero-fiesta-inner.hero-inner-band {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: min(1320px, 100%);
+      margin-inline: auto;
+      box-sizing: border-box;
+      padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 48px);
+    }
+
+    .eat-hero--cinematic .hero-shell {
+      display: block;
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .eat-hero--cinematic .hero-title {
+      text-shadow: 0 2px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    .eat-visitor-lanes {
+      padding: clamp(22px, 3vw, 32px) clamp(16px, 4vw, 28px);
+      background:
+        radial-gradient(ellipse 80% 120% at 50% 0%, rgba(242, 178, 26, 0.1), transparent 45%),
+        linear-gradient(180deg, #0a1628 0%, #071018 100%);
+      border-block: 1px solid rgba(255, 246, 230, 0.08);
+    }
+
+    .eat-visitor-lanes-inner {
+      max-width: 1120px;
+      margin-inline: auto;
+    }
+
+    .eat-visitor-lanes .eyebrow {
+      color: rgba(255, 200, 150, 0.95);
+      margin-bottom: 10px;
+    }
+
+    .eat-visitor-lanes h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.25rem, 2vw + 0.6rem, 1.55rem);
+      color: #fff8eb;
+      letter-spacing: -0.02em;
+    }
+
+    .eat-visitor-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      margin-top: 4px;
+    }
+
+    .eat-visitor-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 780;
+      letter-spacing: 0.02em;
+      color: rgba(255, 248, 235, 0.94);
+      background: rgba(255, 246, 230, 0.08);
+      border: 1px solid rgba(242, 178, 26, 0.35);
+      text-decoration: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .eat-visitor-chip:hover {
+      border-color: rgba(20, 184, 166, 0.55);
+      background: rgba(255, 246, 230, 0.12);
+    }
+
     /* Where To Eat — page-scoped guide layout only */
     .eat-food-move-section,
     .eat-top-section,
@@ -700,9 +803,7 @@
 <body>
   <header class="site-header">
     <a href="index.html" class="brand">
-      <span class="brand-icon" aria-hidden="true">
-        <img src="assets/images/sa-plug/sa-plug-icon.png" alt="" class="site-logo-img brand-icon-img" />
-      </span>
+      <span class="brand-icon brand-icon--textmark" aria-hidden="true"><span class="brand-textmark">SA</span></span>
       <span class="brand-text"><strong>The SA Plug</strong><small>Real picks from the road.</small></span>
     </a>
     <nav class="nav">
@@ -719,28 +820,40 @@
     <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
   <main>
-    <section class="hero hero-fiesta-dark hero-inner secondary-hero">
+    <section class="hero hero-fiesta-dark hero-inner secondary-hero eat-hero--cinematic" aria-labelledby="eat-hero-heading">
       <div class="hero-fiesta-inner hero-inner-band">
-        <div class="hero-shell hero-inner-grid secondary-hero-grid">
+        <div class="hero-shell">
           <div class="hero-content secondary-hero-copy">
             <p class="eyebrow eyebrow-on-dark eyebrow-hero">Where To Eat</p>
-            <h1 class="hero-title">Willie-approved food picks by situation.</h1>
-            <p class="hero-text hero-text-on-dark">Use this guide for real Tex-Mex, steak, BBQ, Italian, seafood, Pearl dining, drinks, and breakfast options.</p>
+            <h1 id="eat-hero-heading" class="hero-title">Willie-approved picks, visitor-first lanes.</h1>
+            <p class="hero-text hero-text-on-dark">Downtown energy, resort corridors, Mexican, steak, seafood and ceviche, rooftop drinks, breakfast, and late-night moves &mdash; chosen for real San Antonio trips, not random lists.</p>
             <div class="hero-cue-grid" aria-label="Food lanes">
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Tex-Mex</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Steaks + seafood</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Breakfast + drinks</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Willie Approved</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Research Pick</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Needs Visit</strong></div>
             </div>
             <div class="hero-cta-row">
-              <a class="btn btn-primary" href="resort-food.html">See resort food</a>
+              <a class="btn btn-primary" href="#top-picks">Top picks</a>
               <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-secondary hero-secondary-btn">Ask The SA Plug</a>
             </div>
           </div>
-          <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
-            <div class="hero-visual-panel hero-inner-panel">
-              <img src="assets/images/sa-plug/WHERE_TO_EAT_01_hero_premium_dining.png" alt="Premium San Antonio dining table setting" class="hero-visual-img hero-inner-img img-pos-food" width="800" height="1000" decoding="async" />
-            </div>
-          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="eat-visitor-lanes" aria-labelledby="eat-visitor-lanes-title">
+      <div class="eat-visitor-lanes-inner">
+        <p class="eyebrow">Visitor lanes</p>
+        <h2 id="eat-visitor-lanes-title">Jump by situation</h2>
+        <div class="eat-visitor-chip-row">
+          <a class="eat-visitor-chip" href="downtown.html">Downtown</a>
+          <a class="eat-visitor-chip" href="resort-food.html">Resort nearby</a>
+          <a class="eat-visitor-chip" href="#lane-mexican">Mexican</a>
+          <a class="eat-visitor-chip" href="#lane-steak">Steakhouse</a>
+          <a class="eat-visitor-chip" href="#lane-seafood">Seafood / ceviche</a>
+          <a class="eat-visitor-chip" href="#lane-drinks">Rooftop / drinks</a>
+          <a class="eat-visitor-chip" href="#lane-breakfast">Breakfast</a>
+          <a class="eat-visitor-chip" href="#lane-drinks">Late-night</a>
         </div>
       </div>
     </section>
@@ -793,13 +906,13 @@
       </div>
       <div class="eat-visual-band">
         <article class="eat-image-card">
-          <img src="assets/images/sa-plug/WHERE_TO_EAT_03_visual_band_business_dinner.png" alt="Polished business dinner atmosphere in San Antonio" loading="lazy" decoding="async" />
+          <img src="assets/downtown-river-promenade-twilight.png" alt="Downtown San Antonio River Walk at twilight" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
             <h3>Polished dinner energy</h3>
           </div>
         </article>
         <article class="eat-image-card">
-          <img src="assets/images/sa-plug/WHERE_TO_EAT_02_visual_band_date_night.png" alt="San Antonio date night dining atmosphere near the River Walk" loading="lazy" decoding="async" />
+          <img src="assets/resort-dining-tropical-sunset.png" alt="Resort dining at sunset" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
             <h3>San Antonio night energy</h3>
           </div>
@@ -889,7 +1002,7 @@
           <p class="section-text">Start here when the first meal needs to feel like San Antonio, not a generic downtown dinner.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
-          <img src="assets/images/sa-plug/WHERE_TO_EAT_04_mexican_texmex_anchor.png" alt="Mexican and Tex-Mex dining spread in San Antonio" loading="lazy" decoding="async" />
+          <img src="assets/dining-riverside-warm-string-lights.png" alt="Mexican and Tex-Mex dining spread in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
             <h3>Mexican &amp; Tex-Mex anchor</h3>
             <p>Lead the night with a flavor-first table that feels local and premium from the first round.</p>
@@ -1008,7 +1121,7 @@
           <p class="section-text">Bright, spice-forward seafood choices when the table wants something sharper than another steak night.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
-          <img src="assets/images/sa-plug/WHERE_TO_EAT_05_seafood_ceviche_anchor.png" alt="Fresh seafood and ceviche presentation in San Antonio" loading="lazy" decoding="async" />
+          <img src="assets/resort-dining-tropical-sunset.png" alt="Fresh seafood and ceviche presentation in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
             <h3>Seafood / ceviche anchor</h3>
             <p>El Bucanero is the strongest Willie Approved ceviche lane when seafood is the reason for dinner.</p>
@@ -1127,7 +1240,7 @@
           <p class="section-text">Pearl works when the night needs to feel considered: dinner, drinks, and a walkable district without overcomplicating the plan.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
-          <img src="assets/images/sa-plug/WHERE_TO_EAT_06_pearl_district_anchor.png" alt="Pearl District dinner and lounge atmosphere in San Antonio" loading="lazy" decoding="async" />
+          <img src="assets/hero-elegant-urban-arrival-sunset.png" alt="Pearl District dinner and lounge atmosphere in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
             <h3>Pearl district anchor</h3>
             <p>Pearl works when the night needs to feel considered: dinner, drinks, and a walkable district without overcomplicating the plan.</p>

@@ -12,6 +12,56 @@
   <style>
     /* Transport + Concierge — page-scoped */
 
+    .transport-concierge-main .tc-hero--cinematic.hero-fiesta-dark.secondary-hero {
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      overflow-x: clip;
+      background-color: #071022;
+      background-image:
+        linear-gradient(90deg, rgba(5, 10, 24, 0.92) 0%, rgba(5, 10, 24, 0.65) 44%, rgba(5, 10, 24, 0.22) 100%),
+        url("assets/transport-luxury-city-arrival-night.png");
+      background-repeat: no-repeat;
+      background-position: 0 0, center;
+      background-size: cover, cover;
+      min-height: clamp(520px, 70vh, 760px);
+    }
+
+    .transport-concierge-main .tc-hero--cinematic.hero-fiesta-dark::before {
+      display: none;
+    }
+
+    .transport-concierge-main .tc-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(180deg, transparent 55%, rgba(2, 6, 14, 0.45) 100%);
+    }
+
+    .transport-concierge-main .tc-hero--cinematic .hero-fiesta-inner.hero-inner-band {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: min(1320px, 100%);
+      margin-inline: auto;
+      box-sizing: border-box;
+      padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 48px);
+    }
+
+    .transport-concierge-main .tc-hero--cinematic .hero-shell {
+      display: block;
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .transport-concierge-main .tc-hero--cinematic .hero-title {
+      text-shadow: 0 2px 36px rgba(0, 0, 0, 0.35);
+    }
+
     .transport-concierge-main > .section {
       padding-top: clamp(34px, 4vw, 48px);
       padding-bottom: clamp(34px, 4vw, 48px);
@@ -611,9 +661,7 @@
 <body>
   <header class="site-header">
     <a href="index.html" class="brand">
-      <span class="brand-icon" aria-hidden="true">
-        <img src="assets/images/sa-plug/sa-plug-icon.png" alt="" class="site-logo-img brand-icon-img" />
-      </span>
+      <span class="brand-icon brand-icon--textmark" aria-hidden="true"><span class="brand-textmark">SA</span></span>
       <span class="brand-text"><strong>The SA Plug</strong><small>Real picks from the road.</small></span>
     </a>
     <nav class="nav">
@@ -630,30 +678,25 @@
     <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
   <main class="transport-concierge-main">
-    <section class="hero hero-fiesta-dark hero-inner secondary-hero">
+    <section class="hero hero-fiesta-dark hero-inner secondary-hero tc-hero--cinematic" aria-labelledby="tc-hero-heading">
       <div class="hero-fiesta-inner hero-inner-band">
-        <div class="hero-shell hero-inner-grid secondary-hero-grid">
+        <div class="hero-shell">
           <div class="hero-content secondary-hero-copy">
-            <p class="eyebrow eyebrow-on-dark eyebrow-hero">San Antonio visitor desk</p>
-            <h1 class="hero-title">Visitor transportation + local concierge</h1>
-            <p class="tc-hero-lead">Airport, resort, convention, dinner, and night-out routing for San Antonio visitors who want the right move fast.</p>
-            <p class="tc-hero-support">Tell The SA Plug where you&rsquo;re staying, who you&rsquo;re with, what time you need to move, and what kind of night you want. We&rsquo;ll help you choose the cleanest route, safest pickup logic, and best local next step.</p>
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Visitor desk</p>
+            <h1 id="tc-hero-heading" class="hero-title">Visitor transportation + local concierge</h1>
+            <p class="tc-hero-lead">Availability-based route help for airport, resort, convention, dinner, and night-out planning &mdash; paired with local recommendations when you want San Antonio context, not guesswork.</p>
+            <p class="tc-hero-support">Send where you are staying, party size, timing, and destination style. We tighten pickup logic, pacing, and backups. Regulated transportation services require proper licensing and insurance; we coordinate requests against what is legally and safely available.</p>
             <ul class="tc-hero-chips" aria-label="Common visitor situations">
-              <li><span class="tc-hero-chip">Airport arrivals</span></li>
-              <li><span class="tc-hero-chip">Convention travelers</span></li>
-              <li><span class="tc-hero-chip">Resort routes</span></li>
-              <li><span class="tc-hero-chip">Dinner plans</span></li>
+              <li><span class="tc-hero-chip">Airport / SAT</span></li>
+              <li><span class="tc-hero-chip">Resort transfers</span></li>
+              <li><span class="tc-hero-chip">Convention corridors</span></li>
+              <li><span class="tc-hero-chip">Dinner routing</span></li>
               <li><span class="tc-hero-chip">Night out</span></li>
               <li><span class="tc-hero-chip">Family timing</span></li>
             </ul>
             <div class="hero-cta-row">
               <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation help</a>
               <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-secondary hero-secondary-btn">Ask The SA Plug</a>
-            </div>
-          </div>
-          <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
-            <div class="hero-visual-panel hero-inner-panel tc-hero-panel">
-              <img src="assets/images/sa-plug/downtown-riverwalk.png" alt="Downtown San Antonio streets and River Walk energy for visitor route planning" class="hero-visual-img hero-inner-img img-pos-riverwalk" width="800" height="1000" decoding="async" onerror="this.closest('.tc-hero-panel').classList.add('tc-hero-panel--fallback'); this.remove();" />
             </div>
           </div>
         </div>

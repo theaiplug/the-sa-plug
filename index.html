@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- SITE POLISH DEPLOY TEST 2026-05-09 -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,12 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="page-home">
   <header class="site-header">
     <a href="index.html" class="brand">
-      <span class="brand-icon" aria-hidden="true">
-        <img src="assets/images/sa-plug/sa-plug-icon.png" alt="" class="site-logo-img brand-icon-img" />
-      </span>
+      <span class="brand-icon brand-icon--textmark" aria-hidden="true"><span class="brand-textmark">SA</span></span>
       <span class="brand-text"><strong>The SA Plug</strong><small>Real picks from the road.</small></span>
     </a>
     <nav class="nav">
@@ -32,42 +31,32 @@
     <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
   <main>
-    <section class="hero hero-fiesta-dark">
-      <div class="hero-fiesta-inner">
-        <div class="hero-shell">
-          <div class="hero-content">
-            <p class="eyebrow eyebrow-on-dark eyebrow-hero">San Antonio recommendations for visitors + locals</p>
-            <h1 class="hero-title">Your San Antonio plug for where to go, what to eat, and how to move.</h1>
-            <p class="hero-text hero-text-on-dark">Premium picks for visitors and locals&mdash;food, routes, and moves that match how you actually travel.</p>
+    <section class="hero hero-fiesta-dark secondary-hero home-hero--cinematic" aria-labelledby="home-hero-heading">
+      <div class="hero-fiesta-inner hero-inner-band">
+        <div class="home-hero-shell">
+          <div class="home-hero-body">
+            <div class="home-hero-accent" aria-hidden="true"></div>
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero">The SA Plug</p>
+            <h1 id="home-hero-heading" class="hero-title">Premium San Antonio guide with real picks from the road.</h1>
+            <p class="hero-text hero-text-on-dark">Route-first food, downtown, family, resort, and transport planning &mdash; built like a working concierge. Powered by The AI Plug systems behind the scenes.</p>
             <ul class="hero-proof-row" aria-label="How we plan recommendations">
               <li class="hero-proof-item"><span class="hero-proof-icon" aria-hidden="true"></span>Real local picks</li>
               <li class="hero-proof-item"><span class="hero-proof-icon" aria-hidden="true"></span>Route-first planning</li>
               <li class="hero-proof-item"><span class="hero-proof-icon" aria-hidden="true"></span>Visitor + local friendly</li>
             </ul>
-            <div class="hero-actions">
+            <div class="hero-actions home-hero-cta hero-cta-row">
               <a href="start-here.html" class="btn btn-primary">Start Here</a>
               <a href="https://tally.so/r/D408Aj" class="btn btn-secondary-hero" target="_blank" rel="noopener">Ask The SA Plug</a>
             </div>
-            <div class="route-chip-row route-chip-row-hero" aria-label="Quick routes">
-              <a class="route-chip" href="start-here.html">Just landed</a>
-              <a class="route-chip" href="where-to-eat.html">Dinner tonight</a>
-              <a class="route-chip" href="downtown.html">Downtown now</a>
-              <a class="route-chip" href="resort-food.html">Resort area</a>
-              <a class="route-chip" href="summer-family.html">Family plans</a>
-              <a class="route-chip" href="downtown.html">Night out</a>
+            <div class="route-chip-row route-chip-row-hero home-hero-chips" aria-label="Jump to guides">
+              <a class="route-chip" href="start-here.html">Start Here</a>
+              <a class="route-chip" href="where-to-eat.html">Where To Eat</a>
+              <a class="route-chip" href="downtown.html">Downtown</a>
+              <a class="route-chip" href="summer-family.html">Family</a>
+              <a class="route-chip" href="resort-food.html">Resort food</a>
+              <a class="route-chip" href="driver-concierge.html">Transport + Concierge</a>
+              <a class="route-chip" href="business-services.html">AI Business Services</a>
             </div>
-          </div>
-          <div class="hero-visual-frame">
-            <div class="hero-visual-panel">
-              <img src="assets/images/sa-plug/hero-river-fiesta.png" alt="San Antonio River Walk and Fiesta-inspired city energy" class="hero-visual-img" width="800" height="900" decoding="async" />
-            </div>
-            <aside class="hero-mini hero-mini-a" aria-label="Local coverage">
-              <span class="hero-mini-eyebrow">On the ground</span>
-              <p class="hero-mini-title">
-                <span class="hero-mini-title-line">River Walk &middot; Pearl</span>
-                <span class="hero-mini-title-line">La Cantera &amp; corridors</span>
-              </p>
-            </aside>
           </div>
         </div>
       </div>
@@ -84,7 +73,7 @@
       </div>
       <div class="explore-editorial" role="list">
         <article class="image-card img-downtown explore-card-featured" role="listitem">
-          <img src="assets/images/sa-plug/downtown-riverwalk.png" alt="Downtown San Antonio and River Walk" class="image-card-media" width="640" height="720" decoding="async" />
+          <img src="assets/downtown-river-promenade-twilight.png" alt="Downtown San Antonio and River Walk at twilight" class="image-card-media" width="640" height="720" decoding="async" loading="lazy" />
           <div class="image-card-content">
             <span class="explore-card-badge">Featured</span>
             <h3>Downtown + River Walk</h3>
@@ -93,7 +82,7 @@
           </div>
         </article>
         <article class="image-card img-food explore-card-medium" role="listitem">
-          <img src="assets/images/sa-plug/food-river-dining.png" alt="San Antonio dining near the river" class="image-card-media" width="640" height="720" decoding="async" />
+          <img src="assets/dining-riverside-warm-string-lights.png" alt="San Antonio riverside dining with string lights" class="image-card-media" width="640" height="720" decoding="async" loading="lazy" />
           <div class="image-card-content">
             <h3>Where To Eat</h3>
             <p>Tex-Mex, steak, BBQ, brunch, and local dinner moves.</p>
@@ -101,7 +90,7 @@
           </div>
         </article>
         <article class="image-card img-resort explore-card-medium" role="listitem">
-          <img src="assets/images/sa-plug/resort-arrival.png" alt="Resort arrival and Hill Country hospitality" class="image-card-media" width="640" height="720" decoding="async" />
+          <img src="assets/resort-dining-tropical-sunset.png" alt="Resort dining and tropical sunset hospitality" class="image-card-media" width="640" height="720" decoding="async" loading="lazy" />
           <div class="image-card-content">
             <h3>Resort Food Nearby</h3>
             <p>Strong nearby options around JW, La Cantera, and Hill Country.</p>
@@ -109,7 +98,7 @@
           </div>
         </article>
         <article class="image-card img-family explore-card-wide" role="listitem">
-          <img src="assets/images/sa-plug/family-summer.png" alt="Family summer plans in San Antonio" class="image-card-media" width="640" height="720" decoding="async" />
+          <img src="assets/family-river-stroll-sunset.png" alt="Family strolling San Antonio at sunset" class="image-card-media" width="640" height="720" decoding="async" loading="lazy" />
           <div class="image-card-content image-card-content-wide">
             <h3>Family + Summer</h3>
             <p>Kid-friendly plans built for heat, timing, and easy logistics.</p>
@@ -252,7 +241,7 @@
           <a class="btn btn-secondary btn-on-dark hide-on-desktop transport-mobile-cta" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation</a>
         </div>
         <article class="image-cta img-transport image-cta-balanced transport-col">
-          <img src="assets/images/sa-plug/resort-arrival.png" alt="" class="image-cta-media" width="640" height="720" decoding="async" aria-hidden="true" />
+          <img src="assets/transport-luxury-city-arrival-night.png" alt="" class="image-cta-media" width="640" height="720" decoding="async" loading="lazy" aria-hidden="true" />
           <div class="image-cta-content">
             <h3>Plan a route with confidence</h3>
             <p>Share your timeline and details. Availability and next steps come back fast.</p>
@@ -275,7 +264,7 @@
           </div>
           <a class="btn btn-primary ai-proof-cta" href="business-services.html">See The AI Plug Services</a>
           <div class="ai-proof-visual-wrap">
-            <img src="assets/images/sa-plug/ai-business-proof.png" alt="The AI Plug business and automation imagery" class="ai-proof-visual" width="560" height="640" decoding="async" />
+            <img src="assets/hero-elegant-urban-arrival-sunset.png" alt="The AI Plug: polished urban systems aesthetic" class="ai-proof-visual" width="560" height="640" decoding="async" loading="lazy" />
           </div>
         </div>
         <div class="ai-proof-cap-grid" aria-label="Capabilities">

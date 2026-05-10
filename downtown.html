@@ -10,6 +10,121 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
+    .dt-hero--cinematic.hero-fiesta-dark.secondary-hero {
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      overflow-x: clip;
+      background-color: #071022;
+      background-image:
+        linear-gradient(90deg, rgba(5, 10, 24, 0.92) 0%, rgba(5, 10, 24, 0.65) 45%, rgba(5, 10, 24, 0.22) 100%),
+        url("assets/downtown-river-promenade-twilight.png");
+      background-repeat: no-repeat;
+      background-position: 0 0, center;
+      background-size: cover, cover;
+      min-height: clamp(520px, 70vh, 760px);
+    }
+
+    .dt-hero--cinematic.hero-fiesta-dark::before {
+      display: none;
+    }
+
+    .dt-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(180deg, transparent 55%, rgba(2, 6, 14, 0.45) 100%);
+    }
+
+    .dt-hero--cinematic .hero-fiesta-inner.hero-inner-band {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: min(1320px, 100%);
+      margin-inline: auto;
+      box-sizing: border-box;
+      padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 48px);
+    }
+
+    .dt-hero--cinematic .hero-shell {
+      display: block;
+      width: 100%;
+      max-width: 760px;
+    }
+
+    .dt-hero--cinematic .hero-title {
+      text-shadow: 0 2px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    .dt-anchor-band {
+      margin-top: 0;
+      padding: clamp(28px, 4vw, 44px) clamp(16px, 4vw, 28px);
+      background:
+        linear-gradient(180deg, rgba(6, 12, 24, 0.55), rgba(6, 12, 24, 0.88)),
+        url("assets/hero-golden-hour-riverwalk.png") center / cover no-repeat;
+      color: #fff8eb;
+      border-block: 1px solid rgba(255, 246, 230, 0.1);
+    }
+
+    .dt-anchor-inner {
+      max-width: 1120px;
+      margin-inline: auto;
+    }
+
+    .dt-anchor-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+      margin-top: 14px;
+    }
+
+    @media (min-width: 640px) {
+      .dt-anchor-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .dt-anchor-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .dt-anchor-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 120px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      text-decoration: none;
+      color: #0b1d3a;
+      background: rgba(255, 251, 242, 0.94);
+      border: 1px solid rgba(242, 178, 26, 0.35);
+      box-shadow: 0 12px 28px rgba(2, 6, 14, 0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .dt-anchor-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(2, 6, 14, 0.42);
+    }
+
+    .dt-anchor-card strong {
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+    }
+
+    .dt-anchor-card span {
+      font-size: 0.82rem;
+      color: #344054;
+      line-height: 1.45;
+    }
+
     .downtown-guide {
       margin-top: 1.5rem;
       padding: clamp(1.25rem, 2vw, 2rem);
@@ -266,9 +381,7 @@
 <body>
   <header class="site-header">
     <a href="index.html" class="brand">
-      <span class="brand-icon" aria-hidden="true">
-        <img src="assets/images/sa-plug/sa-plug-icon.png" alt="" class="site-logo-img brand-icon-img" />
-      </span>
+      <span class="brand-icon brand-icon--textmark" aria-hidden="true"><span class="brand-textmark">SA</span></span>
       <span class="brand-text"><strong>The SA Plug</strong><small>Real picks from the road.</small></span>
     </a>
     <nav class="nav">
@@ -285,13 +398,13 @@
     <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
   </header>
   <main>
-    <section class="hero hero-fiesta-dark hero-inner secondary-hero">
+    <section class="hero hero-fiesta-dark hero-inner secondary-hero dt-hero--cinematic" aria-labelledby="dt-hero-heading">
       <div class="hero-fiesta-inner hero-inner-band">
-        <div class="hero-shell hero-inner-grid secondary-hero-grid">
+        <div class="hero-shell">
           <div class="hero-content secondary-hero-copy">
             <p class="eyebrow eyebrow-on-dark eyebrow-hero">Downtown Guide</p>
-            <h1 class="hero-title">Downtown, River Walk, Convention Center, and one-night plans.</h1>
-            <p class="hero-text hero-text-on-dark">Built for convention travelers, downtown hotel guests, and anyone trying to make the right move fast.</p>
+            <h1 id="dt-hero-heading" class="hero-title">Premium visitor routes for River Walk, Alamo, and convention nights.</h1>
+            <p class="hero-text hero-text-on-dark">Walkable loops, Market Square / Mi Tierra energy, Pearl when it fits, Tower views, and family-safe pacing &mdash; without the generic tourism death march.</p>
             <div class="hero-cue-grid" aria-label="Downtown priorities">
               <div class="hero-cue"><span aria-hidden="true"></span><strong>River Walk timing</strong></div>
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Convention-friendly</strong></div>
@@ -302,11 +415,22 @@
               <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener" class="btn btn-secondary hero-secondary-btn">Ask The SA Plug</a>
             </div>
           </div>
-          <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
-            <div class="hero-visual-panel hero-inner-panel">
-              <img src="assets/images/sa-plug/downtown-riverwalk.png" alt="Downtown San Antonio riverfront and walkways" class="hero-visual-img hero-inner-img img-pos-riverwalk" width="800" height="1000" decoding="async" />
-            </div>
-          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dt-anchor-band" aria-labelledby="dt-anchor-title">
+      <div class="dt-anchor-inner">
+        <p class="eyebrow eyebrow-on-dark">Major anchors</p>
+        <h2 id="dt-anchor-title" style="margin:0;font-size:clamp(1.2rem,2vw+0.5rem,1.5rem);color:#fff8eb;">Tap a route anchor</h2>
+        <p class="section-text section-text-light" style="margin:8px 0 0;max-width:52ch;">Use these as building blocks, then chain dinner and drinks from <a href="where-to-eat.html" style="color:#7ee0d0;">Where To Eat</a>.</p>
+        <div class="dt-anchor-grid">
+          <a class="dt-anchor-card" href="#willie-route"><strong>River Walk</strong><span>Barge timing, bridges, and clean exits to dinner.</span></a>
+          <a class="dt-anchor-card" href="#willie-route"><strong>Alamo</strong><span>Early postcard moment before heat and lines spike.</span></a>
+          <a class="dt-anchor-card" href="#willie-route"><strong>Tower of the Americas</strong><span>Skyline play near Hemisfair when views matter.</span></a>
+          <a class="dt-anchor-card" href="#situation-grid"><strong>Market Square / Mi Tierra</strong><span>Culture, color, and pan dulce energy.</span></a>
+          <a class="dt-anchor-card" href="where-to-eat.html#lane-pearl"><strong>Pearl connection</strong><span>When you want district polish away from the core River Walk crush.</span></a>
+          <a class="dt-anchor-card" href="#situation-grid"><strong>Convention visitor loops</strong><span>Time-tight moves from the corridor.</span></a>
         </div>
       </div>
     </section>
@@ -368,7 +492,7 @@
         <p class="eyebrow">Featured route</p>
         <h2>Willie Approved downtown route</h2>
         <p class="section-text">Use this sequence when you want downtown to feel memorable without overplanning the day.</p>
-        <div class="featured-route">
+        <div class="featured-route" id="willie-route">
           <ol class="featured-route-timeline">
             <li class="route-step">
               <span class="route-step-marker" aria-hidden="true">1</span>
@@ -409,7 +533,7 @@
       <div class="guide-section">
         <p class="eyebrow">Use case guide</p>
         <h2>Downtown by situation</h2>
-        <div class="situation-grid">
+        <div class="situation-grid" id="situation-grid">
           <article class="card pink">
             <h3>Business dinner</h3>
             <p>Lead with downtown polish: Bohanan&rsquo;s for a classic client dinner, or Pearl when the group wants a stronger district finish.</p>
