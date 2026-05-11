@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Downtown San Antonio Guide | The SA Plug</title>
-  <meta name="description" content="Downtown, River Walk, Pearl, Market Square, and one-clean-evening routing for visitors." />
+  <meta name="description" content="Downtown San Antonio: River Walk timing, Alamo, Tower of the Americas, Market Square, Pearl, and convention-night routes for visitors." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
@@ -16,12 +16,12 @@
       flex-direction: column;
       box-sizing: border-box;
       overflow-x: clip;
-      background-color: #071022;
+      background-color: #0a1a2e;
       background-image:
-        linear-gradient(90deg, rgba(5, 10, 24, 0.92) 0%, rgba(5, 10, 24, 0.65) 45%, rgba(5, 10, 24, 0.22) 100%),
-        url("assets/twilight_cityscape_along_the_riverside.png");
+        linear-gradient(100deg, rgba(5, 10, 24, 0.62) 0%, rgba(5, 10, 24, 0.28) 46%, rgba(5, 10, 24, 0.06) 100%),
+        url("assets/downtown-hero-premium-route.png");
       background-repeat: no-repeat;
-      background-position: 0 0, center;
+      background-position: 0 0, center 42%;
       background-size: cover, cover;
       min-height: clamp(520px, 70vh, 760px);
     }
@@ -33,7 +33,17 @@
     .dt-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
       pointer-events: none;
       z-index: 1;
-      background: linear-gradient(180deg, transparent 55%, rgba(2, 6, 14, 0.45) 100%);
+      background: linear-gradient(180deg, transparent 58%, rgba(2, 6, 14, 0.38) 100%);
+    }
+
+    @media (max-width: 640px) {
+      .dt-hero--cinematic.hero-fiesta-dark.secondary-hero {
+        background-image:
+          linear-gradient(180deg, rgba(5, 10, 24, 0.35) 0%, rgba(5, 10, 24, 0.55) 45%, rgba(5, 10, 24, 0.72) 100%),
+          url("assets/downtown-hero-premium-route.png");
+        background-position: 0 0, center 38%;
+        min-height: clamp(480px, 76vh, 640px);
+      }
     }
 
     .dt-hero--cinematic .hero-fiesta-inner.hero-inner-band {
@@ -60,35 +70,50 @@
       text-shadow: 0 2px 36px rgba(0, 0, 0, 0.35);
     }
 
-    /* Full-bleed destination cards — bottom-heavy gradient for readability */
+    /* Downtown route cards: natural bottom read lane, photo stays alive */
     .page-downtown .image-route-card {
-      min-height: clamp(260px, 36vw, 300px);
+      min-height: clamp(260px, 38vw, 420px);
     }
 
     .page-downtown .image-route-card__shade {
       background: linear-gradient(
         to top,
-        rgba(5, 10, 22, 0.94) 0%,
-        rgba(5, 10, 22, 0.58) 30%,
-        rgba(5, 10, 22, 0.14) 56%,
-        transparent 76%
+        rgba(2, 10, 20, 0.78) 0%,
+        rgba(2, 10, 20, 0.3) 55%,
+        rgba(2, 10, 20, 0.08) 100%
       );
+    }
+
+    .page-downtown .image-route-card__body {
+      max-width: 85%;
+      width: 100%;
+      align-self: flex-start;
     }
 
     .page-downtown .image-route-card__body p {
       max-width: 42ch;
     }
 
+    .page-downtown .image-route-card__cta {
+      color: var(--turquoise);
+    }
+
+    .page-downtown .image-route-card:hover .image-route-card__cta {
+      color: #5eead4;
+    }
+
     .page-downtown .image-route-card__media--alam { object-position: 55% 38%; }
     .page-downtown .image-route-card__media--tower { object-position: 50% 28%; }
     .page-downtown .image-route-card__media--mercado { object-position: 50% 42%; }
     .page-downtown .image-route-card__media--pearl { object-position: 50% 45%; }
-    .page-downtown .image-route-card__media--river { object-position: 50% 62%; }
-    .page-downtown .image-route-card__media--convention { object-position: 50% 40%; }
+    .page-downtown .image-route-card__media--river { object-position: 50% 42%; }
+    .page-downtown .image-route-card__media--convention { object-position: 46% 40%; }
 
     @media (max-width: 480px) {
+      .page-downtown .image-route-card__media--river { object-position: 52% 40%; }
+      .page-downtown .image-route-card__media--convention { object-position: 44% 38%; }
       .page-downtown .image-route-card {
-        min-height: clamp(280px, 78vw, 340px);
+        min-height: 330px;
       }
 
       .page-downtown .image-route-card__body h3 {
@@ -98,18 +123,32 @@
 
     .page-downtown .dt-dest-grid.route-card-grid {
       grid-template-columns: 1fr;
+      gap: clamp(16px, 2vw, 20px);
     }
 
-    @media (min-width: 620px) {
+    @media (min-width: 680px) {
       .page-downtown .dt-dest-grid.route-card-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .page-downtown .dt-dest-grid.route-card-grid > .image-route-card:first-child {
+        grid-column: 1 / -1;
+        min-height: clamp(300px, 40vw, 460px);
+      }
     }
 
-    @media (min-width: 980px) {
+    @media (min-width: 900px) {
       .page-downtown .dt-dest-grid.route-card-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .page-downtown .dt-dest-grid.route-card-grid > .image-route-card:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .page-downtown #downtown-anchors {
+      scroll-margin-top: calc(var(--header-h, 64px) + 12px);
     }
 
     /* Full-bleed dark band route chooser */
@@ -336,96 +375,156 @@
       font-size: clamp(0.92rem, 1.05vw, 1rem);
     }
 
-    .page-downtown .dt-route-note-section {
+    .page-downtown .dt-one-night-strip {
+      margin-top: clamp(18px, 2.5vw, 26px);
+      padding: 1rem 1.1rem 1.05rem 1.25rem;
+      border-radius: calc(var(--radius) - 4px);
+      border: 1px solid rgba(255, 246, 230, 0.12);
+      background: rgba(2, 8, 18, 0.45);
+      box-shadow: 0 12px 32px rgba(2, 6, 14, 0.28);
+    }
+
+    .page-downtown .dt-one-night-strip p {
+      margin: 0;
+      font-size: clamp(0.88rem, 1.05vw, 0.95rem);
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.9);
+      max-width: 70ch;
+    }
+
+    .page-downtown .dt-one-night-strip strong {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 200, 150, 0.95);
+      margin-bottom: 6px;
+    }
+
+    .page-downtown .dt-concierge-section {
       scroll-margin-top: calc(var(--header-h, 64px) + 12px);
       margin-top: clamp(36px, 5.5vw, 64px);
-      padding: 0 clamp(16px, 4vw, 48px) clamp(36px, 5vw, 56px);
-      max-width: 820px;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 0 clamp(16px, 4vw, 48px) clamp(40px, 5vw, 64px);
     }
 
-    .page-downtown .dt-route-note-card {
-      border-radius: calc(var(--radius) - 2px);
-      border: 1px solid rgba(45, 236, 224, 0.28);
-      background: linear-gradient(165deg, #132947, #0f1d38);
-      color: #f7efe4;
-      padding: clamp(1.05rem, 2vw, 1.35rem);
-      box-shadow: 0 14px 36px rgba(6, 12, 29, 0.35);
+    .page-downtown .dt-concierge-inner {
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    .page-downtown .dt-route-note-card h2 {
+    .page-downtown .dt-concierge-head {
+      max-width: 46rem;
+      margin-bottom: clamp(18px, 2.5vw, 26px);
+    }
+
+    .page-downtown .dt-concierge-head .dt-route-eyebrow {
+      margin: 0 0 8px;
+      color: var(--on-dark-eyebrow);
+      font-weight: 800;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .page-downtown .dt-concierge-head h2 {
       margin: 0 0 10px;
-      font-size: clamp(1.2rem, 2.2vw, 1.38rem);
-      color: #fff6e6;
-      line-height: 1.2;
+      font-size: clamp(1.45rem, 2.8vw, 2rem);
+      line-height: 1.15;
+      color: var(--on-dark-heading);
     }
 
-    .page-downtown .dt-route-note-lead {
-      margin: 0 0 14px;
-      font-size: 0.93rem;
+    .page-downtown .dt-concierge-lead {
+      margin: 0;
+      font-size: clamp(0.94rem, 1.15vw, 1.02rem);
       line-height: 1.62;
-      color: #eae2d9;
+      color: var(--on-dark-body);
+      max-width: 56ch;
+    }
+
+    .page-downtown .dt-concierge-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 520px) {
+      .page-downtown .dt-concierge-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 900px) {
+      .page-downtown .dt-concierge-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .page-downtown .dt-rule-card {
+      position: relative;
+      padding: 1rem 1rem 1rem 2.35rem;
+      border-radius: calc(var(--radius) - 4px);
+      border: 1px solid rgba(255, 246, 230, 0.1);
+      background: linear-gradient(155deg, rgba(19, 41, 71, 0.95), rgba(12, 24, 44, 0.88));
+      box-shadow: 0 12px 28px rgba(2, 6, 14, 0.32);
+      min-height: 100%;
+    }
+
+    .page-downtown .dt-rule-card::before {
+      content: "";
+      position: absolute;
+      left: 0.85rem;
+      top: 1.05rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3ee6d8, #14b8a6);
+      box-shadow: 0 0 0 2px rgba(62, 230, 216, 0.2);
+    }
+
+    .page-downtown .dt-rule-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: rgba(255, 246, 230, 0.9);
+    }
+
+    .page-downtown .dt-concierge-pivot {
+      margin-top: clamp(18px, 2.5vw, 24px);
+      padding: clamp(1rem, 2vw, 1.2rem) clamp(1.1rem, 2vw, 1.35rem);
+      border-radius: calc(var(--radius) - 2px);
+      border: 1px solid rgba(45, 236, 224, 0.35);
+      background:
+        radial-gradient(ellipse 70% 80% at 0% 0%, rgba(20, 184, 166, 0.18), transparent 55%),
+        linear-gradient(165deg, #0c1f3a, #0a1528);
+      box-shadow: 0 16px 40px rgba(2, 6, 14, 0.38);
+    }
+
+    .page-downtown .dt-concierge-pivot p {
+      margin: 0;
+      font-size: clamp(0.92rem, 1.05vw, 0.98rem);
+      line-height: 1.58;
+      color: rgba(255, 246, 230, 0.94);
       max-width: 58ch;
     }
 
-    .page-downtown .dt-route-note-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 0.5rem;
-    }
-
-    .page-downtown .dt-route-note-list li {
-      position: relative;
-      padding-left: 1.35rem;
-      color: #f0e8df;
-      line-height: 1.52;
-      font-size: 0.9rem;
-    }
-
-    .page-downtown .dt-route-note-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.52em;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #3ee6d8, #14b8a6);
-      box-shadow: 0 0 0 2px rgba(62, 230, 216, 0.22);
-    }
-
-    .page-downtown .dt-route-note-ask {
-      margin-top: 0.95rem;
-      padding-top: 0.95rem;
-      border-top: 1px solid rgba(255, 246, 230, 0.1);
-      font-size: 0.92rem;
-      line-height: 1.58;
-      color: rgba(255, 246, 230, 0.92);
-    }
-
-    .page-downtown .dt-route-note-ask a {
+    .page-downtown .dt-concierge-pivot a {
       color: #7ee0d0;
       font-weight: 700;
+    }
+
+    .page-downtown .footer.dark-showcase {
+      padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .page-downtown main {
+      padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
     }
 
     .page-downtown .dt-move-card--slate::before {
       background: linear-gradient(180deg, #cbd5f5, #64748b);
     }
 
-    .page-downtown .hero-ask-link {
-      margin: 14px 0 0;
-      font-size: 0.92rem;
-      line-height: 1.55;
-      color: rgba(255, 246, 230, 0.82);
-    }
-
-    .page-downtown .hero-ask-link a {
-      color: #7ee0d0;
-      font-weight: 700;
-    }
   </style>
 </head>
 <body class="page-downtown">
@@ -454,18 +553,89 @@
           <div class="hero-content secondary-hero-copy">
             <p class="eyebrow eyebrow-on-dark eyebrow-hero">Downtown guide</p>
             <h1 id="dt-hero-heading" class="hero-title">Premium visitor routes for River Walk, Alamo, Pearl, Market Square, and convention nights.</h1>
-            <p class="hero-text hero-text-on-dark">Pick one route, one anchor stop, and an easy next move. Built for nights near the River Walk, booths at the convention center, and guests who want a polished evening without spreadsheet tourism.</p>
+            <p class="hero-text hero-text-on-dark">Pick one route, one anchor stop, and one easy next move. Built for nights near the River Walk, convention guests, and visitors who want a polished plan without spreadsheet tourism.</p>
             <div class="hero-cue-grid" aria-label="What this page helps with">
               <div class="hero-cue"><span aria-hidden="true"></span><strong>One anchor, then nearby</strong></div>
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Convention-ready timing</strong></div>
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Food lives on Where To Eat</strong></div>
             </div>
             <div class="hero-cta-row">
-              <a class="btn btn-primary" href="#choose-downtown-move">Pick a downtown route</a>
+              <a class="btn btn-primary" href="#downtown-anchors">Pick a downtown route</a>
               <a href="where-to-eat.html" class="btn btn-secondary hero-secondary-btn">Open food picks</a>
             </div>
-            <p class="hero-ask-link">Same-night change of plans? <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">Ask The SA Plug</a></p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="downtown-anchors" class="dt-spots-section image-detail-section" aria-labelledby="dt-spots-heading">
+      <div class="dt-spots-inner">
+        <header class="dt-spots-head">
+          <p class="eyebrow eyebrow-on-dark">Downtown routes</p>
+          <h2 id="dt-spots-heading">Pick your downtown anchor</h2>
+          <p class="section-text section-text-light">Start with one strong move &mdash; River Walk, Alamo, Tower of the Americas, Market Square, Pearl, or convention-night pacing &mdash; then build dinner and drinks around it. Tap a card to open the matching route notes below.</p>
+        </header>
+        <div class="route-card-grid dt-dest-grid" role="list">
+          <a href="#dt-river-timing" class="image-route-card" role="listitem">
+            <img class="image-route-card__media image-route-card__media--river" src="assets/downtown-riverwalk-timing-fresh.png" alt="San Antonio River Walk promenade with paths along the water and warm downtown lighting" width="640" height="400" decoding="async" fetchpriority="high" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Pacing</span>
+              <h3>River Walk timing</h3>
+              <p>Use bridges with intent, dodge peak crush when you can, and exit cleanly toward dinner reservations.</p>
+              <span class="image-route-card__cta">Open route</span>
+            </span>
+          </a>
+          <a href="#dt-move-first-time" class="image-route-card" role="listitem">
+            <img class="image-route-card__media image-route-card__media--alam" src="assets/SA_PLUG_DOWNTOWN_ALAMO.png" alt="The Alamo church facade in daylight" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Historic landmark</span>
+              <h3>The Alamo</h3>
+              <p>Go early when lines and heat behave. Short visit, photo respect, quick loop out.</p>
+              <span class="image-route-card__cta">Open route</span>
+            </span>
+          </a>
+          <a href="#dt-move-tower-beat" class="image-route-card" role="listitem">
+            <img class="image-route-card__media image-route-card__media--tower" src="assets/SA_PLUG_DOWNTOWN_TOWER_OF_THE_AMERICAS.png" alt="Tower of the Americas and Hemisfair against the San Antonio skyline" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Skyline &amp; Hemisfair</span>
+              <h3>Tower of the Americas</h3>
+              <p>Hemisfair lawn and observation deck beats when the crew wants skyline or dinner-with-a-view.</p>
+              <span class="image-route-card__cta">Open route</span>
+            </span>
+          </a>
+          <a href="#dt-move-culture" class="image-route-card" role="listitem">
+            <img class="image-route-card__media image-route-card__media--mercado" src="assets/SA_PLUG_DOWNTOWN_MARKET_SQUARE_MI_TIERRA.png" alt="Market Square plaza with papel picado banners" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Plaza nights</span>
+              <h3>Market Square / El Mercado</h3>
+              <p>Mi Tierra, merchants, papel picado energy &mdash; slower pace than the busiest River Walk bends.</p>
+              <span class="image-route-card__cta">Open route</span>
+            </span>
+          </a>
+          <a href="#dt-move-pearl" class="image-route-card" role="listitem">
+            <img class="image-route-card__media image-route-card__media--pearl" src="assets/SA_PLUG_DOWNTOWN_PEARL.png" alt="The Pearl district at dusk with patios and string lights near the river" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Walkable food &amp; drinks</span>
+              <h3>The Pearl</h3>
+              <p>Short trip north for patios, chef-led rooms, Hotel Emma energy, and a calmer reset after River Walk hours.</p>
+              <span class="image-route-card__cta">Open route</span>
+            </span>
+          </a>
+          <a href="#dt-move-business" class="image-route-card" role="listitem">
+            <img class="image-route-card__media image-route-card__media--convention" src="assets/elegant_evening_at_riverside_hotel_entrance.png" alt="Upscale downtown hotel entrance at dusk near the River Walk" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Conventions</span>
+              <h3>Convention visitor loop</h3>
+              <p>Dinner-first discipline from hotels and the Henry B. Gonz&aacute;lez Convention Center corridor, plus one marquee stop before pickup.</p>
+              <span class="image-route-card__cta">Open route</span>
+            </span>
+          </a>
         </div>
       </div>
     </section>
@@ -473,9 +643,9 @@
     <section id="choose-downtown-move" class="section section-dark dt-choose-outer" aria-labelledby="dt-choose-heading">
       <div class="dt-choose-shell">
         <div class="dt-choose-head">
-          <p class="dt-route-eyebrow">Route chooser</p>
+          <p class="dt-route-eyebrow">Downtown by situation</p>
           <h2 id="dt-choose-heading">What kind of downtown night is this?</h2>
-          <p class="dt-choose-lead">Start with your situation. Lock dinner before you wander when you can, then circle one plaza, one skyline moment, or one quiet stretch north of downtown.</p>
+          <p class="dt-choose-lead">Match your crew, weather, and clock. The anchor cards above lock the geography; this lane is for pacing, heat, and how the night should feel.</p>
         </div>
         <div class="dt-move-grid dt-move-grid--stagger">
         <article class="dt-move-card dt-move-card--coral" id="dt-move-first-time">
@@ -498,7 +668,7 @@
         </article>
         <article class="dt-move-card dt-move-card--turq" id="dt-move-family">
           <div class="dt-move-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-          <h3>Family heat-smart day</h3>
+          <h3>Family-friendly downtown loop</h3>
           <div class="dt-move-rows">
             <p class="dt-move-row"><strong>Best for</strong> Summer afternoons, grandparents, restless kids.</p>
             <p class="dt-move-row"><strong>Move</strong> Shorter outdoor windows &rarr; indoor cooldown &rarr; Market Square or Tower when you need novelty without another mile.</p>
@@ -533,100 +703,50 @@
           </div>
         </article>
         </div>
-      </div>
-    </section>
-
-    <section class="dt-spots-section image-detail-section" aria-labelledby="dt-spots-heading">
-      <div class="dt-spots-inner">
-        <header class="dt-spots-head">
-          <p class="eyebrow eyebrow-on-dark">Downtown anchors</p>
-          <h2 id="dt-spots-heading">Where to aim on the ground</h2>
-          <p class="section-text section-text-light">Six stops visitors actually use — each ties to a route above. Tap a card to jump straight to that plan.</p>
-        </header>
-        <div class="route-card-grid dt-dest-grid" role="list">
-          <a href="#dt-move-first-time" class="image-route-card" role="listitem">
-            <img class="image-route-card__media image-route-card__media--alam" src="assets/SA_PLUG_DOWNTOWN_ALAMO.png" alt="The Alamo church facade in daylight" width="640" height="400" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Historic landmark</span>
-              <h3>The Alamo</h3>
-              <p>Go early when lines and heat behave. Short visit, photo respect, quick loop out.</p>
-              <span class="image-route-card__cta">Open route</span>
-            </span>
-          </a>
-          <a href="#dt-move-tower-beat" class="image-route-card" role="listitem">
-            <img class="image-route-card__media image-route-card__media--tower" src="assets/SA_PLUG_DOWNTOWN_TOWER_OF_THE_AMERICAS.png" alt="Tower of the Americas against the skyline" width="640" height="400" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Skyline &amp; Hemisfair</span>
-              <h3>Tower of the Americas</h3>
-              <p>Hemisfair lawn and observation deck beats when the crew wants skyline or dinner-with-a-view.</p>
-              <span class="image-route-card__cta">Open route</span>
-            </span>
-          </a>
-          <a href="#dt-move-culture" class="image-route-card" role="listitem">
-            <img class="image-route-card__media image-route-card__media--mercado" src="assets/SA_PLUG_DOWNTOWN_MARKET_SQUARE_MI_TIERRA.png" alt="Market Square plaza with papel picado banners" width="640" height="400" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Plaza nights</span>
-              <h3>Market Square / El Mercado</h3>
-              <p>Mi Tierra, merchants, papel picado energy — slower pace than the busiest River Walk bends.</p>
-              <span class="image-route-card__cta">Open route</span>
-            </span>
-          </a>
-          <a href="#dt-move-pearl" class="image-route-card" role="listitem">
-            <img class="image-route-card__media image-route-card__media--pearl" src="assets/SA_PLUG_DOWNTOWN_PEARL.png" alt="The Pearl district at dusk with string lights" width="640" height="400" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Walkable food &amp; drinks</span>
-              <h3>The Pearl</h3>
-              <p>Short trip north for patios, chef-led rooms, and a calmer reset after River Walk hours.</p>
-              <span class="image-route-card__cta">Open route</span>
-            </span>
-          </a>
-          <a href="#dt-river-timing" class="image-route-card" role="listitem">
-            <img class="image-route-card__media image-route-card__media--river" src="assets/downtown-river-promenade-twilight.png" alt="River Walk promenade at twilight" width="640" height="400" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Pacing</span>
-              <h3>River Walk timing</h3>
-              <p>Use bridges with intent, dodge peak crush when you can, and exit cleanly toward dinner reservations.</p>
-              <span class="image-route-card__cta">Open route</span>
-            </span>
-          </a>
-          <a href="#dt-move-business" class="image-route-card" role="listitem">
-            <img class="image-route-card__media image-route-card__media--convention" src="assets/elegant_evening_arrival_at_a_luxury_hotel.png" alt="Warm evening light on a downtown hotel facade" width="640" height="400" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Conventions</span>
-              <h3>Convention visitor loop</h3>
-              <p>Dinner-first discipline from hotels and the corridor, plus one marquee stop before pickups.</p>
-              <span class="image-route-card__cta">Open route</span>
-            </span>
-          </a>
-        </div>
+        <aside class="dt-one-night-strip" aria-label="One-night downtown plan">
+          <p><strong>One-night downtown</strong> Alamo window &rarr; short River Walk leg &rarr; one dinner anchor from <a href="where-to-eat.html" style="color:#7ee0d0;font-weight:700;">Where To Eat</a> &rarr; add Tower, Market Square, or Pearl only if the group still has legs.</p>
+        </aside>
       </div>
     </section>
 
     <section class="dt-food-strip" aria-labelledby="dt-food-heading">
       <div class="dt-food-strip-inner">
         <h2 id="dt-food-heading">Food &amp; drink</h2>
-        <p>Names, cuisines, patios, steaks, tacos, desserts, and pacing are all spelled out there &mdash; this page stays focused on how you stitch the geography together tonight.</p>
+        <p>Reservations, cuisines, patios, and pacing live on Where To Eat &mdash; keep this page for route order and timing.</p>
         <a class="btn btn-primary" href="where-to-eat.html">Open food picks</a>
       </div>
     </section>
 
-    <section class="dt-route-note-section" aria-labelledby="dt-route-note-heading">
-      <div class="dt-route-note-card">
-        <h2 id="dt-route-note-heading">How to route downtown without over-planning</h2>
-        <p class="dt-route-note-lead">San Antonio rewards one anchor neighborhood at a time. Stack the Pearl, Hemisfair, or Market Square as second acts &mdash; not simultaneous detours.</p>
-        <ul class="dt-route-note-list">
-          <li>Dinner reservations first on busy weekends and convention weeks.</li>
-          <li>Bookend summer days with shade, indoor pauses, and shorter outdoor legs.</li>
-          <li>Barge cruises work best mid-route for orientation — not squeezed in at closing time.</li>
-          <li>Prefer rideshare pins one block off the busiest bridge pinch points.</li>
-        </ul>
-        <p class="dt-route-note-ask">Same-night rework? Hit <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">Ask The SA Plug</a> — we pivot from what is actually crowded or closed tonight.</p>
+    <section class="dt-concierge-section section" aria-labelledby="dt-concierge-heading">
+      <div class="dt-concierge-inner">
+        <header class="dt-concierge-head">
+          <p class="dt-route-eyebrow">Concierge rules</p>
+          <h2 id="dt-concierge-heading">Rules that save the night</h2>
+          <p class="dt-concierge-lead">San Antonio rewards one anchor neighborhood at a time. Stack Pearl, Hemisfair, or Market Square as a second act when energy holds &mdash; not as three competing detours.</p>
+        </header>
+        <div class="dt-concierge-grid">
+          <article class="dt-rule-card">
+            <p>Book dinner before you walk the busiest River Walk bends.</p>
+          </article>
+          <article class="dt-rule-card">
+            <p>Use the barge cruise early for orientation, not as a last-minute squeeze.</p>
+          </article>
+          <article class="dt-rule-card">
+            <p>Pick one dinner anchor, not three backup reservations you will not make.</p>
+          </article>
+          <article class="dt-rule-card">
+            <p>Plan one indoor reset in summer so the group does not melt mid-route.</p>
+          </article>
+          <article class="dt-rule-card">
+            <p>Choose rideshare pickup points a block off bridge crowds and pinch points.</p>
+          </article>
+          <article class="dt-rule-card">
+            <p>If the night gets tired, close-and-easy beats chasing a &ldquo;worth the ride&rdquo; myth.</p>
+          </article>
+        </div>
+        <aside class="dt-concierge-pivot" aria-label="Same-night help">
+          <p>Need a same-night adjustment? <a href="https://tally.so/r/D408Aj" target="_blank" rel="noopener">Ask The SA Plug</a> for a cleaner route before the night gets loose.</p>
+        </aside>
       </div>
     </section>
   </main>

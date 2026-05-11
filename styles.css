@@ -6101,7 +6101,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .dt-spots-section {
   padding: clamp(36px, 4.5vw, 52px) clamp(16px, 4vw, 48px);
   background:
-    linear-gradient(180deg, rgba(6, 12, 24, 0.55), rgba(6, 12, 24, 0.92)),
+    linear-gradient(180deg, rgba(6, 12, 24, 0.38), rgba(6, 12, 24, 0.82)),
     url("assets/sa-plug-family-downtown-riverwalk.png") center / cover no-repeat;
   border-block: 1px solid rgba(255, 246, 230, 0.1);
 }

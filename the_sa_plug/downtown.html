@@ -75,6 +75,16 @@
       );
     }
 
+    /* Brighter fades on selected cards so photography stays airy (text still bottoms-left anchored) */
+    .page-downtown .image-route-card--light-shade .image-route-card__shade {
+      background: linear-gradient(
+        180deg,
+        rgba(3, 10, 24, 0.08) 0%,
+        rgba(3, 10, 24, 0.42) 52%,
+        rgba(3, 10, 24, 0.82) 100%
+      );
+    }
+
     .page-downtown .image-route-card__body p {
       max-width: 42ch;
     }
@@ -83,10 +93,12 @@
     .page-downtown .image-route-card__media--tower { object-position: 50% 28%; }
     .page-downtown .image-route-card__media--mercado { object-position: 50% 42%; }
     .page-downtown .image-route-card__media--pearl { object-position: 50% 45%; }
-    .page-downtown .image-route-card__media--river { object-position: 50% 62%; }
-    .page-downtown .image-route-card__media--convention { object-position: 50% 40%; }
+    .page-downtown .image-route-card__media--river { object-position: 72% 44%; }
+    .page-downtown .image-route-card__media--convention { object-position: 46% 40%; }
 
     @media (max-width: 480px) {
+      .page-downtown .image-route-card__media--river { object-position: 78% 42%; }
+      .page-downtown .image-route-card__media--convention { object-position: 44% 38%; }
       .page-downtown .image-route-card {
         min-height: clamp(280px, 78vw, 340px);
       }
@@ -584,8 +596,8 @@
               <span class="image-route-card__cta">Open route</span>
             </span>
           </a>
-          <a href="#dt-river-timing" class="image-route-card" role="listitem">
-            <img class="image-route-card__media image-route-card__media--river" src="assets/downtown-river-promenade-twilight.png" alt="River Walk promenade at twilight" width="640" height="400" decoding="async" loading="lazy" />
+          <a href="#dt-river-timing" class="image-route-card image-route-card--light-shade" role="listitem">
+            <img class="image-route-card__media image-route-card__media--river" src="assets/golden_hour_along_the_riverwalk.png" alt="River Walk curve at golden hour with bridge lights and Tower of the Americas" width="640" height="400" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
               <span class="eyebrow">Pacing</span>
@@ -594,13 +606,13 @@
               <span class="image-route-card__cta">Open route</span>
             </span>
           </a>
-          <a href="#dt-move-business" class="image-route-card" role="listitem">
-            <img class="image-route-card__media image-route-card__media--convention" src="assets/elegant_evening_arrival_at_a_luxury_hotel.png" alt="Warm evening light on a downtown hotel facade" width="640" height="400" decoding="async" loading="lazy" />
+          <a href="#dt-move-business" class="image-route-card image-route-card--light-shade" role="listitem">
+            <img class="image-route-card__media image-route-card__media--convention" src="assets/elegant_evening_at_riverside_hotel_entrance.png" alt="Upscale riverside hotel entrance at dusk with downtown skyline and Tower of the Americas" width="640" height="400" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
               <span class="eyebrow">Conventions</span>
               <h3>Convention visitor loop</h3>
-              <p>Dinner-first discipline from hotels and the corridor, plus one marquee stop before pickups.</p>
+              <p>Dinner-first discipline from hotels and the corridor, plus one marquee stop before pickup.</p>
               <span class="image-route-card__cta">Open route</span>
             </span>
           </a>
