@@ -1,20 +1,15 @@
-THE SA PLUG — RESORT FOOD REMAINING HQ STANDALONE IMAGE ASSETS V2
+THE SA PLUG — TRANSPORT + CONCIERGE EXTRA IMAGE ASSETS
 
-Clean website images only.
+Clean standalone website image assets.
 No contact sheets.
-No labels.
-No baked-in text.
-No borders or frames added.
+No baked-in labels or text.
 No UI mockups.
+No logos or watermarks added.
 
 Included files:
-- resort-card-story-dinner-v2.png | 1672x941
-- resort-appetite-late-night-v2.png | 1448x1086
-- resort-card-jw-clubhouse-extra-v2.png | 1448x1086
-- resort-card-family-resort-arrival-v2.png | 1448x1086
-- resort-card-la-cantera-terrace-extra-v2.png | 1448x1086
-- resort-card-airport-timing-extra-v2.png | 1448x1086
-- restaurant-brasao-brazilian-steakhouse-v2.png | 1448x1086
-- restaurant-chama-gaucha-brazilian-steakhouse-v2.png | 1448x1086
-- restaurant-bohanans-steakhouse-v2.png | 1448x1086
-- restaurant-soluna-ribeye-tacos-chispas-v2.png | 1448x1086
+- transport-common-airport-downtown.png | 1448x1086
+- transport-common-resort-riverwalk.png | 1448x1086
+- transport-common-convention-dinner.png | 1448x1086
+- transport-common-family-themepark.png | 1448x1086
+- transport-good-fit-route-planning.png | 1448x1086
+- transport-concierge-request-detail.png | 1448x1086
