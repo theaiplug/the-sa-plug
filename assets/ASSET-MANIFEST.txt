@@ -1,0 +1,20 @@
+THE SA PLUG — RESORT FOOD REMAINING HQ STANDALONE IMAGE ASSETS V2
+
+Clean website images only.
+No contact sheets.
+No labels.
+No baked-in text.
+No borders or frames added.
+No UI mockups.
+
+Included files:
+- resort-card-story-dinner-v2.png | 1672x941
+- resort-appetite-late-night-v2.png | 1448x1086
+- resort-card-jw-clubhouse-extra-v2.png | 1448x1086
+- resort-card-family-resort-arrival-v2.png | 1448x1086
+- resort-card-la-cantera-terrace-extra-v2.png | 1448x1086
+- resort-card-airport-timing-extra-v2.png | 1448x1086
+- restaurant-brasao-brazilian-steakhouse-v2.png | 1448x1086
+- restaurant-chama-gaucha-brazilian-steakhouse-v2.png | 1448x1086
+- restaurant-bohanans-steakhouse-v2.png | 1448x1086
+- restaurant-soluna-ribeye-tacos-chispas-v2.png | 1448x1086
