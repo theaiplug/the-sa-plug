@@ -16,12 +16,12 @@
       flex-direction: column;
       box-sizing: border-box;
       overflow-x: clip;
-      background-color: #071022;
+      background-color: #0a1a2e;
       background-image:
-        linear-gradient(90deg, rgba(5, 10, 24, 0.92) 0%, rgba(5, 10, 24, 0.65) 45%, rgba(5, 10, 24, 0.22) 100%),
-        url("assets/twilight_cityscape_along_the_riverside.png");
+        linear-gradient(100deg, rgba(5, 10, 24, 0.62) 0%, rgba(5, 10, 24, 0.28) 46%, rgba(5, 10, 24, 0.06) 100%),
+        url("assets/downtown-hero-premium-route.png");
       background-repeat: no-repeat;
-      background-position: 0 0, center;
+      background-position: 0 0, center 42%;
       background-size: cover, cover;
       min-height: clamp(520px, 70vh, 760px);
     }
@@ -33,7 +33,17 @@
     .dt-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
       pointer-events: none;
       z-index: 1;
-      background: linear-gradient(180deg, transparent 55%, rgba(2, 6, 14, 0.45) 100%);
+      background: linear-gradient(180deg, transparent 58%, rgba(2, 6, 14, 0.38) 100%);
+    }
+
+    @media (max-width: 640px) {
+      .dt-hero--cinematic.hero-fiesta-dark.secondary-hero {
+        background-image:
+          linear-gradient(180deg, rgba(5, 10, 24, 0.35) 0%, rgba(5, 10, 24, 0.55) 45%, rgba(5, 10, 24, 0.72) 100%),
+          url("assets/downtown-hero-premium-route.png");
+        background-position: 0 0, center 38%;
+        min-height: clamp(480px, 76vh, 640px);
+      }
     }
 
     .dt-hero--cinematic .hero-fiesta-inner.hero-inner-band {
@@ -60,47 +70,50 @@
       text-shadow: 0 2px 36px rgba(0, 0, 0, 0.35);
     }
 
-    /* Full-bleed destination cards — bottom-heavy gradient for readability */
+    /* Downtown route cards: natural bottom read lane, photo stays alive */
     .page-downtown .image-route-card {
-      min-height: clamp(260px, 36vw, 300px);
+      min-height: clamp(260px, 38vw, 420px);
     }
 
     .page-downtown .image-route-card__shade {
       background: linear-gradient(
         to top,
-        rgba(5, 10, 22, 0.94) 0%,
-        rgba(5, 10, 22, 0.58) 30%,
-        rgba(5, 10, 22, 0.14) 56%,
-        transparent 76%
+        rgba(2, 10, 20, 0.78) 0%,
+        rgba(2, 10, 20, 0.3) 55%,
+        rgba(2, 10, 20, 0.08) 100%
       );
     }
 
-    /* Brighter fades on selected cards so photography stays airy (text still bottoms-left anchored) */
-    .page-downtown .image-route-card--light-shade .image-route-card__shade {
-      background: linear-gradient(
-        180deg,
-        rgba(3, 10, 24, 0.08) 0%,
-        rgba(3, 10, 24, 0.42) 52%,
-        rgba(3, 10, 24, 0.82) 100%
-      );
+    .page-downtown .image-route-card__body {
+      max-width: 85%;
+      width: 100%;
+      align-self: flex-start;
     }
 
     .page-downtown .image-route-card__body p {
       max-width: 42ch;
     }
 
+    .page-downtown .image-route-card__cta {
+      color: var(--turquoise);
+    }
+
+    .page-downtown .image-route-card:hover .image-route-card__cta {
+      color: #5eead4;
+    }
+
     .page-downtown .image-route-card__media--alam { object-position: 55% 38%; }
     .page-downtown .image-route-card__media--tower { object-position: 50% 28%; }
     .page-downtown .image-route-card__media--mercado { object-position: 50% 42%; }
     .page-downtown .image-route-card__media--pearl { object-position: 50% 45%; }
-    .page-downtown .image-route-card__media--river { object-position: 72% 44%; }
+    .page-downtown .image-route-card__media--river { object-position: 50% 42%; }
     .page-downtown .image-route-card__media--convention { object-position: 46% 40%; }
 
     @media (max-width: 480px) {
-      .page-downtown .image-route-card__media--river { object-position: 78% 42%; }
+      .page-downtown .image-route-card__media--river { object-position: 52% 40%; }
       .page-downtown .image-route-card__media--convention { object-position: 44% 38%; }
       .page-downtown .image-route-card {
-        min-height: clamp(280px, 78vw, 340px);
+        min-height: 330px;
       }
 
       .page-downtown .image-route-card__body h3 {
@@ -596,8 +609,8 @@
               <span class="image-route-card__cta">Open route</span>
             </span>
           </a>
-          <a href="#dt-river-timing" class="image-route-card image-route-card--light-shade" role="listitem">
-            <img class="image-route-card__media image-route-card__media--river" src="assets/golden_hour_along_the_riverwalk.png" alt="River Walk curve at golden hour with bridge lights and Tower of the Americas" width="640" height="400" decoding="async" loading="lazy" />
+          <a href="#dt-river-timing" class="image-route-card" role="listitem">
+            <img class="image-route-card__media image-route-card__media--river" src="assets/downtown-riverwalk-timing-fresh.png" alt="San Antonio River Walk promenade with paths along the water and warm downtown lighting" width="640" height="400" decoding="async" fetchpriority="high" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
               <span class="eyebrow">Pacing</span>
@@ -606,7 +619,7 @@
               <span class="image-route-card__cta">Open route</span>
             </span>
           </a>
-          <a href="#dt-move-business" class="image-route-card image-route-card--light-shade" role="listitem">
+          <a href="#dt-move-business" class="image-route-card" role="listitem">
             <img class="image-route-card__media image-route-card__media--convention" src="assets/elegant_evening_at_riverside_hotel_entrance.png" alt="Upscale riverside hotel entrance at dusk with downtown skyline and Tower of the Americas" width="640" height="400" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
