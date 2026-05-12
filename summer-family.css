@@ -12,7 +12,7 @@
 .page-family-summer #hill-country,
 .page-family-summer #resort-family,
 .page-family-summer #before-flight-plan,
-.page-family-summer #heat-plan,
+.page-family-summer #family-concierge-help,
 .page-family-summer #situation-routes,
 .page-family-summer #willie-routes,
 .page-family-summer #ask-family {
@@ -1018,6 +1018,10 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   .page-family-summer .fam-route-detail-grid--zoo-pair .fam-route-detail-block:nth-child(4) {
     grid-column: 1 / -1;
   }
+
+  .page-family-summer .fam-route-detail-grid .fam-route-cta-row {
+    grid-column: 1 / -1;
+  }
 }
 
 .page-family-summer .fam-route-detail-block {
@@ -1042,6 +1046,79 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
 
 .page-family-summer .fam-route-detail-block--full {
   grid-column: 1 / -1;
+}
+
+/* Single primary CTA per route (replaces repeated prompt suites) */
+.page-family-summer .fam-route-cta-row {
+  margin-top: clamp(4px, 1vw, 8px);
+  padding: clamp(16px, 2.4vw, 22px) clamp(18px, 2.8vw, 24px);
+  border-radius: clamp(14px, 1.8vw, 18px);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  background: rgba(255, 250, 238, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 18px;
+}
+
+.page-family-summer .fam-route-detail--checkout-soft .fam-route-cta-row {
+  border-color: rgba(11, 29, 58, 0.1);
+  box-shadow: 0 14px 36px rgba(11, 29, 58, 0.1);
+}
+
+.page-family-summer .fam-route-cta-note {
+  margin: 0;
+  flex: 1 1 12rem;
+  max-width: 36rem;
+  font-size: clamp(0.88rem, 0.12vw + 0.84rem, 0.96rem);
+  line-height: 1.5;
+  font-weight: 650;
+  color: rgba(7, 19, 35, 0.82);
+}
+
+.page-family-summer .fam-route-cta-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 22px;
+  border-radius: var(--btn-radius, 14px);
+  font-size: 0.9rem;
+  font-weight: 820;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: #1a2338;
+  background: linear-gradient(135deg, #f2b21a 0%, #ff8b1f 55%, #ff6f31 100%);
+  border: 1px solid rgba(255, 210, 130, 0.7);
+  box-shadow: 0 10px 24px rgba(255, 139, 31, 0.28);
+  transition: filter 0.15s ease;
+}
+
+.page-family-summer .fam-route-cta-btn:hover {
+  filter: brightness(1.04);
+  color: #121a2e;
+}
+
+.page-family-summer .fam-route-cta-btn:focus-visible {
+  outline: 3px solid rgba(20, 184, 166, 0.85);
+  outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .page-family-summer .fam-route-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-family-summer .fam-route-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .page-family-summer .fam-route-stop-list {
@@ -1553,6 +1630,70 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   outline-offset: 2px;
 }
 
+/* ----- Family concierge band (heat + single Ask entry) ----- */
+.page-family-summer .fam-concierge-band {
+  padding-block: clamp(48px, 7vw, 80px);
+}
+
+.page-family-summer .fam-concierge-band.dark-showcase {
+  background:
+    linear-gradient(165deg, rgba(5, 12, 26, 0.88) 0%, rgba(7, 18, 38, 0.9) 55%, rgba(5, 10, 20, 0.92) 100%),
+    url("assets/family_stroll_by_river_at_sunset.png");
+  background-size: cover;
+  background-position: center 42%;
+}
+
+.page-family-summer .fam-concierge-band .fam-concierge-rhythm-label {
+  margin: clamp(22px, 3.5vw, 32px) 0 clamp(14px, 2vw, 18px);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(253, 224, 150, 0.92);
+}
+
+.page-family-summer .fam-concierge-actions {
+  margin-top: clamp(28px, 4vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 14px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.page-family-summer .fam-concierge-actions .btn {
+  min-height: 48px;
+}
+
+.page-family-summer .fam-concierge-actions .btn-primary {
+  background: linear-gradient(135deg, #f2b21a 0%, #ff8b1f 55%, #ff6f31 100%);
+  border: 1px solid rgba(255, 210, 130, 0.7);
+  color: #1a2338;
+  box-shadow: 0 12px 26px rgba(255, 139, 31, 0.34);
+}
+
+.page-family-summer .fam-concierge-actions .btn-secondary {
+  background: rgba(255, 248, 235, 0.1);
+  color: rgba(255, 248, 235, 0.96);
+  border: 1px solid rgba(255, 246, 230, 0.32);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.page-family-summer .fam-concierge-actions .btn-secondary:hover {
+  border-color: rgba(20, 184, 166, 0.5);
+  color: #fffdf8;
+  background: rgba(255, 246, 230, 0.12);
+}
+
+@media (max-width: 520px) {
+  .page-family-summer .fam-concierge-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* ----- Heat timeline ----- */
 .page-family-summer .fam-heat-band {
   padding-block: clamp(42px, 6.8vw, 72px);
@@ -1971,16 +2112,31 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   background: rgba(255, 246, 230, 0.12);
 }
 
-.page-family-summer .fam-final-outline.btn-outline-light {
-  flex-shrink: 0;
-  border-color: rgba(255, 246, 230, 0.42);
-  color: rgba(255, 246, 230, 0.95);
+.page-family-summer .fam-final-foot {
+  margin: clamp(6px, 1.2vw, 10px) 0 0;
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: rgba(255, 246, 230, 0.72);
 }
 
-.page-family-summer .fam-final-outline.btn-outline-light:hover {
-  border-color: rgba(242, 178, 26, 0.55);
-  color: #fffef7;
-  background: rgba(255, 250, 240, 0.06);
+.page-family-summer .fam-final-foot-link {
+  color: rgba(255, 246, 230, 0.92);
+  font-weight: 750;
+  text-decoration: underline;
+  text-decoration-color: rgba(242, 178, 26, 0.45);
+  text-underline-offset: 3px;
+}
+
+.page-family-summer .fam-final-foot-link:hover {
+  color: #fffdf8;
+  text-decoration-color: rgba(20, 184, 166, 0.65);
+}
+
+.page-family-summer .fam-final-foot-sep {
+  display: inline-block;
+  margin: 0 0.4em;
+  color: rgba(255, 246, 230, 0.35);
+  text-decoration: none;
 }
 
 @media (max-width: 520px) {
