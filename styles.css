@@ -3740,12 +3740,10 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services main > .section.ai-bs-section--capabilities {
   background:
-    linear-gradient(165deg, rgba(5, 10, 22, 0.82) 0%, rgba(5, 10, 22, 0.88) 45%, rgba(5, 10, 22, 0.92) 100%),
-    radial-gradient(circle at 10% 18%, rgba(20, 184, 166, 0.14), transparent 38%),
-    radial-gradient(circle at 92% 8%, rgba(255, 92, 168, 0.1), transparent 32%),
-    url("assets/futuristic_digital_network_visualization.png");
-  background-size: cover;
-  background-position: center;
+    radial-gradient(ellipse 70% 55% at 18% 22%, rgba(20, 184, 166, 0.14), transparent 52%),
+    radial-gradient(circle at 88% 12%, rgba(255, 92, 168, 0.09), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(242, 178, 26, 0.06), transparent 45%),
+    linear-gradient(168deg, #050d1a 0%, #0a1830 48%, #060c18 100%);
   border-block: 1px solid rgba(255, 246, 230, 0.07);
 }
 
@@ -3753,9 +3751,9 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .page-business-services main > .section.ai-bs-owner-dark {
   border-block: 1px solid rgba(255, 246, 230, 0.08);
   background:
-    linear-gradient(168deg, rgba(5, 8, 18, 0.88) 0%, rgba(5, 10, 22, 0.82) 50%, rgba(5, 10, 22, 0.9) 100%),
+    linear-gradient(168deg, rgba(5, 8, 18, 0.82) 0%, rgba(5, 10, 22, 0.72) 50%, rgba(5, 10, 22, 0.85) 100%),
     radial-gradient(ellipse 85% 55% at 20% 0%, rgba(242, 178, 26, 0.08), transparent 48%),
-    radial-gradient(circle at 96% 92%, rgba(20, 184, 166, 0.1), transparent 40%),
+    radial-gradient(circle at 96% 92%, rgba(20, 184, 166, 0.09), transparent 40%),
     url("assets/futuristic_command_room_with_city_view.png");
   background-size: cover;
   background-position: center;
@@ -3764,6 +3762,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 /* --- Business services hero: full-width banner (scoped) --- */
 .page-business-services .ai-bs-hero.hero-fiesta-dark {
   isolation: isolate;
+  position: relative;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -3771,11 +3770,36 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   overflow-y: visible;
   background-color: #071022;
   background-image:
-    linear-gradient(90deg, rgba(5, 10, 24, 0.9) 0%, rgba(5, 10, 24, 0.68) 38%, rgba(5, 10, 24, 0.32) 62%, rgba(5, 10, 24, 0.1) 100%),
-    url("assets/the-ai-plug-hero-background.png");
+    linear-gradient(90deg, rgba(5, 10, 24, 0.82) 0%, rgba(5, 10, 24, 0.48) 42%, rgba(5, 10, 24, 0.18) 68%, rgba(5, 10, 24, 0.05) 100%),
+    url("assets/the-ai-plug-hero-background-v2.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
   background-size: cover, cover;
+}
+
+.page-business-services .ai-bs-hero-routing {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.55;
+  background:
+    repeating-linear-gradient(
+      105deg,
+      transparent 0,
+      transparent 38px,
+      rgba(20, 184, 166, 0.07) 38px,
+      rgba(20, 184, 166, 0.07) 39px
+    ),
+    repeating-linear-gradient(
+      -18deg,
+      transparent 0,
+      transparent 120px,
+      rgba(242, 178, 26, 0.06) 120px,
+      rgba(242, 178, 26, 0.07) 121px
+    ),
+    radial-gradient(ellipse 90% 70% at 78% 45%, rgba(255, 92, 168, 0.08), transparent 55%);
+  mix-blend-mode: screen;
 }
 
 @media (max-width: 767px) {
@@ -3807,7 +3831,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .page-business-services .secondary-hero.hero-fiesta-dark.ai-bs-hero::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 62%, rgba(2, 6, 14, 0.45) 100%);
+  background: linear-gradient(180deg, transparent 55%, rgba(2, 6, 14, 0.32) 100%);
 }
 
 .page-business-services .ai-bs-hero .hero-fiesta-inner.hero-inner-band.ai-bs-hero-band {
@@ -3816,7 +3840,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   flex-direction: column;
   justify-content: center;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   min-height: 0;
   width: 100%;
   max-width: min(1320px, 100%);
@@ -3831,7 +3855,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services .ai-bs-hero-body {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -3954,6 +3978,23 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 .page-business-services .ai-bs-hero-cta .btn-secondary:hover {
+  border-color: rgba(20, 184, 166, 0.45);
+  color: rgba(255, 250, 240, 0.99);
+  background: rgba(255, 246, 230, 0.08);
+}
+
+.page-business-services .ai-bs-final-actions .btn-secondary,
+.page-business-services .ai-bs-final-actions .hero-secondary-btn {
+  background: rgba(4, 12, 26, 0.45);
+  color: rgba(255, 248, 235, 0.96);
+  border: 1px solid rgba(255, 246, 230, 0.28);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.page-business-services .ai-bs-final-actions .btn-secondary:hover,
+.page-business-services .ai-bs-final-actions .hero-secondary-btn:hover {
   border-color: rgba(20, 184, 166, 0.45);
   color: rgba(255, 250, 240, 0.99);
   background: rgba(255, 246, 230, 0.08);
@@ -4790,39 +4831,8 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   }
 }
 
-.page-business-services .ai-capability-card.ai-bs-cap-card {
-  position: relative;
-  min-width: 0;
-  overflow-wrap: break-word;
-  padding: clamp(18px, 2.2vw, 22px);
-  border: 1px solid rgba(255, 246, 230, 0.11);
-  border-radius: var(--radius);
-  background:
-    radial-gradient(circle at 0% 0%, rgba(20, 184, 166, 0.12), transparent 38%),
-    linear-gradient(168deg, rgba(255, 246, 230, 0.07) 0%, rgba(4, 12, 28, 0.55) 100%);
-  backdrop-filter: blur(12px);
-  box-shadow:
-    inset 5px 0 0 0 rgba(20, 184, 166, 0.78),
-    0 18px 40px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 246, 230, 0.07);
-}
-
-.page-business-services .ai-bs-cap-card:nth-child(3n + 2) {
-  box-shadow:
-    inset 5px 0 0 0 rgba(242, 178, 26, 0.78),
-    0 18px 40px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 246, 230, 0.07);
-}
-
-.page-business-services .ai-bs-cap-card:nth-child(3n) {
-  box-shadow:
-    inset 5px 0 0 0 rgba(255, 92, 168, 0.72),
-    0 18px 40px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 246, 230, 0.07);
-}
-
 .page-business-services .ai-capability-card h3 {
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   font-size: clamp(1.02rem, 0.32vw + 0.92rem, 1.1rem);
   color: #fff8eb;
 }
@@ -4838,42 +4848,74 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   margin-bottom: 0;
 }
 
-/* Capability grid: image-backed cards (assigned AI art per row order in business-services.html) */
+/* Capability grid: image + body (explicit <img>, object-fit cover) */
 .page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card {
-  --cap-thumb: none;
-  min-height: clamp(300px, 48vw, 380px);
-  padding-top: clamp(118px, 26vw, 148px);
-  background:
-    linear-gradient(180deg, rgba(4, 12, 26, 0.02) 0%, rgba(4, 12, 26, 0.38) 48%, rgba(4, 12, 26, 0.88) 100%),
-    var(--cap-thumb);
-  background-size: cover, cover;
-  background-position: center, top center;
-  background-repeat: no-repeat;
-  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 230, 0.12);
+  border-radius: var(--radius);
+  background: rgba(4, 12, 26, 0.55);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 246, 230, 0.08);
 }
 
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(1) {
-  --cap-thumb: url("assets/modern_office_with_holographic_ui_setup.png");
+.page-business-services .ai-bs-cap-media {
+  position: relative;
+  flex-shrink: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #050c18;
 }
 
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(2) {
-  --cap-thumb: url("assets/futuristic_scan_and_digital_flow.png");
+.page-business-services .ai-bs-cap-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(4, 12, 26, 0) 0%, rgba(4, 12, 26, 0.15) 45%, rgba(4, 12, 26, 0.55) 100%);
 }
 
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(3) {
-  --cap-thumb: url("assets/interactive_business_interface_in_a_modern_setting.png");
+.page-business-services .ai-bs-cap-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.001);
 }
 
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(4) {
-  --cap-thumb: url("assets/futuristic_tech_workspace_with_glowing_ui.png");
+.page-business-services .ai-bs-cap-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(16px, 2.1vw, 20px);
+  border-top: 1px solid rgba(255, 246, 230, 0.1);
+  background: linear-gradient(180deg, rgba(4, 12, 26, 0.75) 0%, rgba(4, 12, 26, 0.94) 100%);
 }
 
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(5) {
-  --cap-thumb: url("assets/futuristic_workstation_with_glowing_ui_elements.png");
+.page-business-services .ai-bs-cap-body h3 {
+  margin: 0 0 4px;
 }
 
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(6) {
-  --cap-thumb: url("assets/futuristic_digital_network_visualization.png");
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(3n + 1) {
+  border-left: 4px solid rgba(20, 184, 166, 0.85);
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(3n + 2) {
+  border-color: rgba(242, 178, 26, 0.22);
+  border-left: 4px solid rgba(242, 178, 26, 0.88);
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(3n) {
+  border-color: rgba(255, 92, 168, 0.2);
+  border-left: 4px solid rgba(255, 92, 168, 0.82);
 }
 
 .page-business-services .ai-bs-additional-layers {
@@ -4898,13 +4940,6 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   color: rgba(20, 184, 166, 0.95);
 }
 
-@media (max-width: 520px) {
-  .page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card {
-    min-height: 0;
-    padding-top: clamp(100px, 36vw, 128px);
-  }
-}
-
 .page-business-services .ai-cap-label {
   font-weight: 800;
   color: rgba(20, 184, 166, 0.95);
@@ -4912,12 +4947,34 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 /* --- Built for real local businesses (dark band) --- */
 .page-business-services .ai-bs-local-business-band {
+  position: relative;
+  overflow: hidden;
   border-top: 1px solid rgba(255, 246, 230, 0.08);
   border-bottom: 1px solid rgba(8, 14, 30, 0.65);
   background:
     radial-gradient(ellipse 90% 70% at 12% 0%, rgba(20, 184, 166, 0.14), transparent 52%),
     radial-gradient(circle at 92% 88%, rgba(255, 92, 168, 0.1), transparent 42%),
     linear-gradient(168deg, #030814 0%, #0b1a35 42%, #060c18 100%);
+}
+
+.page-business-services .ai-bs-local-business-band::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10%;
+  pointer-events: none;
+  opacity: 0.35;
+  background: repeating-linear-gradient(
+    -14deg,
+    transparent 0,
+    transparent 28px,
+    rgba(255, 246, 230, 0.025) 28px,
+    rgba(255, 246, 230, 0.025) 29px
+  );
+}
+
+.page-business-services .ai-bs-local-business-band .ai-industry-inner {
+  position: relative;
+  z-index: 1;
 }
 
 .page-business-services .ai-industry-inner {
@@ -5223,7 +5280,9 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services .ai-proof-band-inner .ai-proof-case-eyebrow {
   margin-bottom: clamp(10px, 1.5vw, 14px);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 800;
 }
 
 .page-business-services .ai-bs-case-metrics {
@@ -5640,7 +5699,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 /* --- Final CTA --- */
 .page-business-services .ai-bs-final {
   padding-top: clamp(26px, 3.5vw, 38px);
-  padding-bottom: clamp(30px, 4vw, 46px);
+  padding-bottom: max(clamp(30px, 4vw, 46px), calc(18px + env(safe-area-inset-bottom, 0px)));
   border-top: 1px solid rgba(255, 246, 230, 0.14);
   background:
     radial-gradient(circle at 50% 0%, rgba(255, 139, 31, 0.14), transparent 42%),
@@ -5752,7 +5811,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 @media (max-width: 479px) {
-  .page-business-services .ai-bs-final-actions .btn-outline-light {
+  .page-business-services .ai-bs-final-actions .btn {
     width: 100%;
     justify-content: center;
   }
@@ -7697,6 +7756,27 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   background: linear-gradient(90deg, var(--orange), rgba(255, 139, 31, 0.5));
 }
 
+.page-business-services .ai-bs-flagship-thumb {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 1px rgba(255, 246, 230, 0.1);
+}
+
+.page-business-services .ai-bs-flagship-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.002);
+}
+
 .page-business-services .ai-bs-flagship-num {
   position: relative;
   z-index: 2;
@@ -7920,6 +8000,46 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   color: rgba(255, 235, 210, 0.78);
 }
 
+.page-business-services .ai-bs-flow-shell {
+  position: relative;
+}
+
+.page-business-services .ai-bs-flow-diagram {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .page-business-services .ai-bs-flow-diagram {
+    display: block;
+    height: 10px;
+    margin: 4px 0 6px;
+    border-radius: 99px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(20, 184, 166, 0.35) 18%,
+      rgba(242, 178, 26, 0.45) 50%,
+      rgba(255, 92, 168, 0.35) 82%,
+      transparent 100%
+    );
+    opacity: 0.65;
+    box-shadow: 0 0 24px rgba(20, 184, 166, 0.15);
+  }
+
+  .page-business-services .ai-bs-flow-rail--diagram {
+    position: relative;
+    padding: clamp(12px, 1.8vw, 16px);
+    border-radius: 18px;
+    background:
+      linear-gradient(145deg, rgba(255, 246, 230, 0.06) 0%, transparent 42%),
+      rgba(4, 12, 28, 0.42);
+    border: 1px solid rgba(255, 246, 230, 0.12);
+    box-shadow:
+      inset 0 0 0 1px rgba(20, 184, 166, 0.07),
+      0 20px 48px rgba(0, 0, 0, 0.28);
+  }
+}
+
 /* --- 6. Compact add-on layers strip --- */
 .page-business-services main > .section.ai-bs-addons-section {
   background:
@@ -7965,6 +8085,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   gap: 8px;
   min-width: 0;
   padding: clamp(15px, 2vw, 18px);
+  padding-top: clamp(18px, 2.2vw, 22px);
   border-radius: 14px;
   background:
     linear-gradient(166deg, rgba(255, 246, 230, 0.07) 0%, rgba(4, 12, 28, 0.62) 100%);
@@ -7974,21 +8095,56 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
     0 16px 36px rgba(0, 0, 0, 0.32),
     inset 0 1px 0 rgba(255, 246, 230, 0.07);
   min-height: 100%;
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.page-business-services .ai-bs-addon-card:nth-child(5n+1) {
+.page-business-services .ai-bs-addon-card::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  pointer-events: none;
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n + 1)::before {
+  background: linear-gradient(90deg, var(--turquoise), rgba(20, 184, 166, 0.45));
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n + 2)::before {
+  background: linear-gradient(90deg, var(--gold), var(--orange));
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n + 3)::before {
+  background: linear-gradient(90deg, var(--pink), rgba(255, 92, 168, 0.45));
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n + 4)::before {
+  background: linear-gradient(90deg, var(--orange), rgba(255, 139, 31, 0.5));
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n)::before {
+  background: linear-gradient(90deg, rgba(20, 184, 166, 0.9), rgba(242, 178, 26, 0.75));
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n + 1) {
   border-color: rgba(20, 184, 166, 0.34);
 }
 
-.page-business-services .ai-bs-addon-card:nth-child(5n+2) {
+.page-business-services .ai-bs-addon-card:nth-child(5n + 2) {
   border-color: rgba(242, 178, 26, 0.38);
 }
 
-.page-business-services .ai-bs-addon-card:nth-child(5n+3) {
+.page-business-services .ai-bs-addon-card:nth-child(5n + 3) {
   border-color: rgba(255, 92, 168, 0.34);
 }
 
-.page-business-services .ai-bs-addon-card:nth-child(5n+4) {
+.page-business-services .ai-bs-addon-card:nth-child(5n + 4) {
   border-color: rgba(255, 139, 31, 0.38);
 }
 
@@ -7997,6 +8153,8 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 .page-business-services .ai-bs-addon-tag {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-self: flex-start;
   padding: 3px 9px;
@@ -8012,6 +8170,8 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 .page-business-services .ai-bs-addon-title {
+  position: relative;
+  z-index: 2;
   margin: 0;
   font-size: clamp(0.96rem, 0.26vw + 0.88rem, 1.04rem);
   font-weight: 880;
@@ -8021,36 +8181,12 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 .page-business-services .ai-bs-addon-copy {
+  position: relative;
+  z-index: 2;
   margin: 0;
   font-size: clamp(0.82rem, 0.16vw + 0.78rem, 0.88rem);
   line-height: 1.54;
   color: rgba(255, 235, 210, 0.84);
-}
-
-/* --- 5. Core systems: 8 image cards, themed art, no duplicates --- */
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(2) {
-  --cap-thumb: url("assets/futuristic_command_center_with_ai_interface.png");
-}
-
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(6) {
-  --cap-thumb: url("assets/futuristic_analytics_dashboard_workspace_at_night.png");
-}
-
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(7) {
-  --cap-thumb: url("assets/futuristic_data_dashboard_interface_design.png");
-}
-
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(8) {
-  --cap-thumb: url("assets/futuristic_scan_and_digital_flow.png");
-}
-
-/* Card 2 used to share scan image with card 8; reassign by reordering above. */
-
-/* Improve image readability: lighter overlay, less aggressive bottom darkening */
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card {
-  background:
-    linear-gradient(180deg, rgba(4, 12, 26, 0) 0%, rgba(4, 12, 26, 0.28) 42%, rgba(4, 12, 26, 0.86) 100%),
-    var(--cap-thumb);
 }
 
 /* --- 9. Owner cards: 7-card layout (3 + 3 + 1 with last spanning bottom row gracefully) --- */
