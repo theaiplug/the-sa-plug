@@ -32,14 +32,14 @@
   background-image:
     linear-gradient(
       90deg,
-      rgba(8, 14, 28, 0.88) 0%,
-      rgba(8, 14, 28, 0.62) 34%,
-      rgba(8, 14, 28, 0.28) 52%,
-      rgba(8, 14, 28, 0.08) 68%,
-      transparent 82%
+      rgba(8, 14, 28, 0.52) 0%,
+      rgba(8, 14, 28, 0.28) 34%,
+      rgba(8, 14, 28, 0.1) 54%,
+      rgba(8, 14, 28, 0.04) 72%,
+      transparent 84%
     ),
-    radial-gradient(ellipse 90% 85% at 92% 45%, rgba(255, 139, 31, 0.14), transparent 58%),
-    radial-gradient(ellipse 70% 60% at 78% 18%, rgba(20, 184, 166, 0.1), transparent 52%),
+    radial-gradient(ellipse 90% 85% at 92% 45%, rgba(255, 139, 31, 0.12), transparent 58%),
+    radial-gradient(ellipse 70% 60% at 78% 18%, rgba(20, 184, 166, 0.08), transparent 52%),
     url("assets/sunlit_family_stroll_along_riverside_path.png");
   background-repeat: no-repeat;
   background-position:
@@ -55,13 +55,13 @@
     background-image:
       linear-gradient(
         90deg,
-        rgba(8, 14, 28, 0.92) 0%,
-        rgba(8, 14, 28, 0.72) 42%,
-        rgba(8, 14, 28, 0.38) 62%,
-        rgba(8, 14, 28, 0.12) 100%
+        rgba(8, 14, 28, 0.56) 0%,
+        rgba(8, 14, 28, 0.34) 42%,
+        rgba(8, 14, 28, 0.14) 64%,
+        rgba(8, 14, 28, 0.05) 100%
       ),
-      radial-gradient(ellipse 100% 80% at 85% 40%, rgba(255, 139, 31, 0.12), transparent 55%),
-      radial-gradient(ellipse 85% 55% at 70% 12%, rgba(20, 184, 166, 0.09), transparent 50%),
+      radial-gradient(ellipse 100% 80% at 85% 40%, rgba(255, 139, 31, 0.1), transparent 55%),
+      radial-gradient(ellipse 85% 55% at 70% 12%, rgba(20, 184, 166, 0.07), transparent 50%),
       url("assets/sunlit_family_stroll_along_riverside_path.png");
     background-position:
       0 0,
@@ -95,7 +95,7 @@
 .page-family-summer .secondary-hero.hero-fiesta-dark.fam-hero.fam-hero--cinematic::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 58%, rgba(2, 6, 14, 0.38) 100%);
+  background: linear-gradient(180deg, transparent 64%, rgba(2, 6, 14, 0.22) 100%);
 }
 
 .page-family-summer .fam-hero .hero-fiesta-inner.hero-inner-band.fam-hero-band {

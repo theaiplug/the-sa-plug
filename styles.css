@@ -627,7 +627,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   box-shadow:
     0 30px 60px rgba(6, 15, 31, 0.45),
     0 0 54px rgba(255, 106, 77, 0.32);
-  opacity: 0.65;
+  opacity: 0.48;
   z-index: 0;
 }
 
@@ -649,7 +649,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   border-radius: var(--radius-hero-visual);
   overflow: hidden;
   box-shadow:
-    0 28px 56px rgba(0, 0, 0, 0.45),
+    0 24px 48px rgba(0, 0, 0, 0.32),
     0 0 0 1px rgba(242, 178, 26, 0.5),
     0 0 0 5px rgba(255, 106, 77, 0.08),
     0 0 72px rgba(255, 106, 77, 0.22),
@@ -671,7 +671,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   z-index: 2;
   box-shadow:
     inset 0 0 0 1px rgba(242, 178, 26, 0.28),
-    inset 0 0 56px rgba(11, 29, 58, 0.14);
+    inset 0 0 48px rgba(11, 29, 58, 0.06);
 }
 
 .hero-visual-img {
@@ -684,6 +684,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   position: relative;
   z-index: 1;
   transform: scale(1.02);
+  filter: brightness(1.06) saturate(1.02);
 }
 
 .hero-fiesta-dark.hero-inner .hero-fiesta-inner.hero-inner-band {
@@ -712,10 +713,10 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   max-height: min(74vh, 580px);
   border-width: 2px;
   box-shadow:
-    0 32px 64px rgba(0, 0, 0, 0.5),
+    0 28px 52px rgba(0, 0, 0, 0.32),
     0 0 0 1px rgba(242, 178, 26, 0.55),
     0 0 0 5px rgba(255, 106, 77, 0.1),
-    0 0 84px rgba(255, 106, 77, 0.26),
+    0 0 72px rgba(255, 106, 77, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
@@ -843,6 +844,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   min-height: 0;
   object-fit: cover;
   object-position: center;
+  filter: brightness(1.06) saturate(1.02);
 }
 
 /* Preserve scene-aware crops on secondary heroes (wins over object-position: center above). */
@@ -3770,8 +3772,8 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   overflow-y: visible;
   background-color: #071022;
   background-image:
-    linear-gradient(90deg, rgba(5, 10, 24, 0.82) 0%, rgba(5, 10, 24, 0.48) 42%, rgba(5, 10, 24, 0.18) 68%, rgba(5, 10, 24, 0.05) 100%),
-    url("assets/the-ai-plug-hero-background-v2.png");
+    linear-gradient(90deg, rgba(5, 10, 24, 0.52) 0%, rgba(5, 10, 24, 0.28) 38%, rgba(5, 10, 24, 0.11) 62%, rgba(5, 10, 24, 0.03) 82%, transparent 100%),
+    url("assets/ai-business-dashboards-reporting.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
   background-size: cover, cover;
@@ -3831,7 +3833,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .page-business-services .secondary-hero.hero-fiesta-dark.ai-bs-hero::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 55%, rgba(2, 6, 14, 0.32) 100%);
+  background: linear-gradient(180deg, transparent 64%, rgba(2, 6, 14, 0.2) 100%);
 }
 
 .page-business-services .ai-bs-hero .hero-fiesta-inner.hero-inner-band.ai-bs-hero-band {
@@ -4017,7 +4019,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   overflow-y: visible;
   background-color: #071022;
   background-image:
-    linear-gradient(90deg, rgba(5, 10, 24, 0.88) 0%, rgba(5, 10, 24, 0.58) 40%, rgba(5, 10, 24, 0.2) 72%, rgba(5, 10, 24, 0.06) 100%),
+    linear-gradient(90deg, rgba(5, 10, 24, 0.52) 0%, rgba(5, 10, 24, 0.26) 36%, rgba(5, 10, 24, 0.1) 58%, rgba(5, 10, 24, 0.03) 78%, transparent 100%),
     url("assets/twilight_riverwalk_with_city_skyline.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
@@ -4031,7 +4033,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .page-home .secondary-hero.hero-fiesta-dark.home-hero--cinematic::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 58%, rgba(2, 6, 14, 0.42) 100%);
+  background: linear-gradient(180deg, transparent 64%, rgba(2, 6, 14, 0.22) 100%);
 }
 
 .page-home .home-hero--cinematic .hero-fiesta-inner.hero-inner-band {
@@ -6027,7 +6029,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   overflow-x: clip;
   background-color: #071022;
   background-image:
-    linear-gradient(90deg, rgba(5, 10, 24, 0.9) 0%, rgba(5, 10, 24, 0.62) 40%, rgba(5, 10, 24, 0.22) 72%, rgba(5, 10, 24, 0.06) 100%),
+    linear-gradient(90deg, rgba(5, 10, 24, 0.52) 0%, rgba(5, 10, 24, 0.28) 36%, rgba(5, 10, 24, 0.1) 58%, rgba(5, 10, 24, 0.03) 78%, transparent 100%),
     url("assets/evening_riverwalk_with_vibrant_ambiance.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
@@ -6041,7 +6043,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .page-start-here .secondary-hero.hero-fiesta-dark.cinematic-hero::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 58%, rgba(2, 6, 14, 0.4) 100%);
+  background: linear-gradient(180deg, transparent 64%, rgba(2, 6, 14, 0.22) 100%);
 }
 
 .page-start-here .cinematic-hero .hero-fiesta-inner.hero-inner-band {
@@ -8217,8 +8219,8 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   overflow-x: clip;
   background-color: #0a1a2e;
   background-image:
-    linear-gradient(118deg, rgba(5, 10, 24, 0.5) 0%, rgba(5, 10, 24, 0.28) 45%, rgba(5, 10, 24, 0.08) 100%),
-    url("assets/ask-sa-plug-hero-riverwalk-tower.png");
+    linear-gradient(118deg, rgba(5, 10, 24, 0.32) 0%, rgba(5, 10, 24, 0.16) 45%, rgba(5, 10, 24, 0.05) 100%),
+    url("assets/ask-downtown-night-plan.png");
   background-repeat: no-repeat;
   background-position: 0 0, center 40%;
   background-size: cover, cover;
@@ -8232,14 +8234,14 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .page-ask .ask-page-hero.secondary-hero.hero-fiesta-dark::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 58%, rgba(2, 6, 14, 0.36) 100%);
+  background: linear-gradient(180deg, transparent 64%, rgba(2, 6, 14, 0.22) 100%);
 }
 
 @media (max-width: 640px) {
   .page-ask .ask-page-hero.hero-fiesta-dark.secondary-hero {
     background-image:
-      linear-gradient(185deg, rgba(5, 10, 24, 0.22) 0%, rgba(5, 10, 24, 0.42) 38%, rgba(5, 10, 24, 0.68) 100%),
-      url("assets/ask-sa-plug-hero-riverwalk-tower.png");
+      linear-gradient(185deg, rgba(5, 10, 24, 0.12) 0%, rgba(5, 10, 24, 0.28) 42%, rgba(5, 10, 24, 0.44) 100%),
+      url("assets/ask-downtown-night-plan.png");
     background-position: 0 0, center 36%;
     min-height: clamp(440px, 78vh, 620px);
   }
@@ -8280,26 +8282,15 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   min-height: 48px;
 }
 
-.page-ask .ask-page-hero-tags {
-  list-style: none;
-  margin: clamp(14px, 2vw, 20px) 0 0;
-  padding: clamp(12px, 2vw, 16px) 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 10px;
-  border-top: 1px solid rgba(255, 246, 230, 0.14);
+.page-ask .ask-page-hero-chips.route-chip-row-hero {
+  margin-top: clamp(14px, 2vw, 20px);
+  padding-top: clamp(12px, 2vw, 18px);
+  align-self: flex-start;
+  max-width: min(40rem, 100%);
 }
 
-.page-ask .ask-page-hero-tags li {
-  margin: 0;
-  padding: 7px 12px;
-  border-radius: 999px;
-  font-size: 0.74rem;
-  font-weight: 720;
-  letter-spacing: 0.03em;
-  color: rgba(255, 246, 230, 0.88);
-  background: rgba(255, 246, 230, 0.07);
-  border: 1px solid rgba(242, 178, 26, 0.28);
+.page-ask .ask-page-hero-chips .route-chip {
+  border-color: rgba(242, 178, 26, 0.28);
 }
 
 .page-ask #quick-start,
