@@ -4018,7 +4018,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   background-color: #071022;
   background-image:
     linear-gradient(90deg, rgba(5, 10, 24, 0.88) 0%, rgba(5, 10, 24, 0.58) 40%, rgba(5, 10, 24, 0.2) 72%, rgba(5, 10, 24, 0.06) 100%),
-    url("assets/tranquil_riverwalk_at_twilight.png");
+    url("assets/twilight_riverwalk_with_city_skyline.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
   background-size: cover, cover;
@@ -6028,7 +6028,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   background-color: #071022;
   background-image:
     linear-gradient(90deg, rgba(5, 10, 24, 0.9) 0%, rgba(5, 10, 24, 0.62) 40%, rgba(5, 10, 24, 0.22) 72%, rgba(5, 10, 24, 0.06) 100%),
-    url("assets/golden_hour_along_the_riverwalk.png");
+    url("assets/evening_riverwalk_with_vibrant_ambiance.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
   background-size: cover, cover;
