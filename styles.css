@@ -3780,7 +3780,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 @media (max-width: 767px) {
   .page-business-services .ai-bs-hero.hero-fiesta-dark {
-    min-height: 720px;
+    min-height: 620px;
     max-height: none;
   }
 }
@@ -3909,6 +3909,19 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   border-top: none;
   column-gap: 10px;
   row-gap: 9px;
+}
+
+@media (max-width: 520px) {
+  .page-business-services .ai-hero-chips--tight.route-chip-row-hero {
+    column-gap: 8px;
+    row-gap: 7px;
+  }
+
+  .page-business-services .ai-hero-chips--tight .route-chip {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+  }
 }
 
 .page-business-services .ai-bs-hero-cta.hero-cta-row {
@@ -4134,28 +4147,12 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   border-block: 1px solid rgba(255, 246, 230, 0.06);
 }
 
-.page-business-services .ai-bs-pillar-section--contact {
+.page-business-services .ai-bs-pillar-section--operating {
   background:
-    linear-gradient(105deg, rgba(5, 10, 22, 0.88) 0%, rgba(5, 10, 22, 0.78) 48%, rgba(5, 10, 22, 0.52) 100%),
+    linear-gradient(120deg, rgba(5, 10, 22, 0.92) 0%, rgba(5, 10, 22, 0.78) 45%, rgba(6, 14, 28, 0.55) 100%),
     url("assets/futuristic_tech_workspace_with_glowing_ui.png");
   background-size: cover;
   background-position: center;
-}
-
-.page-business-services .ai-bs-pillar-section--content {
-  background:
-    linear-gradient(118deg, rgba(5, 10, 22, 0.82) 0%, rgba(5, 10, 22, 0.55) 55%, rgba(5, 10, 22, 0.42) 100%),
-    url("assets/futuristic_tech_studio_workspace_at_night.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.page-business-services .ai-bs-pillar-section--voice {
-  background:
-    linear-gradient(115deg, rgba(6, 12, 24, 0.88) 0%, rgba(6, 12, 24, 0.72) 45%, rgba(6, 12, 24, 0.48) 100%),
-    url("assets/interactive_business_interface_in_a_modern_setting.png");
-  background-size: cover;
-  background-position: center right;
 }
 
 .page-business-services .ai-bs-pillar-grid {
@@ -4190,6 +4187,8 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   margin: 0 0 8px;
   font-size: 1.05rem;
   letter-spacing: -0.02em;
+  font-weight: 900;
+  color: rgba(11, 29, 58, 0.98);
 }
 
 .page-business-services .ai-bs-pillar-card p {
@@ -4733,6 +4732,15 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   color: rgba(255, 246, 230, 0.98);
 }
 
+.page-business-services .ai-offer-action-line {
+  margin: 12px 0 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  font-weight: 780;
+  letter-spacing: 0.01em;
+  color: rgba(255, 235, 210, 0.82);
+}
+
 .page-business-services .ai-offer-list li::marker {
   color: var(--orange);
 }
@@ -4773,6 +4781,12 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: 1fr;
     gap: clamp(12px, 1.65vw, 15px);
+  }
+}
+
+@media (min-width: 1040px) {
+  .page-business-services .ai-capability-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -4862,40 +4876,26 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   --cap-thumb: url("assets/futuristic_digital_network_visualization.png");
 }
 
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(7) {
-  --cap-thumb: url("assets/futuristic_tech_studio_workspace_at_night.png");
+.page-business-services .ai-bs-additional-layers {
+  margin: clamp(18px, 2.5vw, 26px) 0 0;
+  padding: clamp(14px, 2vw, 18px) clamp(16px, 2.2vw, 22px);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 246, 230, 0.12);
+  background: rgba(4, 12, 28, 0.45);
+  font-size: clamp(0.86rem, 0.22vw + 0.8rem, 0.93rem);
+  line-height: 1.55;
+  color: rgba(255, 235, 210, 0.88);
+  text-align: center;
 }
 
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(8) {
-  --cap-thumb: url("assets/futuristic_command_center_with_ai_interface.png");
-}
-
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(9) {
-  --cap-thumb: url("assets/futuristic_data_dashboard_interface_design.png");
-}
-
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(10) {
-  --cap-thumb: url("assets/futuristic_analytics_dashboard_workspace_at_night.png");
-}
-
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(11) {
-  --cap-thumb: url("assets/futuristic_tech_studio_workspace_at_night.png");
-}
-
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(12) {
-  --cap-thumb: url("assets/futuristic_digital_workspace_at_night.png");
-}
-
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(13) {
-  --cap-thumb: url("assets/futuristic_command_room_with_city_view.png");
-}
-
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(14) {
-  --cap-thumb: url("assets/futuristic_command_center_with_glowing_interfaces.png");
-}
-
-.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(15) {
-  --cap-thumb: url("assets/futuristic_digital_network_visualization.png");
+.page-business-services .ai-bs-additional-layers-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(20, 184, 166, 0.95);
 }
 
 @media (max-width: 520px) {
@@ -5057,6 +5057,10 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
   .page-business-services .ai-bs-owner-card--wide {
     grid-column: 1 / -1;
+  }
+
+  .page-business-services .ai-bs-owner-cards.ai-bs-owner-cards--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -5277,6 +5281,48 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
     grid-template-columns: minmax(260px, 0.95fr) minmax(280px, 1.05fr);
     align-items: stretch;
   }
+}
+
+.page-business-services .ai-bs-proof-layout--compact .ai-bs-proof-device-frame {
+  min-height: min(320px, 48vw);
+}
+
+.page-business-services .ai-bs-proof-points {
+  list-style: none;
+  margin: 0;
+  padding: clamp(16px, 2vw, 22px);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(20, 184, 166, 0.12), transparent 42%),
+    linear-gradient(168deg, rgba(4, 12, 28, 0.55), rgba(4, 12, 28, 0.38));
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 246, 230, 0.06);
+  display: grid;
+  gap: 10px 14px;
+  align-content: start;
+}
+
+.page-business-services .ai-bs-proof-points li {
+  position: relative;
+  padding-left: 1.15rem;
+  font-size: clamp(0.9rem, 0.2vw + 0.84rem, 0.97rem);
+  line-height: 1.45;
+  font-weight: 650;
+  color: rgba(255, 246, 230, 0.94);
+}
+
+.page-business-services .ai-bs-proof-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 99px;
+  background: linear-gradient(135deg, var(--turquoise), var(--gold));
+  box-shadow: 0 0 0 2px rgba(11, 29, 58, 0.35);
 }
 
 .page-business-services .ai-bs-proof-device {
@@ -7547,3 +7593,482 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
     transform: none;
   }
 }
+
+/* ============================================================== */
+/* Business services: A++ capability page upgrade (2026-05-11)    */
+/* ============================================================== */
+
+/* --- 2. Flagship "What AI can do for your business" section --- */
+.page-business-services main > .section.ai-bs-flagship {
+  background:
+    radial-gradient(ellipse 90% 60% at 12% 0%, rgba(20, 184, 166, 0.16), transparent 48%),
+    radial-gradient(circle at 92% 8%, rgba(242, 178, 26, 0.1), transparent 38%),
+    radial-gradient(circle at 88% 92%, rgba(255, 92, 168, 0.08), transparent 40%),
+    linear-gradient(168deg, #04101f 0%, #0a1c36 48%, #060f1d 100%);
+  border-block: 1px solid rgba(255, 246, 230, 0.08);
+}
+
+.page-business-services .ai-bs-flagship-eyebrow {
+  margin-bottom: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 230, 200, 0.95);
+}
+
+.page-business-services .ai-bs-flagship-sub {
+  max-width: 50rem !important;
+  font-size: clamp(0.98rem, 0.32vw + 0.88rem, 1.06rem);
+  line-height: 1.62;
+}
+
+.page-business-services .ai-bs-flagship-grid {
+  list-style: none;
+  margin: clamp(20px, 2.6vw, 28px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(12px, 1.75vw, 16px);
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+@media (min-width: 560px) {
+  .page-business-services .ai-bs-flagship-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+  }
+}
+
+@media (min-width: 920px) {
+  .page-business-services .ai-bs-flagship-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.page-business-services .ai-bs-flagship-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: clamp(18px, 2.2vw, 22px);
+  padding-top: clamp(20px, 2.4vw, 24px);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(20, 184, 166, 0.16), transparent 42%),
+    linear-gradient(168deg, rgba(255, 246, 230, 0.08) 0%, rgba(4, 12, 28, 0.62) 100%);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 246, 230, 0.12);
+  box-shadow:
+    0 22px 50px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 246, 230, 0.08);
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 100%;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.22s ease;
+}
+
+.page-business-services .ai-bs-flagship-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(242, 178, 26, 0.42);
+}
+
+.page-business-services .ai-bs-flagship-card::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--turquoise), rgba(20, 184, 166, 0.45));
+}
+
+.page-business-services .ai-bs-flagship-card--gold::before {
+  background: linear-gradient(90deg, var(--gold), var(--orange));
+}
+
+.page-business-services .ai-bs-flagship-card--pink::before {
+  background: linear-gradient(90deg, var(--pink), rgba(255, 92, 168, 0.5));
+}
+
+.page-business-services .ai-bs-flagship-card--orange::before {
+  background: linear-gradient(90deg, var(--orange), rgba(255, 139, 31, 0.5));
+}
+
+.page-business-services .ai-bs-flagship-num {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.6rem;
+  height: 2rem;
+  padding: 0 10px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: rgba(11, 29, 58, 0.96);
+  background: linear-gradient(145deg, rgba(255, 246, 230, 0.98), rgba(255, 228, 195, 0.92));
+  border: 1px solid rgba(255, 246, 230, 0.4);
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  align-self: flex-start;
+}
+
+.page-business-services .ai-bs-flagship-card--turq .ai-bs-flagship-num {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.55), rgba(20, 184, 166, 0.18));
+  border-color: rgba(20, 184, 166, 0.5);
+  color: rgba(11, 29, 58, 0.96);
+}
+
+.page-business-services .ai-bs-flagship-card--gold .ai-bs-flagship-num {
+  background: linear-gradient(135deg, rgba(242, 178, 26, 0.62), rgba(242, 178, 26, 0.2));
+  border-color: rgba(242, 178, 26, 0.55);
+  color: rgba(11, 29, 58, 0.96);
+}
+
+.page-business-services .ai-bs-flagship-card--pink .ai-bs-flagship-num {
+  background: linear-gradient(135deg, rgba(255, 92, 168, 0.48), rgba(255, 92, 168, 0.14));
+  border-color: rgba(255, 92, 168, 0.45);
+  color: rgba(11, 29, 58, 0.96);
+}
+
+.page-business-services .ai-bs-flagship-card--orange .ai-bs-flagship-num {
+  background: linear-gradient(135deg, rgba(255, 139, 31, 0.55), rgba(255, 139, 31, 0.2));
+  border-color: rgba(255, 139, 31, 0.5);
+  color: rgba(11, 29, 58, 0.96);
+}
+
+.page-business-services .ai-bs-flagship-title {
+  position: relative;
+  z-index: 2;
+  margin: 4px 0 0;
+  font-size: clamp(1.04rem, 0.32vw + 0.94rem, 1.14rem);
+  font-weight: 880;
+  letter-spacing: -0.015em;
+  line-height: 1.24;
+  color: #fff8eb;
+}
+
+.page-business-services .ai-bs-flagship-copy {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-size: clamp(0.86rem, 0.18vw + 0.8rem, 0.93rem);
+  line-height: 1.56;
+  color: rgba(255, 235, 210, 0.88);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-business-services .ai-bs-flagship-card:hover {
+    transform: none;
+  }
+}
+
+/* --- 4. "How the AI business flow works" visual flow --- */
+.page-business-services main > .section.ai-bs-flow-section {
+  background:
+    radial-gradient(ellipse 100% 90% at 50% 0%, rgba(242, 178, 26, 0.12), transparent 44%),
+    radial-gradient(circle at 12% 90%, rgba(20, 184, 166, 0.1), transparent 40%),
+    linear-gradient(180deg, #050d1c 0%, #0b1d3a 48%, #060c18 100%);
+  border-block: 1px solid rgba(255, 246, 230, 0.08);
+}
+
+.page-business-services .ai-bs-flow-eyebrow {
+  margin-bottom: 10px;
+  color: rgba(255, 230, 200, 0.95);
+}
+
+.page-business-services .ai-bs-flow-sub {
+  max-width: 46rem !important;
+  font-size: clamp(0.98rem, 0.32vw + 0.88rem, 1.06rem);
+  line-height: 1.62;
+}
+
+.page-business-services .ai-bs-flow-rail {
+  list-style: none;
+  margin: clamp(22px, 3vw, 32px) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  counter-reset: flowstep;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .page-business-services .ai-bs-flow-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+  }
+}
+
+@media (min-width: 900px) {
+  .page-business-services .ai-bs-flow-rail {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px 14px;
+  }
+}
+
+.page-business-services .ai-bs-flow-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(20, 184, 166, 0.14), transparent 38%),
+    linear-gradient(160deg, rgba(255, 246, 230, 0.08) 0%, rgba(4, 12, 28, 0.68) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 246, 230, 0.07);
+  min-height: 68px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.page-business-services .ai-bs-flow-step--a {
+  border-color: rgba(20, 184, 166, 0.35);
+}
+
+.page-business-services .ai-bs-flow-step--b {
+  border-color: rgba(242, 178, 26, 0.4);
+}
+
+.page-business-services .ai-bs-flow-step--c {
+  border-color: rgba(255, 92, 168, 0.38);
+}
+
+.page-business-services .ai-bs-flow-step--d {
+  border-color: rgba(255, 139, 31, 0.4);
+}
+
+.page-business-services .ai-bs-flow-step-num {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: rgba(11, 29, 58, 0.96);
+  background: linear-gradient(135deg, rgba(255, 246, 230, 0.98), rgba(255, 228, 195, 0.92));
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.page-business-services .ai-bs-flow-step--a .ai-bs-flow-step-num {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.85), rgba(20, 184, 166, 0.45));
+  color: #03121a;
+}
+
+.page-business-services .ai-bs-flow-step--b .ai-bs-flow-step-num {
+  background: linear-gradient(135deg, rgba(242, 178, 26, 0.95), rgba(255, 139, 31, 0.55));
+}
+
+.page-business-services .ai-bs-flow-step--c .ai-bs-flow-step-num {
+  background: linear-gradient(135deg, rgba(255, 92, 168, 0.8), rgba(255, 92, 168, 0.4));
+}
+
+.page-business-services .ai-bs-flow-step--d .ai-bs-flow-step-num {
+  background: linear-gradient(135deg, rgba(255, 139, 31, 0.9), rgba(255, 106, 77, 0.5));
+}
+
+.page-business-services .ai-bs-flow-step-label {
+  font-size: clamp(0.86rem, 0.2vw + 0.8rem, 0.95rem);
+  font-weight: 820;
+  letter-spacing: -0.005em;
+  line-height: 1.28;
+  color: rgba(255, 246, 230, 0.96);
+}
+
+/* Arrow connectors between steps (horizontal at desktop, vertical on mobile) */
+.page-business-services .ai-bs-flow-step + .ai-bs-flow-step::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  left: -10px;
+  top: 50%;
+  width: 10px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 246, 230, 0.32));
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .page-business-services .ai-bs-flow-step + .ai-bs-flow-step::after {
+    display: block;
+  }
+}
+
+.page-business-services .ai-bs-flow-foot {
+  margin: clamp(18px, 2.4vw, 24px) auto 0;
+  max-width: 46rem;
+  text-align: center;
+  font-size: clamp(0.86rem, 0.2vw + 0.8rem, 0.93rem);
+  line-height: 1.6;
+  color: rgba(255, 235, 210, 0.78);
+}
+
+/* --- 6. Compact add-on layers strip --- */
+.page-business-services main > .section.ai-bs-addons-section {
+  background:
+    radial-gradient(ellipse 90% 70% at 88% 0%, rgba(20, 184, 166, 0.12), transparent 44%),
+    radial-gradient(circle at 8% 92%, rgba(255, 92, 168, 0.08), transparent 38%),
+    linear-gradient(170deg, #06101f 0%, #0a1a32 50%, #050b16 100%);
+  border-block: 1px solid rgba(255, 246, 230, 0.08);
+}
+
+.page-business-services .ai-bs-addons-sub {
+  max-width: 44rem !important;
+  font-size: clamp(0.97rem, 0.3vw + 0.88rem, 1.04rem);
+  line-height: 1.62;
+}
+
+.page-business-services .ai-bs-addon-grid {
+  list-style: none;
+  margin: clamp(20px, 2.6vw, 28px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(12px, 1.7vw, 16px);
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+@media (min-width: 480px) and (max-width: 879px) {
+  .page-business-services .ai-bs-addon-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    grid-auto-rows: 1fr;
+  }
+}
+
+@media (min-width: 880px) {
+  .page-business-services .ai-bs-addon-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.page-business-services .ai-bs-addon-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: clamp(15px, 2vw, 18px);
+  border-radius: 14px;
+  background:
+    linear-gradient(166deg, rgba(255, 246, 230, 0.07) 0%, rgba(4, 12, 28, 0.62) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 246, 230, 0.07);
+  min-height: 100%;
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n+1) {
+  border-color: rgba(20, 184, 166, 0.34);
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n+2) {
+  border-color: rgba(242, 178, 26, 0.38);
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n+3) {
+  border-color: rgba(255, 92, 168, 0.34);
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n+4) {
+  border-color: rgba(255, 139, 31, 0.38);
+}
+
+.page-business-services .ai-bs-addon-card:nth-child(5n) {
+  border-color: rgba(20, 184, 166, 0.4);
+}
+
+.page-business-services .ai-bs-addon-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px 9px;
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  color: rgba(242, 178, 26, 0.95);
+  background: rgba(242, 178, 26, 0.1);
+  border: 1px solid rgba(242, 178, 26, 0.4);
+  white-space: nowrap;
+}
+
+.page-business-services .ai-bs-addon-title {
+  margin: 0;
+  font-size: clamp(0.96rem, 0.26vw + 0.88rem, 1.04rem);
+  font-weight: 880;
+  letter-spacing: -0.012em;
+  line-height: 1.26;
+  color: #fff8eb;
+}
+
+.page-business-services .ai-bs-addon-copy {
+  margin: 0;
+  font-size: clamp(0.82rem, 0.16vw + 0.78rem, 0.88rem);
+  line-height: 1.54;
+  color: rgba(255, 235, 210, 0.84);
+}
+
+/* --- 5. Core systems: 8 image cards, themed art, no duplicates --- */
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(2) {
+  --cap-thumb: url("assets/futuristic_command_center_with_ai_interface.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(6) {
+  --cap-thumb: url("assets/futuristic_analytics_dashboard_workspace_at_night.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(7) {
+  --cap-thumb: url("assets/futuristic_data_dashboard_interface_design.png");
+}
+
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card:nth-child(8) {
+  --cap-thumb: url("assets/futuristic_scan_and_digital_flow.png");
+}
+
+/* Card 2 used to share scan image with card 8; reassign by reordering above. */
+
+/* Improve image readability: lighter overlay, less aggressive bottom darkening */
+.page-business-services .ai-bs-section--capabilities .ai-capability-card.ai-bs-cap-card {
+  background:
+    linear-gradient(180deg, rgba(4, 12, 26, 0) 0%, rgba(4, 12, 26, 0.28) 42%, rgba(4, 12, 26, 0.86) 100%),
+    var(--cap-thumb);
+}
+
+/* --- 9. Owner cards: 7-card layout (3 + 3 + 1 with last spanning bottom row gracefully) --- */
+@media (min-width: 1000px) {
+  .page-business-services .ai-bs-owner-cards.ai-bs-owner-cards--seven {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1180px) {
+  .page-business-services .ai-bs-owner-cards.ai-bs-owner-cards--seven {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* --- 1. Hero polish: slightly tighten proof line so it does not compete with lead --- */
+.page-business-services .ai-hero-proof-line {
+  color: rgba(255, 246, 230, 0.78);
+  font-size: clamp(0.9rem, 0.28vw + 0.82rem, 0.98rem);
+}
+
