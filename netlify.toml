@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Environment variables (Netlify Dashboard → Site configuration → Environment variables):
+#   OPENAI_API_KEY        — required for the visitor concierge Netlify function
+# Optional:
+#   OPENAI_VISITOR_MODEL  — override default model for Responses API (default: gpt-4.1-mini)

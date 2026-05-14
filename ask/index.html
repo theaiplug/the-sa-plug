@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ask The SA Plug | The SA Plug</title>
-  <meta name="description" content="Tell The SA Plug your situation &mdash; downtown nights, resort dinners, family routes, convention picks, and transportation &mdash; and get routed to the right San Antonio plan." />
+  <meta name="description" content="Ask San Antonio questions and get instant local answers &mdash; food, downtown, resorts, family routes, conventions, and transportation thinking. Route cards and optional human help when you want it." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
@@ -38,7 +38,7 @@
             <h1 id="ask-hero-heading" class="hero-title">Tell us your situation. We&rsquo;ll give you the San Antonio move.</h1>
             <p class="hero-text hero-text-on-dark">Where you are, who you&rsquo;re with, how much time you have, and what kind of night you want &mdash; we&rsquo;ll route you toward the downtown move, dinner pick, family plan, resort option, or transportation help that fits.</p>
             <div class="hero-actions hero-cta-row ask-page-hero-actions">
-              <a class="btn btn-primary" href="#guided-request">Build my plan</a>
+              <a class="btn btn-primary" href="#live-concierge">Get an instant answer</a>
               <a class="btn btn-secondary-hero" href="#popular-routes">See popular routes</a>
             </div>
             <div class="route-chip-row route-chip-row-hero ask-page-hero-chips" aria-label="Common situations">
@@ -49,6 +49,60 @@
               <span class="route-chip">Transportation help</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band section-navy-routes live-concierge-section" id="live-concierge" aria-labelledby="live-concierge-heading">
+      <div class="routes-band-inner live-concierge-inner">
+        <header class="live-concierge__head">
+          <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Live concierge</p>
+          <h2 id="live-concierge-heading" class="live-concierge__title">Ask The SA Plug anything about your San Antonio move</h2>
+          <p class="section-text section-text-light live-concierge__lead">
+            Get instant local answers for food, downtown plans, resort stays, family routes, convention nights, and transportation decisions.
+          </p>
+          <p class="live-concierge__status" id="live-concierge-status" aria-live="polite">Live · ready</p>
+        </header>
+
+        <div class="live-concierge__panel">
+          <div class="live-concierge__error" id="live-concierge-error" hidden role="alert"></div>
+
+          <div class="live-concierge__chips" role="group" aria-label="Quick prompts">
+            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I'm downtown tonight">I&rsquo;m downtown tonight</button>
+            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I'm staying at a resort">I&rsquo;m staying at a resort</button>
+            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I need dinner near me">I need dinner near me</button>
+            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I'm here for a convention">I&rsquo;m here for a convention</button>
+            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I have kids with me">I have kids with me</button>
+            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I need transportation help">I need transportation help</button>
+          </div>
+
+          <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation">
+            <div class="live-concierge__msg live-concierge__msg--assistant">
+              <div class="live-concierge__bubble">
+                Tell me where you are, who you&rsquo;re with, and what kind of San Antonio move you want. I&rsquo;ll point you to the best route, food pick, or next stop.
+              </div>
+            </div>
+          </div>
+
+          <form class="live-concierge__form" id="live-concierge-form">
+            <label class="visually-hidden" for="live-concierge-input">Your question</label>
+            <textarea
+              id="live-concierge-input"
+              class="live-concierge__input"
+              name="message"
+              rows="2"
+              maxlength="12000"
+              required
+              autocomplete="off"
+              placeholder="Ask about tonight&rsquo;s plan, dinner, timing, or your crew&hellip;"
+            ></textarea>
+            <button type="submit" class="live-concierge__send" id="live-concierge-send">Send</button>
+          </form>
+          <p class="live-concierge__footnote">
+            Need hands-on routing or transportation intake?
+            <a href="#guided-request">Request human help</a>
+            or use the transportation card below.
+          </p>
         </div>
       </div>
     </section>
@@ -115,16 +169,16 @@
         </header>
         <ol class="ask-micro-steps" aria-label="Steps">
           <li>
-            <strong>Pick your situation</strong>
-            <span>Start with where you are or what kind of night you want.</span>
+            <strong>Ask live first</strong>
+            <span>Type a question or tap a quick prompt for an instant local read on your move.</span>
           </li>
           <li>
-            <strong>Get a smart local route</strong>
-            <span>See the move that makes the most sense for your time, group, and vibe.</span>
+            <strong>Route cards stay as backup</strong>
+            <span>Use the popular moves below when you want a structured lane without typing.</span>
           </li>
           <li>
-            <strong>Ask for help if you want it</strong>
-            <span>Need a custom plan or transportation help? That&rsquo;s where we take the next step.</span>
+            <strong>Request human help when you want it</strong>
+            <span>Need custom routing or transportation intake? Use the labeled request flow &mdash; not required to get value here.</span>
           </li>
         </ol>
       </div>
@@ -175,7 +229,7 @@
         <header class="ask-section-head">
           <p class="eyebrow">Popular moves</p>
           <h2 id="routes-heading">Popular San Antonio moves</h2>
-          <p class="section-text">Start with the situation that matches your night. Tighten it with a custom request if you want help.</p>
+          <p class="section-text">Start with the situation that matches your night &mdash; or ask the live concierge above. Request human help only when you want that lane.</p>
         </header>
 
         <article class="ask-route-block" id="route-downtown">
@@ -192,7 +246,7 @@
             </ul>
             <div class="ask-route-actions">
               <a class="btn btn-primary" href="../downtown.html">See the downtown move</a>
-              <a class="btn btn-secondary" href="#guided-request">Need a custom version</a>
+              <a class="btn btn-secondary" href="#guided-request">Request human help</a>
             </div>
           </div>
         </article>
@@ -287,7 +341,7 @@
             </ul>
             <div class="ask-route-actions">
               <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation help</a>
-              <a class="btn btn-secondary" href="#guided-request">Build a custom route</a>
+              <a class="btn btn-secondary" href="#guided-request">Request human help</a>
             </div>
           </div>
         </article>
@@ -345,14 +399,14 @@
     <section class="section section-cream" id="guided-request" aria-labelledby="request-heading">
       <div class="routes-band-inner">
         <header class="ask-section-head">
-          <p class="eyebrow">Personal routing</p>
-          <h2 id="request-heading">Want a plan built around your situation?</h2>
-          <p class="section-text">Tell us where you&rsquo;re staying, who you&rsquo;re with, and what kind of experience you want. We&rsquo;ll use the details to point you toward a cleaner San Antonio move.</p>
+          <p class="eyebrow">Human help</p>
+          <h2 id="request-heading">Want human help building a plan around your situation?</h2>
+          <p class="section-text">If the live concierge above got you close but you want someone to pick up the details, tell us where you&rsquo;re staying, who you&rsquo;re with, and what kind of experience you want.</p>
         </header>
         <div class="ask-guided-shell ask-prompt-shell ask-guided-wrap">
           <form class="ask-guided-form ask-intake-card" id="ask-guided-form" action="https://tally.so/r/D408Aj" method="get" target="_blank">
-            <p class="ask-intake-label">Guided request</p>
-            <p class="ask-intake-sub">Pick the basics first. Then send the request so we can match the route to your timing, group, and starting point.</p>
+            <p class="ask-intake-label">Request human help</p>
+            <p class="ask-intake-sub">Optional: when you want hands-on routing or a human to pick up the details, send this request. The live concierge above stays the fastest first stop.</p>
             <div class="ask-guided-grid">
               <label class="ask-guided-field">
                 <span>What do you need help with?</span>
@@ -474,8 +528,8 @@
           <h2 id="final-cta-heading">Still not sure what the move is?</h2>
           <p class="section-text section-text-light">Start with your situation. We&rsquo;ll point you toward the cleaner route.</p>
           <div class="hero-cta-row ask-final-actions">
-            <a class="btn btn-primary" href="#guided-request">Build my plan</a>
-            <a class="btn btn-secondary-hero" href="#guided-request">Request help</a>
+            <a class="btn btn-primary" href="#live-concierge">Ask live</a>
+            <a class="btn btn-secondary-hero" href="#guided-request">Request human help</a>
           </div>
         </div>
       </div>
@@ -501,6 +555,7 @@
     <p class="footer-note">Real local picks for visitors and locals, powered by The AI Plug systems.</p>
   </footer>
   <script src="../script.js"></script>
+  <script src="../ask-concierge.js" defer></script>
   <script>
     (function () {
       var btn = document.getElementById("ask-send-request");

@@ -8293,6 +8293,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   border-color: rgba(242, 178, 26, 0.28);
 }
 
+.page-ask #live-concierge,
 .page-ask #quick-start,
 .page-ask #how-it-works,
 .page-ask #night-situations,
@@ -9026,6 +9027,274 @@ body.page-ask main {
 
 .page-ask .ask-final-actions .btn {
   min-height: 48px;
+}
+
+/* ----- Ask page: live concierge (instant visitor hub) ----- */
+.page-ask .live-concierge-section {
+  scroll-margin-top: calc(var(--header-h, 64px) + 14px);
+  border-bottom: 1px solid rgba(242, 178, 26, 0.12);
+}
+
+.page-ask .live-concierge-inner {
+  max-width: min(720px, 100%);
+  margin-inline: auto;
+}
+
+.page-ask .live-concierge__head {
+  text-align: center;
+  margin-bottom: clamp(18px, 3vw, 26px);
+}
+
+.page-ask .live-concierge__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.page-ask .live-concierge__title {
+  margin: 0 0 10px;
+  font-size: clamp(1.45rem, 2.6vw + 0.55rem, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.028em;
+  color: var(--cream);
+}
+
+.page-ask .live-concierge__lead {
+  margin: 0 auto;
+  max-width: 40rem;
+  font-size: clamp(0.94rem, 0.35vw + 0.86rem, 1.02rem);
+  line-height: 1.55;
+}
+
+.page-ask .live-concierge__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px auto 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: clamp(0.78rem, 0.2vw + 0.74rem, 0.84rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 248, 235, 0.72);
+  border: 1px solid rgba(20, 184, 166, 0.35);
+  background: rgba(5, 10, 20, 0.45);
+}
+
+.page-ask .live-concierge__status--live {
+  color: rgba(255, 248, 235, 0.92);
+  border-color: rgba(242, 178, 26, 0.45);
+  box-shadow: 0 0 0 1px rgba(20, 184, 166, 0.12);
+}
+
+.page-ask .live-concierge__status--live::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #8ff7e8, var(--turquoise));
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.22);
+}
+
+.page-ask .live-concierge__panel {
+  border-radius: calc(var(--radius) + 8px);
+  padding: clamp(16px, 2.8vw, 22px);
+  background:
+    radial-gradient(ellipse 120% 80% at 100% 0%, rgba(242, 178, 26, 0.08), transparent 55%),
+    radial-gradient(circle at 0% 100%, rgba(20, 184, 166, 0.1), transparent 50%),
+    linear-gradient(165deg, #101f33 0%, #0a1424 48%, #050a12 100%);
+  border: 1px solid rgba(255, 248, 235, 0.1);
+  box-shadow:
+    0 22px 48px rgba(2, 6, 14, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.page-ask .live-concierge__error {
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  border-radius: var(--btn-radius);
+  font-size: clamp(0.88rem, 0.25vw + 0.82rem, 0.95rem);
+  line-height: 1.45;
+  color: #fff4e8;
+  background: rgba(255, 106, 77, 0.14);
+  border: 1px solid rgba(255, 106, 77, 0.35);
+}
+
+.page-ask .live-concierge__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.page-ask .live-concierge__chip {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: clamp(0.82rem, 0.2vw + 0.78rem, 0.9rem);
+  font-weight: 600;
+  color: rgba(255, 248, 235, 0.92);
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(242, 178, 26, 0.35);
+  background: rgba(5, 10, 20, 0.35);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    transform 0.12s ease;
+}
+
+.page-ask .live-concierge__chip:hover {
+  border-color: rgba(20, 184, 166, 0.55);
+  background: rgba(20, 184, 166, 0.12);
+}
+
+.page-ask .live-concierge__chip:active {
+  transform: scale(0.98);
+}
+
+.page-ask .live-concierge__log {
+  max-height: min(340px, 52vh);
+  min-height: 140px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px 6px 12px 2px;
+  margin: 0 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.page-ask .live-concierge__msg {
+  display: flex;
+  max-width: 100%;
+}
+
+.page-ask .live-concierge__msg--assistant {
+  justify-content: flex-start;
+}
+
+.page-ask .live-concierge__msg--user {
+  justify-content: flex-end;
+}
+
+.page-ask .live-concierge__bubble {
+  max-width: min(100%, 34rem);
+  padding: 12px 14px;
+  border-radius: 16px;
+  font-size: clamp(0.9rem, 0.28vw + 0.84rem, 0.98rem);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.page-ask .live-concierge__msg--assistant .live-concierge__bubble {
+  color: rgba(255, 248, 235, 0.94);
+  background: rgba(5, 10, 20, 0.55);
+  border: 1px solid rgba(20, 184, 166, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.page-ask .live-concierge__msg--user .live-concierge__bubble {
+  color: var(--navy-deep);
+  background: linear-gradient(135deg, #fff4e0 0%, #e8faf7 100%);
+  border: 1px solid rgba(242, 178, 26, 0.35);
+}
+
+.page-ask .live-concierge__bubble--thinking {
+  color: rgba(255, 248, 235, 0.72);
+  font-style: italic;
+}
+
+.page-ask .live-concierge__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 560px) {
+  .page-ask .live-concierge__form {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .page-ask .live-concierge__input {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.page-ask .live-concierge__input {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 52px;
+  max-height: 160px;
+  padding: 12px 14px;
+  border-radius: var(--btn-radius);
+  border: 1px solid rgba(255, 248, 235, 0.14);
+  background: rgba(5, 10, 20, 0.55);
+  color: var(--cream);
+  font: inherit;
+  font-size: clamp(0.92rem, 0.28vw + 0.86rem, 1rem);
+  line-height: 1.45;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.page-ask .live-concierge__input::placeholder {
+  color: rgba(255, 248, 235, 0.45);
+}
+
+.page-ask .live-concierge__input:focus {
+  border-color: rgba(242, 178, 26, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 3px rgba(20, 184, 166, 0.18);
+}
+
+.page-ask .live-concierge__send {
+  flex-shrink: 0;
+  min-height: 48px;
+  padding-inline: 22px;
+  border: none;
+  border-radius: var(--btn-radius);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--navy-deep);
+  background: linear-gradient(135deg, var(--gold) 0%, #ffc14d 100%);
+  box-shadow: 0 10px 24px rgba(242, 178, 26, 0.28);
+  cursor: pointer;
+}
+
+.page-ask .live-concierge__send:hover {
+  filter: brightness(1.04);
+}
+
+.page-ask .live-concierge__send:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.page-ask .live-concierge__footnote {
+  margin: 12px 0 0;
+  font-size: clamp(0.82rem, 0.2vw + 0.78rem, 0.9rem);
+  line-height: 1.45;
+  color: rgba(255, 248, 235, 0.62);
+}
+
+.page-ask .live-concierge__footnote a {
+  color: var(--turquoise);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.page-ask .live-concierge__footnote a:hover {
+  color: #5eead4;
 }
 
 /* Homepage: Ask entry band */
