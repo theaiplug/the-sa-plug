@@ -77,29 +77,33 @@
           <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Live local concierge</p>
           <h2 id="live-concierge-heading" class="live-concierge__title">Ask A Local anything about your San Antonio move</h2>
           <p class="section-text section-text-light live-concierge__lead">
-            Tap a lane or type your situation &mdash; dinner, a place, timing, parking, kids, conventions, resorts, or getting around.
+            Instant local answers while you&rsquo;re in town &mdash; pick a lane in the card or type your own question.
           </p>
           <p class="live-concierge__status" id="live-concierge-status" aria-live="polite">Live · ready</p>
         </header>
 
         <div class="live-concierge-studio">
-          <div class="live-concierge__image-band">
-            <div class="live-concierge__image-band-media">
-              <img
-                src="../assets/ask-sa-plug-hero-riverwalk-tower.png"
-                alt="San Antonio River Walk and downtown skyline"
-                width="1200"
-                height="630"
-                decoding="async"
-                loading="eager"
-                fetchpriority="high"
-              />
+          <div class="live-concierge-card">
+            <div class="live-concierge__image-band">
+              <div class="live-concierge__image-band-media">
+                <img
+                  src="../assets/ask-sa-plug-hero-riverwalk-tower.png"
+                  alt="San Antonio River Walk and downtown skyline"
+                  width="1200"
+                  height="630"
+                  decoding="async"
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </div>
             </div>
-            <p class="live-concierge__image-band-caption">Local answers &middot; Food &middot; Places &middot; Routes</p>
-          </div>
 
-          <div class="live-concierge__glass-panel">
-            <div class="live-concierge__chip-board">
+            <div class="live-concierge__glass-panel">
+              <div class="live-concierge__panel-copy">
+                <p class="live-concierge__panel-intro">Pick a lane or ask anything.</p>
+                <p class="live-concierge__panel-support">Dinner, places, parking, timing, cost, family routes, resort stays, conventions, or getting around.</p>
+              </div>
+              <div class="live-concierge__chip-board">
               <div class="live-concierge__chip-cluster" role="group" aria-labelledby="lane-plan-heading">
                 <p class="live-concierge__lane-label" id="lane-plan-heading">Plan my move</p>
                 <div class="live-concierge__chips live-concierge__chips--lane">
@@ -130,8 +134,8 @@
               <div class="live-concierge__thread" id="live-concierge-thread">
                 <div class="live-concierge__conversation" id="live-concierge-conversation">
                   <div class="live-concierge__answer-surface" id="live-concierge-answer-surface" aria-live="polite">
-                    <div class="live-concierge__starter" id="live-concierge-starter" hidden>
-                      <p class="live-concierge__starter-msg">Tap a lane above or type your question below.</p>
+                    <div class="live-concierge__preview" id="live-concierge-preview">
+                      <p class="live-concierge__preview-text">Tell me your starting point, group, timing, and what you&rsquo;re trying to figure out. I&rsquo;ll give you the clearest local move.</p>
                     </div>
                     <div class="live-concierge__transcript" id="live-concierge-transcript" hidden>
                       <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge answer"></div>
@@ -153,7 +157,7 @@
                           maxlength="12000"
                           required
                           autocomplete="off"
-                          placeholder="Type your question or follow-up..."
+                          placeholder="Example: I&rsquo;m at the JW and need dinner nearby"
                         ></textarea>
                         <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local <span aria-hidden="true">&rarr;</span></button>
                       </div>

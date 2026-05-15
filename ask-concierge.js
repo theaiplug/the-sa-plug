@@ -18,7 +18,7 @@
   var conversationEl = document.getElementById("live-concierge-conversation");
   var composerStackEl = document.getElementById("live-concierge-composer");
   var composerKickerEl = document.getElementById("live-concierge-composer-kicker");
-  var starterEl = document.getElementById("live-concierge-starter");
+  var previewEl = document.getElementById("live-concierge-preview");
 
   var previousResponseId = null;
   var busy = false;
@@ -29,11 +29,11 @@
     if (transcriptEl) {
       transcriptEl.hidden = !has;
     }
+    if (previewEl) {
+      previewEl.hidden = has;
+    }
     if (conversationEl) {
       conversationEl.classList.toggle("live-concierge__conversation--started", has);
-    }
-    if (starterEl) {
-      starterEl.hidden = true;
     }
     if (composerKickerEl) {
       composerKickerEl.hidden = true;
