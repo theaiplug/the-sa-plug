@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ask A Local | Where To Go SA</title>
-  <meta name="description" content="Ask San Antonio questions and get instant local answers — food, downtown, resorts, family routes, conventions, and transportation thinking from Where To Go SA." />
+  <meta name="description" content="Ask San Antonio questions and get instant local answers — food, downtown, place details, family routes, resort stays, conventions, things to do, and transportation thinking from Where To Go SA." />
   <link rel="canonical" href="https://wheretogosa.com/ask/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://wheretogosa.com/ask/" />
   <meta property="og:title" content="Ask A Local | Where To Go SA" />
   <meta property="og:site_name" content="Where To Go SA" />
-  <meta property="og:description" content="Ask San Antonio questions and get instant local answers — food, downtown, resorts, family routes, conventions, and transportation thinking from Where To Go SA." />
+  <meta property="og:description" content="Ask San Antonio questions and get instant local answers — food, downtown, place details, family routes, resort stays, conventions, things to do, and transportation thinking from Where To Go SA." />
   <meta property="og:image" content="https://wheretogosa.com/assets/where-to-go-sa-round-emblem-pfp.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ask A Local | Where To Go SA" />
-  <meta name="twitter:description" content="Ask San Antonio questions and get instant local answers — food, downtown, resorts, family routes, conventions, and transportation thinking from Where To Go SA." />
+  <meta name="twitter:description" content="Ask San Antonio questions and get instant local answers — food, downtown, place details, family routes, resort stays, conventions, things to do, and transportation thinking from Where To Go SA." />
   <meta name="twitter:image" content="https://wheretogosa.com/assets/where-to-go-sa-round-emblem-pfp.png" />
   <link rel="icon" href="../assets/icons/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/wtgsa-favicon-32.png" />
@@ -73,10 +73,10 @@
     <section class="section band section-navy-routes live-concierge-section" id="live-concierge" aria-labelledby="live-concierge-heading">
       <div class="routes-band-inner live-concierge-inner">
         <header class="live-concierge__head">
-          <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Live concierge</p>
+          <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Live local concierge</p>
           <h2 id="live-concierge-heading" class="live-concierge__title">Ask A Local anything about your San Antonio move</h2>
           <p class="section-text section-text-light live-concierge__lead">
-            Get instant local answers for food, downtown plans, resort stays, family routes, convention nights, and transportation decisions.
+            Get instant local answers for food, downtown plans, resort stays, family routes, convention nights, things to do, place details, and transportation decisions.
           </p>
           <p class="live-concierge__status" id="live-concierge-status" aria-live="polite">Live · ready</p>
         </header>
@@ -85,19 +85,34 @@
           <div class="live-concierge__error" id="live-concierge-error" hidden role="alert"></div>
 
           <div class="live-concierge__chips" role="group" aria-label="Quick prompts">
-            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I'm downtown tonight">I&rsquo;m downtown tonight</button>
-            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I'm at a resort — JW, La Cantera/Rim, or Hyatt Hill Country?">I&rsquo;m at a resort &mdash; JW, La Cantera/Rim, or Hyatt?</button>
+            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="What should I do tonight?">What should I do tonight?</button>
             <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I need dinner near me">I need dinner near me</button>
+            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="Is this place worth visiting?">Is this place worth visiting?</button>
+            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="Hours, cost, and best time to go">Hours, cost, and best time to go</button>
             <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I'm here for a convention">I&rsquo;m here for a convention</button>
             <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I have kids with me">I have kids with me</button>
+            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I'm staying at a resort">I&rsquo;m staying at a resort</button>
             <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I need transportation help">I need transportation help</button>
           </div>
 
           <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation">
             <div class="live-concierge__msg live-concierge__msg--assistant">
               <div class="live-concierge__bubble">
-                Tell me where you are (name your resort if you&rsquo;re at JW Marriott, La Cantera / The Rim, or Hyatt Hill Country &mdash; they&rsquo;re different zones), who you&rsquo;re with, and what kind of San Antonio move you want. I&rsquo;ll point you to the best route, food pick, or next stop.
+                Tell me what you&rsquo;re trying to figure out &mdash; where to eat, what to do tonight, whether a place is worth visiting, how much time to allow, what it costs, when it&rsquo;s open, or how to build the best San Antonio route around your situation.
               </div>
+            </div>
+          </div>
+
+          <div class="live-concierge__place-hint" aria-labelledby="place-hint-heading">
+            <h3 class="live-concierge__place-hint-title" id="place-hint-heading">Ask about a place</h3>
+            <p class="live-concierge__place-hint-copy">
+              Get the quick read on hours, cost, parking, best time to go, who it&rsquo;s good for, what to pair it with, and whether it fits your plan.
+            </p>
+            <div class="live-concierge__chips live-concierge__chips--place" role="group" aria-label="Place example prompts">
+              <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="Tell me about the Tower of the Americas">Tell me about the Tower of the Americas</button>
+              <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="Is Market Square worth it?">Is Market Square worth it?</button>
+              <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="What should I know about the Pearl?">What should I know about the Pearl?</button>
+              <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="Best time for the River Walk?">Best time for the River Walk?</button>
             </div>
           </div>
 
@@ -111,7 +126,7 @@
               maxlength="12000"
               required
               autocomplete="off"
-              placeholder="Tonight&rsquo;s plan, dinner, timing &mdash; say which resort zone if you&rsquo;re at JW, La Cantera / Rim, or Hyatt Hill Country&hellip;"
+              placeholder="Ask about food, a place, hours, cost, timing, downtown, resorts, family plans, or transportation..."
             ></textarea>
             <button type="submit" class="live-concierge__send" id="live-concierge-send">Send</button>
           </form>
