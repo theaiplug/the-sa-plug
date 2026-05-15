@@ -1468,19 +1468,6 @@
       }
     }
 
-    .transport-concierge-main .tc-human-compact__disclaimer {
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      font-size: clamp(0.8rem, 0.15vw + 0.76rem, 0.86rem);
-      line-height: 1.55;
-      color: var(--navy);
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(11, 29, 58, 0.1);
-      text-align: left;
-    }
-
-
     /* Manual fallback — visually demoted, operator-first */
     .transport-concierge-main .transport-manual-fallback--low {
       max-width: none;
@@ -1576,25 +1563,103 @@
     }
 
     .transport-concierge-main .transport-manual-fallback--low .transport-manual-fallback__body {
-      max-width: min(40rem, 100%);
+      max-width: min(42rem, 100%);
       margin-inline: auto;
-      padding: clamp(18px, 2.4vw, 22px) clamp(16px, 2.2vw, 20px)
-        calc(20px + env(safe-area-inset-bottom, 0px));
-      border-radius: calc(var(--radius) + 8px);
-      border: 1px solid rgba(11, 29, 58, 0.1);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 252, 246, 0.96) 100%);
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.75) inset,
-        0 16px 40px rgba(11, 29, 58, 0.08);
+      padding: 0 0 calc(28px + env(safe-area-inset-bottom, 0px));
+      border: 0;
+      background: transparent;
+      box-shadow: none;
       box-sizing: border-box;
     }
 
-    .transport-concierge-main .transport-manual-fallback--low .transport-intake-submit {
-      margin-top: 18px;
-      margin-bottom: 4px;
-      min-height: 48px;
-      scroll-margin-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+    .transport-concierge-main .transport-backup-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: calc(var(--radius) + 10px);
+      border: 1px solid rgba(255, 246, 230, 0.14);
+      background: linear-gradient(168deg, #0a1628 0%, #0f2440 52%, #132d4f 100%);
+      box-shadow:
+        0 22px 56px rgba(2, 6, 14, 0.28),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    }
+
+    .transport-concierge-main .transport-backup-card__accent {
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(90deg, rgba(20, 184, 166, 0.95) 0%, rgba(242, 178, 26, 0.95) 55%, rgba(255, 106, 77, 0.88) 100%);
+      box-shadow: 0 4px 18px rgba(11, 29, 58, 0.25);
+    }
+
+    .transport-concierge-main .transport-backup-card__header {
+      padding: clamp(18px, 2.4vw, 24px) clamp(18px, 2.6vw, 26px) clamp(20px, 2.8vw, 26px);
+      border-bottom: 1px solid rgba(255, 246, 230, 0.1);
+      background:
+        radial-gradient(ellipse 80% 90% at 20% 0%, rgba(20, 184, 166, 0.12), transparent 55%),
+        linear-gradient(180deg, rgba(5, 12, 26, 0.35) 0%, transparent 100%);
+    }
+
+    .transport-concierge-main .transport-backup-card__eyebrow {
+      margin: 0 0 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(20, 184, 166, 0.95);
+    }
+
+    .transport-concierge-main .transport-backup-card__title {
+      margin: 0 0 10px;
+      font-size: clamp(1.12rem, 0.45vw + 1rem, 1.28rem);
+      font-weight: 800;
+      letter-spacing: -0.022em;
+      line-height: 1.2;
+      color: #fff8eb;
+    }
+
+    .transport-concierge-main .transport-backup-card__lead {
+      margin: 0 0 14px;
+      font-size: clamp(0.86rem, 0.12vw + 0.8rem, 0.92rem);
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.86);
+      max-width: 36rem;
+    }
+
+    .transport-concierge-main .transport-backup-card__disclaimer {
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: clamp(0.8rem, 0.1vw + 0.76rem, 0.86rem);
+      line-height: 1.55;
+      color: rgba(255, 248, 235, 0.92);
+      background: rgba(2, 8, 18, 0.42);
+      border: 1px solid rgba(255, 246, 230, 0.16);
+      max-width: 40rem;
+    }
+
+    .transport-concierge-main .transport-backup-card__cream {
+      padding: clamp(18px, 2.4vw, 24px) clamp(16px, 2.4vw, 22px)
+        clamp(22px, 3vw, 28px);
+      background: linear-gradient(180deg, #fffbf6 0%, #faf3ea 42%, #f3ebe2 100%);
+      border-top: 1px solid rgba(11, 29, 58, 0.06);
+    }
+
+    .transport-concierge-main .transport-manual-fallback--low .transport-intake-submit--backup {
+      margin-top: 10px;
+      margin-bottom: 0;
+      min-height: 52px;
+      width: 100%;
+      max-width: none;
+      border-radius: calc(var(--btn-radius, 999px));
+      box-shadow:
+        0 10px 28px rgba(255, 139, 31, 0.32),
+        0 4px 12px rgba(11, 29, 58, 0.12);
+      scroll-margin-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .transport-concierge-main .transport-manual-fallback--low .transport-intake-submit--backup:hover {
+      box-shadow:
+        0 14px 36px rgba(255, 139, 31, 0.38),
+        0 6px 16px rgba(11, 29, 58, 0.14);
     }
 
     .transport-concierge-main .transport-manual-fallback--low .transport-human-intake {
@@ -1989,87 +2054,113 @@
     <section class="tc-human-compact transport-section" aria-labelledby="tc-human-heading">
       <div class="tc-human-compact__inner">
         <h2 id="tc-human-heading" class="tc-human-compact__title">Want human transportation help?</h2>
-        <p class="tc-human-compact__lede">Start with the route operator first. If you want human help after the route makes sense, the operator can collect the request details and send them through.</p>
-        <div class="tc-human-compact__disclaimer" role="note">
-          Where To Go SA can help you think through the route and send a request. Availability is not guaranteed. If this is urgent or I&rsquo;m unavailable, use Uber, Lyft, hotel transportation, taxi, or another licensed option.
-        </div>
+        <p class="tc-human-compact__lede">Start with the route operator first. If you want human help after the route makes sense, the operator can collect the request details and send them through. Expand the backup form below if you need the human lane directly &mdash; the full service disclaimer sits there once, before you submit.</p>
       </div>
     </section>
 
     <details class="transport-section transport-manual-fallback transport-manual-fallback--low" id="manual-transport-fallback">
       <summary class="transport-manual-fallback__summary">
-        <span class="transport-manual-fallback__summary-main">Manual request fallback</span>
-        <span class="transport-manual-fallback__summary-sub">Use this only if the live route operator is not loading.</span>
-        <span class="transport-manual-fallback__summary-cta">Open manual request form</span>
+        <span class="transport-manual-fallback__summary-main">Send a human help request</span>
+        <span class="transport-manual-fallback__summary-sub">Use this only if the live route operator is not loading or you already know what help you need.</span>
+        <span class="transport-manual-fallback__summary-cta">Open request form</span>
       </summary>
       <div class="transport-manual-fallback__body">
-        <div class="transport-human-intake">
-          <form class="transport-intake-form" id="transport-intake-form" novalidate>
-            <p class="transport-intake-title">Human transportation help details</p>
-            <p id="transport-intake-error" class="transport-intake-error" hidden role="alert"></p>
-            <div class="transport-intake-grid">
-              <label class="transport-field">
-                <span>Name</span>
-                <input type="text" name="visitor_name" id="transport-visitor-name" required autocomplete="name" />
-              </label>
-              <label class="transport-field">
-                <span>Phone</span>
-                <input type="tel" name="visitor_phone" id="transport-visitor-phone" required autocomplete="tel" />
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Email (optional)</span>
-                <input type="email" name="visitor_email" id="transport-visitor-email" autocomplete="email" />
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Pickup area / starting point</span>
-                <input type="text" name="pickup_area" id="transport-pickup-area" required placeholder="Hotel, resort zone, airport, address, or neighborhood" />
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Destination</span>
-                <input type="text" name="destination" id="transport-destination" required />
-              </label>
-              <label class="transport-field">
-                <span>Requested time</span>
-                <input type="text" name="requested_time" id="transport-requested-time" required placeholder="Date + window, e.g. tonight 7:15 p.m." />
-              </label>
-              <label class="transport-field">
-                <span>Party size</span>
-                <input type="text" name="party_size" id="transport-party-size" required placeholder="e.g. 2 adults, 1 child" />
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Luggage / gear (optional)</span>
-                <input type="text" name="luggage" id="transport-luggage" placeholder="Bags, clubs, stroller, mobility notes" />
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Request type</span>
-                <select name="request_type" id="transport-request-type" required>
-                  <option value="">Choose one</option>
-                  <option>Airport transfer</option>
-                  <option>Resort / hotel zone</option>
-                  <option>Downtown night</option>
-                  <option>Convention / business</option>
-                  <option>Dinner route</option>
-                  <option>Family / group</option>
-                  <option>Other</option>
-                </select>
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Notes (optional)</span>
-                <textarea name="notes" id="transport-notes" rows="3" placeholder="Anything else that affects timing or pickup context."></textarea>
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>What the operator already covered (optional)</span>
-                <textarea name="ai_summary" id="transport-ai-summary" rows="3" placeholder="Paste route notes from above if you chatted with the operator first."></textarea>
-              </label>
-              <label class="transport-check transport-field--full">
-                <input type="checkbox" id="transport-pickup-permission" name="pickup_permission" required />
-                <span>I understand this is not emergency service and availability is not guaranteed.</span>
-              </label>
+        <div class="transport-backup-card">
+          <div class="transport-backup-card__accent" aria-hidden="true"></div>
+          <header class="transport-backup-card__header">
+            <p class="transport-backup-card__eyebrow">Route request backup</p>
+            <h3 class="transport-backup-card__title">Human help after the operator</h3>
+            <p class="transport-backup-card__lead">Share the route details so the request starts in the right place. Availability is not guaranteed.</p>
+            <p class="transport-backup-card__disclaimer" role="note">
+              Where To Go SA can help you think through the route and send a request. Availability is not guaranteed. If this is urgent or I&rsquo;m unavailable, use Uber, Lyft, hotel transportation, taxi, or another licensed option.
+            </p>
+          </header>
+          <div class="transport-backup-card__cream">
+            <div class="transport-human-intake">
+              <form class="transport-intake-form" id="transport-intake-form" novalidate aria-label="Human transportation backup request">
+                <p id="transport-intake-error" class="transport-intake-error" hidden role="alert"></p>
+
+                <div class="transport-intake-section">
+                  <h4 class="transport-intake-section__heading" id="transport-sec-contact">Contact</h4>
+                  <div class="transport-intake-grid">
+                    <label class="transport-field">
+                      <span>Name</span>
+                      <input type="text" name="visitor_name" id="transport-visitor-name" required autocomplete="name" />
+                    </label>
+                    <label class="transport-field">
+                      <span>Phone</span>
+                      <input type="tel" name="visitor_phone" id="transport-visitor-phone" required autocomplete="tel" />
+                    </label>
+                    <label class="transport-field transport-field--full">
+                      <span>Email optional</span>
+                      <input type="email" name="visitor_email" id="transport-visitor-email" autocomplete="email" />
+                    </label>
+                  </div>
+                </div>
+
+                <div class="transport-intake-section">
+                  <h4 class="transport-intake-section__heading" id="transport-sec-route">Route details</h4>
+                  <div class="transport-intake-grid">
+                    <label class="transport-field transport-field--full">
+                      <span>Pickup area / starting point</span>
+                      <input type="text" name="pickup_area" id="transport-pickup-area" required placeholder="Hotel, zone, airport, or neighborhood" />
+                    </label>
+                    <label class="transport-field transport-field--full">
+                      <span>Destination</span>
+                      <input type="text" name="destination" id="transport-destination" required />
+                    </label>
+                    <label class="transport-field">
+                      <span>Requested time</span>
+                      <input type="text" name="requested_time" id="transport-requested-time" required placeholder="e.g. Tonight 7:15 p.m." />
+                    </label>
+                    <label class="transport-field">
+                      <span>Party size</span>
+                      <input type="text" name="party_size" id="transport-party-size" required placeholder="e.g. 2 adults, 1 child" />
+                    </label>
+                    <label class="transport-field transport-field--full">
+                      <span>Luggage / gear optional</span>
+                      <input type="text" name="luggage" id="transport-luggage" placeholder="Bags, clubs, stroller, mobility notes" />
+                    </label>
+                    <label class="transport-field transport-field--full">
+                      <span>Request type</span>
+                      <select name="request_type" id="transport-request-type" required>
+                        <option value="">Choose one</option>
+                        <option>Airport transfer</option>
+                        <option>Resort / hotel zone</option>
+                        <option>Downtown night</option>
+                        <option>Convention / business</option>
+                        <option>Dinner route</option>
+                        <option>Family / group</option>
+                        <option>Other</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="transport-intake-section">
+                  <h4 class="transport-intake-section__heading" id="transport-sec-extra">Extra context</h4>
+                  <div class="transport-intake-grid">
+                    <label class="transport-field transport-field--full">
+                      <span>Notes optional</span>
+                      <textarea name="notes" id="transport-notes" rows="3" placeholder="Timing, accessibility, or pickup context."></textarea>
+                    </label>
+                    <label class="transport-field transport-field--full">
+                      <span>What the operator already covered optional</span>
+                      <textarea name="ai_summary" id="transport-ai-summary" rows="3" placeholder="Paste route notes if you used the operator first."></textarea>
+                    </label>
+                    <label class="transport-check transport-field--full transport-check--backup">
+                      <input type="checkbox" id="transport-pickup-permission" name="pickup_permission" required />
+                      <span>I understand this is not emergency service and availability is not guaranteed.</span>
+                    </label>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary transport-intake-submit transport-intake-submit--backup" id="transport-submit-intake">
+                  Request human transportation help
+                </button>
+              </form>
             </div>
-            <button type="submit" class="btn btn-primary transport-intake-submit" id="transport-submit-intake">
-              Request human transportation help
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </details>
@@ -2101,8 +2192,8 @@
       var det = document.getElementById("manual-transport-fallback");
       if (!det) return;
       var cta = det.querySelector(".transport-manual-fallback__summary-cta");
-      var openLabel = "Open manual request form";
-      var closeLabel = "Close manual request form";
+      var openLabel = "Open request form";
+      var closeLabel = "Close request form";
       function syncCta() {
         if (cta) cta.textContent = det.open ? closeLabel : openLabel;
       }
