@@ -94,9 +94,8 @@
                 loading="eager"
                 fetchpriority="high"
               />
-              <div class="live-concierge__image-band-gradient" aria-hidden="true"></div>
             </div>
-            <p class="live-concierge__image-band-label">Local answers &middot; Food &middot; Places &middot; Routes</p>
+            <p class="live-concierge__image-band-caption">Local answers &middot; Food &middot; Places &middot; Routes</p>
           </div>
 
           <div class="live-concierge__glass-panel">
@@ -131,8 +130,8 @@
               <div class="live-concierge__thread" id="live-concierge-thread">
                 <div class="live-concierge__conversation" id="live-concierge-conversation">
                   <div class="live-concierge__answer-surface" id="live-concierge-answer-surface" aria-live="polite">
-                    <div class="live-concierge__starter" id="live-concierge-starter">
-                      <p class="live-concierge__starter-msg">Ask about a place, dinner nearby, parking, timing, cost, or what to do next.</p>
+                    <div class="live-concierge__starter" id="live-concierge-starter" hidden>
+                      <p class="live-concierge__starter-msg">Tap a lane above or type your question below.</p>
                     </div>
                     <div class="live-concierge__transcript" id="live-concierge-transcript" hidden>
                       <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge answer"></div>
@@ -140,8 +139,8 @@
                   </div>
 
                   <div class="live-concierge__composer-stack" id="live-concierge-composer">
-                    <p class="live-concierge__composer-kicker" id="live-concierge-composer-kicker" hidden>
-                      Ask a follow-up
+                    <p class="live-concierge__composer-kicker visually-hidden" id="live-concierge-composer-kicker" hidden>
+                      Follow-up
                     </p>
                     <form class="live-concierge__form" id="live-concierge-form" aria-label="Ask A Local concierge">
                       <label class="live-concierge__input-label visually-hidden" for="live-concierge-input">Your question</label>
@@ -154,7 +153,7 @@
                           maxlength="12000"
                           required
                           autocomplete="off"
-                          placeholder="Ask about dinner, a place, parking, timing, cost, or what to do next..."
+                          placeholder="Type your question or follow-up..."
                         ></textarea>
                         <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local <span aria-hidden="true">&rarr;</span></button>
                       </div>

@@ -33,11 +33,10 @@
       conversationEl.classList.toggle("live-concierge__conversation--started", has);
     }
     if (starterEl) {
-      starterEl.hidden = has;
+      starterEl.hidden = true;
     }
-    var showKicker = !!logEl.querySelector(".live-concierge__msg--assistant:not(.live-concierge__thinking)");
     if (composerKickerEl) {
-      composerKickerEl.hidden = !showKicker;
+      composerKickerEl.hidden = true;
     }
   }
 
@@ -60,19 +59,115 @@
       .replace(/>/g, "&gt;");
   }
 
+  var SECTION_LABELS =
+    /^(Quick read|Best for|Timing|Cost(?:\s*\/\s*parking)?|Parking|Willie Approved|Local Pick|Research Pick|Needs Visit|Pair it with|Next move|Go \/ skip|Hours|Transportation)\s*:\s*(.*)$/i;
+
+  function inlineFormat(text) {
+    return escapeHtml(text).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  }
+
   function formatAssistantHtml(raw) {
-    var esc = escapeHtml(String(raw).trim());
-    esc = esc.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-    var paras = esc.split(/\n\n+/);
-    var html = paras
-      .filter(function (p) {
-        return p.length;
+    var lines = String(raw)
+      .trim()
+      .split(/\r?\n/)
+      .map(function (line) {
+        return line.trim();
       })
-      .map(function (p) {
-        return "<p>" + p.replace(/\n/g, "<br>") + "</p>";
-      })
-      .join("");
-    return '<div class="live-concierge__rich">' + (html || "<p></p>") + "</div>";
+      .filter(function (line, idx, arr) {
+        return line.length || (idx > 0 && arr[idx - 1].length);
+      });
+
+    if (!lines.length) {
+      return '<div class="live-concierge__rich"><p class="live-concierge__rich-lead"></p></div>';
+    }
+
+    var blocks = [];
+    var lead = [];
+    var listItems = null;
+    var current = null;
+
+    function flushList() {
+      if (!listItems || !listItems.length) return;
+      var listHtml =
+        '<ul class="live-concierge__rich-list">' +
+        listItems
+          .map(function (item) {
+            return "<li>" + inlineFormat(item) + "</li>";
+          })
+          .join("") +
+        "</ul>";
+      if (current) {
+        current.body = (current.body ? current.body + listHtml : listHtml);
+      } else {
+        lead.push(listHtml);
+      }
+      listItems = null;
+    }
+
+    function flushCurrent() {
+      flushList();
+      if (!current) return;
+      blocks.push(current);
+      current = null;
+    }
+
+    lines.forEach(function (line) {
+      var bullet = line.match(/^[-•*]\s+(.+)$/);
+      if (bullet) {
+        if (!listItems) listItems = [];
+        listItems.push(bullet[1]);
+        return;
+      }
+
+      flushList();
+      var section = line.match(SECTION_LABELS);
+      if (section) {
+        flushCurrent();
+        current = {
+          label: section[1].replace(/\s*\/\s*/g, " / "),
+          body: inlineFormat(section[2] || ""),
+        };
+        return;
+      }
+
+      if (current) {
+        current.body += (current.body ? "<br>" : "") + inlineFormat(line);
+        return;
+      }
+
+      if (!blocks.length) {
+        lead.push(inlineFormat(line));
+      } else {
+        var last = blocks[blocks.length - 1];
+        last.body += (last.body ? "<br>" : "") + inlineFormat(line);
+      }
+    });
+
+    flushCurrent();
+    flushList();
+
+    var html = "";
+    if (lead.length) {
+      html += '<p class="live-concierge__rich-lead">' + lead.join("<br>") + "</p>";
+    }
+
+    blocks.forEach(function (block) {
+      html +=
+        '<div class="live-concierge__rich-block">' +
+        '<span class="live-concierge__rich-label">' +
+        escapeHtml(block.label) +
+        "</span>" +
+        '<p class="live-concierge__rich-body">' +
+        block.body +
+        "</p>" +
+        "</div>";
+    });
+
+    if (!html) {
+      html = '<p class="live-concierge__rich-lead">' + inlineFormat(String(raw).trim()) + "</p>";
+    }
+
+    return '<div class="live-concierge__rich">' + html + "</div>";
   }
 
   function nudgeConversationIntoView() {
