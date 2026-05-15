@@ -13,10 +13,16 @@
   var statusEl = document.getElementById("live-concierge-status");
   var errorBanner = document.getElementById("live-concierge-error");
   var chips = root.querySelectorAll("[data-concierge-chip]");
+  var transcriptEl = document.getElementById("live-concierge-transcript");
   var threadEl = document.getElementById("live-concierge-thread");
 
   var previousResponseId = null;
   var busy = false;
+
+  function syncTranscriptVisibility() {
+    if (!transcriptEl || !logEl) return;
+    transcriptEl.classList.toggle("live-concierge__transcript--active", logEl.childElementCount > 0);
+  }
 
   function setStatus(text, live) {
     if (!statusEl) return;
@@ -76,12 +82,14 @@
     wrap.appendChild(inner);
     logEl.appendChild(wrap);
     logEl.scrollTop = logEl.scrollHeight;
+    syncTranscriptVisibility();
     nudgeThreadIntoView();
   }
 
   function removeThinking() {
     var t = logEl && logEl.querySelector(".live-concierge__thinking");
     if (t) t.remove();
+    syncTranscriptVisibility();
   }
 
   function addThinking() {
@@ -96,6 +104,7 @@
     wrap.appendChild(inner);
     logEl.appendChild(wrap);
     logEl.scrollTop = logEl.scrollHeight;
+    syncTranscriptVisibility();
     nudgeThreadIntoView();
   }
 
@@ -176,4 +185,5 @@
   });
 
   setStatus("Live · ready", true);
+  syncTranscriptVisibility();
 })();
