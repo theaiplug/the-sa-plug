@@ -1,0 +1,42 @@
+WHERE TO GO SA — LOGO / PFP ASSET PACK
+
+Brand:
+Where To Go SA
+
+Tagline:
+Where locals send visitors.
+
+Use direction:
+Premium San Antonio visitor guide, Fiesta Premium, local-guide identity.
+Selected visual direction: detailed San Antonio mission/Alamo + River Walk + Tower of the Americas + compass/star + native plant/flower elements.
+Treat the PFP/icon as a detailed profile badge, not a tiny favicon-only mark.
+
+Files included:
+1. where-to-go-sa-logo-board-selected.png
+   Main selected brand board / reference direction.
+
+2. where-to-go-sa-logo-board-user-selected-reference.jpeg
+   User-selected favorite reference from the conversation.
+
+3. where-to-go-sa-primary-logo-lockup.png
+   Horizontal primary logo direction with wordmark and emblem.
+
+4. where-to-go-sa-detailed-map-pin-pfp.png
+   Detailed map-pin style icon direction for PFP/avatar use.
+
+5. where-to-go-sa-round-emblem-pfp.png
+   Round detailed emblem direction for profile picture, social avatar, and badge use.
+
+6. where-to-go-sa-rounded-square-icon.png
+   Rounded-square icon direction for app-style icon, website icon preview, and later favicon adaptation.
+
+Important:
+These are AI-generated visual direction assets. Final website/logo production should preserve the selected look but rebuild exact text, crop, sizing, favicon, and transparent-background variants cleanly if needed.
+
+Image dimensions:
+- where-to-go-sa-logo-board-selected.png: 1254x1254
+- where-to-go-sa-logo-board-user-selected-reference.jpeg: 1254x1254
+- where-to-go-sa-primary-logo-lockup.png: 1448x1086
+- where-to-go-sa-detailed-map-pin-pfp.png: 1254x1254
+- where-to-go-sa-round-emblem-pfp.png: 1254x1254
+- where-to-go-sa-rounded-square-icon.png: 1254x1254

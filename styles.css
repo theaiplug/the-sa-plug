@@ -1,4 +1,4 @@
-/* The SA Plug — Fiesta Premium design system (single source) */
+/* Where To Go SA — Fiesta Premium design system (single source) */
 :root {
   /* Locked palette for copy on global dark canvas + .section-dark bands */
   --on-dark-heading: #fff6e6;
@@ -8210,7 +8210,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   font-size: clamp(0.9rem, 0.28vw + 0.82rem, 0.98rem);
 }
 
-/* ----- Ask page (Ask The SA Plug concierge router) ----- */
+/* ----- Ask page (Ask A Local concierge router) ----- */
 .page-ask .ask-page-hero.hero-fiesta-dark.secondary-hero {
   isolation: isolate;
   display: flex;
