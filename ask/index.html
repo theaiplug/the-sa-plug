@@ -87,21 +87,22 @@
             <div class="live-concierge__image-band-media">
               <img
                 src="../assets/ask-sa-plug-hero-riverwalk-tower.png"
-                alt=""
+                alt="San Antonio River Walk and downtown skyline"
                 width="1200"
                 height="630"
                 decoding="async"
                 loading="eager"
                 fetchpriority="high"
               />
-              <div class="live-concierge__image-band-gradient"></div>
+              <div class="live-concierge__image-band-gradient" aria-hidden="true"></div>
             </div>
             <p class="live-concierge__image-band-label">Local answers &middot; Food &middot; Places &middot; Routes</p>
           </div>
 
-          <div class="live-concierge__stage">
+          <div class="live-concierge__glass-panel">
             <div class="live-concierge__chip-board">
-              <div class="live-concierge__chip-cluster" role="group" aria-label="Tonight and logistics">
+              <div class="live-concierge__chip-cluster" role="group" aria-labelledby="lane-plan-heading">
+                <p class="live-concierge__lane-label" id="lane-plan-heading">Plan my move</p>
                 <div class="live-concierge__chips live-concierge__chips--lane">
                   <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="What should I do tonight?">What should I do tonight?</button>
                   <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I need dinner near me">I need dinner near me</button>
@@ -111,7 +112,8 @@
                   <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I need transportation help">I need transportation help</button>
                 </div>
               </div>
-              <div class="live-concierge__chip-cluster" role="group" aria-label="Places and timing">
+              <div class="live-concierge__chip-cluster" role="group" aria-labelledby="lane-place-heading">
+                <p class="live-concierge__lane-label" id="lane-place-heading">Ask about a place</p>
                 <div class="live-concierge__chips live-concierge__chips--lane">
                   <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Is this place worth visiting?">Is this place worth visiting?</button>
                   <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Hours, cost, and best time to go">Hours, cost, and best time to go</button>
@@ -121,9 +123,6 @@
                   <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Tell me about Tower of the Americas">Tell me about Tower of the Americas</button>
                 </div>
               </div>
-              <p class="live-concierge__hint-bubble">
-                Tell us where you are and what you want to figure out &mdash; dinner, a place, timing, parking, kids, convention plans, or your next move.
-              </p>
             </div>
 
             <div class="live-concierge__main-card">
@@ -132,6 +131,9 @@
               <div class="live-concierge__thread" id="live-concierge-thread">
                 <div class="live-concierge__conversation" id="live-concierge-conversation">
                   <div class="live-concierge__answer-surface" id="live-concierge-answer-surface" aria-live="polite">
+                    <div class="live-concierge__starter" id="live-concierge-starter">
+                      <p class="live-concierge__starter-msg">Ask about a place, dinner nearby, parking, timing, cost, or what to do next.</p>
+                    </div>
                     <div class="live-concierge__transcript" id="live-concierge-transcript" hidden>
                       <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge answer"></div>
                     </div>
@@ -148,11 +150,11 @@
                           id="live-concierge-input"
                           class="live-concierge__input"
                           name="message"
-                          rows="4"
+                          rows="2"
                           maxlength="12000"
                           required
                           autocomplete="off"
-                          placeholder="Example: I'm at the JW and need dinner nearby"
+                          placeholder="Ask about dinner, a place, parking, timing, cost, or what to do next..."
                         ></textarea>
                         <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local <span aria-hidden="true">&rarr;</span></button>
                       </div>
