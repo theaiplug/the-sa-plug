@@ -46,8 +46,22 @@ function accountSidPrefix(sid) {
   return s.length >= 6 ? s.slice(0, 6) : s;
 }
 
-function digitsOnly(phoneE164) {
-  return String(phoneE164 || "").replace(/\D/g, "");
+function digitsOnly(value) {
+  return String(value || "").replace(/\D/g, "");
+}
+
+function toE164FromDigits(digits) {
+  if (!digits) return "";
+  if (digits.length === 10) return `+1${digits}`;
+  if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
+  if (String(digits).startsWith("+")) return digits;
+  return `+${digits}`;
+}
+
+function digitsLast6(digitsString) {
+  const d = String(digitsString || "");
+  if (d.length === 0) return null;
+  return d.length <= 6 ? d : d.slice(-6);
 }
 
 function digitsLast4(phoneE164) {
@@ -89,12 +103,6 @@ function countryPrefixSafe(digits) {
   return null;
 }
 
-function digitsOnlyCompare(a, b) {
-  const d1 = String(a || "").replace(/\D/g, "");
-  const d2 = String(b || "").replace(/\D/g, "");
-  return d1.length > 0 && d2.length > 0 && d1 === d2;
-}
-
 function capabilityBool(capabilities, key) {
   if (!capabilities || typeof capabilities !== "object") return null;
   if (!Object.prototype.hasOwnProperty.call(capabilities, key)) return null;
@@ -124,12 +132,14 @@ exports.handler = async (event) => {
   const twilioToken = process.env.TWILIO_AUTH_TOKEN;
   const configuredFromNumber =
     process.env.TWILIO_FROM_NUMBER != null ? String(process.env.TWILIO_FROM_NUMBER).trim() : "";
+  const configuredFromDigits = configuredFromNumber ? digitsOnly(configuredFromNumber) : "";
 
   /** @type {Set<string>} */
   const ownedLast4Set = new Set();
-  /** @type {Array<{ masked: string, digitLength: number, country: string | null }>} */
+  /** @type {Array<{ masked: string, digitLength: number, country: string | null, digitsTail: string | null }>} */
   const ownedEntries = [];
   let ownedNumbersFullMatch = false;
+  let matchCandidateCount = 0;
   /** @type {boolean | null} */
   let smsCapableMatch = null;
   /** @type {boolean | null} */
@@ -142,6 +152,7 @@ exports.handler = async (event) => {
   const respondList = () => {
     const cfgDigits = configuredFromNumber ? digitsOnly(configuredFromNumber) : "";
     const configuredFromDigitsLength = cfgDigits.length > 0 ? cfgDigits.length : null;
+    const configuredFromDigitsTail = cfgDigits ? digitsLast6(cfgDigits) : null;
     const configuredFromLast4 =
       cfgDigits.length === 0
         ? null
@@ -152,6 +163,7 @@ exports.handler = async (event) => {
     ownedEntries.sort((a, b) => a.masked.localeCompare(b.masked));
     const ownedNumbersMasked = ownedEntries.map((e) => e.masked);
     const ownedNumberDigitLengths = ownedEntries.map((e) => e.digitLength);
+    const ownedNumbersDigitsTail = ownedEntries.map((e) => e.digitsTail);
     const countrySet = new Set();
     for (const e of ownedEntries) {
       if (e.country) countrySet.add(e.country);
@@ -169,9 +181,13 @@ exports.handler = async (event) => {
       configuredFromNumber: configuredFromMasked,
       configuredFromLast4,
       configuredFromDigitsLength,
+      configuredFromDigitsTail,
+      fullMatchMethod: "digitsOnly",
+      matchCandidateCount,
       ownedNumbersLast4: Array.from(ownedLast4Set).sort(),
       ownedNumbersMasked,
       ownedNumberDigitLengths,
+      ownedNumbersDigitsTail,
       ownedNumbersCountryPrefixes,
       ownedNumbersFullMatch,
       smsCapableMatch,
@@ -239,12 +255,20 @@ exports.handler = async (event) => {
           masked: maskPhoneForDiagnostic(pn),
           digitLength: pnDigits.length,
           country: countryPrefixSafe(pnDigits),
+          digitsTail: digitsLast6(pnDigits),
         });
 
-        if (configuredFromNumber && digitsOnlyCompare(pn, configuredFromNumber)) {
-          ownedNumbersFullMatch = true;
-          smsCapableMatch = capabilityBool(row.capabilities, "sms");
-          voiceCapableMatch = capabilityBool(row.capabilities, "voice");
+        if (
+          configuredFromDigits.length > 0 &&
+          pnDigits.length > 0 &&
+          configuredFromDigits === pnDigits
+        ) {
+          matchCandidateCount += 1;
+          if (!ownedNumbersFullMatch) {
+            ownedNumbersFullMatch = true;
+            smsCapableMatch = capabilityBool(row.capabilities, "sms");
+            voiceCapableMatch = capabilityBool(row.capabilities, "voice");
+          }
         }
       }
 

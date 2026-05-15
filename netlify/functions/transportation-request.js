@@ -72,6 +72,25 @@ function safeResendErrorFromBody(text) {
   return slice || "Resend request failed";
 }
 
+function digitsOnly(value) {
+  return String(value || "").replace(/\D/g, "");
+}
+
+function toE164FromDigits(digits) {
+  if (!digits) return "";
+  if (digits.length === 10) return `+1${digits}`;
+  if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
+  if (String(digits).startsWith("+")) return digits;
+  return `+${digits}`;
+}
+
+function resolveTwilioNextUrl(nextPageUri) {
+  if (!nextPageUri) return null;
+  const u = String(nextPageUri);
+  if (u.startsWith("http://") || u.startsWith("https://")) return u;
+  return `https://api.twilio.com${u.startsWith("/") ? u : `/${u}`}`;
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 204, headers: { ...CORS_HEADERS }, body: "" };
@@ -246,39 +265,111 @@ exports.handler = async (event) => {
   let smsSent = false;
   let smsErrorCode = null;
   let smsErrorMessage = null;
+  const noOwnedMatchMsg =
+    "Configured TWILIO_FROM_NUMBER does not exactly match an owned Twilio number.";
+
   if (twilioSid && twilioToken && twilioFrom && alertPhone) {
-    try {
-      const auth = Buffer.from(`${twilioSid}:${twilioToken}`).toString("base64");
-      const params = new URLSearchParams({
-        To: String(alertPhone).trim(),
-        From: String(twilioFrom).trim(),
-        Body: smsBody.slice(0, 1500),
-      });
-      const smsRes = await fetch(
-        `https://api.twilio.com/2010-04-01/Accounts/${twilioSid}/Messages.json`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Basic ${auth}`,
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: params.toString(),
+    const sidTrimmed = String(twilioSid).trim();
+    const configuredFromDigits = digitsOnly(twilioFrom);
+
+    if (!configuredFromDigits) {
+      smsErrorMessage = noOwnedMatchMsg;
+    } else {
+      try {
+        const listAuth = Buffer.from(`${sidTrimmed}:${String(twilioToken).trim()}`).toString(
+          "base64"
+        );
+        let listUrl = `https://api.twilio.com/2010-04-01/Accounts/${encodeURIComponent(
+          sidTrimmed
+        )}/IncomingPhoneNumbers.json?PageSize=1000`;
+        /** @type {string | null} */
+        let canonicalOwnedTwilioNumber = null;
+        let listError = null;
+
+        while (listUrl && !listError) {
+          const listRes = await fetch(listUrl, {
+            method: "GET",
+            headers: {
+              Authorization: `Basic ${listAuth}`,
+              Accept: "application/json",
+            },
+          });
+          const listText = await listRes.text();
+          if (!listRes.ok) {
+            listError = safeTwilioErrorFromBody(listText);
+            break;
+          }
+          let listData;
+          try {
+            listData = JSON.parse(listText);
+          } catch {
+            listError = "Twilio list response was not valid JSON.";
+            break;
+          }
+          const listItems = Array.isArray(listData.incoming_phone_numbers)
+            ? listData.incoming_phone_numbers
+            : [];
+          for (const row of listItems) {
+            const pn =
+              row && row.phone_number != null
+                ? String(row.phone_number).trim()
+                : row && row.phoneNumber != null
+                  ? String(row.phoneNumber).trim()
+                  : "";
+            if (!pn) continue;
+            const ownedDigits = digitsOnly(pn);
+            if (ownedDigits.length > 0 && ownedDigits === configuredFromDigits) {
+              canonicalOwnedTwilioNumber = pn;
+              listUrl = null;
+              break;
+            }
+          }
+          if (canonicalOwnedTwilioNumber) break;
+          listUrl = resolveTwilioNextUrl(listData.next_page_uri);
         }
-      );
-      smsSent = smsRes.ok;
-      if (!smsSent) {
-        const errText = await smsRes.text();
-        smsErrorMessage = safeTwilioErrorFromBody(errText);
-        try {
-          const j = JSON.parse(errText);
-          smsErrorCode = j.code != null ? String(j.code) : null;
-        } catch {
-          smsErrorCode = null;
+
+        if (listError) {
+          smsErrorMessage = listError;
+        } else if (!canonicalOwnedTwilioNumber) {
+          smsErrorMessage = noOwnedMatchMsg;
+        } else {
+          const auth = Buffer.from(`${sidTrimmed}:${String(twilioToken).trim()}`).toString(
+            "base64"
+          );
+          const params = new URLSearchParams({
+            To: String(alertPhone).trim(),
+            From: canonicalOwnedTwilioNumber,
+            Body: smsBody.slice(0, 1500),
+          });
+          const smsRes = await fetch(
+            `https://api.twilio.com/2010-04-01/Accounts/${encodeURIComponent(
+              sidTrimmed
+            )}/Messages.json`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Basic ${auth}`,
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              body: params.toString(),
+            }
+          );
+          smsSent = smsRes.ok;
+          if (!smsSent) {
+            const errText = await smsRes.text();
+            smsErrorMessage = safeTwilioErrorFromBody(errText);
+            try {
+              const j = JSON.parse(errText);
+              smsErrorCode = j.code != null ? String(j.code) : null;
+            } catch {
+              smsErrorCode = null;
+            }
+          }
         }
+      } catch (e) {
+        smsErrorMessage =
+          e instanceof Error ? e.message.slice(0, SAFE_ERR_LEN) : "SMS request failed";
       }
-    } catch (e) {
-      smsErrorMessage =
-        e instanceof Error ? e.message.slice(0, SAFE_ERR_LEN) : "SMS request failed";
     }
   }
 
