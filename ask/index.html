@@ -77,7 +77,7 @@
           <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Live local concierge</p>
           <h2 id="live-concierge-heading" class="live-concierge__title">Ask A Local anything about your San Antonio move</h2>
           <p class="section-text section-text-light live-concierge__lead">
-            Get instant local answers for tonight&rsquo;s plan, dinner, a specific place, hours and cost, parking and timing, downtown and the Pearl, conventions, family routes, resorts when that&rsquo;s your stay, and transportation decisions.
+            Get instant local answers for tonight&rsquo;s plan, dinner, a specific place, hours and cost, parking, downtown, the Pearl, conventions, family routes, timing, transport, and resort stays when that&rsquo;s your lane.
           </p>
           <p class="live-concierge__status" id="live-concierge-status" aria-live="polite">Live · ready</p>
         </header>
@@ -112,10 +112,27 @@
               </div>
             </div>
 
+            <figure class="live-concierge__visual-card">
+              <div class="live-concierge__visual-media">
+                <img src="../assets/ask-sa-plug-hero-riverwalk-tower.png" alt="River Walk evening view toward the Tower of the Americas" width="1200" height="630" decoding="async" loading="lazy" />
+              </div>
+              <figcaption class="live-concierge__visual-caption">
+                <span class="live-concierge__visual-eyebrow">Local route logic</span>
+                <span class="live-concierge__visual-line">Dinner &middot; downtown &middot; family &middot; resorts &middot; timing</span>
+              </figcaption>
+            </figure>
+
             <div class="live-concierge__thread" id="live-concierge-thread">
               <div class="live-concierge__conversation" id="live-concierge-conversation">
-                <div class="live-concierge__transcript" id="live-concierge-transcript">
-                  <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation"></div>
+                <div class="live-concierge__answer-surface" id="live-concierge-answer-surface" aria-live="polite">
+                  <div class="live-concierge__preview-wrap" id="live-concierge-preview-wrap">
+                    <div class="live-concierge__preview-bubble" id="live-concierge-preview">
+                      Ask about dinner, a place, parking, timing, cost, or what to do next. Tell us where you are, who you&rsquo;re with, and how much time you have.
+                    </div>
+                  </div>
+                  <div class="live-concierge__transcript" id="live-concierge-transcript" hidden>
+                    <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge answer"></div>
+                  </div>
                 </div>
 
                 <div class="live-concierge__composer-stack" id="live-concierge-composer">
@@ -124,7 +141,7 @@
                   </p>
                   <div class="live-concierge__composer-card">
                     <form class="live-concierge__form" id="live-concierge-form" aria-label="Ask A Local concierge">
-                      <label class="visually-hidden" for="live-concierge-input">Your message to the concierge</label>
+                      <label class="live-concierge__input-label" for="live-concierge-input">Type your question</label>
                       <div class="live-concierge__composer-unit">
                         <div class="live-concierge__composer-field">
                           <span class="live-concierge__composer-glyph" aria-hidden="true">&#9998;</span>
@@ -139,15 +156,15 @@
                             placeholder="Ask about dinner, a place, parking, timing, cost, or what to do next…"
                           ></textarea>
                         </div>
-                        <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local</button>
+                        <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local &rarr;</button>
                       </div>
                     </form>
                   </div>
+                  <p class="live-concierge__footnote">
+                    Need hands-on routing? <a class="live-concierge__footnote-link" href="#human-help">Request human help</a> &mdash; optional, not immediate. For urgent rides, use rideshare, taxi, hotel transport, or another licensed option.
+                  </p>
                 </div>
               </div>
-              <p class="live-concierge__footnote">
-                Need hands-on routing? <a class="live-concierge__footnote-link" href="#human-help">Request human help</a> &mdash; optional, not immediate. For urgent rides, use rideshare, taxi, hotel transport, or another licensed option.
-              </p>
             </div>
           </div>
         </div>
@@ -157,124 +174,65 @@
     <section class="section section-cream ask-popular-backup" id="popular-routes" aria-labelledby="routes-heading">
       <div class="routes-band-inner ask-routes-stack">
         <header class="ask-section-head">
-          <p class="eyebrow">Popular moves</p>
+          <p class="eyebrow">Pick the move</p>
           <h2 id="routes-heading">Popular San Antonio moves</h2>
-          <p class="section-text">Start with the situation that matches your night &mdash; or ask the live concierge above. Request human help only when you want that lane.</p>
+          <p class="section-text">Tap a lane that matches your night, then use Ask A Local above to tighten the plan. Human help stays optional at the bottom of the page.</p>
         </header>
 
-        <article class="ask-route-block ask-route-block--backup" id="route-downtown">
-          <div class="ask-route-block__media">
-            <img src="../assets/ask-downtown-night-plan.png" alt="Downtown San Antonio at night along the River Walk" width="960" height="640" decoding="async" loading="lazy" />
-          </div>
-          <div class="ask-route-block__body glass-info-card">
-            <h3>One-night downtown plan</h3>
-            <p>River Walk before the crush, Alamo if it&rsquo;s a first visit, then one dinner move matched to your group &mdash; not a random scatter across the city.</p>
-            <ul class="ask-route-bullets">
-              <li>First-night flow</li>
-              <li>Walk + eat timing</li>
-              <li>Small groups &amp; dates</li>
-            </ul>
-            <div class="ask-route-actions">
-              <a class="btn btn-primary" href="../downtown.html">See the downtown move</a>
-              <a class="btn btn-secondary ask-route-actions__quiet" href="#human-help">Request human help</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="ask-route-block ask-route-block--reverse ask-route-block--backup" id="route-riverwalk">
-          <div class="ask-route-block__media">
-            <img src="../assets/ask-riverwalk-timing.png" alt="River Walk scene showing evening light and walkways" width="960" height="640" decoding="async" loading="lazy" />
-          </div>
-          <div class="ask-route-block__body glass-info-card">
-            <h3>River Walk timing guide</h3>
-            <p>Earlier walks easier. Later glows louder. Match the hour to the vibe you want before you commit dinner.</p>
-            <ul class="ask-route-bullets">
-              <li>Golden hour pace</li>
-              <li>Peak energy window</li>
-              <li>Walk + drinks combo</li>
-            </ul>
-            <div class="ask-route-actions">
-              <a class="btn btn-primary" href="../downtown.html#dt-river-timing">Best time to go</a>
-              <a class="btn btn-secondary ask-route-actions__quiet" href="../where-to-eat.html">Pair with dinner</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="ask-route-block ask-route-block--backup" id="route-convention">
-          <div class="ask-route-block__media">
-            <img src="../assets/ask-business-dinner-convention.png" alt="Convention and business evening in a downtown setting" width="960" height="640" decoding="async" loading="lazy" />
-          </div>
-          <div class="ask-route-block__body glass-info-card">
-            <h3>Convention and business traveler picks</h3>
-            <p>After sessions, your clock picks the lane: quick downtown bite, client-ready room, or a low-stress night without zigzagging.</p>
-            <ul class="ask-route-bullets">
-              <li>Client-ready rooms</li>
-              <li>Walk or short ride</li>
-              <li>Post-session timing</li>
-            </ul>
-            <div class="ask-route-actions">
-              <a class="btn btn-primary" href="../downtown.html#dt-move-business">Business move</a>
-              <a class="btn btn-secondary ask-route-actions__quiet" href="../where-to-eat.html">Dinner after the floor</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="ask-route-block ask-route-block--reverse ask-route-block--backup" id="route-resort">
-          <div class="ask-route-block__media">
-            <img src="../assets/ask-resort-route-evening.png" alt="Resort-area evening with warm outdoor lighting" width="960" height="640" decoding="async" loading="lazy" />
-          </div>
-          <div class="ask-route-block__body glass-info-card">
-            <h3>Resort guest plan</h3>
-            <p>JW (TPC / north), La Cantera / The Rim, and Hyatt Hill Country / SeaWorld are different zones &mdash; stay close or earn the downtown run on purpose.</p>
-            <ul class="ask-route-bullets">
-              <li>Zone-first food</li>
-              <li>Family vs adults night</li>
-              <li>Upscale without wrong &ldquo;nearby&rdquo;</li>
-            </ul>
-            <div class="ask-route-actions">
-              <a class="btn btn-primary" href="../resort-food.html">Resort food lanes</a>
-              <a class="btn btn-secondary ask-route-actions__quiet" href="../downtown.html">Downtown worth it?</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="ask-route-block ask-route-block--backup" id="route-family">
-          <div class="ask-route-block__media">
-            <img src="../assets/ask-family-friendly-river-park.png" alt="Family-friendly outdoor path near the river in San Antonio" width="960" height="640" decoding="async" loading="lazy" />
-          </div>
-          <div class="ask-route-block__body glass-info-card">
-            <h3>Family-friendly San Antonio plan</h3>
-            <p>Pick energy first &mdash; active, downtown, kid-friendly food, or a lighter mix &mdash; so nobody melts down in traffic.</p>
-            <ul class="ask-route-bullets">
-              <li>Simple day routing</li>
-              <li>Kid pacing built in</li>
-              <li>Fewer backtracks</li>
-            </ul>
-            <div class="ask-route-actions">
-              <a class="btn btn-primary" href="../summer-family.html">Family route hub</a>
-              <a class="btn btn-secondary ask-route-actions__quiet" href="../downtown.html#dt-move-family">Family stop now</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="ask-route-block ask-route-block--reverse ask-route-block--backup" id="route-transport">
-          <div class="ask-route-block__media">
-            <img src="../assets/ask-transportation-concierge.png" alt="Evening transportation and city arrival scene" width="960" height="640" decoding="async" loading="lazy" />
-          </div>
-          <div class="ask-route-block__body glass-info-card">
-            <h3>Transportation + concierge</h3>
-            <p>Airport, resort, downtown, or dinner chain &mdash; tighten pickup timing and route order when you want less guesswork.</p>
-            <ul class="ask-route-bullets">
-              <li>Arrival + resort legs</li>
-              <li>Night-out chain order</li>
-              <li>Dinner pickup windows</li>
-            </ul>
-            <div class="ask-route-actions">
-              <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation help</a>
-              <a class="btn btn-secondary ask-route-actions__quiet" href="#human-help">Request human help</a>
-            </div>
-          </div>
-        </article>
+        <ul class="ask-popular-moves-grid" role="list">
+          <li role="listitem" id="route-riverwalk-tonight">
+            <a class="ask-popular-move-card" href="#live-concierge">
+              <div class="ask-popular-move-card__media">
+                <img src="../assets/ask-riverwalk-timing.png" alt="River Walk at evening with lights along the water" width="960" height="640" decoding="async" loading="lazy" />
+                <span class="ask-popular-move-card__shade" aria-hidden="true"></span>
+              </div>
+              <div class="ask-popular-move-card__body">
+                <h3>River Walk tonight</h3>
+                <p>Dinner, lights, walking, and one clean downtown route.</p>
+                <span class="ask-popular-move-card__cta">Plan this move</span>
+              </div>
+            </a>
+          </li>
+          <li role="listitem" id="route-convention">
+            <a class="ask-popular-move-card" href="#live-concierge">
+              <div class="ask-popular-move-card__media">
+                <img src="../assets/ask-business-dinner-convention.png" alt="Convention area and business evening downtown" width="960" height="640" decoding="async" loading="lazy" />
+                <span class="ask-popular-move-card__shade" aria-hidden="true"></span>
+              </div>
+              <div class="ask-popular-move-card__body">
+                <h3>Convention visitor route</h3>
+                <p>Quick dinner, easy drinks, and getting back without overthinking it.</p>
+                <span class="ask-popular-move-card__cta">Plan this move</span>
+              </div>
+            </a>
+          </li>
+          <li role="listitem" id="route-family">
+            <a class="ask-popular-move-card" href="#live-concierge">
+              <div class="ask-popular-move-card__media">
+                <img src="../assets/ask-family-friendly-river-park.png" alt="Family-friendly path near the river in San Antonio" width="960" height="640" decoding="async" loading="lazy" />
+                <span class="ask-popular-move-card__shade" aria-hidden="true"></span>
+              </div>
+              <div class="ask-popular-move-card__body">
+                <h3>Family-friendly downtown</h3>
+                <p>A kid-friendly route with fewer wasted transfers.</p>
+                <span class="ask-popular-move-card__cta">Plan this move</span>
+              </div>
+            </a>
+          </li>
+          <li role="listitem" id="route-resort">
+            <a class="ask-popular-move-card" href="#live-concierge">
+              <div class="ask-popular-move-card__media">
+                <img src="../assets/ask-resort-route-evening.png" alt="Resort-area evening with warm outdoor lighting" width="960" height="640" decoding="async" loading="lazy" />
+                <span class="ask-popular-move-card__shade" aria-hidden="true"></span>
+              </div>
+              <div class="ask-popular-move-card__body">
+                <h3>Resort dinner move</h3>
+                <p>Stay close or make the downtown run based on timing and energy.</p>
+                <span class="ask-popular-move-card__cta">Plan this move</span>
+              </div>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
 

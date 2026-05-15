@@ -1,7 +1,7 @@
 (function () {
   var CONCIERGE_URL = "/.netlify/functions/visitor-concierge";
   var FALLBACK =
-    "The live concierge is having trouble loading right now. You can still use the route cards below or send a request for help.";
+    "The live concierge is having trouble loading right now. You can still use the popular moves below or send a request for help.";
 
   var root = document.getElementById("live-concierge");
   if (!root) return;
@@ -14,6 +14,7 @@
   var errorBanner = document.getElementById("live-concierge-error");
   var chips = root.querySelectorAll("[data-concierge-chip]");
   var transcriptEl = document.getElementById("live-concierge-transcript");
+  var previewWrapEl = document.getElementById("live-concierge-preview-wrap");
   var threadEl = document.getElementById("live-concierge-thread");
   var conversationEl = document.getElementById("live-concierge-conversation");
   var composerStackEl = document.getElementById("live-concierge-composer");
@@ -23,9 +24,14 @@
   var busy = false;
 
   function syncTranscriptVisibility() {
-    if (!transcriptEl || !logEl) return;
+    if (!logEl) return;
     var has = logEl.childElementCount > 0;
-    transcriptEl.classList.toggle("live-concierge__transcript--active", has);
+    if (previewWrapEl) {
+      previewWrapEl.hidden = has;
+    }
+    if (transcriptEl) {
+      transcriptEl.hidden = !has;
+    }
     if (conversationEl) {
       conversationEl.classList.toggle("live-concierge__conversation--started", has);
     }
