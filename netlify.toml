@@ -3,6 +3,19 @@
   functions = "netlify/functions"
 
 # Environment variables (Netlify Dashboard → Site configuration → Environment variables):
-#   OPENAI_API_KEY        — required for the visitor concierge Netlify function
-# Optional:
-#   OPENAI_VISITOR_MODEL  — override default model for Responses API (default: gpt-4.1-mini)
+#
+# Ask A Local + Route operator (OpenAI Responses API):
+#   OPENAI_API_KEY           — required for visitor-concierge and transportation-operator functions
+#   OPENAI_VISITOR_MODEL     — optional override for visitor concierge (default: gpt-4.1-mini)
+#   OPENAI_TRANSPORT_MODEL   — optional override for transportation operator (else OPENAI_VISITOR_MODEL / default)
+#
+# Transportation request intake (transportation-request function):
+#   SUPABASE_URL
+#   SUPABASE_SERVICE_ROLE_KEY   — server-only; never expose to the browser
+#   TWILIO_ACCOUNT_SID          — SMS alerts
+#   TWILIO_AUTH_TOKEN
+#   TWILIO_FROM_NUMBER
+#   TRANSPORT_ALERT_PHONE       — owner SMS destination (E.164)
+#   RESEND_API_KEY              — email alerts
+#   TRANSPORT_ALERT_EMAIL       — owner inbox
+#   RESEND_FROM_EMAIL           — verified sender in Resend (required for email to send)

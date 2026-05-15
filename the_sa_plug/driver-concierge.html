@@ -664,13 +664,207 @@
               <li><span class="tc-hero-chip">Family timing</span></li>
             </ul>
             <div class="hero-cta-row">
-              <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation help</a>
+              <a class="btn btn-primary" href="#route-transport-help">Route + Transportation Help</a>
               <a href="../ask/" class="btn btn-secondary hero-secondary-btn">Ask A Local</a>
             </div>
           </div>
           <div class="hero-visual-frame hero-inner-visual secondary-hero-visual">
             <div class="hero-visual-panel hero-inner-panel tc-hero-panel">
               <img src="assets/images/sa-plug/downtown-riverwalk.png" alt="Downtown San Antonio streets and River Walk energy for visitor route planning" class="hero-visual-img hero-inner-img img-pos-riverwalk" width="800" height="1000" decoding="async" onerror="this.closest('.tc-hero-panel').classList.add('tc-hero-panel--fallback'); this.remove();" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="section band section-navy-routes live-concierge-section transport-route-operator"
+      id="route-transport-help"
+      aria-labelledby="transport-route-heading"
+    >
+      <div class="routes-band-inner live-concierge-inner" id="transport-route-operator">
+        <header class="live-concierge__head">
+          <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Route + Transportation Help</p>
+          <h2 id="transport-route-heading" class="live-concierge__title">Where To Go SA Route + Transportation Help</h2>
+          <p class="section-text section-text-light live-concierge__lead">
+            Instant route and transportation logic first &mdash; optional human handoff only if you want it. Same premium rhythm as Ask A Local.
+          </p>
+          <p class="transport-route-disclaimer section-text section-text-light">
+            Where To Go SA can help you think through the route and send a request. Availability is not guaranteed. If this is urgent or I&rsquo;m unavailable, use Uber, Lyft, hotel transportation, taxi, or another licensed option.
+          </p>
+          <p class="live-concierge__status" id="transport-route-status" aria-live="polite">Live · ready</p>
+        </header>
+
+        <div class="live-concierge-studio">
+          <div class="live-concierge-card">
+            <div class="live-concierge__image-band">
+              <div class="live-concierge__image-band-media">
+                <img
+                  src="../assets/transport-common-airport-downtown.png"
+                  alt="Downtown hotel approach and airport transfer timing"
+                  width="1448"
+                  height="1086"
+                  decoding="async"
+                  loading="eager"
+                />
+              </div>
+            </div>
+
+            <div class="live-concierge__glass-panel">
+              <div class="live-concierge__panel-copy">
+                <p class="live-concierge__panel-intro">Transportation + Local Concierge lane</p>
+                <p class="live-concierge__panel-support">
+                  Tell me where you are, where you&rsquo;re trying to go, and when. I&rsquo;ll help you think through the route. If you want human transportation help, I&rsquo;ll collect the details and send the request.
+                </p>
+              </div>
+              <div class="live-concierge__chip-board">
+                <div class="live-concierge__chip-cluster" role="group" aria-labelledby="transport-chip-label">
+                  <p class="live-concierge__lane-label" id="transport-chip-label">Quick prompts</p>
+                  <div class="live-concierge__chips live-concierge__chips--lane">
+                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Airport to hotel timing and pickup logic">
+                      Airport to hotel
+                    </button>
+                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Resort to downtown — is it worth the drive tonight?">
+                      Resort to downtown
+                    </button>
+                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Dinner route help — stay near the hotel or go out?">
+                      Dinner route help
+                    </button>
+                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Night out route — pacing, timing, and return plan">
+                      Night-out route
+                    </button>
+                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Family route help — kids, luggage, realistic timing">
+                      Family route help
+                    </button>
+                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Convention transportation — schedule handoffs and dinner moves">
+                      Convention transportation
+                    </button>
+                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Need help tonight — what is the smartest move on timing and backups?">
+                      Need help tonight
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="live-concierge__main-card">
+                <div class="live-concierge__error" id="transport-route-error" hidden role="alert"></div>
+                <div id="transport-route-confirmation" class="transport-route-confirmation" hidden role="status"></div>
+
+                <div class="live-concierge__thread" id="transport-route-thread">
+                  <div class="live-concierge__conversation" id="transport-route-conversation">
+                    <div class="live-concierge__answer-surface" id="transport-route-answer-surface" aria-live="polite">
+                      <div class="live-concierge__preview" id="transport-route-preview">
+                        <p class="live-concierge__preview-text" id="transport-route-preview-text">
+                          Tell me where you are, where you&rsquo;re trying to go, and when. I&rsquo;ll help you think through the route. If you want human transportation help, I&rsquo;ll collect the details and send the request.
+                        </p>
+                      </div>
+                      <div class="live-concierge__transcript" id="transport-route-transcript" hidden>
+                        <div class="live-concierge__log" id="transport-route-log" role="log" aria-relevant="additions" aria-label="Route help conversation"></div>
+                      </div>
+                    </div>
+
+                    <div class="live-concierge__composer-stack" id="transport-route-composer">
+                      <p class="live-concierge__composer-kicker visually-hidden" id="transport-route-composer-kicker" hidden>Follow-up</p>
+                      <form class="live-concierge__form" id="transport-route-form" aria-label="Route and transportation help">
+                        <label class="live-concierge__input-label visually-hidden" for="transport-route-input">Your route question</label>
+                        <div class="live-concierge__composer-unit">
+                          <textarea
+                            id="transport-route-input"
+                            class="live-concierge__input"
+                            name="message"
+                            rows="2"
+                            maxlength="12000"
+                            required
+                            autocomplete="off"
+                            placeholder="Example: I&rsquo;m at the JW tonight — should we eat near the resort or run downtown?"
+                          ></textarea>
+                          <button type="submit" class="live-concierge__send" id="transport-route-send">
+                            Ask route question <span aria-hidden="true">&rarr;</span>
+                          </button>
+                        </div>
+                      </form>
+
+                      <div class="transport-human-intro">
+                        <p class="transport-human-intro__text">
+                          Optional: if you want me to relay a <strong>human transportation help</strong> request after we talk through the route, expand the form below. Availability is not guaranteed &mdash; this is not emergency service.
+                        </p>
+                        <button type="button" class="btn btn-secondary transport-show-intake" id="transport-show-human-intake" aria-expanded="false">
+                          Human transportation help request
+                        </button>
+                      </div>
+
+                      <div class="transport-human-intake" id="transport-human-intake" hidden>
+                        <form class="transport-intake-form" id="transport-intake-form" novalidate>
+                          <p class="transport-intake-title">Human help details</p>
+                          <p id="transport-intake-error" class="transport-intake-error" hidden role="alert"></p>
+                          <div class="transport-intake-grid">
+                            <label class="transport-field">
+                              <span>Name</span>
+                              <input type="text" name="visitor_name" id="transport-visitor-name" required autocomplete="name" />
+                            </label>
+                            <label class="transport-field">
+                              <span>Phone</span>
+                              <input type="tel" name="visitor_phone" id="transport-visitor-phone" required autocomplete="tel" />
+                            </label>
+                            <label class="transport-field transport-field--full">
+                              <span>Email (optional)</span>
+                              <input type="email" name="visitor_email" id="transport-visitor-email" autocomplete="email" />
+                            </label>
+                            <label class="transport-field transport-field--full">
+                              <span>Pickup area / starting point</span>
+                              <input type="text" name="pickup_area" id="transport-pickup-area" required placeholder="Hotel, resort zone, airport, address, or neighborhood" />
+                            </label>
+                            <label class="transport-field transport-field--full">
+                              <span>Destination</span>
+                              <input type="text" name="destination" id="transport-destination" required />
+                            </label>
+                            <label class="transport-field">
+                              <span>Requested time</span>
+                              <input type="text" name="requested_time" id="transport-requested-time" required placeholder="Date + window, e.g. tonight 7:15 p.m." />
+                            </label>
+                            <label class="transport-field">
+                              <span>Party size</span>
+                              <input type="text" name="party_size" id="transport-party-size" required placeholder="e.g. 2 adults, 1 child" />
+                            </label>
+                            <label class="transport-field transport-field--full">
+                              <span>Luggage / gear (optional)</span>
+                              <input type="text" name="luggage" id="transport-luggage" placeholder="Bags, clubs, stroller, mobility notes" />
+                            </label>
+                            <label class="transport-field transport-field--full">
+                              <span>Request type</span>
+                              <select name="request_type" id="transport-request-type" required>
+                                <option value="">Choose one</option>
+                                <option>Airport transfer</option>
+                                <option>Resort / hotel zone</option>
+                                <option>Downtown night</option>
+                                <option>Convention / business</option>
+                                <option>Dinner route</option>
+                                <option>Family / group</option>
+                                <option>Other</option>
+                              </select>
+                            </label>
+                            <label class="transport-field transport-field--full">
+                              <span>Notes (optional)</span>
+                              <textarea name="notes" id="transport-notes" rows="3" placeholder="Anything else that affects pickup or timing."></textarea>
+                            </label>
+                            <label class="transport-field transport-field--full">
+                              <span>What the AI already covered (optional)</span>
+                              <textarea name="ai_summary" id="transport-ai-summary" rows="3" placeholder="We pre-fill from the last answer — edit if needed."></textarea>
+                            </label>
+                            <label class="transport-check transport-field--full">
+                              <input type="checkbox" id="transport-pickup-permission" name="pickup_permission" />
+                              <span>I&rsquo;m sharing pickup context so Where To Go SA can understand the request. This is not emergency service and does not guarantee availability.</span>
+                            </label>
+                          </div>
+                          <button type="submit" class="btn btn-primary transport-intake-submit" id="transport-submit-intake">
+                            Send human help request
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -904,5 +1098,6 @@
     <p class="footer-note">Built by The AI Plug.</p>
   </footer>
   <script src="script.js"></script>
+  <script src="../transportation-operator.js" defer></script>
 </body>
 </html>
