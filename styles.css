@@ -8280,27 +8280,12 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   letter-spacing: 0.14em;
 }
 
+.page-ask .ask-page-hero-actions {
+  margin-top: clamp(4px, 0.8vw, 8px);
+}
+
 .page-ask .ask-page-hero-actions .btn {
   min-height: 48px;
-}
-
-.page-ask .ask-page-hero-chips.route-chip-row-hero {
-  margin-top: clamp(14px, 2vw, 20px);
-  padding-top: clamp(12px, 2vw, 18px);
-  align-self: flex-start;
-  max-width: min(40rem, 100%);
-  gap: 8px 10px;
-}
-
-.page-ask .ask-page-hero-chips .route-chip {
-  border-color: rgba(242, 178, 26, 0.28);
-}
-
-@media (max-width: 520px) {
-  .page-ask .ask-page-hero-chips .route-chip {
-    font-size: clamp(0.72rem, 0.12vw + 0.7rem, 0.8rem);
-    padding: 6px 10px;
-  }
 }
 
 .page-ask .ask-popular-backup .ask-section-head .eyebrow {
