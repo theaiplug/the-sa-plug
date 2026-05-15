@@ -9260,8 +9260,11 @@ body.page-ask main {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #8ff7e8, var(--turquoise));
-  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.22);
+  background: radial-gradient(circle at 32% 28%, #c8ffd4 0%, #4ade80 42%, #16a34a 100%);
+  box-shadow:
+    0 0 0 2px rgba(34, 197, 94, 0.28),
+    0 0 6px rgba(74, 222, 128, 0.55),
+    0 0 14px rgba(34, 197, 94, 0.32);
 }
 
 /* Local Concierge Studio — clean SA image header + interaction panel */
