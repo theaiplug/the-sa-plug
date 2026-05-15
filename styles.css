@@ -9125,11 +9125,17 @@ body.page-ask main {
 
 .page-ask .live-concierge__chip-lead {
   margin: 0 0 12px;
-  font-size: clamp(0.72rem, 0.15vw + 0.68rem, 0.8rem);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 248, 235, 0.48);
+  font-size: clamp(0.84rem, 0.22vw + 0.78rem, 0.93rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  line-height: 1.45;
+  color: rgba(255, 248, 235, 0.72);
+}
+
+.page-ask .live-concierge__chip-lead strong {
+  font-weight: 800;
+  color: rgba(255, 248, 235, 0.95);
 }
 
 .page-ask .live-concierge__chip-groups {
@@ -9225,24 +9231,6 @@ body.page-ask main {
 .page-ask .live-concierge__chip--starter:hover {
   border-color: rgba(242, 178, 26, 0.38);
   background: rgba(20, 184, 166, 0.1);
-}
-
-.page-ask .live-concierge__chip--place {
-  font-size: clamp(0.76rem, 0.18vw + 0.72rem, 0.84rem);
-  font-weight: 600;
-  padding: 7px 11px;
-  border-color: rgba(20, 184, 166, 0.28);
-  background: rgba(5, 10, 20, 0.28);
-}
-
-.page-ask .live-concierge__chip--place:hover {
-  border-color: rgba(20, 184, 166, 0.5);
-  background: rgba(20, 184, 166, 0.12);
-}
-
-.page-ask .live-concierge__chips--place {
-  gap: 6px;
-  margin-bottom: 0;
 }
 
 .page-ask .live-concierge__log {
