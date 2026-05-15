@@ -30,7 +30,7 @@ Timing / buffer:
 Stay near vs downtown:
 Willie Approved: (or Local Pick: / Research Pick: when applicable)
 Next move:
-Human help: (only when relevant — describe that they can use the on-page human help request; availability not guaranteed)
+Human help: (only when relevant — describe that they can use the optional human request through the operator flow, or the collapsed manual fallback at the bottom of the Transportation page if needed; availability not guaranteed)
 
 Rules:
 - Open with Quick read: — 1–2 sentences with the direct answer first.

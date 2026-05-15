@@ -322,6 +322,30 @@
     });
   });
 
+  document.querySelectorAll("a[data-transport-route-prompt]").forEach(function (anchor) {
+    anchor.addEventListener("click", function (e) {
+      var prompt = anchor.getAttribute("data-transport-route-prompt") || "";
+      if (!prompt || !input) return;
+      e.preventDefault();
+      input.value = prompt;
+      var sec = document.getElementById("route-operator");
+      if (sec && typeof sec.scrollIntoView === "function") {
+        try {
+          sec.scrollIntoView({ behavior: "smooth", block: "start" });
+        } catch (err2) {
+          sec.scrollIntoView(true);
+        }
+      } else {
+        location.hash = "route-operator";
+      }
+      setTimeout(function () {
+        try {
+          if (input) input.focus();
+        } catch (e3) {}
+      }, 380);
+    });
+  });
+
   if (showIntakeBtn && intakeWrap) {
     showIntakeBtn.addEventListener("click", function () {
       intakeWrap.hidden = !intakeWrap.hidden;
