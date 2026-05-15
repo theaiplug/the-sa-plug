@@ -2,7 +2,7 @@
  * Temporary Twilio diagnostic — lists Incoming Phone Numbers for the same credentials
  * as transportation SMS (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM_NUMBER).
  *
- * Remove or protect this function after debugging (response includes last-4 digits of owned numbers).
+ * Response uses masked numbers and metadata only (no full SIDs/tokens/unmasked PN).
  *
  * GET /.netlify/functions/twilio-diagnostic
  */
@@ -46,10 +46,47 @@ function accountSidPrefix(sid) {
   return s.length >= 6 ? s.slice(0, 6) : s;
 }
 
+function digitsOnly(phoneE164) {
+  return String(phoneE164 || "").replace(/\D/g, "");
+}
+
 function digitsLast4(phoneE164) {
-  const d = String(phoneE164 || "").replace(/\D/g, "");
+  const d = digitsOnly(phoneE164);
   if (d.length === 0) return "—";
   return d.length <= 4 ? d : d.slice(-4);
+}
+
+/**
+ * Mask for safe comparison shape, e.g. NANP "+1830***3353" (+1 + area + *** + last4).
+ */
+function maskPhoneForDiagnostic(pn) {
+  const d = digitsOnly(pn);
+  if (d.length === 0) return "—";
+  if (d.length < 4) {
+    return `+${"*".repeat(d.length)}`;
+  }
+  const last4 = d.slice(-4);
+  if (d.length === 11 && d.startsWith("1")) {
+    return `+1${d.slice(1, 4)}***${last4}`;
+  }
+  const minStars = 3;
+  const maxPrefix = 4;
+  const prefixLen = Math.min(maxPrefix, Math.max(0, d.length - 4 - minStars));
+  const stars = Math.max(minStars, d.length - 4 - prefixLen);
+  return `+${d.slice(0, prefixLen)}${"*".repeat(stars)}${last4}`;
+}
+
+/** Coarse safe country buckets only (avoid guessing ambiguous prefixes). */
+function countryPrefixSafe(digits) {
+  const d = String(digits || "");
+  if (d.length < 4) return null;
+  if (d.length === 11 && d[0] === "1") return "+1";
+  if (d.startsWith("44")) return "+44";
+  if (d.startsWith("49")) return "+49";
+  if (d.startsWith("61")) return "+61";
+  if (d.startsWith("353")) return "+353";
+  if (d.startsWith("27")) return "+27";
+  return null;
 }
 
 function digitsOnlyCompare(a, b) {
@@ -90,6 +127,8 @@ exports.handler = async (event) => {
 
   /** @type {Set<string>} */
   const ownedLast4Set = new Set();
+  /** @type {Array<{ masked: string, digitLength: number, country: string | null }>} */
+  const ownedEntries = [];
   let ownedNumbersFullMatch = false;
   /** @type {boolean | null} */
   let smsCapableMatch = null;
@@ -100,16 +139,46 @@ exports.handler = async (event) => {
   /** @type {boolean} */
   let completedListOk = false;
 
-  const respondList = () => ({
-    ok: diagnosticError === null && completedListOk,
-    accountSidPrefix: accountSidPrefix(twilioSid),
-    configuredFromNumber: configuredFromNumber || null,
-    ownedNumbersLast4: Array.from(ownedLast4Set).sort(),
-    ownedNumbersFullMatch,
-    smsCapableMatch,
-    voiceCapableMatch,
-    diagnosticError,
-  });
+  const respondList = () => {
+    const cfgDigits = configuredFromNumber ? digitsOnly(configuredFromNumber) : "";
+    const configuredFromDigitsLength = cfgDigits.length > 0 ? cfgDigits.length : null;
+    const configuredFromLast4 =
+      cfgDigits.length === 0
+        ? null
+        : cfgDigits.length <= 4
+          ? cfgDigits
+          : cfgDigits.slice(-4);
+
+    ownedEntries.sort((a, b) => a.masked.localeCompare(b.masked));
+    const ownedNumbersMasked = ownedEntries.map((e) => e.masked);
+    const ownedNumberDigitLengths = ownedEntries.map((e) => e.digitLength);
+    const countrySet = new Set();
+    for (const e of ownedEntries) {
+      if (e.country) countrySet.add(e.country);
+    }
+    const ownedNumbersCountryPrefixes = Array.from(countrySet).sort();
+
+    const configuredFromMasked =
+      configuredFromNumber && String(configuredFromNumber).trim()
+        ? maskPhoneForDiagnostic(configuredFromNumber)
+        : null;
+
+    return {
+      ok: diagnosticError === null && completedListOk,
+      accountSidPrefix: accountSidPrefix(twilioSid),
+      configuredFromNumber: configuredFromMasked,
+      configuredFromLast4,
+      configuredFromDigitsLength,
+      ownedNumbersLast4: Array.from(ownedLast4Set).sort(),
+      ownedNumbersMasked,
+      ownedNumberDigitLengths,
+      ownedNumbersCountryPrefixes,
+      ownedNumbersFullMatch,
+      smsCapableMatch,
+      voiceCapableMatch,
+      diagnosticError,
+    };
+  };
 
   if (!twilioSid || !String(twilioSid).trim() || !twilioToken || !String(twilioToken).trim()) {
     diagnosticError = "Missing TWILIO_ACCOUNT_SID or TWILIO_AUTH_TOKEN.";
@@ -164,7 +233,13 @@ exports.handler = async (event) => {
               : "";
         if (!pn) continue;
 
+        const pnDigits = digitsOnly(pn);
         ownedLast4Set.add(digitsLast4(pn));
+        ownedEntries.push({
+          masked: maskPhoneForDiagnostic(pn),
+          digitLength: pnDigits.length,
+          country: countryPrefixSafe(pnDigits),
+        });
 
         if (configuredFromNumber && digitsOnlyCompare(pn, configuredFromNumber)) {
           ownedNumbersFullMatch = true;
