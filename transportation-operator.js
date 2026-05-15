@@ -388,23 +388,30 @@
           intakeForm.reset();
           if (intakeWrap) intakeWrap.hidden = true;
           if (showIntakeBtn) showIntakeBtn.setAttribute("aria-expanded", "false");
+          var d = result.data;
+          var anyAlert = d.sms_sent || d.email_sent;
+          var smsAttempted = d.sms_sent || (d.sms_error != null && d.sms_error !== "");
+          var emailAttempted = d.email_sent || (d.email_error != null && d.email_error !== "");
+          var partial = smsAttempted && emailAttempted && d.sms_sent !== d.email_sent;
           if (confirmEl) {
             confirmEl.hidden = false;
             var sub = "";
-            if (result.data.alerts && result.data.alerts.partial) {
+            if (partial) {
               sub =
                 " Your alert went through one channel; the backup channel may be off. ";
             }
             confirmEl.textContent =
-              "Request sent." +
+              (anyAlert ? "Request sent." : "Request saved.") +
               sub +
               " If I'm available, I'll respond as quickly as possible. If this is urgent or I'm unavailable, use Uber, Lyft, hotel transportation, taxi, or another licensed option.";
             confirmEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
           }
           showIntakeMessage(
-            result.data.alerts && result.data.alerts.partial
+            partial
               ? "Request saved. One alert channel had an issue; check your email or SMS settings if needed."
-              : "",
+              : !anyAlert && (smsAttempted || emailAttempted)
+                ? "Request saved. We could not deliver owner alerts. If urgent, call or use another option."
+                : "",
             false
           );
         })

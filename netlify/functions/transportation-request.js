@@ -10,7 +10,7 @@
  *   TRANSPORT_ALERT_PHONE         — Owner phone to SMS (E.164, e.g. +1...)
  *   RESEND_API_KEY                — Resend API key for email
  *   TRANSPORT_ALERT_EMAIL         — Owner inbox for email alerts
- *   RESEND_FROM_EMAIL             — optional "From" for Resend (verified domain); if missing, email send is skipped
+ *   RESEND_FROM_EMAIL             — optional "From" for Resend; defaults to Resend testing sender until domain is verified
  *
  * Voice-ready: POST the same JSON body from a future voice operator; set source: "voice_operator".
  */
@@ -40,6 +40,38 @@ function trimStr(v, max = 8000) {
   return s.slice(0, max) + "…";
 }
 
+/** Max length for safe error strings returned to clients and logs (no secrets). */
+const SAFE_ERR_LEN = 500;
+
+function safeTwilioErrorFromBody(text) {
+  const slice = String(text || "").slice(0, SAFE_ERR_LEN);
+  try {
+    const j = JSON.parse(slice);
+    const code = j.code != null ? String(j.code) : "";
+    const msg = typeof j.message === "string" ? j.message.slice(0, SAFE_ERR_LEN) : "";
+    if (code && msg) return `${code}: ${msg}`;
+    if (msg) return msg;
+    if (code) return code;
+  } catch {
+    /* use slice */
+  }
+  return slice || "Twilio request failed";
+}
+
+function safeResendErrorFromBody(text) {
+  const slice = String(text || "").slice(0, SAFE_ERR_LEN);
+  try {
+    const j = JSON.parse(slice);
+    if (j && j.message && typeof j.message === "string") return j.message.slice(0, SAFE_ERR_LEN);
+    if (Array.isArray(j.errors) && j.errors[0] && typeof j.errors[0].message === "string") {
+      return j.errors[0].message.slice(0, SAFE_ERR_LEN);
+    }
+  } catch {
+    /* use slice */
+  }
+  return slice || "Resend request failed";
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 204, headers: { ...CORS_HEADERS }, body: "" };
@@ -48,6 +80,17 @@ exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return json(405, { error: "Method not allowed" });
   }
+
+  console.log("transportation-request env present", {
+    SUPABASE_URL: Boolean(process.env.SUPABASE_URL),
+    SUPABASE_SERVICE_ROLE_KEY: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
+    RESEND_API_KEY: Boolean(process.env.RESEND_API_KEY),
+    TRANSPORT_ALERT_EMAIL: Boolean(process.env.TRANSPORT_ALERT_EMAIL),
+    TWILIO_ACCOUNT_SID: Boolean(process.env.TWILIO_ACCOUNT_SID),
+    TWILIO_AUTH_TOKEN: Boolean(process.env.TWILIO_AUTH_TOKEN),
+    TWILIO_FROM_NUMBER: Boolean(process.env.TWILIO_FROM_NUMBER),
+    TRANSPORT_ALERT_PHONE: Boolean(process.env.TRANSPORT_ALERT_PHONE),
+  });
 
   // SUPABASE_URL — required for Supabase REST
   const supabaseUrl = process.env.SUPABASE_URL && String(process.env.SUPABASE_URL).replace(/\/$/, "");
@@ -183,24 +226,26 @@ exports.handler = async (event) => {
     });
   }
 
+  console.log("transportation request inserted", { requestId: inserted.id });
+
   // --- SMS (TWILIO_*, TRANSPORT_ALERT_PHONE) ---
   const twilioSid = process.env.TWILIO_ACCOUNT_SID;
   const twilioToken = process.env.TWILIO_AUTH_TOKEN;
   const twilioFrom = process.env.TWILIO_FROM_NUMBER;
   const alertPhone = process.env.TRANSPORT_ALERT_PHONE;
 
-  // --- Email (RESEND_API_KEY, TRANSPORT_ALERT_EMAIL, RESEND_FROM_EMAIL) ---
+  // --- Email (RESEND_API_KEY, TRANSPORT_ALERT_EMAIL); default From for testing until domain verified ---
   const resendKey = process.env.RESEND_API_KEY;
   const alertEmail = process.env.TRANSPORT_ALERT_EMAIL;
-  const resendFrom = process.env.RESEND_FROM_EMAIL;
-
-  const attemptedSms = !!(twilioSid && twilioToken && twilioFrom && alertPhone);
-  const attemptedEmail = !!(resendKey && alertEmail && resendFrom);
+  const resendFrom =
+    (process.env.RESEND_FROM_EMAIL && String(process.env.RESEND_FROM_EMAIL).trim()) ||
+    "Where To Go SA <onboarding@resend.dev>";
 
   const smsBody = `New Where To Go SA transportation request: ${pickup_area} → ${destination}, ${requested_time}, ${party_size}. Phone: ${visitor_phone}.`;
 
-  let smsOk = false;
-  let smsErr = null;
+  let smsSent = false;
+  let smsErrorCode = null;
+  let smsErrorMessage = null;
   if (twilioSid && twilioToken && twilioFrom && alertPhone) {
     try {
       const auth = Buffer.from(`${twilioSid}:${twilioToken}`).toString("base64");
@@ -220,17 +265,31 @@ exports.handler = async (event) => {
           body: params.toString(),
         }
       );
-      smsOk = smsRes.ok;
-      if (!smsOk) {
-        smsErr = await smsRes.text();
+      smsSent = smsRes.ok;
+      if (!smsSent) {
+        const errText = await smsRes.text();
+        smsErrorMessage = safeTwilioErrorFromBody(errText);
+        try {
+          const j = JSON.parse(errText);
+          smsErrorCode = j.code != null ? String(j.code) : null;
+        } catch {
+          smsErrorCode = null;
+        }
       }
     } catch (e) {
-      smsErr = e instanceof Error ? e.message : "sms_failed";
+      smsErrorMessage =
+        e instanceof Error ? e.message.slice(0, SAFE_ERR_LEN) : "SMS request failed";
     }
   }
 
-  let emailOk = false;
-  let emailErr = null;
+  console.log("twilio send result", {
+    smsSent,
+    smsErrorCode,
+    smsErrorMessage,
+  });
+
+  let emailSent = false;
+  let emailErrorMessage = null;
   const emailHtml = `<!DOCTYPE html><html><body style="font-family:system-ui,sans-serif;line-height:1.5;color:#0b1d3a">
 <h2>New Where To Go SA transportation request</h2>
 <p><strong>Supabase request ID:</strong> ${escapeHtml(requestId)}</p>
@@ -260,7 +319,7 @@ exports.handler = async (event) => {
   )}</pre>
 </body></html>`;
 
-  if (resendKey && alertEmail && resendFrom) {
+  if (resendKey && alertEmail) {
     try {
       const er = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -275,19 +334,26 @@ exports.handler = async (event) => {
           html: emailHtml,
         }),
       });
-      emailOk = er.ok;
-      if (!emailOk) {
-        emailErr = await er.text();
+      emailSent = er.ok;
+      if (!emailSent) {
+        const errText = await er.text();
+        emailErrorMessage = safeResendErrorFromBody(errText);
       }
     } catch (e) {
-      emailErr = e instanceof Error ? e.message : "email_failed";
+      emailErrorMessage =
+        e instanceof Error ? e.message.slice(0, SAFE_ERR_LEN) : "Email request failed";
     }
   }
 
-  // PATCH alert flags on success
+  console.log("resend send result", {
+    emailSent,
+    emailErrorMessage,
+  });
+
+  // PATCH alert flags only when Twilio / Resend actually succeed
   const patch = {};
-  if (smsOk) patch.alert_sms_sent = true;
-  if (emailOk) patch.alert_email_sent = true;
+  if (smsSent) patch.alert_sms_sent = true;
+  if (emailSent) patch.alert_email_sent = true;
 
   if (Object.keys(patch).length) {
     try {
@@ -300,22 +366,18 @@ exports.handler = async (event) => {
         }
       );
     } catch {
-      /* row still exists; alerts sent */
+      /* row still exists; PATCH optional */
     }
   }
 
-  const partialAlert = attemptedSms && attemptedEmail && smsOk !== emailOk;
-
   return json(200, {
     ok: true,
-    id: requestId,
-    alerts: {
-      sms: smsOk,
-      email: emailOk,
-      partial: partialAlert,
-      sms_error: smsOk ? null : smsErr,
-      email_error: emailOk ? null : emailErr,
-    },
+    supabase_inserted: true,
+    request_id: requestId,
+    sms_sent: smsSent,
+    email_sent: emailSent,
+    sms_error: smsSent ? null : smsErrorMessage,
+    email_error: emailSent ? null : emailErrorMessage,
   });
 };
 
