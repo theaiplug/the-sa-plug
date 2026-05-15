@@ -29,13 +29,40 @@
     errorBanner.textContent = show ? FALLBACK : "";
   }
 
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function formatAssistantHtml(raw) {
+    var esc = escapeHtml(String(raw).trim());
+    esc = esc.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    var paras = esc.split(/\n\n+/);
+    var html = paras
+      .filter(function (p) {
+        return p.length;
+      })
+      .map(function (p) {
+        return "<p>" + p.replace(/\n/g, "<br>") + "</p>";
+      })
+      .join("");
+    return '<div class="live-concierge__rich">' + (html || "<p></p>") + "</div>";
+  }
+
   function appendBubble(role, text) {
     if (!logEl) return;
     var wrap = document.createElement("div");
     wrap.className = "live-concierge__msg live-concierge__msg--" + role;
     var inner = document.createElement("div");
     inner.className = "live-concierge__bubble";
-    inner.textContent = text;
+    if (role === "assistant") {
+      inner.classList.add("live-concierge__bubble--rich");
+      inner.innerHTML = formatAssistantHtml(text);
+    } else {
+      inner.textContent = text;
+    }
     wrap.appendChild(inner);
     logEl.appendChild(wrap);
     logEl.scrollTop = logEl.scrollHeight;

@@ -76,7 +76,7 @@
           <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Live local concierge</p>
           <h2 id="live-concierge-heading" class="live-concierge__title">Ask A Local anything about your San Antonio move</h2>
           <p class="section-text section-text-light live-concierge__lead">
-            Get instant local answers for food, downtown plans, resort stays, family routes, convention nights, things to do, place details, and transportation decisions.
+            Get instant local answers for food, a specific place, hours and cost, downtown, the Pearl, the airport, conventions, resorts, family routes, and transportation decisions.
           </p>
           <p class="live-concierge__status" id="live-concierge-status" aria-live="polite">Live · ready</p>
         </header>
@@ -84,23 +84,44 @@
         <div class="live-concierge__panel">
           <div class="live-concierge__error" id="live-concierge-error" hidden role="alert"></div>
 
-          <div class="live-concierge__chips" role="group" aria-label="Quick prompts">
-            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="What should I do tonight?">What should I do tonight?</button>
-            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I need dinner near me">I need dinner near me</button>
-            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="Is this place worth visiting?">Is this place worth visiting?</button>
-            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="Hours, cost, and best time to go">Hours, cost, and best time to go</button>
-            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I'm here for a convention">I&rsquo;m here for a convention</button>
-            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I have kids with me">I have kids with me</button>
-            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I'm staying at a resort">I&rsquo;m staying at a resort</button>
-            <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="I need transportation help">I need transportation help</button>
-          </div>
+          <div class="live-concierge__chat-stack">
+            <p class="live-concierge__chip-lead">Starter ideas &mdash; tap to send</p>
+            <div class="live-concierge__chips live-concierge__chips--starters" role="group" aria-label="Quick prompts">
+              <button type="button" class="live-concierge__chip live-concierge__chip--starter" data-concierge-chip data-chip-text="What should I do tonight?">What should I do tonight?</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--starter" data-concierge-chip data-chip-text="I need dinner near me">I need dinner near me</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--starter" data-concierge-chip data-chip-text="Is this place worth visiting?">Is this place worth visiting?</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--starter" data-concierge-chip data-chip-text="Hours, cost, and best time to go">Hours, cost, and best time to go</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--starter" data-concierge-chip data-chip-text="I'm here for a convention">I&rsquo;m here for a convention</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--starter" data-concierge-chip data-chip-text="I have kids with me">I have kids with me</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--starter" data-concierge-chip data-chip-text="I'm staying at a resort">I&rsquo;m staying at a resort</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--starter" data-concierge-chip data-chip-text="I need transportation help">I need transportation help</button>
+            </div>
 
-          <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation">
-            <div class="live-concierge__msg live-concierge__msg--assistant">
-              <div class="live-concierge__bubble">
-                Tell me what you&rsquo;re trying to figure out &mdash; where to eat, what to do tonight, whether a place is worth visiting, how much time to allow, what it costs, when it&rsquo;s open, or how to build the best San Antonio route around your situation.
+            <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation">
+              <div class="live-concierge__msg live-concierge__msg--assistant">
+                <div class="live-concierge__bubble">
+                  Tell me what you&rsquo;re trying to figure out &mdash; where to eat, what to do tonight, whether a place is worth visiting, how much time to allow, what it costs, when it&rsquo;s open, or how to build the best San Antonio route around your situation.
+                </div>
               </div>
             </div>
+
+            <form class="live-concierge__form" id="live-concierge-form">
+              <label class="visually-hidden" for="live-concierge-input">Your question</label>
+              <textarea
+                id="live-concierge-input"
+                class="live-concierge__input"
+                name="message"
+                rows="2"
+                maxlength="12000"
+                required
+                autocomplete="off"
+                placeholder="Ask about food, a place, hours, cost, timing, downtown, resorts, family plans, or transportation..."
+              ></textarea>
+              <button type="submit" class="live-concierge__send" id="live-concierge-send">Send</button>
+            </form>
+            <p class="live-concierge__footnote">
+              Need hands-on routing? <a href="#guided-request">Request human help</a> &mdash; not immediate or guaranteed. For urgent rides, use rideshare, taxis, hotel transport, or other licensed options.
+            </p>
           </div>
 
           <div class="live-concierge__place-hint" aria-labelledby="place-hint-heading">
@@ -109,32 +130,12 @@
               Get the quick read on hours, cost, parking, best time to go, who it&rsquo;s good for, what to pair it with, and whether it fits your plan.
             </p>
             <div class="live-concierge__chips live-concierge__chips--place" role="group" aria-label="Place example prompts">
-              <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="Tell me about the Tower of the Americas">Tell me about the Tower of the Americas</button>
-              <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="Is Market Square worth it?">Is Market Square worth it?</button>
-              <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="What should I know about the Pearl?">What should I know about the Pearl?</button>
-              <button type="button" class="live-concierge__chip" data-concierge-chip data-chip-text="Best time for the River Walk?">Best time for the River Walk?</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--place" data-concierge-chip data-chip-text="Tell me about the Tower of the Americas">Tell me about the Tower of the Americas</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--place" data-concierge-chip data-chip-text="Is Market Square worth it?">Is Market Square worth it?</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--place" data-concierge-chip data-chip-text="What should I know about the Pearl?">What should I know about the Pearl?</button>
+              <button type="button" class="live-concierge__chip live-concierge__chip--place" data-concierge-chip data-chip-text="Best time for the River Walk?">Best time for the River Walk?</button>
             </div>
           </div>
-
-          <form class="live-concierge__form" id="live-concierge-form">
-            <label class="visually-hidden" for="live-concierge-input">Your question</label>
-            <textarea
-              id="live-concierge-input"
-              class="live-concierge__input"
-              name="message"
-              rows="2"
-              maxlength="12000"
-              required
-              autocomplete="off"
-              placeholder="Ask about food, a place, hours, cost, timing, downtown, resorts, family plans, or transportation..."
-            ></textarea>
-            <button type="submit" class="live-concierge__send" id="live-concierge-send">Send</button>
-          </form>
-          <p class="live-concierge__footnote">
-            Need hands-on routing or transportation intake?
-            <a href="#guided-request">Request human help</a>
-            or use the transportation card below.
-          </p>
         </div>
       </div>
     </section>
