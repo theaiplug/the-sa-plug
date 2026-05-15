@@ -17,7 +17,6 @@
   var threadEl = document.getElementById("live-concierge-thread");
   var conversationEl = document.getElementById("live-concierge-conversation");
   var composerStackEl = document.getElementById("live-concierge-composer");
-  var composerKickerEl = document.getElementById("live-concierge-composer-kicker");
   var previewEl = document.getElementById("live-concierge-preview");
 
   var previousResponseId = null;
@@ -34,9 +33,6 @@
     }
     if (conversationEl) {
       conversationEl.classList.toggle("live-concierge__conversation--started", has);
-    }
-    if (composerKickerEl) {
-      composerKickerEl.hidden = true;
     }
   }
 

@@ -59,7 +59,7 @@ For dinner near JW, prioritize the Stone Oak / north-side lane first unless they
 
 Known strong nearby JW dinner options (use when relevant, with honest drive-time language "about X minutes depending on traffic"):
 - J-Prime Steakhouse — Willie Approved / strong upscale steak, roughly 15 minutes depending on traffic
-- Chama Gaucha — Willie Approved Brazilian steakhouse, roughly 15 minutes depending on traffic
+- Chama Gaúcha — Willie Approved Brazilian steakhouse, roughly 15 minutes depending on traffic
 - Eddie V's — strong seafood/steak option in the north-side / Stone Oak zone
 - Blu Prime — strong upscale north-side steak/seafood option
 - Palenque Grill — good north-side Mexican / casual-upscale option
@@ -70,7 +70,7 @@ Do not present Bohanan's as nearby to JW. Bohanan's is Willie Approved, but it i
 Correct pattern for "I'm at the JW and need dinner nearby":
 - Name the zone: JW Marriott / TPC / north-side resort area.
 - Say you would keep them in the Stone Oak / north-side lane unless they want a downtown destination dinner.
-- Then list J-Prime, Chama Gaucha, Eddie V's, Blu Prime, Palenque Grill, and/or JW resort dining for convenience.
+- Then list J-Prime, Chama Gaúcha, Eddie V's, Blu Prime, Palenque Grill, and/or JW resort dining for convenience.
 - Optionally add: Bohanan's is Willie Approved, but that is a downtown destination dinner, not the nearby move from JW.
 
 RESORT DISAMBIGUATION (when resort context applies):
@@ -103,7 +103,7 @@ Reference picks (only when they fit zone, timing, and request — never force a 
 - Mexican / Tex-Mex: Soluna is Willie Approved (ribeye tacos, chispas). La Fogata and La Fonda are strong picks.
 - Downtown / River Walk Mexican: Domingo and Rosario's in King William are acceptable. Do not recommend Casa Rio. Mexico City is Needs Visit.
 - Steaks: downtown destination Bohanan's is Willie Approved; J-Prime and north-side options above for JW/north context. Ruth's Chris as context allows.
-- Brazilian: Brasão first, Chama Gaucha second, Fogo de Chão third when the question is general Brazilian — but use the JW dinner list when they are at JW.
+- Brazilian: Brasão first, Chama Gaúcha second, Fogo de Chão third when the question is general Brazilian — but use the JW dinner list when they are at JW.
 - Seafood / ceviche: El Bucanero is Willie Approved for ceviche. El Cevichero second. Leche de Tigre Willie Approved.
 - BBQ: Pinkerton's.
 - River Walk / drinks: Esquire Tavern, 1Watson, Tenfold at Kimpton Santo, Mad Dogs. Do not recommend Republic of Texas.
@@ -216,7 +216,7 @@ exports.handler = async (event) => {
     input: message,
     store: true,
     metadata: {
-      sa_plug_site: "the_sa_plug",
+      sa_plug_site: "where_to_go_sa",
       visitor_concierge_workflow_id: WORKFLOW_ID,
     },
     tools: [

@@ -3450,6 +3450,26 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   font-size: 0.9rem;
 }
 
+.footer-brand .footer-tagline {
+  margin-top: 4px;
+  color: rgba(255, 246, 230, 0.88);
+}
+
+.footer-lead,
+.footer-mission {
+  margin: 10px 0 0;
+  max-width: 36rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(255, 246, 230, 0.78);
+}
+
+.footer:not(.dark-showcase) .footer-tagline,
+.footer:not(.dark-showcase) .footer-lead,
+.footer:not(.dark-showcase) .footer-mission {
+  color: var(--slate);
+}
+
 .footer-links {
   display: flex;
   flex-wrap: wrap;
@@ -9728,9 +9748,95 @@ body.page-ask main {
   }
 }
 
-.page-ask .live-concierge__composer-stack .live-concierge__form {
+.page-ask .live-concierge__composer-stack .live-concierge__input-label:not(.visually-hidden) {
   display: block;
-  margin: 0;
+  margin: 0 0 8px 2px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(242, 178, 26, 0.82);
+}
+
+.page-ask .live-concierge__panel-support a {
+  color: rgba(20, 184, 166, 0.95);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.page-ask .live-concierge__panel-support a:hover {
+  color: rgba(255, 246, 230, 0.95);
+}
+
+/* Ask page — optional human help (collapsed by default) */
+.page-ask .ask-human-fallback {
+  padding: 0 clamp(16px, 4vw, 44px) clamp(28px, 4vw, 40px);
+  background: linear-gradient(180deg, #ebe8e4 0%, #e5e2dc 100%);
+  border: 0;
+}
+
+.page-ask .ask-human-fallback > summary {
+  cursor: pointer;
+  list-style: none;
+  max-width: min(520px, 100%);
+  margin: 0 auto;
+  padding: clamp(16px, 2vw, 18px) clamp(16px, 2.2vw, 20px);
+  border-radius: calc(var(--radius) + 8px);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--slate);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 252, 248, 0.94) 100%);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.85) inset,
+    0 12px 28px rgba(11, 29, 58, 0.07);
+  box-sizing: border-box;
+}
+
+.page-ask .ask-human-fallback > summary::-webkit-details-marker {
+  display: none;
+}
+
+.page-ask .ask-human-fallback > summary:focus-visible {
+  outline: 2px solid rgba(20, 184, 166, 0.85);
+  outline-offset: 3px;
+}
+
+.page-ask .ask-human-fallback[open] > summary {
+  margin-bottom: 16px;
+}
+
+.page-ask .ask-human-fallback__summary-main {
+  display: block;
+  font-weight: 800;
+  font-size: clamp(1rem, 0.35vw + 0.92rem, 1.08rem);
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.page-ask .ask-human-fallback__summary-sub {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(0.84rem, 0.12vw + 0.8rem, 0.9rem);
+  font-weight: 550;
+  line-height: 1.5;
+  color: var(--slate);
+}
+
+.page-ask .ask-human-fallback__body {
+  max-width: min(40rem, 100%);
+  margin: 0 auto;
+}
+
+.page-ask .ask-human-fallback .ask-section-head {
+  margin-bottom: 18px;
+}
+
+.page-ask .ask-human-fallback__form-title {
+  margin: 0 0 10px;
+  font-size: clamp(1.35rem, 0.6vw + 1.12rem, 1.55rem);
+  color: var(--navy);
+  letter-spacing: -0.02em;
 }
 
 .page-ask .live-concierge__input-label.visually-hidden {
@@ -9743,6 +9849,11 @@ body.page-ask main {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.page-ask .live-concierge__composer-stack .live-concierge__form {
+  display: block;
+  margin: 0;
 }
 
 .page-ask .live-concierge__composer-stack .live-concierge__composer-unit {

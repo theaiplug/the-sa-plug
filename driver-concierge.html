@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Transportation + Concierge | Where To Go SA</title>
-  <meta name="description" content="Premium San Antonio route help for visitors: airport timing, resort pickups, downtown nights, family logistics, and local concierge planning from Where To Go SA." />
+  <meta name="description" content="Where To Go SA route help for San Antonio visitors: airport timing, resort zones, downtown nights, family logistics, stay-nearby vs downtown decisions, and optional human transportation requests." />
   <link rel="canonical" href="https://wheretogosa.com/driver-concierge.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://wheretogosa.com/driver-concierge.html" />
   <meta property="og:title" content="Transportation + Concierge | Where To Go SA" />
   <meta property="og:site_name" content="Where To Go SA" />
-  <meta property="og:description" content="Premium San Antonio route help for visitors: airport timing, resort pickups, downtown nights, family logistics, and local concierge planning from Where To Go SA." />
+  <meta property="og:description" content="Where To Go SA route help for San Antonio visitors: airport timing, resort zones, downtown nights, family logistics, stay-nearby vs downtown decisions, and optional human transportation requests." />
   <meta property="og:image" content="https://wheretogosa.com/assets/where-to-go-sa-round-emblem-pfp.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Transportation + Concierge | Where To Go SA" />
-  <meta name="twitter:description" content="Premium San Antonio route help for visitors: airport timing, resort pickups, downtown nights, family logistics, and local concierge planning from Where To Go SA." />
+  <meta name="twitter:description" content="Where To Go SA route help for San Antonio visitors: airport timing, resort zones, downtown nights, family logistics, stay-nearby vs downtown decisions, and optional human transportation requests." />
   <meta name="twitter:image" content="https://wheretogosa.com/assets/where-to-go-sa-round-emblem-pfp.png" />
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/wtgsa-favicon-32.png" />
@@ -1689,7 +1689,7 @@
       <a href="downtown.html">Downtown</a>
       <a href="summer-family.html">Family</a>
       <a href="resort-food.html">Resort Food</a>
-      <a href="driver-concierge.html" aria-current="page">Transport + Concierge</a>
+      <a href="driver-concierge.html#route-operator" aria-current="page">Transport + Concierge</a>
       <a href="/ask/">Ask A Local</a>
       <a href="business-services.html" class="nav-cta">AI Business Services</a>
     </nav>
@@ -2053,15 +2053,15 @@
 
     <section class="tc-human-compact transport-section" aria-labelledby="tc-human-heading">
       <div class="tc-human-compact__inner">
-        <h2 id="tc-human-heading" class="tc-human-compact__title">Want human transportation help?</h2>
-        <p class="tc-human-compact__lede">Start with the route operator first. If you want human help after the route makes sense, the operator can collect the request details and send them through. Expand the backup form below if you need the human lane directly &mdash; the full service disclaimer sits there once, before you submit.</p>
+        <h2 id="tc-human-heading" class="tc-human-compact__title">Need human transportation help?</h2>
+        <p class="tc-human-compact__lede">Start with the live route operator. Expand the backup section below only if it will not load or you want a person to review pickup details before you go.</p>
       </div>
     </section>
 
     <details class="transport-section transport-manual-fallback transport-manual-fallback--low" id="manual-transport-fallback">
       <summary class="transport-manual-fallback__summary">
-        <span class="transport-manual-fallback__summary-main">Send a human help request</span>
-        <span class="transport-manual-fallback__summary-sub">Use this only if the live route operator is not loading or you already know what help you need.</span>
+        <span class="transport-manual-fallback__summary-main">Need human transportation help?</span>
+        <span class="transport-manual-fallback__summary-sub">Use this only if the route operator is not loading or you want someone to review the details.</span>
         <span class="transport-manual-fallback__summary-cta">Open request form</span>
       </summary>
       <div class="transport-manual-fallback__body">
@@ -2069,8 +2069,8 @@
           <div class="transport-backup-card__accent" aria-hidden="true"></div>
           <header class="transport-backup-card__header">
             <p class="transport-backup-card__eyebrow">Route request backup</p>
-            <h3 class="transport-backup-card__title">Human help after the operator</h3>
-            <p class="transport-backup-card__lead">Share the route details so the request starts in the right place. Availability is not guaranteed.</p>
+            <h3 class="transport-backup-card__title">Human transportation help</h3>
+            <p class="transport-backup-card__lead">Share route details so the request starts in the right zone. Availability is not guaranteed.</p>
             <p class="transport-backup-card__disclaimer" role="note">
               Where To Go SA can help you think through the route and send a request. Availability is not guaranteed. If this is urgent or I&rsquo;m unavailable, use Uber, Lyft, hotel transportation, taxi, or another licensed option.
             </p>
@@ -2145,8 +2145,8 @@
                       <textarea name="notes" id="transport-notes" rows="3" placeholder="Timing, accessibility, or pickup context."></textarea>
                     </label>
                     <label class="transport-field transport-field--full">
-                      <span>What the operator already covered optional</span>
-                      <textarea name="ai_summary" id="transport-ai-summary" rows="3" placeholder="Paste route notes if you used the operator first."></textarea>
+                      <span>Route notes optional</span>
+                      <textarea name="ai_summary" id="transport-ai-summary" rows="3" placeholder="Paste anything useful from the route operator, or add timing context."></textarea>
                     </label>
                     <label class="transport-check transport-field--full transport-check--backup">
                       <input type="checkbox" id="transport-pickup-permission" name="pickup_permission" required />
@@ -2166,11 +2166,11 @@
     </details>
   </main>
   <footer class="footer dark-showcase transport-page-footer">
-    <div>
+    <div class="footer-brand">
       <strong>Where To Go SA</strong>
-      <span>Where locals send visitors.</span>
-      <span class="brand-line">Built from real San Antonio routes and local experience from the road.</span>
-      <p class="footer-cta">Visitor routes, food picks, and local timing help.</p>
+      <span class="footer-tagline">Where locals send visitors.</span>
+      <p class="footer-lead">Built from real San Antonio routes and local experience from the road.</p>
+      <p class="footer-mission">Visitor routes, food picks, and local timing help.</p>
     </div>
     <nav class="footer-links">
       <a href="index.html">Home</a>
@@ -2179,7 +2179,7 @@
       <a href="downtown.html">Downtown</a>
       <a href="summer-family.html">Family</a>
       <a href="resort-food.html">Resort Food</a>
-      <a href="driver-concierge.html">Transport + Concierge</a>
+      <a href="driver-concierge.html#route-operator">Transport + Concierge</a>
       <a href="/ask/">Ask A Local</a>
       <a href="business-services.html">AI Business Services</a>
     </nav>
