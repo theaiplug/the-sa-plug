@@ -52,6 +52,21 @@ function digitsLast4(phoneE164) {
   return d.length <= 4 ? d : d.slice(-4);
 }
 
+function digitsOnlyCompare(a, b) {
+  const d1 = String(a || "").replace(/\D/g, "");
+  const d2 = String(b || "").replace(/\D/g, "");
+  return d1.length > 0 && d2.length > 0 && d1 === d2;
+}
+
+function capabilityBool(capabilities, key) {
+  if (!capabilities || typeof capabilities !== "object") return null;
+  if (!Object.prototype.hasOwnProperty.call(capabilities, key)) return null;
+  const v = capabilities[key];
+  if (v === true || v === "true") return true;
+  if (v === false || v === "false") return false;
+  return null;
+}
+
 function resolveTwilioNextUrl(nextPageUri) {
   if (!nextPageUri) return null;
   const u = String(nextPageUri);
@@ -73,32 +88,41 @@ exports.handler = async (event) => {
   const configuredFromNumber =
     process.env.TWILIO_FROM_NUMBER != null ? String(process.env.TWILIO_FROM_NUMBER).trim() : "";
 
-  const basePayload = {
-    accountSidPrefix: accountSidPrefix(twilioSid),
-    configuredFromNumber: configuredFromNumber || null,
-    ownedNumbersLast4: [],
-    ownedNumbersFullMatch: false,
-    smsCapableMatch: null,
-    diagnosticError: null,
-  };
-
-  if (!twilioSid || !String(twilioSid).trim() || !twilioToken || !String(twilioToken).trim()) {
-    basePayload.diagnosticError = "Missing TWILIO_ACCOUNT_SID or TWILIO_AUTH_TOKEN.";
-    console.log("twilio-diagnostic", basePayload);
-    return json(503, basePayload);
-  }
-
-  const auth = Buffer.from(`${String(twilioSid).trim()}:${String(twilioToken).trim()}`).toString(
-    "base64"
-  );
-
+  /** @type {Set<string>} */
   const ownedLast4Set = new Set();
   let ownedNumbersFullMatch = false;
   /** @type {boolean | null} */
   let smsCapableMatch = null;
+  /** @type {boolean | null} */
+  let voiceCapableMatch = null;
+  /** @type {string | null} */
+  let diagnosticError = null;
+  /** @type {boolean} */
+  let completedListOk = false;
+
+  const respondList = () => ({
+    ok: diagnosticError === null && completedListOk,
+    accountSidPrefix: accountSidPrefix(twilioSid),
+    configuredFromNumber: configuredFromNumber || null,
+    ownedNumbersLast4: Array.from(ownedLast4Set).sort(),
+    ownedNumbersFullMatch,
+    smsCapableMatch,
+    voiceCapableMatch,
+    diagnosticError,
+  });
+
+  if (!twilioSid || !String(twilioSid).trim() || !twilioToken || !String(twilioToken).trim()) {
+    diagnosticError = "Missing TWILIO_ACCOUNT_SID or TWILIO_AUTH_TOKEN.";
+    const body = respondList();
+    console.log(JSON.stringify(body));
+    return json(503, body);
+  }
+
+  const sidTrimmed = String(twilioSid).trim();
+  const auth = Buffer.from(`${sidTrimmed}:${String(twilioToken).trim()}`).toString("base64");
 
   let listUrl = `https://api.twilio.com/2010-04-01/Accounts/${encodeURIComponent(
-    String(twilioSid).trim()
+    sidTrimmed
   )}/IncomingPhoneNumbers.json?PageSize=1000`;
 
   try {
@@ -113,24 +137,20 @@ exports.handler = async (event) => {
 
       const text = await res.text();
       if (!res.ok) {
-        basePayload.diagnosticError = safeTwilioErrorFromBody(text);
-        basePayload.ownedNumbersLast4 = Array.from(ownedLast4Set).sort();
-        basePayload.ownedNumbersFullMatch = ownedNumbersFullMatch;
-        basePayload.smsCapableMatch = smsCapableMatch;
-        console.log("twilio-diagnostic", basePayload);
-        return json(200, basePayload);
+        diagnosticError = safeTwilioErrorFromBody(text);
+        const body = respondList();
+        console.log(JSON.stringify(body));
+        return json(200, body);
       }
 
       let data;
       try {
         data = JSON.parse(text);
       } catch {
-        basePayload.diagnosticError = "Twilio list response was not valid JSON.";
-        basePayload.ownedNumbersLast4 = Array.from(ownedLast4Set).sort();
-        basePayload.ownedNumbersFullMatch = ownedNumbersFullMatch;
-        basePayload.smsCapableMatch = smsCapableMatch;
-        console.log("twilio-diagnostic", basePayload);
-        return json(200, basePayload);
+        diagnosticError = "Twilio list response was not valid JSON.";
+        const body = respondList();
+        console.log(JSON.stringify(body));
+        return json(200, body);
       }
 
       const items = Array.isArray(data.incoming_phone_numbers) ? data.incoming_phone_numbers : [];
@@ -146,36 +166,25 @@ exports.handler = async (event) => {
 
         ownedLast4Set.add(digitsLast4(pn));
 
-        if (configuredFromNumber && pn === configuredFromNumber) {
+        if (configuredFromNumber && digitsOnlyCompare(pn, configuredFromNumber)) {
           ownedNumbersFullMatch = true;
-          const cap = row.capabilities;
-          if (cap && typeof cap === "object" && Object.prototype.hasOwnProperty.call(cap, "sms")) {
-            const v = cap.sms;
-            if (v === true || v === "true") smsCapableMatch = true;
-            else if (v === false || v === "false") smsCapableMatch = false;
-            else smsCapableMatch = null;
-          } else {
-            smsCapableMatch = null;
-          }
+          smsCapableMatch = capabilityBool(row.capabilities, "sms");
+          voiceCapableMatch = capabilityBool(row.capabilities, "voice");
         }
       }
 
       listUrl = resolveTwilioNextUrl(data.next_page_uri);
     }
+    completedListOk = true;
   } catch (e) {
-    basePayload.diagnosticError =
+    diagnosticError =
       e instanceof Error ? e.message.slice(0, SAFE_ERR_LEN) : "Incoming phone numbers request failed.";
-    basePayload.ownedNumbersLast4 = Array.from(ownedLast4Set).sort();
-    basePayload.ownedNumbersFullMatch = ownedNumbersFullMatch;
-    basePayload.smsCapableMatch = smsCapableMatch;
-    console.log("twilio-diagnostic", basePayload);
-    return json(200, basePayload);
+    const body = respondList();
+    console.log(JSON.stringify(body));
+    return json(200, body);
   }
 
-  basePayload.ownedNumbersLast4 = Array.from(ownedLast4Set).sort();
-  basePayload.ownedNumbersFullMatch = ownedNumbersFullMatch;
-  basePayload.smsCapableMatch = smsCapableMatch;
-
-  console.log("twilio-diagnostic", basePayload);
-  return json(200, basePayload);
+  const body = respondList();
+  console.log(JSON.stringify(body));
+  return json(200, body);
 };
