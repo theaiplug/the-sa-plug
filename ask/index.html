@@ -113,31 +113,38 @@
             </div>
 
             <div class="live-concierge__thread" id="live-concierge-thread">
-              <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation">
-                <div class="live-concierge__msg live-concierge__msg--assistant">
-                  <div class="live-concierge__bubble live-concierge__bubble--rich">
-                    <strong>Plan my move</strong> for tonight, dinner, kids, convention, transport, or resort nights. <strong>Ask about a place</strong> for worth-it, hours, cost, parking, and timing. Drop a venue name in the box when you have one &mdash; your answer shows right here.
-                  </div>
-                </div>
-              </div>
+              <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation"></div>
 
-              <form class="live-concierge__form" id="live-concierge-form">
-                <label class="visually-hidden" for="live-concierge-input">Your question</label>
-                <textarea
-                  id="live-concierge-input"
-                  class="live-concierge__input"
-                  name="message"
-                  rows="2"
-                  maxlength="12000"
-                  required
-                  autocomplete="off"
-                  placeholder="Tonight&rsquo;s plan, a place name, hours, cost, parking, timing, downtown, family, or transportation..."
-                ></textarea>
-                <button type="submit" class="live-concierge__send" id="live-concierge-send">Send</button>
-              </form>
-              <p class="live-concierge__footnote">
-                <a href="#human-help">Request human help</a> when you want hands-on routing &mdash; optional, not immediate. Urgent rides: rideshare, taxis, hotel transport, or other licensed options.
-              </p>
+              <div class="live-concierge__composer-stack">
+                <p class="live-concierge__composer-hint">
+                  Plan a night, ask about a place, check hours or cost, or get a route that fits your situation.
+                </p>
+                <p class="live-concierge__composer-hint-sub">
+                  Ask about food, a place, hours, cost, parking, timing, downtown, family plans, resorts, or transportation.
+                </p>
+                <label class="live-concierge__field-label" for="live-concierge-input">Type your question</label>
+                <form class="live-concierge__form" id="live-concierge-form">
+                  <div class="live-concierge__composer-unit">
+                    <div class="live-concierge__composer-field">
+                      <span class="live-concierge__composer-glyph" aria-hidden="true">&#9998;</span>
+                      <textarea
+                        id="live-concierge-input"
+                        class="live-concierge__input"
+                        name="message"
+                        rows="2"
+                        maxlength="12000"
+                        required
+                        autocomplete="off"
+                        placeholder="Ask me anything about San Antonio..."
+                      ></textarea>
+                    </div>
+                    <button type="submit" class="live-concierge__send" id="live-concierge-send">Send</button>
+                  </div>
+                </form>
+                <p class="live-concierge__footnote">
+                  <a href="#human-help">Request human help</a> when you want hands-on routing &mdash; optional, not immediate. Urgent rides: rideshare, taxis, hotel transport, or other licensed options.
+                </p>
+              </div>
             </div>
           </div>
         </div>
