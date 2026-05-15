@@ -14,7 +14,6 @@
   var errorBanner = document.getElementById("live-concierge-error");
   var chips = root.querySelectorAll("[data-concierge-chip]");
   var transcriptEl = document.getElementById("live-concierge-transcript");
-  var previewWrapEl = document.getElementById("live-concierge-preview-wrap");
   var threadEl = document.getElementById("live-concierge-thread");
   var conversationEl = document.getElementById("live-concierge-conversation");
   var composerStackEl = document.getElementById("live-concierge-composer");
@@ -26,9 +25,6 @@
   function syncTranscriptVisibility() {
     if (!logEl) return;
     var has = logEl.childElementCount > 0;
-    if (previewWrapEl) {
-      previewWrapEl.hidden = has;
-    }
     if (transcriptEl) {
       transcriptEl.hidden = !has;
     }

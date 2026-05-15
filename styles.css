@@ -9279,119 +9279,118 @@ body.page-ask main {
   box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.22);
 }
 
-.page-ask .live-concierge__panel {
-  border-radius: calc(var(--radius) + 8px);
-  position: relative;
-  isolation: isolate;
+/* Local Concierge Studio — visible SA moment + light input card */
+.page-ask .live-concierge-studio {
+  max-width: min(860px, 100%);
+  margin-inline: auto;
+  border-radius: calc(var(--radius) + 14px);
   overflow: hidden;
-  border: 1px solid rgba(255, 248, 235, 0.14);
+  border: 1px solid rgba(255, 248, 235, 0.18);
   box-shadow:
-    0 28px 56px rgba(2, 6, 14, 0.55),
-    0 0 0 1px rgba(242, 178, 26, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    0 32px 64px rgba(2, 6, 14, 0.45),
+    0 0 0 1px rgba(242, 178, 26, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: rgba(6, 14, 28, 0.35);
 }
 
-.page-ask .live-concierge__panel--cinema .live-concierge__panel-back {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+.page-ask .live-concierge__image-band {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 248, 235, 0.12);
 }
 
-.page-ask .live-concierge__panel--cinema .live-concierge__panel-back img {
+.page-ask .live-concierge__image-band-media {
+  position: relative;
+  height: clamp(180px, 28vw, 240px);
+  overflow: hidden;
+  background: #1a2a44;
+}
+
+.page-ask .live-concierge__image-band-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 38%;
-  transform: scale(1.03);
+  object-position: center 42%;
   display: block;
+  transform: scale(1.02);
+  filter: saturate(1.12) contrast(1.04) brightness(1.05);
 }
 
-.page-ask .live-concierge__panel--cinema .live-concierge__panel-scrim {
+.page-ask .live-concierge__image-band-gradient {
   position: absolute;
   inset: 0;
-  z-index: 1;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 120% 70% at 50% -5%, rgba(15, 28, 48, 0.45), transparent 52%),
-    linear-gradient(180deg, rgba(8, 16, 32, 0.52) 0%, rgba(6, 14, 28, 0.78) 42%, rgba(4, 10, 22, 0.92) 100%),
-    linear-gradient(115deg, rgba(4, 12, 26, 0.88) 0%, transparent 48%),
-    linear-gradient(245deg, rgba(8, 18, 36, 0.75) 0%, transparent 55%);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 16, 32, 0) 0%,
+    rgba(8, 16, 32, 0) 52%,
+    rgba(11, 22, 40, 0.35) 78%,
+    rgba(8, 16, 32, 0.72) 100%
+  );
 }
 
-.page-ask .live-concierge__panel-body {
-  position: relative;
+.page-ask .live-concierge__image-band-label {
+  position: absolute;
+  left: clamp(12px, 2.4vw, 18px);
+  bottom: clamp(10px, 2vw, 14px);
+  margin: 0;
+  padding: 6px 12px 7px;
+  border-radius: 999px;
+  font-size: clamp(0.62rem, 0.12vw + 0.58rem, 0.72rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 248, 235, 0.95);
+  background: rgba(6, 14, 28, 0.42);
+  border: 1px solid rgba(255, 248, 235, 0.2);
+  box-shadow: 0 8px 24px rgba(2, 6, 14, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 2;
-  padding: clamp(14px, 2.6vw, 22px);
 }
 
-.page-ask .live-concierge__chat-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+.page-ask .live-concierge__main-card {
+  position: relative;
+  padding: clamp(16px, 2.8vw, 22px);
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 251, 242, 0.96) 45%, rgba(244, 250, 248, 0.94) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .page-ask .live-concierge__thread {
-  margin-top: clamp(6px, 1.2vw, 12px);
+  margin: 0;
   padding: 0;
   border: none;
   background: none;
   box-shadow: none;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(10px, 1.8vw, 14px);
 }
 
 .page-ask .live-concierge__conversation {
   display: flex;
   flex-direction: column;
-  border-radius: calc(var(--radius) + 10px);
+  gap: 0;
+  border-radius: calc(var(--radius) + 8px);
   overflow: hidden;
-  border: 1px solid rgba(255, 248, 235, 0.14);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.35) 100%);
   box-shadow:
-    0 20px 50px rgba(2, 6, 14, 0.42),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 14px 36px rgba(11, 29, 58, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.page-ask .live-concierge__conversation:not(.live-concierge__conversation--started) .live-concierge__answer-surface {
+  display: none;
 }
 
 .page-ask .live-concierge__answer-surface {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  min-height: clamp(100px, 18vw, 140px);
-  border-bottom: 1px solid rgba(255, 248, 235, 0.1);
-  background:
-    linear-gradient(180deg, rgba(5, 12, 24, 0.28) 0%, rgba(5, 12, 24, 0.62) 100%),
-    radial-gradient(ellipse 100% 80% at 50% 0%, rgba(20, 184, 166, 0.12), transparent 55%);
-}
-
-.page-ask .live-concierge__preview-wrap {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: clamp(12px, 2.2vw, 18px) clamp(12px, 2vw, 18px) clamp(10px, 1.6vw, 14px);
-}
-
-.page-ask .live-concierge__preview-wrap[hidden] {
-  display: none !important;
-}
-
-.page-ask .live-concierge__preview-bubble {
-  max-width: min(100%, 36rem);
-  margin: 0;
-  padding: 12px 14px 13px;
-  border-radius: 16px 16px 16px 6px;
-  font-size: clamp(0.86rem, 0.22vw + 0.8rem, 0.94rem);
-  line-height: 1.5;
-  font-weight: 600;
-  color: rgba(255, 248, 235, 0.94);
-  background: rgba(4, 10, 20, 0.55);
-  border: 1px solid rgba(20, 184, 166, 0.28);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 10px 28px rgba(2, 6, 14, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  min-height: 0;
+  border-bottom: 1px solid rgba(11, 29, 58, 0.08);
+  background: linear-gradient(180deg, #f3f6fa 0%, #eef3f8 100%);
 }
 
 .page-ask .live-concierge__transcript {
@@ -9409,78 +9408,102 @@ body.page-ask main {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
+  gap: 0;
   min-width: 0;
+  padding: clamp(14px, 2.2vw, 18px);
+  background: linear-gradient(180deg, #fffefb 0%, #fff8ef 55%, #f8fafc 100%);
+}
+
+.page-ask .live-concierge__helper {
+  margin: 0 0 12px;
+  font-size: clamp(0.88rem, 0.22vw + 0.82rem, 0.96rem);
+  line-height: 1.5;
+  font-weight: 600;
+  color: rgba(11, 29, 58, 0.72);
+}
+
+.page-ask .live-concierge__conversation--started .live-concierge__helper {
+  display: none;
 }
 
 .page-ask .live-concierge__composer-kicker {
-  margin: 0;
-  padding: 10px 16px 8px;
+  margin: 0 0 10px;
+  padding: 0;
   font-size: clamp(0.68rem, 0.12vw + 0.64rem, 0.74rem);
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 248, 235, 0.62);
-  background: linear-gradient(180deg, rgba(8, 14, 26, 0.65) 0%, rgba(6, 12, 22, 0.82) 100%);
-  border-top: 1px solid rgba(255, 248, 235, 0.07);
+  color: rgba(11, 29, 58, 0.48);
+  background: none;
+  border: none;
 }
 
 .page-ask .live-concierge__conversation:not(.live-concierge__conversation--started) .live-concierge__composer-kicker {
   display: none;
 }
 
-.page-ask .live-concierge__composer-card {
-  margin: 0;
-  padding: clamp(12px, 2vw, 16px);
-  border: none;
-  border-radius: 0;
-  background: linear-gradient(180deg, #fffefb 0%, #fff8ef 52%, #f4faf8 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+.page-ask .live-concierge__try-wrap {
+  padding: clamp(12px, 2.2vw, 16px) clamp(14px, 2.6vw, 20px) clamp(16px, 2.6vw, 20px);
+  background: linear-gradient(180deg, rgba(8, 16, 32, 0.2) 0%, rgba(6, 12, 24, 0.45) 100%);
+  border-top: 1px solid rgba(255, 248, 235, 0.08);
 }
 
-.page-ask .live-concierge__chip-lead {
-  margin: 0 0 12px;
-  font-size: clamp(0.84rem, 0.22vw + 0.78rem, 0.93rem);
+.page-ask .live-concierge__try-label {
+  margin: 0 0 8px;
+  font-size: clamp(0.65rem, 0.1vw + 0.62rem, 0.72rem);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 248, 235, 0.45);
+}
+
+.page-ask .live-concierge__chips--try {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin: 0;
+  padding: 0 0 2px;
+  align-items: flex-start;
+}
+
+.page-ask .live-concierge__chip--try {
+  font-size: clamp(0.76rem, 0.14vw + 0.72rem, 0.84rem);
   font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  line-height: 1.45;
+  padding: 8px 13px;
+  color: rgba(255, 248, 235, 0.88);
+  border-color: rgba(242, 178, 26, 0.28);
+  background: rgba(4, 10, 20, 0.28);
+}
+
+.page-ask .live-concierge__chip--try:hover {
+  border-color: rgba(20, 184, 166, 0.45);
+  background: rgba(20, 184, 166, 0.12);
+}
+
+.page-ask .live-concierge__module-foot {
+  margin: 0;
+  padding: 0 clamp(16px, 3vw, 22px) clamp(14px, 2.4vw, 18px);
+  font-size: clamp(0.72rem, 0.12vw + 0.68rem, 0.8rem);
+  line-height: 1.5;
+  font-weight: 600;
+  text-align: center;
+  color: rgba(255, 248, 235, 0.38);
+}
+
+.page-ask .live-concierge__module-foot-link {
+  color: rgba(255, 248, 235, 0.52);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.page-ask .live-concierge__module-foot-link:hover {
   color: rgba(255, 248, 235, 0.72);
 }
 
-.page-ask .live-concierge__chip-lead strong {
-  font-weight: 800;
-  color: rgba(255, 248, 235, 0.95);
-}
-
-.page-ask .live-concierge__chip-groups {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 2vw, 16px);
-  margin-bottom: clamp(10px, 1.8vw, 16px);
-}
-
-.page-ask .live-concierge__chip-group {
-  margin: 0;
-  padding: clamp(10px, 1.8vw, 14px);
-  border-radius: calc(var(--radius) + 4px);
-  border: 1px solid rgba(255, 248, 235, 0.12);
-  background: rgba(4, 10, 20, 0.38);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.page-ask .live-concierge__chip-group--lanes {
-  padding-top: clamp(10px, 1.6vw, 13px);
-}
-
-.page-ask .live-concierge__chip-group-label {
-  margin: 0 0 8px;
-  font-size: clamp(0.7rem, 0.14vw + 0.66rem, 0.78rem);
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(242, 178, 26, 0.95);
+.page-ask .live-concierge__module-foot-muted {
+  font-weight: 600;
+  color: rgba(255, 248, 235, 0.32);
 }
 
 .page-ask .live-concierge__error {
@@ -9499,11 +9522,6 @@ body.page-ask main {
   flex-wrap: wrap;
   gap: 6px 8px;
   margin-bottom: 12px;
-}
-
-.page-ask .live-concierge__chips--starters {
-  gap: 6px 8px;
-  margin-bottom: 0;
 }
 
 .page-ask .live-concierge__chip {
@@ -9532,24 +9550,10 @@ body.page-ask main {
   transform: scale(0.98);
 }
 
-.page-ask .live-concierge__chip--starter {
-  font-size: clamp(0.74rem, 0.16vw + 0.7rem, 0.82rem);
-  font-weight: 600;
-  padding: 7px 11px;
-  color: rgba(255, 248, 235, 0.88);
-  border-color: rgba(255, 248, 235, 0.16);
-  background: rgba(4, 10, 20, 0.4);
-}
-
-.page-ask .live-concierge__chip--starter:hover {
-  border-color: rgba(242, 178, 26, 0.42);
-  background: rgba(20, 184, 166, 0.14);
-}
-
 @media (max-width: 380px) {
-  .page-ask .live-concierge__chip--starter {
+  .page-ask .live-concierge__chip--try {
     font-size: 0.72rem;
-    padding: 6px 9px;
+    padding: 7px 10px;
   }
 }
 
@@ -9641,7 +9645,7 @@ body.page-ask main {
   margin-bottom: 0.35em;
 }
 
-.page-ask .live-concierge__composer-card .live-concierge__form {
+.page-ask .live-concierge__composer-stack .live-concierge__form {
   display: block;
   margin: 0;
 }
@@ -9658,106 +9662,86 @@ body.page-ask main {
   border-width: 0;
 }
 
-.page-ask .live-concierge__composer-card .live-concierge__composer-unit {
+.page-ask .live-concierge__composer-stack .live-concierge__composer-unit {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 12px;
-  padding: 12px 12px 14px;
-  border-radius: calc(var(--btn-radius) + 8px);
-  border: 2px solid rgba(11, 29, 58, 0.14);
-  background: linear-gradient(180deg, #ffffff 0%, #fffbf5 55%, #f8fafc 100%);
+  gap: 14px;
+  padding: clamp(14px, 2.2vw, 18px);
+  border-radius: 18px;
+  border: 2px solid rgba(11, 29, 58, 0.1);
+  background: linear-gradient(180deg, #ffffff 0%, #fffbf5 52%, #f8fafc 100%);
   box-shadow:
-    0 0 0 1px rgba(242, 178, 26, 0.12),
-    0 14px 36px rgba(11, 29, 58, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    0 0 0 1px rgba(242, 178, 26, 0.14),
+    0 20px 48px rgba(11, 29, 58, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98);
   overflow: hidden;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
-}
-
-.page-ask .live-concierge__composer-card .live-concierge__composer-unit:focus-within {
-  border-color: rgba(242, 178, 26, 0.75);
-  box-shadow:
-    0 0 0 1px rgba(255, 139, 31, 0.25),
-    0 0 0 4px rgba(242, 178, 26, 0.14),
-    0 16px 40px rgba(11, 29, 58, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
-}
-
-.page-ask .live-concierge__composer-card .live-concierge__composer-field {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 4px 2px 6px 0;
-  border-radius: 0;
-  border: none;
-  background: transparent;
-  box-shadow: none;
   -webkit-tap-highlight-color: rgba(20, 184, 166, 0.12);
 }
 
-.page-ask .live-concierge__composer-card .live-concierge__composer-glyph {
-  flex-shrink: 0;
-  margin-top: 3px;
-  font-size: 1.15rem;
-  line-height: 1;
-  color: var(--turquoise);
-  filter: drop-shadow(0 0 10px rgba(20, 184, 166, 0.35));
+.page-ask .live-concierge__composer-stack .live-concierge__composer-unit:focus-within {
+  border-color: rgba(242, 178, 26, 0.78);
+  box-shadow:
+    0 0 0 1px rgba(255, 139, 31, 0.28),
+    0 0 0 4px rgba(242, 178, 26, 0.16),
+    0 24px 56px rgba(11, 29, 58, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
-.page-ask .live-concierge__composer-card .live-concierge__input {
+.page-ask .live-concierge__composer-stack .live-concierge__input {
   flex: 1;
   min-width: 0;
   width: 100%;
   box-sizing: border-box;
   resize: vertical;
-  min-height: 56px;
-  max-height: 200px;
+  min-height: clamp(104px, 22vw, 132px);
+  max-height: 240px;
   margin: 0;
-  padding: 10px 4px 10px 0;
+  padding: 4px 2px;
   border: none;
   border-radius: 0;
   background: transparent;
   color: var(--navy-deep);
   font: inherit;
-  font-size: clamp(1rem, 0.32vw + 0.9rem, 1.06rem);
-  line-height: 1.45;
+  font-size: clamp(1.02rem, 0.35vw + 0.92rem, 1.12rem);
+  line-height: 1.5;
   outline: none;
   box-shadow: none;
   caret-color: var(--turquoise);
 }
 
-.page-ask .live-concierge__composer-card .live-concierge__input::placeholder {
-  color: rgba(6, 15, 31, 0.45);
+.page-ask .live-concierge__composer-stack .live-concierge__input::placeholder {
+  color: rgba(6, 15, 31, 0.42);
   opacity: 1;
   transition: opacity 0.2s ease;
 }
 
-.page-ask .live-concierge__composer-card .live-concierge__composer-unit:focus-within .live-concierge__input::placeholder {
-  opacity: 0.38;
+.page-ask .live-concierge__composer-stack .live-concierge__composer-unit:focus-within .live-concierge__input::placeholder {
+  opacity: 0.36;
 }
 
-.page-ask .live-concierge__composer-card .live-concierge__send {
+.page-ask .live-concierge__composer-stack .live-concierge__send {
   width: 100%;
   flex-shrink: 0;
-  min-height: 52px;
+  min-height: 54px;
   margin: 0;
-  padding: 14px 22px 15px;
-  border: 1px solid rgba(255, 255, 255, 0.48);
-  border-radius: 999px;
+  padding: 15px 24px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 14px;
   font-weight: 850;
-  font-size: clamp(0.98rem, 0.26vw + 0.9rem, 1.08rem);
+  font-size: clamp(1rem, 0.28vw + 0.92rem, 1.1rem);
   letter-spacing: 0.02em;
   text-transform: none;
   color: #0b1a32;
-  background: linear-gradient(135deg, #f4c14a 0%, #ffb347 38%, #ff8b1f 72%, #f97316 100%);
+  background: linear-gradient(135deg, #f2bd3e 0%, #ffb347 32%, #ff8b1f 68%, #ea580c 100%);
   box-shadow:
-    0 18px 44px rgba(255, 120, 40, 0.42),
-    0 8px 22px rgba(242, 178, 26, 0.32),
-    0 2px 0 rgba(255, 255, 255, 0.35) inset,
-    0 -1px 0 rgba(180, 83, 9, 0.18) inset;
+    0 22px 52px rgba(255, 106, 40, 0.48),
+    0 10px 28px rgba(242, 178, 26, 0.38),
+    0 3px 0 rgba(255, 255, 255, 0.42) inset,
+    0 -2px 0 rgba(154, 52, 18, 0.22) inset;
   cursor: pointer;
   transition:
     filter 0.18s ease,
@@ -9765,57 +9749,29 @@ body.page-ask main {
     box-shadow 0.18s ease;
 }
 
-.page-ask .live-concierge__composer-card .live-concierge__send:hover:not(:disabled) {
-  filter: brightness(1.06) saturate(1.08);
+.page-ask .live-concierge__composer-stack .live-concierge__send:hover:not(:disabled) {
+  filter: brightness(1.07) saturate(1.1);
   transform: translateY(-2px);
   box-shadow:
-    0 26px 56px rgba(255, 120, 40, 0.5),
-    0 12px 28px rgba(242, 178, 26, 0.38),
-    0 2px 0 rgba(255, 255, 255, 0.45) inset,
-    0 -1px 0 rgba(180, 83, 9, 0.15) inset;
+    0 28px 64px rgba(255, 106, 40, 0.55),
+    0 14px 34px rgba(242, 178, 26, 0.42),
+    0 3px 0 rgba(255, 255, 255, 0.48) inset,
+    0 -2px 0 rgba(154, 52, 18, 0.18) inset;
 }
 
-.page-ask .live-concierge__composer-card .live-concierge__send:active:not(:disabled) {
+.page-ask .live-concierge__composer-stack .live-concierge__send:active:not(:disabled) {
   transform: translateY(0);
   filter: brightness(0.98);
   box-shadow:
-    0 10px 28px rgba(255, 120, 40, 0.35),
-    0 2px 0 rgba(255, 255, 255, 0.28) inset;
+    0 12px 32px rgba(255, 106, 40, 0.4),
+    0 3px 0 rgba(255, 255, 255, 0.32) inset;
 }
 
-.page-ask .live-concierge__composer-card .live-concierge__send:disabled {
+.page-ask .live-concierge__composer-stack .live-concierge__send:disabled {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none;
   box-shadow: 0 8px 20px rgba(11, 29, 58, 0.12);
-}
-
-.page-ask .live-concierge__composer-stack .live-concierge__footnote--quiet {
-  margin: 10px 0 0;
-  padding: 0 4px 4px;
-  max-width: 42rem;
-  margin-inline: auto;
-  font-size: clamp(0.72rem, 0.14vw + 0.68rem, 0.8rem);
-  line-height: 1.45;
-  font-weight: 600;
-  color: rgba(11, 29, 58, 0.42);
-  text-align: center;
-}
-
-.page-ask .live-concierge__composer-stack .live-concierge__footnote-muted {
-  font-weight: 600;
-  color: rgba(11, 29, 58, 0.38);
-}
-
-.page-ask .live-concierge-section .live-concierge__footnote-link {
-  color: rgba(120, 53, 15, 0.88);
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.page-ask .live-concierge-section .live-concierge__footnote-link:hover {
-  color: #9a3412;
 }
 
 /* Homepage: Ask entry band */
