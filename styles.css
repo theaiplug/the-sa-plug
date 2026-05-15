@@ -8449,6 +8449,10 @@ body.page-ask main {
   background: linear-gradient(145deg, #5eead4, #14b8a6);
 }
 
+.page-ask .ask-starter-mark--plum {
+  background: linear-gradient(145deg, #c084fc, #7c3aed);
+}
+
 .page-ask .ask-starter-route-line {
   flex: 1;
   height: 2px;
@@ -9120,12 +9124,44 @@ body.page-ask main {
 }
 
 .page-ask .live-concierge__chip-lead {
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   font-size: clamp(0.72rem, 0.15vw + 0.68rem, 0.8rem);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 248, 235, 0.48);
+}
+
+.page-ask .live-concierge__chip-groups {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2.2vw, 20px);
+  margin-bottom: 16px;
+}
+
+.page-ask .live-concierge__chip-group {
+  margin: 0;
+}
+
+.page-ask .live-concierge__chip-group-label {
+  margin: 0 0 8px;
+  font-size: clamp(0.72rem, 0.15vw + 0.68rem, 0.8rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.page-ask .live-concierge__chip-group-hint {
+  margin: -2px 0 8px;
+  font-size: clamp(0.78rem, 0.18vw + 0.74rem, 0.85rem);
+  line-height: 1.45;
+  color: rgba(255, 248, 235, 0.58);
+}
+
+.page-ask .live-concierge__chip-group--place {
+  padding-top: clamp(10px, 1.8vw, 14px);
+  border-top: 1px solid rgba(255, 248, 235, 0.08);
 }
 
 .page-ask .live-concierge__error {
@@ -9148,7 +9184,7 @@ body.page-ask main {
 
 .page-ask .live-concierge__chips--starters {
   gap: 6px;
-  margin-bottom: 14px;
+  margin-bottom: 0;
 }
 
 .page-ask .live-concierge__chip {
@@ -9204,31 +9240,8 @@ body.page-ask main {
   background: rgba(20, 184, 166, 0.12);
 }
 
-.page-ask .live-concierge__place-hint {
-  margin: clamp(14px, 2.2vw, 20px) 0 0;
-  padding: 12px 14px;
-  border-radius: calc(var(--radius) + 4px);
-  border: 1px solid rgba(20, 184, 166, 0.22);
-  background: rgba(5, 10, 20, 0.35);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-.page-ask .live-concierge__place-hint-title {
-  margin: 0 0 6px;
-  font-size: clamp(0.95rem, 0.28vw + 0.88rem, 1.05rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: rgba(255, 248, 235, 0.96);
-}
-
-.page-ask .live-concierge__place-hint-copy {
-  margin: 0 0 10px;
-  font-size: clamp(0.86rem, 0.22vw + 0.8rem, 0.94rem);
-  line-height: 1.5;
-  color: rgba(255, 248, 235, 0.78);
-}
-
 .page-ask .live-concierge__chips--place {
+  gap: 6px;
   margin-bottom: 0;
 }
 
