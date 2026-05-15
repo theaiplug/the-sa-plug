@@ -51,19 +51,19 @@
       <div class="hero-fiesta-inner hero-inner-band">
         <div class="hero-shell ask-page-hero-shell">
           <div class="hero-content">
-            <p class="eyebrow eyebrow-on-dark eyebrow-hero">Ask A Local</p>
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero ask-hero-eyebrow">Ask A Local</p>
             <h1 id="ask-hero-heading" class="hero-title">Tell us your situation. We&rsquo;ll give you the San Antonio move.</h1>
-            <p class="hero-text hero-text-on-dark">Where you are, who you&rsquo;re with, how much time you have, and what kind of night you want &mdash; we&rsquo;ll route you toward tonight&rsquo;s plan, dinner, a specific place, hours and cost, family moves, convention timing, transportation help, or a resort night when that&rsquo;s your stay.</p>
+            <p class="hero-text hero-text-on-dark">Where you are, who you&rsquo;re with, how much time you have, and what kind of night you want &mdash; we&rsquo;ll route you toward the downtown move, dinner pick, specific place, family plan, convention timing, resort option, or transportation help that fits.</p>
             <div class="hero-actions hero-cta-row ask-page-hero-actions">
               <a class="btn btn-primary" href="#live-concierge">Get an instant answer</a>
               <a class="btn btn-secondary-hero" href="#popular-routes">See popular routes</a>
             </div>
             <div class="route-chip-row route-chip-row-hero ask-page-hero-chips" aria-label="Common situations">
               <span class="route-chip">Tonight &amp; dinner</span>
-              <span class="route-chip">Ask about a place</span>
               <span class="route-chip">Downtown &amp; River Walk</span>
+              <span class="route-chip">Ask about a place</span>
               <span class="route-chip">Family-friendly routes</span>
-              <span class="route-chip">Conventions &amp; business</span>
+              <span class="route-chip">Convention &amp; business</span>
               <span class="route-chip">Transportation help</span>
             </div>
           </div>
@@ -77,7 +77,7 @@
           <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Live local concierge</p>
           <h2 id="live-concierge-heading" class="live-concierge__title">Ask A Local anything about your San Antonio move</h2>
           <p class="section-text section-text-light live-concierge__lead">
-            Get instant local answers for tonight&rsquo;s plan, dinner, and transportation &mdash; or for a specific place: whether it&rsquo;s worth it, hours, cost, parking, best timing, and how it fits your visit. Downtown, the Pearl, conventions, family routes, and resorts when that applies.
+            Get instant local answers for tonight&rsquo;s plan, dinner, a specific place, hours and cost, parking and timing, downtown and the Pearl, conventions, family routes, resorts when that&rsquo;s your stay, and transportation decisions.
           </p>
           <p class="live-concierge__status" id="live-concierge-status" aria-live="polite">Live · ready</p>
         </header>
@@ -86,7 +86,6 @@
           <div class="live-concierge__error" id="live-concierge-error" hidden role="alert"></div>
 
           <div class="live-concierge__chat-stack">
-            <p class="live-concierge__chip-lead">Start with a <strong>plan</strong> or a <strong>place</strong> &mdash; tap a chip to send it, then read the reply. Type your own question in the box right under the conversation.</p>
             <div class="live-concierge__chip-groups">
               <div class="live-concierge__chip-group">
                 <h3 class="live-concierge__chip-group-label">Plan my move</h3>
@@ -101,7 +100,7 @@
               </div>
               <div class="live-concierge__chip-group live-concierge__chip-group--place">
                 <h3 class="live-concierge__chip-group-label">Ask about a place</h3>
-                <p class="live-concierge__chip-group-hint">Worth it, hours, cost, parking, timing, and whether it fits your visit.</p>
+                <p class="live-concierge__chip-group-hint">Hours, cost, parking, best time to go, and whether it fits your visit.</p>
                 <div class="live-concierge__chips live-concierge__chips--starters" role="group" aria-label="Ask about a place: quick prompts">
                   <button type="button" class="live-concierge__chip live-concierge__chip--starter" data-concierge-chip data-chip-text="Is this place worth visiting?">Is this place worth visiting?</button>
                   <button type="button" class="live-concierge__chip live-concierge__chip--starter" data-concierge-chip data-chip-text="Hours, cost, and best time to go">Hours, cost, and best time to go</button>
@@ -113,154 +112,39 @@
               </div>
             </div>
 
-            <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation">
-              <div class="live-concierge__msg live-concierge__msg--assistant">
-                <div class="live-concierge__bubble live-concierge__bubble--rich">
-                  <strong>Plan my move</strong> when you want tonight, dinner, kids, a convention, transport, or a resort night. <strong>Ask about a place</strong> when you want the local read on worth-it, hours, cost, parking, best timing, and fit. Add a specific venue name in the box whenever you have one.
+            <div class="live-concierge__thread" id="live-concierge-thread">
+              <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation">
+                <div class="live-concierge__msg live-concierge__msg--assistant">
+                  <div class="live-concierge__bubble live-concierge__bubble--rich">
+                    <strong>Plan my move</strong> for tonight, dinner, kids, convention, transport, or resort nights. <strong>Ask about a place</strong> for worth-it, hours, cost, parking, and timing. Drop a venue name in the box when you have one &mdash; your answer shows right here.
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <form class="live-concierge__form" id="live-concierge-form">
-              <label class="visually-hidden" for="live-concierge-input">Your question</label>
-              <textarea
-                id="live-concierge-input"
-                class="live-concierge__input"
-                name="message"
-                rows="2"
-                maxlength="12000"
-                required
-                autocomplete="off"
-                placeholder="Tonight&rsquo;s plan, a place name, hours, cost, parking, timing, downtown, family, or transportation..."
-              ></textarea>
-              <button type="submit" class="live-concierge__send" id="live-concierge-send">Send</button>
-            </form>
-            <p class="live-concierge__footnote">
-              Need hands-on routing? <a href="#guided-request">Request human help</a> &mdash; not immediate or guaranteed. For urgent rides, use rideshare, taxis, hotel transport, or other licensed options.
-            </p>
+              <form class="live-concierge__form" id="live-concierge-form">
+                <label class="visually-hidden" for="live-concierge-input">Your question</label>
+                <textarea
+                  id="live-concierge-input"
+                  class="live-concierge__input"
+                  name="message"
+                  rows="2"
+                  maxlength="12000"
+                  required
+                  autocomplete="off"
+                  placeholder="Tonight&rsquo;s plan, a place name, hours, cost, parking, timing, downtown, family, or transportation..."
+                ></textarea>
+                <button type="submit" class="live-concierge__send" id="live-concierge-send">Send</button>
+              </form>
+              <p class="live-concierge__footnote">
+                <a href="#human-help">Request human help</a> when you want hands-on routing &mdash; optional, not immediate. Urgent rides: rideshare, taxis, hotel transport, or other licensed options.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-cream" id="quick-start" aria-labelledby="quick-start-heading">
-      <div class="routes-band-inner">
-        <header class="ask-section-head">
-          <p class="eyebrow">Quick start</p>
-          <h2 id="quick-start-heading">Pick your starting point</h2>
-          <p class="section-text">Prefer a structured lane without typing? Jump to a card &mdash; the live concierge above is still the fastest first stop for tonight or a specific place.</p>
-        </header>
-        <ul class="ask-starter-grid" role="list">
-          <li>
-            <a class="ask-starter-card" href="#route-downtown">
-              <span class="ask-starter-card__row" aria-hidden="true"><span class="ask-starter-mark ask-starter-mark--turq"></span><span class="ask-starter-route-line" aria-hidden="true"></span></span>
-              <span class="ask-starter-title">Plan my downtown night</span>
-              <span class="ask-starter-best">River Walk, dinner, drinks, and one clean route.</span>
-            </a>
-          </li>
-          <li>
-            <a class="ask-starter-card" href="#route-convention">
-              <span class="ask-starter-card__row" aria-hidden="true"><span class="ask-starter-mark ask-starter-mark--gold"></span><span class="ask-starter-route-line" aria-hidden="true"></span></span>
-              <span class="ask-starter-title">I&rsquo;m here for a convention</span>
-              <span class="ask-starter-best">After-session dinner, drinks, or client-friendly moves.</span>
-            </a>
-          </li>
-          <li>
-            <a class="ask-starter-card" href="#route-family">
-              <span class="ask-starter-card__row" aria-hidden="true"><span class="ask-starter-mark ask-starter-mark--orange"></span><span class="ask-starter-route-line" aria-hidden="true"></span></span>
-              <span class="ask-starter-title">Family-friendly plan</span>
-              <span class="ask-starter-best">Easy pacing, kid-friendly stops, fewer wasted transfers.</span>
-            </a>
-          </li>
-          <li>
-            <a class="ask-starter-card" href="#route-convention">
-              <span class="ask-starter-card__row" aria-hidden="true"><span class="ask-starter-mark ask-starter-mark--pink"></span><span class="ask-starter-route-line" aria-hidden="true"></span></span>
-              <span class="ask-starter-title">Business dinner</span>
-              <span class="ask-starter-best">Polished picks, timing, and transportation logic.</span>
-            </a>
-          </li>
-          <li>
-            <a class="ask-starter-card" href="#route-transport">
-              <span class="ask-starter-card__row" aria-hidden="true"><span class="ask-starter-mark ask-starter-mark--teal"></span><span class="ask-starter-route-line" aria-hidden="true"></span></span>
-              <span class="ask-starter-title">Need transportation help</span>
-              <span class="ask-starter-best">Airport, resort, dinner, and night-out route support.</span>
-            </a>
-          </li>
-          <li>
-            <a class="ask-starter-card" href="#route-resort">
-              <span class="ask-starter-card__row" aria-hidden="true"><span class="ask-starter-mark ask-starter-mark--coral"></span><span class="ask-starter-route-line" aria-hidden="true"></span></span>
-              <span class="ask-starter-title">Find food near my resort</span>
-              <span class="ask-starter-best">Stay close or make the downtown run.</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section band section-navy-routes" id="how-it-works" aria-labelledby="how-heading">
-      <div class="routes-band-inner">
-        <header class="ask-section-head ask-section-head--on-dark">
-          <p class="eyebrow eyebrow-on-dark">How it works</p>
-          <h2 id="how-heading">Better answers, faster</h2>
-        </header>
-        <ol class="ask-micro-steps" aria-label="Steps">
-          <li>
-            <strong>Ask live first</strong>
-            <span>Type a question or tap a plan or place chip for an instant local read.</span>
-          </li>
-          <li>
-            <strong>Route cards stay as backup</strong>
-            <span>Use the popular moves below when you want a structured lane without typing.</span>
-          </li>
-          <li>
-            <strong>Request human help when you want it</strong>
-            <span>Need custom routing or transportation intake? Use the labeled request flow &mdash; not required to get value here.</span>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section band section-navy-routes ask-situation-band" id="night-situations" aria-labelledby="night-situations-heading">
-      <div class="routes-band-inner">
-        <header class="ask-section-head ask-section-head--on-dark ask-situation-head">
-          <p class="eyebrow eyebrow-on-dark">Your night</p>
-          <h2 id="night-situations-heading">What kind of San Antonio night are you trying to build?</h2>
-          <p class="section-text section-text-light">Start with the situation. The right move changes when you&rsquo;re short on time, here for business, moving with family, or staying at a resort.</p>
-        </header>
-        <ul class="ask-situation-grid" role="list">
-          <li>
-            <article class="ask-situation-card">
-              <span class="ask-situation-card__accent" aria-hidden="true"></span>
-              <h3 class="ask-situation-card__title">Short on time</h3>
-              <p class="ask-situation-card__copy">Fast downtown move, one strong dinner, or one signature stop before the night gets away.</p>
-            </article>
-          </li>
-          <li>
-            <article class="ask-situation-card">
-              <span class="ask-situation-card__accent" aria-hidden="true"></span>
-              <h3 class="ask-situation-card__title">Here for business</h3>
-              <p class="ask-situation-card__copy">Client dinner, convention timing, walkable options, and easy pickup logic.</p>
-            </article>
-          </li>
-          <li>
-            <article class="ask-situation-card">
-              <span class="ask-situation-card__accent" aria-hidden="true"></span>
-              <h3 class="ask-situation-card__title">Family in tow</h3>
-              <p class="ask-situation-card__copy">Kid-friendly stops, easier pacing, food that works, and less wasted movement.</p>
-            </article>
-          </li>
-          <li>
-            <article class="ask-situation-card">
-              <span class="ask-situation-card__accent" aria-hidden="true"></span>
-              <h3 class="ask-situation-card__title">Staying at a resort</h3>
-              <p class="ask-situation-card__copy">Decide whether to stay close, go downtown, or build a smoother resort-to-dinner plan.</p>
-            </article>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section section-cream" id="popular-routes" aria-labelledby="routes-heading">
+    <section class="section section-cream ask-popular-backup" id="popular-routes" aria-labelledby="routes-heading">
       <div class="routes-band-inner ask-routes-stack">
         <header class="ask-section-head">
           <p class="eyebrow">Popular moves</p>
@@ -268,116 +152,116 @@
           <p class="section-text">Start with the situation that matches your night &mdash; or ask the live concierge above. Request human help only when you want that lane.</p>
         </header>
 
-        <article class="ask-route-block" id="route-downtown">
+        <article class="ask-route-block ask-route-block--backup" id="route-downtown">
           <div class="ask-route-block__media">
             <img src="../assets/ask-downtown-night-plan.png" alt="Downtown San Antonio at night along the River Walk" width="960" height="640" decoding="async" loading="lazy" />
           </div>
           <div class="ask-route-block__body glass-info-card">
             <h3>One-night downtown plan</h3>
-            <p>One good night? Hit the River Walk before the peak, add the Alamo on a first visit, then lock dinner to your vibe &mdash; business, Mexican, drinks with a view, or a slower River Walk stretch.</p>
+            <p>River Walk before the crush, Alamo if it&rsquo;s a first visit, then one dinner move matched to your group &mdash; not a random scatter across the city.</p>
             <ul class="ask-route-bullets">
-              <li>First-visit flow</li>
-              <li>River Walk + dinner route</li>
-              <li>Couples &amp; small groups</li>
+              <li>First-night flow</li>
+              <li>Walk + eat timing</li>
+              <li>Small groups &amp; dates</li>
             </ul>
             <div class="ask-route-actions">
               <a class="btn btn-primary" href="../downtown.html">See the downtown move</a>
-              <a class="btn btn-secondary" href="#guided-request">Request human help</a>
+              <a class="btn btn-secondary ask-route-actions__quiet" href="#human-help">Request human help</a>
             </div>
           </div>
         </article>
 
-        <article class="ask-route-block ask-route-block--reverse" id="route-riverwalk">
+        <article class="ask-route-block ask-route-block--reverse ask-route-block--backup" id="route-riverwalk">
           <div class="ask-route-block__media">
             <img src="../assets/ask-riverwalk-timing.png" alt="River Walk scene showing evening light and walkways" width="960" height="640" decoding="async" loading="lazy" />
           </div>
           <div class="ask-route-block__body glass-info-card">
             <h3>River Walk timing guide</h3>
-            <p>Earlier is easier to walk and photograph. Later is brighter, louder, and busier. Match the time to the energy you want.</p>
+            <p>Earlier walks easier. Later glows louder. Match the hour to the vibe you want before you commit dinner.</p>
             <ul class="ask-route-bullets">
-              <li>Earlier = easier pace</li>
-              <li>Later = more energy</li>
-              <li>Dinner, drinks, walking combo</li>
+              <li>Golden hour pace</li>
+              <li>Peak energy window</li>
+              <li>Walk + drinks combo</li>
             </ul>
             <div class="ask-route-actions">
               <a class="btn btn-primary" href="../downtown.html#dt-river-timing">Best time to go</a>
-              <a class="btn btn-secondary" href="../where-to-eat.html">Pair it with dinner</a>
+              <a class="btn btn-secondary ask-route-actions__quiet" href="../where-to-eat.html">Pair with dinner</a>
             </div>
           </div>
         </article>
 
-        <article class="ask-route-block" id="route-convention">
+        <article class="ask-route-block ask-route-block--backup" id="route-convention">
           <div class="ask-route-block__media">
             <img src="../assets/ask-business-dinner-convention.png" alt="Convention and business evening in a downtown setting" width="960" height="640" decoding="async" loading="lazy" />
           </div>
           <div class="ask-route-block__body glass-info-card">
             <h3>Convention and business traveler picks</h3>
-            <p>After a conference day, your window drives the move: fast downtown dinner, polished client meal, or a simple night without logistics stress.</p>
+            <p>After sessions, your clock picks the lane: quick downtown bite, client-ready room, or a low-stress night without zigzagging.</p>
             <ul class="ask-route-bullets">
-              <li>Client-ready dinners</li>
-              <li>Walkable or easy car</li>
+              <li>Client-ready rooms</li>
+              <li>Walk or short ride</li>
               <li>Post-session timing</li>
             </ul>
             <div class="ask-route-actions">
-              <a class="btn btn-primary" href="../downtown.html#dt-move-business">Find the business move</a>
-              <a class="btn btn-secondary" href="../where-to-eat.html">Best dinner after the convention</a>
+              <a class="btn btn-primary" href="../downtown.html#dt-move-business">Business move</a>
+              <a class="btn btn-secondary ask-route-actions__quiet" href="../where-to-eat.html">Dinner after the floor</a>
             </div>
           </div>
         </article>
 
-        <article class="ask-route-block ask-route-block--reverse" id="route-resort">
+        <article class="ask-route-block ask-route-block--reverse ask-route-block--backup" id="route-resort">
           <div class="ask-route-block__media">
             <img src="../assets/ask-resort-route-evening.png" alt="Resort-area evening with warm outdoor lighting" width="960" height="640" decoding="async" loading="lazy" />
           </div>
           <div class="ask-route-block__body glass-info-card">
             <h3>Resort guest plan</h3>
-            <p>Three different resort zones: JW Marriott (TPC / north), La Cantera / The Rim (northwest), and Hyatt Hill Country / SeaWorld (west). Pick stay-close convenience or a downtown night that feels worth the drive.</p>
+            <p>JW (TPC / north), La Cantera / The Rim, and Hyatt Hill Country / SeaWorld are different zones &mdash; stay close or earn the downtown run on purpose.</p>
             <ul class="ask-route-bullets">
-              <li>Stay local vs downtown</li>
-              <li>Family or adults-only</li>
-              <li>Upscale dinner routing</li>
+              <li>Zone-first food</li>
+              <li>Family vs adults night</li>
+              <li>Upscale without wrong &ldquo;nearby&rdquo;</li>
             </ul>
             <div class="ask-route-actions">
-              <a class="btn btn-primary" href="../resort-food.html">Find my resort plan</a>
-              <a class="btn btn-secondary" href="../downtown.html">Should I go downtown?</a>
+              <a class="btn btn-primary" href="../resort-food.html">Resort food lanes</a>
+              <a class="btn btn-secondary ask-route-actions__quiet" href="../downtown.html">Downtown worth it?</a>
             </div>
           </div>
         </article>
 
-        <article class="ask-route-block" id="route-family">
+        <article class="ask-route-block ask-route-block--backup" id="route-family">
           <div class="ask-route-block__media">
             <img src="../assets/ask-family-friendly-river-park.png" alt="Family-friendly outdoor path near the river in San Antonio" width="960" height="640" decoding="async" loading="lazy" />
           </div>
           <div class="ask-route-block__body glass-info-card">
             <h3>Family-friendly San Antonio plan</h3>
-            <p>Pick the day type first &mdash; active, downtown, kid-friendly food, or a lighter mix that keeps everyone in a good mood.</p>
+            <p>Pick energy first &mdash; active, downtown, kid-friendly food, or a lighter mix &mdash; so nobody melts down in traffic.</p>
             <ul class="ask-route-bullets">
-              <li>Simple family routing</li>
-              <li>Kid-friendly pacing</li>
-              <li>Less back-and-forth</li>
+              <li>Simple day routing</li>
+              <li>Kid pacing built in</li>
+              <li>Fewer backtracks</li>
             </ul>
             <div class="ask-route-actions">
-              <a class="btn btn-primary" href="../summer-family.html">Plan the family route</a>
-              <a class="btn btn-secondary" href="../downtown.html#dt-move-family">Best family stop now</a>
+              <a class="btn btn-primary" href="../summer-family.html">Family route hub</a>
+              <a class="btn btn-secondary ask-route-actions__quiet" href="../downtown.html#dt-move-family">Family stop now</a>
             </div>
           </div>
         </article>
 
-        <article class="ask-route-block ask-route-block--reverse" id="route-transport">
+        <article class="ask-route-block ask-route-block--reverse ask-route-block--backup" id="route-transport">
           <div class="ask-route-block__media">
             <img src="../assets/ask-transportation-concierge.png" alt="Evening transportation and city arrival scene" width="960" height="640" decoding="async" loading="lazy" />
           </div>
           <div class="ask-route-block__body glass-info-card">
             <h3>Transportation + concierge</h3>
-            <p>Airport, resort, downtown, dinner, or a night-out chain &mdash; ask for route and timing support when you want less guesswork.</p>
+            <p>Airport, resort, downtown, or dinner chain &mdash; tighten pickup timing and route order when you want less guesswork.</p>
             <ul class="ask-route-bullets">
-              <li>Airport, resort, downtown</li>
-              <li>Night-out chain routing</li>
-              <li>Pickup timing that fits dinner</li>
+              <li>Arrival + resort legs</li>
+              <li>Night-out chain order</li>
+              <li>Dinner pickup windows</li>
             </ul>
             <div class="ask-route-actions">
               <a class="btn btn-primary" href="https://tally.so/r/xX9q2y" target="_blank" rel="noopener">Request transportation help</a>
-              <a class="btn btn-secondary" href="#guided-request">Request human help</a>
+              <a class="btn btn-secondary ask-route-actions__quiet" href="#human-help">Request human help</a>
             </div>
           </div>
         </article>
@@ -387,9 +271,9 @@
     <section class="section band section-navy-routes" id="more-moves" aria-labelledby="more-moves-heading">
       <div class="routes-band-inner">
         <header class="ask-section-head ask-section-head--on-dark">
-          <p class="eyebrow eyebrow-on-dark">More local moves</p>
+          <p class="eyebrow eyebrow-on-dark">Add-ons</p>
           <h2 id="more-moves-heading">More local moves</h2>
-          <p class="section-text section-text-light">Three strong add-ons when you already know your lane.</p>
+          <p class="section-text section-text-light">Extra stops when you already picked your lane &mdash; not a second map of the whole city.</p>
         </header>
         <ul class="route-card-grid ask-more-grid" role="list">
           <li role="listitem">
@@ -432,17 +316,18 @@
       </div>
     </section>
 
-    <section class="section section-cream" id="guided-request" aria-labelledby="request-heading">
+    <section class="section section-cream" id="human-help" aria-labelledby="request-heading">
       <div class="routes-band-inner">
         <header class="ask-section-head">
           <p class="eyebrow">Human help</p>
           <h2 id="request-heading">Want human help building a plan around your situation?</h2>
-          <p class="section-text">If the live concierge above got you close but you want someone to pick up the details, tell us where you&rsquo;re staying, who you&rsquo;re with, and what kind of experience you want.</p>
+          <p class="section-text">If the live concierge got you close but you want someone to pick up the details, tell us where you&rsquo;re staying, who you&rsquo;re with, and what kind of experience you want.</p>
+          <p class="section-text ask-human-priority-note">The live concierge is the fastest first step. Human help is optional when you want hands-on routing or transportation intake.</p>
         </header>
         <div class="ask-guided-shell ask-prompt-shell ask-guided-wrap">
           <form class="ask-guided-form ask-intake-card" id="ask-guided-form" action="https://tally.so/r/D408Aj" method="get" target="_blank">
             <p class="ask-intake-label">Request human help</p>
-            <p class="ask-intake-sub">Optional: when you want hands-on routing or a human to pick up the details, send this request. The live concierge above stays the fastest first stop.</p>
+            <p class="ask-intake-sub">Optional lane &mdash; not required to get value from Ask A Local. Send this when you want a person on the details.</p>
             <div class="ask-guided-grid">
               <label class="ask-guided-field">
                 <span>What do you need help with?</span>
@@ -530,7 +415,7 @@
         <div class="ask-proof-lead">
           <p class="eyebrow eyebrow-ask">Behind the guide</p>
           <h2 id="ai-proof-heading" class="ask-headline">Built to give better answers than a static guide</h2>
-          <p class="section-text section-text-ask">Most guides hand you a list. Where To Go SA starts with your situation &mdash; where you are, who you&rsquo;re with, how much time you have, and what kind of night you want. That is also the live proof of how The AI Plug thinks about smarter customer routing.</p>
+          <p class="section-text section-text-ask">Most guides hand you a list. Where To Go SA starts with your situation &mdash; where you are, who you&rsquo;re with, how much time you have, and what kind of night you want.</p>
         </div>
         <ul class="ask-proof-cards" role="list">
           <li>
@@ -553,7 +438,7 @@
           </li>
         </ul>
         <div class="ask-proof-cta">
-          <a class="btn btn-secondary-hero" href="../business-services.html">See how The AI Plug builds systems like this</a>
+          <a class="btn btn-secondary-hero ask-proof-cta__btn" href="../business-services.html">See how The AI Plug builds systems like this</a>
         </div>
       </div>
     </section>
@@ -565,7 +450,7 @@
           <p class="section-text section-text-light">Start with your situation. We&rsquo;ll point you toward the cleaner route.</p>
           <div class="hero-cta-row ask-final-actions">
             <a class="btn btn-primary" href="#live-concierge">Ask live</a>
-            <a class="btn btn-secondary-hero" href="#guided-request">Request human help</a>
+            <a class="btn btn-secondary-hero" href="#human-help">Request human help</a>
           </div>
         </div>
       </div>

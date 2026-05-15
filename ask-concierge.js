@@ -13,6 +13,7 @@
   var statusEl = document.getElementById("live-concierge-status");
   var errorBanner = document.getElementById("live-concierge-error");
   var chips = root.querySelectorAll("[data-concierge-chip]");
+  var threadEl = document.getElementById("live-concierge-thread");
 
   var previousResponseId = null;
   var busy = false;
@@ -51,6 +52,15 @@
     return '<div class="live-concierge__rich">' + (html || "<p></p>") + "</div>";
   }
 
+  function nudgeThreadIntoView() {
+    if (!threadEl || typeof threadEl.scrollIntoView !== "function") return;
+    try {
+      threadEl.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    } catch (e) {
+      threadEl.scrollIntoView(false);
+    }
+  }
+
   function appendBubble(role, text) {
     if (!logEl) return;
     var wrap = document.createElement("div");
@@ -66,6 +76,7 @@
     wrap.appendChild(inner);
     logEl.appendChild(wrap);
     logEl.scrollTop = logEl.scrollHeight;
+    nudgeThreadIntoView();
   }
 
   function removeThinking() {
@@ -85,6 +96,7 @@
     wrap.appendChild(inner);
     logEl.appendChild(wrap);
     logEl.scrollTop = logEl.scrollHeight;
+    nudgeThreadIntoView();
   }
 
   function sendMessage(text) {
@@ -143,6 +155,7 @@
           input.disabled = false;
           input.focus();
         }
+        nudgeThreadIntoView();
       });
   }
 

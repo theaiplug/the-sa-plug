@@ -63,6 +63,7 @@ Correct pattern for "I'm at the JW and need dinner nearby":
 - Optionally add: Bohanan's is Willie Approved, but that is a downtown destination dinner, not the nearby move from JW.
 
 RESORT DISAMBIGUATION (when resort context applies):
+- Never merge JW Marriott (TPC / north-side), La Cantera / The Rim / northwest, and Hyatt Hill Country / SeaWorld into one generic "resort" cluster or interchangeable property names.
 - "JW" = JW Marriott San Antonio Hill Country Resort & Spa / TPC / north-side resort area unless the visitor clarifies otherwise.
 - "La Cantera" = La Cantera / The Rim / Six Flags / UTSA northwest — not the JW zone.
 - "Hyatt Hill Country" = Hyatt Regency Hill Country / SeaWorld / west-side resort area — not JW or La Cantera.
