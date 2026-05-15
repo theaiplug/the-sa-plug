@@ -8308,6 +8308,11 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   letter-spacing: 0.12em;
 }
 
+.page-ask .ask-human-help-fallback .ask-section-head .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
 .page-ask #live-concierge,
 .page-ask #popular-routes,
 .page-ask #more-moves,
