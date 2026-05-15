@@ -1216,17 +1216,6 @@
       margin-inline: auto;
     }
 
-    /* Operator disclaimer — present but quiet */
-    .transport-concierge-main .tc-route-disclaimer--subtle {
-      margin-top: clamp(8px, 1.2vw, 12px);
-      margin-bottom: 0;
-      max-width: 42rem;
-      font-size: clamp(0.76rem, 0.28vw + 0.68rem, 0.83rem);
-      line-height: 1.52;
-      font-weight: 520;
-      color: rgba(255, 246, 230, 0.56);
-    }
-
     /* Route operator — premium card shell */
     .transport-concierge-main .transport-route-operator .live-concierge-card {
       border-radius: calc(var(--radius) + 8px);
@@ -1428,107 +1417,197 @@
 
     /* Compact human handoff — secondary to route operator */
     .transport-concierge-main .tc-human-compact {
-      padding: clamp(28px, 3.4vw, 40px) clamp(16px, 4vw, 44px) clamp(32px, 4vw, 48px);
-      background: linear-gradient(180deg, #f3efe8 0%, #ebe4da 100%);
+      padding: clamp(22px, 3vw, 34px) clamp(16px, 4vw, 44px) clamp(24px, 3.2vw, 36px);
+      background: linear-gradient(180deg, #f7f4ef 0%, #ece7df 100%);
       border-top: 1px solid rgba(11, 29, 58, 0.06);
     }
 
     .transport-concierge-main .tc-human-compact__inner {
-      max-width: min(36rem, 100%);
+      max-width: min(34rem, 100%);
       margin: 0 auto;
-      padding: clamp(18px, 2.4vw, 22px) clamp(18px, 2.6vw, 24px);
-      border-radius: calc(var(--radius) + 4px);
-      border: 1px solid rgba(11, 29, 58, 0.1);
-      background: rgba(255, 255, 255, 0.82);
-      box-shadow: 0 12px 32px rgba(11, 29, 58, 0.07);
+      padding: clamp(16px, 2.2vw, 20px) clamp(16px, 2.4vw, 22px);
+      border-radius: calc(var(--radius) + 10px);
+      border: 1px solid rgba(11, 29, 58, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 252, 246, 0.9) 100%);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+        0 14px 36px rgba(11, 29, 58, 0.06);
       box-sizing: border-box;
     }
 
     .transport-concierge-main .tc-human-compact__title {
       margin: 0 0 8px;
-      font-size: clamp(1.08rem, 0.6vw + 0.95rem, 1.28rem);
+      font-size: clamp(1.02rem, 0.5vw + 0.92rem, 1.2rem);
+      font-weight: 800;
       color: var(--navy);
-      line-height: 1.2;
+      line-height: 1.22;
       letter-spacing: -0.02em;
-      text-align: center;
+      text-align: left;
+    }
+
+    @media (min-width: 520px) {
+      .transport-concierge-main .tc-human-compact__title {
+        text-align: center;
+      }
     }
 
     .transport-concierge-main .tc-human-compact__lede {
       margin: 0;
-      font-size: 0.9rem;
-      line-height: 1.55;
+      font-size: clamp(0.88rem, 0.2vw + 0.82rem, 0.94rem);
+      line-height: 1.6;
       color: var(--slate);
-      text-align: center;
+      text-align: left;
+      max-width: 36rem;
+      margin-inline: auto;
+    }
+
+    @media (min-width: 520px) {
+      .transport-concierge-main .tc-human-compact__lede {
+        text-align: center;
+      }
     }
 
     .transport-concierge-main .tc-human-compact__disclaimer {
       margin-top: 14px;
       padding: 12px 14px;
       border-radius: 12px;
-      font-size: 0.82rem;
-      line-height: 1.52;
-      color: var(--slate);
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(11, 29, 58, 0.09);
+      font-size: clamp(0.8rem, 0.15vw + 0.76rem, 0.86rem);
+      line-height: 1.55;
+      color: var(--navy);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+      text-align: left;
     }
 
-    /* Manual fallback — visually demoted */
+
+    /* Manual fallback — visually demoted, operator-first */
     .transport-concierge-main .transport-manual-fallback--low {
       max-width: none;
       margin-inline: 0;
-      padding-top: clamp(20px, 2.8vw, 28px);
-      padding-bottom: calc(clamp(28px, 4vw, 40px) + env(safe-area-inset-bottom, 0px));
-      background: #f5f5f2;
+      padding: clamp(18px, 2.6vw, 26px) clamp(16px, 4vw, 44px)
+        calc(clamp(32px, 4.5vw, 48px) + env(safe-area-inset-bottom, 0px));
+      background: linear-gradient(180deg, #ebe8e4 0%, #e8e5e1 100%);
       border: 0;
     }
 
     .transport-concierge-main .transport-manual-fallback--low > summary.transport-manual-fallback__summary {
       cursor: pointer;
       list-style: none;
-      max-width: 520px;
+      max-width: min(520px, 100%);
       margin: 0 auto;
-      padding: 10px 14px;
-      border-radius: var(--radius);
-      font-weight: 700;
-      font-size: 0.88rem;
-      color: rgba(11, 29, 58, 0.55);
-      background: rgba(255, 255, 255, 0.55);
-      border: 1px dashed rgba(11, 29, 58, 0.16);
+      padding: clamp(16px, 2vw, 18px) clamp(16px, 2.2vw, 20px);
+      border-radius: calc(var(--radius) + 8px);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--slate);
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 252, 248, 0.94) 100%);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.85) inset,
+        0 12px 28px rgba(11, 29, 58, 0.07);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      box-sizing: border-box;
     }
 
     .transport-concierge-main .transport-manual-fallback--low > summary.transport-manual-fallback__summary::-webkit-details-marker {
       display: none;
     }
 
+    .transport-concierge-main .transport-manual-fallback--low > summary.transport-manual-fallback__summary:focus-visible {
+      outline: 2px solid rgba(20, 184, 166, 0.85);
+      outline-offset: 3px;
+    }
+
     .transport-concierge-main .transport-manual-fallback--low[open] > summary.transport-manual-fallback__summary {
-      margin-bottom: 10px;
-      color: var(--navy);
-      border-style: solid;
-      background: rgba(255, 255, 255, 0.92);
+      margin-bottom: 14px;
+      border-color: rgba(11, 29, 58, 0.14);
     }
 
     .transport-concierge-main .transport-manual-fallback__summary-main {
       display: block;
       font-weight: 800;
-      font-size: 0.92rem;
-      color: inherit;
+      font-size: clamp(1rem, 0.35vw + 0.92rem, 1.08rem);
+      color: var(--navy);
+      letter-spacing: -0.02em;
     }
 
     .transport-concierge-main .transport-manual-fallback__summary-sub {
       display: block;
-      margin-top: 4px;
-      font-size: 0.78rem;
-      font-weight: 560;
-      color: rgba(11, 29, 58, 0.5);
+      margin-top: 6px;
+      font-size: clamp(0.84rem, 0.12vw + 0.8rem, 0.9rem);
+      font-weight: 550;
+      line-height: 1.5;
+      color: var(--slate);
     }
 
     .transport-concierge-main .transport-manual-fallback--low[open] .transport-manual-fallback__summary-sub {
       color: var(--slate);
     }
 
+    .transport-concierge-main .transport-manual-fallback__summary-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 2px;
+      padding: 12px 16px;
+      border-radius: var(--btn-radius, 999px);
+      font-weight: 800;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      pointer-events: none;
+      box-sizing: border-box;
+      color: var(--navy);
+      background: linear-gradient(145deg, var(--gold) 0%, var(--orange) 100%);
+      border: 1px solid rgba(242, 178, 26, 0.55);
+      box-shadow: 0 8px 20px rgba(11, 29, 58, 0.14);
+    }
+
+    .transport-concierge-main .transport-manual-fallback--low[open] .transport-manual-fallback__summary-cta {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(11, 29, 58, 0.14);
+      color: var(--navy);
+      box-shadow: 0 4px 12px rgba(11, 29, 58, 0.06);
+    }
+
     .transport-concierge-main .transport-manual-fallback--low .transport-manual-fallback__body {
-      max-width: 720px;
+      max-width: min(40rem, 100%);
       margin-inline: auto;
+      padding: clamp(18px, 2.4vw, 22px) clamp(16px, 2.2vw, 20px)
+        calc(20px + env(safe-area-inset-bottom, 0px));
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 252, 246, 0.96) 100%);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.75) inset,
+        0 16px 40px rgba(11, 29, 58, 0.08);
+      box-sizing: border-box;
+    }
+
+    .transport-concierge-main .transport-manual-fallback--low .transport-intake-submit {
+      margin-top: 18px;
+      margin-bottom: 4px;
+      min-height: 48px;
+      scroll-margin-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .transport-concierge-main .transport-manual-fallback--low .transport-human-intake {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    html {
+      scroll-padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
     }
   </style>
 </head>
@@ -1579,9 +1658,6 @@
           <h2 id="transport-route-heading" class="live-concierge__title">Ask about your San Antonio route before you make the move</h2>
           <p class="section-text section-text-light live-concierge__lead">
             Tell me where you are, where you&rsquo;re trying to go, and when. I&rsquo;ll help you think through the route. If you want human transportation help, I&rsquo;ll collect the details and send the request.
-          </p>
-          <p class="transport-route-disclaimer section-text section-text-light tc-route-disclaimer tc-route-disclaimer--subtle">
-            Where To Go SA can help you think through the route and send a request. Availability is not guaranteed. If this is urgent or I&rsquo;m unavailable, use Uber, Lyft, hotel transportation, taxi, or another licensed option.
           </p>
           <p class="live-concierge__status" id="transport-route-status" aria-live="polite">Live route operator · ready</p>
         </header>
@@ -1920,10 +1996,11 @@
       </div>
     </section>
 
-    <details class="section section-cream transport-section transport-manual-fallback transport-manual-fallback--low" id="manual-transport-fallback">
+    <details class="transport-section transport-manual-fallback transport-manual-fallback--low" id="manual-transport-fallback">
       <summary class="transport-manual-fallback__summary">
         <span class="transport-manual-fallback__summary-main">Manual request fallback</span>
         <span class="transport-manual-fallback__summary-sub">Use this only if the live route operator is not loading.</span>
+        <span class="transport-manual-fallback__summary-cta">Open manual request form</span>
       </summary>
       <div class="transport-manual-fallback__body">
         <div class="transport-human-intake">
@@ -1986,10 +2063,9 @@
               </label>
               <label class="transport-check transport-field--full">
                 <input type="checkbox" id="transport-pickup-permission" name="pickup_permission" required />
-                <span>I&rsquo;m sharing pickup context so Where To Go SA can understand the request. This is not emergency service and does not guarantee availability.</span>
+                <span>I understand this is not emergency service and availability is not guaranteed.</span>
               </label>
             </div>
-            <p class="transport-manual-fallback__note" style="margin-top:12px">Where To Go SA can help you think through the route and send a request. Availability is not guaranteed. If this is urgent or I&rsquo;m unavailable, use Uber, Lyft, hotel transportation, taxi, or another licensed option.</p>
             <button type="submit" class="btn btn-primary transport-intake-submit" id="transport-submit-intake">
               Request human transportation help
             </button>
@@ -2020,5 +2096,33 @@
   </footer>
   <script src="script.js"></script>
   <script src="transportation-operator.js" defer></script>
+  <script>
+    (function () {
+      var det = document.getElementById("manual-transport-fallback");
+      if (!det) return;
+      var cta = det.querySelector(".transport-manual-fallback__summary-cta");
+      var openLabel = "Open manual request form";
+      var closeLabel = "Close manual request form";
+      function syncCta() {
+        if (cta) cta.textContent = det.open ? closeLabel : openLabel;
+      }
+      det.addEventListener("toggle", function () {
+        syncCta();
+        if (det.open) {
+          requestAnimationFrame(function () {
+            var body = det.querySelector(".transport-manual-fallback__body");
+            if (body && typeof body.scrollIntoView === "function") {
+              try {
+                body.scrollIntoView({ behavior: "smooth", block: "nearest" });
+              } catch (e) {
+                body.scrollIntoView(true);
+              }
+            }
+          });
+        }
+      });
+      syncCta();
+    })();
+  </script>
 </body>
 </html>
