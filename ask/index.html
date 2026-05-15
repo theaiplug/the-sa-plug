@@ -113,43 +113,41 @@
             </div>
 
             <div class="live-concierge__thread" id="live-concierge-thread">
-              <div class="live-concierge__transcript" id="live-concierge-transcript">
-                <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation"></div>
-              </div>
+              <div class="live-concierge__conversation" id="live-concierge-conversation">
+                <div class="live-concierge__transcript" id="live-concierge-transcript">
+                  <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge conversation"></div>
+                </div>
 
-              <div class="live-concierge__composer-card" id="live-concierge-composer">
-                <header class="live-concierge__composer-head">
-                  <h3 class="live-concierge__composer-title">Ask A Local</h3>
-                  <p class="live-concierge__composer-sub">
-                    Food, places, hours, cost, parking, timing, routes, family plans, resort questions, and what to do next.
+                <div class="live-concierge__composer-stack" id="live-concierge-composer">
+                  <p class="live-concierge__composer-kicker" id="live-concierge-composer-kicker" hidden>
+                    Ask a follow-up
                   </p>
-                </header>
-                <p class="live-concierge__composer-lede">
-                  Ask about a specific place, dinner nearby, what&rsquo;s open, where to park, what it costs, or the best move for your night.
-                </p>
-                <label class="live-concierge__field-label" for="live-concierge-input">What do you want to know?</label>
-                <form class="live-concierge__form" id="live-concierge-form">
-                  <div class="live-concierge__composer-unit">
-                    <div class="live-concierge__composer-field">
-                      <span class="live-concierge__composer-glyph" aria-hidden="true">&#9998;</span>
-                      <textarea
-                        id="live-concierge-input"
-                        class="live-concierge__input"
-                        name="message"
-                        rows="2"
-                        maxlength="12000"
-                        required
-                        autocomplete="off"
-                        placeholder="Ask about a place, dinner, timing, cost, parking, or what to do next…"
-                      ></textarea>
-                    </div>
-                    <button type="submit" class="live-concierge__send" id="live-concierge-send">Get my answer</button>
+                  <div class="live-concierge__composer-card">
+                    <form class="live-concierge__form" id="live-concierge-form" aria-label="Ask A Local concierge">
+                      <label class="visually-hidden" for="live-concierge-input">Your message to the concierge</label>
+                      <div class="live-concierge__composer-unit">
+                        <div class="live-concierge__composer-field">
+                          <span class="live-concierge__composer-glyph" aria-hidden="true">&#9998;</span>
+                          <textarea
+                            id="live-concierge-input"
+                            class="live-concierge__input"
+                            name="message"
+                            rows="3"
+                            maxlength="12000"
+                            required
+                            autocomplete="off"
+                            placeholder="Ask about dinner, a place, parking, timing, cost, or what to do next…"
+                          ></textarea>
+                        </div>
+                        <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local</button>
+                      </div>
+                    </form>
                   </div>
-                </form>
-                <p class="live-concierge__footnote">
-                  Need hands-on routing? <a href="#human-help">Request human help</a> &mdash; optional, not immediate. For urgent rides, use rideshare, taxi, hotel transport, or another licensed option.
-                </p>
+                </div>
               </div>
+              <p class="live-concierge__footnote">
+                Need hands-on routing? <a class="live-concierge__footnote-link" href="#human-help">Request human help</a> &mdash; optional, not immediate. For urgent rides, use rideshare, taxi, hotel transport, or another licensed option.
+              </p>
             </div>
           </div>
         </div>

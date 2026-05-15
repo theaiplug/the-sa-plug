@@ -15,13 +15,24 @@
   var chips = root.querySelectorAll("[data-concierge-chip]");
   var transcriptEl = document.getElementById("live-concierge-transcript");
   var threadEl = document.getElementById("live-concierge-thread");
+  var conversationEl = document.getElementById("live-concierge-conversation");
+  var composerStackEl = document.getElementById("live-concierge-composer");
+  var composerKickerEl = document.getElementById("live-concierge-composer-kicker");
 
   var previousResponseId = null;
   var busy = false;
 
   function syncTranscriptVisibility() {
     if (!transcriptEl || !logEl) return;
-    transcriptEl.classList.toggle("live-concierge__transcript--active", logEl.childElementCount > 0);
+    var has = logEl.childElementCount > 0;
+    transcriptEl.classList.toggle("live-concierge__transcript--active", has);
+    if (conversationEl) {
+      conversationEl.classList.toggle("live-concierge__conversation--started", has);
+    }
+    var showKicker = !!logEl.querySelector(".live-concierge__msg--assistant:not(.live-concierge__thinking)");
+    if (composerKickerEl) {
+      composerKickerEl.hidden = !showKicker;
+    }
   }
 
   function setStatus(text, live) {
@@ -58,12 +69,13 @@
     return '<div class="live-concierge__rich">' + (html || "<p></p>") + "</div>";
   }
 
-  function nudgeThreadIntoView() {
-    if (!threadEl || typeof threadEl.scrollIntoView !== "function") return;
+  function nudgeConversationIntoView() {
+    var target = composerStackEl || threadEl;
+    if (!target || typeof target.scrollIntoView !== "function") return;
     try {
-      threadEl.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      target.scrollIntoView({ block: "nearest", behavior: "smooth" });
     } catch (e) {
-      threadEl.scrollIntoView(false);
+      target.scrollIntoView(false);
     }
   }
 
@@ -83,7 +95,7 @@
     logEl.appendChild(wrap);
     logEl.scrollTop = logEl.scrollHeight;
     syncTranscriptVisibility();
-    nudgeThreadIntoView();
+    nudgeConversationIntoView();
   }
 
   function removeThinking() {
@@ -105,7 +117,7 @@
     logEl.appendChild(wrap);
     logEl.scrollTop = logEl.scrollHeight;
     syncTranscriptVisibility();
-    nudgeThreadIntoView();
+    nudgeConversationIntoView();
   }
 
   function sendMessage(text) {
@@ -164,7 +176,7 @@
           input.disabled = false;
           input.focus();
         }
-        nudgeThreadIntoView();
+        nudgeConversationIntoView();
       });
   }
 
