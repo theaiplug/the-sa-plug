@@ -4858,15 +4858,16 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services .ai-bs-leak-wrap {
   min-width: 0;
-}
-
-.page-business-services .ai-bs-leak-path-kicker {
-  margin: 0 0 10px;
-  font-size: 0.68rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 92, 168, 0.88);
+  padding: clamp(12px, 1.8vw, 16px);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 92, 168, 0.24);
+  background:
+    radial-gradient(ellipse 90% 80% at 0% 0%, rgba(255, 92, 168, 0.1), transparent 50%),
+    radial-gradient(ellipse 70% 60% at 100% 100%, rgba(20, 184, 166, 0.08), transparent 45%),
+    linear-gradient(168deg, rgba(4, 12, 28, 0.5) 0%, rgba(4, 12, 28, 0.35) 100%);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 246, 230, 0.06);
 }
 
 .page-business-services .ai-bs-lead-flow-nodes {
@@ -4995,6 +4996,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   gap: 10px;
   position: relative;
   min-width: 0;
+  align-items: stretch;
 }
 
 @media (min-width: 480px) {
@@ -5010,63 +5012,13 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   }
 }
 
-.page-business-services .ai-bs-leak-path::before {
-  content: "";
-  position: absolute;
-  left: 15px;
-  top: 20px;
-  bottom: 20px;
-  width: 2px;
-  border-radius: 99px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 92, 168, 0.55) 0%,
-    rgba(255, 139, 31, 0.45) 35%,
-    rgba(242, 178, 26, 0.35) 65%,
-    rgba(20, 184, 166, 0.25) 100%
-  );
-  opacity: 0.75;
-  pointer-events: none;
-}
-
-@media (min-width: 480px) {
-  .page-business-services .ai-bs-leak-path::before {
-    display: none;
-  }
-
-  .page-business-services .ai-bs-leak-step:nth-child(odd):not(:nth-child(5))::after {
-    content: "";
-    position: absolute;
-    right: -8px;
-    top: 50%;
-    width: 8px;
-    height: 2px;
-    border-radius: 99px;
-    background: linear-gradient(90deg, rgba(255, 92, 168, 0.55), rgba(242, 178, 26, 0.4));
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  .page-business-services .ai-bs-leak-step:nth-child(2)::after,
-  .page-business-services .ai-bs-leak-step:nth-child(4)::after {
-    right: auto;
-    left: 50%;
-    top: auto;
-    bottom: -8px;
-    width: 2px;
-    height: 8px;
-    transform: translateX(-50%);
-    background: linear-gradient(180deg, rgba(242, 178, 26, 0.5), rgba(20, 184, 166, 0.35));
-  }
-}
-
 .page-business-services .ai-bs-leak-step {
   position: relative;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 12px;
   align-items: start;
+  height: 100%;
   min-width: 0;
   padding: clamp(14px, 2vw, 18px);
   border-radius: calc(var(--radius) - 2px);
@@ -5500,6 +5452,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services .ai-bs-attconv-card {
   position: relative;
+  overflow: hidden;
   padding: clamp(20px, 2.4vw, 26px);
   border-radius: var(--radius);
   border: 1px solid rgba(255, 246, 230, 0.12);
@@ -5510,20 +5463,24 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   min-width: 0;
 }
 
+.page-business-services .ai-bs-attconv-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  margin: 0;
+  border-radius: 0;
+  pointer-events: none;
+}
+
 .page-business-services .ai-bs-attconv-card--attention::before {
   background: linear-gradient(90deg, var(--pink), var(--gold));
 }
 
 .page-business-services .ai-bs-attconv-card--conversion::before {
   background: linear-gradient(90deg, var(--turquoise), var(--orange));
-}
-
-.page-business-services .ai-bs-attconv-card::before {
-  content: "";
-  display: block;
-  height: 4px;
-  margin: calc(-1 * clamp(20px, 2.4vw, 26px)) calc(-1 * clamp(20px, 2.4vw, 26px)) 14px;
-  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .page-business-services .ai-bs-attconv-card-title {
@@ -8762,6 +8719,28 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   transform: scale(1.002);
 }
 
+.page-business-services .ai-bs-flagship-head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.page-business-services .ai-bs-flagship-head .ai-bs-flagship-num {
+  flex-shrink: 0;
+  margin-top: 0.1em;
+}
+
+.page-business-services .ai-bs-flagship-head .ai-bs-flagship-title {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  align-self: flex-start;
+  padding-top: 0.12em;
+}
+
 .page-business-services .ai-bs-flagship-num {
   position: relative;
   z-index: 2;
@@ -8781,7 +8760,6 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   box-shadow:
     0 8px 22px rgba(0, 0, 0, 0.32),
     inset 0 1px 0 rgba(255, 255, 255, 0.75);
-  align-self: flex-start;
 }
 
 .page-business-services .ai-bs-flagship-card--turq .ai-bs-flagship-num {
@@ -8811,7 +8789,6 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .page-business-services .ai-bs-flagship-title {
   position: relative;
   z-index: 2;
-  margin: 4px 0 0;
   font-size: clamp(1.04rem, 0.32vw + 0.94rem, 1.14rem);
   font-weight: 880;
   letter-spacing: -0.015em;
@@ -8823,6 +8800,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   position: relative;
   z-index: 2;
   margin: 0;
+  padding-left: calc(2.6rem + 10px);
   font-size: clamp(0.86rem, 0.18vw + 0.8rem, 0.93rem);
   line-height: 1.56;
   color: rgba(255, 235, 210, 0.88);
