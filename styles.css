@@ -4499,6 +4499,66 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   accent-color: #14b8a6;
 }
 
+.page-business-services .transport-concierge-main .business-operator-context-block {
+  padding: clamp(14px, 2.5vw, 18px) clamp(16px, 3vw, 20px);
+  border-radius: 14px;
+  border: 1px solid rgba(11, 29, 58, 0.12);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.94), rgba(248, 252, 251, 0.98));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65) inset;
+}
+
+.page-business-services .transport-concierge-main .business-operator-context-title {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-business-services .transport-concierge-main .business-operator-context-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.page-business-services .transport-concierge-main .business-operator-context-row input[type="checkbox"] {
+  width: 1.12rem;
+  height: 1.12rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+  accent-color: #14b8a6;
+}
+
+.page-business-services .transport-concierge-main .business-operator-context-row__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.page-business-services .transport-concierge-main .business-operator-context-row__label {
+  font-size: 0.94rem;
+  font-weight: 680;
+  line-height: 1.35;
+  color: rgba(11, 29, 58, 0.94);
+}
+
+.page-business-services .transport-concierge-main .business-operator-context-row__helper {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  font-weight: 520;
+  color: rgba(11, 29, 58, 0.58);
+}
+
+@media (max-width: 520px) {
+  .page-business-services .transport-concierge-main .business-operator-context-block {
+    padding: 14px 14px 16px;
+  }
+}
+
 /* --- Problem / friction --- */
 .page-business-services .ai-friction-sub {
   max-width: 46rem !important;

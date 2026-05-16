@@ -31,3 +31,4 @@
 #   BUSINESS_RESEND_FROM_EMAIL  — optional verified From for business alerts (else onboarding@resend.dev)
 #   BUSINESS_ALERT_PHONE        — optional SMS destination (E.164); else TRANSPORT_ALERT_PHONE
 #   TWILIO_*                    — optional; SMS failures never fail the lead save
+#   Supabase public.business_leads needs boolean alert_email_sent (default false); set true after Resend succeeds.

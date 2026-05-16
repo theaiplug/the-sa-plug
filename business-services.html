@@ -537,8 +537,31 @@
                           <textarea name="services_interested" id="business-services-interested" rows="2" placeholder="Website, AI chat operator, phone agent, intake, routing, automation…"></textarea>
                         </label>
                         <label class="transport-field transport-field--full">
-                          <span>Recommended system (from operator recap)</span>
+                          <span>Recommended system (if the operator suggested one)</span>
                           <textarea name="recommended_system" id="business-recommended-system" rows="2"></textarea>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="transport-intake-section">
+                      <h4 class="transport-intake-section__heading">Summary &amp; notes</h4>
+                      <div class="transport-intake-grid">
+                        <div class="business-operator-context-block transport-field--full">
+                          <p class="business-operator-context-title">Operator context</p>
+                          <label class="business-operator-context-row">
+                            <input type="checkbox" id="business-include-operator-context" />
+                            <span class="business-operator-context-row__text">
+                              <span class="business-operator-context-row__label">Include my operator conversation with this request</span>
+                              <span class="business-operator-context-row__helper">This helps The AI Plug understand what you already explained.</span>
+                            </span>
+                          </label>
+                          <input type="hidden" name="ai_summary" id="business-ai-summary" value="" autocomplete="off" />
+                          <input type="hidden" name="conversation_excerpt" id="business-conversation-excerpt" value="" autocomplete="off" />
+                          <input type="hidden" name="include_operator_context" id="business-include-operator-context-sent" value="" autocomplete="off" />
+                        </div>
+                        <label class="transport-field transport-field--full">
+                          <span>Notes optional</span>
+                          <textarea name="notes" id="business-notes" rows="2"></textarea>
                         </label>
                       </div>
                     </div>
@@ -574,20 +597,6 @@
                             <option value="Have a range in mind">Have a range in mind</option>
                             <option value="Ready to fund the right scope">Ready to fund the right scope</option>
                           </select>
-                        </label>
-                      </div>
-                    </div>
-
-                    <div class="transport-intake-section">
-                      <h4 class="transport-intake-section__heading">Summary &amp; notes</h4>
-                      <div class="transport-intake-grid">
-                        <label class="transport-field transport-field--full">
-                          <span>AI / project summary optional</span>
-                          <textarea name="ai_summary" id="business-ai-summary" rows="4" placeholder="Paste the operator recap here if you want it verbatim in the alert."></textarea>
-                        </label>
-                        <label class="transport-field transport-field--full">
-                          <span>Notes optional</span>
-                          <textarea name="notes" id="business-notes" rows="2"></textarea>
                         </label>
                       </div>
                     </div>

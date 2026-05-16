@@ -29,6 +29,7 @@
   var previousResponseId = null;
   var busy = false;
   var transcriptLines = [];
+  var lastAssistantReply = "";
 
   function syncTranscriptVisibility() {
     if (!logEl) return;
@@ -236,12 +237,30 @@
     nudgeConversationIntoView();
   }
 
-  function syncAiSummaryField(text) {
-    var sum = document.getElementById("business-ai-summary");
-    var t = String(text || "").trim();
-    if (sum && t && /Here's the AI system/i.test(t)) {
-      sum.value = t.slice(0, 4000);
+  function getLatestRecapSummary() {
+    var t = String(lastAssistantReply || "").trim();
+    if (t && /Here's the AI system/i.test(t)) {
+      return t.slice(0, 4000);
     }
+    return "";
+  }
+
+  function syncHiddenLeadFields(includeCtx) {
+    var hidAi = document.getElementById("business-ai-summary");
+    var hidEx = document.getElementById("business-conversation-excerpt");
+    var hidInc = document.getElementById("business-include-operator-context-sent");
+    var excerptVal = "";
+    var summaryVal = "";
+    if (includeCtx) {
+      excerptVal = buildConversationExcerpt().trim();
+      if (!excerptVal) {
+        excerptVal = "No operator summary was available.";
+      }
+      summaryVal = getLatestRecapSummary();
+    }
+    if (hidAi) hidAi.value = summaryVal;
+    if (hidEx) hidEx.value = excerptVal;
+    if (hidInc) hidInc.value = includeCtx ? "yes" : "";
   }
 
   function sendMessage(text) {
@@ -288,7 +307,7 @@
         var rep = result.data.reply.trim();
         appendBubble("assistant", rep);
         pushTranscript("assistant", rep);
-        syncAiSummaryField(rep);
+        lastAssistantReply = rep;
         setStatus("Live · ready", true);
       })
       .catch(function () {
@@ -352,6 +371,10 @@
       showIntakeMessage("", false);
       intakeSubmit.disabled = true;
 
+      var includeCtxEl = document.getElementById("business-include-operator-context");
+      var includeCtx = !!(includeCtxEl && includeCtxEl.checked);
+      syncHiddenLeadFields(includeCtx);
+
       var fd = new FormData(intakeForm);
       var email = String(fd.get("contact_email") || "").trim();
       var phone = String(fd.get("contact_phone") || "").trim();
@@ -387,7 +410,7 @@
         timeline: String(fd.get("timeline") || "").trim() || null,
         ai_summary: String(fd.get("ai_summary") || "").trim() || null,
         notes: String(fd.get("notes") || "").trim() || null,
-        conversation_excerpt: buildConversationExcerpt(),
+        conversation_excerpt: String(fd.get("conversation_excerpt") || "").trim() || null,
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : "",
         page_path: typeof location !== "undefined" ? location.pathname + location.search : "",
       };
@@ -403,18 +426,21 @@
           });
         })
         .then(function (result) {
-          if (!result.ok || !result.data || !result.data.ok) {
-            var msg =
-              (result.data && result.data.message) ||
-              "We could not send your request. Please try again or email aibusinessplug@gmail.com.";
-            showIntakeMessage(msg, true);
+          var d = result.data || {};
+          var leadId = d.lead_id || d.request_id;
+          if (!result.ok || !d.supabase_inserted || !leadId) {
+            var errMsg =
+              d.message ||
+              "We could not save your lead. Please try again or email aibusinessplug@gmail.com.";
+            showIntakeMessage(errMsg, true);
             return;
           }
           intakeForm.reset();
           if (confirmEl) {
             confirmEl.hidden = false;
-            confirmEl.textContent =
-              "Request sent. The AI Plug received your project summary. If it looks like a fit, Willie will follow up using the contact method you provided.";
+            confirmEl.textContent = d.email_sent
+              ? "Lead saved. The AI Plug received your project summary and an email alert was sent. If it looks like a fit, Willie will follow up using the contact method you provided."
+              : "Lead saved, but email alert did not send. Your details are on file. You can also email aibusinessplug@gmail.com.";
             confirmEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
           }
           showIntakeMessage("", false);

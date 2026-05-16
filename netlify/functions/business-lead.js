@@ -16,9 +16,11 @@
  * decision_maker_role, current_problem, customer_flow_issue,
  * missed_calls_issue, lead_capture_issue, booking_issue, follow_up_issue,
  * services_interested, recommended_system, urgency, budget_readiness, timeline,
- * ai_summary, lead_quality, conversation_excerpt, notes, user_agent, page_path
+ * ai_summary, lead_quality, conversation_excerpt, notes, user_agent, page_path,
+ * alert_email_sent (boolean; set false on insert, true after a successful Resend send)
  *
- * From address: defaults to "The AI Plug <onboarding@resend.dev>" unless RESEND_FROM_EMAIL is set.
+ * From address: defaults to "The AI Plug <onboarding@resend.dev>" unless
+ * BUSINESS_RESEND_FROM_EMAIL is set.
  */
 
 const CORS_HEADERS = {
@@ -155,7 +157,7 @@ exports.handler = async (event) => {
     return json(405, {
       ok: false,
       supabase_inserted: false,
-      request_id: null,
+      lead_id: null,
       email_sent: false,
       sms_sent: false,
       email_error: null,
@@ -164,6 +166,14 @@ exports.handler = async (event) => {
     });
   }
 
+  console.log("business lead env present", {
+    SUPABASE_URL: Boolean(process.env.SUPABASE_URL),
+    SUPABASE_SERVICE_ROLE_KEY: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
+    RESEND_API_KEY: Boolean(process.env.RESEND_API_KEY),
+    BUSINESS_ALERT_EMAIL: Boolean(process.env.BUSINESS_ALERT_EMAIL),
+    TRANSPORT_ALERT_EMAIL: Boolean(process.env.TRANSPORT_ALERT_EMAIL),
+  });
+
   const supabaseUrl = process.env.SUPABASE_URL && String(process.env.SUPABASE_URL).replace(/\/$/, "");
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -171,7 +181,7 @@ exports.handler = async (event) => {
     return json(503, {
       ok: false,
       supabase_inserted: false,
-      request_id: null,
+      lead_id: null,
       email_sent: false,
       sms_sent: false,
       email_error: null,
@@ -188,7 +198,7 @@ exports.handler = async (event) => {
     return json(400, {
       ok: false,
       supabase_inserted: false,
-      request_id: null,
+      lead_id: null,
       email_sent: false,
       sms_sent: false,
       email_error: null,
@@ -236,7 +246,7 @@ exports.handler = async (event) => {
     return json(400, {
       ok: false,
       supabase_inserted: false,
-      request_id: null,
+      lead_id: null,
       email_sent: false,
       sms_sent: false,
       email_error: null,
@@ -296,6 +306,7 @@ exports.handler = async (event) => {
     notes,
     user_agent,
     page_path,
+    alert_email_sent: false,
   };
 
   const restHeaders = {
@@ -317,7 +328,7 @@ exports.handler = async (event) => {
       return json(502, {
         ok: false,
         supabase_inserted: false,
-        request_id: null,
+        lead_id: null,
         email_sent: false,
         sms_sent: false,
         email_error: null,
@@ -335,7 +346,7 @@ exports.handler = async (event) => {
     return json(502, {
       ok: false,
       supabase_inserted: false,
-      request_id: null,
+      lead_id: null,
       email_sent: false,
       sms_sent: false,
       email_error: null,
@@ -345,12 +356,14 @@ exports.handler = async (event) => {
     });
   }
 
+  console.log("business lead inserted", { leadId: inserted && inserted.id });
+
   const requestId = inserted && inserted.id != null ? String(inserted.id) : null;
   if (!requestId) {
     return json(502, {
       ok: false,
       supabase_inserted: true,
-      request_id: null,
+      lead_id: null,
       email_sent: false,
       sms_sent: false,
       email_error: null,
@@ -436,6 +449,26 @@ exports.handler = async (event) => {
   } else {
     emailErrorMessage =
       "No BUSINESS_ALERT_EMAIL or TRANSPORT_ALERT_EMAIL configured for business alerts.";
+  }
+
+  console.log("business lead email result", {
+    emailSent,
+    emailErrorMessage,
+  });
+
+  if (emailSent) {
+    try {
+      await fetch(
+        `${supabaseUrl}/rest/v1/business_leads?id=eq.${encodeURIComponent(requestId)}`,
+        {
+          method: "PATCH",
+          headers: restHeaders,
+          body: JSON.stringify({ alert_email_sent: true }),
+        }
+      );
+    } catch {
+      /* row still exists; PATCH best-effort */
+    }
   }
 
   const twilioSid = process.env.TWILIO_ACCOUNT_SID;
@@ -554,7 +587,7 @@ exports.handler = async (event) => {
   return json(200, {
     ok: true,
     supabase_inserted: true,
-    request_id: requestId,
+    lead_id: requestId,
     email_sent: emailSent,
     sms_sent: smsSent,
     email_error: emailSent ? null : emailErrorMessage,
