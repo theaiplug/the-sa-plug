@@ -61,7 +61,7 @@
   }
 
   var SECTION_LABELS =
-    /^(Quick read|What I'd tighten next|Best system fit|Tradeoffs|Business|Industry|Main problem|Priority|Timeline|Recommended next step|Customer flow|Lead capture|Booking|Follow-up|Services fit)\s*:\s*(.*)$/i;
+    /^(Quick read|What I'd tighten next|Best system fit|Tradeoffs|Business|Industry|Main bottleneck|Main problem|Priority|Timeline|Recommended next step|Customer flow|Lead capture|Booking|Follow-up|Services fit)\s*:\s*(.*)$/i;
 
   function inlineFormat(text) {
     return escapeHtml(text).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
@@ -378,6 +378,19 @@
       var fd = new FormData(intakeForm);
       var email = String(fd.get("contact_email") || "").trim();
       var phone = String(fd.get("contact_phone") || "").trim();
+      var flags = [];
+      if (fd.get("issue_content_visibility") === "yes") {
+        flags.push("Flagged bottleneck: attention / content rhythm");
+      }
+      if (fd.get("issue_chat_phone") === "yes") {
+        flags.push("Flagged bottleneck: chat or phone operator planning");
+      }
+      if (fd.get("issue_operations") === "yes") {
+        flags.push("Flagged bottleneck: operations / automation layer");
+      }
+      var notesBase = String(fd.get("notes") || "").trim();
+      var notesMerged =
+        [notesBase, flags.length ? flags.join("\n") : ""].filter(Boolean).join("\n\n").trim() || null;
       var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       var phoneDigits = phone.replace(/\D/g, "");
       var phoneOk = phoneDigits.length >= 10;
@@ -409,7 +422,7 @@
         budget_readiness: String(fd.get("budget_readiness") || "").trim() || null,
         timeline: String(fd.get("timeline") || "").trim() || null,
         ai_summary: String(fd.get("ai_summary") || "").trim() || null,
-        notes: String(fd.get("notes") || "").trim() || null,
+        notes: notesMerged,
         conversation_excerpt: String(fd.get("conversation_excerpt") || "").trim() || null,
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : "",
         page_path: typeof location !== "undefined" ? location.pathname + location.search : "",

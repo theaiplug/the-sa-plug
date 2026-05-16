@@ -4450,7 +4450,8 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 /* --- Business Operator v1 (live module; reuses transport concierge chrome) --- */
 .page-business-services #business-operator,
-.page-business-services #proof-band {
+.page-business-services #proof-band,
+.page-business-services #offers-heading {
   scroll-margin-top: 96px;
 }
 
@@ -4834,12 +4835,18 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 
 .page-business-services .ai-offer-lanes {
   display: grid;
-  gap: clamp(14px, 2vw, 18px);
+  gap: clamp(16px, 2.2vw, 22px);
   grid-template-columns: 1fr;
   align-items: stretch;
 }
 
-@media (min-width: 920px) {
+@media (min-width: 720px) {
+  .page-business-services .ai-offer-lanes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
   .page-business-services .ai-offer-lanes {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -4890,8 +4897,16 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   background: linear-gradient(90deg, var(--orange), var(--pink));
 }
 
-.page-business-services .ai-offer-lane--os::before {
+.page-business-services .ai-offer-lane--media::before {
+  background: linear-gradient(90deg, var(--turquoise), rgba(255, 107, 74, 0.92));
+}
+
+.page-business-services .ai-offer-lane--operations::before {
   background: linear-gradient(90deg, var(--pink), rgba(242, 178, 26, 0.95));
+}
+
+.page-business-services .ai-offer-lane--command::before {
+  background: linear-gradient(90deg, var(--gold), var(--turquoise));
 }
 
 .page-business-services .ai-offer-head {
@@ -4932,9 +4947,27 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   border-color: rgba(255, 139, 31, 0.45);
 }
 
-.page-business-services .ai-offer-lane--os .ai-offer-num {
+.page-business-services .ai-offer-lane--media .ai-offer-num {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.42), rgba(255, 107, 74, 0.28));
+  border-color: rgba(20, 184, 166, 0.5);
+}
+
+.page-business-services .ai-offer-lane--operations .ai-offer-num {
   background: linear-gradient(135deg, rgba(255, 92, 168, 0.42), rgba(255, 92, 168, 0.14));
   border-color: rgba(255, 92, 168, 0.4);
+}
+
+.page-business-services .ai-offer-lane--command .ai-offer-num {
+  background: linear-gradient(135deg, rgba(242, 178, 26, 0.52), rgba(20, 184, 166, 0.22));
+  border-color: rgba(242, 178, 26, 0.55);
+}
+
+.page-business-services .ai-offer-lane--media.ai-bs-offer-card {
+  border-color: rgba(20, 184, 166, 0.28);
+  box-shadow:
+    0 26px 56px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 246, 230, 0.08),
+    0 0 0 1px rgba(255, 107, 74, 0.12);
 }
 
 .page-business-services .ai-offer-cat {
@@ -5007,6 +5040,147 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .page-business-services .ai-offer-outcome-label {
   font-weight: 860;
   color: rgba(255, 246, 230, 0.98);
+}
+
+.page-business-services .ai-offer-pricing {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  font-weight: 720;
+  letter-spacing: 0.02em;
+  color: rgba(255, 235, 210, 0.62);
+}
+
+.page-business-services .ai-offer-proof-note {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border-radius: calc(var(--radius) - 4px);
+  border-left: 3px solid rgba(20, 184, 166, 0.65);
+  background: rgba(4, 12, 28, 0.45);
+  font-size: 0.78rem;
+  line-height: 1.48;
+  color: rgba(255, 235, 210, 0.82);
+}
+
+.page-business-services .ai-offer-list--compact {
+  gap: 5px;
+}
+
+.page-business-services .ai-offer-list--compact li {
+  font-size: 0.86rem;
+  line-height: 1.42;
+}
+
+.page-business-services .ai-bs-attconv-lede {
+  max-width: 46rem !important;
+}
+
+.page-business-services .ai-bs-attconv-grid {
+  display: grid;
+  gap: clamp(14px, 2vw, 18px);
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+@media (min-width: 880px) {
+  .page-business-services .ai-bs-attconv-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2.2vw, 22px);
+  }
+}
+
+.page-business-services .ai-bs-attconv-card {
+  position: relative;
+  padding: clamp(20px, 2.4vw, 26px);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 246, 230, 0.12);
+  background:
+    radial-gradient(circle at 14% 0%, rgba(20, 184, 166, 0.14), transparent 42%),
+    linear-gradient(168deg, rgba(255, 246, 230, 0.06) 0%, rgba(4, 12, 28, 0.58) 100%);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  min-width: 0;
+}
+
+.page-business-services .ai-bs-attconv-card--attention::before {
+  background: linear-gradient(90deg, var(--pink), var(--gold));
+}
+
+.page-business-services .ai-bs-attconv-card--conversion::before {
+  background: linear-gradient(90deg, var(--turquoise), var(--orange));
+}
+
+.page-business-services .ai-bs-attconv-card::before {
+  content: "";
+  display: block;
+  height: 4px;
+  margin: calc(-1 * clamp(20px, 2.4vw, 26px)) calc(-1 * clamp(20px, 2.4vw, 26px)) 14px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.page-business-services .ai-bs-attconv-card-title {
+  margin: 0 0 10px;
+  font-size: clamp(1.05rem, 0.38vw + 0.94rem, 1.18rem);
+  font-weight: 880;
+  color: #fff8eb;
+}
+
+.page-business-services .ai-bs-attconv-card-copy {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(255, 235, 210, 0.88);
+}
+
+.page-business-services .ai-bs-proof-built-inner {
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+.page-business-services .ai-bs-proof-built-copy {
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.page-business-services .ai-bs-proof-built-copy p {
+  margin: 0;
+  font-size: clamp(0.92rem, 0.22vw + 0.86rem, 0.98rem);
+  line-height: 1.58;
+  color: rgba(255, 235, 210, 0.88);
+}
+
+.page-business-services .ai-bs-proof-built-actions {
+  margin-top: clamp(18px, 2.5vw, 26px);
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.page-business-services .ai-bs-proof-built--compact .ai-band-head {
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .page-business-services .ai-bs-attconv--compact-mobile.ai-bs-sec-major {
+    padding-top: clamp(26px, 7vw, 38px) !important;
+    padding-bottom: clamp(26px, 7vw, 38px) !important;
+  }
+
+  .page-business-services .ai-offers--compact-mobile .ai-offer-proof-note {
+    font-size: 0.74rem;
+    padding: 9px 10px;
+  }
+
+  .page-business-services .ai-offer-cta.btn-block {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 14px;
+    padding-right: 14px;
+    box-sizing: border-box;
+  }
+
+  .page-business-services main {
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  }
 }
 
 .page-business-services .ai-offer-action-line {

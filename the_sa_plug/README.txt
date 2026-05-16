@@ -29,4 +29,4 @@ PRACTICE GOALS:
 7. Repeat the same workflow for The AI Plug.
 
 NOTE:
-Demo forms do not send yet. In the live version, connect Tally, Google Forms, Formspree, or a custom backend.
+Demo forms do not send yet. In the live deployed site, business-services uses the Business Operator chat plus Netlify backend lead capture instead of third-party form links.
