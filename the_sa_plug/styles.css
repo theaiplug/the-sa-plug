@@ -3698,6 +3698,40 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   border-block: 1px solid rgba(255, 246, 230, 0.06);
 }
 
+/* --- Business Operator prep (coming next) --- */
+.page-business-services .ai-bs-operator-prep .ai-bs-operator-qualify {
+  margin-top: clamp(10px, 1.8vw, 18px);
+}
+
+.page-business-services .ai-bs-operator-qualify-label {
+  font-weight: 760;
+  color: var(--navy);
+  margin: 0 0 0.65rem;
+  font-size: clamp(0.98rem, 0.35vw + 0.88rem, 1.05rem);
+}
+
+.page-business-services .ai-bs-operator-list {
+  margin: 0 0 clamp(18px, 2.5vw, 26px);
+  padding-left: 1.28rem;
+  max-width: 44rem;
+  color: rgba(18, 28, 52, 0.92);
+  line-height: 1.58;
+  font-size: clamp(0.94rem, 0.25vw + 0.88rem, 1.02rem);
+}
+
+.page-business-services .ai-bs-operator-list li {
+  margin-bottom: 0.4rem;
+}
+
+.page-business-services .ai-bs-operator-list li:last-child {
+  margin-bottom: 0;
+}
+
+.page-business-services .ai-bs-operator-ctas {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 /* --- Problem / friction --- */
 .page-business-services .ai-friction-sub {
   max-width: 46rem !important;

@@ -4414,6 +4414,91 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   border-block: 1px solid rgba(255, 246, 230, 0.06);
 }
 
+/* --- Business Operator prep (coming next) --- */
+.page-business-services .ai-bs-operator-prep .ai-bs-operator-qualify {
+  margin-top: clamp(10px, 1.8vw, 18px);
+}
+
+.page-business-services .ai-bs-operator-qualify-label {
+  font-weight: 760;
+  color: var(--navy);
+  margin: 0 0 0.65rem;
+  font-size: clamp(0.98rem, 0.35vw + 0.88rem, 1.05rem);
+}
+
+.page-business-services .ai-bs-operator-list {
+  margin: 0 0 clamp(18px, 2.5vw, 26px);
+  padding-left: 1.28rem;
+  max-width: 44rem;
+  color: rgba(18, 28, 52, 0.92);
+  line-height: 1.58;
+  font-size: clamp(0.94rem, 0.25vw + 0.88rem, 1.02rem);
+}
+
+.page-business-services .ai-bs-operator-list li {
+  margin-bottom: 0.4rem;
+}
+
+.page-business-services .ai-bs-operator-list li:last-child {
+  margin-bottom: 0;
+}
+
+.page-business-services .ai-bs-operator-ctas {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* --- Business Operator v1 (live module; reuses transport concierge chrome) --- */
+.page-business-services #business-operator {
+  scroll-margin-top: 96px;
+}
+
+.page-business-services .transport-concierge-main .business-operator-project-intro {
+  margin-top: 14px;
+}
+
+.page-business-services .transport-concierge-main .business-operator-form-note {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: rgba(11, 29, 58, 0.62);
+}
+
+.page-business-services .transport-concierge-main .business-operator-check-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.page-business-services .transport-concierge-main .business-operator-check-legend {
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-business-services .transport-concierge-main .business-operator-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 650;
+  margin-bottom: 8px;
+  color: rgba(11, 29, 58, 0.92);
+}
+
+.page-business-services .transport-concierge-main .business-operator-check:last-of-type {
+  margin-bottom: 0;
+}
+
+.page-business-services .transport-concierge-main .business-operator-check input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: #14b8a6;
+}
+
 /* --- Problem / friction --- */
 .page-business-services .ai-friction-sub {
   max-width: 46rem !important;

@@ -19,3 +19,15 @@
 #   RESEND_API_KEY              — email alerts
 #   TRANSPORT_ALERT_EMAIL       — owner inbox
 #   RESEND_FROM_EMAIL           — verified sender in Resend (required for email to send)
+#
+# Business Operator + business leads (business-operator.js + business-lead.js):
+#   OPENAI_API_KEY              — required for operator chat (same key as Ask / Transport)
+#   OPENAI_BUSINESS_MODEL       — optional override (else OPENAI_VISITOR_MODEL / default)
+#   SUPABASE_URL
+#   SUPABASE_SERVICE_ROLE_KEY
+#   RESEND_API_KEY
+#   BUSINESS_ALERT_EMAIL        — preferred inbox for business lead alerts
+#   TRANSPORT_ALERT_EMAIL       — fallback if BUSINESS_ALERT_EMAIL is unset
+#   BUSINESS_RESEND_FROM_EMAIL  — optional verified From for business alerts (else onboarding@resend.dev)
+#   BUSINESS_ALERT_PHONE        — optional SMS destination (E.164); else TRANSPORT_ALERT_PHONE
+#   TWILIO_*                    — optional; SMS failures never fail the lead save
