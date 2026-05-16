@@ -320,7 +320,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .brand-icon:not(.brand-icon--textmark) > .brand-icon-img {
   object-fit: cover;
   object-position: center;
-  transform: scale(1.17);
+  transform: scale(1.09);
   transform-origin: center center;
 }
 
