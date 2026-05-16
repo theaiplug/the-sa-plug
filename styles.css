@@ -4828,12 +4828,45 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 .page-business-services .ai-bs-lead-flow-label {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(242, 178, 26, 0.9);
+}
+
+.page-business-services .ai-bs-lead-flow-channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+
+.page-business-services .ai-bs-lead-flow-channel {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  background: rgba(4, 12, 28, 0.38);
+  font-size: 0.68rem;
+  font-weight: 780;
+  letter-spacing: 0.04em;
+  color: rgba(255, 235, 210, 0.86);
+}
+
+.page-business-services .ai-bs-leak-wrap {
+  min-width: 0;
+}
+
+.page-business-services .ai-bs-leak-path-kicker {
+  margin: 0 0 10px;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 92, 168, 0.88);
 }
 
 .page-business-services .ai-bs-lead-flow-nodes {
@@ -4964,10 +4997,16 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   min-width: 0;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 480px) {
   .page-business-services .ai-bs-leak-path {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px 12px;
+  }
+}
+
+@media (min-width: 640px) {
+  .page-business-services .ai-bs-leak-path {
+    gap: 12px 14px;
   }
 }
 
@@ -4990,9 +5029,35 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   pointer-events: none;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 480px) {
   .page-business-services .ai-bs-leak-path::before {
     display: none;
+  }
+
+  .page-business-services .ai-bs-leak-step:nth-child(odd):not(:nth-child(5))::after {
+    content: "";
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    width: 8px;
+    height: 2px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, rgba(255, 92, 168, 0.55), rgba(242, 178, 26, 0.4));
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .page-business-services .ai-bs-leak-step:nth-child(2)::after,
+  .page-business-services .ai-bs-leak-step:nth-child(4)::after {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: -8px;
+    width: 2px;
+    height: 8px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(242, 178, 26, 0.5), rgba(20, 184, 166, 0.35));
   }
 }
 
@@ -6037,6 +6102,79 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 800;
+}
+
+.page-business-services .ai-bs-proof-flow {
+  margin-top: clamp(2px, 0.8vw, 6px);
+}
+
+.page-business-services .ai-bs-proof-flow-steps {
+  list-style: none;
+  margin: 0;
+  padding: clamp(12px, 1.8vw, 16px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 10px;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid rgba(20, 184, 166, 0.22);
+  background:
+    radial-gradient(circle at 0% 50%, rgba(20, 184, 166, 0.12), transparent 48%),
+    rgba(4, 12, 28, 0.38);
+  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.06);
+}
+
+.page-business-services .ai-bs-proof-flow-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(0.78rem, 0.16vw + 0.72rem, 0.86rem);
+  font-weight: 780;
+  color: rgba(255, 246, 230, 0.92);
+}
+
+.page-business-services .ai-bs-proof-flow-step:not(:last-child)::after {
+  content: "\2192";
+  margin-left: 2px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: rgba(242, 178, 26, 0.75);
+}
+
+@media (max-width: 479px) {
+  .page-business-services .ai-bs-proof-flow-step {
+    flex: 1 1 calc(50% - 8px);
+    justify-content: center;
+  }
+
+  .page-business-services .ai-bs-proof-flow-step:nth-child(2)::after {
+    display: none;
+  }
+
+  .page-business-services .ai-bs-proof-flow-step:last-child {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+}
+
+.page-business-services .ai-bs-proof-flow-dot {
+  flex-shrink: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--turquoise), var(--gold));
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.18);
+}
+
+.page-business-services .ai-bs-proof-flow-step:nth-child(2) .ai-bs-proof-flow-dot {
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  box-shadow: 0 0 0 3px rgba(242, 178, 26, 0.16);
+}
+
+.page-business-services .ai-bs-proof-flow-step:nth-child(3) .ai-bs-proof-flow-dot {
+  background: linear-gradient(135deg, var(--pink), rgba(255, 92, 168, 0.45));
+  box-shadow: 0 0 0 3px rgba(255, 92, 168, 0.14);
 }
 
 .page-business-services .ai-bs-proof-cards {
