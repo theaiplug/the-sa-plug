@@ -4449,7 +4449,8 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 /* --- Business Operator v1 (live module; reuses transport concierge chrome) --- */
-.page-business-services #business-operator {
+.page-business-services #business-operator,
+.page-business-services #proof-band {
   scroll-margin-top: 96px;
 }
 
@@ -4583,6 +4584,72 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: 1fr;
   }
+}
+
+@media (min-width: 960px) {
+  .page-business-services .ai-problem-grid--pain-six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .page-business-services .ai-bs-sec-compact-mobile.ai-bs-sec-major {
+    padding-top: clamp(26px, 7vw, 38px) !important;
+    padding-bottom: clamp(26px, 7vw, 38px) !important;
+  }
+
+  .page-business-services .ai-bs-sec-compact-mobile .ai-friction-sub {
+    margin-bottom: 0.35rem !important;
+  }
+
+  .page-business-services .ai-friction-section.ai-bs-sec-compact-mobile .card.ai-bs-problem-card {
+    padding: clamp(16px, 4vw, 20px);
+    padding-top: clamp(18px, 4.2vw, 22px);
+  }
+
+  .page-business-services .ai-offers--compact-mobile .ai-offer-card {
+    padding: clamp(18px, 4vw, 22px);
+  }
+
+  .page-business-services .ai-offers--compact-mobile .ai-offer-list li {
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+}
+
+.page-business-services .ai-bs-proof-points--tight {
+  gap: 0.35rem 0.75rem;
+}
+
+.page-business-services .ai-bs-proof-points--tight li {
+  line-height: 1.45;
+  font-size: clamp(0.9rem, 0.25vw + 0.82rem, 0.97rem);
+}
+
+.page-business-services .business-operator-backup-details {
+  margin-top: 1rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius);
+  border: 1px dashed rgba(20, 184, 166, 0.35);
+  background: rgba(4, 12, 28, 0.35);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: rgba(255, 246, 230, 0.82);
+}
+
+.page-business-services .business-operator-backup-details summary {
+  cursor: pointer;
+  font-weight: 650;
+  color: rgba(255, 248, 235, 0.95);
+}
+
+.page-business-services .business-operator-backup-note {
+  margin: 0.5rem 0 0.35rem;
+  opacity: 0.9;
+}
+
+.page-business-services .business-operator-backup-details a {
+  color: var(--turquoise);
 }
 
 .page-business-services .ai-friction-section .card.ai-bs-problem-card {

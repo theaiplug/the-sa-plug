@@ -451,9 +451,9 @@ exports.handler = async (event) => {
       "No BUSINESS_ALERT_EMAIL or TRANSPORT_ALERT_EMAIL configured for business alerts.";
   }
 
-  console.log("business lead email result", {
+  console.log("business_lead.alert", {
     emailSent,
-    emailErrorMessage,
+    emailErrorMessage: emailSent ? null : emailErrorMessage,
   });
 
   if (emailSent) {

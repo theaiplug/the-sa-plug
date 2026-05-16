@@ -439,8 +439,8 @@
           if (confirmEl) {
             confirmEl.hidden = false;
             confirmEl.textContent = d.email_sent
-              ? "Lead saved. The AI Plug received your project summary and an email alert was sent. If it looks like a fit, Willie will follow up using the contact method you provided."
-              : "Lead saved, but email alert did not send. Your details are on file. You can also email aibusinessplug@gmail.com.";
+              ? "Request sent. The AI Plug received your project summary."
+              : "Lead saved, but email alert did not send.";
             confirmEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
           }
           showIntakeMessage("", false);
