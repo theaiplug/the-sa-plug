@@ -509,10 +509,32 @@
     .start-here-main .sh-moves-list li {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 14px 18px;
+      grid-template-rows: auto auto;
+      gap: 6px 14px;
       align-items: start;
       padding-bottom: clamp(18px, 2.4vw, 22px);
       border-bottom: 1px solid rgba(255, 246, 230, 0.1);
+    }
+
+    .start-here-main .sh-moves-list .sh-moves-icon {
+      grid-row: 1;
+      grid-column: 1;
+      align-self: center;
+    }
+
+    .start-here-main .sh-moves-list li > div {
+      display: contents;
+    }
+
+    .start-here-main .sh-moves-list strong {
+      grid-row: 1;
+      grid-column: 2;
+      align-self: center;
+    }
+
+    .start-here-main .sh-moves-list p {
+      grid-row: 2;
+      grid-column: 2;
     }
 
     .start-here-main .sh-moves-list li:last-child {
@@ -800,22 +822,107 @@
               <a class="route-chip" href="business-services.html">AI business systems</a>
             </div>
             <div class="sh-hero-actions hero-cta-row">
-              <a class="btn btn-primary" href="#choose-path">Find my route</a>
-              <a href="/ask/" class="btn btn-secondary-hero">Ask A Local</a>
+              <a href="#live-concierge" class="btn btn-primary">Ask A Local &rarr;</a>
+              <a class="btn btn-secondary-hero" href="#choose-path">Find my route</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-cream home-ask-entry sh-ask-bridge" aria-labelledby="sh-ask-bridge-heading">
-      <div class="routes-band-inner">
-        <div class="home-ask-entry-inner">
-          <div class="home-ask-entry-copy">
-            <h2 id="sh-ask-bridge-heading">When you want Ask A Local</h2>
-            <p>Use <a href="/ask/">Ask A Local</a> after you know your situation &mdash; timing, crew, and the kind of night &mdash; and you want a pointed route instead of browsing every guide first.</p>
+    <section class="section band section-navy-routes live-concierge-section" id="live-concierge" aria-labelledby="live-concierge-heading">
+      <div class="routes-band-inner live-concierge-inner">
+        <header class="live-concierge__head">
+          <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Ask A Local</p>
+          <h2 id="live-concierge-heading" class="live-concierge__title">Not sure what to do first? Ask here.</h2>
+          <p class="section-text section-text-light live-concierge__lead">
+            Tell us where you are, who you&rsquo;re with, and what kind of night you want. Pick a chip or type your question &mdash; answers appear above the box.
+          </p>
+          <p class="live-concierge__status" id="live-concierge-status" aria-live="polite">Live · ready</p>
+        </header>
+
+        <div class="live-concierge-studio">
+          <div class="live-concierge-card">
+            <div class="live-concierge__image-band">
+              <div class="live-concierge__image-band-media">
+                <img
+                  src="assets/ask-sa-plug-hero-riverwalk-tower.png"
+                  alt="San Antonio River Walk and downtown skyline"
+                  width="1200"
+                  height="630"
+                  decoding="async"
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </div>
+            </div>
+
+              <div class="live-concierge__glass-panel">
+              <div class="live-concierge__panel-copy">
+                <p class="live-concierge__panel-intro">Quick prompts below &mdash; or skip straight to the input.</p>
+                <p class="live-concierge__panel-support"><a href="driver-concierge.html#route-operator">Transportation help</a> for airport, resort pickups, and route timing.</p>
+              </div>
+              <div class="live-concierge__chip-board">
+              <div class="live-concierge__chip-cluster" role="group" aria-labelledby="sh-lane-plan-heading">
+                <p class="live-concierge__lane-label" id="sh-lane-plan-heading">Plan my move</p>
+                <div class="live-concierge__chips live-concierge__chips--lane">
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="What should I do tonight?">What should I do tonight?</button>
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I need dinner near me">I need dinner near me</button>
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I'm here for a convention">I&rsquo;m here for a convention</button>
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I have kids with me">I have kids with me</button>
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I'm staying at a resort">I&rsquo;m staying at a resort</button>
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I need transportation help">I need transportation help</button>
+                </div>
+              </div>
+              <div class="live-concierge__chip-cluster" role="group" aria-labelledby="sh-lane-place-heading">
+                <p class="live-concierge__lane-label" id="sh-lane-place-heading">Ask about a place</p>
+                <div class="live-concierge__chips live-concierge__chips--lane">
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Is this place worth visiting?">Is this place worth visiting?</button>
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Hours, cost, and best time to go">Hours, cost, and best time to go</button>
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Tell me about the River Walk">Tell me about the River Walk</button>
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Tell me about the Pearl">Tell me about the Pearl</button>
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Tell me about Market Square">Tell me about Market Square</button>
+                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Tell me about Tower of the Americas">Tell me about Tower of the Americas</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="live-concierge__main-card">
+              <div class="live-concierge__error" id="live-concierge-error" hidden role="alert"></div>
+
+              <div class="live-concierge__thread" id="live-concierge-thread">
+                <div class="live-concierge__conversation" id="live-concierge-conversation">
+                  <div class="live-concierge__answer-surface" id="live-concierge-answer-surface" aria-live="polite">
+                    <div class="live-concierge__preview" id="live-concierge-preview">
+                      <p class="live-concierge__preview-text">Tell me your starting point, group, timing, and what you&rsquo;re trying to figure out. I&rsquo;ll give you the clearest local move.</p>
+                    </div>
+                    <div class="live-concierge__transcript" id="live-concierge-transcript" hidden>
+                      <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge answer"></div>
+                    </div>
+                  </div>
+
+                  <div class="live-concierge__composer-stack" id="live-concierge-composer">
+                    <form class="live-concierge__form" id="live-concierge-form" aria-label="Ask A Local concierge">
+                      <label class="live-concierge__input-label visually-hidden" for="live-concierge-input">Your question</label>
+                      <div class="live-concierge__composer-unit">
+                        <textarea
+                          id="live-concierge-input"
+                          class="live-concierge__input"
+                          name="message"
+                          rows="2"
+                          maxlength="12000"
+                          required
+                          autocomplete="off"
+                          placeholder="Ask about dinner, a place, parking, timing, cost, or what to do next..."
+                        ></textarea>
+                        <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local <span aria-hidden="true">&rarr;</span></button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <a class="btn btn-primary" href="/ask/">Open Ask A Local</a>
         </div>
       </div>
     </section>
@@ -939,7 +1046,7 @@
 
     <section class="section section-turquoise-wash" aria-labelledby="first-moves-heading">
       <div class="sh-section-head">
-        <p class="eyebrow">Concierge operating instructions</p>
+        <p class="eyebrow">Easy first moves</p>
         <h2 id="first-moves-heading">Five moves that make every San Antonio trip easier</h2>
         <p class="section-text">Concierge-style routing so you spend less time scrolling and more time in the right room.</p>
       </div>
@@ -963,21 +1070,21 @@
             <span class="sh-moves-icon" aria-hidden="true">3</span>
             <div>
               <strong>One night near the River Walk? Use the downtown guide</strong>
-              <p>The <a href="downtown.html">Downtown</a> page is the tightest route for walkable pacing and convention-adjacent evenings.</p>
+              <p>The <a href="downtown.html">Downtown</a> page is the tightest plan for walkable pacing and convention-adjacent evenings.</p>
             </div>
           </li>
           <li>
             <span class="sh-moves-icon" aria-hidden="true">4</span>
             <div>
               <strong>Resort or La Cantera zone? Distance matters</strong>
-              <p>Open <a href="resort-food.html">Resorts</a> before you burn an hour in traffic for a meal you could nail closer to the property.</p>
+              <p>Open <a href="resort-food.html">Resort Food</a> before you burn an hour in traffic for a meal you could nail closer to the property.</p>
             </div>
           </li>
           <li>
             <span class="sh-moves-icon" aria-hidden="true">5</span>
             <div>
               <strong>When timing, party size, or vibe is uncertain, ask</strong>
-              <p><a href="/ask/">Ask A Local</a> with your hotel, crew, and window &mdash; get a pointed move instead of guessing.</p>
+              <p><a href="#live-concierge">Ask A Local</a> with your hotel, crew, and window &mdash; get a pointed move instead of guessing.</p>
             </div>
           </li>
         </ul>
@@ -1070,5 +1177,6 @@
     <p class="footer-note">Built by The AI Plug.</p>
   </footer>
   <script src="script.js"></script>
+  <script src="ask-concierge.js" defer></script>
 </body>
 </html>

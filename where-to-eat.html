@@ -1684,6 +1684,14 @@
     .eat-guide-page .eat-lane:first-of-type {
       margin-top: clamp(8px, 1.6vw, 14px);
     }
+
+    #lane-riverwalk .eat-lane-grid {
+      display: grid;
+    }
+
+    #lane-riverwalk article:has([data-river-dinner-lead]) {
+      order: -1;
+    }
   </style>
 </head>
 <body>
@@ -2058,7 +2066,7 @@
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> North · <strong>Vibe:</strong> seafood-first, citrus heat</p>
-              <p class="eat-rec-desc">Willie&rsquo;s strongest ceviche-forward lane here — serious review depth for a seafood night away from steak rotation.</p>
+              <p class="eat-rec-desc">Willie&rsquo;s strongest ceviche-forward pick here — serious review depth for a seafood night away from steak rotation.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> seafood cravings, shareable tables, travelers tired of steak lists.</p>
               <p class="eat-rec-extra"><strong>Visitor move:</strong> When the meal needs bright citrus heat and shareable seafood pacing.</p>
             </div>
@@ -2084,7 +2092,7 @@
         <div class="eat-section-head">
           <p class="eyebrow">Flavor</p>
           <h2>Mexican &amp; Tex-Mex</h2>
-          <p class="section-text">Ranked for visitor usefulness and Google proof first. Willie Approved picks are clearly labeled so you can see the difference between public confidence and personal local confidence.</p>
+          <p class="section-text">Choose polished downtown (Domingo), classic rooms (La Fonda, Rosario&rsquo;s), Willie&rsquo;s flavor pick (Soluna), or patio-first north-side energy (La Fogata) — match the night, not just the cuisine label.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/golden_hour_riverside_dining_with_fajitas.png" alt="Mexican and Tex-Mex dining spread in San Antonio" loading="lazy" decoding="async" />
@@ -2297,7 +2305,7 @@
         <div class="eat-section-head">
           <p class="eyebrow">Rodizio</p>
           <h2>Brazilian steakhouse</h2>
-          <p class="section-text">Brasão leads as Willie&rsquo;s preferred rodizio with elite proof; Chama Gaúcha owns the largest review volume; Fogo is the reliable national-brand lane.</p>
+          <p class="section-text">Brasão leads as Willie&rsquo;s preferred rodizio with elite proof; Chama Gaúcha owns the largest review volume; Fogo is the familiar national-brand backup when the group wants a name they already know.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/churrascaria_dining_experience_in_action.png" alt="Churrascaria rodizio dining in action" loading="lazy" decoding="async" />
@@ -2526,7 +2534,7 @@
         <div class="eat-section-head">
           <p class="eyebrow">Walkable core</p>
           <h2>River Walk / downtown classics</h2>
-          <p class="section-text">Corridor picks ranked for visitor utility — <strong>Paesanos Riverwalk</strong> for Italian-first River Walk dinners, Tenfold and Esquire for drinks depth, Mad Dogs for pub pacing. <strong>Domingo</strong> (Willie Approved) covers Mexican-adjacent downtown dining in the Mexican lane.</p>
+          <p class="section-text">Corridor picks ranked for visitor utility — <strong>Paesanos Riverwalk</strong> for Italian-first River Walk dinners, Tenfold and Esquire for drinks depth, Mad Dogs for pub pacing. <strong>Domingo</strong> (Willie Approved) covers Mexican-adjacent downtown dining in the Mexican section.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/riverside_dining_under_warm_lights.png" alt="River Walk dining under warm lights in San Antonio" loading="lazy" decoding="async" />
@@ -2600,7 +2608,7 @@
                   <p class="eat-card-badge"><span class="eat-status-pill">Strong Pick</span></p>
                 </div>
               </div>
-              <h3>Paesanos Riverwalk</h3>
+              <h3 data-river-dinner-lead>Paesanos Riverwalk</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Italian</span>
                 <span class="eat-chip is-price">$30–50</span>
@@ -2612,10 +2620,7 @@
           </article>
         </div>
         <div class="eat-choose-strip">
-          <p><strong>Visitor read:</strong> For River Walk classics, choose Paesanos when the table and location both matter. Keep 1Watson as an also-useful skyline option when the view is the reason to go. Esquire and Tenfold handle drinks depth; Mad Dogs keeps pub nights easy.</p>
-        </div>
-        <div class="eat-choose-strip">
-          <p><strong>River Walk Mexican:</strong> For River Walk Mexican, prioritize convenience, walk time, and the kind of night you want. If the table matters more than the postcard, compare the River Walk classics with downtown Mexican picks before committing.</p>
+          <p><strong>Visitor read:</strong> Pick one main dinner, then stack drinks, dessert, or a walk nearby. Choose Paesanos when the table and location both matter. Esquire and Tenfold handle drinks depth; Mad Dogs keeps pub nights easy. For Mexican-adjacent downtown polish, see Domingo in the Mexican section. Keep 1Watson as a skyline backup when the view is the main reason to go.</p>
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Also useful</span>
@@ -2698,7 +2703,7 @@
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> River Walk · <strong>Vibe:</strong> casual pub, live energy</p>
-              <p class="eat-rec-desc">Useful River Walk bar-hop fuel when the night stays informal &mdash; casual pub pacing with a strong review count for beer-and-bite stops.</p>
+              <p class="eat-rec-desc">Same informal pub pacing as in River Walk classics above &mdash; use when the crew wants beer-and-bite energy after dinner.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> bar-hop nights, easygoing groups, beer-and-bite stops.</p>
             </div>
           </article>
@@ -2725,7 +2730,7 @@
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Route note</span>
-          <p>For River Walk pub pace, <strong>Mad Dogs</strong> is covered in the River Walk classics lane. For after-hours moves, see the <a href="#lane-late-night">late-night lane</a> below.</p>
+          <p>For River Walk pub pace, see <strong>Mad Dogs</strong> in River Walk classics above. For after-hours moves, see <a href="#lane-late-night">late-night picks</a> below.</p>
         </div>
       </div>
 
@@ -2878,7 +2883,7 @@
         </article>
       </div>
       <div class="eat-choose-strip eat-choose-strip--band">
-        <p><strong>Best move here:</strong> Anchor with Mi Tierra for a late sit-down reset, keep Esquire as the one-drink backup on the River Walk, and save Tenfold only if the group still has skyline energy.</p>
+        <p><strong>Visitor read:</strong> Pick one main dinner, then stack drinks, dessert, or a walk nearby. Start with Mi Tierra for a late sit-down reset, keep Esquire as the one-drink backup on the River Walk, and save Tenfold only if the group still has skyline energy.</p>
       </div>
     </section>
 
@@ -2892,7 +2897,7 @@
         <li class="eat-os-step">
           <div class="eat-os-step__head">
             <span class="eat-os-step__num" aria-hidden="true">1</span>
-            <h3>Pick the moment</h3>
+            <h3>Pick the occasion</h3>
           </div>
           <p>First meal, business dinner, date night, family reset, seafood, or drinks.</p>
         </li>

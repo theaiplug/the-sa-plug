@@ -35,10 +35,10 @@
       overflow-x: clip;
       background-color: #0a1a2e;
       background-image:
-        linear-gradient(100deg, rgba(5, 10, 24, 0.38) 0%, rgba(5, 10, 24, 0.14) 40%, rgba(5, 10, 24, 0.02) 100%),
-        url("assets/downtown-hero-premium-route.png");
+        linear-gradient(100deg, rgba(5, 10, 24, 0.28) 0%, rgba(5, 10, 24, 0.1) 42%, rgba(5, 10, 24, 0.02) 100%),
+        url("assets/twilight_on_the_river_walk.png");
       background-repeat: no-repeat;
-      background-position: 0 0, center 40%;
+      background-position: 0 0, center 42%;
       background-size: cover, cover;
       min-height: clamp(520px, 70vh, 760px);
     }
@@ -56,9 +56,9 @@
     @media (max-width: 640px) {
       .dt-hero--cinematic.hero-fiesta-dark.secondary-hero {
         background-image:
-          linear-gradient(180deg, rgba(5, 10, 24, 0.14) 0%, rgba(5, 10, 24, 0.28) 50%, rgba(5, 10, 24, 0.44) 100%),
-          url("assets/downtown-hero-premium-route.png");
-        background-position: 0 0, center 36%;
+          linear-gradient(180deg, rgba(5, 10, 24, 0.1) 0%, rgba(5, 10, 24, 0.22) 50%, rgba(5, 10, 24, 0.38) 100%),
+          url("assets/twilight_on_the_river_walk.png");
+        background-position: 0 0, center 40%;
         min-height: clamp(480px, 76vh, 640px);
       }
     }
@@ -584,6 +584,25 @@
       font-weight: 700;
     }
 
+    .page-downtown .dt-ask-prompts {
+      margin: 0 0 14px;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .page-downtown .dt-ask-prompts li {
+      margin: 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: rgba(255, 246, 230, 0.9);
+      background: rgba(255, 246, 230, 0.06);
+      border: 1px solid rgba(45, 236, 224, 0.22);
+    }
+
     .page-downtown .footer.dark-showcase {
       padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
     }
@@ -779,9 +798,15 @@
         </aside>
         <aside class="dt-ask-card" aria-labelledby="dt-ask-mid-heading">
           <h3 id="dt-ask-mid-heading">Not sure which downtown move fits your group?</h3>
-          <p>Tell us where you are, who you&rsquo;re with, and how much time you have. Ask A Local can help you choose the downtown move before you waste the night.</p>
+          <p>Ask A Local before you commit to the night. Try a prompt like:</p>
+          <ul class="dt-ask-prompts">
+            <li>&ldquo;I&rsquo;m downtown tonight &mdash; what should we do?&rdquo;</li>
+            <li>&ldquo;Where should we eat before the River Walk?&rdquo;</li>
+            <li>&ldquo;What&rsquo;s good near my hotel?&rdquo;</li>
+            <li>&ldquo;Should we do Pearl or Market Square tonight?&rdquo;</li>
+          </ul>
           <div class="dt-ask-card-actions">
-            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local &rarr;</a>
             <a href="where-to-eat.html" class="btn btn-secondary">Open food picks</a>
           </div>
         </aside>

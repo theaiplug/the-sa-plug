@@ -92,7 +92,7 @@
 
               <div class="live-concierge__glass-panel">
               <div class="live-concierge__panel-copy">
-                <p class="live-concierge__panel-intro">Quick lanes below &mdash; or skip straight to the input.</p>
+                <p class="live-concierge__panel-intro">Quick prompts below &mdash; or skip straight to the input.</p>
                 <p class="live-concierge__panel-support"><a href="../driver-concierge.html#route-operator">Transportation help</a> for airport, resort pickups, and route timing.</p>
               </div>
               <div class="live-concierge__chip-board">
@@ -136,7 +136,7 @@
 
                   <div class="live-concierge__composer-stack" id="live-concierge-composer">
                     <form class="live-concierge__form" id="live-concierge-form" aria-label="Ask A Local concierge">
-                      <label class="live-concierge__input-label" for="live-concierge-input">Ask a follow-up</label>
+                      <label class="live-concierge__input-label visually-hidden" for="live-concierge-input">Your question</label>
                       <div class="live-concierge__composer-unit">
                         <textarea
                           id="live-concierge-input"
@@ -165,7 +165,7 @@
         <header class="ask-section-head">
           <p class="eyebrow">Pick the move</p>
           <h2 id="routes-heading">Popular San Antonio moves</h2>
-          <p class="section-text">Tap a lane, then jump back to the live concierge to tighten the plan.</p>
+          <p class="section-text">Tap a move, then jump back to Ask A Local to tighten the plan.</p>
         </header>
 
         <ul class="ask-popular-moves-grid" role="list">
@@ -230,7 +230,7 @@
         <header class="ask-section-head ask-section-head--on-dark">
           <p class="eyebrow eyebrow-on-dark">Add-ons</p>
           <h2 id="more-moves-heading">More local moves</h2>
-          <p class="section-text section-text-light">Extra stops when you already picked your lane &mdash; not a second map of the whole city.</p>
+          <p class="section-text section-text-light">Extra stops when you already picked your plan &mdash; not a second map of the whole city.</p>
         </header>
         <ul class="route-card-grid ask-more-grid" role="list">
           <li role="listitem">
@@ -321,99 +321,13 @@
 
     <details class="ask-human-fallback" id="human-help">
       <summary>
-        <span class="ask-human-fallback__summary-main">Need human help with your plan?</span>
-        <span class="ask-human-fallback__summary-sub">Use this only if Ask A Local is not enough or you want someone to pick up the details. Human follow-up is optional and not immediate.</span>
+        <span class="ask-human-fallback__summary-main">Need human follow-up?</span>
+        <span class="ask-human-fallback__summary-sub">Use this only if Ask A Local did not answer your question or you need transportation help reviewed by a person.</span>
       </summary>
       <div class="ask-human-fallback__body">
-        <header class="ask-section-head">
-          <p class="eyebrow">Optional follow-up</p>
-          <h2 class="ask-human-fallback__form-title" id="request-heading">Send a quick request</h2>
-          <p class="section-text">Opens a short form in a new tab with your selections summarized. Availability is human-paced, not instant.</p>
-          <p class="section-text ask-human-priority-note">Where To Go SA can help you think through the plan and send a request. Availability is not guaranteed. If this is urgent or I&rsquo;m unavailable, use Uber, Lyft, hotel transportation, taxi, or another licensed option.</p>
-        </header>
-        <div class="ask-guided-shell ask-prompt-shell ask-guided-wrap">
-          <form class="ask-guided-form ask-intake-card" id="ask-guided-form" action="https://tally.so/r/D408Aj" method="get" target="_blank">
-            <p class="ask-intake-label">Human help request</p>
-            <p class="ask-intake-sub">Add context in the notes so the reply starts in the right zone.</p>
-            <div class="ask-guided-grid">
-              <label class="ask-guided-field">
-                <span>What do you need help with?</span>
-                <select name="need">
-                  <option value="">Choose one</option>
-                  <option>Downtown night</option>
-                  <option>Food recommendations</option>
-                  <option>Family-friendly route</option>
-                  <option>Resort plan</option>
-                  <option>Business dinner</option>
-                  <option>Transportation help</option>
-                  <option>Custom plan</option>
-                </select>
-              </label>
-              <label class="ask-guided-field">
-                <span>Where are you staying?</span>
-                <select name="stay">
-                  <option value="">Choose one</option>
-                  <option>Downtown / River Walk</option>
-                  <option>Convention Center area</option>
-                  <option>Pearl area</option>
-                  <option>JW Marriott</option>
-                  <option>La Cantera</option>
-                  <option>Hyatt Hill Country</option>
-                  <option>Near the airport</option>
-                  <option>Other</option>
-                </select>
-              </label>
-              <label class="ask-guided-field">
-                <span>Who&rsquo;s with you?</span>
-                <select name="group">
-                  <option value="">Choose one</option>
-                  <option>Solo</option>
-                  <option>Couple</option>
-                  <option>Family</option>
-                  <option>Business group</option>
-                  <option>Friends / group</option>
-                </select>
-              </label>
-              <label class="ask-guided-field">
-                <span>When do you need the plan?</span>
-                <select name="when">
-                  <option value="">Choose one</option>
-                  <option>Right now</option>
-                  <option>Tonight</option>
-                  <option>Tomorrow</option>
-                  <option>This weekend</option>
-                </select>
-              </label>
-              <label class="ask-guided-field ask-guided-field--full">
-                <span>What matters most?</span>
-                <select name="priority">
-                  <option value="">Choose one</option>
-                  <option>Best food</option>
-                  <option>Easy logistics</option>
-                  <option>Family-friendly</option>
-                  <option>Local feel</option>
-                  <option>Upscale experience</option>
-                  <option>Walkability</option>
-                  <option>Drinks / nightlife</option>
-                </select>
-              </label>
-              <label class="ask-guided-field">
-                <span>Name</span>
-                <input type="text" name="name" autocomplete="name" placeholder="Your name" />
-              </label>
-              <label class="ask-guided-field">
-                <span>Email or phone</span>
-                <input type="text" name="contact" autocomplete="email" placeholder="How we reach you" />
-              </label>
-              <label class="ask-guided-field ask-guided-field--full">
-                <span>Optional notes</span>
-                <textarea name="notes" rows="3" placeholder="Kids&rsquo; ages, dietary needs, tight windows, anything else."></textarea>
-              </label>
-            </div>
-            <button type="button" class="btn btn-primary btn-block ask-cta" id="ask-send-request">Open request form</button>
-            <p class="ask-guided-footnote">We copy your selections to the clipboard when possible so you can paste into the form.</p>
-          </form>
-        </div>
+        <p class="section-text">Start in <a href="#live-concierge">Ask A Local</a> above with your hotel, crew, timing, and what you are trying to do. For route and pickup questions, use <a href="../driver-concierge.html#route-operator">Transport + Concierge</a>.</p>
+        <p class="section-text ask-human-priority-note">Where To Go SA can help you think through the plan and send a request. Availability is not guaranteed. If this is urgent or I&rsquo;m unavailable, use Uber, Lyft, hotel transportation, taxi, or another licensed option.</p>
+        <a class="btn btn-secondary-hero" href="#live-concierge">Back to Ask A Local</a>
       </div>
     </details>
   </main>
@@ -439,27 +353,5 @@
   </footer>
   <script src="../script.js"></script>
   <script src="../ask-concierge.js" defer></script>
-  <script>
-    (function () {
-      var btn = document.getElementById("ask-send-request");
-      var form = document.getElementById("ask-guided-form");
-      if (!btn || !form) return;
-      btn.addEventListener("click", function () {
-        var fd = new FormData(form);
-        var lines = [];
-        fd.forEach(function (v, k) {
-          if (v && String(v).trim()) lines.push(k + ": " + String(v).trim());
-        });
-        var summary = lines.length ? lines.join("\n") : "Ask A Local — custom plan request";
-        try {
-          sessionStorage.setItem("wtgsa_ask_draft", summary);
-        } catch (e) {}
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(summary).catch(function () {});
-        }
-        window.open("https://tally.so/r/D408Aj", "_blank", "noopener,noreferrer");
-      });
-    })();
-  </script>
 </body>
 </html>

@@ -57,7 +57,7 @@ Do not recommend downtown River Walk restaurants as "nearby" for north-side reso
 JW MARRIOTT / TPC / NORTH-SIDE RESORT DINNER RULE:
 If the visitor says they are at "JW," "JW Marriott," or "JW Marriott San Antonio Hill Country Resort," treat them as JW Marriott San Antonio Hill Country Resort & Spa / TPC / north-side resort area.
 Never call that property La Cantera. Never call it Hyatt Hill Country. Never say "JW Marriott La Cantera."
-For dinner near JW, prioritize the Stone Oak / north-side lane first unless they want a downtown destination night.
+For dinner near JW, prioritize the Stone Oak / north-side area first unless they want a downtown destination night.
 
 Known strong nearby JW dinner options (use when relevant, with honest drive-time language "about X minutes depending on traffic"):
 - J-Prime Steakhouse — Willie Approved / strong upscale steak, roughly 15 minutes depending on traffic
@@ -71,7 +71,7 @@ Do not present Bohanan's as nearby to JW. Bohanan's is Willie Approved, but it i
 
 Correct pattern for "I'm at the JW and need dinner nearby":
 - Name the zone: JW Marriott / TPC / north-side resort area.
-- Say you would keep them in the Stone Oak / north-side lane unless they want a downtown destination dinner.
+- Say you would keep them in the Stone Oak / north-side area unless they want a downtown destination dinner.
 - Then list J-Prime, Chama Gaúcha, Eddie V's, Blu Prime, Palenque Grill, and/or JW resort dining for convenience.
 - Optionally add: Bohanan's is Willie Approved, but that is a downtown destination dinner, not the nearby move from JW.
 
