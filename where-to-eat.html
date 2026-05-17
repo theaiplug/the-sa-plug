@@ -1586,16 +1586,9 @@
 
     .eat-os-step p {
       margin: 0;
-      padding-left: calc(2.15rem + 10px);
-      font-size: 0.9rem;
-      line-height: 1.55;
+      font-size: 0.88rem;
+      line-height: 1.5;
       color: rgba(255, 246, 230, 0.88);
-    }
-
-    @media (max-width: 479px) {
-      .eat-os-step p {
-        padding-left: 0;
-      }
     }
 
     .eat-os-cta {
@@ -1616,6 +1609,47 @@
     .eat-os-cta__copy {
       flex: 1 1 320px;
       min-width: 0;
+    }
+
+    .eat-section-ask {
+      margin-top: clamp(20px, 3vw, 28px);
+      padding: clamp(16px, 2.5vw, 22px);
+      border-radius: calc(var(--radius) + 2px);
+      border: 1px solid rgba(20, 184, 166, 0.35);
+      background:
+        radial-gradient(620px 200px at 0% 0%, rgba(20, 184, 166, 0.14), transparent 58%),
+        linear-gradient(165deg, rgba(10, 22, 40, 0.92), rgba(4, 12, 28, 0.88));
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 18px;
+      justify-content: space-between;
+    }
+
+    .eat-section-ask__copy {
+      flex: 1 1 280px;
+      min-width: 0;
+    }
+
+    .eat-section-ask__copy p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.9);
+      max-width: 52ch;
+    }
+
+    .eat-section-ask__copy strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+      color: #fff8eb;
+    }
+
+    .eat-section-ask__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
     }
 
     .eat-os-cta h3 {
@@ -1680,9 +1714,9 @@
             <h1 id="eat-hero-heading" class="hero-title">San Antonio dining, sorted for your trip first.</h1>
             <p class="hero-text hero-text-on-dark">Pick food by situation, zone, and confidence &mdash; River Walk dinners, business meals, Mexican food, steak, seafood, resort-area picks, and local favorites without guessing from a giant list.</p>
             <div class="hero-cue-grid" aria-label="Recommendation labels">
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Strong Proof Pick</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Strong Pick</strong></div>
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Willie Approved</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Research Pick</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Local Favorite</strong></div>
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Reliable Pick</strong></div>
             </div>
             <div class="hero-cta-row">
@@ -1696,10 +1730,10 @@
 
     <section class="eat-visitor-lanes" aria-labelledby="eat-visitor-lanes-title">
       <div class="eat-visitor-lanes-inner">
-        <p class="eyebrow">Visitor lanes</p>
+        <p class="eyebrow">Find your food move</p>
         <h2 id="eat-visitor-lanes-title">Jump by situation</h2>
         <div class="eat-visitor-chip-row">
-          <a class="eat-visitor-chip" href="#top-picks">Confidence deck</a>
+          <a class="eat-visitor-chip" href="#top-picks">Trusted picks</a>
           <a class="eat-visitor-chip" href="#food-move-finder">Food move finder</a>
           <a class="eat-visitor-chip" href="#lane-mexican">Mexican</a>
           <a class="eat-visitor-chip" href="#lane-steak">Business / steak</a>
@@ -1719,8 +1753,8 @@
       <div class="eat-cat-inner">
         <header class="eat-cat-head">
           <p class="eyebrow eyebrow-on-dark">Visitor needs</p>
-          <h2 id="eat-cat-grid-title">Image lanes by appetite</h2>
-          <p class="section-text">Tap a lane that matches your crew &mdash; proof-backed picks and honest labels keep decisions fast on mobile.</p>
+          <h2 id="eat-cat-grid-title">Pick by appetite</h2>
+          <p class="section-text">Tap the food move that matches your crew &mdash; trusted picks and clear labels keep decisions fast on mobile.</p>
         </header>
         <div class="route-card-grid route-card-grid--dense" role="list">
           <a href="#lane-riverwalk" class="image-route-card" role="listitem">
@@ -1730,7 +1764,7 @@
               <span class="eyebrow">Downtown</span>
               <h3>River Walk classics</h3>
               <p>Downtown proof, walkable nights, and drinks handoffs that feel local.</p>
-              <span class="image-route-card__cta">Open River Walk lane</span>
+              <span class="image-route-card__cta">River Walk picks</span>
             </span>
           </a>
           <a href="resort-food.html" class="image-route-card" role="listitem">
@@ -1749,8 +1783,8 @@
             <span class="image-route-card__body">
               <span class="eyebrow">Flavor</span>
               <h3>Mexican</h3>
-              <p>Polished Tex-Mex and upscale San Antonio flavor lanes.</p>
-              <span class="image-route-card__cta">Open Mexican lane</span>
+              <p>Polished Tex-Mex and upscale San Antonio flavor.</p>
+              <span class="image-route-card__cta">Mexican picks</span>
             </span>
           </a>
           <a href="#lane-steak" class="image-route-card" role="listitem">
@@ -1760,7 +1794,7 @@
               <span class="eyebrow">Splurge</span>
               <h3>Steakhouse</h3>
               <p>Client dinners, celebrations, and north-side polish.</p>
-              <span class="image-route-card__cta">Open steak lane</span>
+              <span class="image-route-card__cta">Steakhouse picks</span>
             </span>
           </a>
           <a href="#lane-seafood" class="image-route-card" role="listitem">
@@ -1770,7 +1804,7 @@
               <span class="eyebrow">Coastal</span>
               <h3>Seafood / ceviche</h3>
               <p>Citrus-forward seafood when the table wants spice.</p>
-              <span class="image-route-card__cta">Open seafood lane</span>
+              <span class="image-route-card__cta">Seafood picks</span>
             </span>
           </a>
           <a href="#lane-drinks" class="image-route-card" role="listitem">
@@ -1779,8 +1813,8 @@
             <span class="image-route-card__body">
               <span class="eyebrow">Skyline</span>
               <h3>Rooftop / drinks</h3>
-              <p>Classic cocktail anchors, modern lounges, rooftop finishes.</p>
-              <span class="image-route-card__cta">Open drinks lane</span>
+              <p>Classic cocktail rooms, modern lounges, rooftop finishes.</p>
+              <span class="image-route-card__cta">Drinks picks</span>
             </span>
           </a>
           <a href="#lane-breakfast" class="image-route-card" role="listitem">
@@ -1790,7 +1824,7 @@
               <span class="eyebrow">Morning</span>
               <h3>Breakfast</h3>
               <p>Bakery pacing, hearty plates, and Market Square utility.</p>
-              <span class="image-route-card__cta">Open breakfast lane</span>
+              <span class="image-route-card__cta">Breakfast picks</span>
             </span>
           </a>
           <a href="#lane-late-night" class="image-route-card" role="listitem">
@@ -1800,7 +1834,7 @@
               <span class="eyebrow">After hours</span>
               <h3>Late-night</h3>
               <p>Bar-hop energy, nightcaps, and safe pivots downtown.</p>
-              <span class="image-route-card__cta">Open late-night lane</span>
+              <span class="image-route-card__cta">Late-night picks</span>
             </span>
           </a>
         </div>
@@ -1812,24 +1846,24 @@
         <header class="food-move-board__head">
           <p class="eyebrow food-move-board__eyebrow">Start here</p>
           <h2 class="eat-move-headline" id="eat-move-title">Choose your food move</h2>
-          <p class="eat-move-sub">Match the night first. Then pick one anchor restaurant, stack drinks or a walk around it, and keep the plan easy.</p>
+          <p class="eat-move-sub">Match the night first. Then pick one strong first stop, add drinks or a walk around it, and keep the plan easy.</p>
           <p class="food-move-board__label" id="eat-move-tonight">What is tonight?</p>
         </header>
         <div class="food-move-board__grid" aria-labelledby="eat-move-tonight">
           <a href="#top-picks" class="decision-card decision-card--gold">
             <h3>First San Antonio meal</h3>
             <p class="decision-card__copy">A first-night table that feels local without turning dinner into homework.</p>
-            <span class="decision-card__cta">Open confidence deck</span>
+            <span class="decision-card__cta">See trusted picks</span>
           </a>
           <a href="#lane-steak" class="decision-card decision-card--teal">
             <h3>Business dinner</h3>
             <p class="decision-card__copy">Polished rooms for client meals, convention nights, and serious tables.</p>
-            <span class="decision-card__cta">Steakhouse lane</span>
+            <span class="decision-card__cta">Business dinner picks</span>
           </a>
           <a href="#lane-pearl" class="decision-card decision-card--pink">
             <h3>Date night</h3>
             <p class="decision-card__copy">Dinner first, then cocktails or a walk in a district that keeps the night moving.</p>
-            <span class="decision-card__cta">Date-night lane</span>
+            <span class="decision-card__cta">Date night picks</span>
           </a>
           <a href="#lane-breakfast" class="decision-card decision-card--coral">
             <h3>Family-friendly</h3>
@@ -1839,12 +1873,12 @@
           <a href="#lane-seafood" class="decision-card decision-card--plum">
             <h3>Seafood / ceviche</h3>
             <p class="decision-card__copy">Bright flavor, lime, chile, and lighter plates when the table wants something different.</p>
-            <span class="decision-card__cta">Seafood lane</span>
+            <span class="decision-card__cta">Seafood picks</span>
           </a>
           <a href="#lane-drinks" class="decision-card decision-card--river">
             <h3>River Walk drinks</h3>
-            <p class="decision-card__copy">Classic cocktail anchors, pub pacing, and rooftop finishers when you want skyline.</p>
-            <span class="decision-card__cta">Drinks lane</span>
+            <p class="decision-card__copy">Classic cocktail rooms, pub pacing, and rooftop finishers when you want skyline.</p>
+            <span class="decision-card__cta">Drinks picks</span>
           </a>
           <a href="resort-food.html" class="decision-card decision-card--plum decision-card--resort-span">
             <h3>Resort-area dinner</h3>
@@ -1856,9 +1890,9 @@
           <aside class="eat-use-lanes-note" role="note" aria-label="How to use these lanes">
             <span class="eat-use-lanes-note__icon" aria-hidden="true">&rarr;</span>
             <div class="eat-use-lanes-note__body">
-              <p class="eat-use-lanes-note__label">How to use these lanes</p>
-              <h3>Pick the situation, then the strongest proof-backed pick.</h3>
-              <p><strong>Willie Approved</strong> is personal confidence when you see it on the card &mdash; not the default label for everything on this page. <strong>Research Pick</strong> and <strong>Reliable Pick</strong> flags cover strong public proof, promising rooms still being validated, or safe visitor lanes. Each row still carries Google pills so mobile scanning stays grounded.</p>
+              <p class="eat-use-lanes-note__label">How to use these picks</p>
+              <h3>Pick the situation, then the strongest pick for that night.</h3>
+              <p><strong>Willie Approved</strong> is personal confidence when you see it on the card. <strong>Strong Pick</strong>, <strong>Reliable Pick</strong>, and <strong>Local Favorite</strong> help you scan fast without guessing. Each card still carries Google ratings so mobile decisions stay grounded.</p>
             </div>
           </aside>
         </div>
@@ -1868,11 +1902,11 @@
     <section class="section eat-top-section" id="top-picks" aria-labelledby="eat-top-title">
       <div class="eat-top-shell">
         <div class="eat-section-head">
-          <p class="eyebrow eyebrow-on-dark">Confidence deck</p>
+          <p class="eyebrow eyebrow-on-dark">Trusted picks</p>
           <h2 class="eat-move-headline" id="eat-top-title">Highest-confidence picks</h2>
-          <p class="section-text">Visitor situation and Google proof lead this deck. Personal Willie picks are labeled inside each card — not assumed as default.</p>
+          <p class="section-text">Visitor situation and Google ratings lead this list. Willie Approved labels mark personal confidence inside each card.</p>
         </div>
-        <p class="eat-co-lead-note"><strong>Confidence deck read:</strong> Start here for the strongest cross-lane picks &mdash; rodizio, steak, downtown Mexican-adjacent, rooftop, and seafood anchors ranked for visitor utility before you open a full lane.</p>
+        <p class="eat-co-lead-note"><strong>Visitor read:</strong> Start here for the strongest cross-category picks &mdash; rodizio, steak, downtown Mexican-adjacent, rooftop, and seafood first stops ranked for visitor utility before you open a full category.</p>
         <div class="eat-top-grid">
           <article class="card orange eat-guide-card eat-top-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
             <div class="eat-rec-card__inner">
@@ -1906,7 +1940,7 @@
                 <span class="eat-chip">Brazilian steakhouse</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> North San Antonio · <strong>Vibe:</strong> abundant rodizio, polished room</p>
-              <p class="eat-rec-desc">The largest proof stack here — massive review volume with a top rating for groups that want abundance and a dependable churrasco rhythm.</p>
+              <p class="eat-rec-desc">The deepest review volume here — massive review count with a top rating for groups that want abundance and a dependable churrasco rhythm.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> group dinners, business crews, steak-heavy nights, celebration tables.</p>
               <p class="eat-rec-extra"><strong>Reservation move:</strong> Book for the full crew size — rodizio pacing needs the right table count.</p>
             </div>
@@ -2033,12 +2067,12 @@
         <div class="eat-choose-strip">
           <p><strong>Visitor read:</strong> Brasão and Chama for rodizio nights, J-Prime or Bohanan&rsquo;s for steak gravity, Domingo for downtown Mexican-adjacent polish, Tenfold for skyline finish, El Bucanero when the table wants ceviche heat.</p>
         </div>
-        <div class="eat-section-jumps" aria-label="Continue to food lanes">
+        <div class="eat-section-jumps" aria-label="Continue to food categories">
           <span>Go deeper</span>
-          <a href="#lane-mexican">Mexican lane</a>
-          <a href="#lane-steak">Steakhouse lane</a>
-          <a href="#lane-brazilian">Brazilian lane</a>
-          <a href="#lane-seafood">Seafood lane</a>
+          <a href="#lane-mexican">Mexican</a>
+          <a href="#lane-steak">Steakhouse</a>
+          <a href="#lane-brazilian">Brazilian</a>
+          <a href="#lane-seafood">Seafood</a>
           <a href="#lane-riverwalk">River Walk classics</a>
           <a href="#lane-pearl">Pearl picks</a>
         </div>
@@ -2048,14 +2082,14 @@
     <section class="section eat-guide-page" aria-label="Where to eat by category">
       <div class="eat-lane" id="lane-mexican">
         <div class="eat-section-head">
-          <p class="eyebrow">Flavor anchor</p>
+          <p class="eyebrow">Flavor</p>
           <h2>Mexican &amp; Tex-Mex</h2>
           <p class="section-text">Ranked for visitor usefulness and Google proof first. Willie Approved picks are clearly labeled so you can see the difference between public confidence and personal local confidence.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/golden_hour_riverside_dining_with_fajitas.png" alt="Mexican and Tex-Mex dining spread in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
-            <h3>Mexican &amp; Tex-Mex anchor</h3>
+            <h3>Mexican &amp; Tex-Mex starting point</h3>
             <p>Highest-review downtown option first, then classic rooms and personal favorites labeled on their own terms.</p>
           </div>
         </article>
@@ -2076,7 +2110,7 @@
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River Walk orbit · <strong>Vibe:</strong> modern South Texas energy</p>
               <p class="eat-rec-desc">Willie Approved — strong Google proof and a downtown / River Walk room Willie recommends when you want polished Mexican-adjacent dining near the river or conventions.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> downtown and River Walk plans, convention guests, visitors anchoring stays in the urban core.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> downtown and River Walk plans, convention guests, visitors staying in the urban core.</p>
             </div>
           </article>
           <article class="card orange eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
@@ -2113,7 +2147,7 @@
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Midtown access · <strong>Vibe:</strong> polished-casual, local favorite</p>
-              <p class="eat-rec-desc">Willie&rsquo;s personal Mexican favorite for ribeye tacos, chispas, and neighborly energy — labeled as a personal pick, not the top Google-proof pick in this lane.</p>
+              <p class="eat-rec-desc">Willie&rsquo;s personal Mexican favorite for ribeye tacos, chispas, and neighborly energy — a Local Favorite when you want Willie&rsquo;s flavor shorthand over raw review volume.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> dinners when you want Willie&rsquo;s flavor shorthand, casual date nights, travelers asking for a named local room.</p>
             </div>
           </article>
@@ -2150,14 +2184,24 @@
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> North · <strong>Vibe:</strong> festive patio tradition</p>
-              <p class="eat-rec-desc">Classic patio energy and traditional San Antonio feel &mdash; a Research Pick when you want garden lights and shareable classics outside the downtown core.</p>
+              <p class="eat-rec-desc">Classic patio energy and traditional San Antonio feel &mdash; Willie&rsquo;s north-side patio pick when you want garden lights and shareable classics outside the downtown core.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> patio-first dinners, visitors chasing garden lights and shareable classics.</p>
             </div>
           </article>
         </div>
         <div class="eat-choose-strip">
-          <p><strong>Local read:</strong> Domingo when you want polished downtown Mexican-adjacent energy on the River Walk orbit, La Fonda and Rosario&rsquo;s for classic San Antonio rooms, Soluna for Willie&rsquo;s personal flavor pick, La Fogata when the night is patio-first outside the core.</p>
+          <p><strong>Visitor read:</strong> Domingo when you want polished downtown Mexican-adjacent energy on the River Walk orbit, La Fonda and Rosario&rsquo;s for classic San Antonio rooms, Soluna for Willie&rsquo;s personal flavor pick, La Fogata when the night is patio-first outside the core.</p>
         </div>
+        <aside class="eat-section-ask" aria-label="Ask about Mexican picks">
+          <div class="eat-section-ask__copy">
+            <strong>Not sure which food move fits tonight?</strong>
+            <p>Ask A Local with your hotel, group size, timing, and food mood.</p>
+          </div>
+          <div class="eat-section-ask__actions">
+            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="#lane-steak" class="btn btn-secondary">Keep browsing picks</a>
+          </div>
+        </aside>
       </div>
 
       <div class="eat-lane" id="lane-steak">
@@ -2169,7 +2213,7 @@
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/cozy_steak_dinner_in_intimate_ambiance.png" alt="Cozy steak dinner in an intimate dining room" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
-            <h3>Steakhouse anchor</h3>
+            <h3>Steakhouse starting point</h3>
             <p>Pick the room to match hosting pressure: north-side proof, downtown gravity, or familiar brand comfort.</p>
           </div>
         </article>
@@ -2235,8 +2279,18 @@
           </article>
         </div>
         <div class="eat-choose-strip">
-          <p><strong>How to choose this lane:</strong> Use this lane when the group wants a familiar steakhouse move. J-Prime leads on rating strength, Bohanan&rsquo;s anchors downtown classic energy, and Ruth&rsquo;s Chris covers the familiar-brand fallback.</p>
+          <p><strong>Visitor read:</strong> For steakhouse nights, choose J-Prime when rating proof matters, Bohanan&rsquo;s when downtown classic energy matters, and Ruth&rsquo;s Chris when the group wants a familiar premium brand.</p>
         </div>
+        <aside class="eat-section-ask" aria-label="Ask about steak picks">
+          <div class="eat-section-ask__copy">
+            <strong>Not sure which food move fits tonight?</strong>
+            <p>Ask A Local with your hotel, group size, timing, and food mood.</p>
+          </div>
+          <div class="eat-section-ask__actions">
+            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="#lane-brazilian" class="btn btn-secondary">Keep browsing picks</a>
+          </div>
+        </aside>
       </div>
 
       <div class="eat-lane eat-lane--duo-lead" id="lane-brazilian">
@@ -2248,7 +2302,7 @@
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/churrascaria_dining_experience_in_action.png" alt="Churrascaria rodizio dining in action" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
-            <h3>Brazilian steakhouse anchor</h3>
+            <h3>Brazilian steakhouse starting point</h3>
             <p>Brasão first on preference with elite proof; Chama Gaúcha when raw review volume is the tie-breaker.</p>
           </div>
         </article>
@@ -2285,7 +2339,7 @@
                 <span class="eat-chip">Brazilian steakhouse</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> North · <strong>Vibe:</strong> celebration, abundance</p>
-              <p class="eat-rec-desc">The largest proof stack in this set — built for groups that want abundance and a polished rodizio room when total reviews matter.</p>
+              <p class="eat-rec-desc">The largest review volume in this set — built for groups that want abundance and a polished rodizio room when total reviews matter.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> group dinners, business crews, steak-heavy nights, celebration tables.</p>
             </div>
           </article>
@@ -2324,7 +2378,7 @@
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/riverside_seafood_dining_at_golden_hour.png" alt="Fresh seafood and ceviche presentation in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
-            <h3>Seafood / ceviche anchor</h3>
+            <h3>Seafood / ceviche starting point</h3>
             <p>Start with the strongest proof pick, then match style: Peruvian finesse or easygoing cantina seafood.</p>
           </div>
         </article>
@@ -2381,7 +2435,7 @@
                 <span class="eat-chip is-price">$10–20</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Neighborhood · <strong>Vibe:</strong> cantina ease</p>
-              <p class="eat-rec-desc">Willie&rsquo;s second-best ceviche pick in this lane &mdash; smaller review count than El Bucanero, still a strong citrus-seafood room when you want cantina pacing without a steakhouse bill.</p>
+              <p class="eat-rec-desc">Willie&rsquo;s second-best ceviche pick here &mdash; smaller review count than El Bucanero, still a strong citrus-seafood room when you want cantina pacing without a steakhouse bill.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> lunch pivots, smaller groups, casual seafood cravings.</p>
             </div>
           </article>
@@ -2400,7 +2454,7 @@
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/brunch_by_the_riverside_terrace.png" alt="Brunch by a riverside terrace in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
-            <h3>Breakfast anchor</h3>
+            <h3>Breakfast starting point</h3>
             <p>Bakery discipline, big plates, or cultural square energy — pick the reset your day needs.</p>
           </div>
         </article>
@@ -2477,7 +2531,7 @@
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/riverside_dining_under_warm_lights.png" alt="River Walk dining under warm lights in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
-            <h3>River Walk classics anchor</h3>
+            <h3>River Walk classics</h3>
             <p>Italian dinner on the strip when you need a predictable table, then skyline drinks, historic River bars, or pub pacing — without leaving the corridor.</p>
           </div>
         </article>
@@ -2543,6 +2597,7 @@
                 <span class="eat-google-pill">Google: 4.5 ★ · 5.6K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">River Walk Classic</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Strong Pick</span></p>
                 </div>
               </div>
               <h3>Paesanos Riverwalk</h3>
@@ -2557,24 +2612,37 @@
           </article>
         </div>
         <div class="eat-choose-strip">
-          <p><strong>Best move here:</strong> Use this lane when the group wants a walkable downtown dinner on the River Walk. Domingo covers polished Mexican-adjacent energy, Paesanos anchors Italian-first corridor tables, Esquire and Tenfold handle drinks depth, and Mad Dogs keeps pub nights easy.</p>
+          <p><strong>Visitor read:</strong> For River Walk classics, choose Paesanos when the table and location both matter. Keep 1Watson as an also-useful skyline option when the view is the reason to go. Esquire and Tenfold handle drinks depth; Mad Dogs keeps pub nights easy.</p>
+        </div>
+        <div class="eat-choose-strip">
+          <p><strong>River Walk Mexican:</strong> For River Walk Mexican, prioritize convenience, walk time, and the kind of night you want. If the table matters more than the postcard, compare the River Walk classics with downtown Mexican picks before committing.</p>
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Also useful</span>
-          <p><strong>1Watson</strong> (Google: 4.1 ★ · 460 reviews) — skyline Research Pick when view curiosity matters more than dinner utility; Paesanos still leads for River Walk dinner routing.</p>
+          <p><strong>1Watson</strong> (Google: 4.1 ★ · 460 reviews) — skyline rooftop when the view matters more than dinner utility; Paesanos still leads for River Walk dinner routing.</p>
         </div>
+        <aside class="eat-section-ask" aria-label="Ask about River Walk picks">
+          <div class="eat-section-ask__copy">
+            <strong>Not sure which food move fits tonight?</strong>
+            <p>Ask A Local with your hotel, group size, timing, and food mood.</p>
+          </div>
+          <div class="eat-section-ask__actions">
+            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="#lane-pearl" class="btn btn-secondary">Keep browsing picks</a>
+          </div>
+        </aside>
       </div>
 
       <div class="eat-lane" id="lane-drinks">
         <div class="eat-section-head">
           <p class="eyebrow">Golden hour</p>
           <h2>Drinks / rooftops / River sequencing</h2>
-          <p class="section-text">Ordered for proof and visitor usefulness: Tenfold leads rating; Esquire carries historic River Walk depth; Mad Dogs is the informal pub lane; 1Watson is a skyline Research Pick when you want a different rooftop profile. Pearl-first lounge energy lives in the Pearl section.</p>
+          <p class="section-text">Ordered for proof and visitor usefulness: Tenfold leads rating; Esquire carries historic River Walk depth; Mad Dogs is the informal pub pick. For skyline views, see 1Watson in Also useful below. Pearl-first lounge energy lives in the Pearl section.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/rooftop_sunset_dining_with_cocktails.png" alt="Rooftop sunset cocktails in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
-            <h3>Drinks anchor</h3>
+            <h3>Drinks starting point</h3>
             <p>Rooftop proof first, then River Walk backbone, pub pacing, and a skyline alternative — sequence, don&rsquo;t sprint.</p>
           </div>
         </article>
@@ -2639,7 +2707,7 @@
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.1 ★ · 460 reviews</span>
                 <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Skyline Research Pick</span>
+                  <span class="eat-proof-pill">Also Useful</span>
                 </div>
               </div>
               <h3>1Watson</h3>
@@ -2647,13 +2715,13 @@
                 <span class="eat-chip">Rooftop restaurant / bar</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River proximity · <strong>Vibe:</strong> modern rooftop lounge</p>
-              <p class="eat-rec-desc">Research Pick skyline lounge &mdash; useful when you want a different rooftop view profile than Tenfold; worth checking current hours before you commit.</p>
+              <p class="eat-rec-desc">Skyline rooftop lounge &mdash; useful when the view is the reason to go more than dinner utility; worth checking current hours before you commit.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> skyline curiosity, pre-dinner drinks, modern lounge people.</p>
             </div>
           </article>
         </div>
         <div class="eat-choose-strip">
-          <p><strong>How to choose this lane:</strong> Sequence the night — Tenfold for proof-backed skyline finish, Esquire for historic cocktail depth, Mad Dogs when the crew wants informal pub pacing, 1Watson as a skyline Research Pick for a different view profile.</p>
+          <p><strong>Visitor read:</strong> Sequence the night — Tenfold for proof-backed skyline finish, Esquire for historic cocktail depth, Mad Dogs when the crew wants informal pub pacing. Use 1Watson when the skyline view is the main reason to go.</p>
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Route note</span>
@@ -2670,7 +2738,7 @@
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/riverside_dining_at_twilight.png" alt="Pearl District evening dining atmosphere" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
-            <h3>Pearl anchor</h3>
+            <h3>Pearl starting point</h3>
             <p>Polished Willie Approved rooms for visitors who already committed to the Pearl corridor.</p>
           </div>
         </article>
@@ -2680,7 +2748,6 @@
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.7 ★ · 948 reviews</span>
                 <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Pearl lounge pick</span>
                   <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
@@ -2690,7 +2757,7 @@
                 <span class="eat-chip">Hotel Emma / Pearl drinks</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Pearl / Hotel Emma corridor · <strong>Vibe:</strong> lounge, craft cocktails</p>
-              <p class="eat-rec-desc">Willie Approved Emma-corner lounge — the Pearl drinks move when dinner is already anchored nearby.</p>
+              <p class="eat-rec-desc">Willie Approved Emma-corner lounge — the Pearl drinks move when dinner is already set nearby.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> Pearl nights, pre- or post-dinner drinks near upscale dining.</p>
               <p class="eat-rec-extra"><strong>Reservation move:</strong> Peak Pearl weekends — plan timing like you mean it.</p>
             </div>
@@ -2700,7 +2767,6 @@
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.6 ★ · 1.5K reviews</span>
                 <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Pearl Top Pick</span>
                   <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
@@ -2719,7 +2785,7 @@
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.5 ★ · 1.8K reviews</span>
                 <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Pearl Reliable Pick</span>
+                  <span class="eat-proof-pill">Reliable Pick</span>
                 </div>
               </div>
               <h3>Supper</h3>
@@ -2755,7 +2821,7 @@
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.5 ★ · 867 reviews</span>
                 <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Pearl Research Pick</span>
+                  <span class="eat-proof-pill">Strong Pick</span>
                 </div>
               </div>
               <h3>Ladino</h3>
@@ -2773,20 +2839,30 @@
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Pearl routing</span>
-          <p>Stack dinner in this lane first, then add Emma-corner drinks at <strong>Sternewirth</strong> when the group still has lounge energy.</p>
+          <p>Stack dinner in this section first, then add Emma-corner drinks at <strong>Sternewirth</strong> when the group still has lounge energy.</p>
         </div>
+        <aside class="eat-section-ask" aria-label="Ask about Pearl picks">
+          <div class="eat-section-ask__copy">
+            <strong>Not sure which food move fits tonight?</strong>
+            <p>Ask A Local with your hotel, group size, timing, and food mood.</p>
+          </div>
+          <div class="eat-section-ask__actions">
+            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="#lane-late-night" class="btn btn-secondary">Keep browsing picks</a>
+          </div>
+        </aside>
       </div>
     </section>
 
     <section class="eat-late-night-band" id="lane-late-night" aria-labelledby="late-night-title">
       <header class="eat-late-night-band__head">
         <p class="eat-late-night-band__eyebrow">After hours</p>
-        <h2 id="late-night-title">Late-night lane</h2>
-        <p class="eat-late-night-band__lead">Late nights need one smart backup, not a wishlist. Anchor the food, keep one drink nearby, and only stack a rooftop if the group still has real energy left.</p>
+        <h2 id="late-night-title">Late-night picks</h2>
+        <p class="eat-late-night-band__lead">Late nights need one smart backup, not a wishlist. Lock in the food first, keep one drink nearby, and only stack a rooftop if the group still has real energy left.</p>
       </header>
       <div class="eat-late-night-band__moves">
         <article class="eat-late-night-move">
-          <span class="eat-late-night-move__label">Food anchor</span>
+          <span class="eat-late-night-move__label">Food first stop</span>
           <h3>Mi Tierra Cafe y Panaderia</h3>
           <p>Market Square institution with cultural weight and late-friendly pacing — the cleanest sit-down reset when the night runs long.</p>
         </article>
@@ -2808,9 +2884,9 @@
 
     <section class="eat-os-band" id="lane-os" aria-labelledby="eat-os-title">
       <header class="eat-os-band__head">
-        <p class="eat-os-band__eyebrow">Concierge system</p>
+        <p class="eat-os-band__eyebrow">How to use this guide</p>
         <h2 id="eat-os-title">How Where To Go SA builds a better food night</h2>
-        <p class="eat-os-band__lead">The goal is not a giant list. The goal is the right first move, a backup lane, and a clean night that fits the group, the zone, and the clock.</p>
+        <p class="eat-os-band__lead">The goal is not a giant list. The goal is the right first move, a backup pick, and a clean night that fits the group, the zone, and the clock.</p>
       </header>
       <ol class="eat-os-steps" aria-label="Five-step food night system">
         <li class="eat-os-step">
@@ -2818,14 +2894,14 @@
             <span class="eat-os-step__num" aria-hidden="true">1</span>
             <h3>Pick the moment</h3>
           </div>
-          <p>First meal, business dinner, date night, family reset, seafood lane, or drinks route.</p>
+          <p>First meal, business dinner, date night, family reset, seafood, or drinks.</p>
         </li>
         <li class="eat-os-step">
           <div class="eat-os-step__head">
             <span class="eat-os-step__num" aria-hidden="true">2</span>
-            <h3>Choose one anchor</h3>
+            <h3>Choose one strong first stop</h3>
           </div>
-          <p>Start with one strong restaurant instead of gambling on three random options.</p>
+          <p>Start with one restaurant or area instead of gambling on three random options.</p>
         </li>
         <li class="eat-os-step">
           <div class="eat-os-step__head">
@@ -2837,22 +2913,22 @@
         <li class="eat-os-step">
           <div class="eat-os-step__head">
             <span class="eat-os-step__num" aria-hidden="true">4</span>
-            <h3>Stack the next move</h3>
+            <h3>Add the next move</h3>
           </div>
-          <p>Add a walk, cocktail, dessert, or rideshare plan only after dinner is anchored.</p>
+          <p>Add a walk, cocktail, dessert, or ride plan only after dinner is clear.</p>
         </li>
         <li class="eat-os-step">
           <div class="eat-os-step__head">
             <span class="eat-os-step__num" aria-hidden="true">5</span>
             <h3>Keep a backup</h3>
           </div>
-          <p>If wait times, weather, or energy shifts, move to the next lane without restarting the night.</p>
+          <p>If wait times, weather, or energy shifts, move to the next good option without restarting the night.</p>
         </li>
       </ol>
       <div class="eat-os-cta" id="food-concierge-ask">
         <div class="eat-os-cta__copy">
           <h3>Need a cleaner dinner route?</h3>
-          <p>Send your hotel, group size, timing, and food mood. We&rsquo;ll send back the right anchor, the next move, and a backup lane &mdash; all in one short reply.</p>
+          <p>Send your hotel, group size, timing, and food mood. We&rsquo;ll send back the right first stop, the next move, and a backup pick &mdash; all in one short reply.</p>
         </div>
         <div class="eat-os-cta__actions">
           <a href="/ask/" class="btn btn-primary">Ask A Local</a>
