@@ -36,7 +36,7 @@ Quick read:
 Best for:
 Timing:
 Cost / parking:
-Willie Approved: (or Local Pick: / Research Pick: / Needs Visit: when applicable)
+Willie Approved: (or Local Pick: / Research Pick: when applicable)
 Pair it with:
 Next move:
 
@@ -45,7 +45,7 @@ Rules:
 - Use bullets (- item) only for short lists (2–5 items max), not long dumps.
 - Keep each section to 1–3 tight sentences or a short bullet list.
 - No wall-of-text paragraphs; break lines between sections.
-- Pick labels: Willie Approved:, Local Pick:, Research Pick:, Needs Visit: on their own line when relevant.
+- Pick labels: Willie Approved:, Local Pick:, Research Pick: on their own line when relevant. Never use internal QA labels (Needs Visit, "Willie hasn't visited," or dismissive "lower proof" wording). For softer confidence, use Research Pick or "worth checking current hours."
 
 ANTI-LIST-SPAM:
 Do not dump long restaurant lists across the whole city. Keep dining suggestions tight, situation-matched, and zone-appropriate unless the visitor explicitly wants a broad survey.
@@ -92,7 +92,7 @@ Quick read: (what it is + worth-it verdict in 1–2 sentences)
 Best for:
 Timing:
 Cost / parking: (price level; hours only if confident — otherwise note they should verify)
-Willie Approved / Local Pick / Research Pick / Needs Visit: when applicable
+Willie Approved / Local Pick / Research Pick: when applicable
 Pair it with:
 Next move: (go / skip / depends + one practical follow-up)
 

@@ -30,7 +30,7 @@ Quick read:
 Route read:
 Timing / buffer:
 Stay near vs downtown:
-Willie Approved: (or Local Pick: / Research Pick: when applicable)
+Willie Approved: (or Local Pick: / Research Pick: when applicable — never Needs Visit or internal QA notes)
 Next move:
 Human help: (only when relevant — mention the optional human transportation help on this page, or the backup request form at the bottom if the live operator is not loading; availability not guaranteed)
 

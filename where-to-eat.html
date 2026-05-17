@@ -733,6 +733,16 @@
       line-height: 1.6;
     }
 
+    .eat-late-night-band .eat-choose-strip--band {
+      margin-top: clamp(16px, 2.4vw, 22px);
+      border-color: rgba(255, 246, 230, 0.22);
+      background: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+    }
+
+    .eat-late-night-band .eat-choose-strip--band p {
+      color: rgba(255, 246, 230, 0.94);
+    }
+
     .eat-utility-strip {
       display: grid;
       grid-template-columns: 1fr;
@@ -1673,7 +1683,7 @@
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Strong Proof Pick</strong></div>
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Willie Approved</strong></div>
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Research Pick</strong></div>
-              <div class="hero-cue"><span aria-hidden="true"></span><strong>Needs Visit</strong></div>
+              <div class="hero-cue"><span aria-hidden="true"></span><strong>Reliable Pick</strong></div>
             </div>
             <div class="hero-cta-row">
               <a class="btn btn-primary" href="#top-picks">Highest-confidence picks</a>
@@ -1848,7 +1858,7 @@
             <div class="eat-use-lanes-note__body">
               <p class="eat-use-lanes-note__label">How to use these lanes</p>
               <h3>Pick the situation, then the strongest proof-backed pick.</h3>
-              <p><strong>Willie Approved</strong> is personal confidence when you see it on the card &mdash; not the default label for everything on this page. <strong>Research Pick</strong>, <strong>Needs Visit</strong>, and <strong>Reliable Pick</strong> flags cover strong public proof, promising-but-unverified rooms, or safe visitor lanes. Each row still carries Google pills so mobile scanning stays grounded.</p>
+              <p><strong>Willie Approved</strong> is personal confidence when you see it on the card &mdash; not the default label for everything on this page. <strong>Research Pick</strong> and <strong>Reliable Pick</strong> flags cover strong public proof, promising rooms still being validated, or safe visitor lanes. Each row still carries Google pills so mobile scanning stays grounded.</p>
             </div>
           </aside>
         </div>
@@ -1862,7 +1872,7 @@
           <h2 class="eat-move-headline" id="eat-top-title">Highest-confidence picks</h2>
           <p class="section-text">Visitor situation and Google proof lead this deck. Personal Willie picks are labeled inside each card — not assumed as default.</p>
         </div>
-        <p class="eat-co-lead-note"><strong>Brazilian lane read:</strong> Brasão leads here as Willie&rsquo;s preferred rodizio with elite public proof. Chama Gaúcha carries the largest review volume on the page. Use the full Brazilian section when you want the full story.</p>
+        <p class="eat-co-lead-note"><strong>Confidence deck read:</strong> Start here for the strongest cross-lane picks &mdash; rodizio, steak, downtown Mexican-adjacent, rooftop, and seafood anchors ranked for visitor utility before you open a full lane.</p>
         <div class="eat-top-grid">
           <article class="card orange eat-guide-card eat-top-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
             <div class="eat-rec-card__inner">
@@ -1870,7 +1880,7 @@
                 <span class="eat-google-pill">Google: 4.9 ★ · 10K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Top-rated</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
               <h3>Brasão Brazilian Steakhouse</h3>
@@ -1880,7 +1890,6 @@
               <p class="eat-guide-meta"><strong>Zone:</strong> Stone Oak corridor · <strong>Vibe:</strong> premium rodizio, high appetite</p>
               <p class="eat-rec-desc">Willie&rsquo;s preferred Brazilian steakhouse with elite rating strength and memorable rodizio pacing — strongest personal confidence in this pairing even though Chama posts the bigger review total.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> hungry groups, resort-area nights, business crews, memorable tables.</p>
-              <p class="eat-rec-extra"><strong>Proof note:</strong> Chama Gaúcha still owns the biggest review volume city-wide when raw headcount is the tie-breaker.</p>
             </div>
           </article>
           <article class="card turq eat-guide-card eat-top-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
@@ -1889,7 +1898,7 @@
                 <span class="eat-google-pill">Google: 4.9 ★ · 15K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Strongest review depth</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
               <h3>Chama Gaúcha Brazilian Steakhouse</h3>
@@ -2017,9 +2026,12 @@
               <p class="eat-guide-meta"><strong>Zone:</strong> North · <strong>Vibe:</strong> seafood-first, citrus heat</p>
               <p class="eat-rec-desc">Willie&rsquo;s strongest ceviche-forward lane here — serious review depth for a seafood night away from steak rotation.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> seafood cravings, shareable tables, travelers tired of steak lists.</p>
-              <p class="eat-rec-extra"><strong>Willie note:</strong> When the meal needs to taste like San Antonio heat, not hotel safe.</p>
+              <p class="eat-rec-extra"><strong>Visitor move:</strong> When the meal needs bright citrus heat and shareable seafood pacing.</p>
             </div>
           </article>
+        </div>
+        <div class="eat-choose-strip">
+          <p><strong>Visitor read:</strong> Brasão and Chama for rodizio nights, J-Prime or Bohanan&rsquo;s for steak gravity, Domingo for downtown Mexican-adjacent polish, Tenfold for skyline finish, El Bucanero when the table wants ceviche heat.</p>
         </div>
         <div class="eat-section-jumps" aria-label="Continue to food lanes">
           <span>Go deeper</span>
@@ -2138,10 +2150,13 @@
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> North · <strong>Vibe:</strong> festive patio tradition</p>
-              <p class="eat-rec-desc">Classic patio energy and traditional San Antonio feel, but lower public-proof ranking than the options above.</p>
+              <p class="eat-rec-desc">Classic patio energy and traditional San Antonio feel &mdash; a Research Pick when you want garden lights and shareable classics outside the downtown core.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> patio-first dinners, visitors chasing garden lights and shareable classics.</p>
             </div>
           </article>
+        </div>
+        <div class="eat-choose-strip">
+          <p><strong>Local read:</strong> Domingo when you want polished downtown Mexican-adjacent energy on the River Walk orbit, La Fonda and Rosario&rsquo;s for classic San Antonio rooms, Soluna for Willie&rsquo;s personal flavor pick, La Fogata when the night is patio-first outside the core.</p>
         </div>
       </div>
 
@@ -2220,7 +2235,7 @@
           </article>
         </div>
         <div class="eat-choose-strip">
-          <p><strong>Rank logic on this page:</strong> proof and visitor fit first — J-Prime leads ratings, Bohanan&rsquo;s anchors downtown classics, Ruth&rsquo;s Chris covers the familiar-brand lane.</p>
+          <p><strong>How to choose this lane:</strong> Use this lane when the group wants a familiar steakhouse move. J-Prime leads on rating strength, Bohanan&rsquo;s anchors downtown classic energy, and Ruth&rsquo;s Chris covers the familiar-brand fallback.</p>
         </div>
       </div>
 
@@ -2244,7 +2259,7 @@
                 <span class="eat-google-pill">Google: 4.9 ★ · 10K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Top-rated</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
               <h3>Brasão Brazilian Steakhouse</h3>
@@ -2254,7 +2269,6 @@
               <p class="eat-guide-meta"><strong>Zone:</strong> Stone Oak · <strong>Vibe:</strong> premium rodizio</p>
               <p class="eat-rec-desc">Willie&rsquo;s preferred Brazilian steakhouse with elite rating strength and the rodizio pacing he trusts — Chama still carries the heavier review totals when raw headcount is the tie-breaker.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> hungry groups, resort nights, memorable tables.</p>
-              <p class="eat-rec-extra"><strong>Proof honesty:</strong> Chama Gaúcha still wins raw headcount when that is the only scoreboard.</p>
             </div>
           </article>
           <article class="card orange eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
@@ -2263,7 +2277,7 @@
                 <span class="eat-google-pill">Google: 4.9 ★ · 15K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Strongest review depth</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">Top-rated</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
               <h3>Chama Gaúcha Brazilian Steakhouse</h3>
@@ -2283,7 +2297,6 @@
                 <span class="eat-google-pill">Google: 4.6 ★ · 9K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Reliable chain pick</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable Pick</span></p>
                 </div>
               </div>
               <h3>Fogo de Chão Brazilian Steakhouse</h3>
@@ -2374,7 +2387,7 @@
           </article>
         </div>
         <div class="eat-choose-strip">
-          <p><strong>Seafood read:</strong> El Bucanero first for proof + Willie&rsquo;s top ceviche move, Leche de Tigre for elevated Peruvian finesse, El Cevichero as the second ceviche-forward pick with lighter spend.</p>
+          <p><strong>Best move here:</strong> El Bucanero first for proof + Willie&rsquo;s top ceviche move, Leche de Tigre for elevated Peruvian finesse, El Cevichero as the second ceviche-forward pick with lighter spend.</p>
         </div>
       </div>
 
@@ -2382,7 +2395,7 @@
         <div class="eat-section-head">
           <p class="eyebrow">Morning</p>
           <h2>Breakfast / morning reset</h2>
-          <p class="section-text">La Panadería leads breakfast proof; Alamo Biscuit pairs strong numbers with a useful River Walk breakfast lane; Mi Tierra stays the cultural classic — huge proof, slightly lower rating, serious late-night utility.</p>
+          <p class="section-text">La Panadería leads breakfast proof; Alamo Biscuit pairs strong numbers with a useful River Walk breakfast lane; Mi Tierra stays the cultural classic with huge proof and serious late-night utility.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/brunch_by_the_riverside_terrace.png" alt="Brunch by a riverside terrace in San Antonio" loading="lazy" decoding="async" />
@@ -2436,7 +2449,7 @@
                 <span class="eat-google-pill">Google: 4.4 ★ · 25K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Cultural classic</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Cultural Classic</span><span class="eat-status-pill is-muted">Late-night Pick</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Late-night Pick</span></p>
                 </div>
               </div>
               <h3>Mi Tierra Cafe y Panaderia</h3>
@@ -2451,7 +2464,7 @@
           </article>
         </div>
         <div class="eat-choose-strip">
-          <p><strong>Morning logic:</strong> La Panadería for bakery discipline and top rating proof, Alamo Biscuit for River Walk breakfast utility, Mi Tierra for cultural square scale and late-night stamina.</p>
+          <p><strong>Best move here:</strong> La Panadería for bakery discipline and top rating proof, Alamo Biscuit for River Walk breakfast utility, Mi Tierra for cultural square scale and late-night stamina.</p>
         </div>
       </div>
 
@@ -2512,7 +2525,6 @@
                 <span class="eat-google-pill">Google: 4.2 ★ · 4.2K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Reliable River Walk pub</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable River Walk Pub</span></p>
                 </div>
               </div>
               <h3>Mad Dogs British Pub River Walk</h3>
@@ -2521,7 +2533,7 @@
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> River Walk · <strong>Vibe:</strong> casual pub, live energy</p>
-              <p class="eat-rec-desc">Useful bar-hop fuel when the night stays informal &mdash; honest pub-and-bite pacing lower on the rating stack than Esquire.</p>
+              <p class="eat-rec-desc">Useful bar-hop fuel when the night stays informal &mdash; steady pub-and-bite pacing for easygoing groups on the corridor.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> bar-hop nights, easygoing groups, beer-and-bite stops.</p>
             </div>
           </article>
@@ -2531,7 +2543,6 @@
                 <span class="eat-google-pill">Google: 4.5 ★ · 5.6K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">River Walk Classic</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable Pick</span></p>
                 </div>
               </div>
               <h3>Paesanos Riverwalk</h3>
@@ -2545,9 +2556,12 @@
             </div>
           </article>
         </div>
+        <div class="eat-choose-strip">
+          <p><strong>Best move here:</strong> Use this lane when the group wants a walkable downtown dinner on the River Walk. Domingo covers polished Mexican-adjacent energy, Paesanos anchors Italian-first corridor tables, Esquire and Tenfold handle drinks depth, and Mad Dogs keeps pub nights easy.</p>
+        </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Also useful</span>
-          <p><strong>1Watson</strong> (Google: 4.1 ★ · 460 reviews) — rooftop / view / novelty when skyline curiosity matters more than dinner utility; ranks below Paesanos for River Walk dinner routing.</p>
+          <p><strong>1Watson</strong> (Google: 4.1 ★ · 460 reviews) — skyline Research Pick when view curiosity matters more than dinner utility; Paesanos still leads for River Walk dinner routing.</p>
         </div>
       </div>
 
@@ -2555,7 +2569,7 @@
         <div class="eat-section-head">
           <p class="eyebrow">Golden hour</p>
           <h2>Drinks / rooftops / River sequencing</h2>
-          <p class="section-text">Ordered for proof and visitor usefulness: Tenfold leads rating; Esquire carries historic River Walk depth; Mad Dogs is the informal pub lane; 1Watson is a lower-proof skyline curiosity. Pearl-first lounge energy lives in the Pearl section.</p>
+          <p class="section-text">Ordered for proof and visitor usefulness: Tenfold leads rating; Esquire carries historic River Walk depth; Mad Dogs is the informal pub lane; 1Watson is a skyline Research Pick when you want a different rooftop profile. Pearl-first lounge energy lives in the Pearl section.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/rooftop_sunset_dining_with_cocktails.png" alt="Rooftop sunset cocktails in San Antonio" loading="lazy" decoding="async" />
@@ -2608,7 +2622,6 @@
                 <span class="eat-google-pill">Google: 4.2 ★ · 4.2K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Reliable River Walk pub</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable River Walk Pub</span></p>
                 </div>
               </div>
               <h3>Mad Dogs British Pub River Walk</h3>
@@ -2617,7 +2630,7 @@
                 <span class="eat-chip is-price">$20–30</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> River Walk · <strong>Vibe:</strong> casual pub, live energy</p>
-              <p class="eat-rec-desc">Useful River Walk bar-hop fuel when the night stays informal — lower rating than Esquire, still strong review count.</p>
+              <p class="eat-rec-desc">Useful River Walk bar-hop fuel when the night stays informal &mdash; casual pub pacing with a strong review count for beer-and-bite stops.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> bar-hop nights, easygoing groups, beer-and-bite stops.</p>
             </div>
           </article>
@@ -2626,8 +2639,7 @@
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.1 ★ · 460 reviews</span>
                 <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Lower proof · view lane</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Rooftop Research Pick</span></p>
+                  <span class="eat-proof-pill">Skyline Research Pick</span>
                 </div>
               </div>
               <h3>1Watson</h3>
@@ -2635,10 +2647,13 @@
                 <span class="eat-chip">Rooftop restaurant / bar</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River proximity · <strong>Vibe:</strong> modern rooftop lounge</p>
-              <p class="eat-rec-desc">Lower total proof — useful when you want a different rooftop view profile than Tenfold, without overselling the numbers.</p>
+              <p class="eat-rec-desc">Research Pick skyline lounge &mdash; useful when you want a different rooftop view profile than Tenfold; worth checking current hours before you commit.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> skyline curiosity, pre-dinner drinks, modern lounge people.</p>
             </div>
           </article>
+        </div>
+        <div class="eat-choose-strip">
+          <p><strong>How to choose this lane:</strong> Sequence the night — Tenfold for proof-backed skyline finish, Esquire for historic cocktail depth, Mad Dogs when the crew wants informal pub pacing, 1Watson as a skyline Research Pick for a different view profile.</p>
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Route note</span>
@@ -2705,7 +2720,6 @@
                 <span class="eat-google-pill">Google: 4.5 ★ · 1.8K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Pearl Reliable Pick</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable Pick</span></p>
                 </div>
               </div>
               <h3>Supper</h3>
@@ -2724,7 +2738,6 @@
                 <span class="eat-google-pill">Google: 4.5 ★ · 4.3K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Strong Pearl proof</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Pearl Proof Pick</span></p>
                 </div>
               </div>
               <h3>Southerleigh Fine Food &amp; Brewery</h3>
@@ -2743,7 +2756,6 @@
                 <span class="eat-google-pill">Google: 4.5 ★ · 867 reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Pearl Research Pick</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
                 </div>
               </div>
               <h3>Ladino</h3>
@@ -2755,6 +2767,9 @@
               <p class="eat-rec-best"><strong>Best for:</strong> lighter luxury pacing, shareable plates, date-night variety.</p>
             </div>
           </article>
+        </div>
+        <div class="eat-choose-strip">
+          <p><strong>Visitor read:</strong> Mon Chou Chou for Willie&rsquo;s top Pearl dining pick, Sternewirth for Emma-corner lounge drinks, Supper and Southerleigh for dependable Pearl dinners, Ladino when you want Mediterranean variety.</p>
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Pearl routing</span>
@@ -2785,6 +2800,9 @@
           <h3>Tenfold Rooftop</h3>
           <p>Top-rated rooftop nightcap when the crew still has energy for one more view before sleep.</p>
         </article>
+      </div>
+      <div class="eat-choose-strip eat-choose-strip--band">
+        <p><strong>Best move here:</strong> Anchor with Mi Tierra for a late sit-down reset, keep Esquire as the one-drink backup on the River Walk, and save Tenfold only if the group still has skyline energy.</p>
       </div>
     </section>
 

@@ -1,0 +1,5 @@
+/the_sa_plug/where-to-eat.html  /where-to-eat.html  301
+
+# Legacy Netlify subdomain → custom domain (deploy previews on *--site.netlify.app are unchanged)
+https://the-sa-plug.netlify.app/*  https://wheretogosa.com/:splat  301!
+http://the-sa-plug.netlify.app/*   https://wheretogosa.com/:splat  301!

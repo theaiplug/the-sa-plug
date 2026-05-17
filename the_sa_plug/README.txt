@@ -11,7 +11,7 @@ FILES:
 - index.html = homepage
 - start-here.html = first-time visitor guide
 - downtown.html = downtown / River Walk / Convention Center guide
-- where-to-eat.html = food recommendation hub
+- ../where-to-eat.html = food recommendation hub (canonical; lives at site root)
 - resort-food.html = resort-area food guide
 - summer-family.html = family guide
 - driver-concierge.html = driver + concierge service page
