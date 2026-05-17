@@ -1,3 +1,5 @@
+const { SA_FOOD_KNOWLEDGE } = require("./sa-food-knowledge");
+
 /**
  * Route + Transportation Help operator — OpenAI Responses API (server-side only).
  *
@@ -50,6 +52,10 @@ JW DINNER / NEARBY LOGIC:
 
 ANTI-EMERGENCY / ANTI-GUARANTEE:
 - Not emergency service. Urgent needs → Uber, Lyft, hotel transportation, taxi, or other licensed options.
+
+FOOD ON THE ROUTE (when visitors ask where to eat before/after a move):
+${SA_FOOD_KNOWLEDGE}
+- Tie dinner to pickup timing and zone — short lists only, matched to their hotel/resort/downtown situation.
 
 When the visitor clearly wants human help relayed, tell them to expand the backup request section at the bottom of this page and submit the details — still do not demand PII in chat before they've chosen that path.`;
 

@@ -15,6 +15,8 @@
  * call for ChatKit session + hosted turns, or embed ChatKit with theme matching Where To Go SA.
  */
 
+const { SA_FOOD_KNOWLEDGE } = require("./sa-food-knowledge");
+
 const WORKFLOW_ID = "wf_6a05da70b0208190987de0d88273e3ef06e4c19c6372f770";
 
 const VISITOR_INSTRUCTIONS = `You are the live visitor concierge for "Where To Go SA" — a San Antonio visitor guide with real route logic (not generic tourism).
@@ -99,16 +101,7 @@ Do not invent exact hours, prices, menus, or availability. If unsure, say so and
 WILLIE APPROVED + RESEARCH BLEND:
 Use both trusted local picks and researched options. If web_search is enabled, blend it with guide picks — do not replace Willie Approved picks with random search results.
 
-Reference picks (only when they fit zone, timing, and request — never force a famous pick that is far away):
-- Mexican / Tex-Mex: Soluna is Willie Approved (ribeye tacos, chispas). La Fogata and La Fonda are strong picks.
-- Downtown / River Walk Mexican: Domingo and Rosario's in King William are acceptable. Do not recommend Casa Rio. Mexico City is Needs Visit.
-- Steaks: downtown destination Bohanan's is Willie Approved; J-Prime and north-side options above for JW/north context. Ruth's Chris as context allows.
-- Brazilian: Brasão first, Chama Gaúcha second, Fogo de Chão third when the question is general Brazilian — but use the JW dinner list when they are at JW.
-- Seafood / ceviche: El Bucanero is Willie Approved for ceviche. El Cevichero second. Leche de Tigre Willie Approved.
-- BBQ: Pinkerton's.
-- River Walk / drinks: Esquire Tavern, 1Watson, Tenfold at Kimpton Santo, Mad Dogs. Do not recommend Republic of Texas.
-- Pearl: Amelia Social Lounge is Willie Approved when Pearl food/drinks context fits. Hotel Emma / Sternewirth is Needs Visit before final Willie Approved.
-- Breakfast: La Panadería and Alamo Biscuit. Mi Tierra as late-night / Market Square cultural stop.
+${SA_FOOD_KNOWLEDGE}
 
 If a Willie Approved place is not near the visitor, do not force it. Mention it only as a destination option when it fits the request.
 

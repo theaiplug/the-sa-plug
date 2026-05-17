@@ -1524,10 +1524,10 @@
 
     .eat-os-step {
       position: relative;
-      padding: clamp(16px, 2vw, 20px);
+      padding: clamp(14px, 2vw, 18px);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       border-radius: var(--radius);
       border: 1px solid rgba(255, 246, 230, 0.14);
       background:
@@ -1538,26 +1538,36 @@
         0 14px 32px rgba(0, 0, 0, 0.28);
     }
 
+    .eat-os-step__head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
     .eat-os-step__num {
+      flex: 0 0 auto;
       display: inline-flex;
-      min-width: 2.4rem;
-      width: 2.4rem;
-      height: 2.4rem;
+      min-width: 2.15rem;
+      width: 2.15rem;
+      height: 2.15rem;
       align-items: center;
       justify-content: center;
-      border-radius: 14px;
+      border-radius: 12px;
       font-weight: 900;
-      font-size: 1.05rem;
+      font-size: 0.98rem;
       color: rgba(11, 29, 58, 0.96);
       background: linear-gradient(135deg, var(--orange, #ff8b1f), var(--gold, #f2b21a));
       box-shadow:
-        0 8px 20px rgba(255, 139, 31, 0.32),
+        0 6px 16px rgba(255, 139, 31, 0.28),
         0 0 0 1px rgba(255, 246, 230, 0.35);
     }
 
     .eat-os-step h3 {
       margin: 0;
-      font-size: clamp(1rem, 0.3vw + 0.94rem, 1.08rem);
+      flex: 1 1 auto;
+      min-width: 0;
+      font-size: clamp(0.98rem, 0.3vw + 0.92rem, 1.06rem);
       font-weight: 800;
       letter-spacing: -0.01em;
       color: #fff8eb;
@@ -1566,9 +1576,16 @@
 
     .eat-os-step p {
       margin: 0;
-      font-size: 0.93rem;
-      line-height: 1.58;
+      padding-left: calc(2.15rem + 10px);
+      font-size: 0.9rem;
+      line-height: 1.55;
       color: rgba(255, 246, 230, 0.88);
+    }
+
+    @media (max-width: 479px) {
+      .eat-os-step p {
+        padding-left: 0;
+      }
     }
 
     .eat-os-cta {
@@ -1911,7 +1928,7 @@
                 <span class="eat-google-pill">Google: 4.8 ★ · 1.5K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Top-rated rooftop</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Skyline Pick</span><span class="eat-status-pill is-muted">Research Pick</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Skyline Pick</span></p>
                 </div>
               </div>
               <h3>Tenfold Rooftop</h3>
@@ -1950,7 +1967,7 @@
                 <span class="eat-google-pill">Google: 4.7 ★ · 9.4K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">River Walk proof pick</span>
-                  <span class="eat-proof-pill">Research Pick</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
               <h3>Domingo Restaurant</h3>
@@ -1959,7 +1976,7 @@
                 <span class="eat-chip is-price">$30–50</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Downtown core · <strong>Vibe:</strong> modern San Antonio energy</p>
-              <p class="eat-rec-desc">Top Google-proof downtown pick for Mexican-adjacent dining when visitors want polish near the river and conventions.</p>
+              <p class="eat-rec-desc">Willie Approved downtown / River Walk Mexican-adjacent pick — strong Google proof plus a room Willie has been to and recommends near the river and conventions.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> downtown stays, first-night dinners, convention crowds, confident walk-off-the-hotel nights.</p>
             </div>
           </article>
@@ -2011,7 +2028,7 @@
           <a href="#lane-brazilian">Brazilian lane</a>
           <a href="#lane-seafood">Seafood lane</a>
           <a href="#lane-riverwalk">River Walk classics</a>
-          <a href="#lane-pearl">Pearl research</a>
+          <a href="#lane-pearl">Pearl picks</a>
         </div>
       </div>
     </section>
@@ -2037,7 +2054,7 @@
                 <span class="eat-google-pill">Google: 4.7 ★ · 9.4K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">River Walk proof pick</span>
-                  <span class="eat-proof-pill">Research Pick</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
               <h3>Domingo Restaurant</h3>
@@ -2046,7 +2063,7 @@
                 <span class="eat-chip is-price">$30–50</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River Walk orbit · <strong>Vibe:</strong> modern South Texas energy</p>
-              <p class="eat-rec-desc">Strongest public-proof Mexican-adjacent downtown pick when you want a polished room near the river, conventions, or a confident first-night city welcome.</p>
+              <p class="eat-rec-desc">Willie Approved — strong Google proof and a downtown / River Walk room Willie recommends when you want polished Mexican-adjacent dining near the river or conventions.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> downtown and River Walk plans, convention guests, visitors anchoring stays in the urban core.</p>
             </div>
           </article>
@@ -2125,10 +2142,6 @@
               <p class="eat-rec-best"><strong>Best for:</strong> patio-first dinners, visitors chasing garden lights and shareable classics.</p>
             </div>
           </article>
-        </div>
-        <div class="eat-also-strip">
-          <span class="eat-also-label">Honest notes</span>
-          <p>We do not list Casa Rio as a food-first pick. For River Walk Mexican logistics without leaving the strip, use the River Walk classics lane and your hotel walk time as the real filter.</p>
         </div>
       </div>
 
@@ -2270,7 +2283,7 @@
                 <span class="eat-google-pill">Google: 4.6 ★ · 9K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Reliable chain pick</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable chain pick</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable Pick</span></p>
                 </div>
               </div>
               <h3>Fogo de Chão Brazilian Steakhouse</h3>
@@ -2404,7 +2417,7 @@
                 <span class="eat-google-pill">Google: 4.7 ★ · 5.1K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">River Walk Breakfast Pick</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill">Willie Approved</span><span class="eat-status-pill is-muted">River Walk Breakfast Pick</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
               <h3>Alamo Biscuit Company &amp; Panaderia River Walk</h3>
@@ -2446,13 +2459,13 @@
         <div class="eat-section-head">
           <p class="eyebrow">Walkable core</p>
           <h2>River Walk / downtown classics</h2>
-          <p class="section-text">Same ranking approach as drinks: strongest proof finishes first — Tenfold for rooftop depth, Esquire for historic River cocktails, Mad Dogs for pub pacing, 1Watson when you want a skyline view with lighter proof. <strong>Domingo Restaurant</strong> leads the Mexican &amp; Tex-Mex lane on Google proof for downtown visitors.</p>
+          <p class="section-text">Corridor picks ranked for visitor utility — <strong>Paesanos Riverwalk</strong> for Italian-first River Walk dinners, Tenfold and Esquire for drinks depth, Mad Dogs for pub pacing. <strong>Domingo</strong> (Willie Approved) covers Mexican-adjacent downtown dining in the Mexican lane.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/riverside_dining_under_warm_lights.png" alt="River Walk dining under warm lights in San Antonio" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
             <h3>River Walk classics anchor</h3>
-            <p>Skyline when you want elevation, River bars when you want history, pub energy when you want easy pace — all without leaving the corridor.</p>
+            <p>Italian dinner on the strip when you need a predictable table, then skyline drinks, historic River bars, or pub pacing — without leaving the corridor.</p>
           </div>
         </article>
         <div class="eat-lane-grid eat-lane-grid--2">
@@ -2462,7 +2475,7 @@
                 <span class="eat-google-pill">Google: 4.8 ★ · 1.5K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Top-rated rooftop</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Skyline Pick</span><span class="eat-status-pill is-muted">Research Pick</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Skyline Pick</span></p>
                 </div>
               </div>
               <h3>Tenfold Rooftop</h3>
@@ -2515,25 +2528,26 @@
           <article class="card gold eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.1 ★ · 460 reviews</span>
+                <span class="eat-google-pill">Google: 4.5 ★ · 5.6K reviews</span>
                 <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Lower proof · view lane</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Rooftop Research Pick</span></p>
+                  <span class="eat-proof-pill">River Walk Classic</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable Pick</span></p>
                 </div>
               </div>
-              <h3>1Watson</h3>
+              <h3>Paesanos Riverwalk</h3>
               <div class="eat-zone-chips">
-                <span class="eat-chip">Rooftop restaurant / bar</span>
+                <span class="eat-chip">Italian</span>
+                <span class="eat-chip is-price">$30–50</span>
               </div>
-              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River proximity · <strong>Vibe:</strong> modern rooftop lounge</p>
-              <p class="eat-rec-desc">Lower Google proof than Tenfold with a skyline view profile some crews prefer — use when novelty matters more than the rating stack.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> skyline curiosity, pre-dinner drinks, modern lounge pacing.</p>
+              <p class="eat-guide-meta"><strong>Zone:</strong> River Walk · <strong>Vibe:</strong> predictable corridor dinner</p>
+              <p class="eat-rec-desc">Italian-first River Walk dinner utility — predictable pasta polish on the corridor when the group wants a sit-down table without leaving the strip.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> visitors who want a dependable Italian dinner near the River Walk, families, convention tables.</p>
             </div>
           </article>
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Also useful</span>
-          <p>Italian-first River Walk dinners: <strong>Paesanos Riverwalk</strong> (Research Pick, Google: 4.5 ★ · 5.6K reviews) when the table wants predictable pasta polish on the corridor.</p>
+          <p><strong>1Watson</strong> (Google: 4.1 ★ · 460 reviews) — rooftop / view / novelty when skyline curiosity matters more than dinner utility; ranks below Paesanos for River Walk dinner routing.</p>
         </div>
       </div>
 
@@ -2557,7 +2571,7 @@
                 <span class="eat-google-pill">Google: 4.8 ★ · 1.5K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Top-rated rooftop</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Skyline Pick</span><span class="eat-status-pill is-muted">Research Pick</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Skyline Pick</span></p>
                 </div>
               </div>
               <h3>Tenfold Rooftop</h3>
@@ -2635,14 +2649,14 @@
       <div class="eat-lane" id="lane-pearl">
         <div class="eat-section-head">
           <p class="eyebrow">Pearl District</p>
-          <h2>Pearl / upscale research</h2>
-          <p class="section-text">Ordered for rating and proof first — Sternewirth stays <strong>Needs Visit</strong> until a fresh pass; Supper and Southerleigh add stronger Pearl dining anchors for Hotel Emma traffic.</p>
+          <h2>Pearl district picks</h2>
+          <p class="section-text">Willie Approved Pearl dining and drinks first — Mon Chou Chou and Sternewirth for Emma traffic, then Supper and Southerleigh for dependable Pearl dinners.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/riverside_dining_at_twilight.png" alt="Pearl District evening dining atmosphere" loading="lazy" decoding="async" />
           <div class="eat-image-card-content">
-            <h3>Pearl research anchor</h3>
-            <p>Polished rooms for visitors who already committed to the Pearl corridor.</p>
+            <h3>Pearl anchor</h3>
+            <p>Polished Willie Approved rooms for visitors who already committed to the Pearl corridor.</p>
           </div>
         </article>
         <div class="eat-lane-grid">
@@ -2651,16 +2665,17 @@
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.7 ★ · 948 reviews</span>
                 <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Pearl lounge proof</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-warn">Needs Visit</span><span class="eat-status-pill is-muted">Research Pick</span></p>
+                  <span class="eat-proof-pill">Pearl lounge pick</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
               <h3>Sternewirth</h3>
               <div class="eat-zone-chips">
                 <span class="eat-chip">Bar</span>
+                <span class="eat-chip">Hotel Emma / Pearl drinks</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Pearl / Hotel Emma corridor · <strong>Vibe:</strong> lounge, craft cocktails</p>
-              <p class="eat-rec-desc">Strong rating on paper for Emma-corner drinks — still tagged Needs Visit here until the room is re-walked for this guide.</p>
+              <p class="eat-rec-desc">Willie Approved Emma-corner lounge — the Pearl drinks move when dinner is already anchored nearby.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> Pearl nights, pre- or post-dinner drinks near upscale dining.</p>
               <p class="eat-rec-extra"><strong>Reservation move:</strong> Peak Pearl weekends — plan timing like you mean it.</p>
             </div>
@@ -2670,8 +2685,8 @@
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.6 ★ · 1.5K reviews</span>
                 <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Pearl Proof Pick</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Research Pick</span><span class="eat-status-pill is-muted">Pearl Proof Pick</span></p>
+                  <span class="eat-proof-pill">Pearl Top Pick</span>
+                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
                 </div>
               </div>
               <h3>Brasserie Mon Chou Chou</h3>
@@ -2680,7 +2695,7 @@
                 <span class="eat-chip is-price">$50–100</span>
               </div>
               <p class="eat-guide-meta"><strong>Zone:</strong> Pearl · <strong>Vibe:</strong> brasserie polish</p>
-              <p class="eat-rec-desc">French brasserie energy with review depth — strong public proof for Pearl refinement without guessing thin-air picks.</p>
+              <p class="eat-rec-desc">Willie Approved top Pearl dining pick — French brasserie polish with serious review depth and a room Willie has been to.</p>
               <p class="eat-rec-best"><strong>Best for:</strong> Pearl date nights, food-forward visitors, upscale group dinners.</p>
             </div>
           </article>
@@ -2690,7 +2705,7 @@
                 <span class="eat-google-pill">Google: 4.5 ★ · 1.8K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Pearl Reliable Pick</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Pearl Reliable Pick</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Reliable Pick</span></p>
                 </div>
               </div>
               <h3>Supper</h3>
@@ -2728,7 +2743,7 @@
                 <span class="eat-google-pill">Google: 4.5 ★ · 867 reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Pearl Research Pick</span>
-                  <p class="eat-card-badge eat-card-badge--split"><span class="eat-status-pill is-muted">Research Pick</span><span class="eat-status-pill is-muted">Pearl Research Pick</span></p>
+                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Research Pick</span></p>
                 </div>
               </div>
               <h3>Ladino</h3>
@@ -2743,7 +2758,7 @@
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Pearl routing</span>
-          <p>Stack dinner in this lane first, then decide if you want Emma-corner drinks — <strong>Sternewirth</strong> is listed above with an honest Needs Visit tag.</p>
+          <p>Stack dinner in this lane first, then add Emma-corner drinks at <strong>Sternewirth</strong> when the group still has lounge energy.</p>
         </div>
       </div>
     </section>
@@ -2781,28 +2796,38 @@
       </header>
       <ol class="eat-os-steps" aria-label="Five-step food night system">
         <li class="eat-os-step">
-          <span class="eat-os-step__num" aria-hidden="true">1</span>
-          <h3>Pick the moment</h3>
+          <div class="eat-os-step__head">
+            <span class="eat-os-step__num" aria-hidden="true">1</span>
+            <h3>Pick the moment</h3>
+          </div>
           <p>First meal, business dinner, date night, family reset, seafood lane, or drinks route.</p>
         </li>
         <li class="eat-os-step">
-          <span class="eat-os-step__num" aria-hidden="true">2</span>
-          <h3>Choose one anchor</h3>
+          <div class="eat-os-step__head">
+            <span class="eat-os-step__num" aria-hidden="true">2</span>
+            <h3>Choose one anchor</h3>
+          </div>
           <p>Start with one strong restaurant instead of gambling on three random options.</p>
         </li>
         <li class="eat-os-step">
-          <span class="eat-os-step__num" aria-hidden="true">3</span>
-          <h3>Match the zone</h3>
+          <div class="eat-os-step__head">
+            <span class="eat-os-step__num" aria-hidden="true">3</span>
+            <h3>Match the zone</h3>
+          </div>
           <p>Downtown, Pearl, River Walk, resort corridor, or North Side &mdash; distance matters.</p>
         </li>
         <li class="eat-os-step">
-          <span class="eat-os-step__num" aria-hidden="true">4</span>
-          <h3>Stack the next move</h3>
+          <div class="eat-os-step__head">
+            <span class="eat-os-step__num" aria-hidden="true">4</span>
+            <h3>Stack the next move</h3>
+          </div>
           <p>Add a walk, cocktail, dessert, or rideshare plan only after dinner is anchored.</p>
         </li>
         <li class="eat-os-step">
-          <span class="eat-os-step__num" aria-hidden="true">5</span>
-          <h3>Keep a backup</h3>
+          <div class="eat-os-step__head">
+            <span class="eat-os-step__num" aria-hidden="true">5</span>
+            <h3>Keep a backup</h3>
+          </div>
           <p>If wait times, weather, or energy shifts, move to the next lane without restarting the night.</p>
         </li>
       </ol>
