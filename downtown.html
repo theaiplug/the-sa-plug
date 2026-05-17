@@ -271,18 +271,17 @@
       isolation: isolate;
     }
 
-    /* Partial top accent cap — curves with card frame (not a full-width divider) */
+    /* Top accent rail — spans the card width and follows both top corners */
     .page-downtown .dt-move-card::before {
       content: "";
       position: absolute;
       z-index: 1;
       top: 0;
       left: 0;
-      right: auto;
-      width: min(104px, 40%);
+      right: 0;
       height: 4px;
       border-top-left-radius: inherit;
-      border-bottom-right-radius: 10px;
+      border-top-right-radius: inherit;
       background: linear-gradient(90deg, #1ec7bc, rgba(255, 141, 57, 0.75));
       opacity: 0.95;
       pointer-events: none;

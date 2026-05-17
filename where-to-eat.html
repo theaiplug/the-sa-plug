@@ -261,23 +261,21 @@
       isolation: isolate;
     }
 
-    /* Partial top accent cap — matches resort/transport card frame (no left timeline rail) */
+    /* Left accent rail — integrated with card radius (food-move decision cards) */
     .decision-card::before {
       content: "";
       position: absolute;
       z-index: 1;
-      top: 0;
+      top: 12px;
+      bottom: 12px;
       left: 0;
-      right: auto;
-      bottom: auto;
-      width: min(104px, 40%);
-      height: 4px;
+      width: 4px;
       border-top-left-radius: inherit;
-      border-bottom-right-radius: 10px;
-      background: linear-gradient(90deg, var(--lane-a, #f2b21a), var(--lane-b, #14b8a6));
+      border-bottom-left-radius: inherit;
+      background: linear-gradient(180deg, var(--lane-a, #f2b21a), var(--lane-b, #14b8a6));
       opacity: 0.95;
       pointer-events: none;
-      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.18);
+      box-shadow: 3px 0 14px rgba(0, 0, 0, 0.18);
     }
 
     .decision-card:hover {
@@ -957,28 +955,43 @@
     .eat-rec-card--premium::before {
       content: "";
       position: absolute;
+      z-index: 1;
       left: 0;
-      right: 0;
-      top: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--turquoise), var(--gold), var(--coral));
+      top: 12px;
+      bottom: 12px;
+      width: 4px;
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+      background: linear-gradient(180deg, var(--turquoise), var(--gold));
       opacity: 0.92;
+      pointer-events: none;
     }
 
     .eat-rec-card--premium.eat-rec--accent-teal::before {
-      background: linear-gradient(90deg, #0d9488, #14b8a6, #5eead4);
+      background: linear-gradient(180deg, #0d9488, #14b8a6, #5eead4);
     }
 
     .eat-rec-card--premium.eat-rec--accent-coral::before {
-      background: linear-gradient(90deg, #f97316, #ff6a4d, #ff8b1f);
+      background: linear-gradient(180deg, #f97316, #ff6a4d, #ff8b1f);
     }
 
     .eat-rec-card--premium.eat-rec--accent-gold::before {
-      background: linear-gradient(90deg, #d97706, #f2b21a, #fcd34d);
+      background: linear-gradient(180deg, #d97706, #f2b21a, #fcd34d);
     }
 
     .eat-rec-card--premium.eat-rec--accent-plum::before {
-      background: linear-gradient(90deg, #6b21a8, #a855f7, #ff5ca8);
+      background: linear-gradient(180deg, #6b21a8, #a855f7, #ff5ca8);
+    }
+
+    /* Premium eat cards use the left rail — not the global color-class top border */
+    .card.eat-rec-card--premium.orange,
+    .card.eat-rec-card--premium.turq,
+    .card.eat-rec-card--premium.gold,
+    .card.eat-rec-card--premium.pink,
+    .card.eat-rec-card--premium.purple,
+    .card.eat-rec-card--premium.green,
+    .card.eat-rec-card--premium.coral {
+      border-top: 1px solid rgba(11, 29, 58, 0.1);
     }
 
     .eat-rec-card--premium .eat-rec-card__inner {

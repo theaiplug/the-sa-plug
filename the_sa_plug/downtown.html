@@ -245,7 +245,7 @@
       flex-direction: column;
       gap: 0.45rem;
       min-height: 0;
-      padding: 1rem 1rem 1rem 1.15rem;
+      padding: 1.05rem 1rem 1rem;
       border-radius: calc(var(--radius) - 4px);
       border: 1px solid rgba(255, 246, 230, 0.12);
       background: rgba(255, 251, 242, 0.06);
@@ -253,38 +253,45 @@
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 16px 40px rgba(2, 6, 14, 0.35);
       scroll-margin-top: calc(var(--header-h, 64px) + 16px);
+      overflow: hidden;
+      isolation: isolate;
     }
 
+    /* Top accent rail — spans the card width and follows both top corners */
     .page-downtown .dt-move-card::before {
       content: "";
       position: absolute;
+      z-index: 1;
+      top: 0;
       left: 0;
-      top: 0.85rem;
-      bottom: 0.85rem;
-      width: 4px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #1ec7bc, #ff8d39);
+      right: 0;
+      height: 4px;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      background: linear-gradient(90deg, #1ec7bc, rgba(255, 141, 57, 0.75));
       opacity: 0.95;
+      pointer-events: none;
+      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.18);
     }
 
     .page-downtown .dt-move-card--coral::before {
-      background: linear-gradient(180deg, #ff6a4d, #f2b21a);
+      background: linear-gradient(90deg, #ff6a4d, rgba(242, 178, 26, 0.65));
     }
 
     .page-downtown .dt-move-card--gold::before {
-      background: linear-gradient(180deg, #f2b21a, #ff8b1f);
+      background: linear-gradient(90deg, #f2b21a, rgba(255, 139, 31, 0.7));
     }
 
     .page-downtown .dt-move-card--turq::before {
-      background: linear-gradient(180deg, #14b8a6, #1ec7bc);
+      background: linear-gradient(90deg, #14b8a6, rgba(30, 199, 188, 0.55));
     }
 
     .page-downtown .dt-move-card--plum::before {
-      background: linear-gradient(180deg, #c084fc, #ff5ca8);
+      background: linear-gradient(90deg, #c084fc, rgba(255, 92, 168, 0.65));
     }
 
     .page-downtown .dt-move-card--sage::before {
-      background: linear-gradient(180deg, #2dd4bf, #059669);
+      background: linear-gradient(90deg, #2dd4bf, rgba(5, 150, 105, 0.65));
     }
 
     .page-downtown .dt-move-dots {
@@ -454,7 +461,14 @@
     }
 
     .page-downtown .dt-move-card--slate::before {
-      background: linear-gradient(180deg, #cbd5f5, #64748b);
+      background: linear-gradient(90deg, #cbd5f5, rgba(100, 116, 139, 0.65));
+    }
+
+    .page-downtown .dt-move-dots,
+    .page-downtown .dt-move-card h3,
+    .page-downtown .dt-move-rows {
+      position: relative;
+      z-index: 2;
     }
 
     .page-downtown .hero-ask-link {
