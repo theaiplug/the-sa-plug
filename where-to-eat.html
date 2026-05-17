@@ -248,7 +248,7 @@
       flex-direction: column;
       gap: 10px;
       min-height: 0;
-      padding: 16px 16px 16px 18px;
+      padding: 16px;
       border-radius: calc(var(--radius) + 2px);
       text-decoration: none;
       border: 1px solid rgba(255, 246, 230, 0.12);
@@ -257,18 +257,27 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
       transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+      overflow: hidden;
+      isolation: isolate;
     }
 
+    /* Partial top accent cap — matches resort/transport card frame (no left timeline rail) */
     .decision-card::before {
       content: "";
       position: absolute;
+      z-index: 1;
+      top: 0;
       left: 0;
-      top: 14px;
-      bottom: 14px;
-      width: 4px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--lane-a, #f2b21a), var(--lane-b, #14b8a6));
+      right: auto;
+      bottom: auto;
+      width: min(104px, 40%);
+      height: 4px;
+      border-top-left-radius: inherit;
+      border-bottom-right-radius: 10px;
+      background: linear-gradient(90deg, var(--lane-a, #f2b21a), var(--lane-b, #14b8a6));
       opacity: 0.95;
+      pointer-events: none;
+      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.18);
     }
 
     .decision-card:hover {
@@ -283,8 +292,9 @@
     }
 
     .decision-card h3 {
-      margin: 0 0 0 8px;
-      padding-left: 4px;
+      position: relative;
+      z-index: 2;
+      margin: 0;
       font-size: 1.06rem;
       font-weight: 800;
       letter-spacing: -0.02em;
@@ -293,8 +303,9 @@
     }
 
     .decision-card__copy {
-      margin: 0 0 0 8px;
-      padding-left: 4px;
+      position: relative;
+      z-index: 2;
+      margin: 0;
       font-size: 0.9rem;
       line-height: 1.58;
       color: rgba(255, 246, 230, 0.82);
@@ -302,9 +313,9 @@
     }
 
     .decision-card__cta {
+      position: relative;
+      z-index: 2;
       align-self: flex-start;
-      margin-left: 8px;
-      padding-left: 4px;
       margin-top: auto;
       display: inline-flex;
       align-items: center;
