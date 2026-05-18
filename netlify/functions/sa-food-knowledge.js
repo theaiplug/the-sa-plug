@@ -41,7 +41,7 @@ DOWNTOWN / RIVER WALK:
 - Pinkerton's Barbecue — Google: 4.4 ★ · 3.5K reviews
 - Mi Tierra (culture / Market Square) — Google: 4.4 ★ · 13.5K reviews
 - Esquire Tavern (Willie Approved drinks) — Google: 4.4 ★ · 4.3K reviews
-- Rooftops: Aleteo (Monarch), Fairmount Rooftop Oyster Bar, The Moon's Daughter (Thompson), Rosario's Rooftop, Tenfold (Kimpton Santo)
+- Rooftops (ranked): Aleteo (Monarch), Fairmount Rooftop Oyster Bar, The Moon's Daughter (Thompson), Rosario's Rooftop — Tenfold / 1Watson as skyline backups only
 
 THE PEARL:
 - Supper — Google: 4.6 ★ · 1.5K reviews
@@ -90,18 +90,18 @@ Willie Approved / strongest confirmed picks (when zone and request fit):
 - Brazilian: Brasão first (Willie Approved top pick), Chama Gaúcha second, Fogo de Chão third — familiar national-brand rodizio below Brasão and Chama in Willie's stack.
 - Seafood / ceviche: El Bucanero first (Willie's top ceviche pick). El Cevichero second. Leche de Tigre Willie Approved.
 - BBQ: Pinkerton's.
-- River Walk: Esquire Tavern (drinks, Willie Approved). Paesanos Riverwalk for Italian-first River Walk dinners (above 1Watson for dinner utility). 1Watson — Also Useful / skyline view option, not above Paesanos for dinner picks.
+- River Walk: Esquire Tavern (drinks, Willie Approved). Paesanos Riverwalk for Italian-first River Walk dinners (above 1Watson for dinner picks). 1Watson — skyline view backup, not above Paesanos for dinner.
 - Pearl: see PEARL_KNOWLEDGE — Supper, Southerleigh, Savor, Sternewirth (Willie Approved drinks), Jazz TX, Brasserie Mon Chou Chou (Willie Approved French). Pearl vs River Walk: Pearl for local-feeling chef rooms and Emma energy; River Walk for iconic water and first-timers.
 - Breakfast: La Panadería, Alamo Biscuit. Mi Tierra — cultural / late-night Market Square stop.
 
 Other strong picks (context-dependent):
 - La Fonda, Rosario's for Mexican rooms.
-- Tenfold Rooftop for proof-backed skyline drinks.
-- Mad Dogs British Pub for informal River Walk pub pacing.
+- Tenfold Rooftop only when Aleteo / Fairmount / Moon's Daughter are not the fit — strong rating but lower priority than researched downtown rooftops.
+- Mad Dogs British Pub for informal River Walk pub nights.
 - Do not recommend Republic of Texas.
 
 River Walk / downtown dinner picks (full downtown dining guide also in DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE):
-- Lead with Domingo for polished modern Mexican downtown, Paesanos for Italian-first River Walk dinners (above 1Watson for dinner utility), Boudro's for iconic River Walk atmosphere, Biga for elevated riverfront fine dining, Bohanan's for luxury steakhouse (downtown destination — not nearby JW).
+- Lead with Domingo for polished modern Mexican downtown, Paesanos for Italian-first River Walk dinners (above 1Watson for dinner picks), Boudro's for iconic River Walk atmosphere, Biga for elevated riverfront fine dining, Bohanan's for luxury steakhouse (downtown destination — not nearby JW).
 - Pinkerton's for downtown Texas barbecue; Mi Tierra for Market Square culture; Schilo's for historic lunch; Casa Rio for classic River Walk photo stop / easy casual River Walk option on the umbrellas — not a top food-first pick; do not present as best Mexican.
 - Rooftops downtown: Aleteo (Monarch/Hemisfair luxury), Moon's Daughter (Thompson upscale), Fairmount Rooftop (oysters/date), Rosario's Rooftop (loud group energy). Chart House = view-first at Tower.
 - After-dinner: Esquire (Willie Approved), Downstairs at Esquire (speakeasy), Bar 414 (blues/classic cocktails at Gunter).
@@ -109,7 +109,7 @@ River Walk / downtown dinner picks (full downtown dining guide also in DOWNTOWN_
 - If a visitor names a famous River Walk spot you do not lead with, stay neutral and offer Domingo, Paesanos, Boudro's, or the picks above that fit their situation.
 
 Downtown / food language for operators:
-- Use starting point, dinner pick, first stop, next move, backup pick, timing, and walk time — not anchor, lane, proof stack, deck, or internal operator jargon.
+- Use starting point, dinner pick, first stop, next move, backup pick, timing, and walk time — not anchor, lane, proof stack, deck, corridor, or internal operator jargon.
 
 RESORT_ZONE_KNOWLEDGE — JW MARRIOTT / TPC / FAR NORTH (separate from La Cantera / The Rim / Six Flags / UTSA northwest and from Hyatt Hill Country / SeaWorld):
 - Property: JW Marriott San Antonio Hill Country Resort & Spa. Also: TPC San Antonio, River Bluff Water Experience, Lantana Spa, TPC Parkway, Stone Oak / North 281 nearby dinner access.
@@ -131,9 +131,10 @@ JW nearby / Stone Oak / North 281 dinner (when leaving the resort bubble — not
 - Eddie V's — polished seafood and steak (Stone Oak)
 - Blu Prime — upscale steak and seafood (Stone Oak)
 - Palenque Grill — polished Mexican, groups (Stone Oak / North 281)
-- Stone Terrace Gastropub — cozy New American, brunch, cocktails (Stone Oak)
-- Smokey Mo's BBQ — quick Texas barbecue (Far North / TPC Parkway)
-- 54th Street Scratch Grill & Bar — eclectic crowd-pleaser, families (Stone Oak)
+- Stone Terrace Gastropub — Google: 4.5 ★ · 180 reviews — cozy New American, brunch, cocktails (Stone Oak)
+- Smokey Mo's BBQ — Google: 4.4 ★ · 1.6K reviews — quick Texas barbecue (Far North / TPC Parkway)
+- 54th Street Scratch Grill & Bar — Google: 4.3 ★ · 1.8K reviews — eclectic crowd-pleaser, families (Stone Oak)
+- Do not leave JW guests feeling stuck with only casual nearby options — lead with J-Prime and Chama for stronger dinner nights when they will drive to Stone Oak
 
 JW stay-nearby vs downtown:
 - Stay on-property or Stone Oak / North 281 when: tired, with kids, after pool/golf/spa, tight timeline, or they want dinner without a long drive.

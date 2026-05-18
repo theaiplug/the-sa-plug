@@ -118,67 +118,67 @@ main {
 }
 
 /* Inner subpages: default sections sit on the global dark canvas — lock readable fiesta-on-dark type */
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) {
   color: var(--on-dark-body-soft);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) :is(h2, h3) {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) :is(h2, h3) {
   color: var(--on-dark-heading);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .section-text {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .section-text {
   color: var(--on-dark-body);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .section-text a {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .section-text a {
   color: var(--turquoise);
   text-decoration: underline;
   text-underline-offset: 0.14em;
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .section-text a:hover {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .section-text a:hover {
   color: var(--gold);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) > .eyebrow,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) > div > .eyebrow:first-child,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) :is(.eat-section-head, .sh-section-head, .tc-section-head) .eyebrow:not(.eyebrow-on-dark) {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) > .eyebrow,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) > div > .eyebrow:first-child,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) :is(.eat-section-head, .sh-section-head, .tc-section-head) .eyebrow:not(.eyebrow-on-dark) {
   color: var(--on-dark-eyebrow);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card h3 {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card h3 {
   color: var(--navy);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card p,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card small {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card p,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card small {
   color: var(--slate);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .required-note {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .required-note {
   color: rgba(255, 246, 230, 0.94);
   background: rgba(255, 106, 77, 0.16);
   border-color: rgba(255, 106, 77, 0.4);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section).split {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section).split {
   align-items: stretch;
 }
 
 @media (min-width: 830px) {
-  main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section).split {
+  main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section).split {
     gap: clamp(24px, 3.2vw, 36px);
   }
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .grid-3,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .grid-4,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .feature-grid {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .grid-3,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .grid-4,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .feature-grid {
   margin-top: clamp(18px, 2.2vw, 24px);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .grid-4-split {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .grid-4-split {
   margin-top: clamp(8px, 1.35vw, 13px);
 }
 

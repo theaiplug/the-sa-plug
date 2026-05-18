@@ -2254,8 +2254,11 @@ body.page-family-summer.family-page main#main-content > .section.fam-detail-stri
 }
 
 body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-detail-head--on-image .fam-route-kicker-label {
-  color: #fef3e9;
-  -webkit-text-fill-color: #fef3e9;
+  color: #9a3412;
+  -webkit-text-fill-color: #9a3412;
+  background: rgba(255, 237, 213, 0.92);
+  padding: 2px 8px;
+  border-radius: 6px;
 }
 
 /* Image overlay type without glass head — force high-contrast light type */
@@ -2269,10 +2272,53 @@ body.page-family-summer.family-page main#main-content > .section.fam-detail-stri
   color: #fef3e9;
 }
 
+/* Recommended stacks — cream cards must stay navy (global on-dark h3 override) */
+body.page-family-summer.family-page main#main-content > .section.fam-stacks-section .fam-stack-card,
+body.page-family-summer.family-page main#main-content > .section.fam-stacks-section article.fam-stack-card {
+  color: #04192e;
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-stacks-section .fam-stack-card :is(h3, p, span, a) {
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-stacks-section .fam-stack-card h3.fam-stack-title {
+  color: #031627;
+  -webkit-text-fill-color: #031627;
+  text-shadow: none;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-stacks-section .fam-stack-card .fam-stack-path,
+body.page-family-summer.family-page main#main-content > .section.fam-stacks-section .fam-stack-card .fam-stack-pill {
+  color: rgba(4, 25, 46, 0.9);
+  -webkit-text-fill-color: rgba(4, 25, 46, 0.9);
+}
+
+/* Pick-your-day image cards — enforce light titles on dark overlays */
+body.page-family-summer.family-page main#main-content > .section.fam-pick-section .fam-day-card .fam-day-card-title,
+body.page-family-summer.family-page main#main-content > .section.fam-pick-section .fam-day-card .fam-day-card-copy,
+body.page-family-summer.family-page main#main-content > .section.fam-pick-section .fam-day-card .fam-day-card-meta {
+  color: #fff8eb;
+  -webkit-text-fill-color: currentColor;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+  opacity: 1;
+}
+
 /* Mobile Safari: tapped card titles stay visible */
 @media (max-width: 480px) {
   body.page-family-summer.family-page main#main-content > .section.fam-quick-match .fam-qm-card:active h3.fam-qm-card-title,
   body.page-family-summer.family-page main#main-content > .section.fam-quick-match .fam-qm-card:focus-within h3.fam-qm-card-title {
+    color: #031627;
+    -webkit-text-fill-color: #031627;
+    opacity: 1;
+  }
+
+  body.page-family-summer.family-page main#main-content > .section.fam-stacks-section .fam-stack-card:active h3.fam-stack-title,
+  body.page-family-summer.family-page main#main-content > .section.fam-stacks-section .fam-stack-card:focus-within h3.fam-stack-title {
     color: #031627;
     -webkit-text-fill-color: #031627;
     opacity: 1;
