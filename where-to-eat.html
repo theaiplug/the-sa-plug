@@ -788,7 +788,7 @@
       color: rgba(255, 246, 230, 0.94);
     }
 
-    .eat-utility-strip {
+    .eat-visitor-strip {
       display: grid;
       grid-template-columns: 1fr;
       gap: 10px;
@@ -796,12 +796,12 @@
     }
 
     @media (min-width: 700px) {
-      .eat-utility-strip {
+      .eat-visitor-strip {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
-    .eat-utility-item {
+    .eat-visitor-strip-item {
       margin: 0;
       padding: 12px 14px;
       border-radius: 12px;
@@ -812,7 +812,7 @@
       line-height: 1.45;
     }
 
-    .eat-utility-item strong {
+    .eat-visitor-strip-item strong {
       color: var(--gold);
     }
 
@@ -1428,7 +1428,7 @@
       line-height: 1.55;
     }
 
-    .eat-food-move-section + .eat-top-section {
+    #eat-resort-food + .eat-top-section {
       padding-top: clamp(28px, 4vw, 42px);
     }
 
@@ -2298,6 +2298,235 @@
         padding: 0.45rem 0.65rem;
       }
     }
+
+    /* District feature blocks (downtown, resort) */
+    .eat-district-feature {
+      max-width: 1120px;
+      margin-inline: auto;
+      padding: clamp(36px, 5vw, 52px) clamp(16px, 4vw, 28px);
+      scroll-margin-top: calc(var(--header-h, 64px) + 12px);
+    }
+
+    .eat-district-feature__shell {
+      padding: clamp(22px, 3vw, 32px);
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid rgba(255, 214, 93, 0.34);
+      background:
+        radial-gradient(90% 55% at 92% 8%, rgba(20, 184, 166, 0.12), transparent 48%),
+        linear-gradient(168deg, #0a1628 0%, #060d18 48%, #050a14 100%);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.32);
+    }
+
+    .eat-district-feature__shell .eat-section-head h2,
+    .eat-district-feature__shell .eat-section-head .section-text,
+    .eat-district-feature__shell .eyebrow {
+      color: rgba(255, 246, 230, 0.92);
+    }
+
+    .eat-district-feature__shell .eyebrow {
+      color: rgba(255, 200, 150, 0.95);
+    }
+
+    .eat-district-feature__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: clamp(16px, 2.4vw, 22px);
+    }
+
+    @media (min-width: 640px) {
+      .eat-district-feature__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 960px) {
+      .eat-district-feature__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .eat-district-spot {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 246, 230, 0.14);
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+    }
+
+    .eat-district-spot h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: #fff8eb;
+    }
+
+    .eat-district-spot p {
+      margin: 8px 0 0;
+      font-size: 0.88rem;
+      line-height: 1.52;
+      color: rgba(255, 246, 230, 0.88);
+    }
+
+    .eat-district-spot--muted {
+      opacity: 0.88;
+      border-style: dashed;
+    }
+
+    .eat-district-feature__cta {
+      margin-top: clamp(18px, 2.6vw, 24px);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .eat-resort-zones {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: clamp(16px, 2.4vw, 22px);
+    }
+
+    @media (min-width: 900px) {
+      .eat-resort-zones {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start;
+      }
+    }
+
+    .eat-resort-zone {
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 246, 230, 0.14);
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+    }
+
+    .eat-resort-zone h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: #fff8eb;
+    }
+
+    .eat-resort-zone-lead {
+      margin: 0 0 12px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.86);
+    }
+
+    .eat-resort-zone-picks {
+      margin: 0 0 12px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .eat-resort-zone-picks li {
+      margin: 0 0 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: rgba(255, 248, 235, 0.92);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 246, 230, 0.1);
+    }
+
+    .eat-resort-feature .eat-area-subhead {
+      color: rgba(180, 230, 220, 0.9);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 12px 0 6px;
+    }
+
+    .eat-district-feature__shell .eat-area-link,
+    .eat-resort-feature .eat-area-link {
+      color: #fff8eb;
+      -webkit-text-fill-color: #fff8eb;
+      font-weight: 800;
+      font-size: 0.82rem;
+      background: rgba(255, 246, 230, 0.1);
+      border: 1px solid rgba(242, 178, 26, 0.55);
+      box-shadow: none;
+    }
+
+    .eat-district-feature__shell .eat-area-link:hover,
+    .eat-resort-feature .eat-area-link:hover {
+      color: #fffdf6;
+      -webkit-text-fill-color: #fffdf6;
+      background: rgba(242, 178, 26, 0.22);
+      border-color: rgba(255, 236, 200, 0.65);
+    }
+
+    .eat-district-feature__shell .btn.btn-secondary,
+    .eat-pearl-feature__shell .btn.btn-secondary {
+      color: #fff8eb;
+      background: rgba(255, 246, 230, 0.1);
+      border-color: rgba(242, 178, 26, 0.55);
+      box-shadow: none;
+    }
+
+    .eat-district-feature__shell .btn.btn-secondary:hover,
+    .eat-pearl-feature__shell .btn.btn-secondary:hover {
+      color: #fffdf6;
+      background: rgba(242, 178, 26, 0.2);
+      border-color: rgba(255, 236, 200, 0.6);
+    }
+
+    .eat-district-spot .eat-status-pill,
+    .eat-pearl-mini .eat-status-pill {
+      color: #061226;
+      background: rgba(255, 236, 200, 0.95);
+      border-color: rgba(242, 178, 26, 0.65);
+    }
+
+    #eat-quick-pick.eat-cat-band {
+      scroll-margin-top: calc(var(--header-h, 64px) + 12px);
+    }
+
+    .eat-final-cta {
+      max-width: 1120px;
+      margin: clamp(40px, 6vw, 60px) auto clamp(48px, 6vw, 72px);
+      padding: 0 clamp(16px, 4vw, 28px);
+    }
+
+    .eat-final-cta__shell {
+      padding: clamp(28px, 4vw, 40px);
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(20, 184, 166, 0.42);
+      background:
+        radial-gradient(800px 360px at 0% 0%, rgba(20, 184, 166, 0.18), transparent 56%),
+        linear-gradient(168deg, #0a1628 0%, #060d18 56%, #050a14 100%);
+      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.36);
+      text-align: center;
+    }
+
+    .eat-final-cta h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.55rem, 3vw, 2rem);
+      color: #fff8eb;
+      letter-spacing: -0.025em;
+    }
+
+    .eat-final-cta__lead {
+      margin: 0 auto clamp(20px, 3vw, 28px);
+      max-width: 52ch;
+      font-size: 1rem;
+      line-height: 1.62;
+      color: rgba(255, 246, 230, 0.9);
+    }
+
+    .eat-final-cta__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    main > .section.eat-resort-feature .eat-resort-zone h3,
+    main > .section.eat-district-feature .eat-district-spot h3 {
+      color: #fff8eb;
+    }
+
   </style>
 </head>
 <body>
@@ -2326,7 +2555,7 @@
           <div class="hero-content secondary-hero-copy">
             <p class="eyebrow eyebrow-on-dark eyebrow-hero">Where To Eat</p>
             <h1 id="eat-hero-heading" class="hero-title">Find the San Antonio food move that fits your night.</h1>
-            <p class="hero-text hero-text-on-dark">River Walk dinners, Pearl nights, resort-area meals, steakhouse splurges, seafood cravings, family backups, breakfast stops, and late-night moves &mdash; organized by where you are and how much effort the meal is worth.</p>
+            <p class="hero-text hero-text-on-dark">River Walk dinners, Pearl nights, resort-area meals, steakhouses, Mexican, seafood, rooftops, late-night stops, and family-friendly backups &mdash; organized by where you are and what kind of night you want.</p>
             <div class="hero-cue-grid" aria-label="Recommendation labels">
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Strong Pick</strong></div>
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Willie Approved</strong></div>
@@ -2334,57 +2563,61 @@
               <div class="hero-cue"><span aria-hidden="true"></span><strong>Reliable Pick</strong></div>
             </div>
             <div class="hero-cta-row">
-              <a class="btn btn-primary" href="#eat-start-area">Find my food move</a>
-              <a href="/ask/" class="btn btn-secondary hero-secondary-btn">Ask A Local</a>
+              <a class="btn btn-primary" href="/ask/">Ask A Local</a>
+              <a href="#eat-quick-pick" class="btn btn-secondary hero-secondary-btn">Browse food picks</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="eat-visitor-lanes" aria-labelledby="eat-visitor-lanes-title">
-      <div class="eat-visitor-lanes-inner">
-        <p class="eyebrow">Where To Eat</p>
-        <h2 id="eat-visitor-lanes-title">Jump by area or appetite</h2>
-        <div class="eat-visitor-chip-row">
-          <a class="eat-visitor-chip" href="#eat-start-area">River Walk</a>
-          <a class="eat-visitor-chip" href="#eat-pearl-feature">The Pearl</a>
-          <a class="eat-visitor-chip" href="#area-la-cantera">Resort areas</a>
-          <a class="eat-visitor-chip" href="#lane-steak">Steakhouses</a>
-          <a class="eat-visitor-chip" href="#lane-seafood">Seafood</a>
-          <a class="eat-visitor-chip" href="#lane-mexican">Mexican</a>
-          <a class="eat-visitor-chip" href="#lane-breakfast">Breakfast</a>
-          <a class="eat-visitor-chip" href="#lane-late-night">Late-night</a>
-        </div>
-      </div>
-    </section>
 
-    <section class="eat-cat-band" aria-labelledby="eat-cat-grid-title">
+    <section class="eat-cat-band" id="eat-quick-pick" aria-labelledby="eat-quick-pick-title">
       <div class="eat-cat-inner">
         <header class="eat-cat-head">
-          <p class="eyebrow eyebrow-on-dark">Food mood</p>
-          <h2 id="eat-cat-grid-title">What are you hungry for?</h2>
-          <p class="section-text">Fewer categories, stronger picks &mdash; tap the craving, then open the curated lane for that night.</p>
+          <p class="eyebrow eyebrow-on-dark">Food mood · Quick pick</p>
+          <h2 id="eat-quick-pick-title">What kind of meal do you need?</h2>
+          <p class="section-text">Tap the night you are planning. We point you to the right area first, then a short list of strong tables &mdash; not a citywide directory.</p>
         </header>
         <div class="route-card-grid route-card-grid--dense" role="list">
-          <a href="#lane-bbq" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/smoke_and_savor_a_barbecue_feast.png" alt="Texas barbecue spread" width="640" height="400" decoding="async" loading="lazy" />
+          <a href="#lane-steak" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/elegant_steakhouse_feast_in_candlelight.png" alt="Upscale steakhouse business dinner" width="640" height="400" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
-              <span class="eyebrow">Texas</span>
-              <h3>Barbecue / casual</h3>
-              <p>Pinkerton&rsquo;s downtown, Rudy&rsquo;s west-side, Smokey Mo&rsquo;s north &mdash; without over-listing BBQ.</p>
-              <span class="image-route-card__cta">Barbecue picks</span>
+              <span class="eyebrow">Hosting</span>
+              <h3>Business dinner</h3>
+              <p>Client meals, convention travelers, and polished reservations downtown or north-side.</p>
+              <span class="image-route-card__cta">Steakhouse picks</span>
             </span>
           </a>
-          <a href="#lane-italian" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/riverside_dining_under_warm_lights.png" alt="Italian dinner on the River Walk" width="640" height="400" decoding="async" loading="lazy" />
+          <a href="#eat-downtown-feature" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/riverside_dining_under_warm_lights.png" alt="River Walk dining under warm lights" width="640" height="400" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
-              <span class="eyebrow">Comfort</span>
-              <h3>Italian / pizza</h3>
-              <p>Paesanos on the River Walk, Via 313 west-side, Roca &amp; Martillo at La Cantera.</p>
-              <span class="image-route-card__cta">Italian picks</span>
+              <span class="eyebrow">River Walk</span>
+              <h3>River Walk classic</h3>
+              <p>Scenery, walkability, and a confident downtown dinner without treating every tourist name like a top pick.</p>
+              <span class="image-route-card__cta">Downtown &amp; River Walk</span>
+            </span>
+          </a>
+          <a href="#eat-pearl-feature" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/SA_PLUG_DOWNTOWN_PEARL.png" alt="The Pearl district dining and stroll" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">The Pearl</span>
+              <h3>Pearl night</h3>
+              <p>Polished food, cocktails, live music, and a less touristy feel than the busiest River Walk stretch.</p>
+              <span class="image-route-card__cta">Pearl district</span>
+            </span>
+          </a>
+          <a href="#eat-resort-food" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/sunset_dining_at_a_luxury_resort.png" alt="Resort-area sunset dining" width="640" height="400" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Resort</span>
+              <h3>Resort-area dinner</h3>
+              <p>JW, Hyatt, La Cantera, and airport timing &mdash; match dinner to where you are staying first.</p>
+              <span class="image-route-card__cta">Resort food by zone</span>
             </span>
           </a>
           <a href="#lane-mexican" class="image-route-card" role="listitem">
@@ -2392,19 +2625,19 @@
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
               <span class="eyebrow">Flavor</span>
-              <h3>Mexican</h3>
-              <p>Polished Tex-Mex and upscale San Antonio flavor.</p>
+              <h3>Mexican / SA flavor</h3>
+              <p>Local culture, patio energy, and strong flavor beyond generic tourist picks.</p>
               <span class="image-route-card__cta">Mexican picks</span>
             </span>
           </a>
           <a href="#lane-steak" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/elegant_steakhouse_feast_in_candlelight.png" alt="Upscale steakhouse evening" width="640" height="400" decoding="async" loading="lazy" />
+            <img class="image-route-card__media" src="assets/churrascaria_dining_experience_in_action.png" alt="Celebration steakhouse and rodizio dinner" width="640" height="400" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
               <span class="eyebrow">Splurge</span>
-              <h3>Steakhouse</h3>
-              <p>Client dinners, celebrations, and north-side polish.</p>
-              <span class="image-route-card__cta">Steakhouse picks</span>
+              <h3>Steakhouse / celebration</h3>
+              <p>Anniversaries, executive hosting, and nights when the restaurant is the memory.</p>
+              <span class="image-route-card__cta">Celebration dinners</span>
             </span>
           </a>
           <a href="#lane-seafood" class="image-route-card" role="listitem">
@@ -2413,7 +2646,7 @@
             <span class="image-route-card__body">
               <span class="eyebrow">Coastal</span>
               <h3>Seafood / ceviche</h3>
-              <p>Citrus-forward seafood when the table wants spice.</p>
+              <p>Citrus-forward seafood and Willie Approved share plates when the table wants spice.</p>
               <span class="image-route-card__cta">Seafood picks</span>
             </span>
           </a>
@@ -2422,210 +2655,38 @@
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
               <span class="eyebrow">Skyline</span>
-              <h3>Rooftop / drinks</h3>
-              <p>Classic cocktail rooms, modern lounges, rooftop finishes.</p>
-              <span class="image-route-card__cta">Drinks picks</span>
-            </span>
-          </a>
-          <a href="#lane-breakfast" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/cozy_breakfast_spread_in_natural_light.png" alt="Breakfast spread in natural light" width="640" height="400" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Morning</span>
-              <h3>Breakfast</h3>
-              <p>Bakery rhythm, hearty plates, and Market Square favorites.</p>
-              <span class="image-route-card__cta">Breakfast picks</span>
-            </span>
-          </a>
-          <a href="#lane-late-night" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/intimate_dining_with_vibrant_cocktails.png" alt="Upscale cocktails and late-night dining energy" width="640" height="400" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">After hours</span>
-              <h3>Late-night</h3>
-              <p>Bar-hop energy, nightcaps, and safe pivots downtown.</p>
-              <span class="image-route-card__cta">Late-night picks</span>
+              <h3>Late night / drinks</h3>
+              <p>After events, rooftop bars, cocktails, and nightcaps when dinner is already handled.</p>
+              <span class="image-route-card__cta">Rooftops &amp; drinks</span>
             </span>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="section eat-area-section" id="eat-start-area" aria-labelledby="eat-area-title">
-      <header class="eat-section-head">
-        <p class="eyebrow">Start with your area</p>
-        <h2 id="eat-area-title">Where are you starting tonight?</h2>
-        <p class="section-text">Match the meal to your hotel, resort, or downtown plan first &mdash; then pick one strong table instead of scrolling the whole city.</p>
-      </header>
-      <div class="eat-area-grid">
-        <article class="eat-area-card" id="area-downtown">
-          <header class="eat-area-card-head">
-            <span class="eat-area-tag">Walkable core</span>
-            <h3>Downtown / River Walk</h3>
-          </header>
-          <p>Walkable dinner, drinks, rooftops, classic San Antonio energy, and convention-friendly choices.</p>
-          <ul class="eat-area-picks">
-            <li><strong>Bohanan&rsquo;s</strong> <span class="eat-area-rating">Google: 4.7 ★ · 3.1K reviews</span></li>
-            <li><strong>Biga on the Banks</strong> <span class="eat-area-rating">Google: 4.7 ★ · 1.9K reviews</span></li>
-            <li><strong>Paesanos Riverwalk</strong> <span class="eat-area-rating">Google: 4.4 ★ · 2.8K reviews</span></li>
-            <li><strong>Domingo</strong> <span class="eat-area-rating">Google: 4.4 ★ · 2.1K reviews</span></li>
-            <li><strong>Boudro&rsquo;s</strong> <span class="eat-area-rating">Google: 4.5 ★ · 8.2K reviews</span></li>
-            <li><strong>Pinkerton&rsquo;s Barbecue</strong> <span class="eat-area-rating">Google: 4.4 ★ · 3.5K reviews</span></li>
-            <li><strong>Mi Tierra</strong> <span class="eat-area-rating">Google: 4.4 ★ · 13.5K reviews</span></li>
-            <li><strong>Esquire Tavern</strong> <span class="eat-area-rating">Google: 4.4 ★ · 4.3K reviews</span></li>
-          </ul>
-          <a class="eat-area-link" href="#lane-downtown-dining">Full downtown picks</a>
-        </article>
-        <article class="eat-area-card" id="area-pearl">
-          <header class="eat-area-card-head">
-            <span class="eat-area-tag">Food district</span>
-            <h3>The Pearl</h3>
-          </header>
-          <p>The best &ldquo;one district&rdquo; food night north of downtown &mdash; walkable, polished, local, and strong for couples, business travelers, and food-focused visitors.</p>
-          <ul class="eat-area-picks">
-            <li><strong>Supper</strong> <span class="eat-area-rating">Google: 4.6 ★ · 1.5K reviews</span></li>
-            <li><strong>Southerleigh</strong> <span class="eat-area-rating">Google: 4.5 ★ · 4.2K reviews</span></li>
-            <li><strong>Sternewirth</strong> <span class="eat-area-rating">Google: 4.8 ★ · 1.6K reviews</span></li>
-            <li><strong>Jazz, TX</strong> <span class="eat-area-rating">Google: 4.8 ★ · 1.1K reviews</span></li>
-            <li><strong>Pullman Market</strong> <span class="eat-area-rating">Google: 4.5 ★ · 650 reviews</span></li>
-            <li><strong>Boiler House</strong> <span class="eat-area-rating">Google: 4.3 ★ · 2.4K reviews</span></li>
-            <li><strong>Savor</strong> <span class="eat-area-rating">Google: 4.5 ★ · 350 reviews</span></li>
-            <li><strong>Blue Box Bar</strong> <span class="eat-area-rating">Google: 4.4 ★ · 550 reviews</span></li>
-          </ul>
-          <a class="eat-area-link" href="#eat-pearl-feature">Build a Pearl night</a>
-        </article>
-        <article class="eat-area-card" id="area-la-cantera">
-          <header class="eat-area-card-head">
-            <span class="eat-area-tag">Resort north</span>
-            <h3>La Cantera / The Rim</h3>
-          </header>
-          <p>Best for resort guests, Six Flags families, shopping nights, polished steakhouse dinners, and north-side visitors who do not want downtown traffic.</p>
-          <ul class="eat-area-picks">
-            <li><strong>Signature Restaurant</strong> <span class="eat-area-rating">Google: 4.7 ★ · 720 reviews</span></li>
-            <li><strong>Haywire</strong> <span class="eat-area-rating">Google: 4.6 ★ · 1.2K reviews</span></li>
-            <li><strong>Perry&rsquo;s Steakhouse &amp; Grille</strong> <span class="eat-area-rating">Google: 4.7 ★ · 1.8K reviews</span></li>
-            <li><strong>Palenque Grill La Cantera</strong> <span class="eat-area-rating">Google: 4.5 ★ · 2.1K reviews</span></li>
-            <li><strong>Whiskey Cake</strong> <span class="eat-area-rating">Google: 4.5 ★ · 4.8K reviews</span></li>
-            <li><strong>Roca &amp; Martillo</strong> <span class="eat-area-rating">Google: 4.5 ★ · 300 reviews</span></li>
-            <li><strong>Yard House</strong> <span class="eat-area-rating">Google: 4.4 ★ · 3.2K reviews</span></li>
-            <li><strong>Grimaldi&rsquo;s</strong> <span class="eat-area-rating">Google: 4.4 ★ · 1.5K reviews</span></li>
-          </ul>
-          <a class="eat-area-link" href="resort-food.html#rf-zone-rim">La Cantera resort guide</a>
-        </article>
-        <article class="eat-area-card" id="area-jw">
-          <h3>JW Marriott / TPC / Far North</h3>
-          <p>Start on-property when the group is tired. Go toward Stone Oak when guests want to escape the resort bubble without going downtown.</p>
-          <p class="eat-area-subhead">On-property</p>
-          <ul class="eat-area-picks">
-            <li><strong>18 Oaks</strong> <span class="eat-area-rating">Google: 4.6 ★ · 920 reviews</span></li>
-            <li><strong>Cibolo Moon</strong> <span class="eat-area-rating">Google: 4.4 ★ · 1.4K reviews</span></li>
-            <li><strong>High Velocity</strong> <span class="eat-area-rating">Google: 4.3 ★ · 780 reviews</span></li>
-            <li><strong>Crooked Branch</strong> <span class="eat-area-rating">Google: 4.5 ★ · 120 reviews</span></li>
-          </ul>
-          <p class="eat-area-subhead">Short rideshare upgrade / Stone Oak</p>
-          <ul class="eat-area-picks">
-            <li><strong>J-Prime</strong> <span class="eat-area-rating">Willie Approved</span></li>
-            <li><strong>Chama Ga&uacute;cha</strong> <span class="eat-area-rating">Willie Approved</span></li>
-            <li><strong>Bras&atilde;o</strong> <span class="eat-area-rating">La Cantera area</span></li>
-            <li><strong>Stone Terrace Gastropub</strong> <span class="eat-area-rating">Google: 4.5 ★ · 180 reviews</span></li>
-            <li><strong>Smokey Mo&rsquo;s BBQ</strong> <span class="eat-area-rating">Google: 4.4 ★ · 1.6K reviews</span></li>
-            <li><strong>54th Street Scratch Grill &amp; Bar</strong> <span class="eat-area-rating">Google: 4.3 ★ · 1.8K reviews</span></li>
-          </ul>
-          <p class="section-text" style="margin-top:10px;font-size:0.92rem;">Stronger Stone Oak dinners: J-Prime, Chama Ga&uacute;cha &mdash; not only the three casual nearby options.</p>
-          <a class="eat-area-link" href="resort-food.html#rf-zone-jw">JW / TPC resort guide</a>
-        </article>
-        <article class="eat-area-card" id="area-hyatt">
-          <header class="eat-area-card-head">
-            <span class="eat-area-tag">Hill Country west</span>
-            <h3>Hyatt Hill Country / SeaWorld Side</h3>
-          </header>
-          <p>Best for families, SeaWorld days, pool fatigue, and west-side resort guests who need easy food without a downtown run.</p>
-          <p class="eat-area-subhead">On-property</p>
-          <ul class="eat-area-picks">
-            <li><strong>Antlers Lodge</strong> <span class="eat-area-rating">Google: 4.5 ★ · 450 reviews</span></li>
-            <li><strong>Springhouse Caf&eacute;</strong> <span class="eat-area-rating">Google: 4.2 ★ · 600 reviews</span></li>
-            <li><strong>Woodbine Bar</strong> <span class="eat-area-rating">Google: 4.7 ★ · 120 reviews</span></li>
-            <li><strong>Charlie&rsquo;s Long Bar</strong> <span class="eat-area-rating">Google: 4.4 ★ · 220 reviews</span></li>
-          </ul>
-          <p class="eat-area-subhead">Nearby</p>
-          <ul class="eat-area-picks">
-            <li><strong>Via 313 Pizza</strong> <span class="eat-area-rating">Google: 4.6 ★ · 1.2K reviews</span></li>
-            <li><strong>Rudy&rsquo;s Country Store and Bar-B-Q</strong> <span class="eat-area-rating">Google: 4.6 ★ · 4.8K reviews</span></li>
-            <li><strong>Pericos Mexican Restaurant</strong> <span class="eat-area-rating">Google: 4.4 ★ · 3.1K reviews</span></li>
-          </ul>
-          <a class="eat-area-link" href="resort-food.html#rf-zone-hyatt">Hyatt Hill Country guide</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section eat-situation-section" id="eat-situations" aria-labelledby="eat-situations-title">
-      <header class="eat-section-head">
-        <p class="eyebrow">Your situation</p>
-        <h2 id="eat-situations-title">Match the night to your crew</h2>
-        <p class="section-text">Decision cards when you already know the hotel or mood &mdash; one best move, not a repeated restaurant list.</p>
-      </header>
-      <div class="eat-situation-grid">
-        <article class="eat-situation-card">
-          <header class="eat-situation-card-head">
-            <span class="eat-situation-tag">Convention</span>
-            <h3>I&rsquo;m downtown for a convention</h3>
-          </header>
-          <p class="eat-situation-moves"><strong>Best move</strong> Paesanos, Domingo, Boudro&rsquo;s, Bohanan&rsquo;s, Esquire, Pinkerton&rsquo;s.</p>
-          <p>Stay walkable. Pick one dinner, one drink stop, and one clean ride-home point.</p>
-        </article>
-        <article class="eat-situation-card">
-          <header class="eat-situation-card-head">
-            <span class="eat-situation-tag">JW Marriott</span>
-            <h3>I&rsquo;m staying at JW Marriott</h3>
-          </header>
-          <p class="eat-situation-moves"><strong>Best move</strong> Stay on property for 18 Oaks, Cibolo Moon, High Velocity. Go Stone Oak for J-Prime, Chama Ga&uacute;cha, Stone Terrace, Smokey Mo&rsquo;s.</p>
-          <p>If the group is tired, stay close. If they want a stronger dinner, make the short Stone Oak upgrade.</p>
-        </article>
-        <article class="eat-situation-card">
-          <header class="eat-situation-card-head">
-            <span class="eat-situation-tag">La Cantera</span>
-            <h3>I&rsquo;m staying near La Cantera</h3>
-          </header>
-          <p class="eat-situation-moves"><strong>Best move</strong> Signature, Haywire, Perry&rsquo;s, Palenque Grill, Whiskey Cake, Roca &amp; Martillo.</p>
-          <p>This area can carry a whole night without downtown traffic.</p>
-        </article>
-        <article class="eat-situation-card">
-          <header class="eat-situation-card-head">
-            <span class="eat-situation-tag">Hyatt Hill Country</span>
-            <h3>I&rsquo;m staying at Hyatt Hill Country</h3>
-          </header>
-          <p class="eat-situation-moves"><strong>Best move</strong> Antlers Lodge, Springhouse Caf&eacute;, Woodbine Bar, Via 313, Rudy&rsquo;s, Pericos.</p>
-          <p>Great for families and SeaWorld days. Keep it easy unless downtown is the actual goal.</p>
-        </article>
-        <article class="eat-situation-card">
-          <header class="eat-situation-card-head">
-            <span class="eat-situation-tag">Pearl night</span>
-            <h3>I want the Pearl</h3>
-          </header>
-          <p class="eat-situation-moves"><strong>Best move</strong> Supper, Southerleigh, Pullman Market, Sternewirth, Jazz TX, Boiler House.</p>
-          <p>The Pearl deserves its own lane. Use it when visitors want local food, polished drinks, and an easy walkable district.</p>
-        </article>
-        <article class="eat-situation-card">
-          <header class="eat-situation-card-head">
-            <span class="eat-situation-tag">Signature dinner</span>
-            <h3>I want one big San Antonio dinner</h3>
-          </header>
-          <p class="eat-situation-moves"><strong>Best move</strong> Bohanan&rsquo;s, Soluna, Biga, Signature, J-Prime, Bras&atilde;o, Supper, Boudro&rsquo;s.</p>
-          <p>Drive farther only when the restaurant is the memory.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section eat-best-overall" id="eat-best-overall" aria-labelledby="eat-best-overall-title">
-      <header class="eat-section-head">
-        <p class="eyebrow">Start here</p>
-        <h2 id="eat-best-overall-title">Best overall dinner moves</h2>
-        <p class="section-text">One strong table when you do not want to build a list &mdash; Willie picks and top-rated rooms first.</p>
-      </header>
-      <div class="eat-choose-strip">
-        <p><strong>Willie Approved / strongest:</strong> Soluna (Mexican), Bohanan&rsquo;s (steak), Brasão (rodizio), El Bucanero (ceviche), Domingo (downtown Mexican-adjacent), Esquire (drinks).</p>
-        <p><strong>Also lead with:</strong> Supper &amp; Sternewirth (Pearl), J-Prime (Stone Oak), Signature &amp; Perry&rsquo;s (La Cantera), Paesanos &amp; Boudro&rsquo;s (River Walk).</p>
-        <p><strong>Skyline / drinks:</strong> Aleteo, Fairmount, Moon&rsquo;s Daughter, Rosario&rsquo;s Rooftop &mdash; full cards in <a href="#lane-downtown-dining">Downtown dining</a>.</p>
+    <section class="eat-district-feature eat-downtown-feature" id="eat-downtown-feature" aria-labelledby="eat-downtown-feature-title">
+      <div class="eat-district-feature__shell">
+        <header class="eat-section-head">
+          <p class="eyebrow">Downtown + River Walk</p>
+          <h2 id="eat-downtown-feature-title">Curated downtown &amp; River Walk food</h2>
+          <p class="section-text">Walkable convention nights, iconic river scenery, and Willie Approved polish &mdash; without treating every tourist name like a top food pick.</p>
+        </header>
+        <div class="eat-district-feature__grid">
+          <article class="eat-district-spot"><h3>Bohanan&rsquo;s Prime Steaks and Seafood</h3><span class="eat-google-pill">Google: 4.7 ★ · 3.1K reviews</span><p><span class="eat-status-pill">Willie Approved</span> Premium steakhouse / business dinner downtown.</p></article>
+          <article class="eat-district-spot"><h3>Biga on the Banks</h3><span class="eat-google-pill">Google: 4.7 ★ · 1.9K reviews</span><p>Upscale river dinner / foodie pick.</p></article>
+          <article class="eat-district-spot"><h3>Paesanos Riverwalk</h3><span class="eat-google-pill">Google: 4.4 ★ · 2.8K reviews</span><p>Italian / River Walk / convention-friendly.</p></article>
+          <article class="eat-district-spot"><h3>Boudro&rsquo;s on the Riverwalk</h3><span class="eat-google-pill">Google: 4.5 ★ · 8.2K reviews</span><p>Iconic River Walk / tableside guacamole / seafood.</p></article>
+          <article class="eat-district-spot"><h3>Domingo</h3><span class="eat-google-pill">Google: 4.4 ★ · 2.1K reviews</span><p><span class="eat-status-pill">Willie Approved</span> Modern Mexican / brunch / stylish River Walk patio.</p></article>
+          <article class="eat-district-spot"><h3>Pinkerton&rsquo;s Barbecue</h3><span class="eat-google-pill">Google: 4.4 ★ · 3.5K reviews</span><p>Downtown Texas barbecue.</p></article>
+          <article class="eat-district-spot"><h3>Mi Tierra</h3><span class="eat-google-pill">Google: 4.4 ★ · 13.5K reviews</span><p>Market Square / culture / late-night.</p></article>
+          <article class="eat-district-spot"><h3>Schilo&rsquo;s</h3><span class="eat-google-pill">Google: 4.5 ★ · 4.2K reviews</span><p>Historic casual lunch.</p></article>
+          <article class="eat-district-spot"><h3>Esquire Tavern</h3><span class="eat-google-pill">Google: 4.4 ★ · 4.3K reviews</span><p><span class="eat-status-pill">Willie Approved</span> Historic bar / gastropub.</p></article>
+          <article class="eat-district-spot eat-district-spot--muted"><h3>Casa Rio</h3><span class="eat-google-pill">Google: 4.1 ★ · 4.8K reviews</span><p>Classic River Walk photo / history stop &mdash; not a top food-first pick.</p></article>
+        </div>
+        <div class="eat-district-feature__cta">
+          <a href="#lane-downtown-dining" class="btn btn-primary">Full downtown + rooftop picks</a>
+          <a href="downtown.html#dt-dining-nightlife" class="btn btn-secondary">Downtown night-out guide</a>
+        </div>
       </div>
     </section>
 
@@ -2633,8 +2694,8 @@
       <div class="eat-pearl-feature__shell">
         <header class="eat-section-head">
           <p class="eyebrow">The Pearl</p>
-          <h2 id="eat-pearl-feature-title">A polished food-and-stroll district just north of downtown.</h2>
-          <p class="section-text">Ideal when visitors want a premium evening without the full River Walk crowd &mdash; Hotel Emma, chef-driven rooms, markets, live music, and the Museum Reach stretch of the River Walk.</p>
+          <h2 id="eat-pearl-feature-title">The Pearl is the polished food-and-stroll move just north of downtown.</h2>
+          <p class="section-text">Strong restaurants, Hotel Emma energy, cocktails, live music, and a less touristy feel than the busiest River Walk stretch.</p>
         </header>
         <div class="eat-pearl-feature__grid">
           <article class="eat-pearl-mini">
@@ -2673,11 +2734,6 @@
             <p><strong>Best for:</strong> live music, date night, underground lounge energy.</p>
           </article>
           <article class="eat-pearl-mini">
-            <h3>Pearl Farmers Market</h3>
-            <span class="eat-google-pill">Google: 4.8 ★ · 12K reviews</span>
-            <p><strong>Best for:</strong> weekend mornings, families, local food culture.</p>
-          </article>
-          <article class="eat-pearl-mini">
             <h3>Blue Box Bar</h3>
             <span class="eat-google-pill">Google: 4.4 ★ · 550 reviews</span>
             <p><strong>Best for:</strong> casual cocktails, happy hour, local feel.</p>
@@ -2687,17 +2743,8 @@
             <span class="eat-google-pill">Google: 4.5 ★ · 830 reviews</span>
             <p><strong>Best for:</strong> families, mixed tastes, fast casual.</p>
           </article>
-          <article class="eat-pearl-mini">
-            <h3>Stable Hall</h3>
-            <span class="eat-google-pill">Google: 4.6 ★ · 400 reviews</span>
-            <p><strong>Best for:</strong> concerts, social groups, corporate nights.</p>
-          </article>
-          <article class="eat-pearl-mini">
-            <h3>Museum Reach</h3>
-            <span class="eat-google-pill">Google: 4.7 ★ · 74K reviews</span>
-            <p><strong>Best for:</strong> couples, scenic walk, River Walk extension north of Pearl.</p>
-          </article>
         </div>
+
         <div class="eat-pearl-feature__cta">
           <a href="#lane-pearl" class="btn btn-primary">Build a Pearl night</a>
           <a href="downtown.html#dt-pearl-guide" class="btn btn-secondary">Pearl on Downtown guide</a>
@@ -2705,11 +2752,88 @@
       </div>
     </section>
 
+    <section class="eat-district-feature eat-resort-feature" id="eat-resort-food" aria-labelledby="eat-resort-food-title">
+      <div class="eat-district-feature__shell eat-resort-feature__shell">
+        <header class="eat-section-head">
+          <p class="eyebrow">Resort areas</p>
+          <h2 id="eat-resort-food-title">Resort-area food by hotel zone</h2>
+          <p class="section-text">Match dinner to where you are staying first &mdash; on-property when the crew is tired, nearby when you want easy, Stone Oak or downtown only when the meal is worth the drive.</p>
+        </header>
+        <div class="eat-resort-zones">
+          <article class="eat-resort-zone" id="eat-resort-la-cantera">
+            <h3>La Cantera / The Rim</h3>
+            <p class="eat-resort-zone-lead">Michelin-polished resort dining, Texas comfort, steakhouse power tables, and family-friendly Rim options without downtown traffic.</p>
+            <ul class="eat-resort-zone-picks">
+              <li><strong>Signature Restaurant</strong> <span class="eat-area-rating">Google: 4.7 ★ · 720 reviews</span> &mdash; Michelin Recommended / resort fine dining.</li>
+              <li><strong>Haywire</strong> <span class="eat-area-rating">Google: 4.6 ★ · 1.2K reviews</span> &mdash; Texas comfort / high-energy groups.</li>
+              <li><strong>Perry&rsquo;s Steakhouse &amp; Grille</strong> <span class="eat-area-rating">Google: 4.7 ★ · 1.8K reviews</span> &mdash; Steakhouse / power dining.</li>
+              <li><strong>Palenque Grill La Cantera</strong> <span class="eat-area-rating">Google: 4.5 ★ · 2.1K reviews</span> &mdash; Premium Mexican / polished groups.</li>
+              <li><strong>Whiskey Cake</strong> <span class="eat-area-rating">Google: 4.5 ★ · 4.8K reviews</span> &mdash; Scratch kitchen / brunch / cocktails.</li>
+              <li><strong>Roca &amp; Martillo</strong> <span class="eat-area-rating">Google: 4.5 ★ · 300 reviews</span> &mdash; Contemporary Italian / event nights.</li>
+              <li><strong>Yard House</strong> <span class="eat-area-rating">Google: 4.4 ★ · 3.2K reviews</span> &mdash; Large groups / sports.</li>
+              <li><strong>Grimaldi&rsquo;s</strong> <span class="eat-area-rating">Google: 4.4 ★ · 1.5K reviews</span> &mdash; Family pizza.</li>
+              <li><strong>SweetFire Kitchen</strong> <span class="eat-area-rating">Google: 4.2 ★ · 450 reviews</span> &mdash; Resort casual / scenic.</li>
+            </ul>
+            <a class="eat-area-link" href="resort-food.html#rf-zone-rim">La Cantera resort guide</a>
+          </article>
+          <article class="eat-resort-zone" id="eat-resort-jw">
+            <h3>JW Marriott / Stone Oak / North 281</h3>
+            <p class="eat-resort-zone-lead">Start on-property for convenience. Upgrade to Stone Oak for J-Prime, Chama Ga&uacute;cha, and stronger premium dinners.</p>
+            <p class="eat-area-subhead">On-property</p>
+            <ul class="eat-resort-zone-picks">
+              <li><strong>18 Oaks</strong> <span class="eat-area-rating">Google: 4.6 ★ · 920 reviews</span></li>
+              <li><strong>Cibolo Moon</strong> <span class="eat-area-rating">Google: 4.4 ★ · 1.4K reviews</span></li>
+              <li><strong>High Velocity</strong> <span class="eat-area-rating">Google: 4.3 ★ · 780 reviews</span></li>
+              <li><strong>Crooked Branch</strong> <span class="eat-area-rating">Google: 4.5 ★ · 120 reviews</span></li>
+              <li><strong>Fiamm&eacute; Pizzeria</strong> <span class="eat-area-rating">Rating not provided &mdash; verify before publishing</span></li>
+              <li><strong>Replenish Spa Bistro</strong> <span class="eat-area-rating">Rating not provided &mdash; verify before publishing</span></li>
+            </ul>
+            <p class="eat-area-subhead">Nearby Stone Oak upgrades</p>
+            <ul class="eat-resort-zone-picks">
+              <li><strong>J-Prime</strong> <span class="eat-area-rating">Willie Approved</span></li>
+              <li><strong>Chama Ga&uacute;cha</strong> <span class="eat-area-rating">Willie Approved</span></li>
+              <li><strong>Stone Terrace Gastropub</strong> <span class="eat-area-rating">Google: 4.5 ★ · 180 reviews</span></li>
+              <li><strong>Smokey Mo&rsquo;s BBQ</strong> <span class="eat-area-rating">Google: 4.4 ★ · 1.6K reviews</span></li>
+              <li><strong>54th Street Scratch Grill &amp; Bar</strong> <span class="eat-area-rating">Google: 4.3 ★ · 1.8K reviews</span></li>
+            </ul>
+            <a class="eat-area-link" href="resort-food.html#rf-zone-jw">JW / TPC resort guide</a>
+          </article>
+          <article class="eat-resort-zone" id="eat-resort-hyatt">
+            <h3>Hyatt Hill Country / Westover Hills</h3>
+            <p class="eat-resort-zone-lead">On-property polish, poolside ease, and west-side backups when the group should not drive downtown.</p>
+            <p class="eat-area-subhead">On-property</p>
+            <ul class="eat-resort-zone-picks">
+              <li><strong>Antlers Lodge</strong> <span class="eat-area-rating">Google: 4.5 ★ · 450 reviews</span></li>
+              <li><strong>Springhouse Caf&eacute;</strong> <span class="eat-area-rating">Google: 4.2 ★ · 600 reviews</span></li>
+              <li><strong>Aunt Di&rsquo;s Comfort Station</strong> <span class="eat-area-rating">Google: 4.6 ★ · 80 reviews</span></li>
+              <li><strong>Woodbine Bar</strong> <span class="eat-area-rating">Google: 4.7 ★ · 120 reviews</span></li>
+              <li><strong>Charlie&rsquo;s Long Bar</strong> <span class="eat-area-rating">Google: 4.4 ★ · 220 reviews</span></li>
+            </ul>
+            <p class="eat-area-subhead">Nearby</p>
+            <ul class="eat-resort-zone-picks">
+              <li><strong>Via 313 Pizza</strong> <span class="eat-area-rating">Google: 4.6 ★ · 1.2K reviews</span></li>
+              <li><strong>Rudy&rsquo;s Country Store and Bar-B-Q</strong> <span class="eat-area-rating">Google: 4.6 ★ · 4.8K reviews</span></li>
+              <li><strong>Pericos Mexican Restaurant</strong> <span class="eat-area-rating">Google: 4.4 ★ · 3.1K reviews</span></li>
+            </ul>
+            <a class="eat-area-link" href="resort-food.html#rf-zone-hyatt">Hyatt Hill Country guide</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
     <section class="section eat-top-section" id="top-picks" aria-labelledby="eat-top-title">
       <div class="eat-top-shell">
         <div class="eat-section-head">
-          <p class="eyebrow eyebrow-on-dark">Worth the drive</p>
-          <h2 class="eat-move-headline" id="eat-top-title">Quick local confidence picks</h2>
+          <p class="eyebrow eyebrow-on-dark">Owner picks</p>
+          <h2 class="eat-move-headline" id="eat-top-title">Willie Approved &amp; top confidence picks</h2>
           <p class="section-text">When the meal should be the memory &mdash; or you want one table locals trust without building a list. <strong>Willie Approved</strong> means Willie has been there and backs it.</p>
         </div>
         <p class="eat-co-lead-note">Rodizio, steak, Mexican flavor, rooftop finish, and seafood &mdash; curated splurges and Willie picks, not every famous name in town.</p>
@@ -2771,25 +2895,6 @@
               <p class="eat-rec-extra"><strong>Reservation move:</strong> Splurge nights — book early for prime-time weekend tables.</p>
             </div>
           </article>
-          <article class="card pink eat-guide-card eat-top-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
-            <div class="eat-rec-card__inner">
-              <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.8 ★ · 1.5K reviews</span>
-                <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Top-rated rooftop</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill is-muted">Skyline Pick</span></p>
-                </div>
-              </div>
-              <h3>Tenfold Rooftop</h3>
-              <div class="eat-zone-chips">
-                <span class="eat-chip">Rooftop bar</span>
-              </div>
-              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Santo · <strong>Vibe:</strong> skyline cocktails, nightcap energy</p>
-              <p class="eat-rec-desc">Skyline cocktails and a premium finish after dinner &mdash; the rooftop move when you want the city lights in the frame.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> sunset drinks, post-dinner skyline finish, hotel guests nearby.</p>
-              <p class="eat-rec-extra"><strong>Visitor move:</strong> Pair with a River Walk dinner, then end here for air and light.</p>
-            </div>
-          </article>
           <article class="card green eat-guide-card eat-top-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
@@ -2829,26 +2934,6 @@
               <p class="eat-rec-best"><strong>Best for:</strong> downtown stays, first-night dinners, convention crowds, confident walk-off-the-hotel nights.</p>
             </div>
           </article>
-          <article class="card turq eat-guide-card eat-top-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
-            <div class="eat-rec-card__inner">
-              <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.7 ★ · 6,585 reviews</span>
-                <div class="eat-rec-card__rating-trust">
-                  <span class="eat-proof-pill">Breakfast favorite</span>
-                  <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
-                </div>
-              </div>
-              <h3>La Panadería Bakery Café</h3>
-              <div class="eat-zone-chips">
-                <span class="eat-chip">Bakery / café</span>
-                <span class="eat-chip is-price">$10–20</span>
-              </div>
-              <p class="eat-guide-meta"><strong>Zone:</strong> Multiple · <strong>Vibe:</strong> pastry-first morning, bright café</p>
-              <p class="eat-rec-desc">Morning reset with serious bakery energy &mdash; pastries, coffee, and a calm start before a packed sightseeing day.</p>
-              <p class="eat-rec-best"><strong>Best for:</strong> family mornings, fuel before the River Walk, pastry-led breakfast.</p>
-              <p class="eat-rec-extra"><strong>Visitor move:</strong> Good when you need a calm win before a packed sightseeing day.</p>
-            </div>
-          </article>
           <article class="card orange eat-guide-card eat-top-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
@@ -2881,6 +2966,8 @@
           <a href="#lane-seafood">Seafood</a>
           <a href="#lane-riverwalk">River Walk classics</a>
           <a href="#lane-pearl">Pearl picks</a>
+          <a href="#lane-family">Family / groups</a>
+          <a href="#eat-downtown-feature">Downtown</a>
         </div>
       </div>
     </section>
@@ -3013,8 +3100,8 @@
       <div class="eat-lane" id="lane-steak">
         <div class="eat-section-head">
           <p class="eyebrow">Prime cuts</p>
-          <h2>Steakhouse / power dinner</h2>
-          <p class="section-text">Bohanan&rsquo;s downtown, J-Prime Stone Oak, Perry&rsquo;s La Cantera, 18 Oaks at JW, Antlers Lodge at Hyatt, Signature at La Cantera &mdash; match the steak to your starting area.</p>
+          <h2>Steakhouse / celebration</h2>
+          <p class="section-text">Use this when the restaurant is the memory. Bohanan&rsquo;s downtown, J-Prime Stone Oak, Perry&rsquo;s La Cantera, 18 Oaks, Antlers Lodge, Signature, and Brazilian rodizio group nights at Bras&atilde;o or Chama Ga&uacute;cha.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/cozy_steak_dinner_in_intimate_ambiance.png" alt="Cozy steak dinner in an intimate dining room" loading="lazy" decoding="async" />
@@ -3365,10 +3452,10 @@
             <p>Match barbecue, steakhouse, River Walk, Mexican culture, or skyline view to your group — then layer drinks without zig-zagging across downtown.</p>
           </div>
         </article>
-        <div class="eat-utility-strip" aria-label="Downtown dining quick picks">
-          <p class="eat-utility-item"><strong>Best downtown dinner:</strong> Bohanan&rsquo;s, Paesanos, Biga, Domingo by mood.</p>
-          <p class="eat-utility-item"><strong>Best casual:</strong> Pinkerton&rsquo;s, Schilo&rsquo;s, Mi Tierra; Casa Rio when you want the classic umbrella photo stop.</p>
-          <p class="eat-utility-item"><strong>Best rooftop:</strong> Aleteo, Moon&rsquo;s Daughter, Fairmount, Rosario&rsquo;s.</p>
+        <div class="eat-visitor-strip" aria-label="Downtown dining quick picks">
+          <p class="eat-visitor-strip-item"><strong>Best downtown dinner:</strong> Bohanan&rsquo;s, Paesanos, Biga, Domingo by mood.</p>
+          <p class="eat-visitor-strip-item"><strong>Best casual:</strong> Pinkerton&rsquo;s, Schilo&rsquo;s, Mi Tierra; Casa Rio when you want the classic umbrella photo stop.</p>
+          <p class="eat-visitor-strip-item"><strong>Best rooftop:</strong> Aleteo, Moon&rsquo;s Daughter, Fairmount, Rosario&rsquo;s.</p>
         </div>
         <div class="eat-section-head" style="margin-top:1.5rem;">
           <h3 class="section-text" style="font-size:1.1rem;margin:0;">Restaurants</h3>
@@ -3768,7 +3855,7 @@
         <div class="eat-section-head">
           <p class="eyebrow">Golden hour</p>
           <h2>Rooftop / drinks / nightlife</h2>
-          <p class="section-text">Start with the <a href="#lane-downtown-dining">Downtown dining</a> rooftops (Aleteo, Moon&rsquo;s Daughter, Fairmount, Rosario&rsquo;s). Add Pearl drinks at Sternewirth or Jazz TX when the night is north of downtown. Esquire and Mad Dogs cover River Walk bar energy; Tenfold is a backup skyline option if those are full.</p>
+          <p class="section-text">Start with <a href="#lane-downtown-dining">Downtown dining</a> rooftops (Aleteo, Moon&rsquo;s Daughter, Fairmount, Rosario&rsquo;s). Add Pearl drinks at Sternewirth or Jazz TX when the night is north of downtown. Tenfold is a skyline backup only if Aleteo or Fairmount are full.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/rooftop_sunset_dining_with_cocktails.png" alt="Rooftop sunset cocktails in San Antonio" loading="lazy" decoding="async" />
@@ -3997,6 +4084,104 @@
       </div>
     </section>
 
+
+      <div class="eat-lane" id="lane-family">
+        <div class="eat-section-head">
+          <p class="eyebrow">Easy tables</p>
+          <h2>Family + easy group food</h2>
+          <p class="section-text">Practical picks when kids, mixed appetites, or tired crews need a calm dinner without overthinking the city.</p>
+        </div>
+        <article class="eat-image-card eat-lane-anchor">
+          <img src="assets/cozy_breakfast_spread_in_natural_light.png" alt="Family-friendly dining spread" loading="lazy" decoding="async" />
+          <div class="eat-image-card-content">
+            <h3>Family-friendly starting point</h3>
+            <p>Food halls, pizza, resort casual, and predictable group rooms when everyone needs to eat without a long debate.</p>
+          </div>
+        </article>
+                        <div class="eat-lane-grid eat-lane-grid--2">
+          <article class="card gold eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.4 ★ · 1.5K reviews</span>
+              <h3>Grimaldi&rsquo;s Pizzeria</h3>
+              <p class="eat-rec-desc">Family pizza near La Cantera / The Rim when the group wants an easy win after shopping or Six Flags.</p>
+            </div>
+          </article>
+          <article class="card turq eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.4 ★ · 3.2K reviews</span>
+              <h3>Yard House</h3>
+              <p class="eat-rec-desc">Large groups, sports energy, and a menu wide enough for picky eaters near The Rim.</p>
+            </div>
+          </article>
+          <article class="card orange eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.3 ★ · 1.8K reviews</span>
+              <h3>54th Street Scratch Grill &amp; Bar</h3>
+              <p class="eat-rec-desc">Eclectic crowd-pleaser for families near Stone Oak / JW access.</p>
+            </div>
+          </article>
+          <article class="card pink eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.4 ★ · 1.4K reviews</span>
+              <h3>Cibolo Moon</h3>
+              <p class="eat-rec-desc">JW resort Tex-Mex when the crew should stay on-property after pool or golf.</p>
+            </div>
+          </article>
+          <article class="card green eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.2 ★ · 600 reviews</span>
+              <h3>Springhouse Caf&eacute;</h3>
+              <p class="eat-rec-desc">Hyatt all-day resort casual when families need easy seating without leaving the property.</p>
+            </div>
+          </article>
+          <article class="card gold eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.6 ★ · 1.2K reviews</span>
+              <h3>Via 313 Pizza</h3>
+              <p class="eat-rec-desc">Detroit-style pizza backup near Hyatt / west-side resorts.</p>
+            </div>
+          </article>
+          <article class="card orange eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.6 ★ · 4.8K reviews</span>
+              <h3>Rudy&rsquo;s Country Store and Bar-B-Q</h3>
+              <p class="eat-rec-desc">Fast Texas BBQ for big groups west of downtown.</p>
+            </div>
+          </article>
+          <article class="card turq eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.5 ★ · 830 reviews</span>
+              <h3>Bottling Department Food Hall</h3>
+              <p class="eat-rec-desc">Pearl food hall when mixed tastes need one stop.</p>
+            </div>
+          </article>
+          <article class="card pink eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.5 ★ · 650 reviews</span>
+              <h3>Pullman Market</h3>
+              <p class="eat-rec-desc">Pearl market energy for flexible family groups.</p>
+            </div>
+          </article>
+          <article class="card purple eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.4 ★ · 13.5K reviews</span>
+              <h3>Mi Tierra</h3>
+              <p class="eat-rec-desc">Market Square culture classic when the night should feel like San Antonio.</p>
+            </div>
+          </article>
+          <article class="card green eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
+            <div class="eat-rec-card__inner">
+              <span class="eat-google-pill">Google: 4.4 ★ · 3.5K reviews</span>
+              <h3>Pinkerton&rsquo;s Barbecue</h3>
+              <p class="eat-rec-desc">Downtown Texas BBQ when the group wants real brisket without leaving the core.</p>
+            </div>
+          </article>
+        </div>
+        <div class="eat-choose-strip">
+          <p><strong>Quick guide:</strong> Resort on-property when tired; food halls at Pearl for mixed tastes; Rudy&rsquo;s or Via 313 west-side; Mi Tierra for culture nights downtown.</p>
+        </div>
+      </div>
+
     <section class="eat-late-night-band" id="lane-late-night" aria-labelledby="late-night-title">
       <header class="eat-late-night-band__head">
         <p class="eat-late-night-band__eyebrow">After hours</p>
@@ -4025,57 +4210,14 @@
       </div>
     </section>
 
-    <section class="eat-os-band" id="lane-os" aria-labelledby="eat-os-title">
-      <header class="eat-os-band__head">
-        <p class="eat-os-band__eyebrow">How to use this guide</p>
-        <h2 id="eat-os-title">How Where To Go SA builds a better food night</h2>
-        <p class="eat-os-band__lead">The goal is not a giant list. The goal is the right first move, a backup pick, and a clean night that fits the group, the zone, and the clock.</p>
-      </header>
-      <ol class="eat-os-steps" aria-label="Five-step food night system">
-        <li class="eat-os-step">
-          <div class="eat-os-step__head">
-            <span class="eat-os-step__num" aria-hidden="true">1</span>
-            <h3>Pick the occasion</h3>
-          </div>
-          <p>First meal, business dinner, date night, family reset, seafood, or drinks.</p>
-        </li>
-        <li class="eat-os-step">
-          <div class="eat-os-step__head">
-            <span class="eat-os-step__num" aria-hidden="true">2</span>
-            <h3>Choose one strong first stop</h3>
-          </div>
-          <p>Start with one restaurant or area instead of gambling on three random options.</p>
-        </li>
-        <li class="eat-os-step">
-          <div class="eat-os-step__head">
-            <span class="eat-os-step__num" aria-hidden="true">3</span>
-            <h3>Match the zone</h3>
-          </div>
-          <p>Downtown, Pearl, River Walk, resort area, or North Side &mdash; distance matters.</p>
-        </li>
-        <li class="eat-os-step">
-          <div class="eat-os-step__head">
-            <span class="eat-os-step__num" aria-hidden="true">4</span>
-            <h3>Add the next move</h3>
-          </div>
-          <p>Add a walk, cocktail, dessert, or ride plan only after dinner is clear.</p>
-        </li>
-        <li class="eat-os-step">
-          <div class="eat-os-step__head">
-            <span class="eat-os-step__num" aria-hidden="true">5</span>
-            <h3>Keep a backup</h3>
-          </div>
-          <p>If wait times, weather, or energy shifts, move to the next good option without restarting the night.</p>
-        </li>
-      </ol>
-      <div class="eat-os-cta" id="food-concierge-ask">
-        <div class="eat-os-cta__copy">
-          <h3>Need a cleaner dinner plan?</h3>
-          <p>Send your hotel, group size, timing, and food mood. We&rsquo;ll send back the right first stop, the next move, and a backup pick &mdash; all in one short reply.</p>
-        </div>
-        <div class="eat-os-cta__actions">
+
+    <section class="eat-final-cta" id="food-concierge-ask" aria-labelledby="eat-final-cta-title">
+      <div class="eat-final-cta__shell">
+        <h2 id="eat-final-cta-title">Not sure where to eat from your hotel?</h2>
+        <p class="eat-final-cta__lead">Tell us where you&rsquo;re staying, who&rsquo;s with you, what time you want to eat, and how far you want to drive. We&rsquo;ll point you toward the cleanest food move.</p>
+        <div class="eat-final-cta__actions">
           <a href="/ask/" class="btn btn-primary">Ask A Local</a>
-          <a href="resort-food.html" class="btn btn-secondary">Need resort-area picks?</a>
+          <a href="driver-concierge.html#route-operator" class="btn btn-secondary">Request route help</a>
         </div>
       </div>
     </section>

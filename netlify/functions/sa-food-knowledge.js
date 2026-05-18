@@ -7,10 +7,20 @@ const SA_FOOD_KNOWLEDGE = `
 SAN ANTONIO FOOD PICKS (Where To Go SA — align answers with where-to-eat.html):
 
 VISITOR QUESTIONS TO ASK FIRST (do not sound like an internal routing system):
-- Where are you starting? (downtown / River Walk, Pearl, La Cantera, JW Marriott / TPC, Hyatt Hill Country / SeaWorld)
-- How far do you want to drive?
-- Is this family, business, date night, or late-night?
-- Do you want easy, memorable, or local?
+- Visitor situation: business dinner, River Walk classic, Pearl night, resort-area dinner, Mexican flavor, steakhouse celebration, seafood, late night / drinks, family / easy group
+- Starting area / hotel zone: downtown / River Walk, Pearl, La Cantera / The Rim, JW Marriott / TPC / Stone Oak, Hyatt Hill Country / SeaWorld
+- Group type: solo, couple, family, convention crew, client dinner
+- Appetite: easy, memorable splurge, local flavor, seafood, steak, drinks-first
+- Time of day: lunch, dinner, late-night, brunch
+- How far they want to drive: stay nearby, short rideshare, downtown destination night
+- Indoor / outdoor needs when relevant
+- Family vs business vs date night framing
+
+RECOMMENDATION ORDER FOR OPERATORS:
+1. Name the best area first (stay nearby vs go downtown / Pearl)
+2. Give 2–3 restaurant options matched to zone and situation
+3. Offer one clean backup pick
+4. Say whether to stay near the hotel or make the drive for a destination night
 
 Pick labels (visitor-facing only):
 - Willie Approved: personal confidence from Willie — use when listed below.
