@@ -11,6 +11,7 @@
 .page-family-summer #zoo-museum-corridor,
 .page-family-summer #hill-country,
 .page-family-summer #resort-family,
+.page-family-summer #indoor-heat-escape,
 .page-family-summer #before-flight-plan,
 .page-family-summer #family-concierge-help,
 .page-family-summer #situation-routes,
@@ -891,6 +892,25 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
     linear-gradient(180deg, rgba(5, 10, 24, 0.08), rgba(5, 10, 24, 0.22));
 }
 
+.page-family-summer .image-backed--indoor {
+  background-image: url("assets/cozy_breakfast_spread_in_natural_light.png");
+  background-position: center 42%;
+}
+
+.page-family-summer .image-backed--indoor::before {
+  background:
+    linear-gradient(90deg, rgba(5, 10, 24, 0.68) 0%, rgba(5, 10, 24, 0.42) 40%, rgba(5, 10, 24, 0.18) 70%, transparent 90%),
+    linear-gradient(180deg, rgba(5, 10, 24, 0.5) 0%, rgba(5, 10, 24, 0.32) 50%, rgba(5, 10, 24, 0.55) 100%);
+}
+
+@media (max-width: 680px) {
+  .page-family-summer .image-backed--indoor::before {
+    background:
+      linear-gradient(90deg, rgba(5, 10, 24, 0.78) 0%, rgba(5, 10, 24, 0.52) 45%, rgba(5, 10, 24, 0.28) 72%, transparent 92%),
+      linear-gradient(180deg, rgba(5, 10, 24, 0.58) 0%, rgba(5, 10, 24, 0.38) 48%, rgba(5, 10, 24, 0.62) 100%);
+  }
+}
+
 .page-family-summer .fam-route-detail--checkout-soft {
   border-block-color: rgba(11, 29, 58, 0.07);
   background:
@@ -949,12 +969,13 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   padding: clamp(14px, 2.4vw, 20px) clamp(14px, 2.8vw, 22px);
   border-radius: clamp(14px, 1.9vw, 20px);
   border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 250, 238, 0.92);
+  background: rgba(255, 250, 238, 0.96);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow:
     0 18px 50px rgba(0, 0, 0, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  color: #071323;
 }
 
 .page-family-summer .fam-route-detail-title {
@@ -1445,7 +1466,10 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   font-weight: 870;
   letter-spacing: -0.028em;
   line-height: 1.18;
-  color: #04192e;
+  color: #031627;
+  -webkit-text-fill-color: #031627;
+  text-shadow: none;
+  opacity: 1;
 }
 
 .page-family-summer .fam-qm-card-body {
@@ -1454,7 +1478,9 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   font-size: clamp(0.9rem, 0.18vw + 0.86rem, 0.98rem);
   line-height: 1.55;
   color: rgba(4, 25, 46, 0.92);
+  -webkit-text-fill-color: rgba(4, 25, 46, 0.92);
   overflow-wrap: break-word;
+  opacity: 1;
 }
 
 .page-family-summer .fam-qm-best {
@@ -2151,6 +2177,106 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
 .page-family-summer .fam-pick-section .fam-pick-head h2.fam-pick-title::selection {
   background: rgba(242, 178, 26, 0.42);
   color: #031627;
+}
+
+/* ===== Contrast pass: dark sections vs light cards (global on-dark type overrides) ===== */
+
+/* Quick Match — white/cream cards inside dark band */
+body.page-family-summer.family-page main#main-content > .section.fam-quick-match .fam-qm-card.light-card,
+body.page-family-summer.family-page main#main-content > .section.fam-quick-match article.fam-qm-card {
+  color: #04192e;
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-quick-match .fam-qm-card.light-card :is(h3, p, span, a),
+body.page-family-summer.family-page main#main-content > .section.fam-quick-match article.fam-qm-card :is(h3, p, span, a) {
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-quick-match .fam-qm-card h3.fam-qm-card-title,
+body.page-family-summer.family-page main#main-content > .section.fam-quick-match .fam-qm-card .fam-qm-card-title {
+  color: #031627;
+  -webkit-text-fill-color: #031627;
+  text-shadow: none;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-quick-match .fam-qm-card .fam-qm-card-body {
+  color: rgba(4, 25, 46, 0.92);
+  -webkit-text-fill-color: rgba(4, 25, 46, 0.92);
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-quick-match .fam-qm-card .fam-qm-pill {
+  color: #062a47;
+  -webkit-text-fill-color: #062a47;
+}
+
+/* Route detail — cream panels on image-backed bands */
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-dest-card,
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-cta-row {
+  color: #071323;
+  opacity: 1;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-dest-card :is(h3, p, li, a),
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-cta-row p {
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-dest-card h3.fam-route-detail-h {
+  color: #9a3412;
+  -webkit-text-fill-color: #9a3412;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-dest-card .fam-route-detail-p,
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-dest-card .fam-route-stop-list {
+  color: rgba(7, 19, 35, 0.9);
+  -webkit-text-fill-color: rgba(7, 19, 35, 0.9);
+}
+
+/* Image-backed headers — cream glass panel (indoor / route intros) */
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-detail-head--on-image {
+  color: #071323;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-detail-head--on-image :is(h2, p) {
+  color: var(--navy-deep);
+  -webkit-text-fill-color: currentColor;
+  text-shadow: none;
+  opacity: 1;
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-detail-head--on-image .fam-route-kicker {
+  color: rgba(11, 29, 58, 0.72);
+}
+
+body.page-family-summer.family-page main#main-content > .section.fam-detail-strip .fam-route-detail-head--on-image .fam-route-kicker-label {
+  color: #fef3e9;
+  -webkit-text-fill-color: #fef3e9;
+}
+
+/* Image overlay type without glass head — force high-contrast light type */
+.page-family-summer .fam-route-detail.route-section.image-backed .fam-route-detail-head:not(.fam-route-detail-head--on-image) :is(h2, p, .fam-route-kicker) {
+  color: #fff8eb;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+  -webkit-text-fill-color: currentColor;
+}
+
+.page-family-summer .fam-route-detail.route-section.image-backed .fam-route-detail-head:not(.fam-route-detail-head--on-image) .fam-route-kicker-label {
+  color: #fef3e9;
+}
+
+/* Mobile Safari: tapped card titles stay visible */
+@media (max-width: 480px) {
+  body.page-family-summer.family-page main#main-content > .section.fam-quick-match .fam-qm-card:active h3.fam-qm-card-title,
+  body.page-family-summer.family-page main#main-content > .section.fam-quick-match .fam-qm-card:focus-within h3.fam-qm-card-title {
+    color: #031627;
+    -webkit-text-fill-color: #031627;
+    opacity: 1;
+  }
 }
 
 @media (max-width: 899px) {

@@ -6,18 +6,83 @@
 const SA_FOOD_KNOWLEDGE = `
 SAN ANTONIO FOOD PICKS (Where To Go SA — align answers with where-to-eat.html):
 
+VISITOR QUESTIONS TO ASK FIRST (do not sound like an internal routing system):
+- Where are you starting? (downtown / River Walk, Pearl, La Cantera, JW Marriott / TPC, Hyatt Hill Country / SeaWorld)
+- How far do you want to drive?
+- Is this family, business, date night, or late-night?
+- Do you want easy, memorable, or local?
+
 Pick labels (visitor-facing only):
 - Willie Approved: personal confidence from Willie — use when listed below.
-- Strong Pick: high-confidence room with strong public proof.
+- Strong Pick: high-confidence room with strong public ratings.
 - Local Favorite: strong neighborhood or situational favorite when it fits.
-- Reliable Pick: safe visitor pick when proof is steady but not a headline room.
+- Reliable Pick: safe visitor pick when ratings are steady but not a headline room.
 - Visitor-Friendly Pick, River Walk Classic, Pearl Favorite, Business Dinner Pick, Family-Friendly Pick, Patio Classic, Also Useful: use when they match the situation.
 
 Never use internal QA labels: Needs Visit, "Willie hasn't visited," Research Pick as a dismissive frame, or "lower proof" wording.
+Never use: corridor, routing (except travel route), sequence, proof stack, intent stack, utility (as jargon), pacing (as jargon).
 
 Tone:
 - Do not bash restaurants. Stay neutral and constructive.
 - When confidence is softer, say "worth checking current hours" or offer another nearby pick that fits the mood.
+
+AVOID recommending as best food picks:
+- Casa Rio — only for classic River Walk umbrella photo / historic patio experience, not top food-first.
+- Republic of Texas — do not recommend.
+
+AREA-FIRST PICKS (match starting zone before listing the whole city):
+
+DOWNTOWN / RIVER WALK:
+- Bohanan's (Willie Approved steak) — Google: 4.7 ★ · 3.1K reviews
+- Biga on the Banks — Google: 4.7 ★ · 1.9K reviews
+- Paesanos Riverwalk — Google: 4.4 ★ · 2.8K reviews
+- Domingo (Willie Approved modern Mexican) — Google: 4.4 ★ · 2.1K reviews
+- Boudro's (River Walk seafood) — Google: 4.5 ★ · 8.2K reviews
+- Pinkerton's Barbecue — Google: 4.4 ★ · 3.5K reviews
+- Mi Tierra (culture / Market Square) — Google: 4.4 ★ · 13.5K reviews
+- Esquire Tavern (Willie Approved drinks) — Google: 4.4 ★ · 4.3K reviews
+- Rooftops: Aleteo (Monarch), Fairmount Rooftop Oyster Bar, The Moon's Daughter (Thompson), Rosario's Rooftop, Tenfold (Kimpton Santo)
+
+THE PEARL:
+- Supper — Google: 4.6 ★ · 1.5K reviews
+- Southerleigh — Google: 4.5 ★ · 4.2K reviews
+- Sternewirth (Willie Approved drinks; Research Pick if confirming visit) — Google: 4.8 ★ · 1.6K reviews
+- Jazz, TX — Google: 4.8 ★ · 1.1K reviews
+- Pullman Market — Google: 4.5 ★ · 650 reviews
+- Pearl Farmers Market — Google: 4.8 ★ · 12K reviews
+- Stable Hall — Google: 4.6 ★ · 400 reviews
+- Brasserie Mon Chou Chou (Willie Approved French)
+
+LA CANTERA / THE RIM:
+- Signature Restaurant — Google: 4.7 ★ · 720 reviews
+- Haywire — Google: 4.6 ★ · 1.2K reviews
+- Perry's Steakhouse — Google: 4.7 ★ · 1.8K reviews
+- Palenque Grill La Cantera — Google: 4.5 ★ · 2.1K reviews
+- Whiskey Cake — Google: 4.5 ★ · 4.8K reviews
+- Roca & Martillo — Google: 4.5 ★ · 300 reviews
+- Brasão (Willie Approved rodizio) — La Cantera area, not JW Stone Oak default
+
+JW MARRIOTT / TPC — on-property first:
+- 18 Oaks — Google: 4.6 ★ · 920 reviews
+- Cibolo Moon — Google: 4.4 ★ · 1.4K reviews
+- High Velocity — Google: 4.3 ★ · 780 reviews
+- Crooked Branch — Google: 4.5 ★ · 120 reviews
+Stone Oak upgrades (short rideshare, not on JW property): J-Prime (Willie Approved), Chama Gaúcha (Willie Approved), Stone Terrace, Smokey Mo's — NOT Brasão as JW nearby (Brasão is La Cantera area).
+
+HYATT HILL COUNTRY / SEAWORLD — on-property first:
+- Antlers Lodge — Google: 4.5 ★ · 450 reviews
+- Springhouse Café — Google: 4.2 ★ · 600 reviews
+- Woodbine Bar — Google: 4.7 ★ · 120 reviews
+Nearby: Via 313 — Google: 4.6 ★ · 1.2K reviews; Rudy's — Google: 4.6 ★ · 4.8K reviews; Pericos — Google: 4.4 ★ · 3.1K reviews
+
+FOOD BY MOOD (curated — do not dump long citywide lists):
+- Steakhouse: Bohanan's, J-Prime, Perry's, 18 Oaks, Antlers Lodge, Signature
+- Mexican: Soluna (Willie Approved), Mi Tierra, Domingo, Palenque Grill, Pericos, La Fogata, La Fonda (light touch)
+- Seafood / ceviche: El Bucanero (Willie Approved), El Cevichero, Boudro's, Fairmount Rooftop, Biga
+- Barbecue: Pinkerton's, Rudy's, Smokey Mo's — do not over-list BBQ
+- Italian / pizza: Paesanos, Roca & Martillo, Via 313, Grimaldi's
+- Rooftop / drinks: Aleteo, Fairmount, Moon's Daughter, Rosario's Rooftop, Esquire, Bar 414, Sternewirth, Jazz TX
+- Breakfast: La Panadería (Willie Approved), Alamo Biscuit, Cibolo Moon buffet (JW), Springhouse (Hyatt), Haywire brunch (La Cantera), Mi Tierra bakery culture
 
 Willie Approved / strongest confirmed picks (when zone and request fit):
 - Mexican / Tex-Mex: Soluna (ribeye tacos, chispas). Domingo — Willie Approved for downtown / River Walk Mexican-adjacent dining. La Fogata — Willie Approved patio classic north of downtown.

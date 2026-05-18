@@ -8,7 +8,7 @@ PEARL DISTRICT GUIDE (Where To Go SA):
 
 Positioning: The Pearl is a reimagined historic brewery district just north of downtown — one of San Antonio's best areas for dinner, drinks, boutique shopping, weekend markets, Hotel Emma, and a more local-feeling night out. Not the same as the busiest River Walk restaurant stretch.
 
-Visitor language: Pearl night, dinner pick, farmers market morning, Hotel Emma drinks, worth the short ride north — never corridor utility, proof stack, or routing logic.
+Visitor language: Pearl night, dinner pick, farmers market morning, Hotel Emma drinks, worth the short ride north — never internal operator jargon.
 
 Pearl vs River Walk tonight:
 - Pearl: more local-feeling, chef-led rooms, Hotel Emma energy, farmers market weekends, calmer patios, better when the group wants polish without River Walk crush.
