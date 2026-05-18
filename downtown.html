@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Downtown San Antonio + River Walk | Where To Go SA</title>
-  <meta name="description" content="Downtown San Antonio: River Walk timing, Alamo, Tower of the Americas, Market Square, Pearl, and convention-night routes from Where To Go SA." />
+  <meta name="description" content="Downtown San Antonio things to do: Alamo, River Walk, Tower, Market Square, family indoor stops, and convention-friendly routes from Where To Go SA." />
   <link rel="canonical" href="https://wheretogosa.com/downtown.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://wheretogosa.com/downtown.html" />
   <meta property="og:title" content="Downtown San Antonio + River Walk | Where To Go SA" />
   <meta property="og:site_name" content="Where To Go SA" />
-  <meta property="og:description" content="Downtown San Antonio: River Walk timing, Alamo, Tower of the Americas, Market Square, Pearl, and convention-night routes from Where To Go SA." />
+  <meta property="og:description" content="Downtown San Antonio things to do: Alamo, River Walk, Tower, Market Square, family indoor stops, and convention-friendly routes from Where To Go SA." />
   <meta property="og:image" content="https://wheretogosa.com/assets/where-to-go-sa-round-emblem-pfp.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Downtown San Antonio + River Walk | Where To Go SA" />
-  <meta name="twitter:description" content="Downtown San Antonio: River Walk timing, Alamo, Tower of the Americas, Market Square, Pearl, and convention-night routes from Where To Go SA." />
+  <meta name="twitter:description" content="Downtown San Antonio things to do: Alamo, River Walk, Tower, Market Square, family indoor stops, and convention-friendly routes from Where To Go SA." />
   <meta name="twitter:image" content="https://wheretogosa.com/assets/where-to-go-sa-round-emblem-pfp.png" />
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/wtgsa-favicon-32.png" />
@@ -627,6 +627,175 @@
       z-index: 2;
     }
 
+    .page-downtown #dt-things-to-do {
+      scroll-margin-top: calc(var(--header-h, 64px) + 12px);
+      margin-top: clamp(40px, 6vw, 72px);
+      padding: 0 clamp(16px, 4vw, 48px) clamp(36px, 5vw, 56px);
+    }
+
+    .page-downtown .dt-guide-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .page-downtown .dt-guide-head {
+      max-width: 52rem;
+      margin-bottom: clamp(18px, 2.5vw, 26px);
+    }
+
+    .page-downtown .dt-guide-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.45rem, 2.8vw, 2rem);
+      line-height: 1.15;
+      color: var(--on-dark-heading);
+    }
+
+    .page-downtown .dt-guide-intro {
+      margin: 0;
+      font-size: clamp(0.94rem, 1.15vw, 1.02rem);
+      line-height: 1.62;
+      color: var(--on-dark-body);
+      max-width: 62ch;
+    }
+
+    .page-downtown .dt-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: clamp(22px, 3vw, 32px);
+    }
+
+    @media (min-width: 600px) {
+      .page-downtown .dt-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .page-downtown .dt-summary-card {
+      padding: 0.95rem 1rem;
+      border-radius: calc(var(--radius) - 4px);
+      border: 1px solid rgba(255, 246, 230, 0.12);
+      background: rgba(255, 251, 242, 0.05);
+    }
+
+    .page-downtown .dt-summary-card h3 {
+      margin: 0 0 6px;
+      font-size: 0.95rem;
+      color: var(--on-dark-heading);
+      line-height: 1.25;
+    }
+
+    .page-downtown .dt-summary-card p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: rgba(255, 246, 230, 0.88);
+    }
+
+    .page-downtown .dt-cat-band {
+      margin-bottom: clamp(20px, 3vw, 28px);
+    }
+
+    .page-downtown .dt-cat-title {
+      margin: 0 0 10px;
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+      color: var(--on-dark-heading);
+      line-height: 1.2;
+    }
+
+    .page-downtown .dt-act-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 680px) {
+      .page-downtown .dt-act-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .page-downtown .dt-act-card {
+      display: grid;
+      gap: 0.4rem;
+      padding: 0.9rem 0.95rem;
+      border-radius: calc(var(--radius) - 4px);
+      border: 1px solid rgba(255, 246, 230, 0.1);
+      border-left: 3px solid #29cfc8;
+      background: linear-gradient(155deg, rgba(19, 41, 71, 0.92), rgba(12, 24, 44, 0.85));
+      box-shadow: 0 10px 24px rgba(2, 6, 14, 0.28);
+    }
+
+    .page-downtown .dt-act-card h4 {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.22;
+      color: var(--on-dark-heading);
+    }
+
+    .page-downtown .dt-act-google {
+      display: inline-flex;
+      align-self: flex-start;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(255, 246, 230, 0.72);
+      letter-spacing: 0.01em;
+    }
+
+    .page-downtown .dt-act-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .page-downtown .dt-act-chip {
+      display: inline-flex;
+      padding: 0.16rem 0.42rem;
+      border-radius: 999px;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: rgba(153, 248, 241, 0.92);
+      background: rgba(45, 236, 224, 0.1);
+      border: 1px solid rgba(45, 236, 224, 0.22);
+    }
+
+    .page-downtown .dt-act-meta {
+      margin: 0;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: rgba(255, 200, 150, 0.9);
+    }
+
+    .page-downtown .dt-act-read {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.48;
+      color: rgba(255, 246, 230, 0.9);
+    }
+
+    .page-downtown .dt-act-best,
+    .page-downtown .dt-act-tip {
+      margin: 0;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: rgba(255, 246, 230, 0.82);
+    }
+
+    .page-downtown .dt-act-tip {
+      color: rgba(153, 248, 241, 0.9);
+    }
+
+    .page-downtown .dt-act-best strong,
+    .page-downtown .dt-act-tip strong {
+      color: rgba(255, 246, 230, 0.95);
+    }
+
+    .page-downtown .dt-guide-cta {
+      margin-top: clamp(20px, 3vw, 28px);
+    }
+
   </style>
 </head>
 <body class="page-downtown">
@@ -681,6 +850,7 @@
           <a class="page-jump-chip" href="#dt-move-culture">Market Square</a>
           <a class="page-jump-chip" href="#dt-move-pearl">Pearl</a>
           <a class="page-jump-chip" href="#dt-move-business">Convention loop</a>
+          <a class="page-jump-chip" href="#dt-things-to-do">Things to do</a>
           <a class="page-jump-chip" href="/ask/">Ask A Local</a>
         </div>
       </div>
@@ -758,7 +928,202 @@
       </div>
     </section>
 
-    <section id="choose-downtown-move" class="section section-dark dt-choose-outer" aria-labelledby="dt-choose-heading">
+    
+    <section id="dt-things-to-do" class="dt-guide-section section" aria-labelledby="dt-guide-heading">
+      <div class="dt-guide-inner">
+        <header class="dt-guide-head">
+          <p class="eyebrow eyebrow-on-dark">Activity guide</p>
+          <h2 id="dt-guide-heading">Things to do in Downtown San Antonio</h2>
+          <p class="dt-guide-intro">Downtown works best when you know what kind of stop you want first: history, River Walk scenery, family activities, indoor escapes, cultural stops, or event-night movement. Use this guide to pick the right downtown move before you waste the night bouncing between random stops.</p>
+        </header>
+
+        <div class="dt-summary-grid" aria-label="Quick downtown plans">
+          <article class="dt-summary-card">
+            <h3>Best first-time downtown move</h3>
+            <p>Start with the Alamo, River Walk, and Tower of the Americas if it is your first time. Add Market Square or La Villita when you want more culture and color without turning the day into a long drive.</p>
+          </article>
+          <article class="dt-summary-card">
+            <h3>Best family downtown move</h3>
+            <p>Start with River Walk boat energy, then use Rivercenter, LEGOLAND, SEA LIFE, LiggettVille, Magik Theatre, or Hemisfair when kids need indoor time, shade, or space to reset.</p>
+          </article>
+          <article class="dt-summary-card">
+            <h3>Best convention downtown move</h3>
+            <p>Keep the plan walkable. River Walk, Buckhorn, Hopscotch, Briscoe, San Fernando Cathedral, and nearby drinks work better between sessions than chasing far-apart stops.</p>
+          </article>
+          <article class="dt-summary-card">
+            <h3>Best resort guest downtown move</h3>
+            <p>If you are coming in from a resort, make downtown worth the ride. Pick one main stop, one dinner area, and one after-dinner walk before you leave the resort zone.</p>
+          </article>
+        </div>
+
+        <section class="dt-cat-band" aria-labelledby="dt-cat-historic">
+          <h3 class="dt-cat-title" id="dt-cat-historic">Historic Icons + Cultural Landmarks</h3>
+          <div class="dt-act-grid">
+            <article class="dt-act-card" data-dt-activity="alamo">
+              <h4>The Alamo</h4>
+              <span class="dt-act-google">Google: 4.6 ★ · 150K reviews</span>
+              <div class="dt-act-chips" aria-label="Highlights"><span class="dt-act-chip">18th-Century Fortress</span><span class="dt-act-chip">Texas Heritage</span><span class="dt-act-chip">Free Timed Entry</span></div>
+              <p class="dt-act-meta">Historic Landmark · Downtown / Alamo Plaza · Free admission; timed entry for church sanctuary</p>
+              <p class="dt-act-read">The historic soul of Texas and the most important first-time downtown stop. Best when visitors want the classic San Antonio history moment without needing a long museum day.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> first-time visitors, history enthusiasts, international visitors, families wanting an educational walk.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> The grounds are free, but reserve timed entry online if you want to step inside the church sanctuary.</p>
+            </article>
+            <article class="dt-act-card" data-dt-activity="san-fernando-cathedral">
+              <h4>San Fernando Cathedral</h4>
+              <span class="dt-act-google">Google: 4.8 ★ · 4.2K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Oldest Cathedral in Texas</span><span class="dt-act-chip">Video Art</span><span class="dt-act-chip">Free Admission</span></div>
+              <p class="dt-act-meta">Historic Landmark · Downtown / Main Plaza · Free admission</p>
+              <p class="dt-act-read">A beautiful historic cathedral and one of the best downtown night stops when &ldquo;San Antonio | The Saga&rdquo; projection show is running.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> architecture lovers, couples, casual night walks, visitors who want a memorable free downtown moment.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Check the current schedule for &ldquo;San Antonio | The Saga,&rdquo; the free projection show on the cathedral facade.</p>
+            </article>
+            <article class="dt-act-card" data-dt-activity="buckhorn">
+              <h4>The Buckhorn Saloon &amp; Museum</h4>
+              <span class="dt-act-google">Google: 4.6 ★ · 4.5K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Historic Saloon Bar</span><span class="dt-act-chip">Texas Ranger Artifacts</span><span class="dt-act-chip">Classic Texas</span></div>
+              <p class="dt-act-meta">Historic Museum &amp; Bar · Downtown / Houston St · Ticket prices vary</p>
+              <p class="dt-act-read">A classic Texas saloon-and-museum stop with historic bar energy, wildlife displays, Texas Ranger history, and a strong &ldquo;old San Antonio&rdquo; feel.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> families with kids who like wildlife exhibits, history buffs, visitors who want a drink in a historic space.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Tied to the historic Rough Riders story and works well as a quirky downtown add-on.</p>
+            </article>
+            <article class="dt-act-card" data-dt-activity="la-villita">
+              <h4>La Villita Historic Arts Village</h4>
+              <span class="dt-act-google">Google: 4.6 ★ · 1.8K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Artisan Craft Studios</span><span class="dt-act-chip">Historic Stone Buildings</span><span class="dt-act-chip">Quiet River Walk Edge</span></div>
+              <p class="dt-act-meta">Arts &amp; Culture Hub · Downtown / River Walk edge · Free admission</p>
+              <p class="dt-act-read">A quieter historic arts area with local shops, galleries, handmade goods, and a more relaxed walk than the busiest River Walk section.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> unique souvenirs, couples, quieter walks, visitors avoiding heavy River Walk crowds.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Walk near Marriage Island and the nearby bridge area for a quick romantic/photo-friendly add-on.</p>
+            </article>
+            <article class="dt-act-card" data-dt-activity="market-square">
+              <h4>Historic Market Square / El Mercado</h4>
+              <span class="dt-act-google">Google: 4.4 ★ · 8.2K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Authentic Mexican Market</span><span class="dt-act-chip">Strolling Mariachis</span><span class="dt-act-chip">Colorful Culture Stop</span></div>
+              <p class="dt-act-meta">Shopping &amp; Culture · Downtown / Market Square · Free admission</p>
+              <p class="dt-act-read">A colorful downtown culture stop for shopping, music, Mexican market energy, Mi Tierra, gifts, and weekend activity.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> families, cultural shopping, daytime wandering, visitors wanting color and music.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Weekends often bring more music, dance, food vendors, and plaza energy.</p>
+            </article>
+            <article class="dt-act-card" data-dt-activity="briscoe">
+              <h4>Briscoe Western Art Museum</h4>
+              <span class="dt-act-google">Google: 4.7 ★ · 2.1K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Western Artifacts</span><span class="dt-act-chip">Riverfront History</span><span class="dt-act-chip">Quiet Indoor Stop</span></div>
+              <p class="dt-act-meta">Museum · Downtown / River Walk edge · Ticket prices vary</p>
+              <p class="dt-act-read">A polished River Walk museum stop for Western art, history, sculpture, stagecoaches, and a calmer indoor break.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> art lovers, history-minded visitors, midday heat escape, quieter downtown pacing.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Use the outdoor sculpture garden as a shaded pause near the river.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="dt-cat-band" aria-labelledby="dt-cat-scenic">
+          <h3 class="dt-cat-title" id="dt-cat-scenic">Walkable Wonders + Scenic Views</h3>
+          <div class="dt-act-grid">
+            <article class="dt-act-card" data-dt-activity="river-walk">
+              <h4>San Antonio River Walk</h4>
+              <span class="dt-act-google">Google: 4.7 ★ · 74K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Below-Street Waterway</span><span class="dt-act-chip">Narrated Boat Tours</span><span class="dt-act-chip">Walkable Classic</span></div>
+              <p class="dt-act-meta">Linear Park &amp; Entertainment Hub · Downtown central · Free walk; boat tours extra</p>
+              <p class="dt-act-read">The downtown classic: bridges, patios, water, boat tours, photos, drinks, and the easiest first-time orientation to the city.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> first-time visitors, scenic walks, families wanting boat tours, convention-goers, evening drinks.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> For a quieter walk, head north toward Museum Reach instead of staying only in the busiest restaurant corridor.</p>
+            </article>
+            <article class="dt-act-card" data-dt-activity="tower">
+              <h4>Tower of the Americas</h4>
+              <span class="dt-act-google">Google: 4.5 ★ · 19K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">750-Foot Skyline View</span><span class="dt-act-chip">4D Adventure Ride</span><span class="dt-act-chip">Hemisfair Icon</span></div>
+              <p class="dt-act-meta">Observation Tower · Downtown / Hemisfair Park · Ticket prices vary</p>
+              <p class="dt-act-read">A dramatic skyline-view stop that works well for sunset photos, families, and resort guests who want a big-picture look at San Antonio.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> sunset photos, families, skyline views, visitors wanting a dramatic downtown stop.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> The lower plaza has fountains and green space, which makes it easier for kids before or after the tower.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="dt-cat-band" aria-labelledby="dt-cat-immersive">
+          <h3 class="dt-cat-title" id="dt-cat-immersive">Immersive Art + Modern Entertainment</h3>
+          <div class="dt-act-grid">
+            <article class="dt-act-card" data-dt-activity="hopscotch">
+              <h4>Hopscotch San Antonio</h4>
+              <span class="dt-act-google">Google: 4.7 ★ · 4.8K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Immersive Light Rooms</span><span class="dt-act-chip">Cocktail Bar Lounge</span><span class="dt-act-chip">Indoor Creative Stop</span></div>
+              <p class="dt-act-meta">Interactive Art Experience · Downtown central · Ticket prices vary</p>
+              <p class="dt-act-read">A high-energy immersive art stop with interactive rooms, photos, lights, sound, cocktails, and a strong indoor escape from heat or rain.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> teens, creative visitors, couples, heat/rain backup, groups wanting something different.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Good option when the group wants indoor entertainment instead of another walk.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="dt-cat-band" aria-labelledby="dt-cat-family">
+          <h3 class="dt-cat-title" id="dt-cat-family">Family Indoor / Rainy-Day Stops</h3>
+          <div class="dt-act-grid">
+            <article class="dt-act-card" data-dt-activity="liggettville">
+              <h4>LiggettVille Adventure Center</h4>
+              <span class="dt-act-google">Google: 4.4 ★ · 850 reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Indoor Ropes Course</span><span class="dt-act-chip">Mall Adventure</span><span class="dt-act-chip">Active Kids</span></div>
+              <p class="dt-act-meta">Family Entertainment · Shops at Rivercenter · Ticket prices vary</p>
+              <p class="dt-act-read">An indoor ropes, zip rail, and climbing stop inside Rivercenter for kids who need to burn energy downtown.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> high-energy children, rainy days, families after sitting too long, convention families.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Check size/age rules before promising it to younger kids.</p>
+            </article>
+            <article class="dt-act-card" data-dt-activity="legoland">
+              <h4>LEGOLAND Discovery Center San Antonio</h4>
+              <span class="dt-act-google">Google: 4.0 ★ · 2.0K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Interactive Lego Playground</span><span class="dt-act-chip">Indoor Rides</span><span class="dt-act-chip">Young Kids</span></div>
+              <p class="dt-act-meta">Family Entertainment · Shops at Rivercenter · Ticket prices vary</p>
+              <p class="dt-act-read">A hands-on indoor LEGO stop best for younger kids who need a structured break near the River Walk.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> younger children, rainy days, hands-on play, families staying downtown.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Look at combo ticket options with SEA LIFE Aquarium if doing both.</p>
+            </article>
+            <article class="dt-act-card" data-dt-activity="sea-life">
+              <h4>SEA LIFE Aquarium San Antonio</h4>
+              <span class="dt-act-google">Google: 4.2 ★ · 1.5K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Underwater Ocean Tunnel</span><span class="dt-act-chip">Marine Conservation</span><span class="dt-act-chip">Indoor Family Stop</span></div>
+              <p class="dt-act-meta">Aquarium · Shops at Rivercenter · Ticket prices vary</p>
+              <p class="dt-act-read">A downtown indoor aquarium option with ocean tunnel, marine life, touch pools, sharks, turtles, and rays.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> children, animal lovers, rainy days, relaxing indoor breaks.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Check the daily schedule for feedings or animal demos.</p>
+            </article>
+            <article class="dt-act-card" data-dt-activity="magik-theatre">
+              <h4>The Magik Theatre</h4>
+              <span class="dt-act-google">Google: 4.8 ★ · 450 reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Professional Youth Theatre</span><span class="dt-act-chip">Hemisfair Sanctuary</span><span class="dt-act-chip">Family Culture Pick</span></div>
+              <p class="dt-act-meta">Live Theatre &amp; Performing Arts · Hemisfair Park · Ticket prices vary</p>
+              <p class="dt-act-read">A strong family culture pick near Yanaguana Garden, especially when a children&rsquo;s theater show fits your schedule.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> young kids, creative families, cultural afternoons, pairing with Hemisfair play time.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Pair it with Yanaguana Garden playground before or after the show.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="dt-cat-band" aria-labelledby="dt-cat-events">
+          <h3 class="dt-cat-title" id="dt-cat-events">Event + Convention Movement</h3>
+          <div class="dt-act-grid">
+            <article class="dt-act-card" data-dt-activity="alamodome">
+              <h4>Alamodome</h4>
+              <span class="dt-act-google">Google: 4.4 ★ · 15.5K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">65,000-Seat Stadium</span><span class="dt-act-chip">Major Events</span><span class="dt-act-chip">Convention Edge</span></div>
+              <p class="dt-act-meta">Stadium &amp; Convention Arena · Downtown east edge · Ticket prices vary</p>
+              <p class="dt-act-read">The major downtown stadium and event venue for sports, concerts, conventions, exhibitions, and large event crowds.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> sports fans, concert-goers, convention visitors, major event nights.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> For large events, walking from downtown can beat fighting event traffic and parking.</p>
+            </article>
+          </div>
+        </section>
+
+        <aside class="dt-ask-card dt-guide-cta" aria-labelledby="dt-guide-ask-heading">
+          <h3 id="dt-guide-ask-heading">Not sure which downtown move fits your group?</h3>
+          <p>Ask A Local with your hotel, group size, timing, and energy level.</p>
+          <div class="dt-ask-card-actions">
+            <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local &rarr;</a>
+            <a href="driver-concierge.html#route-operator" class="btn btn-secondary">Get Route Help</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+<section id="choose-downtown-move" class="section section-dark dt-choose-outer" aria-labelledby="dt-choose-heading">
       <div class="dt-choose-shell">
         <div class="dt-choose-head">
           <p class="dt-route-eyebrow">Downtown by situation</p>
@@ -789,8 +1154,8 @@
           <h3>Family-friendly downtown loop</h3>
           <div class="dt-move-rows">
             <p class="dt-move-row"><strong>Best for</strong> Summer afternoons, grandparents, restless kids.</p>
-            <p class="dt-move-row"><strong>Move</strong> Shorter outdoor windows &rarr; indoor cooldown &rarr; Market Square or Tower when you need novelty without another mile.</p>
-            <p class="dt-move-row"><strong>Backup</strong> Museums, bakery stops, Rivercenter chill, hotel pool reset.</p>
+            <p class="dt-move-row"><strong>Move</strong> River Walk boat energy &rarr; Tower plaza or Rivercenter indoor stops (LEGOLAND, SEA LIFE, LiggettVille) when heat or rain hits.</p>
+            <p class="dt-move-row"><strong>Backup</strong> Magik Theatre + Hemisfair playground, Market Square shade, or hotel pool reset.</p>
           </div>
         </article>
         <article class="dt-move-card dt-move-card--plum" id="dt-move-date">
@@ -835,6 +1200,7 @@
           </ul>
           <div class="dt-ask-card-actions">
             <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local &rarr;</a>
+            <a href="driver-concierge.html#route-operator" class="btn btn-secondary">Get Route Help</a>
             <a href="where-to-eat.html" class="btn btn-secondary">Open food picks</a>
           </div>
         </aside>

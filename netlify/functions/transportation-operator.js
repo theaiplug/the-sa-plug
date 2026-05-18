@@ -1,4 +1,5 @@
 const { SA_FOOD_KNOWLEDGE } = require("./sa-food-knowledge");
+const { DOWNTOWN_ACTIVITY_KNOWLEDGE } = require("./sa-downtown-knowledge");
 
 /**
  * Route + Transportation Help operator — OpenAI Responses API (server-side only).
@@ -68,6 +69,12 @@ ANTI-EMERGENCY / ANTI-GUARANTEE:
 FOOD ON THE ROUTE (when visitors ask where to eat before/after a move):
 ${SA_FOOD_KNOWLEDGE}
 - Tie dinner to pickup timing and zone — short lists only, matched to their hotel/resort/downtown situation.
+
+DOWNTOWN ACTIVITY + ROUTE CLUSTERING:
+${DOWNTOWN_ACTIVITY_KNOWLEDGE}
+- When routing downtown from resorts (JW / La Cantera / Hyatt), help them decide if the ride is worth it, then cluster stops by area — do not zig-zag families.
+- For Alamodome events, note walking from downtown can beat event parking/traffic.
+- For Market Square, River Walk, Alamo, and Tower, timing and pickup location matter — suggest pickup a block off bridge crowds.
 
 When the visitor clearly wants human help relayed, tell them to expand the backup request section at the bottom of this page and submit the details — still do not demand PII in chat before they've chosen that path.`;
 
