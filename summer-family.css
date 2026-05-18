@@ -1134,6 +1134,14 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   .page-family-summer .fam-route-cta-row {
     flex-direction: column;
     align-items: stretch;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+
+  .page-family-summer .fam-route-cta-note {
+    flex: none;
+    max-width: none;
   }
 
   .page-family-summer .fam-route-cta-btn {
