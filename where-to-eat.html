@@ -1972,11 +1972,11 @@
     }
 
     .eat-area-picks li {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 6px 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 10px;
+      row-gap: 4px;
+      align-items: center;
       padding: 9px 11px;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.82);
@@ -2000,20 +2000,32 @@
     }
 
     .eat-area-picks strong {
+      grid-column: 1;
+      grid-row: 1;
+      min-width: 0;
       font-weight: 800;
+      line-height: 1.35;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .eat-area-rating {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      align-self: center;
+      flex-shrink: 0;
       display: inline-flex;
       align-items: center;
       padding: 0.2rem 0.5rem;
       border-radius: 999px;
-      font-size: clamp(0.72rem, 0.68rem + 0.3vw, 0.8rem);
+      font-size: clamp(0.68rem, 0.64rem + 0.28vw, 0.78rem);
       font-weight: 780;
       color: #fffdfb;
       background: rgba(4, 10, 22, 0.92);
       border: 1px solid rgba(255, 220, 120, 0.42);
       white-space: nowrap;
+      max-width: 100%;
     }
 
     .eat-area-subhead {
@@ -2277,9 +2289,8 @@
     }
 
     @media (max-width: 390px) {
-      .eat-area-rating {
-        white-space: normal;
-        width: 100%;
+      .eat-area-picks li {
+        column-gap: 8px;
       }
 
       .eat-google-pill {
