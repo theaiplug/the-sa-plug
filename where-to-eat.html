@@ -461,12 +461,13 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: clamp(16px, 2.4vw, 20px);
-      align-items: start;
+      align-items: stretch;
       margin-top: clamp(18px, 2.8vw, 26px);
     }
 
     .eat-top-grid > article {
       min-width: 0;
+      height: 100%;
     }
 
     @media (min-width: 720px) {
@@ -562,11 +563,6 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-    }
-
-    .eat-situation-card h3 {
-      margin: 0;
-      font-size: 1.04rem;
     }
 
     .eat-visual-band {
@@ -681,8 +677,13 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 24px;
-      align-items: start;
+      align-items: stretch;
       margin-top: clamp(14px, 2vw, 20px);
+    }
+
+    .eat-lane-grid > article {
+      height: 100%;
+      min-height: 0;
     }
 
     @media (min-width: 900px) {
@@ -728,18 +729,53 @@
     }
 
     .eat-choose-strip {
-      margin-top: 16px;
-      padding: 16px 18px;
-      border-radius: calc(var(--radius) - 2px);
-      border: 1px solid rgba(11, 29, 58, 0.2);
-      background: linear-gradient(165deg, rgba(255, 255, 255, 0.94), rgba(241, 247, 255, 0.88));
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      margin-top: clamp(18px, 2.6vw, 24px);
+      padding: clamp(18px, 2.4vw, 22px);
+      border-radius: calc(var(--radius) + 2px);
+      border: 1px solid rgba(242, 178, 26, 0.35);
+      background:
+        radial-gradient(90% 70% at 0% 0%, rgba(20, 184, 166, 0.12), transparent 50%),
+        radial-gradient(70% 55% at 100% 100%, rgba(255, 106, 77, 0.1), transparent 48%),
+        linear-gradient(165deg, rgba(255, 253, 248, 0.98), rgba(255, 246, 232, 0.94));
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.75) inset,
+        0 16px 36px rgba(11, 29, 58, 0.1);
+    }
+
+    .eat-choose-strip::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 12px;
+      bottom: 12px;
+      width: 4px;
+      border-radius: 4px 0 0 4px;
+      background: linear-gradient(180deg, #fcd34d, #14b8a6);
+      opacity: 0.92;
     }
 
     .eat-choose-strip p {
+      position: relative;
+      z-index: 1;
       margin: 0;
+      padding: 10px 12px;
+      border-radius: 12px;
       color: var(--navy);
-      font-size: 0.95rem;
-      line-height: 1.6;
+      font-size: 0.94rem;
+      line-height: 1.58;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(11, 29, 58, 0.06);
+    }
+
+    .eat-choose-strip p + p {
+      margin-top: 10px;
+    }
+
+    .eat-choose-strip p strong {
+      color: #9a3412;
     }
 
     .eat-late-night-band .eat-choose-strip--band {
@@ -784,14 +820,15 @@
     .eat-guide-page .card.eat-rec-card {
       display: flex;
       flex-direction: column;
-      height: auto;
-      min-height: 0;
+      height: 100%;
+      min-height: 100%;
       padding: 18px 20px;
       gap: 0;
     }
 
     .eat-top-shell .eat-top-card.eat-rec-card--premium {
       height: auto;
+      min-height: 0;
     }
 
     .eat-card-badge {
@@ -836,7 +873,7 @@
     }
 
     .eat-rec-best {
-      margin: 0 0 10px;
+      margin: auto 0 10px;
       font-size: 0.9rem;
       line-height: 1.5;
     }
@@ -998,13 +1035,16 @@
       border-top: 1px solid rgba(11, 29, 58, 0.1);
     }
 
+    .eat-rec-card .eat-rec-card__inner,
     .eat-rec-card--premium .eat-rec-card__inner {
       position: relative;
       z-index: 1;
       display: flex;
       flex-direction: column;
+      flex: 1 1 auto;
       gap: 0;
-      min-height: 0;
+      min-height: 100%;
+      height: 100%;
       overflow-wrap: break-word;
       word-wrap: break-word;
     }
@@ -1279,7 +1319,12 @@
       grid-template-columns: 1fr;
       gap: 18px;
       margin-top: clamp(14px, 2vw, 20px);
-      align-items: start;
+      align-items: stretch;
+    }
+
+    .eat-lane-grid--2 > article {
+      height: 100%;
+      min-height: 0;
     }
 
     @media (min-width: 720px) {
@@ -1301,6 +1346,11 @@
     .eat-lane-grid-solo {
       margin-top: 14px;
       max-width: 560px;
+      align-items: stretch;
+    }
+
+    .eat-lane-grid-solo > article {
+      height: 100%;
     }
 
     /* Lanes helper sits inside food-move-board shell → same gutter as decision cards */
@@ -1757,21 +1807,92 @@
     }
 
     .eat-area-card {
-      padding: clamp(16px, 2.2vw, 20px);
-      border-radius: calc(var(--radius) + 2px);
-      border: 1px solid rgba(11, 29, 58, 0.12);
-      background: linear-gradient(165deg, #fffdf8 0%, #fff6e8 52%, #fef3dc 100%);
-      box-shadow: var(--shadow-sm);
+      --lane-a: #f2b21a;
+      --lane-b: #14b8a6;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: clamp(18px, 2.4vw, 22px);
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+      background:
+        radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--lane-b) 14%, transparent), transparent 55%),
+        radial-gradient(80% 60% at 0% 100%, color-mix(in srgb, var(--lane-a) 10%, transparent), transparent 50%),
+        linear-gradient(165deg, #fffdf8 0%, #fff6e8 48%, #fef3dc 100%);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.72) inset,
+        0 16px 36px rgba(11, 29, 58, 0.1);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .eat-area-card::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      top: 14px;
+      bottom: 14px;
+      left: 0;
+      width: 4px;
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+      background: linear-gradient(180deg, var(--lane-a), var(--lane-b));
+      opacity: 0.95;
+      pointer-events: none;
+      box-shadow: 3px 0 12px color-mix(in srgb, var(--lane-b) 35%, transparent);
+    }
+
+    .eat-area-card:hover {
+      border-color: color-mix(in srgb, var(--lane-b) 42%, rgba(11, 29, 58, 0.12));
+      transform: translateY(-3px);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.8) inset,
+        0 22px 44px rgba(11, 29, 58, 0.14);
+    }
+
+    #area-downtown { --lane-a: #38bdf8; --lane-b: #0369a1; }
+    #area-pearl { --lane-a: #5eead4; --lane-b: #0d9488; }
+    #area-la-cantera { --lane-a: #fcd34d; --lane-b: #d97706; }
+    #area-jw { --lane-a: #ffa07a; --lane-b: #ea580c; }
+    #area-hyatt { --lane-a: #86efac; --lane-b: #059669; }
+
+    .eat-area-card-head {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .eat-area-tag {
+      align-self: flex-start;
+      display: inline-flex;
+      padding: 0.28rem 0.62rem;
+      border-radius: 999px;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #062a47;
+      background: color-mix(in srgb, var(--lane-b) 16%, #fff);
+      border: 1px solid color-mix(in srgb, var(--lane-b) 32%, rgba(11, 29, 58, 0.12));
     }
 
     .eat-area-card h3 {
       margin: 0;
-      font-size: 1.08rem;
+      font-size: clamp(1.06rem, 0.5vw + 0.98rem, 1.18rem);
+      font-weight: 800;
       color: var(--navy);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+    }
+
+    /* Beat global main > .section on-dark h3 override (cream cards on dark canvas) */
+    main > .section.eat-area-section .eat-area-card h3 {
+      color: var(--navy);
+      -webkit-text-fill-color: var(--navy);
     }
 
     .eat-area-card > p {
@@ -1781,7 +1902,60 @@
       color: var(--slate);
     }
 
+    main > .section.eat-area-section .eat-area-card > p {
+      color: var(--slate);
+      -webkit-text-fill-color: currentColor;
+    }
+
+    main > .section.eat-area-section .eat-area-card .eat-area-picks li,
+    main > .section.eat-area-section .eat-area-card .eat-area-picks strong {
+      color: var(--navy);
+      -webkit-text-fill-color: currentColor;
+    }
+
+    main > .section.eat-area-section .eat-area-card .eat-area-rating {
+      color: #fffdfb;
+      -webkit-text-fill-color: #fffdfb;
+    }
+
+    main > .section.eat-area-section .eat-area-card .eat-area-link {
+      color: #071120;
+      -webkit-text-fill-color: currentColor;
+    }
+
+    main > .section.eat-area-section .eat-area-card .eat-area-tag {
+      color: #062a47;
+      -webkit-text-fill-color: currentColor;
+    }
+
+    main > .section.eat-situation-section .eat-situation-card h3 {
+      color: var(--navy);
+      -webkit-text-fill-color: var(--navy);
+    }
+
+    main > .section.eat-situation-section .eat-situation-card p {
+      color: var(--slate);
+      -webkit-text-fill-color: currentColor;
+    }
+
+    main > .section.eat-situation-section .eat-situation-card .eat-situation-moves {
+      color: var(--navy);
+      -webkit-text-fill-color: currentColor;
+    }
+
+    main > .section.eat-situation-section .eat-situation-card .eat-situation-moves strong {
+      color: rgba(11, 29, 58, 0.65);
+      -webkit-text-fill-color: currentColor;
+    }
+
+    main > .section.eat-situation-section .eat-situation-card .eat-situation-tag {
+      color: #062a47;
+      -webkit-text-fill-color: currentColor;
+    }
+
     .eat-area-picks {
+      position: relative;
+      z-index: 2;
       margin: 4px 0 0;
       padding: 0;
       list-style: none;
@@ -1790,19 +1964,39 @@
       gap: 8px;
     }
 
+    .eat-area-card > p,
+    .eat-area-card .eat-area-subhead,
+    .eat-area-card .section-text {
+      position: relative;
+      z-index: 2;
+    }
+
     .eat-area-picks li {
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
       justify-content: space-between;
       gap: 6px 10px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.72);
+      padding: 9px 11px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.82);
       border: 1px solid rgba(11, 29, 58, 0.08);
       font-size: 0.86rem;
       line-height: 1.4;
       color: var(--navy);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+      transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease;
+    }
+
+    .eat-area-picks li:hover {
+      background: #fff;
+      border-color: color-mix(in srgb, var(--lane-b) 28%, rgba(11, 29, 58, 0.1));
+      transform: translateX(2px);
+    }
+
+    .eat-area-picks li:first-child {
+      border-color: color-mix(in srgb, var(--lane-a) 45%, rgba(11, 29, 58, 0.1));
+      background: linear-gradient(135deg, #fff 0%, color-mix(in srgb, var(--lane-a) 8%, #fffdf8) 100%);
     }
 
     .eat-area-picks strong {
@@ -1810,9 +2004,15 @@
     }
 
     .eat-area-rating {
-      font-size: clamp(0.76rem, 0.7rem + 0.35vw, 0.82rem);
-      font-weight: 750;
-      color: rgba(11, 29, 58, 0.78);
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      font-size: clamp(0.72rem, 0.68rem + 0.3vw, 0.8rem);
+      font-weight: 780;
+      color: #fffdfb;
+      background: rgba(4, 10, 22, 0.92);
+      border: 1px solid rgba(255, 220, 120, 0.42);
       white-space: nowrap;
     }
 
@@ -1826,16 +2026,36 @@
     }
 
     .eat-area-link {
+      position: relative;
+      z-index: 2;
       align-self: flex-start;
-      margin-top: 4px;
-      font-size: 0.84rem;
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 15px;
+      border-radius: 999px;
+      font-size: 0.82rem;
       font-weight: 800;
-      color: #0d9488;
+      letter-spacing: 0.03em;
+      color: #071120;
       text-decoration: none;
+      background: rgba(255, 247, 232, 0.96);
+      border: 1px solid color-mix(in srgb, var(--lane-a) 55%, rgba(11, 29, 58, 0.12));
+      box-shadow: 0 2px 10px rgba(11, 29, 58, 0.08);
+      transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+    }
+
+    .eat-area-link::after {
+      content: "→";
+      font-size: 0.92em;
+      opacity: 0.85;
     }
 
     .eat-area-link:hover {
-      text-decoration: underline;
+      background: #fff;
+      border-color: color-mix(in srgb, var(--lane-b) 55%, rgba(11, 29, 58, 0.15));
+      transform: translateY(-1px);
     }
 
     .eat-situation-section .eat-section-head h2 {
@@ -1843,10 +2063,101 @@
     }
 
     .eat-situation-card {
-      border-radius: calc(var(--radius) + 2px);
-      border: 1px solid rgba(11, 29, 58, 0.12);
-      background: linear-gradient(165deg, #fffdf8 0%, #fff8ee 100%);
-      box-shadow: var(--shadow-sm);
+      --lane-a: #f2b21a;
+      --lane-b: #14b8a6;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: clamp(18px, 2.4vw, 22px);
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+      background:
+        radial-gradient(110% 85% at 100% 0%, color-mix(in srgb, var(--lane-b) 12%, transparent), transparent 52%),
+        linear-gradient(165deg, #fffdf8 0%, #fff8ee 58%, #fef3dc 100%);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.7) inset,
+        0 14px 32px rgba(11, 29, 58, 0.09);
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .eat-situation-card::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      top: 12px;
+      bottom: 12px;
+      left: 0;
+      width: 4px;
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+      background: linear-gradient(180deg, var(--lane-a), var(--lane-b));
+      opacity: 0.94;
+      pointer-events: none;
+    }
+
+    .eat-situation-card:hover {
+      border-color: color-mix(in srgb, var(--lane-b) 38%, rgba(11, 29, 58, 0.12));
+      transform: translateY(-3px);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.78) inset,
+        0 20px 40px rgba(11, 29, 58, 0.12);
+    }
+
+    .eat-situation-grid > .eat-situation-card:nth-child(1) { --lane-a: #38bdf8; --lane-b: #0369a1; }
+    .eat-situation-grid > .eat-situation-card:nth-child(2) { --lane-a: #ffa07a; --lane-b: #ea580c; }
+    .eat-situation-grid > .eat-situation-card:nth-child(3) { --lane-a: #fcd34d; --lane-b: #d97706; }
+    .eat-situation-grid > .eat-situation-card:nth-child(4) { --lane-a: #86efac; --lane-b: #059669; }
+    .eat-situation-grid > .eat-situation-card:nth-child(5) { --lane-a: #5eead4; --lane-b: #0d9488; }
+    .eat-situation-grid > .eat-situation-card:nth-child(6) { --lane-a: #d8b4fe; --lane-b: #7e22ce; }
+
+    .eat-situation-card-head {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .eat-situation-tag {
+      align-self: flex-start;
+      display: inline-flex;
+      padding: 0.28rem 0.62rem;
+      border-radius: 999px;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #062a47;
+      background: color-mix(in srgb, var(--lane-b) 14%, #fff);
+      border: 1px solid color-mix(in srgb, var(--lane-b) 30%, rgba(11, 29, 58, 0.1));
+    }
+
+    .eat-situation-card h3 {
+      margin: 0;
+      font-size: clamp(1.02rem, 0.45vw + 0.94rem, 1.12rem);
+      font-weight: 800;
+      letter-spacing: -0.022em;
+      line-height: 1.22;
+    }
+
+    .eat-situation-card .eat-situation-moves {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      padding: 12px 13px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(11, 29, 58, 0.08);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+    }
+
+    .eat-situation-card p:not(.eat-situation-moves) {
+      position: relative;
+      z-index: 2;
     }
 
     .eat-situation-card p {
@@ -1947,6 +2258,22 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .eat-area-card,
+      .eat-situation-card,
+      .eat-area-picks li,
+      .eat-area-link {
+        transition: none;
+      }
+
+      .eat-area-card:hover,
+      .eat-situation-card:hover,
+      .eat-area-picks li:hover,
+      .eat-area-link:hover {
+        transform: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -2121,7 +2448,10 @@
       </header>
       <div class="eat-area-grid">
         <article class="eat-area-card" id="area-downtown">
-          <h3>Downtown / River Walk</h3>
+          <header class="eat-area-card-head">
+            <span class="eat-area-tag">Walkable core</span>
+            <h3>Downtown / River Walk</h3>
+          </header>
           <p>Walkable dinner, drinks, rooftops, classic San Antonio energy, and convention-friendly choices.</p>
           <ul class="eat-area-picks">
             <li><strong>Bohanan&rsquo;s</strong> <span class="eat-area-rating">Google: 4.7 ★ · 3.1K reviews</span></li>
@@ -2136,7 +2466,10 @@
           <a class="eat-area-link" href="#lane-downtown-dining">Full downtown picks</a>
         </article>
         <article class="eat-area-card" id="area-pearl">
-          <h3>The Pearl</h3>
+          <header class="eat-area-card-head">
+            <span class="eat-area-tag">Food district</span>
+            <h3>The Pearl</h3>
+          </header>
           <p>The best &ldquo;one district&rdquo; food night north of downtown &mdash; walkable, polished, local, and strong for couples, business travelers, and food-focused visitors.</p>
           <ul class="eat-area-picks">
             <li><strong>Supper</strong> <span class="eat-area-rating">Google: 4.6 ★ · 1.5K reviews</span></li>
@@ -2151,7 +2484,10 @@
           <a class="eat-area-link" href="#eat-pearl-feature">Build a Pearl night</a>
         </article>
         <article class="eat-area-card" id="area-la-cantera">
-          <h3>La Cantera / The Rim</h3>
+          <header class="eat-area-card-head">
+            <span class="eat-area-tag">Resort north</span>
+            <h3>La Cantera / The Rim</h3>
+          </header>
           <p>Best for resort guests, Six Flags families, shopping nights, polished steakhouse dinners, and north-side visitors who do not want downtown traffic.</p>
           <ul class="eat-area-picks">
             <li><strong>Signature Restaurant</strong> <span class="eat-area-rating">Google: 4.7 ★ · 720 reviews</span></li>
@@ -2188,7 +2524,10 @@
           <a class="eat-area-link" href="resort-food.html#rf-zone-jw">JW / TPC resort guide</a>
         </article>
         <article class="eat-area-card" id="area-hyatt">
-          <h3>Hyatt Hill Country / SeaWorld Side</h3>
+          <header class="eat-area-card-head">
+            <span class="eat-area-tag">Hill Country west</span>
+            <h3>Hyatt Hill Country / SeaWorld Side</h3>
+          </header>
           <p>Best for families, SeaWorld days, pool fatigue, and west-side resort guests who need easy food without a downtown run.</p>
           <p class="eat-area-subhead">On-property</p>
           <ul class="eat-area-picks">
@@ -2216,32 +2555,50 @@
       </header>
       <div class="eat-situation-grid">
         <article class="eat-situation-card">
-          <h3>I&rsquo;m downtown for a convention</h3>
+          <header class="eat-situation-card-head">
+            <span class="eat-situation-tag">Convention</span>
+            <h3>I&rsquo;m downtown for a convention</h3>
+          </header>
           <p class="eat-situation-moves"><strong>Best move</strong> Paesanos, Domingo, Boudro&rsquo;s, Bohanan&rsquo;s, Esquire, Pinkerton&rsquo;s.</p>
           <p>Stay walkable. Pick one dinner, one drink stop, and one clean ride-home point.</p>
         </article>
         <article class="eat-situation-card">
-          <h3>I&rsquo;m staying at JW Marriott</h3>
+          <header class="eat-situation-card-head">
+            <span class="eat-situation-tag">JW Marriott</span>
+            <h3>I&rsquo;m staying at JW Marriott</h3>
+          </header>
           <p class="eat-situation-moves"><strong>Best move</strong> Stay on property for 18 Oaks, Cibolo Moon, High Velocity. Go Stone Oak for J-Prime, Chama Ga&uacute;cha, Stone Terrace, Smokey Mo&rsquo;s.</p>
           <p>If the group is tired, stay close. If they want a stronger dinner, make the short Stone Oak upgrade.</p>
         </article>
         <article class="eat-situation-card">
-          <h3>I&rsquo;m staying near La Cantera</h3>
+          <header class="eat-situation-card-head">
+            <span class="eat-situation-tag">La Cantera</span>
+            <h3>I&rsquo;m staying near La Cantera</h3>
+          </header>
           <p class="eat-situation-moves"><strong>Best move</strong> Signature, Haywire, Perry&rsquo;s, Palenque Grill, Whiskey Cake, Roca &amp; Martillo.</p>
           <p>This area can carry a whole night without downtown traffic.</p>
         </article>
         <article class="eat-situation-card">
-          <h3>I&rsquo;m staying at Hyatt Hill Country</h3>
+          <header class="eat-situation-card-head">
+            <span class="eat-situation-tag">Hyatt Hill Country</span>
+            <h3>I&rsquo;m staying at Hyatt Hill Country</h3>
+          </header>
           <p class="eat-situation-moves"><strong>Best move</strong> Antlers Lodge, Springhouse Caf&eacute;, Woodbine Bar, Via 313, Rudy&rsquo;s, Pericos.</p>
           <p>Great for families and SeaWorld days. Keep it easy unless downtown is the actual goal.</p>
         </article>
         <article class="eat-situation-card">
-          <h3>I want the Pearl</h3>
+          <header class="eat-situation-card-head">
+            <span class="eat-situation-tag">Pearl night</span>
+            <h3>I want the Pearl</h3>
+          </header>
           <p class="eat-situation-moves"><strong>Best move</strong> Supper, Southerleigh, Pullman Market, Sternewirth, Jazz TX, Boiler House.</p>
           <p>The Pearl deserves its own lane. Use it when visitors want local food, polished drinks, and an easy walkable district.</p>
         </article>
         <article class="eat-situation-card">
-          <h3>I want one big San Antonio dinner</h3>
+          <header class="eat-situation-card-head">
+            <span class="eat-situation-tag">Signature dinner</span>
+            <h3>I want one big San Antonio dinner</h3>
+          </header>
           <p class="eat-situation-moves"><strong>Best move</strong> Bohanan&rsquo;s, Soluna, Biga, Signature, J-Prime, Bras&atilde;o, Supper, Boudro&rsquo;s.</p>
           <p>Drive farther only when the restaurant is the memory.</p>
         </article>
