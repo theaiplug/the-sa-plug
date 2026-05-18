@@ -937,14 +937,14 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   font-weight: 870;
   letter-spacing: -0.032em;
   line-height: 1.1;
-  color: #071323;
+  color: var(--navy-deep);
 }
 
 .page-family-summer .fam-route-detail-intro {
   margin: 0;
   font-size: clamp(0.98rem, 0.2vw + 0.9rem, 1.06rem);
   line-height: 1.65;
-  color: rgba(7, 19, 35, 0.88);
+  color: var(--navy-deep);
 }
 
 .page-family-summer .fam-route-detail-chips {
@@ -1659,8 +1659,9 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   color: #9a3412;
 }
 
+.page-family-summer .fam-stacks-section #stacks-heading,
 .page-family-summer .fam-stacks-title {
-  color: #031627;
+  color: var(--navy-deep);
   letter-spacing: -0.03em;
 }
 

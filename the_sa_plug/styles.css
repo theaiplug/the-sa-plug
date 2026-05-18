@@ -290,6 +290,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   display: block;
   font-size: 1.03rem;
   letter-spacing: 0.01em;
+  color: var(--navy);
 }
 
 .brand small {

@@ -57,7 +57,7 @@ html {
 
 body {
   margin: 0;
-  color: var(--navy);
+  color: var(--on-dark-body-soft);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
     radial-gradient(ellipse 90% 40% at 50% -10%, rgba(97, 45, 120, 0.22), transparent 50%),
@@ -118,56 +118,67 @@ main {
 }
 
 /* Inner subpages: default sections sit on the global dark canvas — lock readable fiesta-on-dark type */
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) {
   color: var(--on-dark-body-soft);
 }
 
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) h2 {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) :is(h2, h3) {
   color: var(--on-dark-heading);
 }
 
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .section-text {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .section-text {
   color: var(--on-dark-body);
 }
 
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) > .eyebrow,
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) > div > .eyebrow:first-child {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .section-text a {
+  color: var(--turquoise);
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .section-text a:hover {
+  color: var(--gold);
+}
+
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) > .eyebrow,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) > div > .eyebrow:first-child,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) :is(.eat-section-head, .sh-section-head, .tc-section-head) .eyebrow:not(.eyebrow-on-dark) {
   color: var(--on-dark-eyebrow);
 }
 
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card,
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card h3 {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card h3 {
   color: var(--navy);
 }
 
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card p,
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card small {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card p,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .card small {
   color: var(--slate);
 }
 
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .required-note {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .required-note {
   color: rgba(255, 246, 230, 0.94);
   background: rgba(255, 106, 77, 0.16);
   border-color: rgba(255, 106, 77, 0.4);
 }
 
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section).split {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section).split {
   align-items: stretch;
 }
 
 @media (min-width: 830px) {
-  main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section).split {
+  main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section).split {
     gap: clamp(24px, 3.2vw, 36px);
   }
 }
 
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .grid-3,
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .grid-4,
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .feature-grid {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .grid-3,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .grid-4,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .feature-grid {
   margin-top: clamp(18px, 2.2vw, 24px);
 }
 
-main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .grid-4-split {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section) .grid-4-split {
   margin-top: clamp(8px, 1.35vw, 13px);
 }
 
@@ -197,6 +208,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 .section-fiesta {
+  color: var(--navy);
   background:
     radial-gradient(ellipse 90% 70% at 100% 0%, rgba(255, 106, 77, 0.2), transparent 45%),
     radial-gradient(circle at 0% 100%, rgba(20, 184, 166, 0.15), transparent 40%),
@@ -204,12 +216,14 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 .section-cream {
+  color: var(--navy);
   background:
     radial-gradient(circle at 20% 20%, rgba(242, 178, 26, 0.12), transparent 42%),
     linear-gradient(180deg, var(--cream) 0%, var(--cream-peach) 100%);
 }
 
 .section-blush {
+  color: var(--navy);
   background:
     radial-gradient(circle at 85% 15%, rgba(255, 92, 168, 0.18), transparent 35%),
     radial-gradient(circle at 10% 90%, rgba(255, 139, 31, 0.1), transparent 40%),
@@ -217,9 +231,28 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 }
 
 .section-turquoise-wash {
+  color: var(--navy);
   background:
     radial-gradient(circle at 80% 80%, rgba(20, 184, 166, 0.14), transparent 45%),
     linear-gradient(180deg, var(--cream-turq), #f0fcfa);
+}
+
+.section-fiesta :is(h2, h3),
+.section-cream :is(h2, h3),
+.section-blush :is(h2, h3),
+.section-turquoise-wash :is(h2, h3) {
+  color: var(--navy);
+}
+
+.section-fiesta .section-text,
+.section-cream .section-text,
+.section-blush .section-text,
+.section-turquoise-wash .section-text,
+.section-fiesta .hero-text,
+.section-cream .hero-text,
+.section-blush .hero-text,
+.section-turquoise-wash .hero-text {
+  color: var(--slate);
 }
 
 .hero-fiesta-dark {
@@ -274,6 +307,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   justify-content: space-between;
   min-height: var(--header-h);
   padding: max(8px, env(safe-area-inset-top, 0px)) clamp(16px, 4.5vw, 70px) 8px;
+  color: var(--navy);
   background: linear-gradient(180deg, rgba(255, 250, 240, 0.99), rgba(255, 246, 230, 0.96));
   border-bottom: 1px solid rgba(11, 29, 58, 0.12);
   box-shadow:
@@ -298,6 +332,7 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
   letter-spacing: 0.01em;
   word-spacing: normal;
   white-space: normal;
+  color: var(--navy);
 }
 
 .brand small {
@@ -793,11 +828,22 @@ main > .section:not([class*="section-"]):not(.dark-showcase):not(.band):not(.ai-
 .section.section-after-inner-hero {
   padding-top: clamp(32px, 3.8vw, 46px);
   border-top: 1px solid rgba(255, 246, 230, 0.08);
+  color: var(--on-dark-body-soft);
 }
 
-.section-after-inner-hero > .section-text:first-child {
+.section-after-inner-hero :is(h2, h3) {
+  color: var(--on-dark-heading);
+}
+
+.section-after-inner-hero > .section-text:first-child,
+.section-after-inner-hero > .eyebrow + .section-text {
   margin-bottom: clamp(14px, 2vw, 20px);
   max-width: 44rem;
+  color: var(--on-dark-body);
+}
+
+.section-after-inner-hero > .eyebrow {
+  color: var(--on-dark-eyebrow);
 }
 
 .section-after-inner-hero .feature-grid {
