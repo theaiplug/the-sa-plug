@@ -1338,6 +1338,61 @@
       color: #f7d480;
     }
 
+    /* Owner-updatable Google line — keep subtle vs visitor read */
+    .resort-food-page .rf-dining-google {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      max-width: 100%;
+      padding: 0.28rem 0.52rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+      color: #3d4660;
+      background: rgba(19, 33, 67, 0.06);
+      border: 1px solid rgba(15, 23, 49, 0.1);
+    }
+
+    .resort-food-page .rf-dining-facts {
+      margin: 0;
+      font-size: 0.8rem;
+      line-height: 1.42;
+      color: #4a5368;
+    }
+
+    .resort-food-page .rf-dining-facts strong {
+      color: #243049;
+      font-weight: 750;
+    }
+
+    .resort-food-page .rf-dining-zone-label {
+      margin: 0.15rem 0 0;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(153, 248, 241, 0.88);
+    }
+
+    .resort-food-page .rf-dining-zone-label--nearby {
+      color: rgba(255, 200, 140, 0.92);
+    }
+
+    .resort-food-page .rf-activity-google,
+    .resort-food-page .rf-activity-amenity {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 0.22rem 0.48rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 750;
+      color: rgba(255, 248, 235, 0.82);
+      background: rgba(255, 246, 230, 0.08);
+      border: 1px solid rgba(255, 246, 230, 0.14);
+    }
+
     .resort-food-page .rf-dining-chips {
       display: flex;
       flex-wrap: wrap;
@@ -1550,7 +1605,9 @@
         <p class="eyebrow eyebrow-on-dark">Jump to what you need</p>
         <h2 id="rf-jump-title" class="page-jump-title">Resort zones &amp; moves</h2>
         <div class="page-jump-chip-row">
-          <a class="page-jump-chip" href="#rf-zone-jw">JW Marriott / TPC / North 281</a>
+          <a class="page-jump-chip" href="#rf-zone-jw">JW Marriott / TPC guide</a>
+          <a class="page-jump-chip" href="#rf-jw-dining-on">JW on-property dining</a>
+          <a class="page-jump-chip" href="#rf-jw-dining-nearby">JW nearby dinner</a>
           <a class="page-jump-chip" href="#rf-zone-hyatt">Hyatt Hill Country</a>
           <a class="page-jump-chip" href="#rf-zone-rim">La Cantera guide</a>
           <a class="page-jump-chip" href="#rf-la-cantera-things">La Cantera activities</a>
@@ -1675,7 +1732,7 @@
               <img class="image-route-card__media" src="assets/resort-card-jw-tpc-north-281-v3.png" alt="North-side resort golf and polished guest grounds" width="640" height="400" decoding="async" loading="lazy" />
               <span class="image-route-card__shade" aria-hidden="true"></span>
               <span class="image-route-card__body">
-                <span class="eyebrow">JW Marriott / TPC / North 281</span>
+                <span class="eyebrow">JW Marriott / TPC / Far North</span>
                 <h3>Canyon Ridge + 281</h3>
                 <p>On-property comfort, polished nearby upgrades, and traffic-aware dinner choices.</p>
                 <span class="image-route-card__cta">Jump to JW / TPC zone</span>
@@ -1729,34 +1786,269 @@
         <div class="section-lead">
           <div class="rf-pill-row" aria-hidden="true">
             <span class="rf-pill">Golf days</span>
-            <span class="rf-pill">281 traffic</span>
-            <span class="rf-pill">Resort groups</span>
+            <span class="rf-pill">TPC Parkway</span>
+            <span class="rf-pill">Stone Oak access</span>
+            <span class="rf-pill">Not La Cantera</span>
           </div>
-          <p class="eyebrow">JW Marriott / TPC / North 281</p>
-          <h2>JW Marriott &middot; TPC &middot; North 281</h2>
-          <p class="section-subcopy compact">Golf, spa timing, and north-side traffic usually decide whether you stay on-property or stage a short rideshare upgrade.</p>
+          <p class="eyebrow">JW Marriott / TPC / Far North</p>
+          <h2>JW Marriott / TPC resort-area guide</h2>
+          <p class="section-subcopy compact">JW Marriott San Antonio Hill Country Resort &amp; Spa feels like its own Hill Country world. It is beautiful, spread out, and secluded enough that many visitors eventually want to leave the resort bubble for dinner or a local outing. Use this guide to decide whether to stay on property, head toward Stone Oak / North 281, or make downtown the bigger night. This zone is separate from La Cantera / The Rim / Six Flags and from Hyatt Hill Country / SeaWorld &mdash; never treat them as the same resort bubble.</p>
         </div>
         <div class="rf-zone-banner-pair rf-zone-banner-pair--single">
-          <div class="rf-zone-banner" role="img" aria-label="JW Marriott, TPC, and North 281 resort area">
+          <div class="rf-zone-banner" role="img" aria-label="JW Marriott, TPC, and Far North San Antonio resort area">
             <img src="assets/resort-card-jw-tpc-north-281-v3.png" alt="" width="1200" height="320" decoding="async" loading="lazy" />
           </div>
         </div>
-        <div class="rf-lane-grid rf-lane-grid--3">
-          <article class="rf-lane-card">
-            <h3>On-property comfort</h3>
-            <p><strong>Restaurants:</strong> 18 Oaks, Cibolo Moon, High Velocity, FIAMME.</p>
-            <p class="meta"><strong>Best for:</strong> arrival night, resort groups, low-friction dinners.</p>
+        <h3 class="rf-subsection-title" id="rf-jw-dining-on">On-property dining at JW Marriott</h3>
+        <p class="rf-subsection-lead">Six resort restaurants when convenience beats another ride &mdash; scan ratings, vibe, and the reservation move.</p>
+        <div class="rf-dining-grid" aria-labelledby="rf-jw-dining-on">
+          <article class="rf-dining-card rf-dining-card--gold" data-rf-google-rating="4.6" data-rf-google-reviews="920">
+            <div class="rf-dining-card-head">
+              <h3>18 Oaks</h3>
+              <span class="rf-confidence-pill">Strong Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.6 ★ · 920 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Championship Views</span>
+              <span class="rf-dining-chip">Prime Texas Beef</span>
+              <span class="rf-dining-chip">Resort Fine Dining</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Steakhouse · <strong>Zone:</strong> JW Marriott / TPC / Far North · <strong>Vibe:</strong> sophisticated, upscale, scenic · <strong>Price:</strong> $100+</p>
+            <p class="rf-dining-read">The resort&rsquo;s luxury dining anchor, overlooking the TPC San Antonio golf courses. Best when you want a high-end dinner without leaving the property.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> high-end celebratory dinners, luxury resort splurges, fine wine, executive hosting.<br /><strong>Reservation move:</strong> Book ahead for prime dinner times or Sunday brunch.</p>
           </article>
-          <article class="rf-lane-card rf-lane-card--turq">
-            <h3>Short rideshare upgrade</h3>
-            <p><strong>Restaurants:</strong> J-Prime, Chama Ga&uacute;cha, Bras&atilde;o if timing works.</p>
-            <p class="meta"><strong>Best for:</strong> business dinners, celebrations, steakhouse energy.</p>
+          <article class="rf-dining-card rf-dining-card--orange" data-rf-google-rating="4.4" data-rf-google-reviews="1400">
+            <div class="rf-dining-card-head">
+              <h3>Cibolo Moon</h3>
+              <span class="rf-confidence-pill">Strong Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.4 ★ · 1,400 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Tequila Certified</span>
+              <span class="rf-dining-chip">Hill Country Comfort</span>
+              <span class="rf-dining-chip">Family-Friendly</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Tex-Mex &amp; Southern Comfort · <strong>Zone:</strong> JW Marriott / TPC / Far North · <strong>Vibe:</strong> lively, casual-polished, family-friendly · <strong>Price:</strong> $30&ndash;$60</p>
+            <p class="rf-dining-read">The energetic heart of the resort dining lineup, with Tex-Mex, Southern comfort, smoked meats, tacos, breakfast buffet energy, and a tequila-forward bar.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> casual family dining, regional Texas flavors, patio lunches, easy resort meals.<br /><strong>Reservation move:</strong> Ask for outdoor seating when the weather works.</p>
           </article>
-          <article class="rf-lane-card rf-lane-card--pink">
-            <h3>Casual backup</h3>
-            <p><strong>Restaurants:</strong> La Panader&iacute;a, Lupe Tortilla, nearby family-friendly options.</p>
-            <p class="meta"><strong>Best for:</strong> families, flexible nights, reset meals.</p>
+          <article class="rf-dining-card rf-dining-card--turq" data-rf-google-rating="4.3" data-rf-google-reviews="780">
+            <div class="rf-dining-card-head">
+              <h3>High Velocity</h3>
+              <span class="rf-confidence-pill">Reliable Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.3 ★ · 780 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">120-Foot Video Wall</span>
+              <span class="rf-dining-chip">Massive Tap List</span>
+              <span class="rf-dining-chip">Sports Bar</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Sports Bar &amp; Grill · <strong>Zone:</strong> JW Marriott / TPC / Far North · <strong>Vibe:</strong> high-volume, modern, loud · <strong>Price:</strong> $20&ndash;$40</p>
+            <p class="rf-dining-read">The resort&rsquo;s sports bar move, built for game days, burgers, beers, groups, and late casual dinners.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> major games, late-night cravings, large groups, relaxed casual dinners.<br /><strong>Reservation move:</strong> Arrive early before major games to get a better viewing spot.</p>
           </article>
+          <article class="rf-dining-card rf-dining-card--pink" data-rf-google-rating="4.5" data-rf-google-reviews="120">
+            <div class="rf-dining-card-head">
+              <h3>Crooked Branch</h3>
+              <span class="rf-confidence-pill">Strong Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.5 ★ · 120 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Lobby Lounge</span>
+              <span class="rf-dining-chip">Asian-Fusion Tapas</span>
+              <span class="rf-dining-chip">Cocktails</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Lobby Lounge · <strong>Zone:</strong> JW Marriott / TPC / Far North · <strong>Vibe:</strong> upscale-relaxed, social · <strong>Price:</strong> $20&ndash;$40</p>
+            <p class="rf-dining-read">A polished lobby lounge for arrival drinks, cocktails, small plates, and a softer landing after check-in.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> post-travel drinks, late-afternoon unwinding, light group sharing, sunset lobby views.<br /><strong>Reservation move:</strong> Look for seating near the large lobby windows in late afternoon.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--orange">
+            <div class="rf-dining-card-head">
+              <h3>Fiamm&eacute; Pizzeria</h3>
+              <span class="rf-confidence-pill">Resort Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: check current listing</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Hand-Tossed Pies</span>
+              <span class="rf-dining-chip">Flame-Fired Artisan Pizza</span>
+              <span class="rf-dining-chip">Quick Service</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Pizzeria · <strong>Zone:</strong> JW Marriott / TPC / Far North · <strong>Vibe:</strong> relaxed, simple, quick · <strong>Price:</strong> $15&ndash;$30</p>
+            <p class="rf-dining-read">The easy resort pizza option when the group wants a fast, low-stress meal without making dinner a project.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> family dinners with kids, quick pool-adjacent lunches, casual pizza nights, to-go meals on property.<br /><strong>Reservation move:</strong> Grab it to-go and eat outside if the weather is good.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--gold">
+            <div class="rf-dining-card-head">
+              <h3>Replenish Spa Bistro</h3>
+              <span class="rf-confidence-pill">Resort Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: check current listing</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Organic Wellness</span>
+              <span class="rf-dining-chip">Garden-to-Table</span>
+              <span class="rf-dining-chip">Spa Sanctuary</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Healthy Cafe · <strong>Zone:</strong> JW Marriott / TPC / Far North · <strong>Vibe:</strong> serene, quiet, wellness-focused · <strong>Price:</strong> $15&ndash;$30</p>
+            <p class="rf-dining-read">A quiet wellness-focused option inside the Lantana Spa area for light meals, juices, smoothies, and post-spa reset.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> wellness travelers, light lunches after spa treatments, health-conscious dining, quiet resort breaks.<br /><strong>Reservation move:</strong> Pair a light meal or smoothie with spa time if available.</p>
+          </article>
+        </div>
+        <h3 class="rf-subsection-title" id="rf-jw-dining-nearby">Nearby dinner &mdash; Stone Oak / North 281 / TPC Parkway</h3>
+        <p class="rf-dining-zone-label rf-dining-zone-label--nearby">Outside the JW gates &mdash; not La Cantera, not downtown-first</p>
+        <p class="rf-subsection-lead">When you want to leave the resort bubble without a long drive, think Stone Oak / North 281 first. Bohanan&rsquo;s is a downtown destination (~25&ndash;30 minutes) &mdash; not a nearby JW move.</p>
+        <div class="rf-dining-grid" aria-labelledby="rf-jw-dining-nearby">
+          <article class="rf-dining-card rf-dining-card--gold" data-rf-google-rating="4.8" data-rf-google-reviews="4500">
+            <div class="rf-dining-card-head">
+              <h3>J-Prime Steakhouse</h3>
+              <span class="rf-confidence-pill">Willie Approved</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.8 ★ · 4.5K reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Polished Dinner</span>
+              <span class="rf-dining-chip">Nearby Pick</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Steakhouse · <strong>Zone:</strong> Stone Oak · <strong>Vibe:</strong> splurge, polished service · <strong>Price:</strong> $100+</p>
+            <p class="rf-dining-read">North-side steakhouse polish when the night needs confidence and a modern premium room without downtown traffic.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> client splurges, celebrations, resort-area business dinners.<br /><strong>Reservation move:</strong> Book peak weekend slots early.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--turq" data-rf-google-rating="4.9" data-rf-google-reviews="15000">
+            <div class="rf-dining-card-head">
+              <h3>Chama Ga&uacute;cha</h3>
+              <span class="rf-confidence-pill">Willie Approved</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.9 ★ · 15K reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Rodizio</span>
+              <span class="rf-dining-chip">Nearby Pick</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Brazilian Steakhouse · <strong>Zone:</strong> Stone Oak · <strong>Vibe:</strong> celebratory, group-friendly · <strong>Price:</strong> $60&ndash;$100</p>
+            <p class="rf-dining-read">A dependable crowd-pleaser when the whole table wants steak on a skewer and a lively north-side room.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> group dinners, steak-heavy nights, celebration tables.<br /><strong>Reservation move:</strong> Book ahead for big crews.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--pink">
+            <div class="rf-dining-card-head">
+              <h3>Eddie V&rsquo;s Prime Seafood</h3>
+              <span class="rf-confidence-pill">Strong Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: check current listing</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Seafood &amp; Steak</span>
+              <span class="rf-dining-chip">Nearby Pick</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Seafood &amp; Steak · <strong>Zone:</strong> Stone Oak · <strong>Vibe:</strong> upscale, polished · <strong>Price:</strong> $60&ndash;$100+</p>
+            <p class="rf-dining-read">Strong seafood-and-steak option in the Stone Oak / north-side corridor when the group wants a polished night out from JW.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> seafood lovers, date nights, business dinners, upscale groups.<br /><strong>Reservation move:</strong> Reserve prime dinner windows on busy weekends.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--gold">
+            <div class="rf-dining-card-head">
+              <h3>Blu Prime</h3>
+              <span class="rf-confidence-pill">Strong Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: check current listing</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Upscale Steak &amp; Seafood</span>
+              <span class="rf-dining-chip">Nearby Pick</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Steak &amp; Seafood · <strong>Zone:</strong> Stone Oak · <strong>Vibe:</strong> modern, upscale · <strong>Price:</strong> $60&ndash;$100+</p>
+            <p class="rf-dining-read">Upscale north-side steak-and-seafood energy when the table wants a polished room without heading downtown.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> celebrations, couples, business meals, steak-and-seafood splits.<br /><strong>Reservation move:</strong> Book ahead for Friday and Saturday prime time.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--orange">
+            <div class="rf-dining-card-head">
+              <h3>Palenque Grill</h3>
+              <span class="rf-confidence-pill">Strong Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: check current listing</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Polished Mexican</span>
+              <span class="rf-dining-chip">Nearby Pick</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Mexican · <strong>Zone:</strong> Stone Oak / North 281 · <strong>Vibe:</strong> lively, group-friendly · <strong>Price:</strong> $30&ndash;$60</p>
+            <p class="rf-dining-read">Polished Mexican with grilled meats, seafood, margaritas, and tequila when the group wants north-side flavor without downtown.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> celebratory family dinners, tequila fans, lively groups.<br /><strong>Reservation move:</strong> Call ahead or use waitlist options before prime dinner hours.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--pink" data-rf-google-rating="4.5" data-rf-google-reviews="180">
+            <div class="rf-dining-card-head">
+              <h3>Stone Terrace Gastropub</h3>
+              <span class="rf-confidence-pill">Local Favorite</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.5 ★ · 180 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Date Night Hotspot</span>
+              <span class="rf-dining-chip">Craft Mixology</span>
+              <span class="rf-dining-chip">Nearby Pick</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> New American · <strong>Zone:</strong> Stone Oak · <strong>Vibe:</strong> casual yet refined, cozy · <strong>Price:</strong> $20&ndash;$50</p>
+            <p class="rf-dining-read">A nearby neighborhood escape from the resort bubble with cozy energy, elevated food, brunch, and craft cocktails.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> cozy date nights, weekend brunch, drinks away from the resort, low-key local flavor.<br /><strong>Reservation move:</strong> Try weekend brunch if your schedule lines up.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--orange" data-rf-google-rating="4.4" data-rf-google-reviews="1600">
+            <div class="rf-dining-card-head">
+              <h3>Smokey Mo&rsquo;s BBQ</h3>
+              <span class="rf-confidence-pill">Reliable Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.4 ★ · 1,600 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Low-Key Counter Service</span>
+              <span class="rf-dining-chip">Texas Brisket</span>
+              <span class="rf-dining-chip">Quick Casual</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Texas Barbecue · <strong>Zone:</strong> Far North / TPC Parkway · <strong>Vibe:</strong> no-frills, fast, welcoming · <strong>Price:</strong> $15&ndash;$30</p>
+            <p class="rf-dining-read">A simple nearby barbecue option when resort guests want fast Texas brisket or smoked meats without turning dinner into a long drive.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> quick casual lunch, families, carry-out back to the resort, easy Texas BBQ fix.<br /><strong>Reservation move:</strong> Keep it simple: brisket or smoked turkey with classic sides.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--turq" data-rf-google-rating="4.3" data-rf-google-reviews="1800">
+            <div class="rf-dining-card-head">
+              <h3>54th Street Scratch Grill &amp; Bar</h3>
+              <span class="rf-confidence-pill">Family-Friendly Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.3 ★ · 1,800 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Eclectic Scratch Kitchen</span>
+              <span class="rf-dining-chip">Crowd-Pleaser</span>
+              <span class="rf-dining-chip">Family-Friendly</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> American Scratch Grill · <strong>Zone:</strong> Stone Oak · <strong>Vibe:</strong> fun, high-energy, eclectic · <strong>Price:</strong> $15&ndash;$30</p>
+            <p class="rf-dining-read">A broad-menu crowd-pleaser for families or groups who cannot agree on one style of food.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> family dinners, large travel groups, casual happy hour, mixed food preferences.<br /><strong>Reservation move:</strong> Use the online waitlist when available before leaving the resort.</p>
+          </article>
+        </div>
+        <section class="rf-activity-band" id="rf-jw-things" aria-labelledby="rf-jw-things-title">
+          <div>
+            <h3 class="rf-subsection-title" id="rf-jw-things-title">Things to do at JW Marriott / TPC</h3>
+            <p class="rf-subsection-lead">JW is not just a hotel. It is a full resort property with water, golf, spa time, family activities, and Hill Country views.</p>
+          </div>
+          <div class="rf-activity-grid">
+            <article class="rf-activity-card">
+              <span class="rf-activity-amenity">Resort Amenity</span>
+              <h4>River Bluff Water Experience</h4>
+              <p>The resort&rsquo;s major family draw, with lazy river, slides, pools, sand beach, and resort-only water fun.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Water Park · <strong>Zone:</strong> JW Marriott / TPC / Far North · <strong>Vibe:</strong> refreshing, family-friendly, high-adventure<br /><strong>Best for:</strong> beating the Texas heat, family pool days, kids, resort-first days.<br /><strong>Insider tip:</strong> Go early or late afternoon for better poolside seating.</p>
+            </article>
+            <article class="rf-activity-card">
+              <h4>TPC San Antonio</h4>
+              <p>The resort&rsquo;s championship golf setting, with two distinct courses and a major PGA Tour connection.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Championship Golf · <strong>Zone:</strong> JW Marriott / TPC / Far North · <strong>Vibe:</strong> prestigious, manicured, scenic<br /><strong>Best for:</strong> golf travelers, business networking, lessons, resort golf days.<br /><strong>Insider tip:</strong> Check rentals and tee-time availability before arrival.</p>
+            </article>
+            <article class="rf-activity-card">
+              <h4>Lantana Spa</h4>
+              <p>A major resort spa option for quiet time, massages, facials, and a reset away from the main pool energy.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Wellness &amp; Spa · <strong>Zone:</strong> JW Marriott / TPC / Far North · <strong>Vibe:</strong> peaceful, rejuvenating, luxurious<br /><strong>Best for:</strong> couples, relaxation, spa days, escaping the family pool crowd.<br /><strong>Insider tip:</strong> Confirm spa access perks when booking services.</p>
+            </article>
+            <article class="rf-activity-card rf-activity-card--wide">
+              <h4>Resort Activity Hub &amp; Range Riders Kids&rsquo; Club</h4>
+              <p>The family activity layer of the resort, with rotating events, kids&rsquo; programming, fire pits, s&rsquo;mores, and resort traditions.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Activities · <strong>Zone:</strong> JW Marriott / TPC / Far North · <strong>Vibe:</strong> active, warm, memory-making<br /><strong>Best for:</strong> families with children, low-key evening fun, resort days, memory-making without leaving property.<br /><strong>Insider tip:</strong> Check the daily activity calendar when you arrive.</p>
+            </article>
+          </div>
+        </section>
+        <div class="rf-zone-move-band" id="rf-jw-move">
+          <h3>Best nearby dinner move from JW</h3>
+          <p>If you are at JW Marriott and want dinner nearby, think resort restaurants first, then Stone Oak / North 281. J-Prime, Chama Ga&uacute;cha, Eddie V&rsquo;s, Blu Prime, and Palenque Grill are stronger nearby dinner moves than sending the group downtown. Choose downtown only when River Walk, Alamo, rooftop, or a true destination night is worth the ride.</p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="/ask/">Ask A Local</a>
+            <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#route-operator">Get Route Help</a>
+          </div>
         </div>
       </section>
 
@@ -1808,113 +2100,131 @@
         <h3 class="rf-subsection-title" id="rf-la-cantera-dining">La Cantera dining picks</h3>
         <p class="rf-subsection-lead">Nine strong moves in the La Cantera / Rim / resort-property ring &mdash; scan the vibe, then book or walk in with a plan.</p>
         <div class="rf-dining-grid" aria-labelledby="rf-la-cantera-dining">
-          <article class="rf-dining-card rf-dining-card--gold">
+          <article class="rf-dining-card rf-dining-card--gold" data-rf-google-rating="4.7" data-rf-google-reviews="720">
             <div class="rf-dining-card-head">
               <h3>Signature Restaurant</h3>
               <span class="rf-confidence-pill">Resort Pick</span>
             </div>
+                        <span class="rf-dining-google">Google: 4.7 ★ · 720 reviews</span>
             <div class="rf-dining-chips" aria-label="Categories">
               <span class="rf-dining-chip">Resort property</span>
               <span class="rf-dining-chip">Fine dining</span>
             </div>
+                        <p class="rf-dining-facts"><strong>Category:</strong> Fine Dining · <strong>Zone:</strong> La Cantera / resort property · <strong>Vibe:</strong> luxury, romantic · <strong>Price:</strong> $100+</p>
             <p class="rf-dining-read">A luxury resort-ground dinner for anniversaries, wine, and a true splurge night without leaving the La Cantera property.</p>
-            <p class="rf-dining-meta"><strong>Zone:</strong> La Cantera / resort property<br /><strong>Best for:</strong> anniversary dinners, luxury splurges, fine wine, resort nights that need to feel special.<br /><strong>Reservation move:</strong> Book weekend tables well ahead; ask for a view toward the open kitchen if available.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> anniversary dinners, luxury splurges, fine wine, resort nights that need to feel special.<br /><strong>Reservation move:</strong> Book weekend tables well ahead; ask for a view toward the open kitchen if available.</p>
           </article>
-          <article class="rf-dining-card rf-dining-card--orange">
+          <article class="rf-dining-card rf-dining-card--orange" data-rf-google-rating="4.6" data-rf-google-reviews="1200">
             <div class="rf-dining-card-head">
               <h3>Haywire</h3>
               <span class="rf-confidence-pill">Strong Public Rating</span>
             </div>
+                        <span class="rf-dining-google">Google: 4.6 ★ · 1.2K reviews</span>
             <div class="rf-dining-chips" aria-label="Categories">
               <span class="rf-dining-chip">Texas heritage</span>
               <span class="rf-dining-chip">Farm-to-fork</span>
             </div>
+                        <p class="rf-dining-facts"><strong>Category:</strong> Texas Heritage · <strong>Zone:</strong> The Shops at La Cantera · <strong>Vibe:</strong> polished Texas energy · <strong>Price:</strong> $40&ndash;$80</p>
             <p class="rf-dining-read">A big Texas-feeling dinner with polished energy, steaks, whiskey, brunch, and enough personality for out-of-town guests.</p>
-            <p class="rf-dining-meta"><strong>Zone:</strong> The Shops at La Cantera<br /><strong>Best for:</strong> Texas vibe for visitors, business dinners, hearty weekend brunch, groups that want polished but not too quiet.<br /><strong>Reservation move:</strong> Ask about patio seating when the weather works.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> Texas vibe for visitors, business dinners, hearty weekend brunch, groups that want polished but not too quiet.<br /><strong>Reservation move:</strong> Ask about patio seating when the weather works.</p>
           </article>
-          <article class="rf-dining-card rf-dining-card--turq">
+          <article class="rf-dining-card rf-dining-card--turq" data-rf-google-rating="4.5" data-rf-google-reviews="300">
             <div class="rf-dining-card-head">
               <h3>Roca &amp; Martillo at The Rock</h3>
               <span class="rf-confidence-pill">Visitor-Friendly Pick</span>
             </div>
+                        <span class="rf-dining-google">Google: 4.5 ★ · 300 reviews</span>
             <div class="rf-dining-chips" aria-label="Categories">
               <span class="rf-dining-chip">Chef-driven</span>
               <span class="rf-dining-chip">Contemporary Italian</span>
             </div>
+                        <p class="rf-dining-facts"><strong>Category:</strong> Contemporary Italian · <strong>Zone:</strong> The Rock at La Cantera / Frost Plaza · <strong>Vibe:</strong> culture-forward, lively · <strong>Price:</strong> $30&ndash;$60</p>
             <p class="rf-dining-read">A newer culture-forward dinner option near the Spurs complex, with Italian comfort and South Texas smoke influence.</p>
-            <p class="rf-dining-meta"><strong>Zone:</strong> The Rock at La Cantera / Frost Plaza<br /><strong>Best for:</strong> adventurous foodies, families at Frost Plaza, post-event food, visitors exploring The Rock.<br /><strong>Reservation move:</strong> Check the Frost Plaza event calendar first &mdash; the area fills during concerts, games, and public events.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> adventurous foodies, families at Frost Plaza, post-event food, visitors exploring The Rock.<br /><strong>Reservation move:</strong> Check the Frost Plaza event calendar first &mdash; the area fills during concerts, games, and public events.</p>
           </article>
-          <article class="rf-dining-card rf-dining-card--pink">
+          <article class="rf-dining-card rf-dining-card--pink" data-rf-google-rating="4.5" data-rf-google-reviews="2100">
             <div class="rf-dining-card-head">
               <h3>Palenque Grill La Cantera</h3>
               <span class="rf-confidence-pill">Strong Public Rating</span>
             </div>
+                        <span class="rf-dining-google">Google: 4.5 ★ · 2.1K reviews</span>
             <div class="rf-dining-chips" aria-label="Categories">
               <span class="rf-dining-chip">Premium Mexican</span>
               <span class="rf-dining-chip">Live music</span>
             </div>
+                        <p class="rf-dining-facts"><strong>Category:</strong> Premium Mexican · <strong>Zone:</strong> La Cantera / The Rim · <strong>Vibe:</strong> festive, group-friendly · <strong>Price:</strong> $30&ndash;$60</p>
             <p class="rf-dining-read">A polished Mexican dinner move with grilled meats, seafood, margaritas, tequila, and a festive group-friendly feel.</p>
-            <p class="rf-dining-meta"><strong>Zone:</strong> La Cantera / The Rim<br /><strong>Best for:</strong> celebratory family dinners, tequila fans, lively groups, resort guests wanting Mexican without downtown.<br /><strong>Reservation move:</strong> Use the digital waitlist or call ahead before prime dinner hours.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> celebratory family dinners, tequila fans, lively groups, resort guests wanting Mexican without downtown.<br /><strong>Reservation move:</strong> Use the digital waitlist or call ahead before prime dinner hours.</p>
           </article>
-          <article class="rf-dining-card rf-dining-card--orange">
+          <article class="rf-dining-card rf-dining-card--orange" data-rf-google-rating="4.5" data-rf-google-reviews="4800">
             <div class="rf-dining-card-head">
               <h3>Whiskey Cake Kitchen &amp; Bar</h3>
               <span class="rf-confidence-pill">Local Favorite</span>
             </div>
+                        <span class="rf-dining-google">Google: 4.5 ★ · 4.8K reviews</span>
             <div class="rf-dining-chips" aria-label="Categories">
               <span class="rf-dining-chip">Scratch kitchen</span>
               <span class="rf-dining-chip">Brunch / cocktails</span>
             </div>
+                        <p class="rf-dining-facts"><strong>Category:</strong> Scratch Kitchen · <strong>Zone:</strong> La Cantera / The Rim · <strong>Vibe:</strong> trendy, casual-polished · <strong>Price:</strong> $20&ndash;$50</p>
             <p class="rf-dining-read">A trendy scratch-kitchen option for brunch, cocktails, comfort food, and casual dinners that still feel polished.</p>
-            <p class="rf-dining-meta"><strong>Zone:</strong> La Cantera / The Rim<br /><strong>Best for:</strong> casual foodies, brunch, friends, cocktails, lively but not formal dinners.<br /><strong>Reservation move:</strong> Go early at peak times and save room for the whiskey cake.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> casual foodies, brunch, friends, cocktails, lively but not formal dinners.<br /><strong>Reservation move:</strong> Go early at peak times and save room for the whiskey cake.</p>
           </article>
-          <article class="rf-dining-card rf-dining-card--gold">
+          <article class="rf-dining-card rf-dining-card--gold" data-rf-google-rating="4.7" data-rf-google-reviews="1800">
             <div class="rf-dining-card-head">
               <h3>Perry&rsquo;s Steakhouse &amp; Grille</h3>
               <span class="rf-confidence-pill">Business Dinner Pick</span>
             </div>
+                        <span class="rf-dining-google">Google: 4.7 ★ · 1.8K reviews</span>
             <div class="rf-dining-chips" aria-label="Categories">
               <span class="rf-dining-chip">Steakhouse</span>
               <span class="rf-dining-chip">Classic premium</span>
             </div>
+                        <p class="rf-dining-facts"><strong>Category:</strong> Steakhouse · <strong>Zone:</strong> The Shops at La Cantera · <strong>Vibe:</strong> classic, white-tablecloth · <strong>Price:</strong> $60&ndash;$100+</p>
             <p class="rf-dining-read">A classic white-tablecloth steakhouse move near La Cantera, useful for business dinners, celebrations, and steakhouse comfort.</p>
-            <p class="rf-dining-meta"><strong>Zone:</strong> The Shops at La Cantera<br /><strong>Best for:</strong> traditional steakhouse dinners, business meals, celebrations, familiar premium format.<br /><strong>Reservation move:</strong> Book ahead for weekend dinner or their well-known pork chop lunch.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> traditional steakhouse dinners, business meals, celebrations, familiar premium format.<br /><strong>Reservation move:</strong> Book ahead for weekend dinner or their well-known pork chop lunch.</p>
           </article>
-          <article class="rf-dining-card rf-dining-card--turq">
+          <article class="rf-dining-card rf-dining-card--turq" data-rf-google-rating="4.4" data-rf-google-reviews="3200">
             <div class="rf-dining-card-head">
               <h3>Yard House</h3>
               <span class="rf-confidence-pill">Family-Friendly Pick</span>
             </div>
+                        <span class="rf-dining-google">Google: 4.4 ★ · 3.2K reviews</span>
             <div class="rf-dining-chips" aria-label="Categories">
               <span class="rf-dining-chip">Large group</span>
               <span class="rf-dining-chip">Sports bar</span>
             </div>
+                        <p class="rf-dining-facts"><strong>Category:</strong> Sports Bar &amp; Grill · <strong>Zone:</strong> The Shops at La Cantera · <strong>Vibe:</strong> high-energy, easy groups · <strong>Price:</strong> $20&ndash;$40</p>
             <p class="rf-dining-read">A high-energy, easy group option with a huge menu and big beer list when the group cannot agree on one style of food.</p>
-            <p class="rf-dining-meta"><strong>Zone:</strong> The Shops at La Cantera<br /><strong>Best for:</strong> sports fans, large groups, casual happy hour, late-night cravings, low-pressure meals.<br /><strong>Reservation move:</strong> Use call-ahead or online seating on game days and busy weekends.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> sports fans, large groups, casual happy hour, late-night cravings, low-pressure meals.<br /><strong>Reservation move:</strong> Use call-ahead or online seating on game days and busy weekends.</p>
           </article>
-          <article class="rf-dining-card rf-dining-card--pink">
+          <article class="rf-dining-card rf-dining-card--pink" data-rf-google-rating="4.4" data-rf-google-reviews="1500">
             <div class="rf-dining-card-head">
               <h3>Grimaldi&rsquo;s Pizzeria</h3>
               <span class="rf-confidence-pill">Family-Friendly Pick</span>
             </div>
+                        <span class="rf-dining-google">Google: 4.4 ★ · 1.5K reviews</span>
             <div class="rf-dining-chips" aria-label="Categories">
               <span class="rf-dining-chip">Brick oven</span>
               <span class="rf-dining-chip">Casual</span>
             </div>
+                        <p class="rf-dining-facts"><strong>Category:</strong> Pizzeria · <strong>Zone:</strong> The Shops at La Cantera · <strong>Vibe:</strong> family-friendly, casual · <strong>Price:</strong> $15&ndash;$30</p>
             <p class="rf-dining-read">A simple family-friendly pizza option near shopping and resort activity when you need something easy and familiar.</p>
-            <p class="rf-dining-meta"><strong>Zone:</strong> The Shops at La Cantera<br /><strong>Best for:</strong> families with kids, shopping-day lunch, low-key dates, quick resort-area dinner.<br /><strong>Reservation move:</strong> Look for patio or window seating when the weather is comfortable.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> families with kids, shopping-day lunch, low-key dates, quick resort-area dinner.<br /><strong>Reservation move:</strong> Look for patio or window seating when the weather is comfortable.</p>
           </article>
-          <article class="rf-dining-card rf-dining-card--gold">
+          <article class="rf-dining-card rf-dining-card--gold" data-rf-google-rating="4.2" data-rf-google-reviews="450">
             <div class="rf-dining-card-head">
               <h3>SweetFire Kitchen</h3>
               <span class="rf-confidence-pill">Resort Pick</span>
             </div>
+                        <span class="rf-dining-google">Google: 4.2 ★ · 450 reviews</span>
             <div class="rf-dining-chips" aria-label="Categories">
               <span class="rf-dining-chip">Resort casual</span>
               <span class="rf-dining-chip">Hill Country views</span>
             </div>
+                        <p class="rf-dining-facts"><strong>Category:</strong> Resort Casual · <strong>Zone:</strong> Signia by Hilton La Cantera Resort · <strong>Vibe:</strong> scenic, low-effort · <strong>Price:</strong> $20&ndash;$50</p>
             <p class="rf-dining-read">The easy in-resort dining option for breakfast, scenic comfort food, sunset drinks, and staying close when no one wants another drive.</p>
-            <p class="rf-dining-meta"><strong>Zone:</strong> Signia by Hilton La Cantera Resort<br /><strong>Best for:</strong> stress-free resort dining, sunset drinks, family breakfast, low-effort resort meals.<br /><strong>Reservation move:</strong> Ask about patio or scenic seating around golden hour when available.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> stress-free resort dining, sunset drinks, family breakfast, low-effort resort meals.<br /><strong>Reservation move:</strong> Ask about patio or scenic seating around golden hour when available.</p>
           </article>
         </div>
         <section class="rf-activity-band" id="rf-la-cantera-things" aria-labelledby="rf-la-cantera-things-title">
@@ -1924,26 +2234,31 @@
           </div>
           <div class="rf-activity-grid">
             <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: 4.6 ★ · 6.8K reviews</span>
               <h4>Topgolf San Antonio</h4>
               <p>A social golf-and-sports option that works even if not everyone plays golf.</p>
               <p class="rf-activity-tip"><strong>Best for:</strong> large groups, casual date nights, families, late-night fun, sports fans.<br /><strong>Tip:</strong> Reserve a hitting bay online for busy weekend evenings.</p>
             </article>
             <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: 4.6 ★ · 5.2K reviews</span>
               <h4>Andretti Indoor Karting &amp; Games</h4>
               <p>High-energy indoor karting, games, VR, bowling, food, and drinks.</p>
               <p class="rf-activity-tip"><strong>Best for:</strong> families with teenagers, competitive friend groups, rainy days.<br /><strong>Tip:</strong> Book race times online when possible to avoid long waits.</p>
             </article>
             <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: check current listing</span>
               <h4>The Shops at La Cantera</h4>
               <p>Polished open-air shopping and dining for strolling, retail, lunch, and low-pressure resort time.</p>
               <p class="rf-activity-tip"><strong>Best for:</strong> shopping, walking, open-air dining, international visitors.<br /><strong>Tip:</strong> International travelers may want to check current Texas Tax Back options near the shopping area before leaving.</p>
             </article>
             <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: check current listing</span>
               <h4>The Rock at La Cantera &amp; Frost Plaza</h4>
               <p>A Spurs-connected district with plaza events, gathering space, food, and a more modern San Antonio feel.</p>
               <p class="rf-activity-tip"><strong>Best for:</strong> public events, family strolls, outdoor concerts, pre/post dinner add-ons.<br /><strong>Tip:</strong> Check the event calendar before you go.</p>
             </article>
             <article class="rf-activity-card rf-activity-card--wide">
+              <span class="rf-activity-google">Google: check current listing</span>
               <h4>Six Flags Fiesta Texas</h4>
               <p>A major theme park in a dramatic quarry setting near the resort zone &mdash; families, teens, and thrill seekers.</p>
               <p class="rf-activity-tip"><strong>Best for:</strong> families, rollercoaster fans, full-day entertainment.<br /><strong>Tip:</strong> Start with high-demand rides earlier in the day when possible.</p>

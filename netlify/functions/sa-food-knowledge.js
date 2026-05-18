@@ -1,6 +1,6 @@
 /**
  * Shared San Antonio food recommendation knowledge for Ask A Local and Transportation operators.
- * Keep in sync with where-to-eat.html and resort-food.html (La Cantera zone) when picks change.
+ * Keep in sync with where-to-eat.html and resort-food.html (JW Marriott / TPC and La Cantera zones) when picks change.
  */
 
 const SA_FOOD_KNOWLEDGE = `
@@ -44,6 +44,40 @@ River Walk / downtown dinner routing:
 Downtown / food language for operators:
 - Use starting point, dinner pick, first stop, next move, backup pick, timing, and walk time — not anchor, lane, proof stack, deck, or routing logic.
 
+RESORT_ZONE_KNOWLEDGE — JW MARRIOTT / TPC / FAR NORTH (separate from La Cantera / The Rim / Six Flags / UTSA northwest and from Hyatt Hill Country / SeaWorld):
+- Property: JW Marriott San Antonio Hill Country Resort & Spa. Also: TPC San Antonio, River Bluff Water Experience, Lantana Spa, TPC Parkway, Stone Oak / North 281 nearby dinner access.
+- Never merge with La Cantera / The Rim / Six Flags / UTSA northwest or Hyatt Hill Country / SeaWorld. Never say "JW Marriott La Cantera."
+- If the visitor says "I'm at the JW," open with: "You're at JW Marriott / TPC / Far North San Antonio, so nearby dinner usually means the resort itself, TPC Parkway, North 281, or Stone Oak — not La Cantera or downtown unless you want a bigger outing."
+
+JW on-property dining (align with resort-food.html — offer first for convenience):
+- 18 Oaks — resort fine dining / steakhouse overlooking TPC courses (Strong Pick)
+- Cibolo Moon — Tex-Mex and Southern comfort, family-friendly, tequila bar (Strong Pick)
+- High Velocity — sports bar and grill, games and groups (Reliable Pick)
+- Crooked Branch — lobby lounge, cocktails, Asian-fusion tapas (Strong Pick)
+- Fiammé Pizzeria — quick resort pizza (Resort Pick)
+- Replenish Spa Bistro — Lantana Spa light meals and wellness (Resort Pick)
+
+JW nearby / Stone Oak / North 281 dinner (when leaving the resort bubble — not downtown-first):
+- J-Prime — Willie Approved upscale steak (Stone Oak)
+- Chama Gaúcha — Willie Approved Brazilian rodizio (Stone Oak)
+- Eddie V's — polished seafood and steak (Stone Oak)
+- Blu Prime — upscale steak and seafood (Stone Oak)
+- Palenque Grill — polished Mexican, groups (Stone Oak / North 281)
+- Stone Terrace Gastropub — cozy New American, brunch, cocktails (Stone Oak)
+- Smokey Mo's BBQ — quick Texas barbecue (Far North / TPC Parkway)
+- 54th Street Scratch Grill & Bar — eclectic crowd-pleaser, families (Stone Oak)
+
+JW stay-nearby vs downtown:
+- Stay on-property or Stone Oak / North 281 when: tired, with kids, after pool/golf/spa, tight timeline, or they want dinner without a long drive.
+- Go downtown when: River Walk, Alamo, Market Square, rooftop, or a true San Antonio destination night is worth the ride.
+- Do not call Bohanan's nearby to JW — downtown destination (~25–30 minutes depending on traffic).
+
+JW activities when they ask what to do:
+- River Bluff Water Experience — lazy river, slides, family pool days
+- TPC San Antonio — championship golf
+- Lantana Spa — spa and wellness reset
+- Resort Activity Hub and Range Riders Kids' Club — family programming, s'mores, resort events
+
 RESORT_ZONE_KNOWLEDGE — LA CANTERA / THE RIM / SIX FLAGS / UTSA NORTHWEST (separate from JW Marriott / TPC and from Hyatt Hill Country / SeaWorld):
 - Zone includes: Signia by Hilton La Cantera Resort, Eilan Hotel, The Shops at La Cantera, The Rim, Six Flags Fiesta Texas, The Rock at La Cantera / Frost Plaza, UTSA northwest area.
 - Never merge this zone with JW Marriott / TPC north-side or Hyatt Regency Hill Country / SeaWorld. Never say "JW Marriott La Cantera."
@@ -55,20 +89,20 @@ La Cantera stay-nearby vs downtown:
 - Go downtown when: River Walk, Alamo, Market Square, rooftop, or a true San Antonio night is worth the extra ride.
 - For food near La Cantera, prioritize La Cantera-area picks first. Do not send downtown unless they want a destination dinner.
 
-La Cantera restaurant suggestions (align with resort-food.html):
-- Signature Restaurant — fine dining / resort splurge on property (Resort Pick)
-- Haywire — Texas energy, business dinners, brunch (Strong Public Rating)
-- Roca & Martillo at The Rock — Frost Plaza / contemporary Italian (Visitor-Friendly Pick)
-- Palenque Grill La Cantera — polished Mexican, groups (Strong Public Rating)
-- Whiskey Cake Kitchen & Bar — scratch kitchen, brunch, cocktails (Local Favorite)
-- Perry's Steakhouse & Grille — classic steakhouse, business dinner (Business Dinner Pick)
-- Yard House — large groups, sports, late night (Family-Friendly Pick)
-- Grimaldi's Pizzeria — family pizza, shopping day (Family-Friendly Pick)
-- SweetFire Kitchen — in-resort dining at Signia, scenic casual (Resort Pick)
+La Cantera restaurant suggestions (align with resort-food.html; public Google ratings may be cited when helpful):
+- Signature Restaurant — fine dining / resort splurge (Resort Pick; Google: 4.7 ★ · 720 reviews)
+- Haywire — Texas energy, business dinners, brunch (Strong Public Rating; Google: 4.6 ★ · 1.2K reviews)
+- Roca & Martillo at The Rock — Frost Plaza / contemporary Italian (Visitor-Friendly Pick; Google: 4.5 ★ · 300 reviews)
+- Palenque Grill La Cantera — polished Mexican, groups (Strong Public Rating; Google: 4.5 ★ · 2.1K reviews)
+- Whiskey Cake Kitchen & Bar — scratch kitchen, brunch, cocktails (Local Favorite; Google: 4.5 ★ · 4.8K reviews)
+- Perry's Steakhouse & Grille — classic steakhouse, business dinner (Business Dinner Pick; Google: 4.7 ★ · 1.8K reviews)
+- Yard House — large groups, sports, late night (Family-Friendly Pick; Google: 4.4 ★ · 3.2K reviews)
+- Grimaldi's Pizzeria — family pizza, shopping day (Family-Friendly Pick; Google: 4.4 ★ · 1.5K reviews)
+- SweetFire Kitchen — in-resort dining at Signia, scenic casual (Resort Pick; Google: 4.2 ★ · 450 reviews)
 
 La Cantera activities (when they ask what to do):
-- Topgolf San Antonio — groups, date nights, sports fans
-- Andretti Indoor Karting & Games — teens, rainy days, high-energy groups
+- Topgolf San Antonio — groups, date nights, sports fans (Google: 4.6 ★ · 6.8K reviews)
+- Andretti Indoor Karting & Games — teens, rainy days, high-energy groups (Google: 4.6 ★ · 5.2K reviews)
 - The Shops at La Cantera — shopping, strolling, open-air dining
 - The Rock at La Cantera / Frost Plaza — events, concerts, pre/post dinner (check event calendar)
 - Six Flags Fiesta Texas — families, thrill seekers, full-day plan
