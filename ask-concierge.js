@@ -293,6 +293,30 @@
     });
   });
 
+  function getQueryPrompt() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      return (params.get("q") || params.get("prompt") || "").trim();
+    } catch (e) {
+      return "";
+    }
+  }
+
+  var bootPrompt = getQueryPrompt();
+  if (bootPrompt) {
+    setTimeout(function () {
+      if (root && typeof root.scrollIntoView === "function") {
+        try {
+          root.scrollIntoView({ behavior: "smooth", block: "start" });
+        } catch (err) {
+          root.scrollIntoView(true);
+        }
+      }
+      sendMessage(bootPrompt);
+      if (input) input.value = "";
+    }, 150);
+  }
+
   setStatus("Live · ready", true);
   syncTranscriptVisibility();
 })();

@@ -164,11 +164,7 @@
       }
     }
 
-    .page-downtown #downtown-anchors {
-      scroll-margin-top: calc(var(--header-h, 64px) + 12px);
-    }
-
-    /* Full-bleed dark band route chooser */
+    /* Full-bleed dark band — quick pick (follows jump band with no dead gap) */
     .page-downtown section.section.section-dark.dt-choose-outer {
       max-width: none;
       width: 100%;
@@ -178,6 +174,15 @@
       margin-top: clamp(44px, 6vw, 72px);
       padding: clamp(40px, 5vw, 54px) clamp(16px, 4vw, 48px) clamp(42px, 5.5vw, 64px);
       box-sizing: border-box;
+    }
+
+    .page-downtown .page-jump-band--dark + .dt-choose-outer {
+      margin-top: 0;
+      border-top: none;
+    }
+
+    .page-downtown .page-jump-band--dark:has(+ .dt-choose-outer) {
+      border-bottom-color: transparent;
     }
 
     .page-downtown .dt-choose-shell {
@@ -599,13 +604,28 @@
 
     .page-downtown .dt-ask-prompts li {
       margin: 0;
-      padding: 8px 12px;
+      padding: 0;
       border-radius: 10px;
+      background: rgba(255, 246, 230, 0.06);
+      border: 1px solid rgba(45, 236, 224, 0.22);
+    }
+
+    .page-downtown .dt-ask-prompts a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: inherit;
       font-size: 0.88rem;
       line-height: 1.45;
       color: rgba(255, 246, 230, 0.9);
-      background: rgba(255, 246, 230, 0.06);
-      border: 1px solid rgba(45, 236, 224, 0.22);
+      text-decoration: none;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .page-downtown .dt-ask-prompts a:hover,
+    .page-downtown .dt-ask-prompts a:focus-visible {
+      color: #7ee0d0;
+      background: rgba(45, 236, 224, 0.08);
+      outline: none;
     }
 
     .page-downtown .footer.dark-showcase {
@@ -932,14 +952,14 @@
           <h3 id="dt-ask-mid-heading">Not sure which downtown move fits your group?</h3>
           <p>Ask A Local with your hotel, group, timing, and energy.</p>
           <ul class="dt-ask-prompts">
-            <li>&ldquo;What should I do downtown tonight?&rdquo;</li>
-            <li>&ldquo;Where should we eat on the River Walk?&rdquo;</li>
-            <li>&ldquo;What rooftop should we go to?&rdquo;</li>
-            <li>&ldquo;Should we do Pearl or River Walk?&rdquo;</li>
-            <li>&ldquo;What can we do with kids downtown?&rdquo;</li>
-            <li>&ldquo;What should we do if it&rsquo;s too hot?&rdquo;</li>
-            <li>&ldquo;We&rsquo;re here for a convention &mdash; what&rsquo;s easy?&rdquo;</li>
-            <li>&ldquo;Where should resort guests go downtown?&rdquo;</li>
+            <li><a href="/ask/?q=What%20should%20I%20do%20downtown%20tonight%3F#live-concierge">What should I do downtown tonight?</a></li>
+            <li><a href="/ask/?q=Where%20should%20we%20eat%20on%20the%20River%20Walk%3F#live-concierge">Where should we eat on the River Walk?</a></li>
+            <li><a href="/ask/?q=What%20rooftop%20should%20we%20go%20to%3F#live-concierge">What rooftop should we go to?</a></li>
+            <li><a href="/ask/?q=Should%20we%20do%20Pearl%20or%20River%20Walk%3F#live-concierge">Should we do Pearl or River Walk?</a></li>
+            <li><a href="/ask/?q=What%20can%20we%20do%20with%20kids%20downtown%3F#live-concierge">What can we do with kids downtown?</a></li>
+            <li><a href="/ask/?q=What%20should%20we%20do%20if%20it%27s%20too%20hot%3F#live-concierge">What should we do if it&rsquo;s too hot?</a></li>
+            <li><a href="/ask/?q=We%27re%20here%20for%20a%20convention%20%E2%80%94%20what%27s%20easy%3F#live-concierge">We&rsquo;re here for a convention &mdash; what&rsquo;s easy?</a></li>
+            <li><a href="/ask/?q=Where%20should%20resort%20guests%20go%20downtown%3F#live-concierge">Where should resort guests go downtown?</a></li>
           </ul>
           <div class="dt-ask-card-actions">
             <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local &rarr;</a>
