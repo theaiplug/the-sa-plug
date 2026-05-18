@@ -1701,13 +1701,28 @@
         <div class="hero-shell">
           <div class="hero-content secondary-hero-copy">
             <p class="eyebrow eyebrow-on-dark eyebrow-hero tc-hero-eyebrow-hero">Route + transportation help</p>
-            <h1 id="tc-hero-heading" class="hero-title">San Antonio route help for airport arrivals, resort pickups, downtown nights, dinner routes, convention movement, family logistics, and visitor days.</h1>
-            <p class="tc-hero-lead">Ask about timing, stay-nearby vs downtown, airport and resort pickups, River Walk nights, and getting your group home cleanly. Get the route first &mdash; then request human help if you want it.</p>
+            <h1 id="tc-hero-heading" class="hero-title">Route help for airport, resort, downtown, and night-out moves.</h1>
+            <p class="tc-hero-lead">Ask about timing, pickup details, and whether to stay near your hotel or head downtown. Get the route answer first &mdash; then request human transportation help if you need it. Availability is not guaranteed.</p>
             <div class="hero-cta-row">
-              <a class="btn btn-primary" href="#route-operator">Ask for route help</a>
-              <a href="#common-routes" class="btn btn-secondary hero-secondary-btn">See common scenarios</a>
+              <a class="btn btn-primary" href="#route-operator">Get Route Help</a>
+              <a href="#common-routes" class="btn btn-secondary hero-secondary-btn">Browse Picks</a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-jump-band page-jump-band--dark" aria-labelledby="tc-jump-title">
+      <div class="page-jump-band-inner">
+        <p class="eyebrow eyebrow-on-dark">Jump to what you need</p>
+        <h2 id="tc-jump-title" class="page-jump-title">Route situations</h2>
+        <div class="page-jump-chip-row">
+          <a class="page-jump-chip" href="#tc-route-airport">Airport to hotel</a>
+          <a class="page-jump-chip" href="#tc-route-resort">Resort to downtown</a>
+          <a class="page-jump-chip" href="#tc-route-dinner">Dinner route help</a>
+          <a class="page-jump-chip" href="#tc-route-convention">Convention transportation</a>
+          <a class="page-jump-chip" href="#tc-route-family">Family route help</a>
+          <a class="page-jump-chip" href="#tc-route-night">Night-out return</a>
         </div>
       </div>
     </section>
@@ -1719,12 +1734,12 @@
     >
       <div class="routes-band-inner live-concierge-inner" id="transport-route-operator">
         <header class="live-concierge__head">
-          <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Live route operator</p>
-          <h2 id="transport-route-heading" class="live-concierge__title">Ask about your San Antonio route before you make the move</h2>
+          <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Route help</p>
+          <h2 id="transport-route-heading" class="live-concierge__title">Ask about your route before you commit</h2>
           <p class="section-text section-text-light live-concierge__lead">
-            Ask about timing, stay-nearby vs downtown, airport and resort pickups, and getting your group home cleanly. Route advice first &mdash; human help only if you want it.
+            Tell us where you are, where you&rsquo;re going, and when. We&rsquo;ll help you think through timing, stay-nearby vs downtown, and pickup details.
           </p>
-          <p class="live-concierge__status" id="transport-route-status" aria-live="polite">Live route operator · ready</p>
+          <p class="live-concierge__status" id="transport-route-status" aria-live="polite">Route help · ready</p>
         </header>
 
         <div class="live-concierge-studio">
@@ -1753,7 +1768,7 @@
                 <div class="live-concierge__chip-cluster" role="group" aria-labelledby="transport-chip-label">
                   <p class="live-concierge__lane-label" id="transport-chip-label">Quick chips</p>
                   <div class="live-concierge__chips live-concierge__chips--lane">
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Airport to hotel timing and pickup logic">
+                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Airport to hotel timing and pickup spot">
                       Airport to hotel
                     </button>
                     <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Resort to downtown — is it worth the drive tonight?">
@@ -1762,7 +1777,7 @@
                     <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Dinner route help — stay near the hotel or go out?">
                       Dinner route help
                     </button>
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Night out route — pacing, timing, and return plan">
+                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Night out route — timing and return plan">
                       Night-out route
                     </button>
                     <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="Family route help — kids, luggage, realistic timing">
@@ -1787,7 +1802,7 @@
                     <div class="live-concierge__answer-surface" id="transport-route-answer-surface" aria-live="polite">
                       <div class="live-concierge__preview" id="transport-route-preview">
                         <p class="live-concierge__preview-text" id="transport-route-preview-text">
-                          Tell me where you are, where you&rsquo;re trying to go, and when. I&rsquo;ll help you think through the route. If you want human transportation help, I&rsquo;ll collect the details and send the request.
+                          Tell us where you are, who you&rsquo;re with, what time it is, and where you&rsquo;re trying to go. We&rsquo;ll help you think through timing and pickup details. Request human transportation help only if you need it reviewed.
                         </p>
                       </div>
                       <div class="live-concierge__transcript" id="transport-route-transcript" hidden>
@@ -1811,7 +1826,7 @@
                             placeholder="Example: I&rsquo;m at the JW tonight — should we eat near the resort or run downtown?"
                           ></textarea>
                           <button type="submit" class="live-concierge__send" id="transport-route-send">
-                            Get route help <span aria-hidden="true">&rarr;</span>
+                            Get Route Help <span aria-hidden="true">&rarr;</span>
                           </button>
                         </div>
                       </form>
@@ -1830,21 +1845,21 @@
         <header class="tc-situation-head">
           <p class="eyebrow eyebrow-on-dark">Common routes</p>
           <h2 id="common-routes-heading">Common San Antonio transportation situations</h2>
-          <p class="section-text">Pick the closest situation, or ask the operator above for a route built around your timing.</p>
+          <p class="section-text">Pick the closest situation, or use Get Route Help above for a plan built around your timing.</p>
         </header>
         <div class="route-card-grid tc-scenario-grid" role="list">
-          <a href="#route-operator" class="image-route-card" role="listitem" data-transport-route-prompt="Airport to downtown or hotel — I need SAT timing, curb logic, and a realistic route to my stay.">
+          <a href="#route-operator" id="tc-route-airport" class="image-route-card" role="listitem" data-transport-route-prompt="Airport to downtown or hotel — I need SAT timing, pickup spot, and a realistic route to my stay.">
             <img class="image-route-card__media" src="assets/transport-airport-curbside-departure.png" alt="Vehicle at airport curb for arrival timing." width="800" height="500" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
               <span class="eyebrow">SAT arrival</span>
               <h3>Landing at SAT</h3>
-              <p>First-move timing before baggage, exits, and your check-in window stack up.</p>
+              <p>First-move timing before baggage, exits, and your check-in window pile up.</p>
               <p class="tc-need-best"><strong>Best for:</strong> first flights in, luggage, and tight dinner promises.</p>
               <span class="image-route-card__cta image-route-card__cta--route">Ask about this route</span>
             </span>
           </a>
-          <a href="#route-operator" class="image-route-card" role="listitem" data-transport-route-prompt="Resort to downtown — I'm at JW / TPC, La Cantera / The Rim, or Hyatt Hill Country / SeaWorld and need help deciding if downtown is worth it tonight.">
+          <a href="#route-operator" id="tc-route-resort" class="image-route-card" role="listitem" data-transport-route-prompt="Resort to downtown — I'm at JW / TPC, La Cantera / The Rim, or Hyatt Hill Country / SeaWorld and need help deciding if downtown is worth it tonight.">
             <img class="image-route-card__media" src="assets/transport-luggage-hotel-arrival.png" alt="Resort or hotel arrival with luggage." width="800" height="500" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
@@ -1855,7 +1870,7 @@
               <span class="image-route-card__cta image-route-card__cta--route">Ask about this route</span>
             </span>
           </a>
-          <a href="#route-operator" class="image-route-card" role="listitem" data-transport-route-prompt="Dinner route chain — I need pickup timing and order of moves between hotel, reservation, and return.">
+          <a href="#route-operator" id="tc-route-dinner" class="image-route-card" role="listitem" data-transport-route-prompt="Dinner route chain — I need pickup timing and order of moves between hotel, reservation, and return.">
             <img class="image-route-card__media" src="assets/transport-rooftop-evening-plan.png" alt="Evening city view for dinner route planning." width="800" height="500" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
@@ -1866,7 +1881,7 @@
               <span class="image-route-card__cta image-route-card__cta--route">Ask about this route</span>
             </span>
           </a>
-          <a href="#route-operator" class="image-route-card" role="listitem" data-transport-route-prompt="Convention pickup and dropoff — I need handoff timing between the convention center, hotel, and evening plans.">
+          <a href="#route-operator" id="tc-route-convention" class="image-route-card" role="listitem" data-transport-route-prompt="Convention pickup and dropoff — I need handoff timing between the convention center, hotel, and evening plans.">
             <img class="image-route-card__media" src="assets/transport-common-convention-dinner.png" alt="Convention day leading into an evening client dinner." width="1448" height="1086" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
@@ -1877,24 +1892,24 @@
               <span class="image-route-card__cta image-route-card__cta--route">Ask about this route</span>
             </span>
           </a>
-          <a href="#route-operator" class="image-route-card" role="listitem" data-transport-route-prompt="Family day logistics — kids, luggage, strollers, and realistic timing between stops.">
+          <a href="#route-operator" id="tc-route-family" class="image-route-card" role="listitem" data-transport-route-prompt="Family day logistics — kids, luggage, strollers, and realistic timing between stops.">
             <img class="image-route-card__media" src="assets/transport-family-resort-arrival.png" alt="Family arriving at a resort with luggage and kids." width="800" height="500" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
               <span class="eyebrow">Family day logistics</span>
               <h3>Keep the crew moving</h3>
               <p>Slower walks, gear, and meal windows &mdash; without someone melting down at valet.</p>
-              <p class="tc-need-best"><strong>Best for:</strong> mixed ages, bags, and theme-park or resort stack days.</p>
+              <p class="tc-need-best"><strong>Best for:</strong> mixed ages, bags, and back-to-back theme-park or resort days.</p>
               <span class="image-route-card__cta image-route-card__cta--route">Ask about this route</span>
             </span>
           </a>
-          <a href="#route-operator" class="image-route-card" role="listitem" data-transport-route-prompt="Night-out return plan — River Walk or downtown energy, pacing, and the smartest route back to the hotel.">
+          <a href="#route-operator" id="tc-route-night" class="image-route-card" role="listitem" data-transport-route-prompt="Night-out return plan — River Walk or downtown energy, timing, and the smartest route back to the hotel.">
             <img class="image-route-card__media" src="assets/transport-riverwalk-night-out.png" alt="River Walk at night for downtown evening plans." width="800" height="500" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
               <span class="eyebrow">Night-out return plan</span>
               <h3>Downtown energy, safe exit</h3>
-              <p>Pacing, pickup points, and how you want the night to end.</p>
+              <p>Timing, pickup points, and how you want the night to end.</p>
               <p class="tc-need-best"><strong>Best for:</strong> River Walk nights when the return matters as much as the arrival.</p>
               <span class="image-route-card__cta image-route-card__cta--route">Ask about this route</span>
             </span>
@@ -1948,7 +1963,7 @@
               <span class="tc-decision-visual-card__shade" aria-hidden="true"></span>
             </div>
             <div class="tc-decision-visual-card__body">
-              <h3>Ask the operator when</h3>
+              <h3>Ask for route help when</h3>
               <ul>
                 <li>You are unsure</li>
                 <li>You have a reservation</li>
@@ -1960,7 +1975,7 @@
           </div>
         </div>
         <div class="tc-decision-cta">
-          <a class="btn btn-primary" href="#route-operator">Ask for route help</a>
+          <a class="btn btn-primary" href="#route-operator">Get Route Help</a>
         </div>
       </div>
     </section>
@@ -1970,7 +1985,7 @@
         <header class="tc-section-head">
           <p class="eyebrow eyebrow-on-dark">Starting zones</p>
           <h2 id="tc-zone-heading">Know your starting zone</h2>
-          <p class="section-text">Route logic changes by where you wake up. These pockets are separate starting points &mdash; not interchangeable.</p>
+          <p class="section-text">Your best move changes by where you&rsquo;re starting. These zones are separate &mdash; don&rsquo;t swap one for another when timing matters.</p>
         </header>
         <div class="tc-zone-grid">
           <div class="tc-zone-card tc-zone-card--media">
@@ -2000,7 +2015,7 @@
             </div>
             <div class="tc-zone-card__copy">
               <h3>JW Marriott / TPC</h3>
-              <p>North-side resort pocket and TPC corridor &mdash; its own geography, not La Cantera and not Hyatt Hill Country.</p>
+              <p>North-side resort pocket and TPC area &mdash; its own geography, not La Cantera and not Hyatt Hill Country.</p>
             </div>
           </div>
           <div class="tc-zone-card tc-zone-card--media">
@@ -2042,9 +2057,9 @@
         <p class="tc-final-eyebrow">Route help</p>
         <h2 id="tc-final-heading">Not sure what the smarter route is?</h2>
         <p class="tc-final-support-label">Support</p>
-        <p class="section-text">Ask the operator where you are, where you&rsquo;re going, and when. It will help you think through the move before you commit.</p>
+        <p class="section-text">Tell us where you are, where you&rsquo;re going, and when. We&rsquo;ll help you think through the move before you commit.</p>
         <div class="tc-final-actions">
-          <a class="btn btn-primary" href="#route-operator">Ask for route help</a>
+          <a class="btn btn-primary" href="#route-operator">Get Route Help</a>
           <a class="btn btn-secondary hero-secondary-btn" href="/ask/">Ask A Local</a>
         </div>
         <p class="tc-final-footnote">Built around how visitors actually move here: airport arrivals, resort dinners, convention days, River Walk nights, family logistics, and late returns.</p>
@@ -2053,15 +2068,15 @@
 
     <section class="tc-human-compact transport-section" aria-labelledby="tc-human-heading">
       <div class="tc-human-compact__inner">
-        <h2 id="tc-human-heading" class="tc-human-compact__title">Human help is secondary</h2>
-        <p class="tc-human-compact__lede">Start with the live route operator above. Expand manual request fallback below only if it will not load or you want a person to review pickup details.</p>
+        <h2 id="tc-human-heading" class="tc-human-compact__title">Need a person to review pickup details?</h2>
+        <p class="tc-human-compact__lede">Start with the quick route answer above. Open the manual request form below only if the route tool is not loading or you want human transportation help reviewed. Availability is not guaranteed.</p>
       </div>
     </section>
 
     <details class="transport-section transport-manual-fallback transport-manual-fallback--low" id="manual-transport-fallback">
       <summary class="transport-manual-fallback__summary">
         <span class="transport-manual-fallback__summary-main">Manual request fallback</span>
-        <span class="transport-manual-fallback__summary-sub">Use this only if the live route operator is not loading.</span>
+        <span class="transport-manual-fallback__summary-sub">Use this only if route help above is not loading.</span>
         <span class="transport-manual-fallback__summary-cta">Open request form</span>
       </summary>
       <div class="transport-manual-fallback__body">
@@ -2146,7 +2161,7 @@
                     </label>
                     <label class="transport-field transport-field--full">
                       <span>Route notes optional</span>
-                      <textarea name="ai_summary" id="transport-ai-summary" rows="3" placeholder="Paste anything useful from the route operator, or add timing context."></textarea>
+                      <textarea name="ai_summary" id="transport-ai-summary" rows="3" placeholder="Paste anything useful from route help above, or add timing context."></textarea>
                     </label>
                     <label class="transport-check transport-field--full transport-check--backup">
                       <input type="checkbox" id="transport-pickup-permission" name="pickup_permission" required />

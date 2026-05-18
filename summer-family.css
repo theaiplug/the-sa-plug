@@ -2151,3 +2151,27 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   background: rgba(242, 178, 26, 0.42);
   color: #031627;
 }
+
+@media (max-width: 899px) {
+  .page-family-summer .fam-section-sub,
+  .page-family-summer .fam-pick-lead,
+  .page-family-summer .fam-route-detail-lead,
+  .page-family-summer .fam-route-prompt,
+  .page-family-summer .fam-day-card-meta,
+  .page-family-summer .fam-stack-card p {
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-wrap: wrap;
+  }
+
+  .page-family-summer .fam-section-title,
+  .page-family-summer .fam-route-detail-title {
+    letter-spacing: -0.015em;
+    text-wrap: wrap;
+  }
+
+  .page-family-summer .fam-eyebrow,
+  .page-family-summer .fam-route-kicker-label {
+    letter-spacing: 0.12em;
+  }
+}
