@@ -1,69 +1,46 @@
 /**
  * Downtown San Antonio dining & nightlife knowledge — shared by Ask A Local and Transportation operators.
  * Keep in sync with downtown.html (#dt-dining-nightlife) and where-to-eat.html (#lane-downtown-dining).
- * Owner-maintained Google ratings — verify before quoting exact counts in live replies.
  */
 
 const DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE = `
-DOWNTOWN SAN ANTONIO DINING & NIGHTLIFE MASTER GUIDE (Where To Go SA):
+DOWNTOWN SAN ANTONIO DINING & NIGHTLIFE (Where To Go SA — align with downtown.html):
 
-Visitor language: dinner pick, night-out move, starting point, next stop, rooftop option, worth the ride, easy walk, after-dinner drink, group-friendly — never anchor, proof stack, routing logic, intent stack, corridor, or operator jargon.
+Visitor language: dinner pick, night-out move, starting point, next stop, rooftop option, worth the ride, easy walk, after-dinner drink — never anchor, proof stack, routing logic, intent stack, corridor, or operator jargon.
 
-Ratings format when cited: Google: X.X ★ · N reviews (owner-maintained).
+Ratings when cited: Google: X.X ★ · N reviews (owner-maintained; verify before quoting).
 
-POSITIONING RULES (never contradict the public site):
-- Paesanos ranks above 1Watson for River Walk dinner picks. 1Watson = skyline/view backup when the view matters more than dinner.
-- Bohanan's is downtown (Houston St) — NOT nearby JW. From JW/La Cantera/Hyatt: frame as deliberate downtown destination dinner (~25–30+ min depending on traffic), not a nearby resort pick.
-- Chart House = view/destination dinner at Tower of the Americas — not top food-first pick.
-- Casa Rio = classic River Walk photo / umbrella patio experience — not Willie Approved or top food-first.
-- Rooftop priority downtown: Aleteo, Moon's Daughter, Fairmount, Rosario's Rooftop — then Tenfold or 1Watson only as distinct backups.
+POSITIONING (never contradict the public site):
+- Dinner rank: Bohanan's → Biga → Pinkerton's (BBQ) → Paesanos → Domingo → Boudro's → Mi Tierra → Schilo's (lunch) → Esquire (gastropub/drinks) → Chart House (view-first only) → Casa Rio (photo/history stop only, NOT Willie Approved, NOT top food-first).
+- Paesanos ranks above 1Watson for River Walk dinner. 1Watson = skyline backup when view > dinner.
+- Bohanan's is downtown Houston St — NOT near JW. From resorts: deliberate downtown destination (~25–30+ min).
+- Chart House = view-first at Tower — Google: 3.9 ★ · 5.5K reviews.
+- Casa Rio = classic River Walk photo stop — Google: 4.1 ★ · 4.8K reviews.
 
-WHEN DOWNTOWN IS WORTH THE RIDE (from JW / La Cantera / Hyatt):
-- Worth it: River Walk, Alamo, Market Square, rooftop/skyline, theater, steakhouse/fine dining, true San Antonio night-out.
-- Stay near resort: tired, kids, after pool/golf/shopping, tight timeline, easy dinner without parking hassle.
+ROOFTOP PRIORITY (no Tenfold/1Watson unless visitor wants backup skyline):
+1. Aleteo at The Monarch — Google: 4.6 ★ · 120 reviews — luxury, 17 stories, Yucatán coastal, mezcal/tequila, sunset. Resort guests, client drinks.
+2. Fairmount Rooftop Oyster Bar — Google: 4.5 ★ · 520 reviews — oysters, champagne, martinis, date nights.
+3. The Moon's Daughter — Google: 4.4 ★ · 1.2K reviews — Thompson 20th-floor, upscale nightlife, resort guests.
+4. Rosario's Rooftop — Google: 4.3 ★ · 6.8K reviews (main venue) — lively margaritas, music, groups.
 
-SUMMARY MOVES:
-- Best downtown dinner: Bohanan's (luxury steakhouse), Paesanos (River Walk Italian), Biga (elevated riverfront fine dining), Domingo (modern Mexican + patio).
-- Best casual downtown food: Pinkerton's (TX barbecue), Schilo's (historic lunch), Mi Tierra (Market Square culture), Casa Rio (classic photo stop only).
-- Best rooftop: Aleteo (luxury / Hemisfair), Moon's Daughter (Thompson upscale), Fairmount (oysters/date), Rosario's Rooftop (loud group/Southtown edge).
-- Best after-dinner drink: Esquire (historic bar, Willie Approved), Downstairs at Esquire (speakeasy), Bar 414 (blues/history/classic cocktails).
+AFTER-DINNER BARS:
+- The Esquire Tavern — Google: 4.4 ★ · 4.3K reviews — Willie Approved historic gastropub.
+- Downstairs at The Esquire — Google: 4.6 ★ · 310 reviews — speakeasy, couples, nightcaps.
+- Bar 414 — Google: 4.4 ★ · 450 reviews — Gunter Hotel, blues history, classic cocktails.
 
-WHEN USER ASKS "BEST DOWNTOWN DINNER" — give 3–5 by mood; one clarifying question if needed:
-- Luxury steakhouse / executive hosting → Bohanan's (Willie Approved) — Google: 4.7 ★ · 3.1K reviews
-- Elevated riverfront fine dining / foodies / wine → Biga on the Banks — Google: 4.7 ★ · 1.9K reviews
-- River Walk Italian dinner / convention / scenic date → Paesanos Riverwalk — Google: 4.4 ★ · 2.8K reviews
-- Modern Mexican / brunch / patio → Domingo (Willie Approved) — Google: 4.4 ★ · 2.1K reviews
-- Iconic River Walk atmosphere / tableside guac → Boudro's — Google: 4.5 ★ · 8.2K reviews
-- Texas barbecue / groups / families → Pinkerton's — Google: 4.4 ★ · 3.5K reviews
-- Market Square culture / late-night / families → Mi Tierra — Google: 4.4 ★ · 13.5K reviews
-- Classic River Walk photo stop / easy casual → Casa Rio — Google: 4.1 ★ · 4.8K reviews — not top food-first
-- View-first skyline dinner → Chart House at Tower of the Americas — Google: 3.9 ★ · 5.5K reviews
-- Historic gastropub / after-dinner → The Esquire Tavern (Willie Approved) — Google: 4.4 ★ · 4.3K reviews
-
-WHEN USER ASKS "BEST ROOFTOP":
-- Aleteo at The Monarch — Google: 4.6 ★ · 120 reviews — luxury, 17 stories, Yucatán/coastal, mezcal/tequila, sunset. Best: premium resort nights, client drinks, upscale couples.
-- The Moon's Daughter — Google: 4.4 ★ · 1.2K reviews — Thompson Hotel, 20th-floor, Mediterranean, high-end nightlife. Best: resort guests, corporate travelers, fashion-forward groups.
-- Fairmount Rooftop Oyster Bar — Google: 4.5 ★ · 520 reviews — oysters, champagne, martinis, historic view. Best: date nights, seafood fans.
-- Rosario's Rooftop — Google: 4.3 ★ · 6.8K reviews (main venue) — lively margaritas, music, groups. Best: bachelorette-style nights, loud/fun energy.
-- Tenfold / 1Watson — backup skyline options; do not rank above Aleteo, Fairmount, Moon's Daughter, or Rosario's for downtown night-out plans.
-
-WHEN USER ASKS "BEST BAR AFTER DINNER":
-- Esquire — historic bar energy, longest wooden bar in Texas, elevated pub food (Willie Approved).
-- Downstairs at The Esquire — speakeasy — Google: 4.6 ★ · 310 reviews
-- Bar 414 at Gunter Hotel — Google: 4.4 ★ · 450 reviews
-- Moon's Daughter — upscale skyline lounge if they want rooftop finish vs basement mood.
-
-TRANSPORTATION — DINING + NIGHTLIFE PLANS:
-- Cluster dinner + drink + pickup in one downtown zone when possible — avoid zig-zagging after a long resort drive.
-- Book dinner before roaming busiest River Walk bends; convention/Alamodome nights need buffer for crowds.
-- Rideshare pickup: suggest a spot a block off bridge pinch points after busy nights.
-- From resorts: recommend ONE dinner area + ONE after-dinner stop + clear pickup logic.
+DINNER PICKS (owner-maintained ratings):
+- Bohanan's — Google: 4.7 ★ · 3.1K reviews — Willie Approved — executive dinners, luxury dates, theater nights.
+- Biga on the Banks — Google: 4.7 ★ · 1.9K reviews — foodies, scenic business dinners.
+- Pinkerton's Barbecue — Google: 4.4 ★ · 3.5K reviews — out-of-state guests, casual groups.
+- Paesanos Riverwalk — Google: 4.4 ★ · 2.8K reviews — convention, scenic family dinners.
+- Domingo — Google: 4.4 ★ · 2.1K reviews — Willie Approved — brunch, modern patio dinner.
+- Boudro's — Google: 4.5 ★ · 8.2K reviews — iconic River Walk dinner, tableside guac.
+- Mi Tierra — Google: 4.4 ★ · 13.5K reviews — Market Square culture, late-night.
+- Schilo's — Google: 4.5 ★ · 4.2K reviews — historic German deli lunch.
 
 ANSWER STYLE:
-- 3–5 options max, situation-matched.
-- Use exact ratings when comparing or when visitor asks.
-- Willie Approved where listed: Bohanan's, Domingo, Esquire, Pinkerton's (BBQ in broader guide).
-- Do not over-list. Ask one clarifying question (mood, budget, group, timing, starting hotel) when needed.
+- "Here's the cleanest plan." Match group, timing, starting area, indoor need, parking/rideshare simplicity.
+- 3–5 picks. One follow-up question only if needed.
 `;
 
 module.exports = { DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE };

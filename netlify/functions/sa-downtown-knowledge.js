@@ -1,77 +1,82 @@
 /**
  * Shared Downtown San Antonio activity knowledge for Ask A Local and Transportation operators.
- * Keep in sync with downtown.html activity cards when attractions, ratings, or tips change.
+ * Keep in sync with downtown.html when attractions, ratings, or tips change.
  */
 
 const DOWNTOWN_ACTIVITY_KNOWLEDGE = `
 DOWNTOWN SAN ANTONIO ACTIVITY GUIDE (Where To Go SA — align with downtown.html):
 
-Visitor language: use starting point, first stop, downtown move, plan, area, next stop, backup option, worth the walk, worth the ride — never anchor, corridor, routing logic, proof stack, intent stack.
+Visitor language: use starting point, first stop, downtown move, plan, area, next stop, backup option, worth the walk, worth the ride — never anchor, corridor, routing logic, proof stack, intent stack, or operator jargon unless the visitor uses those words.
 
 Ratings format when cited: Google: X.X ★ · N reviews (owner-maintained; verify before quoting exact counts).
 
-SUMMARY MOVES (use when visitors need a fast plan):
-- Best first-time downtown move: Alamo + River Walk + Tower of the Americas; add Market Square or La Villita for more culture without a long drive.
-- Best family downtown move: River Walk boat energy, then Rivercenter / LEGOLAND / SEA LIFE / LiggettVille / Magik Theatre / Hemisfair when kids need indoor time, shade, or reset.
-- Best convention downtown move: keep it walkable — River Walk, Buckhorn, Hopscotch, Briscoe, San Fernando Cathedral, short dinner/drink options between sessions.
-- Best resort guest downtown move: make downtown worth the ride — one main stop, one dinner area, one after-dinner walk.
+ANSWER STYLE:
+- Lead with: "Here's the cleanest plan." / "Here's the easier area." / "Here's the better first move." / "Here's where I'd send you."
+- 3–5 options max, matched to situation. One clarifying question only when needed (group, timing, hotel area, indoor vs outdoor, energy).
 
-WHEN USER ASKS "WHAT SHOULD I DO DOWNTOWN" — infer or ask briefly:
-- first time or repeat?
-- family, couple, convention, solo, group?
-- daytime or night?
-- heat/rain?
-- walkable only or rideshare OK?
-- dinner already planned?
-Give 3–5 best options, not a dump. Use ratings only when comparing or helpful.
+OPERATOR QUESTIONS — HOW TO ANSWER:
 
-FIRST-TIME: Alamo (early) + River Walk leg + Tower or Market Square depending on timing and energy.
-KIDS: River Walk boat / Tower plaza fountains / LEGOLAND / SEA LIFE / LiggettVille / Magik Theatre / Hemisfair-Yanaguana by age and weather.
-CONVENTION: walkable cluster — Convention Center area, River Walk, Briscoe, Hopscotch, Buckhorn, San Fernando Cathedral; dinner reservation discipline.
-RESORT GUEST (JW / La Cantera / Hyatt): one main attraction + one dinner area + one after-dinner walk; cluster by area — do not zig-zag families.
-HOURS / TICKETS / SCHEDULES: share what you know, then tell them to verify on the official listing before committing.
+"What should I do downtown tonight?"
+→ Infer: first time or repeat, group type, starting hotel area, dinner planned or not, heat/rain. Default first-timers: Alamo window + River Walk leg + one dinner pick. Add Tower or Market Square if energy remains. Convention: walkable cluster only.
 
-CATEGORIES AND STOPS:
+"Where should we eat on the River Walk?"
+→ Lead Bohanan's (luxury steak, Willie Approved), Biga (elevated riverfront), Paesanos (Italian, convention-friendly), Domingo (modern Mexican, Willie Approved), Boudro's (iconic tableside guac). Chart House = view-first at Tower, not top food-first. Casa Rio = classic photo/history patio only — not top food-first, not Willie Approved.
 
-Historic / Culture:
-- The Alamo — Historic Landmark, Downtown / Alamo Plaza, free grounds / timed entry for church sanctuary (Google: 4.6 ★ · 150K reviews). Reverent, historic. Best: first-timers, history, families. Tip: reserve timed entry online for church sanctuary.
-- San Fernando Cathedral — Historic Landmark, Main Plaza, free (Google: 4.8 ★ · 4.2K reviews). Night stop when "San Antonio | The Saga" projection runs. Best: architecture, couples, free memorable moment.
-- Buckhorn Saloon & Museum — Historic Museum & Bar, Houston St, tickets vary (Google: 4.6 ★ · 4.5K reviews). Quirky Texas saloon-museum. Best: families with wildlife interest, history, historic bar drink.
-- La Villita Historic Arts Village — Arts & Culture, River Walk edge, free (Google: 4.6 ★ · 1.8K reviews). Quieter shops/galleries. Best: souvenirs, couples, avoiding River Walk crush. Tip: Marriage Island area for photos.
-- Historic Market Square / El Mercado — Shopping & Culture, free (Google: 4.4 ★ · 8.2K reviews). Colorful, music, Mi Tierra energy. Best: families, cultural shopping, daytime. Tip: weekends = more music/vendors.
-- Briscoe Western Art Museum — Museum, River Walk edge, tickets vary (Google: 4.7 ★ · 2.1K reviews). Calmer indoor Western art. Best: art/history, heat escape. Tip: outdoor sculpture garden by the river.
+"What rooftop should we go to?"
+→ Priority: Aleteo (Monarch, luxury sunset), Fairmount (oysters/date), Moon's Daughter (Thompson upscale), Rosario's Rooftop (lively groups). Do not lead with Tenfold or 1Watson unless visitor specifically wants a backup skyline option.
 
-Walkable / Scenic:
-- San Antonio River Walk — Linear park & hub, free walk / paid boat tours (Google: 4.7 ★ · 74K reviews). Classic bridges, patios, photos. Best: first-timers, scenic walks, families, convention walkability, evening drinks. Tip: quieter north toward Museum Reach vs busiest restaurant corridor.
-- Tower of the Americas — Observation tower, Hemisfair, tickets vary (Google: 4.5 ★ · 19K reviews). Skyline/sunset. Best: families, dramatic stop. Tip: lower plaza fountains for kids before/after tower.
-- Museum Reach — quieter River Walk extension north; good when crowds feel heavy downtown.
-- Hemisfair / Tower plaza — green space, fountains, pairs with Magik Theatre and Tower.
+"Should we do Pearl or River Walk?"
+→ Pearl: polished food, Hotel Emma drinks, farmers market weekends, calmer patios, chef-led dinner — better when they want local polish without River Walk crush. River Walk: iconic water, boats, first-timer postcard — better for classic San Antonio first visit. From resorts: frame Pearl as a planned dinner night (~20–30+ min), not "nearby."
 
-Immersive / Modern:
-- Hopscotch San Antonio — Interactive art, tickets vary (Google: 4.7 ★ · 4.8K reviews). Indoor lights/photos/cocktails. Best: teens, couples, heat/rain backup, groups wanting different.
-- Briscoe — also a quieter indoor culture option on the river.
-- Alamodome — Stadium & arena, east edge, tickets vary (Google: 4.4 ★ · 15.5K reviews). Sports, concerts, conventions. Tip: walking from downtown can beat event parking/traffic.
+"What can we do with kids downtown?"
+→ Family day plan: Hemisfair/Yanaguana + Tower + River Walk loop + indoor backup. Indoor: LEGOLAND, SEA LIFE, LiggettVille (Rivercenter), Magik Theatre + Yanaguana, Hopscotch (teens), Briscoe (heat), Buckhorn (quirky history). Cluster indoors — do not zig-zag families across downtown.
 
-Family / Indoor / Rain:
-- LiggettVille Adventure Center — Rivercenter, ropes/zip/climb, tickets vary (Google: 4.4 ★ · 850 reviews). Active kids, rainy days. Tip: check size/age rules.
-- LEGOLAND Discovery Center — Rivercenter, younger kids (Google: 4.0 ★ · 2.0K reviews). Tip: combo with SEA LIFE if doing both.
-- SEA LIFE Aquarium — Rivercenter (Google: 4.2 ★ · 1.5K reviews). Ocean tunnel, touch pools. Tip: check feeding/demo schedule.
-- The Magik Theatre — Hemisfair, youth theatre (Google: 4.8 ★ · 450 reviews). Pair with Yanaguana Garden playground.
-- Rivercenter area — cluster indoor family stops without zig-zagging.
-- Hemisfair / Yanaguana Garden — playground reset with Magik or Tower.
+"What should we do if it's too hot?"
+→ Heat/rain backup: Hopscotch, Briscoe, LEGOLAND, SEA LIFE, LiggettVille, Buckhorn. Pair one indoor stop with a short outdoor leg, not a full outdoor marathon.
 
-Event + Convention:
-- Alamodome — major events; downtown walk often easier than parking.
-- Convention Center area — keep plans walkable to River Walk, Briscoe, Hopscotch, Buckhorn, Cathedral.
-- Pickup/dropoff timing matters for Market Square, River Walk, Alamo, Tower — suggest spots a block off bridge crowds.
+"We're here for a convention — what's easy?"
+→ Walkable: Convention Center area → River Walk dinner (reservation first) → one rooftop or bar → easy return. Briscoe, Hopscotch, Buckhorn, Cathedral between sessions. Alamodome events: walking from downtown often beats event parking.
 
-TRANSPORTATION OPERATOR DOWNTOWN ROUTING:
-- From JW / La Cantera / Hyatt: help decide if downtown is worth the ride; if yes, cluster stops by area — Alamo plaza cluster, River Walk spine, Hemisfair/Tower, Market Square, Rivercenter indoors.
-- Do not send families zig-zagging across downtown in one afternoon.
-- Alamodome events: walking from downtown often beats fighting traffic/parking.
-- Convention visitors: walkable, time-aware; dinner reservation before roaming busiest River Walk bends.
-- Resort guests: one strong plan — example from La Cantera: "Make it worth the ride: Alamo if still open, River Walk for walk/boat energy, dinner or Market Square by time; with kids add Tower plaza or Rivercenter indoor stops for heat."
-- Market Square, River Walk, Alamo, Tower: emphasize timing and pickup location away from bridge pinch points.
+"Where should resort guests go downtown?"
+→ Make downtown worth the ride: one main stop + one dinner area + one after-dinner walk. JW / La Cantera / Hyatt are not interchangeable — confirm zone first. Do not describe Bohanan's as "near" JW; it is a deliberate downtown destination dinner.
+
+QUICK MOVES (match downtown.html quick-pick cards):
+1. First time: Alamo → River Walk → dinner → optional Tower or Market Square.
+2. Family day: Hemisfair/Yanaguana → Tower → River Walk → indoor backup.
+3. Heat/rain: Hopscotch, Briscoe, LEGOLAND, SEA LIFE, LiggettVille, Buckhorn.
+4. Culture loop: Market Square, Mi Tierra, San Fernando Cathedral, La Villita, Buckhorn.
+
+FIRST-TIME STOPS (ratings on site):
+- The Alamo — Google: 4.6 ★ · 150K reviews — timed entry for church sanctuary.
+- San Antonio River Walk — Google: 4.7 ★ · 74K reviews.
+- Tower of the Americas — Google: 4.5 ★ · 19K reviews.
+- Historic Market Square / El Mercado — Google: 4.4 ★ · 8.2K reviews.
+- Mi Tierra — Google: 4.4 ★ · 13.5K reviews — Market Square culture, late-night.
+
+FAMILY / INDOOR:
+- LEGOLAND — Google: 4.0 ★ · 2.0K reviews — younger kids.
+- SEA LIFE — Google: 4.2 ★ · 1.5K reviews.
+- LiggettVille — Google: 4.4 ★ · 850 reviews — active kids, Rivercenter.
+- Magik Theatre — Google: 4.8 ★ · 450 reviews — pairs with Yanaguana.
+- Hopscotch — Google: 4.7 ★ · 4.8K reviews — teens, heat escape.
+- Briscoe — Google: 4.7 ★ · 2.1K reviews — midday heat, art.
+- Buckhorn — Google: 4.6 ★ · 4.5K reviews — quirky Texas history.
+
+CULTURE LOOP:
+- San Fernando Cathedral — Google: 4.8 ★ · 4.2K reviews — Saga projection when running.
+- La Villita — Google: 4.6 ★ · 1.8K reviews.
+- Market Square — Google: 4.4 ★ · 8.2K reviews.
+- Buckhorn — Google: 4.6 ★ · 4.5K reviews.
+- Briscoe — Google: 4.7 ★ · 2.1K reviews.
+
+EVENTS:
+- Alamodome — Google: 4.4 ★ · 15.5K reviews — walking from downtown often easier than event traffic.
+
+TRANSPORTATION NOTES (visitor language):
+- Cluster stops by area; avoid zig-zagging families.
+- Book dinner before busiest River Walk bends.
+- Rideshare pickup a block off bridge pinch points.
+- Museum Reach = quieter north River Walk extension toward Pearl.
 `;
 
 const { DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE } = require("./sa-downtown-dining-knowledge");
