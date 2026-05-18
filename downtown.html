@@ -627,10 +627,15 @@
       z-index: 2;
     }
 
-    .page-downtown #dt-things-to-do {
+    .page-downtown #dt-things-to-do,
+    .page-downtown #dt-dining-nightlife {
       scroll-margin-top: calc(var(--header-h, 64px) + 12px);
       margin-top: clamp(40px, 6vw, 72px);
       padding: 0 clamp(16px, 4vw, 48px) clamp(36px, 5vw, 56px);
+    }
+
+    .page-downtown #dt-dining-nightlife {
+      margin-top: clamp(28px, 4vw, 48px);
     }
 
     .page-downtown .dt-guide-inner {
@@ -1164,7 +1169,7 @@
           <div class="dt-move-rows">
             <p class="dt-move-row"><strong>Best for</strong> Couples, small crews, hosts who want one strong night.</p>
             <p id="dt-move-tower-beat" class="dt-move-row"><strong>Move</strong> Dinner first &rarr; one skyline or rooftop beat &rarr; easy exit.</p>
-            <p class="dt-move-row"><strong>Food / drink pick</strong> Hand off to <a href="where-to-eat.html" style="color:#7ee0d0;font-weight:700;">Where To Eat</a> instead of juggling five names mid-walk.</p>
+            <p class="dt-move-row"><strong>Food / drink pick</strong> Use the <a href="#dt-dining-nightlife" style="color:#7ee0d0;font-weight:700;">downtown dining guide</a> below or <a href="where-to-eat.html#lane-downtown-dining" style="color:#7ee0d0;font-weight:700;">Where To Eat</a> for the full map.</p>
           </div>
         </article>
         <article class="dt-move-card dt-move-card--gold" id="dt-move-culture">
@@ -1206,19 +1211,230 @@
         </aside>
       </div>
     </section>
+    <section id="dt-dining-nightlife" class="dt-guide-section section" aria-labelledby="dt-dining-heading">
+      <div class="dt-guide-inner">
+        <header class="dt-guide-head">
+          <p class="eyebrow eyebrow-on-dark">Dinner + night-out</p>
+          <h2 id="dt-dining-heading">Downtown dining + nightlife moves</h2>
+          <p class="dt-guide-intro">Downtown works best when you know the kind of night you want first: barbecue, steakhouse, River Walk dinner, Mexican culture, rooftop drinks, historic bars, or a quieter lounge. Use this guide to pick the right dinner and night-out move before the group starts bouncing between random stops.</p>
+        </header>
+
+        <div class="dt-summary-grid" aria-label="Downtown dining quick picks">
+          <article class="dt-summary-card">
+            <h3>Best downtown dinner move</h3>
+            <p>Choose Bohanan&rsquo;s when the night needs polish, Paesanos when River Walk dinner utility matters, Biga when the group wants elevated food by the water, and Domingo when modern Mexican and patio energy fit the night.</p>
+          </article>
+          <article class="dt-summary-card">
+            <h3>Best casual downtown food move</h3>
+            <p>Choose Pinkerton&rsquo;s for Texas barbecue, Schilo&rsquo;s for historic lunch, Mi Tierra for Market Square culture, and Casa Rio for classic River Walk Tex-Mex on the iconic umbrella patios.</p>
+          </article>
+          <article class="dt-summary-card">
+            <h3>Best rooftop move</h3>
+            <p>Choose Aleteo or The Moon&rsquo;s Daughter for upscale skyline energy, Fairmount Rooftop when seafood and cocktails matter, and Rosario&rsquo;s Rooftop when the group wants louder Southtown night-out energy.</p>
+          </article>
+          <article class="dt-summary-card">
+            <h3>Best after-dinner drink move</h3>
+            <p>Use Esquire when you want historic bar energy, Downstairs at The Esquire when you want a darker hidden lounge, and Bar 414 when blues history and classic cocktails sound better than a crowded patio.</p>
+          </article>
+        </div>
+
+        <section class="dt-cat-band" aria-labelledby="dt-cat-restaurants">
+          <h3 class="dt-cat-title" id="dt-cat-restaurants">Downtown restaurants</h3>
+          <div class="dt-act-grid">
+            <article class="dt-act-card" data-dt-dining="pinkertons">
+              <h4>Pinkerton&rsquo;s Barbecue</h4>
+              <span class="dt-act-google">Google: 4.4 ★ · 3.5K reviews</span>
+              <div class="dt-act-chips" aria-label="Highlights"><span class="dt-act-chip">Premier Texas Barbecue</span><span class="dt-act-chip">Craft Pit-Smoking</span><span class="dt-act-chip">Mesquite &amp; Post Oak Pit</span></div>
+              <p class="dt-act-meta">Texas Barbecue · Downtown / Houston St · $20&ndash;$40 · rustic, high-energy, authentic Texas</p>
+              <p class="dt-act-read">A downtown barbecue win for visitors who want real Texas brisket, ribs, sausage, and casual group energy without leaving the central city.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> out-of-state visitors craving Texas brisket, casual group lunches, families, convention visitors wanting barbecue nearby.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> Skip the basic side order and consider the duck and sausage jambalaya or jalapeño cheese sausage if the group wants something memorable.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="bohanans">
+              <h4>Bohanan&rsquo;s Prime Steaks and Seafood</h4>
+              <span class="dt-act-google">Google: 4.7 ★ · 3.1K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Old-World Luxury</span><span class="dt-act-chip">Mesquite-Grilled Prime Beef</span><span class="dt-act-chip">Willie Approved</span></div>
+              <p class="dt-act-meta">Steakhouse &amp; Seafood · Downtown / Houston St · $100+ · old-world luxury, polished, historic</p>
+              <p class="dt-act-read">The downtown luxury steakhouse move when the night needs to feel important. Best for executive hosting, theater nights, resort guests making downtown the destination, and premium date nights.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> corporate executive hosting, premium resort-escape date nights, theater-adjacent luxury dining, polished steakhouse dinners.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> Arrive early for a cocktail at the downstairs bar before heading upstairs for dinner.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="biga">
+              <h4>Biga on the Banks</h4>
+              <span class="dt-act-google">Google: 4.7 ★ · 1.9K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">James Beard Nominated Chef</span><span class="dt-act-chip">Scenic Waterfront Terrace</span><span class="dt-act-chip">Fine Dining</span></div>
+              <p class="dt-act-meta">New American · Downtown / River Walk · $50&ndash;$100 · sophisticated, creative, scenic waterfront</p>
+              <p class="dt-act-read">A polished River Walk fine-dining option for visitors who want elevated food, wine, and a scenic river setting away from the loudest tourist stretch.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> foodies, fine wine, scenic business dinners, upscale River Walk nights.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> Request a river-view or terrace-side table around sunset if available.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="paesanos">
+              <h4>Paesanos Riverwalk</h4>
+              <span class="dt-act-google">Google: 4.4 ★ · 2.8K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Signature Shrimp Paesano</span><span class="dt-act-chip">Scenic Waterfront Patio</span><span class="dt-act-chip">River Walk Classic</span></div>
+              <p class="dt-act-meta">Mediterranean &amp; Italian · Downtown / River Walk · $30&ndash;$60 · polished, historic, lively waterfront</p>
+              <p class="dt-act-read">A River Walk classic for Italian-leaning dinners, convention visitors, date nights, and groups that want a familiar downtown table with water nearby.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> convention attendees, upscale family gatherings, scenic date nights, River Walk dinner utility.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> First-timers should consider the signature Shrimp Paesano.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="mi-tierra">
+              <h4>Mi Tierra Café y Panadería</h4>
+              <span class="dt-act-google">Google: 4.4 ★ · 13.5K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Dazzling Canopy Lights</span><span class="dt-act-chip">World-Famous Bakery</span><span class="dt-act-chip">Market Square Classic</span></div>
+              <p class="dt-act-meta">Authentic Mexican · Downtown / Market Square · $15&ndash;$30 · high-energy, festive, world-famous</p>
+              <p class="dt-act-read">A San Antonio culture classic at Market Square with lights, murals, bakery cases, mariachi energy, late-night food, and big family-friendly atmosphere.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> families, out-of-town guests, cultural experience, late-night dining, Market Square visits.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> Even if the restaurant line is long, stop at the panadería counter for pastries or pralines to go.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="domingo">
+              <h4>Domingo Restaurant</h4>
+              <span class="dt-act-google">Google: 4.4 ★ · 2.1K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">River Walk Levels</span><span class="dt-act-chip">Canopied Tree Patio</span><span class="dt-act-chip">Willie Approved</span></div>
+              <p class="dt-act-meta">Modern Mexican · Downtown / River Walk · $20&ndash;$50 · vibrant, modern, refreshing</p>
+              <p class="dt-act-read">A stylish modern Mexican option along the River Walk that works well for brunch, dates, group dinners, and visitors who want something more current than old-school Tex-Mex.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> scenic brunch, date nights, modern group dinners, River Walk dining without going too heavy.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> Ask about lower river-level patio seating under the canopy lights when weather works.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="boudros">
+              <h4>Boudro&rsquo;s on the Riverwalk</h4>
+              <span class="dt-act-google">Google: 4.5 ★ · 8.2K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Tableside Guacamole</span><span class="dt-act-chip">Iconic Riverfront Patio</span><span class="dt-act-chip">River Walk Classic</span></div>
+              <p class="dt-act-meta">Texas Bistro &amp; Seafood · Downtown / River Walk · $30&ndash;$60 · bustling, warm, iconic waterfront</p>
+              <p class="dt-act-read">A classic River Walk dinner move with tableside guacamole, prickly pear margaritas, seafood, and strong &ldquo;this feels like San Antonio&rdquo; energy.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> introducing out-of-towners to the River Walk, casual business dinners, lively outdoor dining, visitors who want riverfront atmosphere.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> Request outdoor patio seating on the river when available.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="casa-rio">
+              <h4>Casa Rio</h4>
+              <span class="dt-act-google">Google: 4.1 ★ · 4.8K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Historic Riverfront Pioneer</span><span class="dt-act-chip">Classic Tex-Mex Patios</span><span class="dt-act-chip">River Walk Classic</span></div>
+              <p class="dt-act-meta">Classic Tex-Mex · Downtown / River Walk · $15&ndash;$30 · historic, bustling, iconic patios</p>
+              <p class="dt-act-read">A historic River Walk institution and one of the city&rsquo;s most recognizable patio dinners &mdash; colorful umbrellas, casual Tex-Mex plates, margaritas, and easy energy on the water.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> first-time visitors, families with kids, groups wanting classic River Walk Tex-Mex, budget-friendly downtown dinners, iconic San Antonio nights.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> Request an outdoor table by the water when you want the full umbrella-patio experience.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="schilos">
+              <h4>Schilo&rsquo;s</h4>
+              <span class="dt-act-google">Google: 4.5 ★ · 4.2K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Homemade Root Beer</span><span class="dt-act-chip">19th-Century Saloon Building</span><span class="dt-act-chip">Oldest Operating Restaurant</span></div>
+              <p class="dt-act-meta">German Delicatessen · Downtown / Commerce St · $15&ndash;$30 · historic, warm, nostalgic, casual</p>
+              <p class="dt-act-read">A historic daytime lunch stop known for German-Texan comfort food, sandwiches, split pea soup, and homemade root beer.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> fast casual lunch, history lovers, daytime River Walk breaks, visitors who want something old-school and local.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> Pair lunch with their homemade root beer.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="esquire">
+              <h4>The Esquire Tavern</h4>
+              <span class="dt-act-google">Google: 4.4 ★ · 4.3K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Texas&rsquo; Longest Wooden Bar</span><span class="dt-act-chip">Elevated Pub Comfort</span><span class="dt-act-chip">Willie Approved</span></div>
+              <p class="dt-act-meta">Historic Gastropub · Downtown / Commerce St · $20&ndash;$40 · dark, moody, vintage, historic</p>
+              <p class="dt-act-read">A moody historic bar and gastropub with strong cocktails, quality food, River Walk access, and one of the best downtown after-dinner moves.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> late-night craft cocktails, post-convention unwinding, dark vintage atmosphere, casual dinner plus drinks.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> Try for the small back balcony overlooking the River Walk if available.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="chart-house">
+              <h4>Chart House at Tower of the Americas</h4>
+              <span class="dt-act-google">Google: 3.9 ★ · 5.5K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">750-Foot Rotating View</span><span class="dt-act-chip">Upscale Seafood &amp; Steaks</span><span class="dt-act-chip">Skyline Dinner</span></div>
+              <p class="dt-act-meta">Fine Dining Steak &amp; Seafood · Downtown / Hemisfair Park · $50&ndash;$100 · dramatic, upscale, panoramic</p>
+              <p class="dt-act-read">A view-first dinner at the top of the Tower of the Americas. Best when skyline drama matters more than chasing the highest-rated food-first table.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> milestone anniversaries, out-of-towners, families wanting a dramatic view, skyline-focused dinners.</p>
+              <p class="dt-act-tip"><strong>Reservation move:</strong> Book around sunset if the view is the main event.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="dt-cat-band" aria-labelledby="dt-cat-rooftops">
+          <h3 class="dt-cat-title" id="dt-cat-rooftops">Downtown rooftops and skyline drinks</h3>
+          <p class="dt-guide-intro" style="margin-bottom:12px;">Use these when the view is part of the night. Pick the rooftop after dinner, or make it the main stop if the group wants skyline energy more than a long food crawl.</p>
+          <div class="dt-act-grid">
+            <article class="dt-act-card" data-dt-dining="aleteo">
+              <h4>Aleteo at The Monarch San Antonio</h4>
+              <span class="dt-act-google">Google: 4.6 ★ · 120 reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">17 Stories Up</span><span class="dt-act-chip">Yucatán Coastal Vibe</span><span class="dt-act-chip">Mezcal / Tequila</span></div>
+              <p class="dt-act-meta">Luxury Rooftop Lounge · Downtown / Hemisfair District · $20&ndash;$40 · upscale, open-air, vibrant</p>
+              <p class="dt-act-read">A high-end rooftop option for skyline views, coastal Mexican energy, mezcal, tequila, and a polished resort-escape night.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> premium resort-escape nights, corporate clients, sunset skyline drinks, upscale groups.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> The cocktail program leans mezcal, tequila, citrus, and open-air lounge energy.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="fairmount-rooftop">
+              <h4>Fairmount Rooftop Oyster Bar</h4>
+              <span class="dt-act-google">Google: 4.5 ★ · 520 reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Al-Fresco Oyster Bar</span><span class="dt-act-chip">Historic 1906 Skyline View</span><span class="dt-act-chip">Seafood Rooftop</span></div>
+              <p class="dt-act-meta">Upscale Seafood &amp; Cocktail Bar · Downtown / Hemisfair edge · $20&ndash;$50 · modern, elegant, panoramic</p>
+              <p class="dt-act-read">A rooftop seafood and cocktail move with oysters, champagne, martinis, and downtown views from the historic Fairmount Hotel.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> romantic date nights, luxury cocktail hours, seafood fans, open-air rooftop energy.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Pair oysters or seafood platters with champagne or a martini.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="rosarios-rooftop">
+              <h4>Rosario&rsquo;s Rooftop Bar</h4>
+              <span class="dt-act-google">Google: 4.3 ★ · 6.8K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">21+ Only Skyline Deck</span><span class="dt-act-chip">High-Energy Fiesta</span><span class="dt-act-chip">Southtown Rooftop</span></div>
+              <p class="dt-act-meta">Vibrant Lounge · Southtown / Downtown edge · $15&ndash;$30 · trendy, loud, high-energy</p>
+              <p class="dt-act-read">A lively rooftop option for margaritas, music, groups, and skyline views from the Southtown edge of downtown. Rating reflects main venue unless a rooftop-specific listing exists.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> lively group nights, bachelorette parties, strong margaritas, music and skyline energy.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Try to get outdoor lounge seating near dusk if available.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="dt-cat-band" aria-labelledby="dt-cat-bars">
+          <h3 class="dt-cat-title" id="dt-cat-bars">Downtown bars, lounges, and speakeasies</h3>
+          <p class="dt-guide-intro" style="margin-bottom:12px;">Use these after dinner when the group wants cocktails, a darker room, a rooftop, or one last memorable downtown stop.</p>
+          <div class="dt-act-grid">
+            <article class="dt-act-card" data-dt-dining="moons-daughter">
+              <h4>The Moon&rsquo;s Daughter</h4>
+              <span class="dt-act-google">Google: 4.4 ★ · 1.2K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Mediterranean Skyline Oasis</span><span class="dt-act-chip">Indoor + Outdoor Deck</span><span class="dt-act-chip">Luxury Lounge</span></div>
+              <p class="dt-act-meta">Upscale Cocktail Lounge · Downtown North / Thompson Hotel · $20&ndash;$40 · sultry, high-end, visual</p>
+              <p class="dt-act-read">A high-end rooftop lounge at the Thompson with skyline views, Mediterranean small plates, cocktails, and a fashionable night-out feel.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> resort guests wanting upscale nightlife, corporate travelers, fashion-forward groups, skyline cocktails.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Dress smart-casual and consider reservations for outdoor seating on weekends.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="downstairs-esquire">
+              <h4>Downstairs at The Esquire</h4>
+              <span class="dt-act-google">Google: 4.6 ★ · 310 reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Hidden Basement Speakeasy</span><span class="dt-act-chip">Moody River Walk Escape</span><span class="dt-act-chip">Cocktail Hideaway</span></div>
+              <p class="dt-act-meta">Speakeasy Lounge · Downtown / Commerce St · $15&ndash;$30 · dark, intimate, vintage</p>
+              <p class="dt-act-read">A hidden river-level cocktail escape beneath The Esquire, better for intimate drinks than loud bar-hopping.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> cocktail lovers, couples, post-convention nightcaps, moody hidden-room energy.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Look for the stairs inside Esquire or the subtle river-level entrance.</p>
+            </article>
+            <article class="dt-act-card" data-dt-dining="bar-414">
+              <h4>Bar 414</h4>
+              <span class="dt-act-google">Google: 4.4 ★ · 450 reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Robert Johnson Tribute</span><span class="dt-act-chip">Historic Hotel Speakeasy</span><span class="dt-act-chip">Blues-Infused Lounge</span></div>
+              <p class="dt-act-meta">Classic Cocktail Lounge · Downtown / The Gunter Hotel · $15&ndash;$30 · historic, moody, blues-infused</p>
+              <p class="dt-act-read">A historic hotel cocktail lounge tied to the Robert Johnson recording story, good for slower drinks, music history, and classic cocktails.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> history and music fans, hotel guests, relaxed corporate drinks, classic cocktail drinkers.</p>
+              <p class="dt-act-tip"><strong>Insider tip:</strong> Order a classic Old Fashioned or Manhattan if you want the room&rsquo;s old-school cocktail feel.</p>
+            </article>
+          </div>
+        </section>
+
+        <aside class="dt-ask-card dt-guide-cta" aria-labelledby="dt-dining-ask-heading">
+          <h3 id="dt-dining-ask-heading">Not sure which downtown dinner or drink move fits your group?</h3>
+          <p>Ask A Local with your hotel, group size, timing, budget, and food mood.</p>
+          <div class="dt-ask-card-actions">
+            <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local &rarr;</a>
+            <a href="driver-concierge.html#route-operator" class="btn btn-secondary">Get Route Help</a>
+            <a href="where-to-eat.html#lane-downtown-dining" class="btn btn-secondary">Full food picks</a>
+          </div>
+        </aside>
+      </div>
+    </section>
 
     <section class="dt-food-strip" aria-labelledby="dt-food-heading">
       <div class="dt-food-strip-inner">
-        <h2 id="dt-food-heading">Food lives on Where To Eat</h2>
-        <p>Use this downtown page to pick the area and timing. Use Where To Eat when you&rsquo;re ready to choose the restaurant, bar, patio, steakhouse, rooftop, or late-night move.</p>
+        <h2 id="dt-food-heading">More dining lanes on Where To Eat</h2>
+        <p>Mexican rooms, steak, Pearl, resort zones, and late-night backups live on the full food page. Use this downtown guide for night-out planning, then open Where To Eat when you want the wider city map.</p>
         <div class="dt-food-strip-actions">
-          <a class="btn btn-primary" href="where-to-eat.html">Open food picks</a>
+          <a class="btn btn-primary" href="where-to-eat.html#lane-downtown-dining">Downtown food picks</a>
           <a href="/ask/" class="btn btn-secondary">Ask A Local</a>
         </div>
       </div>
     </section>
 
-    <section class="dt-concierge-section section" aria-labelledby="dt-concierge-heading">
+<section class="dt-concierge-section section" aria-labelledby="dt-concierge-heading">
       <div class="dt-concierge-inner">
         <header class="dt-concierge-head">
           <p class="dt-route-eyebrow">Concierge rules</p>

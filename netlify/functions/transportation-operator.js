@@ -1,5 +1,5 @@
 const { SA_FOOD_KNOWLEDGE } = require("./sa-food-knowledge");
-const { DOWNTOWN_ACTIVITY_KNOWLEDGE } = require("./sa-downtown-knowledge");
+const { DOWNTOWN_ACTIVITY_KNOWLEDGE, DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE } = require("./sa-downtown-knowledge");
 
 /**
  * Route + Transportation Help operator — OpenAI Responses API (server-side only).
@@ -72,6 +72,9 @@ ${SA_FOOD_KNOWLEDGE}
 
 DOWNTOWN ACTIVITY + ROUTE CLUSTERING:
 ${DOWNTOWN_ACTIVITY_KNOWLEDGE}
+
+DOWNTOWN DINING + NIGHTLIFE (cluster with routes):
+${DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE}
 - When routing downtown from resorts (JW / La Cantera / Hyatt), help them decide if the ride is worth it, then cluster stops by area — do not zig-zag families.
 - For Alamodome events, note walking from downtown can beat event parking/traffic.
 - For Market Square, River Walk, Alamo, and Tower, timing and pickup location matter — suggest pickup a block off bridge crowds.

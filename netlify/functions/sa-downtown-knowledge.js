@@ -74,4 +74,6 @@ TRANSPORTATION OPERATOR DOWNTOWN ROUTING:
 - Market Square, River Walk, Alamo, Tower: emphasize timing and pickup location away from bridge pinch points.
 `;
 
-module.exports = { DOWNTOWN_ACTIVITY_KNOWLEDGE };
+const { DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE } = require("./sa-downtown-dining-knowledge");
+
+module.exports = { DOWNTOWN_ACTIVITY_KNOWLEDGE, DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE };

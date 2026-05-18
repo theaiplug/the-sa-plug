@@ -16,7 +16,7 @@
  */
 
 const { SA_FOOD_KNOWLEDGE } = require("./sa-food-knowledge");
-const { DOWNTOWN_ACTIVITY_KNOWLEDGE } = require("./sa-downtown-knowledge");
+const { DOWNTOWN_ACTIVITY_KNOWLEDGE, DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE } = require("./sa-downtown-knowledge");
 
 const WORKFLOW_ID = "wf_6a05da70b0208190987de0d88273e3ef06e4c19c6372f770";
 
@@ -143,6 +143,8 @@ Use both trusted local picks and researched options. If web_search is enabled, b
 ${SA_FOOD_KNOWLEDGE}
 
 ${DOWNTOWN_ACTIVITY_KNOWLEDGE}
+
+${DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE}
 
 If a Willie Approved place is not near the visitor, do not force it. Mention it only as a destination option when it fits the request.
 

@@ -1697,6 +1697,22 @@
       margin-top: clamp(8px, 1.6vw, 14px);
     }
 
+    #lane-downtown-dining {
+      scroll-margin-top: calc(var(--header-h, 64px) + 12px);
+    }
+
+    #lane-downtown-dining .eat-lane-grid--2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 720px) {
+      #lane-downtown-dining .eat-lane-grid--2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     #lane-riverwalk .eat-lane-grid {
       display: grid;
     }
@@ -1759,6 +1775,7 @@
           <a class="eat-visitor-chip" href="#lane-steak">Business / steak</a>
           <a class="eat-visitor-chip" href="#lane-brazilian">Brazilian</a>
           <a class="eat-visitor-chip" href="#lane-seafood">Seafood / ceviche</a>
+          <a class="eat-visitor-chip" href="#lane-downtown-dining">Downtown dining</a>
           <a class="eat-visitor-chip" href="#lane-riverwalk">River Walk classics</a>
           <a class="eat-visitor-chip" href="#lane-drinks">Drinks / rooftops</a>
           <a class="eat-visitor-chip" href="#lane-breakfast">Breakfast</a>
@@ -2542,11 +2559,351 @@
         </div>
       </div>
 
+      <div class="eat-lane" id="lane-downtown-dining">
+        <div class="eat-section-head">
+          <p class="eyebrow">Downtown night-out</p>
+          <h2>Downtown restaurants, rooftops, and night-out picks</h2>
+          <p class="section-text">Use this lane when dinner is part of the downtown plan. Pick the food first, then add the rooftop, River Walk stroll, bar, lounge, or ride back. Full activity context lives on <a href="downtown.html#dt-dining-nightlife">Downtown</a>.</p>
+        </div>
+        <article class="eat-image-card eat-lane-anchor">
+          <img src="assets/riverside_dining_at_twilight.png" alt="Downtown San Antonio dining at twilight" loading="lazy" decoding="async" />
+          <div class="eat-image-card-content">
+            <h3>Downtown dinner first</h3>
+            <p>Match barbecue, steakhouse, River Walk, Mexican culture, or skyline view to your group — then layer drinks without zig-zagging across downtown.</p>
+          </div>
+        </article>
+        <div class="eat-utility-strip" aria-label="Downtown dining quick picks">
+          <p class="eat-utility-item"><strong>Best downtown dinner:</strong> Bohanan&rsquo;s, Paesanos, Biga, Domingo by mood.</p>
+          <p class="eat-utility-item"><strong>Best casual:</strong> Pinkerton&rsquo;s, Schilo&rsquo;s, Mi Tierra, Casa Rio for classic River Walk Tex-Mex.</p>
+          <p class="eat-utility-item"><strong>Best rooftop:</strong> Aleteo, Moon&rsquo;s Daughter, Fairmount, Rosario&rsquo;s.</p>
+        </div>
+        <div class="eat-section-head" style="margin-top:1.5rem;">
+          <h3 class="section-text" style="font-size:1.1rem;margin:0;">Restaurants</h3>
+        </div>
+        <div class="eat-lane-grid eat-lane-grid--2">
+          <article class="card orange eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.4 ★ · 3.5K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Premier Texas Barbecue</span><span class="eat-proof-pill">Craft Pit-Smoking</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Strong Pick</span></p></div>
+              </div>
+              <h3>Pinkerton&rsquo;s Barbecue</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Texas Barbecue</span>
+                <span class="eat-chip is-price">$20–$40</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Houston St &middot; <strong>Vibe:</strong> rustic, high-energy, authentic Texas</p>
+              <p class="eat-rec-desc">A downtown barbecue win for visitors who want real Texas brisket, ribs, sausage, and casual group energy without leaving the central city.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> out-of-state visitors craving Texas brisket, casual group lunches, families, convention visitors wanting barbecue nearby.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Skip the basic side order and consider the duck and sausage jambalaya or jalapeño cheese sausage if the group wants something memorable.</p>
+            </div>
+          </article>
+          <article class="card green eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.7 ★ · 3.1K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Old-World Luxury</span><span class="eat-proof-pill">Mesquite-Grilled Prime Beef</span><p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p></div>
+              </div>
+              <h3>Bohanan&rsquo;s Prime Steaks and Seafood</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Steakhouse &amp; Seafood</span>
+                <span class="eat-chip is-price">$100+</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Houston St &middot; <strong>Vibe:</strong> old-world luxury, polished, historic</p>
+              <p class="eat-rec-desc">The downtown luxury steakhouse move when the night needs to feel important — a deliberate downtown destination, not a nearby resort pick.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> corporate executive hosting, premium date nights, theater-adjacent luxury dining, polished steakhouse dinners.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Arrive early for a cocktail at the downstairs bar before heading upstairs for dinner.</p>
+            </div>
+          </article>
+          <article class="card turq eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.7 ★ · 1.9K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">James Beard Nominated Chef</span><span class="eat-proof-pill">Scenic Waterfront Terrace</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Strong Pick</span></p></div>
+              </div>
+              <h3>Biga on the Banks</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">New American</span>
+                <span class="eat-chip is-price">$50–$100</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River Walk &middot; <strong>Vibe:</strong> sophisticated, creative, scenic waterfront</p>
+              <p class="eat-rec-desc">Polished River Walk fine dining for elevated food, wine, and a scenic river setting away from the loudest tourist stretch.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> foodies, fine wine, scenic business dinners, upscale River Walk nights.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Request a river-view or terrace-side table around sunset if available.</p>
+            </div>
+          </article>
+          <article class="card gold eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.4 ★ · 2.8K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Signature Shrimp Paesano</span><span class="eat-proof-pill">River Walk Classic</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">River Walk Classic</span></p></div>
+              </div>
+              <h3>Paesanos Riverwalk</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Mediterranean &amp; Italian</span>
+                <span class="eat-chip is-price">$30–$60</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River Walk &middot; <strong>Vibe:</strong> polished, historic, lively waterfront</p>
+              <p class="eat-rec-desc">River Walk classic for Italian-leaning dinners — ranks above 1Watson for dinner utility when the table and location both matter.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> convention attendees, upscale family gatherings, scenic date nights, River Walk dinner utility.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> First-timers should consider the signature Shrimp Paesano.</p>
+            </div>
+          </article>
+          <article class="card pink eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.4 ★ · 13.5K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Dazzling Canopy Lights</span><span class="eat-proof-pill">Market Square Classic</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Cultural Classic</span></p></div>
+              </div>
+              <h3>Mi Tierra Café y Panadería</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Authentic Mexican</span>
+                <span class="eat-chip is-price">$15–$30</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Market Square &middot; <strong>Vibe:</strong> high-energy, festive, world-famous</p>
+              <p class="eat-rec-desc">San Antonio culture classic with lights, murals, bakery cases, mariachi energy, and big family-friendly atmosphere.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> families, out-of-town guests, cultural experience, late-night dining, Market Square visits.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Even if the restaurant line is long, stop at the panadería counter for pastries or pralines to go.</p>
+            </div>
+          </article>
+          <article class="card purple eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.4 ★ · 2.1K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">River Walk Levels</span><span class="eat-proof-pill">Canopied Tree Patio</span><p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p></div>
+              </div>
+              <h3>Domingo Restaurant</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Modern Mexican</span>
+                <span class="eat-chip is-price">$20–$50</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River Walk &middot; <strong>Vibe:</strong> vibrant, modern, refreshing</p>
+              <p class="eat-rec-desc">Stylish modern Mexican along the River Walk for brunch, dates, and group dinners without old-school Tex-Mex heaviness.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> scenic brunch, date nights, modern group dinners, River Walk dining without going too heavy.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Ask about lower river-level patio seating under the canopy lights when weather works.</p>
+            </div>
+          </article>
+          <article class="card orange eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.5 ★ · 8.2K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Tableside Guacamole</span><span class="eat-proof-pill">Iconic Riverfront Patio</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">River Walk Classic</span></p></div>
+              </div>
+              <h3>Boudro&rsquo;s on the Riverwalk</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Texas Bistro &amp; Seafood</span>
+                <span class="eat-chip is-price">$30–$60</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River Walk &middot; <strong>Vibe:</strong> bustling, warm, iconic waterfront</p>
+              <p class="eat-rec-desc">Classic River Walk dinner with tableside guacamole, prickly pear margaritas, and strong San Antonio energy.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> introducing out-of-towners to the River Walk, casual business dinners, lively outdoor dining.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Request outdoor patio seating on the river when available.</p>
+            </div>
+          </article>
+          <article class="card turq eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.1 ★ · 4.8K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Historic Riverfront Pioneer</span><span class="eat-proof-pill">River Walk Classic</span><p class="eat-card-badge"><span class="eat-status-pill">River Walk Classic</span></p></div>
+              </div>
+              <h3>Casa Rio</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Classic Tex-Mex</span>
+                <span class="eat-chip is-price">$15–$30</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / River Walk &middot; <strong>Vibe:</strong> historic, bustling, iconic patios</p>
+              <p class="eat-rec-desc">Historic River Walk institution with colorful umbrella patios, casual Tex-Mex plates, and the classic San Antonio dinner-on-the-water feel many visitors come downtown for.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> first-time visitors, families with kids, groups wanting classic River Walk Tex-Mex, budget-friendly downtown dinners.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Request an outdoor table by the water for the full patio experience.</p>
+            </div>
+          </article>
+          <article class="card gold eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.5 ★ · 4.2K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Homemade Root Beer</span><span class="eat-proof-pill">Oldest Operating Restaurant</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Local Favorite</span></p></div>
+              </div>
+              <h3>Schilo&rsquo;s</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">German Delicatessen</span>
+                <span class="eat-chip is-price">$15–$30</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Commerce St &middot; <strong>Vibe:</strong> historic, warm, nostalgic, casual</p>
+              <p class="eat-rec-desc">Historic daytime lunch stop for German-Texan comfort food, sandwiches, split pea soup, and homemade root beer.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> fast casual lunch, history lovers, daytime River Walk breaks, old-school local flavor.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Pair lunch with their homemade root beer.</p>
+            </div>
+          </article>
+          <article class="card purple eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.4 ★ · 4.3K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Texas&rsquo; Longest Wooden Bar</span><span class="eat-proof-pill">Elevated Pub Comfort</span><p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p></div>
+              </div>
+              <h3>The Esquire Tavern</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Historic Gastropub</span>
+                <span class="eat-chip is-price">$20–$40</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Commerce St &middot; <strong>Vibe:</strong> dark, moody, vintage, historic</p>
+              <p class="eat-rec-desc">Moody historic bar and gastropub with strong cocktails, quality food, and one of the best downtown after-dinner moves.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> late-night craft cocktails, post-convention unwinding, casual dinner plus drinks.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Try for the small back balcony overlooking the River Walk if available.</p>
+            </div>
+          </article>
+          <article class="card pink eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 3.9 ★ · 5.5K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">750-Foot Rotating View</span><span class="eat-proof-pill">Skyline Dinner</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Skyline Pick</span></p></div>
+              </div>
+              <h3>Chart House at Tower of the Americas</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Fine Dining Steak &amp; Seafood</span>
+                <span class="eat-chip is-price">$50–$100</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Hemisfair Park &middot; <strong>Vibe:</strong> dramatic, upscale, panoramic</p>
+              <p class="eat-rec-desc">View-first dinner at the top of the Tower — best when skyline drama matters more than chasing the highest-rated food-first table.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> milestone anniversaries, out-of-towners, families wanting a dramatic view, skyline-focused dinners.</p>
+              <p class="eat-rec-extra"><strong>Reservation move:</strong> Book around sunset if the view is the main event.</p>
+            </div>
+          </article>
+        </div>
+        <div class="eat-section-head" style="margin-top:1.75rem;">
+          <h3 class="section-text" style="font-size:1.1rem;margin:0 0 8px;">Downtown rooftops and skyline drinks</h3>
+          <p class="section-text">Pick the rooftop after dinner, or make it the main stop when skyline energy beats a long food crawl.</p>
+        </div>
+        <div class="eat-lane-grid">
+          <article class="card pink eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.6 ★ · 120 reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">17 Stories Up</span><span class="eat-proof-pill">Mezcal / Tequila</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Skyline Pick</span></p></div>
+              </div>
+              <h3>Aleteo at The Monarch San Antonio</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Luxury Rooftop Lounge</span>
+                <span class="eat-chip is-price">$20–$40</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Hemisfair &middot; <strong>Vibe:</strong> upscale, open-air, vibrant</p>
+              <p class="eat-rec-desc">High-end rooftop for skyline views, coastal Mexican energy, and polished resort-escape nights. Venue/hotel rating — compare carefully.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> premium nights, corporate clients, sunset skyline drinks, upscale groups.</p>
+              <p class="eat-rec-extra"><strong>Insider tip:</strong> Cocktail program leans mezcal, tequila, citrus, and open-air lounge energy.</p>
+            </div>
+          </article>
+          <article class="card gold eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.5 ★ · 520 reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Al-Fresco Oyster Bar</span><span class="eat-proof-pill">Historic 1906 View</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Strong Pick</span></p></div>
+              </div>
+              <h3>Fairmount Rooftop Oyster Bar</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Seafood Rooftop</span>
+                <span class="eat-chip is-price">$20–$50</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Hemisfair edge &middot; <strong>Vibe:</strong> modern, elegant, panoramic</p>
+              <p class="eat-rec-desc">Rooftop seafood and cocktails with oysters, champagne, martinis, and downtown views from the Fairmount Hotel.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> romantic date nights, luxury cocktail hours, seafood fans.</p>
+              <p class="eat-rec-extra"><strong>Insider tip:</strong> Pair oysters or seafood platters with champagne or a martini.</p>
+            </div>
+          </article>
+          <article class="card orange eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.3 ★ · 6.8K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">21+ Skyline Deck</span><span class="eat-proof-pill">High-Energy Fiesta</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Group Night Pick</span></p></div>
+              </div>
+              <h3>Rosario&rsquo;s Rooftop Bar</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Vibrant Lounge</span>
+                <span class="eat-chip is-price">$15–$30</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Southtown / Downtown edge &middot; <strong>Vibe:</strong> trendy, loud, high-energy</p>
+              <p class="eat-rec-desc">Lively rooftop for margaritas, music, and skyline views — main-venue rating unless rooftop-specific listing exists.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> lively group nights, bachelorette parties, strong margaritas, music and skyline energy.</p>
+              <p class="eat-rec-extra"><strong>Insider tip:</strong> Try outdoor lounge seating near dusk if available.</p>
+            </div>
+          </article>
+        </div>
+        <div class="eat-section-head" style="margin-top:1.75rem;">
+          <h3 class="section-text" style="font-size:1.1rem;margin:0 0 8px;">Bars, lounges, and speakeasies</h3>
+          <p class="section-text">After-dinner moves when the group wants cocktails, a darker room, or one last memorable stop.</p>
+        </div>
+        <div class="eat-lane-grid">
+          <article class="card purple eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-plum">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.4 ★ · 1.2K reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Mediterranean Skyline Oasis</span><span class="eat-proof-pill">Luxury Lounge</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Skyline Pick</span></p></div>
+              </div>
+              <h3>The Moon&rsquo;s Daughter</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Upscale Cocktail Lounge</span>
+                <span class="eat-chip is-price">$20–$40</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown North / Thompson Hotel &middot; <strong>Vibe:</strong> sultry, high-end, visual</p>
+              <p class="eat-rec-desc">High-end rooftop lounge with skyline views, Mediterranean small plates, and a fashionable night-out feel.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> upscale nightlife, corporate travelers, fashion-forward groups, skyline cocktails.</p>
+              <p class="eat-rec-extra"><strong>Insider tip:</strong> Dress smart-casual and consider reservations for outdoor seating on weekends.</p>
+            </div>
+          </article>
+          <article class="card turq eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-teal">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.6 ★ · 310 reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Hidden Basement Speakeasy</span><span class="eat-proof-pill">Cocktail Hideaway</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Strong Pick</span></p></div>
+              </div>
+              <h3>Downstairs at The Esquire</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Speakeasy Lounge</span>
+                <span class="eat-chip is-price">$15–$30</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / Commerce St &middot; <strong>Vibe:</strong> dark, intimate, vintage</p>
+              <p class="eat-rec-desc">Hidden river-level cocktail escape beneath The Esquire — intimate drinks over loud bar-hopping.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> cocktail lovers, couples, post-convention nightcaps, moody hidden-room energy.</p>
+              <p class="eat-rec-extra"><strong>Insider tip:</strong> Look for the stairs inside Esquire or the subtle river-level entrance.</p>
+            </div>
+          </article>
+          <article class="card green eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
+            <div class="eat-rec-card__inner">
+              <div class="eat-rec-card__rating-row">
+                <span class="eat-google-pill">Google: 4.4 ★ · 450 reviews</span>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Robert Johnson Tribute</span><span class="eat-proof-pill">Blues-Infused Lounge</span><p class="eat-card-badge"><span class="eat-status-pill is-muted">Local Favorite</span></p></div>
+              </div>
+              <h3>Bar 414</h3>
+              <div class="eat-zone-chips">
+                <span class="eat-chip">Classic Cocktail Lounge</span>
+                <span class="eat-chip is-price">$15–$30</span>
+              </div>
+              <p class="eat-guide-meta"><strong>Zone:</strong> Downtown / The Gunter Hotel &middot; <strong>Vibe:</strong> historic, moody, blues-infused</p>
+              <p class="eat-rec-desc">Historic hotel lounge tied to the Robert Johnson recording story — slower drinks and classic cocktails.</p>
+              <p class="eat-rec-best"><strong>Best for:</strong> history and music fans, hotel guests, relaxed corporate drinks.</p>
+              <p class="eat-rec-extra"><strong>Insider tip:</strong> Order a classic Old Fashioned or Manhattan for the room&rsquo;s old-school feel.</p>
+            </div>
+          </article>
+        </div>
+        <div class="eat-choose-strip">
+          <p><strong>Quick guide:</strong> Luxury steakhouse &rarr; Bohanan&rsquo;s. River Walk Italian utility &rarr; Paesanos. Modern Mexican &rarr; Domingo. Barbecue &rarr; Pinkerton&rsquo;s. Skyline dinner &rarr; Chart House or Aleteo. After-dinner &rarr; Esquire, Downstairs at Esquire, or Bar 414.</p>
+        </div>
+        <aside class="eat-section-ask" aria-label="Ask about downtown dining">
+          <div class="eat-section-ask__copy">
+            <strong>Not sure which downtown dinner or drink move fits your group?</strong>
+            <p>Ask A Local with your hotel, group size, timing, budget, and food mood.</p>
+          </div>
+          <div class="eat-section-ask__actions">
+            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="driver-concierge.html#route-operator" class="btn btn-secondary">Get Route Help</a>
+          </div>
+        </aside>
+      </div>
+
+
       <div class="eat-lane" id="lane-riverwalk">
         <div class="eat-section-head">
           <p class="eyebrow">Walkable core</p>
           <h2>River Walk / downtown classics</h2>
-          <p class="section-text">Best River Walk dinner and drink picks when you want to stay close — <strong>Paesanos Riverwalk</strong> for Italian-first dinners, Tenfold and Esquire for drinks depth, Mad Dogs for pub energy. <strong>Domingo</strong> (Willie Approved) covers Mexican-adjacent downtown dining in the Mexican section.</p>
+          <p class="section-text">River Walk pub energy and skyline backups when you already picked dinner in the <a href="#lane-downtown-dining">Downtown dining</a> lane — <strong>Paesanos</strong> leads Italian-first dinners there; use this section for Mad Dogs, Tenfold, Esquire repeats, and 1Watson skyline backup.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/riverside_dining_under_warm_lights.png" alt="River Walk dining under warm lights in San Antonio" loading="lazy" decoding="async" />
@@ -2577,7 +2934,7 @@
           <article class="card purple eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.4 ★ · 5.2K reviews</span>
+                <span class="eat-google-pill">Google: 4.4 ★ · 4.3K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Historic River Walk bar</span>
                   <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
@@ -2614,7 +2971,7 @@
           <article class="card gold eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-gold">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.5 ★ · 5.6K reviews</span>
+                <span class="eat-google-pill">Google: 4.4 ★ · 2.8K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">River Walk Classic</span>
                   <p class="eat-card-badge"><span class="eat-status-pill">Strong Pick</span></p>
@@ -2632,7 +2989,7 @@
           </article>
         </div>
         <div class="eat-choose-strip">
-          <p><strong>Quick guide:</strong> Pick one main dinner, then add drinks, dessert, or a walk nearby. Choose Paesanos when the table and location both matter. Esquire and Tenfold handle drinks depth; Mad Dogs keeps pub nights easy. For Mexican-adjacent downtown polish, see Domingo in the Mexican section. Keep 1Watson as a skyline backup when the view is the main reason to go.</p>
+          <p><strong>Quick guide:</strong> Pick one main dinner, then add drinks, dessert, or a walk nearby. Paesanos for Italian on the strip; Casa Rio for classic River Walk Tex-Mex on the umbrellas. Esquire and Tenfold handle drinks depth; Mad Dogs keeps pub nights easy. For modern Mexican polish, see Domingo in the Mexican section or the Downtown dining lane. Keep 1Watson as a skyline backup when the view is the main reason to go.</p>
         </div>
         <div class="eat-also-strip">
           <span class="eat-also-label">Also useful</span>
@@ -2654,7 +3011,7 @@
         <div class="eat-section-head">
           <p class="eyebrow">Golden hour</p>
           <h2>Drinks / rooftops / River sequencing</h2>
-          <p class="section-text">Tenfold for rooftop finish, Esquire for historic River Walk depth, Mad Dogs for informal pub energy. See 1Watson below for skyline views. Pearl lounges are in the Pearl section.</p>
+          <p class="section-text">Start with the <a href="#lane-downtown-dining">Downtown dining</a> rooftops (Aleteo, Moon&rsquo;s Daughter, Fairmount, Rosario&rsquo;s). Tenfold and 1Watson stay useful as River Walk / Santo skyline backups. Esquire and Mad Dogs cover historic bar and pub energy.</p>
         </div>
         <article class="eat-image-card eat-lane-anchor">
           <img src="assets/rooftop_sunset_dining_with_cocktails.png" alt="Rooftop sunset cocktails in San Antonio" loading="lazy" decoding="async" />
@@ -2685,7 +3042,7 @@
           <article class="card green eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
-                <span class="eat-google-pill">Google: 4.4 ★ · 5.2K reviews</span>
+                <span class="eat-google-pill">Google: 4.4 ★ · 4.3K reviews</span>
                 <div class="eat-rec-card__rating-trust">
                   <span class="eat-proof-pill">Historic River Walk bar</span>
                   <p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p>
