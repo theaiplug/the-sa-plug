@@ -1,6 +1,6 @@
 /**
  * Shared San Antonio food recommendation knowledge for Ask A Local and Transportation operators.
- * Keep in sync with where-to-eat.html and resort-food.html (JW Marriott / TPC and La Cantera zones) when picks change.
+ * Keep in sync with where-to-eat.html and resort-food.html (JW Marriott / TPC, La Cantera, and Hyatt Hill Country zones) when picks change.
  */
 
 const SA_FOOD_KNOWLEDGE = `
@@ -25,8 +25,8 @@ Willie Approved / strongest confirmed picks (when zone and request fit):
 - Brazilian: Brasão first (Willie Approved top pick), Chama Gaúcha second, Fogo de Chão third — familiar national-brand rodizio below Brasão and Chama in Willie's stack.
 - Seafood / ceviche: El Bucanero first (Willie's top ceviche pick). El Cevichero second. Leche de Tigre Willie Approved.
 - BBQ: Pinkerton's.
-- River Walk: Esquire Tavern (drinks, Willie Approved). Paesanos Riverwalk in River Walk Classics for Italian-first corridor dinners (above 1Watson for dinner utility). 1Watson — Also Useful / skyline view option, not above Paesanos for dinner routing.
-- Pearl: Brasserie Mon Chou Chou — Willie Approved / top Pearl dining pick (French). Sternewirth — Willie Approved for Hotel Emma / Pearl lounge drinks. Supper, Southerleigh strong Pearl dinners.
+- River Walk: Esquire Tavern (drinks, Willie Approved). Paesanos Riverwalk for Italian-first River Walk dinners (above 1Watson for dinner utility). 1Watson — Also Useful / skyline view option, not above Paesanos for dinner picks.
+- Pearl: see PEARL_KNOWLEDGE — Supper, Southerleigh, Savor, Sternewirth (Willie Approved drinks), Jazz TX, Brasserie Mon Chou Chou (Willie Approved French). Pearl vs River Walk: Pearl for local-feeling chef rooms and Emma energy; River Walk for iconic water and first-timers.
 - Breakfast: La Panadería, Alamo Biscuit. Mi Tierra — cultural / late-night Market Square stop.
 
 Other strong picks (context-dependent):
@@ -35,16 +35,16 @@ Other strong picks (context-dependent):
 - Mad Dogs British Pub for informal River Walk pub pacing.
 - Do not recommend Republic of Texas.
 
-River Walk / downtown dinner routing (full downtown dining guide also in DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE):
+River Walk / downtown dinner picks (full downtown dining guide also in DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE):
 - Lead with Domingo for polished modern Mexican downtown, Paesanos for Italian-first River Walk dinners (above 1Watson for dinner utility), Boudro's for iconic River Walk atmosphere, Biga for elevated riverfront fine dining, Bohanan's for luxury steakhouse (downtown destination — not nearby JW).
-- Pinkerton's for downtown Texas barbecue; Mi Tierra for Market Square culture; Schilo's for historic lunch; Casa Rio for classic River Walk Tex-Mex, families, and first-timers who want the iconic umbrella patios on the water.
+- Pinkerton's for downtown Texas barbecue; Mi Tierra for Market Square culture; Schilo's for historic lunch; Casa Rio for classic River Walk photo stop / easy casual River Walk option on the umbrellas — not a top food-first pick; do not present as best Mexican.
 - Rooftops downtown: Aleteo (Monarch/Hemisfair luxury), Moon's Daughter (Thompson upscale), Fairmount Rooftop (oysters/date), Rosario's Rooftop (loud group energy). Chart House = view-first at Tower.
 - After-dinner: Esquire (Willie Approved), Downstairs at Esquire (speakeasy), Bar 414 (blues/classic cocktails at Gunter).
-- For River Walk Mexican / Tex-Mex: Casa Rio, Domingo, Boudro's, and Mi Tierra each fit different moods — match the pick to the group's energy, budget, and how classic they want the night to feel.
-- If a visitor names a famous River Walk spot you do not lead with, stay neutral and offer Domingo, Paesanos, Boudro's, or the corridor picks above that fit their situation.
+- For River Walk Mexican / Tex-Mex: Domingo and Boudro's for stronger food-first nights; Mi Tierra for Market Square culture; Casa Rio only when they want the classic umbrella photo / easy casual River Walk experience.
+- If a visitor names a famous River Walk spot you do not lead with, stay neutral and offer Domingo, Paesanos, Boudro's, or the picks above that fit their situation.
 
 Downtown / food language for operators:
-- Use starting point, dinner pick, first stop, next move, backup pick, timing, and walk time — not anchor, lane, proof stack, deck, or routing logic.
+- Use starting point, dinner pick, first stop, next move, backup pick, timing, and walk time — not anchor, lane, proof stack, deck, or internal operator jargon.
 
 RESORT_ZONE_KNOWLEDGE — JW MARRIOTT / TPC / FAR NORTH (separate from La Cantera / The Rim / Six Flags / UTSA northwest and from Hyatt Hill Country / SeaWorld):
 - Property: JW Marriott San Antonio Hill Country Resort & Spa. Also: TPC San Antonio, River Bluff Water Experience, Lantana Spa, TPC Parkway, Stone Oak / North 281 nearby dinner access.
@@ -61,7 +61,8 @@ JW on-property dining (align with resort-food.html — offer first for convenien
 
 JW nearby / Stone Oak / North 281 dinner (when leaving the resort bubble — not downtown-first):
 - J-Prime — Willie Approved upscale steak (Stone Oak)
-- Chama Gaúcha — Willie Approved Brazilian rodizio (Stone Oak)
+- Chama Gaúcha — Willie Approved Brazilian rodizio for JW / Stone Oak guests (strong Stone Oak backup to Brasão)
+- Do NOT list Brasão as a JW nearby pick — Brasão is La Cantera / Rim area, closer to La Cantera resorts
 - Eddie V's — polished seafood and steak (Stone Oak)
 - Blu Prime — upscale steak and seafood (Stone Oak)
 - Palenque Grill — polished Mexican, groups (Stone Oak / North 281)
@@ -101,6 +102,7 @@ La Cantera restaurant suggestions (align with resort-food.html; public Google ra
 - Yard House — large groups, sports, late night (Family-Friendly Pick; Google: 4.4 ★ · 3.2K reviews)
 - Grimaldi's Pizzeria — family pizza, shopping day (Family-Friendly Pick; Google: 4.4 ★ · 1.5K reviews)
 - SweetFire Kitchen — in-resort dining at Signia, scenic casual (Resort Pick; Google: 4.2 ★ · 450 reviews)
+- Brasão — Willie Approved top Brazilian rodizio (La Cantera / Rim area — NOT a JW / Stone Oak nearby pick; Google: 4.9 ★ · 10K reviews)
 
 La Cantera activities (when they ask what to do):
 - Topgolf San Antonio — groups, date nights, sports fans (Google: 4.6 ★ · 6.8K reviews)
@@ -108,6 +110,43 @@ La Cantera activities (when they ask what to do):
 - The Shops at La Cantera — shopping, strolling, open-air dining
 - The Rock at La Cantera / Frost Plaza — events, concerts, pre/post dinner (check event calendar)
 - Six Flags Fiesta Texas — families, thrill seekers, full-day plan
+
+RESORT_ZONE_KNOWLEDGE — HYATT HILL COUNTRY / SEAWORLD / WESTOVER HILLS / FAR WEST SIDE (separate from JW Marriott / TPC / Far North and from La Cantera / The Rim / Six Flags / UTSA northwest):
+- Property: Hyatt Regency Hill Country Resort and Spa. Zone: 300-acre resort on San Antonio's Far West Side / Westover Hills; SeaWorld / Aquatica across the resort area; Culebra / Loop 1604 nearby dining; Windflower Spa; Hill Country Golf Club; Big Spring Lagoon; resort water park / lazy river / FlowRider.
+- Never merge with JW Marriott / TPC / Stone Oak / North 281 or La Cantera / The Rim / Six Flags / UTSA northwest. Never say Hyatt La Cantera, JW Hyatt, JW Marriott La Cantera, or Hyatt near JW.
+- If the visitor says "I'm at the Hyatt Hill Country," open with: "You're near Hyatt Hill Country / SeaWorld / Westover Hills on the Far West Side, so nearby plans usually mean the resort itself, SeaWorld, Culebra / 1604, or Far West Side dining — not JW, La Cantera, or downtown unless you want a bigger outing."
+
+Hyatt on-property dining (offer first for convenience):
+- Antlers Lodge — upscale Texas / steakhouse, romantic resort dinner (Resort Pick; Google: 4.5 ★ · 450 reviews)
+- Springhouse Café — all-day resort casual, family-friendly (Family-Friendly Pick; Google: 4.2 ★ · 600 reviews)
+- Aunt Di's Comfort Station — poolside / Big Spring Lagoon quick bites (Resort Pick; Google: 4.6 ★ · 80 reviews)
+- Woodbine Bar — lobby lounge, craft cocktails, terrace (Strong Public Rating; Google: 4.7 ★ · 120 reviews)
+- Charlie's Long Bar — Texas saloon, late-night resort bar (Visitor-Friendly Pick; Google: 4.4 ★ · 220 reviews)
+
+Hyatt nearby / Westover Hills / Culebra / Loop 1604 (when leaving resort bubble — not downtown-first):
+- Via 313 Pizza — Detroit-style pizza, Culebra Commons (Nearby Pick; Google: 4.6 ★ · 1.2K reviews)
+- Rudy's "Country Store" and Bar-B-Q — Texas barbecue, large groups (Nearby Pick; Google: 4.6 ★ · 4.8K reviews)
+- Pericos Mexican Restaurant — lively Tex-Mex, patio (Nearby Pick; Google: 4.4 ★ · 3.1K reviews)
+
+Hyatt stay-nearby vs downtown:
+- Stay on-property or Westover Hills / Culebra / 1604 when: tired, with kids, after SeaWorld, pool, spa, or golf, tight timeline, or easy dinner without a long drive.
+- Go downtown when: River Walk, Alamo, Market Square, rooftop, or a true San Antonio destination night is worth the ride — one main stop, one dinner area, one return plan.
+- Nearby dinner logic: Antlers Lodge for polished on-property dinner; Springhouse for easy family dining; Via 313, Rudy's, or Pericos when leaving resort without downtown.
+
+Hyatt activities when they ask what to do:
+- Resort water park / lazy river / FlowRider — family pool days (Google: 4.8 ★ · 2.1K reviews for water park section)
+- Big Spring Lagoon — calmer lagoon / beach-style resort time (Google: 4.7 ★ · 150 reviews)
+- SeaWorld San Antonio & Aquatica — major nearby attraction; pair with resort rest/pool breaks (Google: 4.5 ★ · 34K reviews)
+- Windflower — The Hill Country Spa — couples, spa days (Google: 4.7 ★ · 350 reviews)
+- Hill Country Golf Club — 27 holes, Toptracer bays (Google: 4.1 ★ · 990 reviews)
+- Campfire Chats + Texas s'mores — resort evening tradition (check daily schedule)
+- Rancher Hall + Toptracer — corporate / group events, not casual walk-up
+- Six Flags Fiesta Texas — separate northwest outing for thrill days, not a quick Hyatt-side stop (Google: 4.6 ★ · 31K reviews)
+- The Shops at La Cantera — separate northwest shopping/dining outing, not same zone as Hyatt (Google: 4.7 ★ · 11K reviews)
+- Downtown River Walk / Alamo — planned destination night from Hyatt (Google: 4.7 ★ · 74K reviews for River Walk main trail)
+
+If user asks about La Cantera from Hyatt: separate northwest outing — shopping, Six Flags, or dining — not Hyatt's immediate zone.
+If user asks about SeaWorld: major nearby attraction across resort area; can pair with resort pool/nap breaks.
 `;
 
 module.exports = { SA_FOOD_KNOWLEDGE };

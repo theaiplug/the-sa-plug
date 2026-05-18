@@ -23,7 +23,7 @@ WHEN DOWNTOWN IS WORTH THE RIDE (from JW / La Cantera / Hyatt):
 
 SUMMARY MOVES:
 - Best downtown dinner: Bohanan's (luxury steakhouse), Paesanos (River Walk Italian utility), Biga (elevated riverfront fine dining), Domingo (modern Mexican + patio).
-- Best casual downtown food: Pinkerton's (TX barbecue), Schilo's (historic lunch), Mi Tierra (Market Square culture), Casa Rio (classic River Walk Tex-Mex on the water).
+- Best casual downtown food: Pinkerton's (TX barbecue), Schilo's (historic lunch), Mi Tierra (Market Square culture), Casa Rio (classic River Walk photo stop / easy casual on the umbrellas — not a top food-first pick).
 - Best rooftop: Aleteo or Moon's Daughter (upscale skyline), Fairmount Rooftop (oysters/cocktails/date), Rosario's Rooftop (louder group/Southtown edge energy).
 - Best after-dinner drink: Esquire (historic bar), Downstairs at Esquire (hidden speakeasy), Bar 414 (blues/history/classic cocktails), Moon's Daughter (upscale skyline lounge).
 
@@ -36,7 +36,7 @@ WHEN USER ASKS "BEST DOWNTOWN DINNER" — give 3–5 by mood; one clarifying que
 - Texas barbecue / groups / families → Pinkerton's — Google: 4.4 ★ · 3.5K reviews · $20-$40 · Houston St. Tip: duck/sausage jambalaya or jalapeño cheese sausage.
 - Market Square culture / late-night / families → Mi Tierra — Google: 4.4 ★ · 13.5K reviews · $15-$30. Tip: panadería counter even if restaurant line is long.
 - Historic lunch / root beer → Schilo's — Google: 4.5 ★ · 4.2K reviews · $15-$30 · Commerce St.
-- Classic River Walk Tex-Mex / first-timers / families / iconic patio dinner → Casa Rio — Google: 4.1 ★ · 4.8K reviews · $15-$30. Tip: request an outdoor table by the water.
+- Classic River Walk photo stop / easy casual / iconic umbrella patios → Casa Rio — Google: 4.1 ★ · 4.8K reviews · $15-$30. Not a top food-first pick; frame as historic classic experience, not best Mexican. Tip: request an outdoor table by the water when the photo matters more than the menu.
 - View-first skyline dinner → Chart House at Tower of the Americas — Google: 3.9 ★ · 5.5K reviews · $50-$100 · Hemisfair. Book around sunset for view.
 - Historic gastropub / after-dinner → The Esquire Tavern (Willie Approved) — Google: 4.4 ★ · 4.3K reviews · $20-$40 · Commerce St. Tip: back balcony over River Walk.
 
@@ -45,7 +45,7 @@ WHEN USER ASKS "BEST ROOFTOP":
 - The Moon's Daughter — Thompson Hotel, upscale skyline lounge, Mediterranean small plates — Google: 4.4 ★ · 1.2K reviews.
 - Fairmount Rooftop Oyster Bar — oysters, champagne, martinis, historic 1906 view — Google: 4.5 ★ · 520 reviews.
 - Rosario's Rooftop — lively margaritas, groups, Southtown/downtown edge — Google: 4.3 ★ · 6.8K reviews (main venue rating unless rooftop-specific exists).
-- Tenfold and 1Watson remain in broader SA food guide for Santo/skyline — downtown master guide prioritizes Aleteo, Moon's Daughter, Fairmount, Rosario's for downtown night-out routing.
+- Tenfold and 1Watson remain in broader SA food guide for Santo/skyline — downtown master guide prioritizes Aleteo, Moon's Daughter, Fairmount, Rosario's for downtown night-out plans.
 
 WHEN USER ASKS "BEST BAR AFTER DINNER":
 - Esquire — historic bar energy, longest wooden bar in Texas, elevated pub food.
@@ -53,7 +53,7 @@ WHEN USER ASKS "BEST BAR AFTER DINNER":
 - Bar 414 at Gunter Hotel — Robert Johnson history, classic cocktails — Google: 4.4 ★ · 450 reviews.
 - Moon's Daughter — upscale skyline lounge if they want rooftop finish vs basement mood.
 
-TRANSPORTATION — DINING + NIGHTLIFE ROUTING:
+TRANSPORTATION — DINING + NIGHTLIFE PLANS:
 - Cluster dinner + drink + pickup in one downtown zone when possible (River Walk spine, Market Square, Houston/Commerce bar row, Hemisfair/Tower) — avoid zig-zagging across downtown after a long resort drive.
 - Book dinner before roaming busiest River Walk bends; convention/Alamodome nights need buffer for crowds.
 - Rideshare pickup: suggest a spot a block off bridge pinch points after busy nights.

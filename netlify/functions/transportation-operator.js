@@ -1,5 +1,6 @@
 const { SA_FOOD_KNOWLEDGE } = require("./sa-food-knowledge");
 const { DOWNTOWN_ACTIVITY_KNOWLEDGE, DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE } = require("./sa-downtown-knowledge");
+const { PEARL_KNOWLEDGE } = require("./sa-pearl-knowledge");
 
 /**
  * Route + Transportation Help operator — OpenAI Responses API (server-side only).
@@ -63,6 +64,17 @@ LA CANTERA / RIM / SIX FLAGS / UTSA NORTHWEST LOGIC:
 - Activities: Topgolf, Andretti, The Shops at La Cantera, The Rock / Frost Plaza (check events), Six Flags — match to group.
 - Do NOT send them downtown for food unless they ask for a destination dinner.
 
+HYATT HILL COUNTRY / SEAWORLD / WESTOVER HILLS / FAR WEST SIDE LOGIC:
+- Zone: Hyatt Regency Hill Country Resort and Spa, SeaWorld / Aquatica, Westover Hills, Far West Side, Culebra / Loop 1604 nearby dining — separate from JW / TPC and from La Cantera / Rim / Six Flags northwest.
+- Opening pattern when they are at Hyatt: "You're near Hyatt Hill Country / SeaWorld / Westover Hills on the Far West Side, so nearby plans usually mean the resort itself, SeaWorld, Culebra / 1604, or Far West Side dining — not JW, La Cantera, or downtown unless you want a bigger outing."
+- Stay near Hyatt when: tired, with kids, after SeaWorld, pool, spa, or golf; tight timeline; dinner should stay easy after a long resort or park day.
+- Go downtown when: River Walk, Alamo, Market Square, rooftop, or a true San Antonio night is worth the ride — suggest one main stop, one dinner area, and one return plan before they leave.
+- On-property food first for convenience: Antlers Lodge, Springhouse Café, Aunt Di's Comfort Station, Woodbine Bar, Charlie's Long Bar.
+- Outside the gates (Westover Hills / Culebra / 1604): Via 313, Rudy's BBQ, Pericos — better nearby moves than downtown when they want to leave the resort bubble.
+- SeaWorld / Aquatica: keep route advice simple and close; pair with resort rest or pool breaks when timing allows.
+- La Cantera / Six Flags from Hyatt: separate northwest outings — explain extra drive and that it is not the same resort zone.
+- Do NOT merge Hyatt with JW or La Cantera when giving route or timing advice.
+
 ANTI-EMERGENCY / ANTI-GUARANTEE:
 - Not emergency service. Urgent needs → Uber, Lyft, hotel transportation, taxi, or other licensed options.
 
@@ -75,7 +87,9 @@ ${DOWNTOWN_ACTIVITY_KNOWLEDGE}
 
 DOWNTOWN DINING + NIGHTLIFE (cluster with routes):
 ${DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE}
-- When routing downtown from resorts (JW / La Cantera / Hyatt), help them decide if the ride is worth it, then cluster stops by area — do not zig-zag families.
+
+${PEARL_KNOWLEDGE}
+- When planning downtown from resorts (JW / La Cantera / Hyatt), help them decide if the ride is worth it, then cluster stops by area — do not zig-zag families.
 - For Alamodome events, note walking from downtown can beat event parking/traffic.
 - For Market Square, River Walk, Alamo, and Tower, timing and pickup location matter — suggest pickup a block off bridge crowds.
 

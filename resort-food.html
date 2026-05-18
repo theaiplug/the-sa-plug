@@ -1254,6 +1254,23 @@
       .resort-food-page .rf-decision-band {
         padding: 1.25rem;
       }
+
+      .resort-food-page .rf-zone-detail {
+        padding: 1.15rem;
+      }
+
+      .resort-food-page .rf-activity-band {
+        padding: 1rem;
+      }
+
+      .resort-food-page .rf-activity-card .rf-activity-tip {
+        font-size: 0.8rem;
+        line-height: 1.42;
+      }
+
+      .resort-food-page .rf-dining-card .rf-dining-read {
+        font-size: 0.88rem;
+      }
     }
 
     .resort-food-page .rf-subsection-title {
@@ -1381,7 +1398,8 @@
     }
 
     .resort-food-page .rf-activity-google,
-    .resort-food-page .rf-activity-amenity {
+    .resort-food-page .rf-activity-amenity,
+    .resort-food-page .rf-activity-chip {
       display: inline-flex;
       align-self: flex-start;
       padding: 0.22rem 0.48rem;
@@ -1391,6 +1409,12 @@
       color: rgba(255, 248, 235, 0.82);
       background: rgba(255, 246, 230, 0.08);
       border: 1px solid rgba(255, 246, 230, 0.14);
+    }
+
+    .resort-food-page .rf-activity-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.32rem;
     }
 
     .resort-food-page .rf-dining-chips {
@@ -1774,7 +1798,7 @@
               <span class="image-route-card__body">
                 <span class="eyebrow">One big night</span>
                 <h3>Story dinner</h3>
-                <p>Downtown, Pearl, Soluna, seafood, steakhouse, or River Walk energy when dinner is the memory.</p>
+                <p>Downtown, Pearl, J-Prime, seafood, steakhouse, or River Walk energy when dinner is the memory.</p>
                 <span class="image-route-card__cta">Jump to story dinners</span>
               </span>
             </a>
@@ -1895,7 +1919,7 @@
         </div>
         <h3 class="rf-subsection-title" id="rf-jw-dining-nearby">Nearby dinner &mdash; Stone Oak / North 281 / TPC Parkway</h3>
         <p class="rf-dining-zone-label rf-dining-zone-label--nearby">Outside the JW gates &mdash; not La Cantera, not downtown-first</p>
-        <p class="rf-subsection-lead">When you want to leave the resort bubble without a long drive, think Stone Oak / North 281 first. Bohanan&rsquo;s is a downtown destination (~25&ndash;30 minutes) &mdash; not a nearby JW move.</p>
+        <p class="rf-subsection-lead">When you want to leave the resort bubble without a long drive, think Stone Oak / North 281 first &mdash; J-Prime, Chama Ga&uacute;cha, Eddie V&rsquo;s, and Blu Prime are the stronger JW-area upgrades. Bras&atilde;o is closer to La Cantera, not a default JW nearby pick. Bohanan&rsquo;s is a downtown destination (~25&ndash;30 minutes) &mdash; not a nearby JW move.</p>
         <div class="rf-dining-grid" aria-labelledby="rf-jw-dining-nearby">
           <article class="rf-dining-card rf-dining-card--gold" data-rf-google-rating="4.8" data-rf-google-reviews="4500">
             <div class="rf-dining-card-head">
@@ -1936,7 +1960,7 @@
               <span class="rf-dining-chip">Nearby Pick</span>
             </div>
             <p class="rf-dining-facts"><strong>Category:</strong> Seafood &amp; Steak · <strong>Zone:</strong> Stone Oak · <strong>Vibe:</strong> upscale, polished · <strong>Price:</strong> $60&ndash;$100+</p>
-            <p class="rf-dining-read">Strong seafood-and-steak option in the Stone Oak / north-side corridor when the group wants a polished night out from JW.</p>
+            <p class="rf-dining-read">Strong seafood-and-steak option in Stone Oak when the group wants a polished night out from JW.</p>
             <p class="rf-dining-meta"><strong>Best for:</strong> seafood lovers, date nights, business dinners, upscale groups.<br /><strong>Reservation move:</strong> Reserve prime dinner windows on busy weekends.</p>
           </article>
           <article class="rf-dining-card rf-dining-card--gold">
@@ -2044,7 +2068,7 @@
         </section>
         <div class="rf-zone-move-band" id="rf-jw-move">
           <h3>Best nearby dinner move from JW</h3>
-          <p>If you are at JW Marriott and want dinner nearby, think resort restaurants first, then Stone Oak / North 281. J-Prime, Chama Ga&uacute;cha, Eddie V&rsquo;s, Blu Prime, and Palenque Grill are stronger nearby dinner moves than sending the group downtown. Choose downtown only when River Walk, Alamo, rooftop, or a true destination night is worth the ride.</p>
+          <p>If you are at JW Marriott and want dinner nearby, think resort restaurants first, then Stone Oak / North 281. J-Prime and Chama Ga&uacute;cha are the strongest Stone Oak upgrade moves; Eddie V&rsquo;s, Blu Prime, and Palenque Grill fit other moods. Bras&atilde;o is a La Cantera-area rodizio pick &mdash; not the default nearby move from JW. Choose downtown only when River Walk, Alamo, rooftop, Pearl, or a true destination night is worth the ride.</p>
           <div class="hero-cta-row">
             <a class="btn btn-primary" href="/ask/">Ask A Local</a>
             <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#route-operator">Get Route Help</a>
@@ -2055,28 +2079,302 @@
       <section class="rf-zone-detail rf-zone-detail--hyatt" id="rf-zone-hyatt">
         <div class="section-lead">
           <div class="rf-pill-row" aria-hidden="true">
-            <span class="rf-pill">SeaWorld days</span>
-            <span class="rf-pill">Pool fatigue</span>
-            <span class="rf-pill">Family pace</span>
+            <span class="rf-pill">Hyatt Regency</span>
+            <span class="rf-pill">SeaWorld / Aquatica</span>
+            <span class="rf-pill">Westover Hills</span>
+            <span class="rf-pill">Not JW / La Cantera</span>
           </div>
-          <p class="eyebrow">Hyatt Hill Country</p>
-          <h2>Hyatt Hill Country</h2>
-          <p class="section-subcopy compact">SeaWorld, splash days, and early mornings usually beat a downtown run from this bubble.</p>
+          <p class="eyebrow">Hyatt Hill Country / SeaWorld / Far West Side</p>
+          <h2>Hyatt Hill Country / SeaWorld resort-area guide</h2>
+          <p class="section-subcopy compact">A 300-acre resort retreat on San Antonio&rsquo;s Far West Side / Westover Hills, Hyatt Regency Hill Country works as both a secluded Texas escape and a smart base for SeaWorld, Culebra / 1604 dining, golf, spa time, and family entertainment. Use this area when you are staying at Hyatt Hill Country, visiting SeaWorld or Aquatica, planning a family resort day, looking for casual food nearby, or deciding whether downtown is worth the ride. This zone is separate from JW Marriott / TPC / Far North and from La Cantera / The Rim / Six Flags &mdash; never treat them as the same resort bubble.</p>
         </div>
-        <div class="rf-zone-banner" role="img" aria-label="Hyatt Hill Country and SeaWorld-side resort bubble">
-          <img src="assets/resort-card-hyatt-hill-country-v3.png" alt="" width="1200" height="320" decoding="async" loading="lazy" />
+        <div class="rf-zone-banner-pair rf-zone-banner-pair--single">
+          <div class="rf-zone-banner" role="img" aria-label="Hyatt Regency Hill Country Resort and SeaWorld-side Far West Side">
+            <img src="assets/resort-card-hyatt-hill-country-v3.png" alt="" width="1200" height="320" decoding="async" loading="lazy" />
+          </div>
         </div>
-        <div class="rf-lane-grid rf-lane-grid--2">
+        <h3 class="rf-subsection-title" id="rf-hyatt-dining-on">On-property dining at Hyatt Hill Country</h3>
+        <p class="rf-subsection-lead">Three resort restaurants when convenience beats another ride &mdash; scan ratings, vibe, and the reservation move.</p>
+        <div class="rf-dining-grid" aria-labelledby="rf-hyatt-dining-on">
+          <article class="rf-dining-card rf-dining-card--gold" data-rf-google-rating="4.5" data-rf-google-reviews="450">
+            <div class="rf-dining-card-head">
+              <h3>Antlers Lodge</h3>
+              <span class="rf-confidence-pill">Resort Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.5 ★ · 450 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">On-Site Fine Dining</span>
+              <span class="rf-dining-chip">Texas Hill Country Fare</span>
+              <span class="rf-dining-chip">Rustic Elegance</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Upscale Texas / Steakhouse · <strong>Zone:</strong> Hyatt Hill Country / Resort Property · <strong>Vibe:</strong> rustic elegance, romantic, upscale, scenic · <strong>Price:</strong> $100+</p>
+            <p class="rf-dining-read">The resort&rsquo;s polished fine-dining option for steak, seafood, wine, and a quiet Hill Country dinner without leaving the property.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> romantic dates, celebratory dinners, corporate entertaining, upscale resort dinners, couples who want the resort night to feel special.<br /><strong>Reservation move:</strong> Book a twilight reservation and request a table near the back windows if available.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--orange" data-rf-google-rating="4.2" data-rf-google-reviews="600">
+            <div class="rf-dining-card-head">
+              <h3>Springhouse Caf&eacute;</h3>
+              <span class="rf-confidence-pill">Family-Friendly Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.2 ★ · 600 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Resort Casual</span>
+              <span class="rf-dining-chip">All-Day Dining</span>
+              <span class="rf-dining-chip">Family-Friendly</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> American Comfort / Tex-Mex · <strong>Zone:</strong> Hyatt Hill Country / Resort Property · <strong>Vibe:</strong> bright, casual, energetic, family-friendly · <strong>Price:</strong> $30&ndash;$60</p>
+            <p class="rf-dining-read">The resort&rsquo;s easy all-day dining hub for breakfast, casual lunches, and family dinners when the group wants convenience over a drive.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> resort breakfasts, families, casual dinners, room-service style convenience, groups that want low-stress food.<br /><strong>Reservation move:</strong> Use it before a water park day or when the group wants an easy dinner without leaving property.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--turq" data-rf-google-rating="4.6" data-rf-google-reviews="80">
+            <div class="rf-dining-card-head">
+              <h3>Aunt Di&rsquo;s Comfort Station</h3>
+              <span class="rf-confidence-pill">Resort Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.6 ★ · 80 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Poolside Dining</span>
+              <span class="rf-dining-chip">Big Spring Lagoon</span>
+              <span class="rf-dining-chip">Quick Resort Bite</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Poolside / Casual · <strong>Zone:</strong> Hyatt Hill Country / Big Spring Lagoon · <strong>Vibe:</strong> sunny, casual, tropical, relaxed · <strong>Price:</strong> $15&ndash;$30</p>
+            <p class="rf-dining-read">The resort&rsquo;s poolside / lagoon-area food stop for sandwiches, salads, poke bowls, drinks, and easy meals by the water.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> pool days, quick lunches, cabana days, families staying near the lagoon, casual resort snacks.<br /><strong>Reservation move:</strong> Use mobile ordering if available and keep it simple during peak pool hours.</p>
+          </article>
+        </div>
+        <h3 class="rf-subsection-title" id="rf-hyatt-bars">Bars &amp; lounges at Hyatt Hill Country</h3>
+        <p class="rf-subsection-lead">Two on-property drink moves when dinner is done but the group still wants a resort night.</p>
+        <div class="rf-dining-grid" aria-labelledby="rf-hyatt-bars">
+          <article class="rf-dining-card rf-dining-card--pink" data-rf-google-rating="4.7" data-rf-google-reviews="120">
+            <div class="rf-dining-card-head">
+              <h3>Woodbine Bar</h3>
+              <span class="rf-confidence-pill">Strong Public Rating</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.7 ★ · 120 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Lobby Lounge</span>
+              <span class="rf-dining-chip">Craft Cocktails</span>
+              <span class="rf-dining-chip">Indoor-Outdoor Terrace</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Cocktail Lounge / Small Plates · <strong>Zone:</strong> Hyatt Hill Country / Resort Lobby · <strong>Vibe:</strong> chic, open-air, sophisticated, social · <strong>Price:</strong> $20&ndash;$40</p>
+            <p class="rf-dining-read">The resort&rsquo;s polished lobby lounge for cocktails, shared plates, live acoustic music when scheduled, and a relaxed evening without leaving the property.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> arrival drinks, couples, corporate groups, outdoor terrace cocktails, low-effort resort nights.<br /><strong>Reservation move:</strong> Grab a terrace seat near the fire pits if live music is happening.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--orange" data-rf-google-rating="4.4" data-rf-google-reviews="220">
+            <div class="rf-dining-card-head">
+              <h3>Charlie&rsquo;s Long Bar</h3>
+              <span class="rf-confidence-pill">Visitor-Friendly Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.4 ★ · 220 reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Texas Saloon</span>
+              <span class="rf-dining-chip">Late-Night Resort Bar</span>
+              <span class="rf-dining-chip">Games + Draft Beer</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Saloon / Pub Bar · <strong>Zone:</strong> Hyatt Hill Country / Resort Property · <strong>Vibe:</strong> rugged, lively, casual, Texas-style · <strong>Price:</strong> $15&ndash;$30</p>
+            <p class="rf-dining-read">A resort saloon-style bar for beer, pub games, sports, sliders, and a more casual late-night drink on property.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> late resort nights, sports fans, groups, casual drinks, games after dinner.<br /><strong>Reservation move:</strong> Go later in the evening if the group wants pool, shuffleboard, darts, or a more social bar feel.</p>
+          </article>
+        </div>
+        <h3 class="rf-subsection-title" id="rf-hyatt-dining-nearby">Nearby food outside Hyatt Hill Country</h3>
+        <p class="rf-dining-zone-label rf-dining-zone-label--nearby">Westover Hills / Culebra / Loop 1604 &mdash; not JW, not La Cantera, not downtown-first</p>
+        <p class="rf-subsection-lead">If you want to leave the resort without turning dinner into a downtown outing, look toward Westover Hills, Culebra / Loop 1604, and nearby Far West Side options. These work better for families, casual groups, and tired resort guests than driving all the way downtown.</p>
+        <div class="rf-dining-grid" aria-labelledby="rf-hyatt-dining-nearby">
+          <article class="rf-dining-card rf-dining-card--gold" data-rf-google-rating="4.6" data-rf-google-reviews="1200">
+            <div class="rf-dining-card-head">
+              <h3>Via 313 Pizza</h3>
+              <span class="rf-confidence-pill">Nearby Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.6 ★ · 1.2K reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Detroit-Style Pizza</span>
+              <span class="rf-dining-chip">Family-Friendly</span>
+              <span class="rf-dining-chip">Culebra Commons</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Pizza · <strong>Zone:</strong> Far West Side / Culebra Commons · <strong>Vibe:</strong> high-energy, modern, casual · <strong>Price:</strong> $20&ndash;$40</p>
+            <p class="rf-dining-read">A strong nearby pizza option when the family wants something easy but better than basic vacation pizza.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> family dinners, casual groups, pizza nights, gluten-free or dairy-free needs, easy resort escape.<br /><strong>Reservation move:</strong> Order &ldquo;The Cadillac&rdquo; or classic Detroit-style pepperoni if the group wants a safe crowd-pleaser.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--orange" data-rf-google-rating="4.6" data-rf-google-reviews="4800">
+            <div class="rf-dining-card-head">
+              <h3>Rudy&rsquo;s &ldquo;Country Store&rdquo; and Bar-B-Q</h3>
+              <span class="rf-confidence-pill">Nearby Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.6 ★ · 4.8K reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Texas Barbecue</span>
+              <span class="rf-dining-chip">Counter Service</span>
+              <span class="rf-dining-chip">Large Group Friendly</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Texas Barbecue · <strong>Zone:</strong> Far West Side / Loop 1604 · <strong>Vibe:</strong> authentic, casual, fast, high-volume · <strong>Price:</strong> $15&ndash;$30</p>
+            <p class="rf-dining-read">A fast, casual Texas barbecue move near the resort zone when visitors want brisket, turkey, sausage, creamed corn, and a no-frills Texas stop.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> families, large groups, quick barbecue, corporate groups, casual lunch or dinner.<br /><strong>Reservation move:</strong> Order moist brisket, smoked turkey, jalape&ntilde;o sausage, and creamed corn by the pound for the table.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--turq" data-rf-google-rating="4.4" data-rf-google-reviews="3100">
+            <div class="rf-dining-card-head">
+              <h3>Pericos Mexican Restaurant</h3>
+              <span class="rf-confidence-pill">Nearby Pick</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.4 ★ · 3.1K reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Tex-Mex</span>
+              <span class="rf-dining-chip">Margaritas</span>
+              <span class="rf-dining-chip">Lively Patio</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Mexican / Tex-Mex · <strong>Zone:</strong> Far West Side / Culebra area · <strong>Vibe:</strong> festive, loud, colorful, family-friendly · <strong>Price:</strong> $20&ndash;$40</p>
+            <p class="rf-dining-read">A lively local Mexican / Tex-Mex option near the resort zone for fajitas, margaritas, large plates, and family-friendly energy.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> families, fajitas, margaritas, casual group dinners, lively patio meals.<br /><strong>Reservation move:</strong> Sit on the patio if the weather works and order fajitas for the table.</p>
+          </article>
+        </div>
+        <div class="rf-zone-move-band" id="rf-hyatt-nearby-move">
+          <h3>Best nearby dinner move from Hyatt Hill Country</h3>
+          <p>If you are at Hyatt Hill Country and want nearby dinner, think resort restaurants first, then Westover Hills / Culebra / Loop 1604. Antlers Lodge is the polished on-property dinner, Springhouse Caf&eacute; is the easy family option, and Via 313, Rudy&rsquo;s, or Pericos work when you want to leave the resort without driving downtown.</p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="/ask/">Ask A Local</a>
+            <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#route-operator">Get Route Help</a>
+          </div>
+        </div>
+        <section class="rf-activity-band" id="rf-hyatt-things" aria-labelledby="rf-hyatt-things-title">
+          <div>
+            <h3 class="rf-subsection-title" id="rf-hyatt-things-title">Things to do near Hyatt Hill Country</h3>
+            <p class="rf-subsection-lead">Resort water, SeaWorld, spa time, golf, and planned northwest outings &mdash; food stays the focus; activities help you decide how far to roam.</p>
+          </div>
+          <div class="rf-activity-grid">
+            <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: 4.8 ★ · 2.1K reviews</span>
+              <span class="rf-activity-amenity">Water Park Section</span>
+              <div class="rf-activity-chips" aria-label="Highlights">
+                <span class="rf-activity-chip">5-Acre Water Park</span>
+                <span class="rf-activity-chip">950-Foot Lazy River</span>
+                <span class="rf-activity-chip">FlowRider</span>
+              </div>
+              <h4>Hyatt Hill Country Water Park / Lazy River</h4>
+              <p>The resort&rsquo;s signature family water experience with lazy river, slides, pools, shade from live oaks, and FlowRider surf-style fun.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Water Park / Resort Amenity · <strong>Zone:</strong> Hyatt Hill Country / Resort Property · <strong>Cost:</strong> Resort amenity; FlowRider extra where applicable<br /><strong>Best for:</strong> families, beating the heat, resort-first days, kids and teens.<br /><strong>Insider tip:</strong> Plan water time earlier or later in the day when heat and crowds are easier to manage.</p>
+            </article>
+            <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: 4.7 ★ · 150 reviews</span>
+              <div class="rf-activity-chips" aria-label="Highlights">
+                <span class="rf-activity-chip">2.2-Acre Crystal Lagoon</span>
+                <span class="rf-activity-chip">White Sand Beach</span>
+                <span class="rf-activity-chip">Kayak / Paddleboard</span>
+              </div>
+              <h4>Big Spring Lagoon</h4>
+              <p>A lagoon-style resort feature with white sand, calm water, beach volleyball, kayaking, paddleboarding, and a more beach-like feel inside San Antonio.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Lagoon / Resort Amenity · <strong>Zone:</strong> Hyatt Hill Country / Resort Property<br /><strong>Best for:</strong> families, calm water time, beach-style resort days, low-stress resort time.<br /><strong>Insider tip:</strong> Use the lagoon when the family needs a calmer alternative to the water park energy.</p>
+            </article>
+            <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: 4.5 ★ · 34K reviews</span>
+              <div class="rf-activity-chips" aria-label="Highlights">
+                <span class="rf-activity-chip">Theme Park</span>
+                <span class="rf-activity-chip">Aquatica</span>
+                <span class="rf-activity-chip">Across from Resort Area</span>
+              </div>
+              <h4>SeaWorld San Antonio &amp; Aquatica</h4>
+              <p>The major attraction across the resort area, with rides, animal encounters, shows, coasters, and Aquatica water park.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Theme Park / Water Park · <strong>Zone:</strong> SeaWorld / Westover Hills · <strong>Cost:</strong> Ticket prices vary<br /><strong>Best for:</strong> families, kids and teens, rollercoasters, animal encounters, full-day plans.<br /><strong>Insider tip:</strong> Break the day up: park in the morning, resort pool/nap in the afternoon, return for evening shows if tickets allow.</p>
+            </article>
+            <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: 4.6 ★ · 31K reviews</span>
+              <div class="rf-activity-chips" aria-label="Highlights">
+                <span class="rf-activity-chip">Theme Park</span>
+                <span class="rf-activity-chip">Quarry Coasters</span>
+                <span class="rf-activity-chip">Teen / Thrill Pick</span>
+              </div>
+              <h4>Six Flags Fiesta Texas</h4>
+              <p>A bigger thrill-ride day north of Hyatt, useful for teens, rollercoaster fans, and visitors who want a full theme-park outing beyond SeaWorld.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Theme Park · <strong>Zone:</strong> La Cantera / Six Flags / Northwest · separate outing<br /><strong>Best for:</strong> teens, thrill seekers, coaster fans, full-day family outings.<br /><strong>Insider tip:</strong> Treat Six Flags as a separate outing from Hyatt, not a quick resort-side stop.</p>
+            </article>
+            <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: 4.7 ★ · 350 reviews</span>
+              <div class="rf-activity-chips" aria-label="Highlights">
+                <span class="rf-activity-chip">Resort Spa</span>
+                <span class="rf-activity-chip">Couples</span>
+                <span class="rf-activity-chip">Adults-Only Pool Access</span>
+              </div>
+              <h4>Windflower &mdash; The Hill Country Spa</h4>
+              <p>The resort&rsquo;s spa sanctuary for couples, relaxation, massages, quiet pool access, steam rooms, and a slower Hill Country reset.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Spa / Wellness · <strong>Zone:</strong> Hyatt Hill Country / Resort Property<br /><strong>Best for:</strong> couples, spa days, relaxation, quiet adults-only time.<br /><strong>Insider tip:</strong> Confirm spa access perks when booking services.</p>
+            </article>
+            <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: 4.1 ★ · 990 reviews</span>
+              <div class="rf-activity-chips" aria-label="Highlights">
+                <span class="rf-activity-chip">27 Holes</span>
+                <span class="rf-activity-chip">Toptracer Golf Bays</span>
+                <span class="rf-activity-chip">Resort Golf</span>
+              </div>
+              <h4>Hill Country Golf Club</h4>
+              <p>27 holes, practice facilities, lakes, Hill Country terrain, and Toptracer bays for groups.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Golf · <strong>Zone:</strong> Hyatt Hill Country / Resort Property<br /><strong>Best for:</strong> golf travelers, corporate groups, casual golf challenges.<br /><strong>Insider tip:</strong> Toptracer bays can work well for groups that want golf energy without a full round.</p>
+            </article>
+            <article class="rf-activity-card">
+              <span class="rf-activity-google">Google: 4.7 ★ · 11K reviews</span>
+              <div class="rf-activity-chips" aria-label="Highlights">
+                <span class="rf-activity-chip">Open-Air Shopping</span>
+                <span class="rf-activity-chip">Luxury Retail</span>
+                <span class="rf-activity-chip">Short Drive North</span>
+              </div>
+              <h4>The Shops at La Cantera</h4>
+              <p>A polished open-air shopping and dining district north of Hyatt &mdash; useful for couples, shopping days, and upscale lunch/dinner options.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Shopping / Dining · <strong>Zone:</strong> La Cantera / Northwest · separate outing<br /><strong>Best for:</strong> shopping, couples, dining patios, low-pressure walking.<br /><strong>Insider tip:</strong> Treat La Cantera as a separate northwest outing from Hyatt, not the same resort zone.</p>
+            </article>
+            <article class="rf-activity-card">
+              <div class="rf-activity-chips" aria-label="Highlights">
+                <span class="rf-activity-chip">Resort Tradition</span>
+                <span class="rf-activity-chip">Fire Pits</span>
+                <span class="rf-activity-chip">Family Evening</span>
+              </div>
+              <h4>Campfire Chats + Texas S&rsquo;mores</h4>
+              <p>A classic resort evening tradition with fire pits, s&rsquo;mores, outdoor movies, and a quieter way to end the day under the Texas sky.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Resort Activity · <strong>Zone:</strong> Hyatt Hill Country / Resort Property<br /><strong>Best for:</strong> families, low-key evenings, corporate retreats, relaxed resort nights.<br /><strong>Insider tip:</strong> Check the daily resort activity schedule when you arrive.</p>
+            </article>
+            <article class="rf-activity-card">
+              <div class="rf-activity-chips" aria-label="Highlights">
+                <span class="rf-activity-chip">Corporate Events</span>
+                <span class="rf-activity-chip">Indoor-Outdoor Venue</span>
+                <span class="rf-activity-chip">Team Building</span>
+              </div>
+              <h4>Rancher Hall + Toptracer Group Events</h4>
+              <p>A resort event and group-activity option for corporate retreats, social events, Toptracer challenges, and cocktail-style networking.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Event Venue / Group Activity · <strong>Zone:</strong> Hyatt Hill Country / Resort Property<br /><strong>Best for:</strong> corporate retreats, group events, team building, social cocktail hours.<br /><strong>Insider tip:</strong> Use this for planned group events rather than casual walk-up visitor activity.</p>
+            </article>
+            <article class="rf-activity-card rf-activity-card--wide">
+              <span class="rf-activity-google">Google: 4.7 ★ · 74K reviews</span>
+              <div class="rf-activity-chips" aria-label="Highlights">
+                <span class="rf-activity-chip">Downtown Night Out</span>
+                <span class="rf-activity-chip">River Walk + Alamo</span>
+                <span class="rf-activity-chip">Worth-the-Ride Option</span>
+              </div>
+              <h4>Downtown River Walk / Alamo Expansion</h4>
+              <p>Downtown is worth the ride from Hyatt when the group wants River Walk, Alamo, Market Square, rooftop drinks, or a true San Antonio night instead of another resort-area meal.</p>
+              <p class="rf-activity-tip"><strong>Category:</strong> Downtown Extension · <strong>Zone:</strong> Downtown San Antonio<br /><strong>Best for:</strong> resort guests wanting a city night, River Walk boats, Alamo visits, downtown dinner.<br /><strong>Insider tip:</strong> Pick one main downtown stop, one dinner area, and one after-dinner walk before you leave Hyatt.</p>
+            </article>
+          </div>
+        </section>
+        <div class="rf-lane-grid rf-lane-grid--2" id="rf-hyatt-summaries">
           <article class="rf-lane-card">
-            <h3>Keep it easy</h3>
-            <p>Stay close when kids are done, weather turns, or the next morning starts early.</p>
-            <p class="meta"><strong>Best for:</strong> families, theme-park days, first night.</p>
+            <h3>Best Hyatt family move</h3>
+            <p>Use the resort water park, Big Spring Lagoon, SeaWorld, and easy nearby food when kids are the priority. If the day gets long, stay near Hyatt instead of forcing a downtown dinner.</p>
           </article>
           <article class="rf-lane-card rf-lane-card--turq">
-            <h3>Short polished move</h3>
-            <p>Use La Cantera / The Rim or nearby steakhouse areas when adults want a better dinner without a downtown run.</p>
-            <p class="meta"><strong>Best for:</strong> couples, business travelers, older kids.</p>
+            <h3>Best Hyatt couple move</h3>
+            <p>Start with Windflower Spa, Antlers Lodge, Woodbine Bar, or a quiet resort night. Go downtown only when River Walk, rooftops, Market Square, or a bigger San Antonio night is worth the ride.</p>
           </article>
+          <article class="rf-lane-card">
+            <h3>Best Hyatt group move</h3>
+            <p>Use Springhouse Caf&eacute;, Rudy&rsquo;s, Via 313, Pericos, Toptracer, Rancher Hall, or resort fire-pit time when the group needs easy logistics. Save downtown for a planned night with one main stop and one return plan.</p>
+          </article>
+          <article class="rf-lane-card rf-lane-card--turq">
+            <h3>Best nearby dinner move</h3>
+            <p>For nearby food, choose Antlers Lodge for upscale resort dining, Springhouse for easy family dining, Via 313 for pizza, Rudy&rsquo;s for barbecue, and Pericos for lively Tex-Mex. Downtown is a destination night, not the default nearby dinner.</p>
+          </article>
+        </div>
+        <div class="rf-zone-move-band" id="rf-hyatt-move">
+          <p>Not sure whether to stay near Hyatt or go downtown? <strong>Ask A Local</strong> with your hotel, group size, timing, and food mood.</p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="/ask/">Ask A Local</a>
+            <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#route-operator">Get Route Help</a>
+          </div>
         </div>
       </section>
 
@@ -2183,6 +2481,21 @@
                         <p class="rf-dining-facts"><strong>Category:</strong> Steakhouse · <strong>Zone:</strong> The Shops at La Cantera · <strong>Vibe:</strong> classic, white-tablecloth · <strong>Price:</strong> $60&ndash;$100+</p>
             <p class="rf-dining-read">A classic white-tablecloth steakhouse move near La Cantera, useful for business dinners, celebrations, and steakhouse comfort.</p>
             <p class="rf-dining-meta"><strong>Best for:</strong> traditional steakhouse dinners, business meals, celebrations, familiar premium format.<br /><strong>Reservation move:</strong> Book ahead for weekend dinner or their well-known pork chop lunch.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--pink" data-rf-google-rating="4.9" data-rf-google-reviews="10000">
+            <div class="rf-dining-card-head">
+              <h3>Bras&atilde;o Brazilian Steakhouse</h3>
+              <span class="rf-confidence-pill">Willie Approved</span>
+            </div>
+            <span class="rf-dining-google">Google: 4.9 ★ · 10K reviews</span>
+            <div class="rf-dining-chips" aria-label="Highlights">
+              <span class="rf-dining-chip">Rodizio</span>
+              <span class="rf-dining-chip">La Cantera area</span>
+              <span class="rf-dining-chip">Willie&rsquo;s top pick</span>
+            </div>
+            <p class="rf-dining-facts"><strong>Category:</strong> Brazilian Steakhouse · <strong>Zone:</strong> La Cantera / The Rim · <strong>Vibe:</strong> premium rodizio · <strong>Price:</strong> $60&ndash;$100</p>
+            <p class="rf-dining-read">Willie&rsquo;s top rodizio pick &mdash; a stronger dinner move for La Cantera resort guests, not the default nearby pick from JW / Stone Oak.</p>
+            <p class="rf-dining-meta"><strong>Best for:</strong> hungry groups, celebration tables, La Cantera / Rim resort nights.<br /><strong>Reservation move:</strong> Book ahead for big crews on weekends.</p>
           </article>
           <article class="rf-dining-card rf-dining-card--turq" data-rf-google-rating="4.4" data-rf-google-reviews="3200">
             <div class="rf-dining-card-head">
@@ -2325,12 +2638,12 @@
         <!-- TODO: Replace with final clean standalone Pearl / El Bucanero / El Cevichero assets. Do not use contact-sheet crops. -->
         <div class="rf-story-grid">
           <article class="rf-story-card">
-            <img class="rf-story-thumb" src="assets/restaurant-soluna-ribeye-tacos-chispas-v4.png" alt="" width="640" height="280" decoding="async" loading="lazy" />
+            <img class="rf-story-thumb" src="assets/restaurant-j-prime-steakhouse-v3.png" alt="J-Prime Steakhouse polished dining room" width="640" height="280" decoding="async" loading="lazy" />
             <div class="rf-story-card-inner">
-              <h3>Soluna trophy</h3>
+              <h3>J-Prime splurge</h3>
               <span class="approval-tag">Willie approved</span>
-              <p>Soluna is worth punching into maps when ribeye tacos and chispas are the move.</p>
-              <p class="rf-story-meta"><strong>Local tip:</strong> plan rideshare both ways.</p>
+              <p>North-side steakhouse polish when the night needs to feel special without fighting downtown traffic.</p>
+              <p class="rf-story-meta"><strong>Local tip:</strong> book peak weekend tables early; strong move from JW / Stone Oak.</p>
             </div>
           </article>
           <article class="rf-story-card rf-story-card--gold">
@@ -2372,7 +2685,7 @@
         <div class="section-lead">
           <p class="eyebrow">Group dinner picks</p>
           <h2 id="rf-proof-title" class="section-title">Easy wins when the whole table has to agree</h2>
-          <p class="section-subcopy compact">Three north-side picks with strong public ratings &mdash; use when hungry groups, clients, or celebration nights need a fast consensus.</p>
+          <p class="section-subcopy compact">Strong group-dinner picks by zone &mdash; Bras&atilde;o for La Cantera rodizio, Chama and J-Prime for Stone Oak / JW-area upgrades.</p>
         </div>
         <div class="rf-proof-grid">
           <article class="rf-proof-card">
@@ -2382,8 +2695,8 @@
               <span class="rf-proof-google">Google: 4.9 ★ · 10K reviews</span>
               <span class="rf-proof-badge">Willie approved</span>
               <h3>Bras&atilde;o Brazilian Steakhouse</h3>
-              <p class="rf-proof-best"><strong>Best for:</strong> hungry groups, resort-area nights, business crews.</p>
-              <p class="rf-proof-note">Strong personal confidence and a premium rodizio dinner. See Where To Eat for the full Brazilian comparison.</p>
+              <p class="rf-proof-best"><strong>Best for:</strong> La Cantera / Rim resort nights, hungry groups, celebration tables.</p>
+              <p class="rf-proof-note">Willie&rsquo;s top rodizio pick &mdash; closer to La Cantera than JW / Stone Oak. See Where To Eat for the full Brazilian comparison.</p>
               <a class="btn btn-secondary hero-secondary-btn rf-proof-lane-btn" href="where-to-eat.html#lane-brazilian">Brazilian picks</a>
             </div>
           </article>
@@ -2436,6 +2749,7 @@
       <a href="start-here.html">Start Here</a>
       <a href="where-to-eat.html">Where To Eat</a>
       <a href="downtown.html">Downtown</a>
+      <a href="downtown.html#dt-pearl-guide">Pearl</a>
       <a href="summer-family.html">Family</a>
       <a href="resort-food.html">Resort Food</a>
       <a href="driver-concierge.html#route-operator">Transport + Concierge</a>
