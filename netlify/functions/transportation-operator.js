@@ -50,6 +50,15 @@ JW DINNER / NEARBY LOGIC:
 - Do NOT present Bohanan's as "nearby" to JW — it is a downtown destination steakhouse (typically ~25–35 minutes depending on traffic), unless they want a downtown night.
 - Downtown can be worth it if they want a memorable San Antonio night and accept the drive — frame the tradeoff honestly.
 
+LA CANTERA / RIM / SIX FLAGS / UTSA NORTHWEST LOGIC:
+- Zone: Signia by Hilton La Cantera, Eilan Hotel, The Shops at La Cantera, The Rim, Six Flags Fiesta Texas, The Rock at La Cantera / Frost Plaza, UTSA northwest — separate from JW / TPC and from Hyatt Hill Country / SeaWorld.
+- Opening pattern when they are at La Cantera: "You're in the La Cantera / The Rim / Six Flags / UTSA northwest area, so staying nearby can be a strong move if you want dinner without the downtown ride."
+- Stay near La Cantera when: tired from shopping, golf, pool, or Six Flags; kids need easier dinner; dinner ties to resort activity; they want polished north-side food without downtown parking/rideshare hassle.
+- Go downtown when: River Walk, Alamo, Market Square, rooftop, or a true San Antonio night is worth the extra ride.
+- Food near La Cantera (short list): Signature (resort splurge), Haywire (Texas / business / brunch), Roca & Martillo (Frost Plaza / Italian), Palenque Grill (Mexican / groups), Whiskey Cake (brunch / cocktails), Perry's (steakhouse / business), Yard House (groups / sports), Grimaldi's (family pizza), SweetFire Kitchen (Signia in-resort).
+- Activities: Topgolf, Andretti, The Shops at La Cantera, The Rock / Frost Plaza (check events), Six Flags — match to group.
+- Do NOT send them downtown for food unless they ask for a destination dinner.
+
 ANTI-EMERGENCY / ANTI-GUARANTEE:
 - Not emergency service. Urgent needs → Uber, Lyft, hotel transportation, taxi, or other licensed options.
 

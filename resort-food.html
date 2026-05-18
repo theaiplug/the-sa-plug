@@ -1255,6 +1255,242 @@
         padding: 1.25rem;
       }
     }
+
+    .resort-food-page .rf-subsection-title {
+      margin: 0.35rem 0 0;
+      font-size: clamp(1.12rem, 1.8vw, 1.35rem);
+      color: #fff8eb;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .resort-food-page .rf-subsection-lead {
+      margin: 0;
+      font-size: 0.94rem;
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.84);
+      max-width: 62ch;
+    }
+
+    .resort-food-page .rf-dining-grid {
+      display: grid;
+      gap: 0.85rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 620px) {
+      .resort-food-page .rf-dining-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1020px) {
+      .resort-food-page .rf-dining-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .resort-food-page .rf-dining-card {
+      background: #fff8eb;
+      color: #1b2238;
+      border-radius: 16px;
+      border: 1px solid #ead8bf;
+      border-top: 4px solid var(--rf-dining-accent, #e7bb52);
+      padding: 0.9rem 0.88rem 0.88rem;
+      box-shadow: 0 8px 22px rgba(2, 6, 16, 0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      min-height: 100%;
+    }
+
+    .resort-food-page .rf-dining-card--orange { --rf-dining-accent: #ff9545; }
+    .resort-food-page .rf-dining-card--turq { --rf-dining-accent: #29cfc8; }
+    .resort-food-page .rf-dining-card--pink { --rf-dining-accent: #ee6fb2; }
+    .resort-food-page .rf-dining-card--gold { --rf-dining-accent: #e7bb52; }
+
+    .resort-food-page .rf-dining-card-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.35rem 0.5rem;
+    }
+
+    .resort-food-page .rf-dining-card h3 {
+      margin: 0;
+      font-size: 1.02rem;
+      color: #0f1731;
+      line-height: 1.22;
+      flex: 1 1 auto;
+    }
+
+    .resort-food-page .rf-confidence-pill {
+      flex: 0 0 auto;
+      display: inline-flex;
+      padding: 0.16rem 0.48rem;
+      border-radius: 999px;
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      background: #132143;
+      color: #f7d480;
+    }
+
+    .resort-food-page .rf-dining-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.32rem;
+    }
+
+    .resort-food-page .rf-dining-chip {
+      display: inline-flex;
+      padding: 0.18rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #3d4660;
+      background: rgba(19, 33, 67, 0.07);
+      border: 1px solid rgba(15, 23, 49, 0.1);
+    }
+
+    .resort-food-page .rf-dining-card .rf-dining-read {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.48;
+      color: #2c3348;
+    }
+
+    .resort-food-page .rf-dining-card .rf-dining-meta {
+      margin: 0;
+      margin-top: auto;
+      padding-top: 0.35rem;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: #4a5368;
+      border-top: 1px solid rgba(15, 23, 49, 0.08);
+    }
+
+    .resort-food-page .rf-dining-card .rf-dining-meta strong {
+      color: #243049;
+    }
+
+    .resort-food-page .rf-activity-band {
+      display: grid;
+      gap: 0.85rem;
+      padding: clamp(1.15rem, 2.5vw, 1.45rem);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 246, 230, 0.12);
+      background: linear-gradient(160deg, rgba(12, 24, 48, 0.55), rgba(6, 12, 26, 0.72));
+      box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.05);
+    }
+
+    .resort-food-page .rf-activity-grid {
+      display: grid;
+      gap: 0.7rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 720px) {
+      .resort-food-page .rf-activity-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .resort-food-page .rf-activity-card {
+      border-radius: 14px;
+      padding: 0.85rem 0.82rem;
+      border: 1px solid rgba(255, 246, 230, 0.12);
+      border-left: 3px solid #29cfc8;
+      background: rgba(255, 248, 235, 0.04);
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .resort-food-page .rf-activity-card h4 {
+      margin: 0;
+      font-size: 0.98rem;
+      color: #fff8eb;
+      line-height: 1.22;
+    }
+
+    .resort-food-page .rf-activity-card p {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.48;
+      color: rgba(255, 246, 230, 0.84);
+    }
+
+    .resort-food-page .rf-activity-card .rf-activity-tip {
+      font-size: 0.82rem;
+      color: rgba(153, 248, 241, 0.9);
+    }
+
+    @media (min-width: 720px) {
+      .resort-food-page .rf-activity-card--wide {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .resort-food-page .rf-zone-move-band {
+      display: grid;
+      gap: 0.85rem;
+      padding: clamp(1.25rem, 2.8vw, 1.65rem);
+      border-radius: 20px;
+      border: 1px solid rgba(231, 187, 82, 0.28);
+      background:
+        radial-gradient(ellipse 80% 60% at 0% 0%, rgba(231, 187, 82, 0.1), transparent 50%),
+        linear-gradient(165deg, rgba(14, 26, 52, 0.96), rgba(6, 12, 26, 0.99));
+      box-shadow: 0 14px 34px rgba(2, 6, 16, 0.36);
+    }
+
+    .resort-food-page .rf-zone-move-band h3 {
+      margin: 0;
+      font-size: clamp(1.2rem, 2vw, 1.45rem);
+      color: #fff8eb;
+      line-height: 1.22;
+    }
+
+    .resort-food-page .rf-zone-move-band > p {
+      margin: 0;
+      font-size: 0.94rem;
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.88);
+      max-width: 62ch;
+    }
+
+    .resort-food-page .rf-zone-move-list {
+      margin: 0;
+      padding: 0 0 0 1.1rem;
+      color: rgba(255, 246, 230, 0.86);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .resort-food-page .rf-zone-move-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .resort-food-page .rf-zone-move-band .hero-cta-row {
+      justify-content: flex-start;
+      margin-top: 0.15rem;
+    }
+
+    @media (max-width: 480px) {
+      .resort-food-page .rf-zone-move-band .hero-cta-row .btn {
+        flex: 1 1 100%;
+        min-width: 0;
+        width: 100%;
+      }
+
+      .resort-food-page .rf-dining-card-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 <body class="resort-food-page">
@@ -1316,7 +1552,8 @@
         <div class="page-jump-chip-row">
           <a class="page-jump-chip" href="#rf-zone-jw">JW Marriott / TPC / North 281</a>
           <a class="page-jump-chip" href="#rf-zone-hyatt">Hyatt Hill Country</a>
-          <a class="page-jump-chip" href="#rf-zone-rim">La Cantera / The Rim</a>
+          <a class="page-jump-chip" href="#rf-zone-rim">La Cantera guide</a>
+          <a class="page-jump-chip" href="#rf-la-cantera-things">La Cantera activities</a>
           <a class="page-jump-chip" href="#rf-zone-airport">Airport timing</a>
           <a class="page-jump-chip" href="#rf-zone-story">Story dinner</a>
           <a class="page-jump-chip" href="where-to-eat.html">Open Food Picks</a>
@@ -1459,8 +1696,8 @@
               <span class="image-route-card__shade" aria-hidden="true"></span>
               <span class="image-route-card__body">
                 <span class="eyebrow">La Cantera / The Rim</span>
-                <h3>Shopping + steakhouse area</h3>
-                <p>Steak, rodizio, drinks, and family backups without downtown traffic.</p>
+                <h3>Resort + shopping + Frost Plaza</h3>
+                <p>Signia, The Shops, Six Flags, and Frost Plaza &mdash; food and activities without downtown traffic.</p>
                 <span class="image-route-card__cta">Jump to La Cantera zone</span>
               </span>
             </a>
@@ -1554,35 +1791,181 @@
       <section class="rf-zone-detail rf-zone-detail--rim" id="rf-zone-rim">
         <div class="section-lead">
           <div class="rf-pill-row" aria-hidden="true">
-            <span class="rf-pill">Steakhouse area</span>
-            <span class="rf-pill">Rodizio</span>
-            <span class="rf-pill">Parking + options</span>
+            <span class="rf-pill">Signia La Cantera</span>
+            <span class="rf-pill">The Shops</span>
+            <span class="rf-pill">Six Flags</span>
+            <span class="rf-pill">Frost Plaza</span>
           </div>
-          <p class="eyebrow">La Cantera / The Rim</p>
-          <h2>La Cantera &middot; The Rim</h2>
-          <p class="section-subcopy compact">The easiest upscale area outside downtown: steakhouses, rodizio, drinks, shopping, and flexible family backups.</p>
+          <p class="eyebrow">La Cantera / The Rim / northwest</p>
+          <h2>La Cantera resort-area guide</h2>
+          <p class="section-subcopy compact">La Cantera is one of San Antonio&rsquo;s best resort zones when you want food, shopping, golf, entertainment, and Hill Country views without driving downtown. Use this area when you are staying at Signia by Hilton La Cantera, Eilan Hotel, shopping at The Shops at La Cantera, visiting Six Flags, or spending time around The Rock at La Cantera and Frost Plaza. This zone is separate from JW Marriott / TPC and from Hyatt Hill Country / SeaWorld &mdash; do not treat them as the same resort bubble.</p>
         </div>
         <div class="rf-zone-banner-pair rf-zone-banner-pair--single">
           <div class="rf-zone-banner" role="img" aria-label="La Cantera and The Rim dining and shopping area">
             <img src="assets/resort-card-la-cantera-rim-v3.png" alt="" width="1200" height="320" decoding="async" loading="lazy" />
           </div>
         </div>
-        <div class="rf-lane-grid rf-lane-grid--3">
-          <article class="rf-lane-card rf-lane-card--gold">
-            <h3>Steakhouse picks</h3>
-            <p>J-Prime, Perry&rsquo;s, Ruth&rsquo;s Chris, or other strong steak options depending on timing and reservations.</p>
-            <p class="meta"><strong>Best for:</strong> polished dinners, client meals, celebrations.</p>
+        <h3 class="rf-subsection-title" id="rf-la-cantera-dining">La Cantera dining picks</h3>
+        <p class="rf-subsection-lead">Nine strong moves in the La Cantera / Rim / resort-property ring &mdash; scan the vibe, then book or walk in with a plan.</p>
+        <div class="rf-dining-grid" aria-labelledby="rf-la-cantera-dining">
+          <article class="rf-dining-card rf-dining-card--gold">
+            <div class="rf-dining-card-head">
+              <h3>Signature Restaurant</h3>
+              <span class="rf-confidence-pill">Resort Pick</span>
+            </div>
+            <div class="rf-dining-chips" aria-label="Categories">
+              <span class="rf-dining-chip">Resort property</span>
+              <span class="rf-dining-chip">Fine dining</span>
+            </div>
+            <p class="rf-dining-read">A luxury resort-ground dinner for anniversaries, wine, and a true splurge night without leaving the La Cantera property.</p>
+            <p class="rf-dining-meta"><strong>Zone:</strong> La Cantera / resort property<br /><strong>Best for:</strong> anniversary dinners, luxury splurges, fine wine, resort nights that need to feel special.<br /><strong>Reservation move:</strong> Book weekend tables well ahead; ask for a view toward the open kitchen if available.</p>
           </article>
-          <article class="rf-lane-card rf-lane-card--turq">
-            <h3>Rodizio picks</h3>
-            <p>Bras&atilde;o first, Chama Ga&uacute;cha next, Fogo when the group wants the familiar name.</p>
-            <p class="meta"><strong>Best for:</strong> groups, big appetites, easy decision nights.</p>
+          <article class="rf-dining-card rf-dining-card--orange">
+            <div class="rf-dining-card-head">
+              <h3>Haywire</h3>
+              <span class="rf-confidence-pill">Strong Public Rating</span>
+            </div>
+            <div class="rf-dining-chips" aria-label="Categories">
+              <span class="rf-dining-chip">Texas heritage</span>
+              <span class="rf-dining-chip">Farm-to-fork</span>
+            </div>
+            <p class="rf-dining-read">A big Texas-feeling dinner with polished energy, steaks, whiskey, brunch, and enough personality for out-of-town guests.</p>
+            <p class="rf-dining-meta"><strong>Zone:</strong> The Shops at La Cantera<br /><strong>Best for:</strong> Texas vibe for visitors, business dinners, hearty weekend brunch, groups that want polished but not too quiet.<br /><strong>Reservation move:</strong> Ask about patio seating when the weather works.</p>
           </article>
-          <article class="rf-lane-card rf-lane-card--pink">
-            <h3>Family backup picks</h3>
-            <p>Use this area when the group needs options, parking, and flexibility more than a destination dinner.</p>
-            <p class="meta"><strong>Best for:</strong> mixed groups, weather changes, tired kids.</p>
+          <article class="rf-dining-card rf-dining-card--turq">
+            <div class="rf-dining-card-head">
+              <h3>Roca &amp; Martillo at The Rock</h3>
+              <span class="rf-confidence-pill">Visitor-Friendly Pick</span>
+            </div>
+            <div class="rf-dining-chips" aria-label="Categories">
+              <span class="rf-dining-chip">Chef-driven</span>
+              <span class="rf-dining-chip">Contemporary Italian</span>
+            </div>
+            <p class="rf-dining-read">A newer culture-forward dinner option near the Spurs complex, with Italian comfort and South Texas smoke influence.</p>
+            <p class="rf-dining-meta"><strong>Zone:</strong> The Rock at La Cantera / Frost Plaza<br /><strong>Best for:</strong> adventurous foodies, families at Frost Plaza, post-event food, visitors exploring The Rock.<br /><strong>Reservation move:</strong> Check the Frost Plaza event calendar first &mdash; the area fills during concerts, games, and public events.</p>
           </article>
+          <article class="rf-dining-card rf-dining-card--pink">
+            <div class="rf-dining-card-head">
+              <h3>Palenque Grill La Cantera</h3>
+              <span class="rf-confidence-pill">Strong Public Rating</span>
+            </div>
+            <div class="rf-dining-chips" aria-label="Categories">
+              <span class="rf-dining-chip">Premium Mexican</span>
+              <span class="rf-dining-chip">Live music</span>
+            </div>
+            <p class="rf-dining-read">A polished Mexican dinner move with grilled meats, seafood, margaritas, tequila, and a festive group-friendly feel.</p>
+            <p class="rf-dining-meta"><strong>Zone:</strong> La Cantera / The Rim<br /><strong>Best for:</strong> celebratory family dinners, tequila fans, lively groups, resort guests wanting Mexican without downtown.<br /><strong>Reservation move:</strong> Use the digital waitlist or call ahead before prime dinner hours.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--orange">
+            <div class="rf-dining-card-head">
+              <h3>Whiskey Cake Kitchen &amp; Bar</h3>
+              <span class="rf-confidence-pill">Local Favorite</span>
+            </div>
+            <div class="rf-dining-chips" aria-label="Categories">
+              <span class="rf-dining-chip">Scratch kitchen</span>
+              <span class="rf-dining-chip">Brunch / cocktails</span>
+            </div>
+            <p class="rf-dining-read">A trendy scratch-kitchen option for brunch, cocktails, comfort food, and casual dinners that still feel polished.</p>
+            <p class="rf-dining-meta"><strong>Zone:</strong> La Cantera / The Rim<br /><strong>Best for:</strong> casual foodies, brunch, friends, cocktails, lively but not formal dinners.<br /><strong>Reservation move:</strong> Go early at peak times and save room for the whiskey cake.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--gold">
+            <div class="rf-dining-card-head">
+              <h3>Perry&rsquo;s Steakhouse &amp; Grille</h3>
+              <span class="rf-confidence-pill">Business Dinner Pick</span>
+            </div>
+            <div class="rf-dining-chips" aria-label="Categories">
+              <span class="rf-dining-chip">Steakhouse</span>
+              <span class="rf-dining-chip">Classic premium</span>
+            </div>
+            <p class="rf-dining-read">A classic white-tablecloth steakhouse move near La Cantera, useful for business dinners, celebrations, and steakhouse comfort.</p>
+            <p class="rf-dining-meta"><strong>Zone:</strong> The Shops at La Cantera<br /><strong>Best for:</strong> traditional steakhouse dinners, business meals, celebrations, familiar premium format.<br /><strong>Reservation move:</strong> Book ahead for weekend dinner or their well-known pork chop lunch.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--turq">
+            <div class="rf-dining-card-head">
+              <h3>Yard House</h3>
+              <span class="rf-confidence-pill">Family-Friendly Pick</span>
+            </div>
+            <div class="rf-dining-chips" aria-label="Categories">
+              <span class="rf-dining-chip">Large group</span>
+              <span class="rf-dining-chip">Sports bar</span>
+            </div>
+            <p class="rf-dining-read">A high-energy, easy group option with a huge menu and big beer list when the group cannot agree on one style of food.</p>
+            <p class="rf-dining-meta"><strong>Zone:</strong> The Shops at La Cantera<br /><strong>Best for:</strong> sports fans, large groups, casual happy hour, late-night cravings, low-pressure meals.<br /><strong>Reservation move:</strong> Use call-ahead or online seating on game days and busy weekends.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--pink">
+            <div class="rf-dining-card-head">
+              <h3>Grimaldi&rsquo;s Pizzeria</h3>
+              <span class="rf-confidence-pill">Family-Friendly Pick</span>
+            </div>
+            <div class="rf-dining-chips" aria-label="Categories">
+              <span class="rf-dining-chip">Brick oven</span>
+              <span class="rf-dining-chip">Casual</span>
+            </div>
+            <p class="rf-dining-read">A simple family-friendly pizza option near shopping and resort activity when you need something easy and familiar.</p>
+            <p class="rf-dining-meta"><strong>Zone:</strong> The Shops at La Cantera<br /><strong>Best for:</strong> families with kids, shopping-day lunch, low-key dates, quick resort-area dinner.<br /><strong>Reservation move:</strong> Look for patio or window seating when the weather is comfortable.</p>
+          </article>
+          <article class="rf-dining-card rf-dining-card--gold">
+            <div class="rf-dining-card-head">
+              <h3>SweetFire Kitchen</h3>
+              <span class="rf-confidence-pill">Resort Pick</span>
+            </div>
+            <div class="rf-dining-chips" aria-label="Categories">
+              <span class="rf-dining-chip">Resort casual</span>
+              <span class="rf-dining-chip">Hill Country views</span>
+            </div>
+            <p class="rf-dining-read">The easy in-resort dining option for breakfast, scenic comfort food, sunset drinks, and staying close when no one wants another drive.</p>
+            <p class="rf-dining-meta"><strong>Zone:</strong> Signia by Hilton La Cantera Resort<br /><strong>Best for:</strong> stress-free resort dining, sunset drinks, family breakfast, low-effort resort meals.<br /><strong>Reservation move:</strong> Ask about patio or scenic seating around golden hour when available.</p>
+          </article>
+        </div>
+        <section class="rf-activity-band" id="rf-la-cantera-things" aria-labelledby="rf-la-cantera-things-title">
+          <div>
+            <h3 class="rf-subsection-title" id="rf-la-cantera-things-title">Things to do near La Cantera</h3>
+            <p class="rf-subsection-lead">La Cantera is not just a dinner zone. It works for shopping, theme parks, golf-adjacent resort time, family activities, date nights, and group entertainment.</p>
+          </div>
+          <div class="rf-activity-grid">
+            <article class="rf-activity-card">
+              <h4>Topgolf San Antonio</h4>
+              <p>A social golf-and-sports option that works even if not everyone plays golf.</p>
+              <p class="rf-activity-tip"><strong>Best for:</strong> large groups, casual date nights, families, late-night fun, sports fans.<br /><strong>Tip:</strong> Reserve a hitting bay online for busy weekend evenings.</p>
+            </article>
+            <article class="rf-activity-card">
+              <h4>Andretti Indoor Karting &amp; Games</h4>
+              <p>High-energy indoor karting, games, VR, bowling, food, and drinks.</p>
+              <p class="rf-activity-tip"><strong>Best for:</strong> families with teenagers, competitive friend groups, rainy days.<br /><strong>Tip:</strong> Book race times online when possible to avoid long waits.</p>
+            </article>
+            <article class="rf-activity-card">
+              <h4>The Shops at La Cantera</h4>
+              <p>Polished open-air shopping and dining for strolling, retail, lunch, and low-pressure resort time.</p>
+              <p class="rf-activity-tip"><strong>Best for:</strong> shopping, walking, open-air dining, international visitors.<br /><strong>Tip:</strong> International travelers may want to check current Texas Tax Back options near the shopping area before leaving.</p>
+            </article>
+            <article class="rf-activity-card">
+              <h4>The Rock at La Cantera &amp; Frost Plaza</h4>
+              <p>A Spurs-connected district with plaza events, gathering space, food, and a more modern San Antonio feel.</p>
+              <p class="rf-activity-tip"><strong>Best for:</strong> public events, family strolls, outdoor concerts, pre/post dinner add-ons.<br /><strong>Tip:</strong> Check the event calendar before you go.</p>
+            </article>
+            <article class="rf-activity-card rf-activity-card--wide">
+              <h4>Six Flags Fiesta Texas</h4>
+              <p>A major theme park in a dramatic quarry setting near the resort zone &mdash; families, teens, and thrill seekers.</p>
+              <p class="rf-activity-tip"><strong>Best for:</strong> families, rollercoaster fans, full-day entertainment.<br /><strong>Tip:</strong> Start with high-demand rides earlier in the day when possible.</p>
+            </article>
+          </div>
+        </section>
+        <div class="rf-zone-move-band" id="rf-la-cantera-move">
+          <h3>Best move near La Cantera</h3>
+          <p>Stay in the La Cantera area when the group wants resort convenience, shopping, theme parks, golf energy, or a polished dinner without the downtown drive. Go downtown only when River Walk, Alamo, Market Square, rooftop, or a true San Antonio night is worth the extra ride.</p>
+          <p><strong>Use this area when:</strong></p>
+          <ul class="rf-zone-move-list">
+            <li>the group is tired from shopping, golf, pool, or Six Flags</li>
+            <li>kids need an easier dinner</li>
+            <li>dinner is before or after resort activity</li>
+            <li>you want a polished north-side meal</li>
+            <li>you do not want the downtown parking or rideshare decision</li>
+          </ul>
+          <p>Not sure whether to stay near La Cantera or go downtown? <strong>Ask A Local</strong> with your hotel, group size, timing, and food mood.</p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="/ask/">Ask A Local</a>
+            <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#route-operator">Get Route Help</a>
+          </div>
         </div>
       </section>
 
