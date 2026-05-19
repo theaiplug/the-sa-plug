@@ -186,7 +186,7 @@
         "Archived",
       ];
 
-      var TRANSPORT_STATUSES = BUSINESS_STATUSES.concat(["Needs follow-up", "Handled", "Cancelled"]);
+      var TRANSPORT_STATUSES = BUSINESS_STATUSES.concat(["Handled", "Cancelled"]);
 
       var state = {
         businessLeads: [],
@@ -293,9 +293,8 @@
         }
 
         var score = 0;
-        var urgencyBlob = [lead.urgency, lead.current_problem, lead.timeline].filter(Boolean).join(" ");
         if (
-          textIncludesAny(urgencyBlob, [
+          textIncludesAny(lead.urgency, [
             "urgent",
             "losing revenue",
             "asap",
@@ -411,7 +410,6 @@
           return {
             label: "Handled",
             key: "handled",
-            filterKey: "not-a-fit",
             className: "owner-dash-badge--ok",
           };
         }
@@ -419,7 +417,6 @@
           return {
             label: "Cancelled",
             key: "cancelled",
-            filterKey: "not-a-fit",
             className: "owner-dash-badge--muted",
           };
         }
@@ -427,14 +424,12 @@
           return {
             label: "Time-sensitive",
             key: "time-sensitive",
-            filterKey: "hot",
             className: "owner-dash-badge--hot",
           };
         }
         return {
           label: "Standard",
           key: "standard",
-          filterKey: "warm",
           className: "owner-dash-badge--neutral",
         };
       }
@@ -468,16 +463,16 @@
 
       function matchesPriorityFilter(row, table) {
         if (state.activePriorityFilter === "all") return true;
-        var pri =
-          table === "business_leads" ? calcBusinessPriority(row) : calcTransportPriority(row);
         if (table === "business_leads") {
-          return pri.key === state.activePriorityFilter;
+          return calcBusinessPriority(row).key === state.activePriorityFilter;
         }
-        var filterKey = pri.filterKey || pri.key;
-        if (state.activePriorityFilter === "low") {
-          return filterKey === "low" || (filterKey === "warm" && pri.key === "standard");
-        }
-        return filterKey === state.activePriorityFilter;
+        var pri = calcTransportPriority(row);
+        var pf = state.activePriorityFilter;
+        if (pf === "hot") return pri.key === "time-sensitive";
+        if (pf === "warm") return pri.key === "standard";
+        if (pf === "low") return false;
+        if (pf === "not-a-fit") return pri.key === "handled" || pri.key === "cancelled";
+        return true;
       }
 
       function matchesFilter(row, table) {
@@ -492,6 +487,26 @@
           var pa = calcBusinessPriority(a);
           var pb = calcBusinessPriority(b);
           if (pb.score !== pa.score) return pb.score - pa.score;
+          var ta = new Date(a.created_at || 0).getTime();
+          var tb = new Date(b.created_at || 0).getTime();
+          return tb - ta;
+        });
+      }
+
+      function transportPriorityRank(key) {
+        if (key === "time-sensitive") return 3;
+        if (key === "standard") return 2;
+        if (key === "handled") return 1;
+        return 0;
+      }
+
+      function sortTransportRows(rows) {
+        return rows.slice().sort(function (a, b) {
+          var pa = calcTransportPriority(a);
+          var pb = calcTransportPriority(b);
+          var ra = transportPriorityRank(pa.key);
+          var rb = transportPriorityRank(pb.key);
+          if (rb !== ra) return rb - ra;
           var ta = new Date(a.created_at || 0).getTime();
           var tb = new Date(b.created_at || 0).getTime();
           return tb - ta;
@@ -1607,7 +1622,7 @@
       }
 
       function renderTransport(rows) {
-        var filtered = rows.filter(function (row) {
+        var filtered = sortTransportRows(rows).filter(function (row) {
           return matchesFilter(row, "transportation_requests");
         });
         if (!filtered.length) {
