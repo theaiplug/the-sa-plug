@@ -436,7 +436,7 @@
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           "</div>" +
           '<label class="owner-dash-detail-followup-label"><span>Follow-up message (copy only — not sent)</span>' +
-          '<textarea class="owner-dash-textarea owner-dash-detail-followup" readonly rows="5">' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-followup" rows="5">' +
           esc(followUp) +
           "</textarea></label>" +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
@@ -664,6 +664,9 @@
           return table === "business_leads" ? buildBusinessSummary(row) : buildTransportSummary(row);
         }
         if (kind === "followup") {
+          var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
+          var ta = sheet && sheet.querySelector(".owner-dash-detail-followup");
+          if (ta && String(ta.value).trim()) return ta.value;
           return table === "business_leads" ? buildBusinessFollowUp(row) : buildTransportFollowUp(row);
         }
         return "";
