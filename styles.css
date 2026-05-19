@@ -13747,10 +13747,40 @@ body.page-ask main {
   outline-offset: 2px;
 }
 
-.page-owner-dashboard .owner-dash-meta {
+.page-owner-dashboard .owner-dash-page-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 246, 230, 0.06);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.page-owner-dashboard .owner-dash-page-path-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 246, 230, 0.62);
+  background: rgba(4, 10, 22, 0.45);
+  border: 1px solid rgba(255, 246, 230, 0.12);
+  flex-shrink: 0;
+}
+
+.page-owner-dashboard .owner-dash-page-path-value {
   font-size: 0.78rem;
+  line-height: 1.4;
   color: rgba(255, 246, 230, 0.55);
-  margin-left: auto;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
 }
 
 .page-owner-dashboard .owner-dash-empty,
@@ -14111,6 +14141,9 @@ body.owner-dash-detail-open {
 /* Owner Command Dashboard v3 — compact summary cards */
 .page-owner-dashboard .owner-dash-lead-card--compact {
   padding: clamp(14px, 2vw, 18px);
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 .page-owner-dashboard .owner-dash-lead-card--compact .owner-dash-card-title {
@@ -14150,4 +14183,17 @@ body.owner-dash-detail-open {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid rgba(255, 246, 230, 0.08);
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 639px) {
+  .page-owner-dashboard .owner-dash-lead-card--compact .owner-dash-workflow-actions,
+  .page-owner-dashboard .owner-dash-lead-card--compact .owner-dash-card-actions {
+    max-width: 100%;
+  }
+
+  .page-owner-dashboard .owner-dash-lead-card--compact .owner-dash-btn {
+    max-width: 100%;
+  }
 }

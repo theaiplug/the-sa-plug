@@ -307,26 +307,28 @@
         );
       }
 
-      function truncatePreview(text, maxLen) {
-        maxLen = maxLen || 120;
-        if (text == null || text === "") return "";
-        var s = String(text).trim().replace(/\s+/g, " ");
-        if (!s) return "";
-        if (s.length <= maxLen) return s;
-        return s.slice(0, maxLen - 1) + "…";
-      }
-
       function blockPreview(label, value) {
         if (value == null || value === "") return "";
-        var clipped = truncatePreview(value, 120);
-        if (!clipped) return "";
+        var text = String(value).trim();
+        if (!text) return "";
         return (
           '<div class="owner-dash-field owner-dash-field--wide">' +
           '<dt>' +
           esc(label) +
           '</dt><dd class="owner-dash-preview-clamp">' +
-          esc(clipped) +
+          esc(text) +
           "</dd></div>"
+        );
+      }
+
+      function pagePathMeta(path) {
+        if (!path) return "";
+        return (
+          '<div class="owner-dash-page-path">' +
+          '<span class="owner-dash-page-path-label">Page path</span>' +
+          '<span class="owner-dash-page-path-value">' +
+          esc(path) +
+          "</span></div>"
         );
       }
 
@@ -383,15 +385,14 @@
       }
 
       function businessPreviewText(lead) {
-        if (lead.recommended_system) return truncatePreview(lead.recommended_system, 120);
-        if (lead.ai_summary) return truncatePreview(lead.ai_summary, 120);
-        return null;
+        if (!lead.ai_summary) return null;
+        return String(lead.ai_summary).trim() || null;
       }
 
       function transportPreviewText(row) {
         var text = row.conversation_excerpt || row.notes || "";
         if (!text) return null;
-        return truncatePreview(text, 120);
+        return String(text).trim() || null;
       }
 
       function contactLine(phone, email) {
@@ -981,7 +982,6 @@
               esc(displayStatus(lead.status)) +
               "</span>";
             var preview = businessPreviewText(lead);
-            var previewLabel = lead.recommended_system ? "Recommended system" : "AI summary preview";
             return (
               '<article class="owner-dash-glass owner-dash-lead-card owner-dash-lead-card--compact" data-record-id="' +
               esc(lead.id) +
@@ -1001,16 +1001,14 @@
               block("Phone", lead.contact_phone) +
               block("Email", lead.contact_email) +
               block("Current problem", lead.current_problem) +
-              blockPreview(previewLabel, preview) +
+              blockPreview("AI summary preview", preview) +
               "</dl>" +
               '<div class="owner-dash-card-actions">' +
               openDetailsBtn("business_leads", lead.id) +
               "</div>" +
               workflowBlock("business_leads", lead) +
-              (lead.page_path
-                ? '<p class="owner-dash-meta">' + esc(lead.page_path) + "</p>"
-                : "") +
               cardAlertRow(lead) +
+              pagePathMeta(lead.page_path) +
               "</article>"
             );
           })
@@ -1063,6 +1061,7 @@
               "</div>" +
               workflowBlock("transportation_requests", row) +
               cardAlertRow(row) +
+              pagePathMeta(row.page_path) +
               "</article>"
             );
           })
