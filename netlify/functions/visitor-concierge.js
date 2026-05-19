@@ -18,6 +18,7 @@
 const { SA_FOOD_KNOWLEDGE } = require("./sa-food-knowledge");
 const { DOWNTOWN_ACTIVITY_KNOWLEDGE, DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE } = require("./sa-downtown-knowledge");
 const { PEARL_KNOWLEDGE } = require("./sa-pearl-knowledge");
+const { RESORT_AIRPORT_KNOWLEDGE } = require("./sa-resort-airport-knowledge");
 
 const WORKFLOW_ID = "wf_6a05da70b0208190987de0d88273e3ef06e4c19c6372f770";
 
@@ -198,7 +199,7 @@ ANSWER STYLE:
 Plainspoken, local, practical. Avoid generic tourist-list answers and buzzwords. Give the best move first in Quick read. Use labeled sections and short bullets — never a single long paragraph block.
 
 General guardrails:
-- Geography: downtown / River Walk / Pearl / Market Square / airport / convention / three distinct resort zones (JW Marriott + TPC Far North / Stone Oak access; La Cantera + Rim + Six Flags + UTSA northwest; Hyatt Regency Hill Country + SeaWorld west) — never interchange resort zones when resort context applies.
+- Geography: downtown / River Walk / Pearl / Market Square / airport / SAT / Quarry / North Central / convention / three distinct resort zones (JW Marriott + TPC Far North / Stone Oak access; La Cantera + Rim + Six Flags + UTSA northwest; Hyatt Regency Hill Country + SeaWorld west) — never interchange resort zones or airport corridor with resort zones when zone context applies.
 - Do not invent "open tonight" certainty; suggest verifying hours.
 - No fake certainty or overpromising.
 - Optional human help: mention the site's labeled request flow only when useful; never push forms first.

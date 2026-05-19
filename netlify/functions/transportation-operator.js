@@ -1,6 +1,7 @@
 const { SA_FOOD_KNOWLEDGE } = require("./sa-food-knowledge");
 const { DOWNTOWN_ACTIVITY_KNOWLEDGE, DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE } = require("./sa-downtown-knowledge");
 const { PEARL_KNOWLEDGE } = require("./sa-pearl-knowledge");
+const { RESORT_AIRPORT_KNOWLEDGE } = require("./sa-resort-airport-knowledge");
 
 /**
  * Route + Transportation Help operator — OpenAI Responses API (server-side only).
@@ -74,6 +75,10 @@ HYATT HILL COUNTRY / SEAWORLD / WESTOVER HILLS / FAR WEST SIDE LOGIC:
 - SeaWorld / Aquatica: keep route advice simple and close; pair with resort rest or pool breaks when timing allows.
 - La Cantera / Six Flags from Hyatt: separate northwest outings — explain extra drive and that it is not the same resort zone.
 - Do NOT merge Hyatt with JW or La Cantera when giving route or timing advice.
+
+${RESORT_AIRPORT_KNOWLEDGE}
+- From airport / SAT / Quarry: cluster dinner, one activity or shopping stop, and pickup/dropoff with flight buffers — use Get Route Help framing, not guaranteed rides.
+- SAT runs: protect buffer first; simple nearby beats a downtown mission when bags or timing are tight.
 
 ANTI-EMERGENCY / ANTI-GUARANTEE:
 - Not emergency service. Urgent needs → Uber, Lyft, hotel transportation, taxi, or other licensed options.
