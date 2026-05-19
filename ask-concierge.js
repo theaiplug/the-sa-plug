@@ -56,14 +56,41 @@
   }
 
   var SECTION_LABELS =
-    /^(Quick read|Best for|Timing|Cost(?:\s*\/\s*parking)?|Parking|Willie Approved|Local Pick|Research Pick|Needs Visit|Pair it with|Next move|Go \/ skip|Hours|Transportation)\s*:\s*(.*)$/i;
+    /^(Quick read|Best move|Why it works|Good for|Best for|Timing|Cost(?:\s*\/\s*parking)?|Parking|Willie Approved|Strong Pick|Local Favorite|Reliable Pick|Visitor-Friendly Pick|Local Pick|Research Pick|Needs Visit|Pair it with|Also consider|Next move|What to do next|Go \/ skip|Hours|Transportation|Need transportation help\?)\s*:\s*(.*)$/i;
+
+  var VISITOR_LABEL_MAP = {
+    "Quick read": "Best move",
+    "Best for": "Good for",
+    "Pair it with": "Also consider",
+    "Next move": "What to do next",
+    Transportation: "Need transportation help?",
+  };
+
+  function sanitizeVisitorLanguage(text) {
+    return String(text)
+      .replace(/\bintent stack\b/gi, "")
+      .replace(/\brouting\b/gi, "plan")
+      .replace(/\bcorridor\b/gi, "area")
+      .replace(/\bsequence\b/gi, "order")
+      .replace(/\bproof\b/gi, "confidence")
+      .replace(/\bstack\b/gi, "add")
+      .replace(/\bpacing\b/gi, "how the night should feel")
+      .replace(/\butility\b/gi, "useful")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  }
+
+  function visitorSectionLabel(label) {
+    var key = String(label || "").trim();
+    return VISITOR_LABEL_MAP[key] || key;
+  }
 
   function inlineFormat(text) {
     return escapeHtml(text).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   }
 
   function formatAssistantHtml(raw) {
-    var lines = String(raw)
+    var lines = sanitizeVisitorLanguage(String(raw))
       .trim()
       .split(/\r?\n/)
       .map(function (line) {
@@ -120,7 +147,7 @@
       if (section) {
         flushCurrent();
         current = {
-          label: section[1].replace(/\s*\/\s*/g, " / "),
+          label: visitorSectionLabel(section[1].replace(/\s*\/\s*/g, " / ")),
           body: inlineFormat(section[2] || ""),
         };
         return;

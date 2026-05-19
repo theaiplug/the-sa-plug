@@ -32,3 +32,7 @@
 #   BUSINESS_ALERT_PHONE        — optional SMS destination (E.164); else TRANSPORT_ALERT_PHONE
 #   TWILIO_*                    — optional; SMS failures never fail the lead save
 #   Supabase public.business_leads needs boolean alert_email_sent (default false); set true after Resend succeeds.
+#
+# Owner Command Dashboard (owner-dashboard-data function):
+#   OWNER_DASHBOARD_KEY          — private key for /owner-dashboard/?key=... (never commit or expose in JS source)
+#   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY — same as lead intake functions

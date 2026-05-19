@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Owner Command Dashboard | Where To Go SA</title>
+  <meta name="description" content="Private owner view for Where To Go SA leads and transportation requests." />
+  <link rel="icon" href="../assets/icons/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/wtgsa-favicon-32.png" />
+  <link rel="apple-touch-icon" href="../assets/icons/wtgsa-apple-touch-icon.png" sizes="180x180" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body class="page-owner-dashboard">
+  <header class="owner-dash-header">
+    <a href="../index.html" class="brand">
+      <span class="brand-icon brand-icon--logo" aria-hidden="true"><img src="../assets/where-to-go-sa-round-emblem-pfp.png" alt="" class="brand-icon-img" width="512" height="512" decoding="async" /></span>
+      <span class="brand-text"><strong>Where To Go SA</strong><small>Owner Command</small></span>
+    </a>
+    <p class="owner-dash-header-proof">Built by <strong>The AI Plug</strong></p>
+  </header>
+
+  <main class="owner-dash-main" id="owner-dash-main">
+    <section class="owner-dash-hero" aria-labelledby="owner-dash-heading">
+      <p class="eyebrow eyebrow-on-dark">OWNER COMMAND DASHBOARD</p>
+      <h1 id="owner-dash-heading">See every request before it gets lost</h1>
+      <p class="owner-dash-lede">Business leads, transportation requests, owner alerts, and follow-up status in one working view.</p>
+      <p class="owner-dash-note">Internal owner view. Do not share this link publicly.</p>
+      <ul class="owner-dash-pills" aria-label="System status">
+        <li class="owner-dash-pill">Business Operator</li>
+        <li class="owner-dash-pill">Transportation Requests</li>
+        <li class="owner-dash-pill">Gmail Alerts</li>
+        <li class="owner-dash-pill owner-dash-pill--warn">SMS Pending A2P</li>
+      </ul>
+    </section>
+
+    <div id="owner-dash-state-unauthorized" class="owner-dash-state" hidden>
+      <div class="owner-dash-glass owner-dash-state-card">
+        <h2>Private dashboard</h2>
+        <p>Access key required.</p>
+      </div>
+    </div>
+
+    <div id="owner-dash-state-error" class="owner-dash-state" hidden>
+      <div class="owner-dash-glass owner-dash-state-card">
+        <h2>Data unavailable</h2>
+        <p>Dashboard data is temporarily unavailable. Check Netlify function logs.</p>
+      </div>
+    </div>
+
+    <div id="owner-dash-content" hidden>
+      <section class="owner-dash-summary" aria-label="Summary counts">
+        <div class="owner-dash-summary-grid">
+          <article class="owner-dash-glass owner-dash-stat">
+            <p class="owner-dash-stat-label">New Business Leads</p>
+            <p class="owner-dash-stat-value" id="count-business-new">—</p>
+            <p class="owner-dash-stat-meta"><span id="count-total-business">0</span> total</p>
+          </article>
+          <article class="owner-dash-glass owner-dash-stat">
+            <p class="owner-dash-stat-label">New Transportation Requests</p>
+            <p class="owner-dash-stat-value" id="count-transport-new">—</p>
+            <p class="owner-dash-stat-meta"><span id="count-total-transport">0</span> total</p>
+          </article>
+          <article class="owner-dash-glass owner-dash-stat">
+            <p class="owner-dash-stat-label">Email Alerts Sent</p>
+            <p class="owner-dash-stat-value" id="count-email-alerts">—</p>
+            <p class="owner-dash-stat-meta">Gmail / Resend</p>
+          </article>
+          <article class="owner-dash-glass owner-dash-stat">
+            <p class="owner-dash-stat-label">SMS Sent / Pending</p>
+            <p class="owner-dash-stat-value" id="count-sms-alerts">—</p>
+            <p class="owner-dash-stat-meta">A2P registration pending</p>
+          </article>
+        </div>
+      </section>
+
+      <p class="owner-dash-placeholder">Status editing and owner notes coming next.</p>
+
+      <div class="owner-dash-tabs" role="tablist" aria-label="Lead sections">
+        <button type="button" class="owner-dash-tab is-active" role="tab" aria-selected="true" aria-controls="panel-business" id="tab-business" data-panel="panel-business">Business Leads</button>
+        <button type="button" class="owner-dash-tab" role="tab" aria-selected="false" aria-controls="panel-transport" id="tab-transport" data-panel="panel-transport">Transportation</button>
+      </div>
+
+      <section id="panel-business" class="owner-dash-panel is-active" role="tabpanel" aria-labelledby="tab-business">
+        <header class="owner-dash-panel-head">
+          <h2>Business Leads</h2>
+          <p>Latest operator and intake submissions.</p>
+        </header>
+        <div id="business-leads-empty" class="owner-dash-empty" hidden>
+          <p>No requests yet. Submit a test from the Business Operator or Transportation page.</p>
+        </div>
+        <div id="business-leads-list" class="owner-dash-card-list"></div>
+      </section>
+
+      <section id="panel-transport" class="owner-dash-panel" role="tabpanel" aria-labelledby="tab-transport" hidden>
+        <header class="owner-dash-panel-head">
+          <h2>Transportation Requests</h2>
+          <p>Route operator and human-help handoffs.</p>
+        </header>
+        <div id="transport-empty" class="owner-dash-empty" hidden>
+          <p>No requests yet. Submit a test from the Business Operator or Transportation page.</p>
+        </div>
+        <div id="transport-list" class="owner-dash-card-list"></div>
+      </section>
+    </div>
+
+    <div id="owner-dash-loading" class="owner-dash-loading" aria-live="polite">
+      <p>Loading dashboard…</p>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var API_URL = "/.netlify/functions/owner-dashboard-data";
+      var params = new URLSearchParams(window.location.search);
+      var accessKey = params.get("key");
+
+      var els = {
+        main: document.getElementById("owner-dash-main"),
+        loading: document.getElementById("owner-dash-loading"),
+        unauthorized: document.getElementById("owner-dash-state-unauthorized"),
+        error: document.getElementById("owner-dash-state-error"),
+        content: document.getElementById("owner-dash-content"),
+        businessList: document.getElementById("business-leads-list"),
+        businessEmpty: document.getElementById("business-leads-empty"),
+        transportList: document.getElementById("transport-list"),
+        transportEmpty: document.getElementById("transport-empty"),
+        countBusinessNew: document.getElementById("count-business-new"),
+        countTransportNew: document.getElementById("count-transport-new"),
+        countEmailAlerts: document.getElementById("count-email-alerts"),
+        countSmsAlerts: document.getElementById("count-sms-alerts"),
+        countTotalBusiness: document.getElementById("count-total-business"),
+        countTotalTransport: document.getElementById("count-total-transport"),
+      };
+
+      function show(el) {
+        if (el) el.hidden = false;
+      }
+      function hide(el) {
+        if (el) el.hidden = true;
+      }
+
+      function esc(s) {
+        if (s == null || s === "") return "";
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function fmtDate(iso) {
+        if (!iso) return "—";
+        try {
+          var d = new Date(iso);
+          if (Number.isNaN(d.getTime())) return iso;
+          return d.toLocaleString(undefined, {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+          });
+        } catch {
+          return iso;
+        }
+      }
+
+      function alertPill(sent, label) {
+        var cls = sent ? "owner-dash-badge--ok" : "owner-dash-badge--pending";
+        var text = sent ? label + " sent" : label + " pending";
+        return '<span class="owner-dash-badge ' + cls + '">' + esc(text) + "</span>";
+      }
+
+      function qualityClass(q) {
+        var s = String(q || "").toLowerCase();
+        if (/hot|ready|priority/.test(s)) return "owner-dash-badge--hot";
+        if (/not a fit|spam/.test(s)) return "owner-dash-badge--muted";
+        return "owner-dash-badge--neutral";
+      }
+
+      function statusClass(st) {
+        var s = String(st || "new").toLowerCase();
+        if (s === "new") return "owner-dash-badge--new";
+        if (/done|closed|complete/.test(s)) return "owner-dash-badge--ok";
+        return "owner-dash-badge--neutral";
+      }
+
+      function block(label, value) {
+        if (value == null || value === "") return "";
+        return (
+          '<div class="owner-dash-field"><dt>' +
+          esc(label) +
+          '</dt><dd>' +
+          esc(value) +
+          "</dd></div>"
+        );
+      }
+
+      function renderBusiness(leads) {
+        if (!leads.length) {
+          show(els.businessEmpty);
+          els.businessList.innerHTML = "";
+          return;
+        }
+        hide(els.businessEmpty);
+        els.businessList.innerHTML = leads
+          .map(function (lead) {
+            var badge =
+              '<span class="owner-dash-badge ' +
+              qualityClass(lead.lead_quality) +
+              '">' +
+              esc(lead.lead_quality || "Lead") +
+              "</span>";
+            if (lead.status) {
+              badge +=
+                ' <span class="owner-dash-badge ' +
+                statusClass(lead.status) +
+                '">' +
+                esc(lead.status) +
+                "</span>";
+            }
+            var industryLoc = [lead.business_industry, lead.business_location]
+              .filter(Boolean)
+              .join(" · ");
+            return (
+              '<article class="owner-dash-glass owner-dash-lead-card">' +
+              '<div class="owner-dash-card-top">' +
+              badge +
+              '<time class="owner-dash-time" datetime="' +
+              esc(lead.created_at) +
+              '">' +
+              esc(fmtDate(lead.created_at)) +
+              "</time></div>" +
+              "<h3 class=\"owner-dash-card-title\">" +
+              esc(lead.business_name || "Business TBD") +
+              "</h3>" +
+              '<dl class="owner-dash-fields">' +
+              block("Contact", lead.contact_name) +
+              block("Email", lead.contact_email) +
+              block("Phone", lead.contact_phone) +
+              block("Preferred contact", lead.preferred_contact_method) +
+              block("Industry / location", industryLoc) +
+              block("Current problem", lead.current_problem) +
+              block("Services interested", lead.services_interested) +
+              block("Recommended system", lead.recommended_system) +
+              block("Urgency", lead.urgency) +
+              block("Timeline", lead.timeline) +
+              (lead.ai_summary
+                ? '<div class="owner-dash-field owner-dash-field--wide"><dt>AI summary</dt><dd class="owner-dash-excerpt">' +
+                  esc(lead.ai_summary) +
+                  "</dd></div>"
+                : "") +
+              "</dl>" +
+              '<div class="owner-dash-card-foot">' +
+              alertPill(lead.alert_email_sent, "Email") +
+              alertPill(lead.alert_sms_sent, "SMS") +
+              (lead.page_path
+                ? '<span class="owner-dash-meta">' + esc(lead.page_path) + "</span>"
+                : "") +
+              "</div></article>"
+            );
+          })
+          .join("");
+      }
+
+      function renderTransport(rows) {
+        if (!rows.length) {
+          show(els.transportEmpty);
+          els.transportList.innerHTML = "";
+          return;
+        }
+        hide(els.transportEmpty);
+        els.transportList.innerHTML = rows
+          .map(function (row) {
+            var route = [row.pickup_area, row.destination].filter(Boolean).join(" → ");
+            var excerpt = row.conversation_excerpt || row.notes || "";
+            return (
+              '<article class="owner-dash-glass owner-dash-lead-card">' +
+              '<div class="owner-dash-card-top">' +
+              '<span class="owner-dash-badge ' +
+              statusClass(row.status) +
+              '">' +
+              esc(row.status || "new") +
+              "</span>" +
+              (row.request_type
+                ? '<span class="owner-dash-badge owner-dash-badge--neutral">' +
+                  esc(row.request_type) +
+                  "</span>"
+                : "") +
+              '<time class="owner-dash-time" datetime="' +
+              esc(row.created_at) +
+              '">' +
+              esc(fmtDate(row.created_at)) +
+              "</time></div>" +
+              "<h3 class=\"owner-dash-card-title\">" +
+              esc(row.name || "Guest") +
+              "</h3>" +
+              '<dl class="owner-dash-fields">' +
+              block("Email", row.email) +
+              block("Phone", row.phone) +
+              block("Route", route) +
+              block("Date / time", row.date_time) +
+              block("Group size", row.group_size) +
+              (excerpt
+                ? '<div class="owner-dash-field owner-dash-field--wide"><dt>Notes / conversation</dt><dd class="owner-dash-excerpt">' +
+                  esc(excerpt) +
+                  "</dd></div>"
+                : "") +
+              "</dl>" +
+              '<div class="owner-dash-card-foot">' +
+              alertPill(row.alert_email_sent, "Email") +
+              alertPill(row.alert_sms_sent, "SMS") +
+              (row.page_path
+                ? '<span class="owner-dash-meta">' + esc(row.page_path) + "</span>"
+                : "") +
+              "</div></article>"
+            );
+          })
+          .join("");
+      }
+
+      function setCounts(counts) {
+        if (!counts) return;
+        els.countBusinessNew.textContent = String(counts.business_new ?? 0);
+        els.countTransportNew.textContent = String(counts.transportation_new ?? 0);
+        els.countEmailAlerts.textContent = String(counts.email_alerts_sent ?? 0);
+        els.countSmsAlerts.textContent = String(counts.sms_alerts_sent ?? 0);
+        els.countTotalBusiness.textContent = String(counts.total_business ?? 0);
+        els.countTotalTransport.textContent = String(counts.total_transportation ?? 0);
+      }
+
+      function initTabs() {
+        var tabs = document.querySelectorAll(".owner-dash-tab");
+        var panels = document.querySelectorAll(".owner-dash-panel");
+        tabs.forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            var panelId = tab.getAttribute("data-panel");
+            tabs.forEach(function (t) {
+              var active = t === tab;
+              t.classList.toggle("is-active", active);
+              t.setAttribute("aria-selected", active ? "true" : "false");
+            });
+            panels.forEach(function (panel) {
+              var showPanel = panel.id === panelId;
+              panel.classList.toggle("is-active", showPanel);
+              panel.hidden = !showPanel;
+            });
+          });
+        });
+      }
+
+      function finishUnauthorized() {
+        hide(els.loading);
+        hide(els.content);
+        hide(els.error);
+        show(els.unauthorized);
+      }
+
+      function finishError() {
+        hide(els.loading);
+        hide(els.content);
+        hide(els.unauthorized);
+        show(els.error);
+      }
+
+      function finishSuccess(data) {
+        hide(els.loading);
+        hide(els.unauthorized);
+        hide(els.error);
+        show(els.content);
+        setCounts(data.counts);
+        renderBusiness(data.business_leads || []);
+        renderTransport(data.transportation_requests || []);
+        initTabs();
+      }
+
+      if (!accessKey || !String(accessKey).trim()) {
+        finishUnauthorized();
+        return;
+      }
+
+      fetch(API_URL + "?key=" + encodeURIComponent(accessKey), {
+        method: "GET",
+        headers: { Accept: "application/json" },
+      })
+        .then(function (res) {
+          return res.json().then(function (data) {
+            return { ok: res.ok, status: res.status, data: data };
+          });
+        })
+        .then(function (result) {
+          if (result.status === 401 || (result.data && result.data.error === "Unauthorized")) {
+            finishUnauthorized();
+            return;
+          }
+          if (!result.ok || !result.data || !result.data.ok) {
+            finishError();
+            return;
+          }
+          finishSuccess(result.data);
+        })
+        .catch(function () {
+          finishError();
+        });
+    })();
+  </script>
+</body>
+</html>
