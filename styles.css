@@ -14397,3 +14397,153 @@ body.owner-dash-detail-open {
   padding: 6px 9px;
   font-size: 0.78rem;
 }
+
+/* Owner Command Dashboard v6 — opportunity value + offer builder */
+.page-owner-dashboard .owner-dash-opportunity-row {
+  margin: 0 0 10px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(255, 246, 230, 0.9);
+  background: rgba(20, 184, 166, 0.08);
+  border: 1px solid rgba(20, 184, 166, 0.28);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-opportunity-label {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(20, 184, 166, 0.95);
+}
+
+.page-owner-dashboard .owner-dash-opportunity-sep {
+  opacity: 0.55;
+}
+
+.page-owner-dashboard .owner-dash-opportunity-tier {
+  font-weight: 700;
+  color: #c8fff5;
+}
+
+.page-owner-dashboard .owner-dash-detail-section--opportunity {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(4, 10, 22, 0.5);
+  border: 1px solid rgba(20, 184, 166, 0.22);
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-detail-section--opportunity .owner-dash-detail-section-title {
+  margin-bottom: 10px;
+  color: #c8fff5;
+}
+
+.page-owner-dashboard .owner-dash-opportunity-head {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.page-owner-dashboard .owner-dash-opportunity-offer-line {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: rgba(255, 246, 230, 0.92);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-opportunity-k {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(20, 184, 166, 0.9);
+}
+
+.page-owner-dashboard .owner-dash-opportunity-blurb .owner-dash-opportunity-k {
+  display: inline;
+  margin: 0 6px 0 0;
+}
+
+.page-owner-dashboard .owner-dash-opportunity-tier-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ffe4c4;
+  background: rgba(255, 139, 31, 0.14);
+  border: 1px solid rgba(255, 139, 31, 0.35);
+}
+
+.page-owner-dashboard .owner-dash-opportunity-blurb {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(255, 246, 230, 0.86);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-opportunity-block {
+  margin-bottom: 10px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-opportunity-pre {
+  margin: 6px 0 0;
+  padding: 10px 12px;
+  max-height: 11rem;
+  overflow: auto;
+  border-radius: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: rgba(255, 246, 230, 0.82);
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 246, 230, 0.1);
+  -webkit-overflow-scrolling: touch;
+}
+
+.page-owner-dashboard .owner-dash-opportunity-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-detail-section--opportunity .owner-dash-btn {
+  flex: 1 1 calc(50% - 4px);
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.page-owner-dashboard .owner-dash-detail-section--opportunity .owner-dash-btn--primary {
+  flex: 1 1 100%;
+}
+
+@media (min-width: 520px) {
+  .page-owner-dashboard .owner-dash-detail-section--opportunity .owner-dash-btn {
+    flex: 1 1 auto;
+    white-space: nowrap;
+  }
+
+  .page-owner-dashboard .owner-dash-detail-section--opportunity .owner-dash-btn--primary {
+    flex: 1 1 auto;
+  }
+}
+
+.page-owner-dashboard .owner-dash-detail-section--opportunity .owner-dash-detail-copy-feedback {
+  display: block;
+  margin-top: 8px;
+}

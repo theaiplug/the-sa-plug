@@ -778,29 +778,437 @@
 
       function leadSignals(lead) {
         var text = leadContextText(lead);
+        var services = String(lead.services_interested || "").toLowerCase();
         return {
           text: text,
-          missedCalls: /missed call|missed calls|voicemail|phone|call back|after hours|ring|answering/.test(
+          missedCalls: /missed call|missed calls|voicemail|phone agent|after hours|ring|answering|call back/.test(
             text
           ),
-          website: /website|web site|site\b|online presence|landing page|seo\b/.test(text),
-          followUp: /follow[- ]?up|scattered|visibility|crm|pipeline|intake|no system|spreadsheet/.test(
-            text
-          ),
+          website:
+            /website|web site|site\b|online presence|landing page|homepage|redesign|basic site|new site/.test(
+              text
+            ) || /website|landing page|web design/.test(services),
+          leadCapture:
+            /missed lead|weak form|no follow-up|scattered message|dm\b|dms\b|quote request|booking request|lead capture|smart intake|qr funnel|owner alert|routing|intake/.test(
+              text
+            ) ||
+            /lead capture|forms|qr|intake|owner alert|routing/.test(services),
+          followUp: /follow[- ]?up|scattered|visibility|crm|pipeline|no system|spreadsheet/.test(text),
           booking: /book|booking|appointment|schedule|calendar/.test(text),
-          urgent: /urgent|asap|immediate|right away|losing|revenue|money|today|tomorrow/.test(text),
-          multiple: /dashboard|ai phone|operating system|multiple|intake.{0,40}dashboard|phone.{0,40}dashboard/.test(
+          automation:
+            /automation|chatbot|ai operator|phone agent|workflow|business system|operating system/.test(text),
+          dashboard: /dashboard|owner visibility|command center|reporting/.test(text),
+          urgent: /urgent|asap|immediate|right away|losing|revenue|money|today|tomorrow|high urgency/.test(
             text
           ),
+          multiple:
+            /dashboard|ai phone|operating system|multiple|intake.{0,40}dashboard|phone.{0,40}dashboard|several|many moving/.test(
+              text
+            ),
           foundation: /foundation|new business|starting|brand new|from scratch|no website/.test(text),
+          media:
+            /content|social media|short video|video production|blog|seo content|ad creative|posting system|marketing output|ongoing marketing|caption/.test(
+              text
+            ) || /content|social media|video|blog|marketing/.test(services),
+          commandCenter:
+            /command center|full system|crm|reporting|multiple system|website.{0,60}(call|automation|dashboard)|phone.{0,60}dashboard/.test(
+              text
+            ),
         };
       }
 
-      function businessSystemPhrase(lead) {
+      function countLeadPainPoints(sig) {
+        var n = 0;
+        if (sig.website) n++;
+        if (sig.leadCapture || sig.followUp) n++;
+        if (sig.missedCalls) n++;
+        if (sig.automation || sig.dashboard) n++;
+        if (sig.booking) n++;
+        if (sig.multiple || sig.commandCenter) n++;
+        return n;
+      }
+
+      function recommendBusinessOffer(lead) {
+        var sig = leadSignals(lead);
+        var priority = calcBusinessPriority(lead);
+        var text = sig.text;
+        var painCount = countLeadPainPoints(sig);
+        var shortTimeline = textIncludesAny(lead.timeline, [
+          "now",
+          "this week",
+          "1 week",
+          "2 weeks",
+          "asap",
+          "right away",
+        ]);
+
+        if (sig.media) {
+          var svc = String(lead.services_interested || "").toLowerCase();
+          var mediaPrimary =
+            /content|social|video|blog|marketing|seo content|ad creative|posting/.test(svc) ||
+            (!sig.missedCalls && !sig.automation && !sig.commandCenter && painCount <= 2);
+          if (mediaPrimary) return "AI Media Engine";
+        }
+
+        if (
+          (priority.key === "hot" || priority.key === "warm") &&
+          painCount >= 3 &&
+          (sig.urgent || textIncludesAny(lead.urgency, ["urgent", "losing revenue", "high"])) &&
+          (shortTimeline || sig.urgent) &&
+          (sig.commandCenter ||
+            sig.multiple ||
+            (sig.website && sig.leadCapture && (sig.missedCalls || sig.automation || sig.dashboard)))
+        ) {
+          return "Full Business Command Center";
+        }
+
+        if (
+          sig.automation ||
+          sig.dashboard ||
+          (sig.missedCalls &&
+            /phone agent|chatbot|ai operator|automation|dashboard|booking|workflow/.test(text)) ||
+          (sig.urgent && painCount >= 2) ||
+          (painCount >= 3 && (sig.missedCalls || sig.leadCapture))
+        ) {
+          return "Operating System Layer";
+        }
+
+        if (
+          sig.website &&
+          !sig.leadCapture &&
+          !sig.missedCalls &&
+          !sig.automation &&
+          painCount <= 2
+        ) {
+          return "Foundation System";
+        }
+
+        if (
+          sig.leadCapture ||
+          sig.followUp ||
+          /missed lead|weak form|quote request|booking request|dm\b|no follow-up/.test(text)
+        ) {
+          return "Lead Capture System";
+        }
+
+        if (sig.website || sig.foundation) {
+          return "Foundation System";
+        }
+
+        if (lead.recommended_system) {
+          var rec = String(lead.recommended_system).toLowerCase();
+          if (/foundation|website/.test(rec)) return "Foundation System";
+          if (/operating|layer|command|system layer/.test(rec)) return "Operating System Layer";
+          if (/command center|full/.test(rec)) return "Full Business Command Center";
+          if (/media|content|social/.test(rec)) return "AI Media Engine";
+        }
+
+        return "Lead Capture System";
+      }
+
+      function estimateOpportunityTier(lead, offer, sig, priority) {
+        var painCount = countLeadPainPoints(sig);
+        var shortTimeline = textIncludesAny(lead.timeline, [
+          "now",
+          "this week",
+          "1 week",
+          "2 weeks",
+          "asap",
+        ]);
+
+        if (
+          priority.key === "hot" &&
+          (sig.urgent || textIncludesAny(lead.urgency, ["urgent", "losing revenue", "high"]))
+        ) {
+          return "Premium";
+        }
+
+        if (
+          offer === "Full Business Command Center" ||
+          (offer === "Operating System Layer" && (sig.urgent || painCount >= 3))
+        ) {
+          return "Premium";
+        }
+
+        if (
+          painCount >= 3 ||
+          (sig.urgent && painCount >= 2) ||
+          offer === "Operating System Layer" ||
+          (offer === "Lead Capture System" && sig.leadCapture && sig.followUp)
+        ) {
+          return sig.urgent || priority.key === "hot" ? "Premium" : "Growth";
+        }
+
+        if (
+          offer === "Foundation System" &&
+          painCount <= 1 &&
+          !sig.urgent &&
+          priority.key === "low" &&
+          !shortTimeline
+        ) {
+          return "Starter";
+        }
+
+        if (offer === "AI Media Engine" && !sig.urgent && priority.key === "low") {
+          return "Growth";
+        }
+
+        if (
+          offer === "Lead Capture System" ||
+          offer === "Foundation System" ||
+          sig.urgent ||
+          priority.key === "warm" ||
+          priority.key === "hot"
+        ) {
+          return priority.key === "low" && offer === "Foundation System" && painCount <= 1
+            ? "Starter"
+            : "Growth";
+        }
+
+        return "Growth";
+      }
+
+      function whyOfferFits(lead, offer, sig) {
+        var problem = lead.current_problem || "their intake details";
+        var services = lead.services_interested;
+        var bits = [];
+
+        if (offer === "Foundation System") {
+          bits.push(
+            "This lead’s main gap looks like online presence—a clear website or landing page with a simple customer path before layering automation."
+          );
+        } else if (offer === "Lead Capture System") {
+          bits.push(
+            "They described lead flow or follow-up friction (" +
+              problem +
+              "), so the first useful layer is intake, routing, and owner visibility—not a full rebuild."
+          );
+        } else if (offer === "Operating System Layer") {
+          bits.push(
+            "Multiple touchpoints (calls, intake, follow-up, or dashboards) show up in what they shared, so the first win is connecting the operating flow—not adding another isolated tool."
+          );
+        } else if (offer === "Full Business Command Center") {
+          bits.push(
+            "High priority with several systems in play (" +
+              (services || problem) +
+              ")—start with a mapped command layer (site, intake, routing, follow-up, owner view) rather than one-off fixes."
+          );
+        } else if (offer === "AI Media Engine") {
+          bits.push(
+            "They asked for ongoing content or marketing output, so the first offer should be a repeatable production workflow—not a generic website project."
+          );
+        }
+
+        if (sig.urgent && offer !== "AI Media Engine") {
+          bits.push(
+            "Urgency or revenue risk is present; prioritize catching and routing real customer requests before expanding scope."
+          );
+        }
+
+        return bits.slice(0, 2).join(" ");
+      }
+
+      function suggestedFirstMoveForOffer(offer, sig) {
+        if (offer === "Foundation System") {
+          return "Review current website and intake path first.";
+        }
+        if (offer === "Lead Capture System") {
+          return "Ask how leads arrive, who responds, and where follow-up breaks.";
+        }
+        if (offer === "Operating System Layer") {
+          return "Map missed-call flow before discussing automation.";
+        }
+        if (offer === "Full Business Command Center") {
+          return "Book a 15-minute workflow mapping call.";
+        }
+        if (offer === "AI Media Engine") {
+          return "Clarify content channels, approval flow, and what “done” looks like weekly.";
+        }
+        if (sig.missedCalls) {
+          return "Map missed-call flow before discussing automation.";
+        }
+        return "Book a 15-minute workflow mapping call.";
+      }
+
+      function firstDeliverableForOffer(offer) {
+        var map = {
+          "Foundation System": "Mobile-first landing or site shell with offer, lead form, and owner-approved copy",
+          "Lead Capture System": "Smart intake path with owner alerts and follow-up visibility",
+          "Operating System Layer": "Connected intake + call/chat plan + owner dashboard checkpoints",
+          "Full Business Command Center": "Workflow map plus phased build plan for site, intake, routing, and dashboard",
+          "AI Media Engine": "Content workflow map plus first campaign batch template",
+        };
+        return map[offer] || map["Lead Capture System"];
+      }
+
+      function buildDiscoveryCallAgenda(lead, opp) {
+        var biz = lead.business_name || "the business";
+        return [
+          "Discovery call agenda — " + biz,
+          "",
+          "1. Current lead flow",
+          "   - How do customers find you and reach out today (calls, forms, DMs, referrals)?",
+          "   - What happens in the first 5 minutes after a new inquiry?",
+          "",
+          "2. Biggest bottleneck",
+          "   - Where do requests get stuck, dropped, or delayed?",
+          "   - What would fixing that unlock for the owner this month?",
+          "",
+          "3. Response / follow-up process",
+          "   - Who responds, on what channel, and how fast?",
+          "   - How do you track open leads and handoffs?",
+          "",
+          "4. First system to build",
+          "   - Recommended starting offer: " + opp.offer + " (" + opp.tier + " tier)",
+          "   - First deliverable focus: " + firstDeliverableForOffer(opp.offer),
+          "",
+          "5. Owner approval + next step",
+          "   - Confirm scope guardrails and what success looks like in 30 days",
+          "   - Agree on " + opp.suggestedFirstMove.toLowerCase(),
+        ].join("\n");
+      }
+
+      function buildProposalNotes(lead, opp) {
+        var pain = lead.current_problem || "Lead flow and owner visibility need tightening.";
+        return [
+          "Internal proposal notes — " + (lead.business_name || "Lead"),
+          "",
+          "Likely pain point:",
+          pain,
+          "",
+          "Recommended offer:",
+          opp.offer + " · " + opp.tier + " tier",
+          "",
+          "First deliverable:",
+          firstDeliverableForOffer(opp.offer),
+          "",
+          "Proof angle (Where To Go SA only):",
+          "Live example: real visitor requests, routed questions, Gmail owner alerts, and a private dashboard for follow-up—built for an actual operating business, not a demo template.",
+          "",
+          "Risk / guardrail:",
+          "No guarantee on leads, bookings, revenue, or rankings. Scope stays practical; owner approves copy, routing rules, and automation boundaries before build.",
+          "",
+          "Next step:",
+          opp.suggestedFirstMove,
+          "",
+          "Why this offer fits:",
+          opp.whyFits,
+        ].join("\n");
+      }
+
+      function buildMiniProposal(lead, opp) {
+        var contact = lead.contact_name || "there";
+        var business = lead.business_name || "your business";
+        return [
+          "Subject:",
+          "Recommended starting system for " + business,
+          "",
+          "Body:",
+          "Hi " + contact + ",",
+          "",
+          "Based on what you shared, I would not start by overbuilding a giant system. I would start with " +
+            opp.offer +
+            ".",
+          "",
+          "Why:",
+          opp.whyFits,
+          "",
+          "First move:",
+          opp.suggestedFirstMove,
+          "",
+          "What this would focus on:",
+          "- Clear customer path",
+          "- Better intake or lead capture",
+          "- Faster owner visibility",
+          "- Follow-up support",
+          "- A practical workflow your team can actually use",
+          "",
+          "Where To Go SA is the live proof example: it captures real requests, routes visitor questions, sends owner alerts, and gives the owner a dashboard to manage follow-up.",
+          "",
+          "The next step would be a short workflow mapping call so I can understand how your leads come in now and where they get stuck.",
+          "",
+          "Willie",
+          "The AI Plug / Where To Go SA",
+        ].join("\n");
+      }
+
+      function calcBusinessOpportunity(lead) {
+        var sig = leadSignals(lead);
+        var priority = calcBusinessPriority(lead);
+        var offer = recommendBusinessOffer(lead);
+        var tier = estimateOpportunityTier(lead, offer, sig, priority);
+        var whyFits = whyOfferFits(lead, offer, sig);
+        var suggestedFirstMove = suggestedFirstMoveForOffer(offer, sig);
+        var opp = {
+          offer: offer,
+          tier: tier,
+          whyFits: whyFits,
+          suggestedFirstMove: suggestedFirstMove,
+        };
+        opp.discoveryAgenda = buildDiscoveryCallAgenda(lead, opp);
+        opp.proposalNotes = buildProposalNotes(lead, opp);
+        opp.miniProposal = buildMiniProposal(lead, opp);
+        return opp;
+      }
+
+      function opportunityCardRow(lead) {
+        var opp = calcBusinessOpportunity(lead);
         return (
-          (lead.recommended_system && String(lead.recommended_system).trim()) ||
-          "your lead capture and follow-up flow"
+          '<p class="owner-dash-opportunity-row">' +
+          '<span class="owner-dash-opportunity-label">Opportunity:</span> ' +
+          esc(opp.offer) +
+          ' <span class="owner-dash-opportunity-sep" aria-hidden="true">·</span> ' +
+          '<span class="owner-dash-opportunity-tier">' +
+          esc(opp.tier) +
+          "</span></p>"
         );
+      }
+
+      function opportunityBuilderBlock(lead) {
+        var opp = calcBusinessOpportunity(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--opportunity">' +
+          '<h3 class="owner-dash-detail-section-title">Opportunity Builder</h3>' +
+          '<div class="owner-dash-opportunity-head">' +
+          '<p class="owner-dash-opportunity-offer-line"><span class="owner-dash-opportunity-k">Recommended offer</span> ' +
+          esc(opp.offer) +
+          "</p>" +
+          '<p class="owner-dash-opportunity-offer-line"><span class="owner-dash-opportunity-k">Estimated value tier</span> ' +
+          '<span class="owner-dash-opportunity-tier-badge">' +
+          esc(opp.tier) +
+          "</span></p></div>" +
+          '<p class="owner-dash-opportunity-blurb"><span class="owner-dash-opportunity-k">Why this offer fits</span> ' +
+          esc(opp.whyFits) +
+          "</p>" +
+          '<p class="owner-dash-opportunity-blurb"><span class="owner-dash-opportunity-k">Suggested first move</span> ' +
+          esc(opp.suggestedFirstMove) +
+          "</p>" +
+          '<div class="owner-dash-opportunity-block">' +
+          '<p class="owner-dash-opportunity-k">Discovery call agenda</p>' +
+          '<pre class="owner-dash-opportunity-pre">' +
+          esc(opp.discoveryAgenda) +
+          "</pre></div>" +
+          '<div class="owner-dash-opportunity-block">' +
+          '<p class="owner-dash-opportunity-k">Proposal notes</p>' +
+          '<pre class="owner-dash-opportunity-pre">' +
+          esc(opp.proposalNotes) +
+          "</pre></div>" +
+          '<div class="owner-dash-opportunity-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-opportunity" data-copy-kind="discovery-agenda">Copy discovery agenda</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-opportunity" data-copy-kind="proposal-notes">Copy proposal notes</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-opportunity" data-copy-kind="mini-proposal">Copy mini-proposal</button>' +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
+      function businessSystemPhrase(lead) {
+        var opp = calcBusinessOpportunity(lead);
+        return opp.offer || "your lead capture and follow-up flow";
       }
 
       function buildBusinessSmsFollowUp(lead) {
@@ -935,53 +1343,26 @@
       }
 
       function buildBusinessFirstOffer(lead) {
-        var sig = leadSignals(lead);
-        var offer = "Lead Capture System";
-        var why =
-          "They need a tighter path from first contact to follow-up without adding complexity for the owner.";
-        var nextStep = "Book a workflow mapping call";
-
-        if (sig.multiple || (sig.missedCalls && /dashboard|ai phone|intake/.test(sig.text))) {
-          offer = "Operating System Layer";
-          why =
-            "Multiple touchpoints (calls, intake, follow-up, visibility) are involved, so the first win is connecting the flow—not adding another isolated tool.";
-          nextStep = "Map call, intake, and owner-alert flow on one screen";
-        } else if (sig.missedCalls || sig.urgent || /losing|revenue|money/.test(sig.text)) {
-          offer = sig.urgent ? "Operating System Layer" : "Lead Capture System";
-          why = sig.urgent
-            ? "Urgency and revenue risk point to missed calls or slow follow-up—the first layer should catch and route leads immediately."
-            : "Missed calls or slow response is the bottleneck; start with capture, text-back, and owner notification before a bigger build.";
-          nextStep = sig.missedCalls
-            ? "Review current phone routing and after-hours handling"
-            : "Book a workflow mapping call";
-        } else if (sig.website || sig.foundation || /online business|new site|website/.test(sig.text)) {
-          offer = "Foundation System";
-          why =
-            "The primary gap is a clear online foundation—site, intake, and first-step customer path—before layering automation.";
-          nextStep = "Review current website and intake flow";
-        } else if (sig.followUp || /visibility|scattered|no crm/.test(sig.text)) {
-          offer = "Lead Capture System";
-          why =
-            "Leads are coming in but follow-up and visibility are scattered; consolidate intake and owner alerts first.";
-          nextStep = "Audit where leads land today (forms, calls, DMs)";
-        } else if (lead.recommended_system) {
-          why =
-            "Their intake already points toward " +
-            lead.recommended_system +
-            " as the best-fit starting layer.";
-          if (/foundation/i.test(String(lead.recommended_system))) offer = "Foundation System";
-          else if (/operating|layer/i.test(String(lead.recommended_system))) offer = "Operating System Layer";
-          else offer = "Lead Capture System";
-        }
-
+        var opp = calcBusinessOpportunity(lead);
         return (
           "Recommended first offer:\n" +
-          offer +
+          opp.offer +
+          "\n\nEstimated value tier:\n" +
+          opp.tier +
           "\n\nWhy:\n" +
-          why +
+          opp.whyFits +
           "\n\nNext step:\n" +
-          nextStep
+          opp.suggestedFirstMove
         );
+      }
+
+      function opportunityTextForKind(kind, lead) {
+        if (!lead) return "";
+        var opp = calcBusinessOpportunity(lead);
+        if (kind === "discovery-agenda") return opp.discoveryAgenda;
+        if (kind === "proposal-notes") return opp.proposalNotes;
+        if (kind === "mini-proposal") return opp.miniProposal;
+        return "";
       }
 
       function transportRouteSummary(row) {
@@ -1203,6 +1584,7 @@
           esc(fmtDate(lead.created_at)) +
           "</time></div>" +
           nextActionHtml(nextAction) +
+          opportunityBuilderBlock(lead) +
           pipelineBlock("business_leads", lead.status) +
           '<div class="owner-dash-detail-grid">' +
           detailRow("Business name", lead.business_name) +
@@ -1383,6 +1765,10 @@
 
       function copyTextForKind(kind, row, table) {
         if (!row) return "";
+        if (table === "business_leads") {
+          var oppText = opportunityTextForKind(kind, row);
+          if (oppText) return oppText;
+        }
         var followUp = followUpTextForKind(kind, row, table);
         if (followUp) return followUp;
         if (kind === "phone") {
@@ -1401,8 +1787,10 @@
         var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
         if (!sheet || !state.detailOpen) return;
         var section =
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--opportunity")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--tools")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section")) ||
+          sheet.querySelector(".owner-dash-detail-section--opportunity") ||
           sheet.querySelector(".owner-dash-detail-section--tools") ||
           sheet.querySelector(".owner-dash-detail-section");
         var row = getDetailRecord();
@@ -1602,6 +1990,7 @@
               "<h3 class=\"owner-dash-card-title\">" +
               esc(lead.business_name || "Business TBD") +
               "</h3>" +
+              opportunityCardRow(lead) +
               '<dl class="owner-dash-fields owner-dash-fields--compact">' +
               block("Contact", lead.contact_name) +
               block("Phone", lead.contact_phone) +
@@ -2040,7 +2429,10 @@
           }
 
           var sheet = btn.closest(".owner-dash-detail-sheet");
-          if (sheet && (action === "copy-field" || action === "copy-followup")) {
+          if (
+            sheet &&
+            (action === "copy-field" || action === "copy-followup" || action === "copy-opportunity")
+          ) {
             copyFromDetail(btn.getAttribute("data-copy-kind"), btn);
             return;
           }
