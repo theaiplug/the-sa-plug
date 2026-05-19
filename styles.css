@@ -12661,6 +12661,7 @@ body.page-ask main {
 /* --- Owner Command Dashboard (private, direct URL only) --- */
 .page-owner-dashboard {
   color: var(--on-dark-body-soft);
+  overflow-x: hidden;
 }
 
 .page-owner-dashboard .owner-dash-header {
@@ -12669,22 +12670,40 @@ body.page-ask main {
   align-items: center;
   justify-content: space-between;
   gap: 12px 20px;
-  padding: 14px clamp(16px, 4vw, 28px);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
   border-bottom: 1px solid rgba(20, 184, 166, 0.22);
   background: rgba(4, 10, 22, 0.72);
   backdrop-filter: blur(10px);
 }
 
+.page-owner-dashboard .owner-dash-header .brand strong {
+  color: #fff6e6;
+}
+
+.page-owner-dashboard .owner-dash-header .brand small {
+  color: rgba(255, 246, 230, 0.68);
+}
+
 .page-owner-dashboard .owner-dash-header-proof {
   margin: 0;
   font-size: 0.82rem;
-  color: rgba(255, 246, 230, 0.72);
+  color: rgba(255, 246, 230, 0.78);
+}
+
+.page-owner-dashboard .owner-dash-header-proof strong {
+  color: rgba(255, 246, 230, 0.94);
+  font-weight: 700;
 }
 
 .page-owner-dashboard .owner-dash-main {
+  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: clamp(20px, 4vw, 36px) clamp(16px, 4vw, 28px) 48px;
+  padding: clamp(20px, 4vw, 36px) max(18px, env(safe-area-inset-right, 0px)) 48px max(18px, env(safe-area-inset-left, 0px));
+  min-width: 0;
 }
 
 .page-owner-dashboard .owner-dash-hero {
@@ -13173,4 +13192,47 @@ body.page-ask main {
 .page-owner-dashboard .owner-dash-loading p {
   margin: 24px 0;
   color: rgba(255, 246, 230, 0.7);
+}
+
+.page-owner-dashboard .owner-dash-summary-grid,
+.page-owner-dashboard .owner-dash-filters,
+.page-owner-dashboard .owner-dash-tabs,
+.page-owner-dashboard .owner-dash-card-list,
+.page-owner-dashboard #owner-dash-content {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 639px) {
+  .page-owner-dashboard .owner-dash-main {
+    padding-left: max(18px, env(safe-area-inset-left, 0px));
+    padding-right: max(18px, env(safe-area-inset-right, 0px));
+  }
+
+  .page-owner-dashboard .owner-dash-hero h1 {
+    max-width: none;
+    font-size: clamp(1.55rem, 7.5vw, 2rem);
+  }
+
+  .page-owner-dashboard .owner-dash-stat {
+    padding: 12px 14px;
+  }
+
+  .page-owner-dashboard .owner-dash-stat-label {
+    margin-bottom: 4px;
+    font-size: 0.78rem;
+  }
+
+  .page-owner-dashboard .owner-dash-stat-value {
+    font-size: clamp(1.65rem, 6.5vw, 1.95rem);
+  }
+
+  .page-owner-dashboard .owner-dash-stat-meta {
+    margin-top: 6px;
+    font-size: 0.82rem;
+  }
+
+  .page-owner-dashboard .owner-dash-summary-grid {
+    gap: 10px;
+  }
 }

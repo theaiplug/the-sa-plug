@@ -35,6 +35,12 @@
         <li class="owner-dash-pill">Gmail Alerts</li>
         <li class="owner-dash-pill owner-dash-pill--warn">SMS Pending A2P</li>
       </ul>
+      <div class="owner-dash-hero-actions">
+        <button type="button" id="owner-dash-refresh" class="owner-dash-btn owner-dash-btn--secondary" hidden>
+          Refresh data
+        </button>
+        <p id="owner-dash-refresh-error" class="owner-dash-refresh-error" hidden role="alert" aria-live="polite"></p>
+      </div>
     </section>
 
     <div id="owner-dash-state-unauthorized" class="owner-dash-state" hidden>
@@ -182,6 +188,8 @@
         countSmsAlerts: document.getElementById("count-sms-alerts"),
         countTotalBusiness: document.getElementById("count-total-business"),
         countTotalTransport: document.getElementById("count-total-transport"),
+        refreshBtn: document.getElementById("owner-dash-refresh"),
+        refreshError: document.getElementById("owner-dash-refresh-error"),
       };
 
       function show(el) {
@@ -661,21 +669,69 @@
           });
       }
 
-      function refreshCounts() {
+      function fetchDashboard() {
         return fetch(DATA_URL + "?key=" + encodeURIComponent(accessKey), {
           method: "GET",
           headers: { Accept: "application/json" },
-        })
-          .then(function (res) {
-            return res.json().then(function (data) {
-              if (res.ok && data && data.ok && data.counts) {
-                state.counts = data.counts;
-                setCounts(data.counts);
-              }
-            });
+        }).then(function (res) {
+          return res.json().then(function (data) {
+            return { ok: res.ok, status: res.status, data: data };
+          });
+        });
+      }
+
+      function refreshCounts() {
+        return fetchDashboard()
+          .then(function (result) {
+            if (result.ok && result.data && result.data.ok && result.data.counts) {
+              state.counts = result.data.counts;
+              setCounts(result.data.counts);
+            }
           })
           .catch(function () {
             /* counts refresh is best-effort */
+          });
+      }
+
+      function hideRefreshError() {
+        if (els.refreshError) {
+          els.refreshError.hidden = true;
+          els.refreshError.textContent = "";
+        }
+      }
+
+      function showRefreshError(message) {
+        if (!els.refreshError) return;
+        els.refreshError.textContent = message;
+        els.refreshError.hidden = false;
+      }
+
+      function handleRefresh() {
+        if (!els.refreshBtn || els.refreshBtn.disabled) return;
+        hideRefreshError();
+        els.refreshBtn.disabled = true;
+        els.refreshBtn.textContent = "Refreshing…";
+
+        fetchDashboard()
+          .then(function (result) {
+            if (result.status === 401 || (result.data && result.data.error === "Unauthorized")) {
+              finishUnauthorized();
+              return;
+            }
+            if (!result.ok || !result.data || !result.data.ok) {
+              showRefreshError("Could not refresh data. Try again in a moment.");
+              return;
+            }
+            finishSuccess(result.data);
+          })
+          .catch(function () {
+            showRefreshError("Network error while refreshing. Try again.");
+          })
+          .finally(function () {
+            if (els.refreshBtn && els.content && !els.content.hidden) {
+              els.refreshBtn.disabled = false;
+              els.refreshBtn.textContent = "Refresh data";
+            }
           });
       }
 
@@ -730,6 +786,8 @@
         hide(els.loading);
         hide(els.content);
         hide(els.error);
+        if (els.refreshBtn) hide(els.refreshBtn);
+        hideRefreshError();
         show(els.unauthorized);
       }
 
@@ -737,6 +795,8 @@
         hide(els.loading);
         hide(els.content);
         hide(els.unauthorized);
+        if (els.refreshBtn) hide(els.refreshBtn);
+        hideRefreshError();
         show(els.error);
       }
 
@@ -744,7 +804,9 @@
         hide(els.loading);
         hide(els.unauthorized);
         hide(els.error);
+        hideRefreshError();
         show(els.content);
+        if (els.refreshBtn) show(els.refreshBtn);
         state.businessLeads = data.business_leads || [];
         state.transportRows = data.transportation_requests || [];
         state.counts = data.counts || null;
@@ -754,22 +816,20 @@
         initFilters();
       }
 
+      function initRefresh() {
+        if (!els.refreshBtn) return;
+        els.refreshBtn.addEventListener("click", handleRefresh);
+      }
+
       initWorkflowDelegation();
+      initRefresh();
 
       if (!accessKey || !String(accessKey).trim()) {
         finishUnauthorized();
         return;
       }
 
-      fetch(DATA_URL + "?key=" + encodeURIComponent(accessKey), {
-        method: "GET",
-        headers: { Accept: "application/json" },
-      })
-        .then(function (res) {
-          return res.json().then(function (data) {
-            return { ok: res.ok, status: res.status, data: data };
-          });
-        })
+      fetchDashboard()
         .then(function (result) {
           if (result.status === 401 || (result.data && result.data.error === "Unauthorized")) {
             finishUnauthorized();
