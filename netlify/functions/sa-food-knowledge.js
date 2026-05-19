@@ -51,7 +51,7 @@ DOWNTOWN / RIVER WALK:
 - Pinkerton's Barbecue — Google: 4.4 ★ · 3.5K reviews
 - Mi Tierra (culture / Market Square) — Google: 4.4 ★ · 13.5K reviews
 - Esquire Tavern (Willie Approved drinks) — Google: 4.4 ★ · 4.3K reviews
-- Rooftops (ranked): Aleteo (Monarch), Fairmount Rooftop Oyster Bar, The Moon's Daughter (Thompson), Rosario's Rooftop — Tenfold / 1Watson as skyline backups only
+- Rooftops (ranked by Google rating): Tenfold Rooftop, Aleteo (Monarch), Fairmount Rooftop Oyster Bar, The Moon's Daughter (Thompson), Rosario's Rooftop — 1Watson as skyline backup when view > dinner
 
 THE PEARL:
 - Supper — Google: 4.6 ★ · 1.5K reviews
@@ -91,7 +91,7 @@ FOOD BY MOOD (curated — do not dump long citywide lists):
 - Seafood / ceviche: El Bucanero (Willie Approved), El Cevichero, Boudro's, Fairmount Rooftop, Biga
 - Barbecue: Pinkerton's, Rudy's, Smokey Mo's — do not over-list BBQ
 - Italian / pizza: Paesanos, Roca & Martillo, Via 313, Grimaldi's
-- Rooftop / drinks: Aleteo, Fairmount, Moon's Daughter, Rosario's Rooftop, Esquire, Bar 414, Sternewirth, Jazz TX
+- Rooftop / drinks: Tenfold, Aleteo, Fairmount, Moon's Daughter, Rosario's Rooftop, Esquire, Bar 414, Sternewirth, Jazz TX
 - Breakfast: La Panadería (Willie Approved), Alamo Biscuit, Cibolo Moon buffet (JW), Springhouse (Hyatt), Haywire brunch (La Cantera), Mi Tierra bakery culture
 
 Willie Approved / strongest confirmed picks (when zone and request fit):
@@ -106,14 +106,14 @@ Willie Approved / strongest confirmed picks (when zone and request fit):
 
 Other strong picks (context-dependent):
 - La Fonda, Rosario's for Mexican rooms.
-- Tenfold Rooftop only when Aleteo / Fairmount / Moon's Daughter are not the fit — strong rating but lower priority than researched downtown rooftops.
+- Tenfold Rooftop — Google: 4.8 ★ · 1.5K reviews — lead skyline rooftop when rating and terrace views matter.
 - Mad Dogs British Pub for informal River Walk pub nights.
 - Do not recommend Republic of Texas.
 
 River Walk / downtown dinner picks (full downtown dining guide also in DOWNTOWN_DINING_NIGHTLIFE_KNOWLEDGE):
 - Lead with Domingo for polished modern Mexican downtown, Paesanos for Italian-first River Walk dinners (above 1Watson for dinner picks), Boudro's for iconic River Walk atmosphere, Biga for elevated riverfront fine dining, Bohanan's for luxury steakhouse (downtown destination — not nearby JW).
 - Pinkerton's for downtown Texas barbecue; Mi Tierra for Market Square culture; Schilo's for historic lunch; Casa Rio for classic River Walk photo stop / easy casual River Walk option on the umbrellas — not a top food-first pick; do not present as best Mexican.
-- Rooftops downtown: Aleteo (Monarch/Hemisfair luxury), Moon's Daughter (Thompson upscale), Fairmount Rooftop (oysters/date), Rosario's Rooftop (loud group energy). Chart House = view-first at Tower.
+- Rooftops downtown: Tenfold (top Google-rated skyline terrace), Aleteo (Monarch/Hemisfair luxury), Moon's Daughter (Thompson upscale), Fairmount Rooftop (oysters/date), Rosario's Rooftop (loud group energy). Chart House = view-first at Tower.
 - After-dinner: Esquire (Willie Approved), Downstairs at Esquire (speakeasy), Bar 414 (blues/classic cocktails at Gunter).
 - For River Walk Mexican / Tex-Mex: Domingo and Boudro's for stronger food-first nights; Mi Tierra for Market Square culture; Casa Rio only when they want the classic umbrella photo / easy casual River Walk experience.
 - If a visitor names a famous River Walk spot you do not lead with, stay neutral and offer Domingo, Paesanos, Boudro's, or the picks above that fit their situation.

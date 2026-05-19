@@ -17,11 +17,13 @@ POSITIONING (never contradict the public site):
 - Chart House = view-first at Tower — Google: 3.9 ★ · 5.5K reviews.
 - Casa Rio = classic River Walk photo stop — Google: 4.1 ★ · 4.8K reviews.
 
-ROOFTOP PRIORITY (no Tenfold/1Watson unless visitor wants backup skyline):
-1. Aleteo at The Monarch — Google: 4.6 ★ · 120 reviews — luxury, 17 stories, Yucatán coastal, mezcal/tequila, sunset. Resort guests, client drinks.
-2. Fairmount Rooftop Oyster Bar — Google: 4.5 ★ · 520 reviews — oysters, champagne, martinis, date nights.
-3. The Moon's Daughter — Google: 4.4 ★ · 1.2K reviews — Thompson 20th-floor, upscale nightlife, resort guests.
-4. Rosario's Rooftop — Google: 4.3 ★ · 6.8K reviews (main venue) — lively margaritas, music, groups.
+ROOFTOP PRIORITY (by Google rating, owner-maintained):
+1. Tenfold Rooftop — Google: 4.8 ★ · 1.5K reviews — open-terrace skyline, mezcal/tequila, sunset, post-dinner finish.
+2. Aleteo at The Monarch — Google: 4.6 ★ · 120 reviews — luxury, 17 stories, Yucatán coastal, mezcal/tequila, sunset. Resort guests, client drinks.
+3. Fairmount Rooftop Oyster Bar — Google: 4.5 ★ · 520 reviews — oysters, champagne, martinis, date nights.
+4. The Moon's Daughter — Google: 4.4 ★ · 1.2K reviews — Thompson 20th-floor, upscale nightlife, resort guests.
+5. Rosario's Rooftop — Google: 4.3 ★ · 6.8K reviews (main venue) — lively margaritas, music, groups.
+- 1Watson — skyline backup when view > dinner; not above Paesanos for dinner picks.
 
 AFTER-DINNER BARS:
 - The Esquire Tavern — Google: 4.4 ★ · 4.3K reviews — Willie Approved historic gastropub.

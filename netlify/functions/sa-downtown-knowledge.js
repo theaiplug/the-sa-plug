@@ -23,7 +23,7 @@ OPERATOR QUESTIONS — HOW TO ANSWER:
 → Lead Bohanan's (luxury steak, Willie Approved), Biga (elevated riverfront), Paesanos (Italian, convention-friendly), Domingo (modern Mexican, Willie Approved), Boudro's (iconic tableside guac). Chart House = view-first at Tower, not top food-first. Casa Rio = classic photo/history patio only — not top food-first, not Willie Approved.
 
 "What rooftop should we go to?"
-→ Priority: Aleteo (Monarch, luxury sunset), Fairmount (oysters/date), Moon's Daughter (Thompson upscale), Rosario's Rooftop (lively groups). Do not lead with Tenfold or 1Watson unless visitor specifically wants a backup skyline option.
+→ Priority: Tenfold (top Google-rated skyline terrace), Aleteo (Monarch luxury sunset), Fairmount (oysters/date), Moon's Daughter (Thompson upscale), Rosario's Rooftop (lively groups). 1Watson only when visitor wants a backup skyline option.
 
 "Should we do Pearl or River Walk?"
 → Pearl: polished food, Hotel Emma drinks, farmers market weekends, calmer patios, chef-led dinner — better when they want local polish without River Walk crush. River Walk: iconic water, boats, first-timer postcard — better for classic San Antonio first visit. From resorts: frame Pearl as a planned dinner night (~20–30+ min), not "nearby."
