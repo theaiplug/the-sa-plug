@@ -1710,10 +1710,9 @@
         radial-gradient(620px 200px at 0% 0%, rgba(20, 184, 166, 0.14), transparent 58%),
         linear-gradient(165deg, rgba(10, 22, 40, 0.92), rgba(4, 12, 28, 0.88));
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px 18px;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
     }
 
     .eat-section-ask__copy {
@@ -1740,6 +1739,37 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px 12px;
+    }
+
+    .eat-section-ask__prompts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .eat-section-ask__prompts a {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 650;
+      line-height: 1.35;
+      color: rgba(255, 246, 230, 0.94);
+      text-decoration: none;
+      border: 1px solid rgba(45, 236, 224, 0.28);
+      background: rgba(255, 246, 230, 0.06);
+      transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .eat-section-ask__prompts a:hover,
+    .eat-section-ask__prompts a:focus-visible {
+      color: #7ee0d0;
+      border-color: rgba(45, 236, 224, 0.45);
+      background: rgba(45, 236, 224, 0.1);
+      outline: none;
     }
 
     .eat-os-cta h3 {
@@ -2681,7 +2711,7 @@
             <span class="image-route-card__body">
               <span class="eyebrow">Resort</span>
               <h3>Resort-area dinner</h3>
-              <p>JW, Hyatt, La Cantera, and airport timing &mdash; match dinner to where you are staying first.</p>
+              <p>JW, La Cantera, Hyatt Hill Country &mdash; stay close, short ride, or downtown / Pearl. Flight-day timing when you need it.</p>
               <span class="image-route-card__cta">See nearby food picks</span>
             </span>
           </a>
@@ -3157,10 +3187,15 @@
         <aside class="eat-section-ask" aria-label="Ask about Mexican picks">
           <div class="eat-section-ask__copy">
             <strong>Not sure which food move fits tonight?</strong>
-            <p>Ask A Local with your hotel, group size, timing, and food mood.</p>
+            <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+            <ul class="eat-section-ask__prompts">
+              <li><a href="/ask/?q=Best%20Mexican%20food%20near%20downtown#live-concierge">Best Mexican food near downtown</a></li>
+              <li><a href="/ask/?q=Best%20easy%20group%20dinner#live-concierge">Best easy group dinner</a></li>
+              <li><a href="/ask/?q=I%20need%20dinner%20near%20me#live-concierge">I need dinner near me</a></li>
+            </ul>
           </div>
           <div class="eat-section-ask__actions">
-            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local</a>
             <a href="#lane-steak" class="btn btn-secondary">Keep browsing picks</a>
           </div>
         </aside>
@@ -3270,10 +3305,15 @@
         <aside class="eat-section-ask" aria-label="Ask about steak picks">
           <div class="eat-section-ask__copy">
             <strong>Not sure which food move fits tonight?</strong>
-            <p>Ask A Local with your hotel, group size, timing, and food mood.</p>
+            <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+            <ul class="eat-section-ask__prompts">
+              <li><a href="/ask/?q=Best%20steakhouse%20for%20a%20business%20dinner#live-concierge">Best steakhouse for a business dinner</a></li>
+              <li><a href="/ask/?q=We%20want%20one%20special%20dinner%20away%20from%20the%20resort#live-concierge">We want one special dinner away from the resort</a></li>
+              <li><a href="/ask/?q=I%27m%20here%20for%20a%20convention#live-concierge">I&rsquo;m here for a convention</a></li>
+            </ul>
           </div>
           <div class="eat-section-ask__actions">
-            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local</a>
             <a href="#lane-brazilian" class="btn btn-secondary">Keep browsing picks</a>
           </div>
         </aside>
@@ -3838,10 +3878,16 @@
         <aside class="eat-section-ask" aria-label="Ask about downtown dining">
           <div class="eat-section-ask__copy">
             <strong>Not sure which downtown dinner or drink move fits your group?</strong>
-            <p>Ask A Local with your hotel, group size, timing, budget, and food mood.</p>
+            <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+            <ul class="eat-section-ask__prompts">
+              <li><a href="/ask/?q=Best%20River%20Walk%20dinner%20tonight#live-concierge">Best River Walk dinner tonight</a></li>
+              <li><a href="/ask/?q=Best%20easy%20group%20dinner#live-concierge">Best easy group dinner</a></li>
+              <li><a href="/ask/?q=Best%20Mexican%20food%20near%20downtown#live-concierge">Best Mexican food near downtown</a></li>
+              <li><a href="/ask/?q=I%27m%20here%20for%20a%20convention#live-concierge">I&rsquo;m here for a convention</a></li>
+            </ul>
           </div>
           <div class="eat-section-ask__actions">
-            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local</a>
             <a href="driver-concierge.html#route-operator" class="btn btn-secondary">Get Route Help</a>
           </div>
         </aside>
@@ -3990,10 +4036,15 @@
         <aside class="eat-section-ask" aria-label="Ask about River Walk picks">
           <div class="eat-section-ask__copy">
             <strong>Not sure which downtown dinner fits your group?</strong>
-            <p>Ask A Local with your hotel, group size, timing, and food mood.</p>
+            <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+            <ul class="eat-section-ask__prompts">
+              <li><a href="/ask/?q=Best%20River%20Walk%20dinner%20tonight#live-concierge">Best River Walk dinner tonight</a></li>
+              <li><a href="/ask/?q=Is%20the%20River%20Walk%20worth%20it%20tonight%3F#live-concierge">Is the River Walk worth it tonight?</a></li>
+              <li><a href="/ask/?q=Best%20easy%20group%20dinner#live-concierge">Best easy group dinner</a></li>
+            </ul>
           </div>
           <div class="eat-section-ask__actions">
-            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local</a>
             <a href="#lane-drinks" class="btn btn-secondary">Golden hour picks</a>
           </div>
         </aside>
@@ -4115,10 +4166,15 @@
         <aside class="eat-section-ask" aria-label="Ask about drinks and rooftops">
           <div class="eat-section-ask__copy">
             <strong>Not sure which rooftop or lounge fits tonight?</strong>
-            <p>Ask A Local with your hotel, group size, timing, and vibe.</p>
+            <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+            <ul class="eat-section-ask__prompts">
+              <li><a href="/ask/?q=Best%20rooftop%20or%20cocktail%20bar%20tonight#live-concierge">Best rooftop or cocktail bar tonight</a></li>
+              <li><a href="/ask/?q=What%20should%20we%20do%20tonight%3F#live-concierge">What should we do tonight?</a></li>
+              <li><a href="/ask/?q=I%27m%20here%20for%20a%20convention#live-concierge">I&rsquo;m here for a convention</a></li>
+            </ul>
           </div>
           <div class="eat-section-ask__actions">
-            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local</a>
             <a href="#lane-pearl" class="btn btn-secondary">Pearl district picks</a>
           </div>
         </aside>
@@ -4265,10 +4321,15 @@
         <aside class="eat-section-ask" aria-label="Ask about Pearl picks">
           <div class="eat-section-ask__copy">
             <strong>Not sure which Pearl move fits tonight?</strong>
-            <p>Ask A Local with your hotel, group size, timing, and food mood.</p>
+            <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+            <ul class="eat-section-ask__prompts">
+              <li><a href="/ask/?q=Is%20The%20Pearl%20worth%20visiting%20today%3F#live-concierge">Is The Pearl worth visiting today?</a></li>
+              <li><a href="/ask/?q=Is%20the%20River%20Walk%20worth%20it%20tonight%3F#live-concierge">Is the River Walk worth it tonight?</a></li>
+              <li><a href="/ask/?q=Best%20easy%20group%20dinner#live-concierge">Best easy group dinner</a></li>
+            </ul>
           </div>
           <div class="eat-section-ask__actions">
-            <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+            <a href="/ask/#live-concierge" class="btn btn-primary">Ask A Local</a>
             <a href="#lane-late-night" class="btn btn-secondary">Keep browsing picks</a>
           </div>
         </aside>

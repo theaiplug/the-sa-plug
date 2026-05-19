@@ -10,7 +10,7 @@
   <meta property="og:url" content="https://wheretogosa.com/resort-food.html" />
   <meta property="og:title" content="San Antonio Resort Guides | Where To Go SA" />
   <meta property="og:site_name" content="Where To Go SA" />
-  <meta property="og:description" content="Resort guides for JW Marriott, La Cantera, Hyatt Hill Country, SAT Airport, and north-side stays — food, things to do, timing, and when to stay close vs. head downtown or Pearl." />
+  <meta property="og:description" content="Resort guides for JW Marriott, La Cantera, Hyatt Hill Country, and north-side stays — food, things to do, timing, and when to stay close vs. head downtown or Pearl. SAT / Quarry support for flight days." />
   <meta property="og:image" content="https://wheretogosa.com/assets/where-to-go-sa-round-emblem-pfp.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="San Antonio Resort Guides | Where To Go SA" />
@@ -1522,6 +1522,37 @@
       max-width: 62ch;
     }
 
+    .resort-food-page .rf-ask-prompts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .resort-food-page .rf-ask-prompts a {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 650;
+      line-height: 1.35;
+      color: rgba(255, 246, 230, 0.94);
+      text-decoration: none;
+      border: 1px solid rgba(231, 187, 82, 0.32);
+      background: rgba(255, 246, 230, 0.06);
+      transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .resort-food-page .rf-ask-prompts a:hover,
+    .resort-food-page .rf-ask-prompts a:focus-visible {
+      color: #f2d98a;
+      border-color: rgba(231, 187, 82, 0.55);
+      background: rgba(231, 187, 82, 0.12);
+      outline: none;
+    }
+
     .resort-food-page .rf-zone-move-list {
       margin: 0;
       padding: 0 0 0 1.1rem;
@@ -1667,7 +1698,7 @@
           <header class="eat-cat-head">
             <p class="eyebrow eyebrow-on-dark">Start here</p>
             <h2 id="rf-zone-cards-title">Choose your resort area</h2>
-            <p class="section-text">Tap your zone for food, things to do, and the best move for the night. JW, La Cantera, and Hyatt each play differently. Downtown / Pearl and SAT / Quarry flight-day help are farther down.</p>
+            <p class="section-text">JW Marriott, La Cantera, and Hyatt Hill Country first &mdash; then downtown / Pearl and flight-timing help at the bottom.</p>
           </header>
                     <div class="route-card-grid rf-zone-grid" role="list">
             <a href="#rf-zone-jw" class="image-route-card rf-crop--jw" role="listitem">
@@ -1720,7 +1751,13 @@
         </div>
       </section>
 
-            <section class="rf-zone-detail rf-zone-detail--jw" id="rf-zone-jw">
+      <header class="rf-areas-intro section-lead" id="rf-resort-areas" aria-labelledby="rf-resort-areas-title">
+        <p class="eyebrow">Resort areas</p>
+        <h2 id="rf-resort-areas-title">Guides by hotel zone</h2>
+        <p class="section-subcopy compact">JW Marriott, La Cantera, and Hyatt Hill Country each play differently &mdash; food, things to do, and the best move for your night. Downtown / Pearl and flight-timing help are farther down when you need them.</p>
+      </header>
+
+<section class="rf-zone-detail rf-zone-detail--jw" id="rf-zone-jw">
         <div class="section-lead">
           <div class="rf-pill-row" aria-hidden="true">
             <span class="rf-pill">Golf days</span>
@@ -1981,9 +2018,14 @@
         </section>
         <div class="rf-zone-move-band" id="rf-jw-move">
           <h3>Best move from JW</h3>
-          <p>Stay on property for convenience. Go Stone Oak / North 281 for a better nearby dinner. Go downtown or Pearl only when the night is worth the ride.</p>
+          <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+          <ul class="rf-ask-prompts">
+            <li><a href="/ask/?q=I%27m%20staying%20at%20JW%20Marriott%20%E2%80%94%20should%20we%20stay%20close%20or%20leave%20the%20resort%3F#live-concierge">I&rsquo;m staying at JW Marriott &mdash; should we stay close or leave the resort?</a></li>
+            <li><a href="/ask/?q=Should%20we%20eat%20at%20the%20resort%20or%20go%20downtown%3F#live-concierge">Should we eat at the resort or go downtown?</a></li>
+            <li><a href="/ask/?q=We%20want%20one%20special%20dinner%20away%20from%20the%20resort#live-concierge">We want one special dinner away from the resort</a></li>
+          </ul>
           <div class="hero-cta-row">
-            <a class="btn btn-primary" href="/ask/">Ask A Local</a>
+            <a class="btn btn-primary" href="/ask/#live-concierge">Ask A Local</a>
             <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#route-operator">Get route help</a>
           </div>
         </div>
@@ -2191,15 +2233,20 @@
         </section>
         <div class="rf-zone-move-band" id="rf-rim-move">
           <h3>Best move near La Cantera</h3>
-          <p>Keep dinner in La Cantera / The Rim when the night is shopping, patios, or resort-close. Use downtown or Pearl only when the group wants a full city night and has energy for the drive.</p>
+          <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+          <ul class="rf-ask-prompts">
+            <li><a href="/ask/?q=I%27m%20staying%20at%20La%20Cantera%20%E2%80%94%20where%20should%20we%20eat%3F#live-concierge">I&rsquo;m staying at La Cantera &mdash; where should we eat?</a></li>
+            <li><a href="/ask/?q=We%20have%20kids%20and%20need%20an%20easy%20resort-area%20dinner#live-concierge">We have kids and need an easy resort-area dinner</a></li>
+            <li><a href="/ask/?q=Should%20we%20eat%20at%20the%20resort%20or%20go%20downtown%3F#live-concierge">Should we eat at the resort or go downtown?</a></li>
+          </ul>
           <div class="hero-cta-row">
-            <a class="btn btn-primary" href="/ask/">Ask A Local</a>
+            <a class="btn btn-primary" href="/ask/#live-concierge">Ask A Local</a>
             <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#route-operator">Get route help</a>
           </div>
         </div>
       </section>
 
-      <section class="rf-zone-detail rf-zone-detail--hyatt" id="rf-zone-hyatt">
+<section class="rf-zone-detail rf-zone-detail--hyatt" id="rf-zone-hyatt">
         <div class="section-lead">
           <div class="rf-pill-row" aria-hidden="true">
             <span class="rf-pill">Hyatt Regency</span>
@@ -2435,9 +2482,14 @@
         </section>
         <div class="rf-zone-move-band" id="rf-hyatt-move">
           <h3>Best move near Hyatt</h3>
-          <p>Stay near Hyatt after a long SeaWorld, pool, or family day. Use downtown or Pearl only when the group wants a bigger San Antonio night and has enough energy for the ride.</p>
+          <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+          <ul class="rf-ask-prompts">
+            <li><a href="/ask/?q=I%27m%20staying%20at%20Hyatt%20Hill%20Country%20%E2%80%94%20what%27s%20nearby%20besides%20SeaWorld%3F#live-concierge">I&rsquo;m staying at Hyatt Hill Country &mdash; what&rsquo;s nearby besides SeaWorld?</a></li>
+            <li><a href="/ask/?q=We%20have%20kids%20and%20need%20an%20easy%20resort-area%20dinner#live-concierge">We have kids and need an easy resort-area dinner</a></li>
+            <li><a href="/ask/?q=Should%20we%20eat%20at%20the%20resort%20or%20go%20downtown%3F#live-concierge">Should we eat at the resort or go downtown?</a></li>
+          </ul>
           <div class="hero-cta-row">
-            <a class="btn btn-primary" href="/ask/">Ask A Local</a>
+            <a class="btn btn-primary" href="/ask/#live-concierge">Ask A Local</a>
             <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#route-operator">Get route help</a>
           </div>
         </div>
@@ -2661,9 +2713,15 @@
 
         <div class="rf-zone-move-band" id="rf-downtown-move">
           <h3>Best move for a story night</h3>
-          <p>Go downtown when the group has energy for the drive and wants the night to be the memory. Pick Pearl for chef-led rooms and walkable Hotel Emma energy; pick River Walk when boats, iconic water, and postcard San Antonio matter more. Stay at the resort when everyone is tired, timing is tight, or a nearby dinner is already strong enough.</p>
+          <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+          <ul class="rf-ask-prompts">
+            <li><a href="/ask/?q=Should%20we%20eat%20at%20the%20resort%20or%20go%20downtown%3F#live-concierge">Should we eat at the resort or go downtown?</a></li>
+            <li><a href="/ask/?q=Is%20The%20Pearl%20worth%20visiting%20today%3F#live-concierge">Is The Pearl worth visiting today?</a></li>
+            <li><a href="/ask/?q=Best%20River%20Walk%20dinner%20tonight#live-concierge">Best River Walk dinner tonight</a></li>
+            <li><a href="/ask/?q=We%20want%20one%20special%20dinner%20away%20from%20the%20resort#live-concierge">We want one special dinner away from the resort</a></li>
+          </ul>
           <div class="hero-cta-row">
-            <a class="btn btn-primary" href="/ask/">Ask A Local</a>
+            <a class="btn btn-primary" href="/ask/#live-concierge">Ask A Local</a>
             <a class="btn btn-secondary hero-secondary-btn" href="downtown.html">Open Downtown guide</a>
             <a class="btn btn-secondary hero-secondary-btn" href="downtown.html#dt-pearl-guide">Open Pearl guide</a>
             <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#route-operator">Get route help</a>
@@ -2678,6 +2736,7 @@
             <span class="rf-pill">Before-flight meals</span>
             <span class="rf-pill">Airport hotels</span>
           </div>
+          <p class="eyebrow">Travel timing support</p>
           <h2>Airport timing + before-flight food</h2>
           <p class="section-subcopy compact">Use this when SAT timing matters &mdash; not as your main resort stay. Late arrivals, airport hotels, meals before you fly, Quarry patios, and North Central quick food for travelers who are not basing the trip at JW, La Cantera, or Hyatt.</p>
         </div>
@@ -2776,13 +2835,21 @@
         </section>
         <div class="rf-zone-move-band" id="rf-airport-move">
           <h3>Best move for flight days</h3>
-          <p>Use Quarry, Broadway, and North Central when flight timing matters. Choose Soluna, El Bucanero, Paloma Blanca, Piatti, or Pappadeaux for real food near the airport. Go downtown only when the layover or night is long enough to make the ride worth it.</p>
+          <p>Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
+          <ul class="rf-ask-prompts">
+            <li><a href="/ask/?q=I%20have%20a%20flight%20later%20%E2%80%94%20where%20should%20we%20eat%3F#live-concierge">I have a flight later &mdash; where should we eat?</a></li>
+            <li><a href="/ask/?q=I%20just%20landed%20at%20SAT%20%E2%80%94%20what%27s%20a%20smart%20first%20stop%3F#live-concierge">I just landed at SAT &mdash; what&rsquo;s a smart first stop?</a></li>
+            <li><a href="/ask/?q=Best%20food%20near%20SAT%20or%20the%20Quarry#live-concierge">Best food near SAT or the Quarry</a></li>
+            <li><a href="/ask/?q=We%20need%20a%20quick%20meal%20before%20returning%20to%20the%20airport#live-concierge">We need a quick meal before returning to the airport</a></li>
+          </ul>
           <div class="hero-cta-row">
-            <a class="btn btn-primary" href="/ask/">Ask A Local</a>
+            <a class="btn btn-primary" href="/ask/#live-concierge">Ask A Local</a>
             <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#route-operator">Get route help</a>
           </div>
         </div>
       </section>
+
+
     </section>
   </main>
   <footer class="footer dark-showcase footer--resort-visitor">

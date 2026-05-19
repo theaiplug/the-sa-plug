@@ -1101,6 +1101,38 @@ body.page-family-summer.family-page main#main-content > .section.fam-pick-sectio
   color: rgba(7, 19, 35, 0.82);
 }
 
+.page-family-summer .fam-route-ask-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex: 1 1 100%;
+}
+
+.page-family-summer .fam-route-ask-prompts a {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1.35;
+  color: rgba(7, 19, 35, 0.88);
+  text-decoration: none;
+  border: 1px solid rgba(11, 29, 58, 0.18);
+  background: rgba(255, 255, 255, 0.72);
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.page-family-summer .fam-route-ask-prompts a:hover,
+.page-family-summer .fam-route-ask-prompts a:focus-visible {
+  color: #0b4f4a;
+  border-color: rgba(20, 184, 166, 0.45);
+  background: rgba(20, 184, 166, 0.12);
+  outline: none;
+}
+
 .page-family-summer .fam-route-cta-btn {
   flex-shrink: 0;
   display: inline-flex;
