@@ -512,59 +512,348 @@
         ].join("\n");
       }
 
-      function buildBusinessFollowUp(lead) {
+      function leadContextText(lead) {
+        return [
+          lead.current_problem,
+          lead.services_interested,
+          lead.recommended_system,
+          lead.urgency,
+          lead.timeline,
+          lead.ai_summary,
+          lead.business_industry,
+          lead.business_location,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+      }
+
+      function leadSignals(lead) {
+        var text = leadContextText(lead);
+        return {
+          text: text,
+          missedCalls: /missed call|missed calls|voicemail|phone|call back|after hours|ring|answering/.test(
+            text
+          ),
+          website: /website|web site|site\b|online presence|landing page|seo\b/.test(text),
+          followUp: /follow[- ]?up|scattered|visibility|crm|pipeline|intake|no system|spreadsheet/.test(
+            text
+          ),
+          booking: /book|booking|appointment|schedule|calendar/.test(text),
+          urgent: /urgent|asap|immediate|right away|losing|revenue|money|today|tomorrow/.test(text),
+          multiple: /dashboard|ai phone|operating system|multiple|intake.{0,40}dashboard|phone.{0,40}dashboard/.test(
+            text
+          ),
+          foundation: /foundation|new business|starting|brand new|from scratch|no website/.test(text),
+        };
+      }
+
+      function businessSystemPhrase(lead) {
+        return (
+          (lead.recommended_system && String(lead.recommended_system).trim()) ||
+          "your lead capture and follow-up flow"
+        );
+      }
+
+      function buildBusinessSmsFollowUp(lead) {
         var contact = lead.contact_name || "there";
         var problem = lead.current_problem || "your business request";
-        var system =
-          lead.recommended_system ||
-          "tightening your lead capture and follow-up flow";
+        var system = businessSystemPhrase(lead);
         return (
           "Hi " +
           contact +
           ", this is Willie with The AI Plug / Where To Go SA. I saw your request about " +
           problem +
-          ". Based on what you shared, it sounds like the first move is " +
+          ". Based on what you shared, I’d start by looking at " +
           system +
-          ". I can take a quick look and map the best starting system for your business."
+          ". Do you have 10 minutes today or tomorrow for me to ask a few questions and map the best starting point?"
         );
       }
 
-      function buildTransportFollowUp(row) {
-        var name = row.name || "there";
+      function buildBusinessDiscoveryQuestionsList(lead) {
+        var sig = leadSignals(lead);
+        var questions = [];
+        var industryLoc = [lead.business_industry, lead.business_location].filter(Boolean).join(" · ");
+
+        if (sig.missedCalls) {
+          questions.push("What phone number do customers call now?");
+          questions.push("Do calls go to one person, a front desk, or voicemail?");
+          questions.push("What happens after hours?");
+          questions.push("Do you want AI to answer, text back, qualify, or just notify you?");
+          questions.push("What details do you need before deciding if the lead is worth calling back?");
+        } else if (sig.website) {
+          questions.push("What does your current site fail to do?");
+          questions.push("Are leads coming through forms, calls, DMs, or referrals?");
+          questions.push("What would a better first step look like for your customers?");
+          questions.push("Do you need bookings, quote requests, intake, or owner alerts?");
+          questions.push("What information do you wish every lead gave you upfront?");
+        } else if (sig.followUp) {
+          questions.push("Where do leads come in today — calls, forms, DMs, email, or referrals?");
+          questions.push("What happens when a lead sits too long without a response?");
+          questions.push("Who owns follow-up today, and how do you track it?");
+          questions.push("What would better owner visibility look like on your phone?");
+          questions.push("What’s the minimum info you need before you can quote or book?");
+        } else {
+          questions.push("How do most leads come in today?");
+          questions.push("What happens when you miss a call or message?");
+          questions.push("What information do you need before you can quote or book?");
+          questions.push("Who follows up, and how fast?");
+          questions.push("What would make this easier to manage from your phone?");
+        }
+
+        if (industryLoc) {
+          questions.push("For your " + industryLoc + " setup, what’s the biggest bottleneck right now?");
+        }
+        if (lead.services_interested) {
+          questions.push(
+            "You mentioned interest in " +
+              lead.services_interested +
+              " — what would success look like in the first 30 days?"
+          );
+        }
+        if (lead.urgency) {
+          questions.push("You marked urgency as " + lead.urgency + " — what happens if this waits another month?");
+        }
+        if (lead.timeline) {
+          questions.push("Your timeline is " + lead.timeline + " — is there a hard date driving that?");
+        }
+        if (lead.ai_summary && !sig.missedCalls && !sig.website) {
+          questions.push("From your intake notes, what part of the workflow feels most broken day to day?");
+        }
+
+        var seen = {};
+        var unique = [];
+        questions.forEach(function (q) {
+          var key = q.toLowerCase();
+          if (!seen[key] && unique.length < 7) {
+            seen[key] = true;
+            unique.push(q);
+          }
+        });
+        while (unique.length < 5) {
+          var filler = "What would a useful first win look like within the next two weeks?";
+          if (unique.indexOf(filler) === -1) unique.push(filler);
+          else break;
+        }
+        return unique.slice(0, 7);
+      }
+
+      function formatDiscoveryQuestions(lead) {
+        return buildBusinessDiscoveryQuestionsList(lead)
+          .map(function (q) {
+            return "- " + q;
+          })
+          .join("\n");
+      }
+
+      function buildBusinessEmailReply(lead) {
+        var contact = lead.contact_name || "there";
+        var problem = lead.current_problem || "getting your business systems organized";
+        var services = lead.services_interested || "improving how leads are captured and followed up";
+        var system =
+          (lead.recommended_system && String(lead.recommended_system).trim()) ||
+          "how leads are currently coming in, getting answered, and getting followed up with";
+        var discovery = formatDiscoveryQuestions(lead);
+        var subject = "Quick follow-up on your AI business system request";
+        var body =
+          "Hi " +
+          contact +
+          ",\n\nThanks for reaching out through Where To Go SA / The AI Plug.\n\nI saw that your main issue is " +
+          problem +
+          ", and you’re interested in " +
+          services +
+          ". Based on what you shared, the first thing I’d look at is " +
+          system +
+          ".\n\nMy goal is not to overbuild a system. It’s to find the first useful layer that saves time, catches missed opportunities, and gives you better owner visibility.\n\nA few questions I’d start with:\n" +
+          discovery +
+          "\n\nIf you’re open to it, I can take a quick look and map the best starting system.\n\nWillie\nThe AI Plug / Where To Go SA";
+        return "Subject: " + subject + "\n\n" + body;
+      }
+
+      function buildBusinessCallScript(lead) {
+        var contact = lead.contact_name || "there";
+        var problem = lead.current_problem || "your business request";
+        return (
+          "Hey " +
+          contact +
+          ", this is Willie with The AI Plug / Where To Go SA. You submitted a request about " +
+          problem +
+          ". I’m not calling to sell you a giant system. I want to understand where the lead flow is breaking first — calls, forms, follow-up, booking, or owner visibility — then recommend the smallest useful system to start with.\n\nQuestions:\n- How do most leads come in today?\n- What happens when you miss a call or message?\n- What information do you need before you can quote or book?\n- Who follows up, and how fast?\n- What would make this easier to manage from your phone?"
+        );
+      }
+
+      function buildBusinessDiscoveryQuestions(lead) {
+        return formatDiscoveryQuestions(lead);
+      }
+
+      function buildBusinessFirstOffer(lead) {
+        var sig = leadSignals(lead);
+        var offer = "Lead Capture System";
+        var why =
+          "They need a tighter path from first contact to follow-up without adding complexity for the owner.";
+        var nextStep = "Book a workflow mapping call";
+
+        if (sig.multiple || (sig.missedCalls && /dashboard|ai phone|intake/.test(sig.text))) {
+          offer = "Operating System Layer";
+          why =
+            "Multiple touchpoints (calls, intake, follow-up, visibility) are involved, so the first win is connecting the flow—not adding another isolated tool.";
+          nextStep = "Map call, intake, and owner-alert flow on one screen";
+        } else if (sig.missedCalls || sig.urgent || /losing|revenue|money/.test(sig.text)) {
+          offer = sig.urgent ? "Operating System Layer" : "Lead Capture System";
+          why = sig.urgent
+            ? "Urgency and revenue risk point to missed calls or slow follow-up—the first layer should catch and route leads immediately."
+            : "Missed calls or slow response is the bottleneck; start with capture, text-back, and owner notification before a bigger build.";
+          nextStep = sig.missedCalls
+            ? "Review current phone routing and after-hours handling"
+            : "Book a workflow mapping call";
+        } else if (sig.website || sig.foundation || /online business|new site|website/.test(sig.text)) {
+          offer = "Foundation System";
+          why =
+            "The primary gap is a clear online foundation—site, intake, and first-step customer path—before layering automation.";
+          nextStep = "Review current website and intake flow";
+        } else if (sig.followUp || /visibility|scattered|no crm/.test(sig.text)) {
+          offer = "Lead Capture System";
+          why =
+            "Leads are coming in but follow-up and visibility are scattered; consolidate intake and owner alerts first.";
+          nextStep = "Audit where leads land today (forms, calls, DMs)";
+        } else if (lead.recommended_system) {
+          why =
+            "Their intake already points toward " +
+            lead.recommended_system +
+            " as the best-fit starting layer.";
+          if (/foundation/i.test(String(lead.recommended_system))) offer = "Foundation System";
+          else if (/operating|layer/i.test(String(lead.recommended_system))) offer = "Operating System Layer";
+          else offer = "Lead Capture System";
+        }
+
+        return (
+          "Recommended first offer:\n" +
+          offer +
+          "\n\nWhy:\n" +
+          why +
+          "\n\nNext step:\n" +
+          nextStep
+        );
+      }
+
+      function transportRouteSummary(row) {
         var route = [row.pickup_area, row.destination].filter(Boolean).join(" to ");
-        route = route || "your route";
+        if (route) return route;
+        var notes = row.conversation_excerpt || row.notes;
+        if (notes && String(notes).trim()) {
+          var short = String(notes).trim();
+          return short.length > 120 ? short.slice(0, 117) + "…" : short;
+        }
+        return "your transportation or visitor help request";
+      }
+
+      function buildTransportSmsFollowUp(row) {
+        var name = row.name || "there";
         return (
           "Hi " +
           name +
           ", this is Willie with Where To Go SA. I saw your transportation/visitor help request for " +
-          route +
+          transportRouteSummary(row) +
           ". I’m reviewing the details now. Availability is not guaranteed, but I’ll follow up if I can help or point you in the right direction."
         );
       }
 
+      function buildTransportEmailReply(row) {
+        var name = row.name || "there";
+        var route = transportRouteSummary(row);
+        return (
+          "Hi " +
+          name +
+          ",\n\nThanks for submitting a Where To Go SA transportation/visitor help request.\n\nI saw your request for " +
+          route +
+          ". I’m reviewing the details now. Availability is not guaranteed, but I’ll follow up if I can help, recommend the best option, or point you toward Uber, Lyft, hotel transportation, taxi, or another licensed option if needed.\n\nWillie\nWhere To Go SA"
+        );
+      }
+
+      function buildTransportCallScript(row) {
+        var name = row.name || "there";
+        return (
+          "Hi " +
+          name +
+          ", this is Willie with Where To Go SA. I saw your transportation or visitor help request. I’m checking the details so I can understand pickup, timing, group size, and what kind of help you need.\n\nQuestions:\n- What time do you need help?\n- How many people are in your group?\n- Are you looking for transportation only or recommendations too?\n- Is this airport, resort, downtown, dinner, nightlife, or event-related?\n- Do you need a confirmed ride, or are you looking for the best option?"
+        );
+      }
+
+      function followUpTextForKind(kind, row, table) {
+        if (!row) return "";
+        if (table === "business_leads") {
+          if (kind === "sms-followup") return buildBusinessSmsFollowUp(row);
+          if (kind === "email-reply") return buildBusinessEmailReply(row);
+          if (kind === "call-script") return buildBusinessCallScript(row);
+          if (kind === "discovery-questions") return buildBusinessDiscoveryQuestions(row);
+          if (kind === "first-offer") return buildBusinessFirstOffer(row);
+        } else {
+          if (kind === "sms-followup") return buildTransportSmsFollowUp(row);
+          if (kind === "email-reply") return buildTransportEmailReply(row);
+          if (kind === "call-script") return buildTransportCallScript(row);
+          if (kind === "request-summary") return buildTransportSummary(row);
+        }
+        return "";
+      }
+
       function copyActionsBlock(table, row) {
         var isBusiness = table === "business_leads";
-        var summary = isBusiness ? buildBusinessSummary(row) : buildTransportSummary(row);
-        var followUp = isBusiness ? buildBusinessFollowUp(row) : buildTransportFollowUp(row);
         return (
           '<section class="owner-dash-detail-section">' +
-          '<h3 class="owner-dash-detail-section-title">Copy & follow-up</h3>' +
+          '<h3 class="owner-dash-detail-section-title">Copy tools</h3>' +
           '<div class="owner-dash-detail-copy-actions">' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="phone">Copy phone</button>' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="email">Copy email</button>' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="summary">Copy ' +
           (isBusiness ? "lead summary" : "request summary") +
           "</button>" +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="followup">Copy follow-up message</button>' +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           "</div>" +
-          '<label class="owner-dash-detail-followup-label"><span>Follow-up message (copy only — not sent)</span>' +
-          '<textarea class="owner-dash-textarea owner-dash-detail-followup" rows="5">' +
-          esc(followUp) +
-          "</textarea></label>" +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
           '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
-          '<pre class="owner-dash-detail-manual-copy-text"></pre>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="5" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
+      function ownerFollowUpToolsBlock(table, row) {
+        var isBusiness = table === "business_leads";
+        var buttons = isBusiness
+          ? [
+              { kind: "sms-followup", label: "Copy SMS follow-up" },
+              { kind: "email-reply", label: "Copy email reply" },
+              { kind: "call-script", label: "Copy call script" },
+              { kind: "discovery-questions", label: "Copy discovery questions" },
+              { kind: "first-offer", label: "Copy first-offer recommendation" },
+            ]
+          : [
+              { kind: "sms-followup", label: "Copy SMS follow-up" },
+              { kind: "email-reply", label: "Copy email reply" },
+              { kind: "call-script", label: "Copy call script" },
+              { kind: "request-summary", label: "Copy request summary" },
+            ];
+        var btnHtml = buttons
+          .map(function (b) {
+            return (
+              '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-followup" data-copy-kind="' +
+              esc(b.kind) +
+              '">' +
+              esc(b.label) +
+              "</button>"
+            );
+          })
+          .join("");
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--followup">' +
+          '<h3 class="owner-dash-detail-section-title">Owner Follow-Up Tools</h3>' +
+          '<p class="owner-dash-detail-section-note">Copy only — nothing is sent automatically.</p>' +
+          '<div class="owner-dash-detail-followup-actions">' +
+          btnHtml +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          "</div>" +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
           "</div></section>"
         );
       }
@@ -635,6 +924,7 @@
           alertPill(lead.alert_sms_sent, "SMS") +
           "</div>" +
           copyActionsBlock("business_leads", lead) +
+          ownerFollowUpToolsBlock("business_leads", lead) +
           quickStatusBlock() +
           workflowBlock("business_leads", lead) +
           "</div>"
@@ -683,6 +973,7 @@
           alertPill(row.alert_sms_sent, "SMS") +
           "</div>" +
           copyActionsBlock("transportation_requests", row) +
+          ownerFollowUpToolsBlock("transportation_requests", row) +
           quickStatusBlock() +
           workflowBlock("transportation_requests", row) +
           "</div>"
@@ -744,21 +1035,30 @@
         fb._copyTimer = window.setTimeout(function () {
           fb.hidden = true;
           fb.textContent = "";
-        }, 2200);
+        }, 3000);
       }
 
       function showManualCopy(container, text) {
         var wrap = container && container.querySelector("[data-manual-copy]");
-        var pre = container && container.querySelector(".owner-dash-detail-manual-copy-text");
-        if (!wrap || !pre) return;
-        pre.textContent = text;
+        var field = container && container.querySelector(".owner-dash-detail-manual-copy-text");
+        if (!wrap || !field) return;
+        if (field.tagName === "TEXTAREA") {
+          field.value = text;
+        } else {
+          field.textContent = text;
+        }
         wrap.hidden = false;
         try {
-          var range = document.createRange();
-          range.selectNodeContents(pre);
-          var sel = window.getSelection();
-          sel.removeAllRanges();
-          sel.addRange(range);
+          field.focus();
+          if (field.tagName === "TEXTAREA") {
+            field.select();
+          } else {
+            var range = document.createRange();
+            range.selectNodeContents(field);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+          }
         } catch {
           /* ignore */
         }
@@ -777,6 +1077,8 @@
 
       function copyTextForKind(kind, row, table) {
         if (!row) return "";
+        var followUp = followUpTextForKind(kind, row, table);
+        if (followUp) return followUp;
         if (kind === "phone") {
           return table === "business_leads" ? row.contact_phone || "" : row.phone || "";
         }
@@ -786,19 +1088,15 @@
         if (kind === "summary") {
           return table === "business_leads" ? buildBusinessSummary(row) : buildTransportSummary(row);
         }
-        if (kind === "followup") {
-          var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
-          var ta = sheet && sheet.querySelector(".owner-dash-detail-followup");
-          if (ta && String(ta.value).trim()) return ta.value;
-          return table === "business_leads" ? buildBusinessFollowUp(row) : buildTransportFollowUp(row);
-        }
         return "";
       }
 
-      function copyFromDetail(kind) {
+      function copyFromDetail(kind, sourceBtn) {
         var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
         if (!sheet || !state.detailOpen) return;
-        var section = sheet.querySelector(".owner-dash-detail-section");
+        var section =
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section")) ||
+          sheet.querySelector(".owner-dash-detail-section");
         var row = getDetailRecord();
         var text = copyTextForKind(kind, row, state.detailOpen.table);
         if (!text) {
@@ -1409,8 +1707,8 @@
           }
 
           var sheet = btn.closest(".owner-dash-detail-sheet");
-          if (sheet && action === "copy-field") {
-            copyFromDetail(btn.getAttribute("data-copy-kind"));
+          if (sheet && (action === "copy-field" || action === "copy-followup")) {
+            copyFromDetail(btn.getAttribute("data-copy-kind"), btn);
             return;
           }
 

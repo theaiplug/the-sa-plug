@@ -14072,12 +14072,51 @@ body.owner-dash-detail-open {
 }
 
 .page-owner-dashboard .owner-dash-detail-copy-actions,
+.page-owner-dashboard .owner-dash-detail-followup-actions,
 .page-owner-dashboard .owner-dash-detail-quick-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
   margin-bottom: 10px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-detail-section-note {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(255, 246, 230, 0.58);
+}
+
+.page-owner-dashboard .owner-dash-detail-section--followup .owner-dash-btn {
+  flex: 1 1 calc(50% - 4px);
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+@media (min-width: 520px) {
+  .page-owner-dashboard .owner-dash-detail-section--followup .owner-dash-btn {
+    flex: 1 1 auto;
+    white-space: nowrap;
+  }
+}
+
+.page-owner-dashboard .owner-dash-detail-manual-copy-text.owner-dash-textarea {
+  min-height: 6rem;
+  width: 100%;
+  max-width: 100%;
+  resize: vertical;
+  user-select: all;
+  font-family: inherit;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(255, 246, 230, 0.92);
 }
 
 .page-owner-dashboard .owner-dash-detail-copy-feedback,
