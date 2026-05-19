@@ -12,7 +12,7 @@ FILES:
 - start-here.html = first-time visitor guide
 - downtown.html = downtown / River Walk / Convention Center guide
 - where-to-eat.html = food recommendation hub
-- resort-food.html = resort-area food guide
+- resort-food.html = resort-area guides (food, activities, timing)
 - summer-family.html = family guide
 - driver-concierge.html = driver + concierge service page
 - business-services.html = Work With Willie / AI services page
