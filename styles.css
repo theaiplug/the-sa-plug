@@ -14236,3 +14236,164 @@ body.owner-dash-detail-open {
     max-width: 100%;
   }
 }
+
+/* Owner Command Dashboard v5 — priority, pipeline, grouped tools */
+.page-owner-dashboard .owner-dash-summary-grid--v5 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .page-owner-dashboard .owner-dash-summary-grid--v5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-owner-dashboard .owner-dash-summary-grid--v5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-owner-dashboard .owner-dash-stat--compact {
+  padding: clamp(12px, 1.8vw, 16px);
+}
+
+.page-owner-dashboard .owner-dash-stat--compact .owner-dash-stat-value {
+  font-size: clamp(1.55rem, 3.5vw, 2rem);
+}
+
+.page-owner-dashboard .owner-dash-stat-value--hot {
+  color: #ff8a6b;
+}
+
+.page-owner-dashboard .owner-dash-badge--warm {
+  background: rgba(255, 180, 80, 0.16);
+  border: 1px solid rgba(255, 180, 80, 0.45);
+  color: #ffe4c4;
+}
+
+.page-owner-dashboard .owner-dash-badge--low {
+  background: rgba(148, 163, 184, 0.18);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: rgba(226, 232, 240, 0.88);
+}
+
+.page-owner-dashboard .owner-dash-priority-filters {
+  margin-top: -8px;
+  margin-bottom: 16px;
+}
+
+.page-owner-dashboard .owner-dash-next-action {
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: rgba(255, 246, 230, 0.88);
+  background: rgba(255, 139, 31, 0.1);
+  border: 1px solid rgba(255, 139, 31, 0.28);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-next-action-label {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 180, 80, 0.95);
+}
+
+.page-owner-dashboard .owner-dash-pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-pipeline-step {
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255, 246, 230, 0.62);
+  background: rgba(4, 10, 22, 0.45);
+  border: 1px solid rgba(255, 246, 230, 0.12);
+}
+
+.page-owner-dashboard .owner-dash-pipeline-step.is-current {
+  color: #c8fff5;
+  background: rgba(20, 184, 166, 0.2);
+  border-color: rgba(20, 184, 166, 0.55);
+}
+
+.page-owner-dashboard .owner-dash-pipeline-arrow {
+  font-size: 0.72rem;
+  color: rgba(255, 246, 230, 0.35);
+}
+
+.page-owner-dashboard .owner-dash-detail-section--pipeline {
+  margin-bottom: 14px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.page-owner-dashboard .owner-dash-tool-groups {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-tool-group {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(4, 10, 22, 0.42);
+  border: 1px solid rgba(255, 246, 230, 0.08);
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-tool-group-label {
+  margin: 0 0 8px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(20, 184, 166, 0.9);
+}
+
+.page-owner-dashboard .owner-dash-tool-group-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-detail-section--tools .owner-dash-btn {
+  flex: 1 1 calc(50% - 4px);
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+@media (min-width: 520px) {
+  .page-owner-dashboard .owner-dash-detail-section--tools .owner-dash-btn {
+    flex: 1 1 auto;
+    white-space: nowrap;
+  }
+}
+
+.page-owner-dashboard .owner-dash-detail-section--tools .owner-dash-detail-copy-feedback {
+  margin-top: 10px;
+}
+
+.page-owner-dashboard .owner-dash-lead-card--compact .owner-dash-next-action {
+  margin-bottom: 8px;
+  padding: 6px 9px;
+  font-size: 0.78rem;
+}

@@ -62,41 +62,36 @@
         <p id="owner-dash-refresh-error" class="owner-dash-refresh-error" hidden role="alert" aria-live="polite"></p>
       </div>
       <section class="owner-dash-summary" aria-label="Summary counts">
-        <div class="owner-dash-summary-grid">
-          <article class="owner-dash-glass owner-dash-stat">
-            <p class="owner-dash-stat-label">New Business Leads</p>
-            <p class="owner-dash-stat-value" id="count-business-new">—</p>
-            <p class="owner-dash-stat-meta"><span id="count-total-business">0</span> total</p>
+        <div class="owner-dash-summary-grid owner-dash-summary-grid--v5">
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
+            <p class="owner-dash-stat-label">Hot Leads</p>
+            <p class="owner-dash-stat-value owner-dash-stat-value--hot" id="count-hot-leads">—</p>
+            <p class="owner-dash-stat-meta">Loaded business leads</p>
           </article>
-          <article class="owner-dash-glass owner-dash-stat">
-            <p class="owner-dash-stat-label">New Transportation</p>
-            <p class="owner-dash-stat-value" id="count-transport-new">—</p>
-            <p class="owner-dash-stat-meta"><span id="count-total-transport">0</span> total</p>
-          </article>
-          <article class="owner-dash-glass owner-dash-stat">
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
             <p class="owner-dash-stat-label">Needs Follow-up</p>
             <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-needs-follow-up">—</p>
             <p class="owner-dash-stat-meta">Both pipelines</p>
           </article>
-          <article class="owner-dash-glass owner-dash-stat">
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
             <p class="owner-dash-stat-label">Contacted</p>
             <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-contacted">—</p>
             <p class="owner-dash-stat-meta">Marked contacted</p>
           </article>
-          <article class="owner-dash-glass owner-dash-stat">
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
             <p class="owner-dash-stat-label">Won</p>
             <p class="owner-dash-stat-value" id="count-won">—</p>
             <p class="owner-dash-stat-meta">Closed won</p>
           </article>
-          <article class="owner-dash-glass owner-dash-stat">
-            <p class="owner-dash-stat-label">Email Alerts Sent</p>
-            <p class="owner-dash-stat-value" id="count-email-alerts">—</p>
-            <p class="owner-dash-stat-meta">Gmail / Resend</p>
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
+            <p class="owner-dash-stat-label">New Business Leads</p>
+            <p class="owner-dash-stat-value" id="count-business-new">—</p>
+            <p class="owner-dash-stat-meta"><span id="count-total-business">0</span> total</p>
           </article>
-          <article class="owner-dash-glass owner-dash-stat">
-            <p class="owner-dash-stat-label">SMS Sent / Pending</p>
-            <p class="owner-dash-stat-value" id="count-sms-alerts">—</p>
-            <p class="owner-dash-stat-meta">A2P registration pending</p>
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
+            <p class="owner-dash-stat-label">New Transportation</p>
+            <p class="owner-dash-stat-value" id="count-transport-new">—</p>
+            <p class="owner-dash-stat-meta"><span id="count-total-transport">0</span> total</p>
           </article>
         </div>
       </section>
@@ -110,6 +105,14 @@
         <button type="button" class="owner-dash-filter" data-filter="won">Won</button>
         <button type="button" class="owner-dash-filter" data-filter="lost">Lost</button>
         <button type="button" class="owner-dash-filter" data-filter="needs follow-up">Needs follow-up</button>
+      </div>
+
+      <div class="owner-dash-filters owner-dash-priority-filters" role="group" aria-label="Priority filters">
+        <button type="button" class="owner-dash-filter owner-dash-priority-filter is-active" data-priority-filter="all">All priorities</button>
+        <button type="button" class="owner-dash-filter owner-dash-priority-filter" data-priority-filter="hot">Hot</button>
+        <button type="button" class="owner-dash-filter owner-dash-priority-filter" data-priority-filter="warm">Warm</button>
+        <button type="button" class="owner-dash-filter owner-dash-priority-filter" data-priority-filter="low">Low</button>
+        <button type="button" class="owner-dash-filter owner-dash-priority-filter" data-priority-filter="not-a-fit">Not a fit</button>
       </div>
 
       <div class="owner-dash-tabs" role="tablist" aria-label="Lead sections">
@@ -190,7 +193,10 @@
         transportRows: [],
         counts: null,
         activeFilter: "all",
+        activePriorityFilter: "all",
         tabsReady: false,
+        filtersReady: false,
+        priorityFiltersReady: false,
         detailOpen: null,
       };
 
@@ -208,8 +214,7 @@
         countNeedsFollowUp: document.getElementById("count-needs-follow-up"),
         countContacted: document.getElementById("count-contacted"),
         countWon: document.getElementById("count-won"),
-        countEmailAlerts: document.getElementById("count-email-alerts"),
-        countSmsAlerts: document.getElementById("count-sms-alerts"),
+        countHotLeads: document.getElementById("count-hot-leads"),
         countTotalBusiness: document.getElementById("count-total-business"),
         countTotalTransport: document.getElementById("count-total-transport"),
         refreshBtn: document.getElementById("owner-dash-refresh"),
@@ -268,9 +273,237 @@
         return st || "New";
       }
 
-      function matchesFilter(row) {
-        if (state.activeFilter === "all") return true;
-        return normStatus(row.status) === normStatus(state.activeFilter);
+      function textIncludesAny(text, terms) {
+        var s = String(text || "").toLowerCase();
+        for (var i = 0; i < terms.length; i++) {
+          if (s.indexOf(terms[i]) !== -1) return true;
+        }
+        return false;
+      }
+
+      function calcBusinessPriority(lead) {
+        var status = normStatus(lead.status);
+        if (status === "not a fit" || status === "lost" || status === "archived") {
+          return {
+            label: "Not a fit",
+            key: "not-a-fit",
+            score: -4,
+            className: "owner-dash-badge--muted",
+          };
+        }
+
+        var score = 0;
+        var urgencyBlob = [lead.urgency, lead.current_problem, lead.timeline].filter(Boolean).join(" ");
+        if (
+          textIncludesAny(urgencyBlob, [
+            "urgent",
+            "losing revenue",
+            "asap",
+            "right away",
+            "immediately",
+          ])
+        ) {
+          score += 3;
+        }
+        if (
+          textIncludesAny(lead.current_problem, [
+            "missed calls",
+            "losing leads",
+            "no follow-up",
+            "not getting leads",
+            "lead capture",
+            "booking",
+            "automation",
+          ])
+        ) {
+          score += 2;
+        }
+        if (
+          textIncludesAny(lead.timeline, ["now", "this week", "1 week", "2 weeks", "2-4 weeks"])
+        ) {
+          score += 2;
+        }
+        if (
+          textIncludesAny(lead.services_interested, [
+            "phone",
+            "chat",
+            "automation",
+            "lead capture",
+            "business system",
+            "booking",
+            "website",
+          ])
+        ) {
+          score += 2;
+        }
+        if (lead.contact_phone) score += 1;
+        if (lead.contact_email) score += 1;
+        if (lead.ai_summary) score += 1;
+        if (lead.lead_quality && /hot|ready|priority/i.test(String(lead.lead_quality))) {
+          score += 1;
+        }
+
+        if (score >= 7) {
+          return { label: "Hot lead", key: "hot", score: score, className: "owner-dash-badge--hot" };
+        }
+        if (score >= 4) {
+          return { label: "Warm lead", key: "warm", score: score, className: "owner-dash-badge--warm" };
+        }
+        return { label: "Low priority", key: "low", score: score, className: "owner-dash-badge--low" };
+      }
+
+      function calcBusinessNextAction(lead, priority) {
+        var status = normStatus(lead.status);
+        if (status === "not a fit") return "Archive or leave notes";
+        if (status === "won" || status === "lost" || status === "archived") {
+          return "No active follow-up";
+        }
+        if (status === "needs follow-up") return "Follow up today";
+        if (status === "contacted") return "Add call notes and set next step";
+        if (
+          textIncludesAny(lead.current_problem, [
+            "website",
+            "online business system",
+            "web site",
+          ])
+        ) {
+          return "Review website/intake flow";
+        }
+        if (status === "new" && priority.key === "hot") return "Call or text today";
+        if (status === "new" && lead.contact_phone) return "Send SMS follow-up";
+        if (status === "new" && lead.contact_email && !lead.contact_phone) {
+          return "Send email reply";
+        }
+        if (status === "new") return "Ask discovery questions";
+        if (status === "reviewed") return "Send SMS follow-up";
+        if (status === "qualified") return "Move to Won/Lost after follow-up";
+        return "Add call notes and set next step";
+      }
+
+      function isTransportTimeSensitive(row) {
+        var dt = row.date_time;
+        if (dt) {
+          try {
+            var d = new Date(dt);
+            if (!Number.isNaN(d.getTime())) {
+              var today = new Date();
+              if (d.toDateString() === today.toDateString()) return true;
+            }
+          } catch {
+            /* ignore */
+          }
+        }
+        var text = [row.date_time, row.notes, row.conversation_excerpt].filter(Boolean).join(" ");
+        return textIncludesAny(text, [
+          "urgent",
+          "asap",
+          "today",
+          "tonight",
+          "now",
+          "immediately",
+          "right away",
+        ]);
+      }
+
+      function calcTransportPriority(row) {
+        var status = normStatus(row.status);
+        if (status === "handled") {
+          return {
+            label: "Handled",
+            key: "handled",
+            filterKey: "not-a-fit",
+            className: "owner-dash-badge--ok",
+          };
+        }
+        if (status === "cancelled" || status === "lost" || status === "archived") {
+          return {
+            label: "Cancelled",
+            key: "cancelled",
+            filterKey: "not-a-fit",
+            className: "owner-dash-badge--muted",
+          };
+        }
+        if (isTransportTimeSensitive(row)) {
+          return {
+            label: "Time-sensitive",
+            key: "time-sensitive",
+            filterKey: "hot",
+            className: "owner-dash-badge--hot",
+          };
+        }
+        return {
+          label: "Standard",
+          key: "standard",
+          filterKey: "warm",
+          className: "owner-dash-badge--neutral",
+        };
+      }
+
+      function calcTransportNextAction(row, priority) {
+        if (priority.key === "time-sensitive") return "Review now";
+        if (priority.key === "handled" || priority.key === "cancelled") {
+          return "No active follow-up";
+        }
+        return "Review when available";
+      }
+
+      function priorityBadgeHtml(priority) {
+        return (
+          '<span class="owner-dash-badge ' +
+          priority.className +
+          '">' +
+          esc(priority.label) +
+          "</span>"
+        );
+      }
+
+      function nextActionHtml(action) {
+        if (!action) return "";
+        return (
+          '<p class="owner-dash-next-action"><span class="owner-dash-next-action-label">Next action</span> ' +
+          esc(action) +
+          "</p>"
+        );
+      }
+
+      function matchesPriorityFilter(row, table) {
+        if (state.activePriorityFilter === "all") return true;
+        var pri =
+          table === "business_leads" ? calcBusinessPriority(row) : calcTransportPriority(row);
+        if (table === "business_leads") {
+          return pri.key === state.activePriorityFilter;
+        }
+        var filterKey = pri.filterKey || pri.key;
+        if (state.activePriorityFilter === "low") {
+          return filterKey === "low" || (filterKey === "warm" && pri.key === "standard");
+        }
+        return filterKey === state.activePriorityFilter;
+      }
+
+      function matchesFilter(row, table) {
+        if (state.activeFilter !== "all" && normStatus(row.status) !== normStatus(state.activeFilter)) {
+          return false;
+        }
+        return matchesPriorityFilter(row, table);
+      }
+
+      function sortBusinessLeads(leads) {
+        return leads.slice().sort(function (a, b) {
+          var pa = calcBusinessPriority(a);
+          var pb = calcBusinessPriority(b);
+          if (pb.score !== pa.score) return pb.score - pa.score;
+          var ta = new Date(a.created_at || 0).getTime();
+          var tb = new Date(b.created_at || 0).getTime();
+          return tb - ta;
+        });
+      }
+
+      function countHotLeadsFromState() {
+        var n = 0;
+        for (var i = 0; i < state.businessLeads.length; i++) {
+          if (calcBusinessPriority(state.businessLeads[i]).key === "hot") n++;
+        }
+        return n;
       }
 
       function alertPill(sent, label) {
@@ -796,46 +1029,14 @@
         return "";
       }
 
-      function copyActionsBlock(table, row) {
-        var isBusiness = table === "business_leads";
-        return (
-          '<section class="owner-dash-detail-section">' +
-          '<h3 class="owner-dash-detail-section-title">Copy tools</h3>' +
-          '<div class="owner-dash-detail-copy-actions">' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="phone">Copy phone</button>' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="email">Copy email</button>' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="summary">Copy ' +
-          (isBusiness ? "lead summary" : "request summary") +
-          "</button>" +
-          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
-          "</div>" +
-          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
-          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
-          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="5" readonly></textarea>' +
-          "</div></section>"
-        );
-      }
-
-      function ownerFollowUpToolsBlock(table, row) {
-        var isBusiness = table === "business_leads";
-        var buttons = isBusiness
-          ? [
-              { kind: "sms-followup", label: "Copy SMS follow-up" },
-              { kind: "email-reply", label: "Copy email reply" },
-              { kind: "call-script", label: "Copy call script" },
-              { kind: "discovery-questions", label: "Copy discovery questions" },
-              { kind: "first-offer", label: "Copy first-offer recommendation" },
-            ]
-          : [
-              { kind: "sms-followup", label: "Copy SMS follow-up" },
-              { kind: "email-reply", label: "Copy email reply" },
-              { kind: "call-script", label: "Copy call script" },
-              { kind: "request-summary", label: "Copy request summary" },
-            ];
+      function toolGroup(label, buttons) {
         var btnHtml = buttons
           .map(function (b) {
+            var action = b.action || "copy-field";
             return (
-              '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-followup" data-copy-kind="' +
+              '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="' +
+              esc(action) +
+              '" data-copy-kind="' +
               esc(b.kind) +
               '">' +
               esc(b.label) +
@@ -844,13 +1045,44 @@
           })
           .join("");
         return (
-          '<section class="owner-dash-detail-section owner-dash-detail-section--followup">' +
-          '<h3 class="owner-dash-detail-section-title">Owner Follow-Up Tools</h3>' +
-          '<p class="owner-dash-detail-section-note">Copy only — nothing is sent automatically.</p>' +
-          '<div class="owner-dash-detail-followup-actions">' +
+          '<div class="owner-dash-tool-group">' +
+          '<p class="owner-dash-tool-group-label">' +
+          esc(label) +
+          "</p>" +
+          '<div class="owner-dash-tool-group-actions">' +
           btnHtml +
-          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          "</div></div>"
+        );
+      }
+
+      function groupedToolsBlock(table) {
+        var isBusiness = table === "business_leads";
+        var contactButtons = [
+          { kind: "phone", label: "Copy phone" },
+          { kind: "email", label: "Copy email" },
+        ];
+        var followUpButtons = [
+          { kind: "sms-followup", label: "Copy SMS follow-up", action: "copy-followup" },
+          { kind: "email-reply", label: "Copy email reply", action: "copy-followup" },
+          { kind: "call-script", label: "Copy call script", action: "copy-followup" },
+        ];
+        var prepButtons = isBusiness
+          ? [
+              { kind: "summary", label: "Copy lead summary" },
+              { kind: "discovery-questions", label: "Copy discovery questions", action: "copy-followup" },
+              { kind: "first-offer", label: "Copy first-offer recommendation", action: "copy-followup" },
+            ]
+          : [{ kind: "request-summary", label: "Copy request summary", action: "copy-followup" }];
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--tools">' +
+          '<h3 class="owner-dash-detail-section-title">Owner tools</h3>' +
+          '<p class="owner-dash-detail-section-note">Copy only — nothing is sent automatically.</p>' +
+          '<div class="owner-dash-tool-groups">' +
+          toolGroup("Contact Copy Tools", contactButtons) +
+          toolGroup("Follow-Up Copy Tools", followUpButtons) +
+          toolGroup(isBusiness ? "Sales Prep Tools" : "Request Prep Tools", prepButtons) +
           "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
           '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
           '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
@@ -858,22 +1090,81 @@
         );
       }
 
-      function quickStatusBlock() {
+      function pipelineBlock(table, status) {
+        if (table !== "business_leads") return "";
+        var steps = ["New", "Reviewed", "Contacted", "Qualified", "Won/Lost"];
+        var cur = normStatus(status);
+        var html =
+          '<section class="owner-dash-detail-section owner-dash-detail-section--pipeline">' +
+          '<h3 class="owner-dash-detail-section-title">Sales pipeline</h3>' +
+          '<div class="owner-dash-pipeline" role="list" aria-label="Sales pipeline">';
+        steps.forEach(function (step, idx) {
+          var isCurrent = false;
+          if (step === "Won/Lost") {
+            isCurrent = cur === "won" || cur === "lost";
+          } else {
+            isCurrent = cur === normStatus(step);
+          }
+          html +=
+            (idx > 0 ? '<span class="owner-dash-pipeline-arrow" aria-hidden="true">→</span>' : "") +
+            '<span class="owner-dash-pipeline-step' +
+            (isCurrent ? " is-current" : "") +
+            '" role="listitem">' +
+            esc(step) +
+            "</span>";
+        });
+        html += "</div></section>";
+        return html;
+      }
+
+      function quickStatusBlock(table) {
+        var buttons =
+          table === "business_leads"
+            ? [
+                { status: "Reviewed", label: "Mark Reviewed", primary: false },
+                { status: "Contacted", label: "Mark Contacted", primary: false },
+                { status: "Qualified", label: "Mark Qualified", primary: false },
+                { status: "Needs follow-up", label: "Needs follow-up", primary: false },
+                { status: "Won", label: "Won", primary: true },
+                { status: "Lost", label: "Lost", primary: false },
+                { status: "Not a fit", label: "Not a fit", primary: false },
+                { status: "Archived", label: "Archived", primary: false },
+              ]
+            : [
+                { status: "Reviewed", label: "Mark Reviewed", primary: false },
+                { status: "Contacted", label: "Mark Contacted", primary: false },
+                { status: "Needs follow-up", label: "Needs follow-up", primary: false },
+                { status: "Handled", label: "Handled", primary: true },
+                { status: "Cancelled", label: "Cancelled", primary: false },
+                { status: "Lost", label: "Lost", primary: false },
+                { status: "Archived", label: "Archived", primary: false },
+              ];
+        var btnHtml = buttons
+          .map(function (b) {
+            return (
+              '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--' +
+              (b.primary ? "primary" : "secondary") +
+              '" data-action="quick-status" data-status="' +
+              esc(b.status) +
+              '">' +
+              esc(b.label) +
+              "</button>"
+            );
+          })
+          .join("");
         return (
           '<section class="owner-dash-detail-section">' +
           '<h3 class="owner-dash-detail-section-title">Quick status</h3>' +
           '<div class="owner-dash-detail-quick-actions">' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="quick-status" data-status="Reviewed">Mark Reviewed</button>' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="quick-status" data-status="Contacted">Mark Contacted</button>' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="quick-status" data-status="Needs follow-up">Needs follow-up</button>' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="quick-status" data-status="Won">Won</button>' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="quick-status" data-status="Lost">Lost</button>' +
+          btnHtml +
           '<span class="owner-dash-detail-quick-feedback" data-quick-feedback hidden aria-live="polite"></span>' +
           "</div></section>"
         );
       }
 
       function renderBusinessDetail(lead) {
+        var priority = calcBusinessPriority(lead);
+        var nextAction = calcBusinessNextAction(lead, priority);
         var industryLoc = [lead.business_industry, lead.business_location].filter(Boolean).join(" · ");
         var website = lead.business_website;
         var websiteHref =
@@ -885,11 +1176,7 @@
           esc(lead.id) +
           '">' +
           '<div class="owner-dash-detail-badges">' +
-          '<span class="owner-dash-badge ' +
-          qualityClass(lead.lead_quality) +
-          '">' +
-          esc(lead.lead_quality || "Lead") +
-          "</span>" +
+          priorityBadgeHtml(priority) +
           '<span class="owner-dash-badge ' +
           statusClass(lead.status) +
           '">' +
@@ -900,6 +1187,8 @@
           '">' +
           esc(fmtDate(lead.created_at)) +
           "</time></div>" +
+          nextActionHtml(nextAction) +
+          pipelineBlock("business_leads", lead.status) +
           '<div class="owner-dash-detail-grid">' +
           detailRow("Business name", lead.business_name) +
           detailRow("Contact name", lead.contact_name) +
@@ -923,21 +1212,23 @@
           alertPill(lead.alert_email_sent, "Email") +
           alertPill(lead.alert_sms_sent, "SMS") +
           "</div>" +
-          copyActionsBlock("business_leads", lead) +
-          ownerFollowUpToolsBlock("business_leads", lead) +
-          quickStatusBlock() +
+          groupedToolsBlock("business_leads") +
+          quickStatusBlock("business_leads") +
           workflowBlock("business_leads", lead) +
           "</div>"
         );
       }
 
       function renderTransportDetail(row) {
+        var priority = calcTransportPriority(row);
+        var nextAction = calcTransportNextAction(row, priority);
         var route = [row.pickup_area, row.destination].filter(Boolean).join(" → ");
         return (
           '<div class="owner-dash-detail-sheet" data-detail-table="transportation_requests" data-detail-id="' +
           esc(row.id) +
           '">' +
           '<div class="owner-dash-detail-badges">' +
+          priorityBadgeHtml(priority) +
           '<span class="owner-dash-badge ' +
           statusClass(row.status) +
           '">' +
@@ -951,6 +1242,7 @@
           '">' +
           esc(fmtDate(row.created_at)) +
           "</time></div>" +
+          nextActionHtml(nextAction) +
           '<div class="owner-dash-detail-grid">' +
           detailRow("Request type", row.request_type) +
           detailRow("Name", row.name) +
@@ -972,9 +1264,8 @@
           alertPill(row.alert_email_sent, "Email") +
           alertPill(row.alert_sms_sent, "SMS") +
           "</div>" +
-          copyActionsBlock("transportation_requests", row) +
-          ownerFollowUpToolsBlock("transportation_requests", row) +
-          quickStatusBlock() +
+          groupedToolsBlock("transportation_requests") +
+          quickStatusBlock("transportation_requests") +
           workflowBlock("transportation_requests", row) +
           "</div>"
         );
@@ -1095,7 +1386,9 @@
         var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
         if (!sheet || !state.detailOpen) return;
         var section =
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--tools")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section")) ||
+          sheet.querySelector(".owner-dash-detail-section--tools") ||
           sheet.querySelector(".owner-dash-detail-section");
         var row = getDetailRecord();
         var text = copyTextForKind(kind, row, state.detailOpen.table);
@@ -1258,7 +1551,9 @@
       }
 
       function renderBusiness(leads) {
-        var filtered = leads.filter(matchesFilter);
+        var filtered = sortBusinessLeads(leads).filter(function (lead) {
+          return matchesFilter(lead, "business_leads");
+        });
         if (!filtered.length) {
           show(els.businessEmpty);
           els.businessList.innerHTML = "";
@@ -1267,13 +1562,10 @@
         hide(els.businessEmpty);
         els.businessList.innerHTML = filtered
           .map(function (lead) {
+            var priority = calcBusinessPriority(lead);
+            var nextAction = calcBusinessNextAction(lead, priority);
             var badge =
-              '<span class="owner-dash-badge ' +
-              qualityClass(lead.lead_quality) +
-              '">' +
-              esc(lead.lead_quality || "Lead") +
-              "</span>";
-            badge +=
+              priorityBadgeHtml(priority) +
               ' <span class="owner-dash-badge ' +
               statusClass(lead.status) +
               '">' +
@@ -1291,6 +1583,7 @@
               '">' +
               esc(fmtDate(lead.created_at)) +
               "</time></div>" +
+              nextActionHtml(nextAction) +
               "<h3 class=\"owner-dash-card-title\">" +
               esc(lead.business_name || "Business TBD") +
               "</h3>" +
@@ -1314,7 +1607,9 @@
       }
 
       function renderTransport(rows) {
-        var filtered = rows.filter(matchesFilter);
+        var filtered = rows.filter(function (row) {
+          return matchesFilter(row, "transportation_requests");
+        });
         if (!filtered.length) {
           show(els.transportEmpty);
           els.transportList.innerHTML = "";
@@ -1323,30 +1618,32 @@
         hide(els.transportEmpty);
         els.transportList.innerHTML = filtered
           .map(function (row) {
+            var priority = calcTransportPriority(row);
+            var nextAction = calcTransportNextAction(row, priority);
             var route = [row.pickup_area, row.destination].filter(Boolean).join(" → ");
             var preview = transportPreviewText(row);
+            var title = row.request_type
+              ? (row.request_type + ": " + (row.name || "Guest"))
+              : (row.name || "Guest");
             return (
               '<article class="owner-dash-glass owner-dash-lead-card owner-dash-lead-card--compact" data-record-id="' +
               esc(row.id) +
               '">' +
               '<div class="owner-dash-card-top">' +
-              '<span class="owner-dash-badge ' +
+              priorityBadgeHtml(priority) +
+              ' <span class="owner-dash-badge ' +
               statusClass(row.status) +
               '">' +
               esc(displayStatus(row.status)) +
               "</span>" +
-              (row.request_type
-                ? '<span class="owner-dash-badge owner-dash-badge--neutral">' +
-                  esc(row.request_type) +
-                  "</span>"
-                : "") +
               '<time class="owner-dash-time" datetime="' +
               esc(row.created_at) +
               '">' +
               esc(fmtDate(row.created_at)) +
               "</time></div>" +
+              nextActionHtml(nextAction) +
               "<h3 class=\"owner-dash-card-title\">" +
-              esc(row.name || "Guest") +
+              esc(title) +
               "</h3>" +
               '<dl class="owner-dash-fields owner-dash-fields--compact">' +
               block("Phone / email", contactLine(row.phone, row.email)) +
@@ -1369,6 +1666,9 @@
       function renderAll() {
         renderBusiness(state.businessLeads);
         renderTransport(state.transportRows);
+        if (els.countHotLeads) {
+          els.countHotLeads.textContent = String(countHotLeadsFromState());
+        }
         refreshDetailIfOpen();
       }
 
@@ -1379,8 +1679,9 @@
         els.countNeedsFollowUp.textContent = String(counts.needs_follow_up ?? 0);
         els.countContacted.textContent = String(counts.contacted ?? 0);
         els.countWon.textContent = String(counts.won ?? 0);
-        els.countEmailAlerts.textContent = String(counts.email_alerts_sent ?? 0);
-        els.countSmsAlerts.textContent = String(counts.sms_alerts_sent ?? 0);
+        if (els.countHotLeads) {
+          els.countHotLeads.textContent = String(countHotLeadsFromState());
+        }
         els.countTotalBusiness.textContent = String(counts.total_business ?? 0);
         els.countTotalTransport.textContent = String(counts.total_transportation ?? 0);
       }
@@ -1676,10 +1977,27 @@
       }
 
       function initFilters() {
-        var filters = document.querySelectorAll(".owner-dash-filter");
+        if (state.filtersReady) return;
+        state.filtersReady = true;
+        var filters = document.querySelectorAll(".owner-dash-filter[data-filter]");
         filters.forEach(function (btn) {
           btn.addEventListener("click", function () {
             state.activeFilter = btn.getAttribute("data-filter") || "all";
+            filters.forEach(function (b) {
+              b.classList.toggle("is-active", b === btn);
+            });
+            renderAll();
+          });
+        });
+      }
+
+      function initPriorityFilters() {
+        if (state.priorityFiltersReady) return;
+        state.priorityFiltersReady = true;
+        var filters = document.querySelectorAll(".owner-dash-priority-filter");
+        filters.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            state.activePriorityFilter = btn.getAttribute("data-priority-filter") || "all";
             filters.forEach(function (b) {
               b.classList.toggle("is-active", b === btn);
             });
@@ -1760,6 +2078,7 @@
         renderAll();
         initTabs();
         initFilters();
+        initPriorityFilters();
       }
 
       function initRefresh() {
