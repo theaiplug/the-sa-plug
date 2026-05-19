@@ -3625,6 +3625,114 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   color: var(--slate);
 }
 
+/* Where To Go SA — official social links (footer + connect rows) */
+.wtgsa-social {
+  display: grid;
+  gap: 8px;
+}
+
+.wtgsa-social--footer {
+  margin-top: 2px;
+}
+
+.wtgsa-social__title {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--gold);
+}
+
+.footer.dark-showcase .wtgsa-social__title {
+  color: rgba(242, 178, 26, 0.94);
+}
+
+.footer:not(.dark-showcase) .wtgsa-social__title {
+  color: var(--navy);
+}
+
+.wtgsa-social__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+
+.wtgsa-social__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(11, 29, 58, 0.14);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 760;
+  line-height: 1.2;
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.wtgsa-social__link:hover {
+  border-color: rgba(242, 178, 26, 0.55);
+  color: var(--navy);
+}
+
+.footer.dark-showcase .wtgsa-social__link {
+  border: 1px solid rgba(255, 246, 230, 0.26);
+  background: rgba(255, 246, 230, 0.07);
+  color: var(--cream);
+}
+
+.footer.dark-showcase .wtgsa-social__link:hover {
+  border-color: rgba(242, 178, 26, 0.5);
+  background: rgba(255, 246, 230, 0.12);
+}
+
+.wtgsa-social--inline {
+  margin-top: 1rem;
+  max-width: 34rem;
+}
+
+.wtgsa-social--inline .wtgsa-social__title {
+  font-size: 0.72rem;
+}
+
+.section-ask-premium .wtgsa-social--inline .wtgsa-social__title,
+.ask-final-cta-card .wtgsa-social--inline .wtgsa-social__title,
+.sh-final-cta .wtgsa-social--inline .wtgsa-social__title {
+  color: rgba(242, 178, 26, 0.94);
+}
+
+.section-ask-premium .wtgsa-social--inline .wtgsa-social__link,
+.ask-final-cta-card .wtgsa-social--inline .wtgsa-social__link,
+.sh-final-cta .wtgsa-social--inline .wtgsa-social__link {
+  border-color: rgba(255, 246, 230, 0.28);
+  background: rgba(255, 246, 230, 0.08);
+  color: var(--cream);
+}
+
+.section-ask-premium .wtgsa-social--inline .wtgsa-social__link:hover,
+.ask-final-cta-card .wtgsa-social--inline .wtgsa-social__link:hover,
+.sh-final-cta .wtgsa-social--inline .wtgsa-social__link:hover {
+  border-color: rgba(242, 178, 26, 0.5);
+  background: rgba(255, 246, 230, 0.12);
+}
+
+.page-legal .wtgsa-social--inline {
+  margin-top: 1.25rem;
+}
+
+.page-legal .wtgsa-social--inline .wtgsa-social__title {
+  color: var(--navy);
+}
+
 /* ----- Responsive ----- */
 @media (min-width: 640px) {
   .route-selector-grid {
