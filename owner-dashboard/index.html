@@ -35,12 +35,6 @@
         <li class="owner-dash-pill">Gmail Alerts</li>
         <li class="owner-dash-pill owner-dash-pill--warn">SMS Pending A2P</li>
       </ul>
-      <div class="owner-dash-hero-actions">
-        <button type="button" id="owner-dash-refresh" class="owner-dash-btn owner-dash-btn--secondary" hidden>
-          Refresh data
-        </button>
-        <p id="owner-dash-refresh-error" class="owner-dash-refresh-error" hidden role="alert" aria-live="polite"></p>
-      </div>
     </section>
 
     <div id="owner-dash-state-unauthorized" class="owner-dash-state" hidden>
@@ -58,6 +52,15 @@
     </div>
 
     <div id="owner-dash-content" hidden>
+      <div class="owner-dash-utility" aria-label="Data controls">
+        <div class="owner-dash-utility-row">
+          <button type="button" id="owner-dash-refresh" class="owner-dash-refresh-btn">Refresh</button>
+          <p id="owner-dash-last-loaded" class="owner-dash-last-loaded" hidden>
+            Last loaded: <time id="owner-dash-last-loaded-time" datetime=""></time>
+          </p>
+        </div>
+        <p id="owner-dash-refresh-error" class="owner-dash-refresh-error" hidden role="alert" aria-live="polite"></p>
+      </div>
       <section class="owner-dash-summary" aria-label="Summary counts">
         <div class="owner-dash-summary-grid">
           <article class="owner-dash-glass owner-dash-stat">
@@ -190,6 +193,8 @@
         countTotalTransport: document.getElementById("count-total-transport"),
         refreshBtn: document.getElementById("owner-dash-refresh"),
         refreshError: document.getElementById("owner-dash-refresh-error"),
+        lastLoaded: document.getElementById("owner-dash-last-loaded"),
+        lastLoadedTime: document.getElementById("owner-dash-last-loaded-time"),
       };
 
       function show(el) {
@@ -693,6 +698,19 @@
           });
       }
 
+      function updateLastLoaded() {
+        if (!els.lastLoaded || !els.lastLoadedTime) return;
+        var now = new Date();
+        els.lastLoadedTime.dateTime = now.toISOString();
+        els.lastLoadedTime.textContent = now.toLocaleString(undefined, {
+          month: "short",
+          day: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+        });
+        els.lastLoaded.hidden = false;
+      }
+
       function hideRefreshError() {
         if (els.refreshError) {
           els.refreshError.hidden = true;
@@ -730,7 +748,7 @@
           .finally(function () {
             if (els.refreshBtn && els.content && !els.content.hidden) {
               els.refreshBtn.disabled = false;
-              els.refreshBtn.textContent = "Refresh data";
+              els.refreshBtn.textContent = "Refresh";
             }
           });
       }
@@ -786,7 +804,6 @@
         hide(els.loading);
         hide(els.content);
         hide(els.error);
-        if (els.refreshBtn) hide(els.refreshBtn);
         hideRefreshError();
         show(els.unauthorized);
       }
@@ -795,7 +812,6 @@
         hide(els.loading);
         hide(els.content);
         hide(els.unauthorized);
-        if (els.refreshBtn) hide(els.refreshBtn);
         hideRefreshError();
         show(els.error);
       }
@@ -806,11 +822,11 @@
         hide(els.error);
         hideRefreshError();
         show(els.content);
-        if (els.refreshBtn) show(els.refreshBtn);
         state.businessLeads = data.business_leads || [];
         state.transportRows = data.transportation_requests || [];
         state.counts = data.counts || null;
         setCounts(state.counts);
+        updateLastLoaded();
         renderAll();
         initTabs();
         initFilters();

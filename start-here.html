@@ -925,8 +925,10 @@
               <div class="live-concierge__thread" id="live-concierge-thread">
                 <div class="live-concierge__conversation" id="live-concierge-conversation">
                   <div class="live-concierge__answer-surface" id="live-concierge-answer-surface" aria-live="polite">
-                    <div class="live-concierge__preview" id="live-concierge-preview">
-                      <p class="live-concierge__preview-text">Tell us where you are, who you&rsquo;re with, what time it is, and what you&rsquo;re trying to do. We&rsquo;ll give you the clearest local move.</p>
+                    <div class="live-concierge__preview live-concierge__preview--placeholder" id="live-concierge-preview">
+                      <p class="live-concierge__preview-label">Local answer</p>
+                      <p class="live-concierge__preview-heading">Your local answer will appear here.</p>
+                      <p class="live-concierge__preview-text">Ask in plain language. We&rsquo;ll turn it into the clearest local move.</p>
                     </div>
                     <div class="live-concierge__transcript" id="live-concierge-transcript" hidden>
                       <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge answer"></div>
@@ -945,9 +947,9 @@
                           maxlength="12000"
                           required
                           autocomplete="off"
-                          placeholder="Example: We&rsquo;re staying at La Cantera with two kids and want dinner tonight without driving downtown&hellip;"
+                          placeholder="Example: We&rsquo;re staying at La Cantera with two kids and want dinner tonight without driving downtown."
                         ></textarea>
-                        <p class="consent-note consent-note--on-dark" role="note">By submitting, you agree that Where To Go SA may contact you by email or SMS about your request. Message and data rates may apply. Reply STOP to opt out or HELP for help.</p>
+                        <p class="live-concierge__engage-hint">Ask in plain language &mdash; hotel, group, timing, food mood, or what you&rsquo;re trying to avoid.</p>
                         <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local <span aria-hidden="true">&rarr;</span></button>
                       </div>
                     </form>
