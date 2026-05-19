@@ -117,7 +117,25 @@ main {
   line-height: 1.66;
 }
 
-/* Inner subpages: default sections sit on the global dark canvas — lock readable fiesta-on-dark type */
+/*
+  EXCLUSION-LIST RULE (read before adding a section class to the :not(...) lists below):
+
+  Any new section class added to the negation chain MUST also ship its own
+  text-color rules, or it will silently inherit body's cream and become invisible
+  on a light background (T1-class bug).
+
+    1) If the new section has a DARK background, add:
+         .<new-class> { color: var(--on-dark-body-soft); }
+         .<new-class> :is(h2, h3) { color: var(--on-dark-heading); }
+         .<new-class> .section-text { color: var(--on-dark-body); }
+    2) If the new section has a LIGHT background, add:
+         .<new-class> :is(h2, h3) { color: var(--navy); }
+         .<new-class> .section-text { color: var(--slate); }
+         .<new-class> .eyebrow { color: #bf2a76; }
+
+  Inner subpages: default sections sit on the global dark canvas — lock readable
+  fiesta-on-dark type below.
+*/
 main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) {
   color: var(--on-dark-body-soft);
 }
@@ -253,6 +271,15 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 .section-blush .hero-text,
 .section-turquoise-wash .hero-text {
   color: var(--slate);
+}
+
+/* Eyebrow contrast fix: base pink (#ff5ca8) on cream backgrounds
+   fails WCAG AA (~3.5:1). Use a deeper magenta on light sections. */
+.section-fiesta .eyebrow,
+.section-cream .eyebrow,
+.section-blush .eyebrow,
+.section-turquoise-wash .eyebrow {
+  color: #bf2a76;
 }
 
 .hero-fiesta-dark {
@@ -10531,7 +10558,7 @@ body.page-ask main {
   max-width: 40rem;
   font-size: clamp(0.88rem, 0.28vw + 0.82rem, 0.96rem);
   line-height: 1.55;
-  color: rgba(255, 248, 235, 0.68);
+  color: rgba(255, 248, 235, 0.84);
 }
 
 :is(.page-ask, .page-start-here) .live-concierge__chip-board {
@@ -11342,7 +11369,7 @@ body.page-ask main {
   max-width: 40rem;
   font-size: clamp(0.88rem, 0.28vw + 0.82rem, 0.96rem);
   line-height: 1.55;
-  color: rgba(255, 248, 235, 0.68);
+  color: rgba(255, 248, 235, 0.84);
 }
 
 .transport-concierge-main .transport-route-operator .live-concierge__chip-board {

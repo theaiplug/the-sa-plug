@@ -1000,6 +1000,22 @@
       border-block: 1px solid rgba(11, 29, 58, 0.07);
     }
 
+    /* Cream band lives inside transport-section (excluded from global negation),
+       so its headings/eyebrow must be locked to navy/magenta or they inherit
+       body's cream and disappear. */
+    .transport-concierge-main .tc-decision-band h2,
+    .transport-concierge-main .tc-decision-band h3 {
+      color: var(--navy);
+    }
+
+    .transport-concierge-main .tc-decision-band .section-text {
+      color: var(--slate);
+    }
+
+    .transport-concierge-main .tc-decision-band .eyebrow {
+      color: #bf2a76;
+    }
+
     .transport-concierge-main .tc-decision-grid {
       display: grid;
       gap: clamp(14px, 2vw, 18px);

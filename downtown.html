@@ -443,6 +443,36 @@
       gap: 10px 12px;
     }
 
+    /* Mobile QA: keep CTA stacks clean on narrow screens (avoid 2+1 wraps) */
+    @media (max-width: 480px) {
+      .page-downtown .dt-ask-card-actions {
+        flex-direction: column;
+      }
+
+      .page-downtown .dt-ask-card-actions .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Page-jump chip row: turn into a horizontal scroller on mobile
+         instead of wrapping 8 chips into 3-4 rows. */
+      .page-downtown .page-jump-chip-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+      }
+
+      .page-downtown .page-jump-chip-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .page-downtown .page-jump-chip-row .page-jump-chip {
+        flex: 0 0 auto;
+      }
+    }
+
     .page-downtown .dt-final-ask {
       margin-top: clamp(16px, 2vw, 22px);
       padding-top: clamp(14px, 2vw, 18px);
@@ -761,9 +791,9 @@
     .page-downtown .dt-act-google {
       display: inline-flex;
       align-self: flex-start;
-      font-size: 0.7rem;
+      font-size: 0.74rem;
       font-weight: 700;
-      color: rgba(255, 246, 230, 0.72);
+      color: rgba(255, 246, 230, 0.88);
       letter-spacing: 0.01em;
     }
 
@@ -1178,7 +1208,8 @@
               <span class="dt-act-google">Google: 3.9 ★ · 5.5K reviews</span>
               <div class="dt-act-chips"><span class="dt-act-chip">750-Foot Rotating View</span><span class="dt-act-chip">Upscale Seafood &amp; Steaks</span><span class="dt-act-chip">Skyline Dinner</span></div>
               <p class="dt-act-meta">Fine Dining Steak &amp; Seafood · Downtown / Hemisfair Park · $50&ndash;$100 · dramatic, upscale, panoramic</p>
-              <p class="dt-act-read">View-first dinner at the Tower — use when the skyline experience matters more than top food ratings.<p class="dt-act-best"><strong>Best for:</strong> dramatic skyline experience, milestone views &mdash; not a top food-first pick.</p>
+              <p class="dt-act-read">View-first dinner at the Tower &mdash; use when the skyline experience matters more than top food ratings.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> dramatic skyline experience, milestone views &mdash; not a top food-first pick.</p>
               <p class="dt-act-tip"><strong>Reservation move:</strong> Book around sunset if the view is the main event.</p>
             </article>
 <article class="dt-act-card" data-dt-dining="casa-rio">
@@ -1186,7 +1217,8 @@
               <span class="dt-act-google">Google: 4.1 ★ · 4.8K reviews</span>
               <div class="dt-act-chips"><span class="dt-act-chip">Historic Riverfront Pioneer</span><span class="dt-act-chip">Classic Tex-Mex Patios</span><span class="dt-act-chip">River Walk Classic</span></div>
               <p class="dt-act-meta">Classic Tex-Mex · Downtown / River Walk · $15&ndash;$30 · historic, bustling, iconic patios</p>
-              <p class="dt-act-read">Classic River Walk photo and history stop — colorful umbrellas and easy patio energy. Not a top food-first pick.<p class="dt-act-best"><strong>Best for:</strong> classic photo/history stop, easy casual River Walk meal &mdash; not a top food-first pick.</p>
+              <p class="dt-act-read">Classic River Walk photo and history stop &mdash; colorful umbrellas and easy patio energy. Not a top food-first pick.</p>
+              <p class="dt-act-best"><strong>Best for:</strong> classic photo/history stop, easy casual River Walk meal &mdash; not a top food-first pick.</p>
               <p class="dt-act-tip"><strong>Reservation move:</strong> Request an outdoor table by the water when you want the full umbrella-patio experience.</p>
             </article>
           </div>
@@ -1305,6 +1337,7 @@
             <article class="dt-act-card">
               <h4>Supper</h4>
               <span class="dt-act-google">Google: 4.6 ★ · 1.5K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Pearl Fine Dining</span><span class="dt-act-chip">Hotel Emma</span></div>
               <p class="dt-act-meta">Modern American · Pearl · $50&ndash;$100</p>
               <p class="dt-act-read">Upscale business dinners, celebratory meals, and romantic dates in a polished Pearl room.</p>
               <p class="dt-act-best"><strong>Best for:</strong> upscale groups, date nights, visitors who committed to the Pearl for dinner.</p>
@@ -1312,6 +1345,7 @@
             <article class="dt-act-card">
               <h4>Southerleigh Fine Food &amp; Brewery</h4>
               <span class="dt-act-google">Google: 4.5 ★ · 4.2K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Southern Comfort</span><span class="dt-act-chip">House Brewery</span></div>
               <p class="dt-act-meta">Southern comfort + brewery · Pearl · $30&ndash;$60</p>
               <p class="dt-act-read">Southern comfort, seafood, and house-brewed beer with real Pearl energy for groups.</p>
               <p class="dt-act-best"><strong>Best for:</strong> groups, beer-friendly dinners, visitors who want breathing room.</p>
@@ -1319,6 +1353,7 @@
             <article class="dt-act-card">
               <h4>Sternewirth</h4>
               <span class="dt-act-google">Google: 4.8 ★ · 1.6K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Hotel Emma Lounge</span><span class="dt-act-chip">Willie Approved</span></div>
               <p class="dt-act-meta">Hotel Emma lounge · Pearl · $20&ndash;$40</p>
               <p class="dt-act-read">Willie Approved Hotel Emma lounge &mdash; premium cocktails and fermentation-tank booths. One of the highest-priority Pearl nightlife picks.</p>
               <p class="dt-act-best"><strong>Best for:</strong> pre- or post-dinner drinks, upscale lounge nights, resort guests.</p>
@@ -1326,6 +1361,7 @@
             <article class="dt-act-card">
               <h4>Jazz, TX</h4>
               <span class="dt-act-google">Google: 4.8 ★ · 1.1K reviews</span>
+              <div class="dt-act-chips"><span class="dt-act-chip">Live Jazz Club</span><span class="dt-act-chip">Pearl Nightlife</span></div>
               <p class="dt-act-meta">Live jazz club · Pearl</p>
               <p class="dt-act-read">Underground jazz club energy for date nights and live music fans.</p>
               <p class="dt-act-best"><strong>Best for:</strong> couples, live music, a memorable Pearl finish.</p>

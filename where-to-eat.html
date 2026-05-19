@@ -681,6 +681,23 @@
       margin-top: clamp(14px, 2vw, 20px);
     }
 
+    /* Lane sub-section label (Restaurants / Rooftops / Bars inside a lane). */
+    .eat-lane-sublabel {
+      font-size: clamp(1rem, 1.4vw, 1.18rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.22;
+      margin: 0 0 6px;
+      color: rgba(255, 200, 150, 0.95);
+      padding-top: 6px;
+      border-top: 1px solid rgba(255, 200, 150, 0.18);
+    }
+
+    .eat-lane-sublabel + .section-text {
+      margin-top: 4px;
+      color: rgba(255, 246, 230, 0.78);
+    }
+
     .eat-lane-grid > article {
       height: 100%;
       min-height: 0;
@@ -2244,8 +2261,11 @@
     .eat-pearl-mini {
       padding: 14px 16px;
       border-radius: 14px;
-      border: 1px solid rgba(255, 246, 230, 0.14);
-      background: linear-gradient(155deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 246, 230, 0.18);
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.07));
+      box-shadow:
+        0 8px 22px rgba(2, 6, 14, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
     .eat-pearl-mini h3 {
@@ -2420,13 +2440,14 @@
 
     .eat-resort-zone-picks li {
       margin: 0 0 8px;
-      padding: 8px 10px;
+      padding: 9px 12px;
       border-radius: 10px;
       font-size: 0.84rem;
       line-height: 1.45;
       color: rgba(255, 248, 235, 0.92);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 246, 230, 0.1);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 246, 230, 0.15);
+      border-left: 3px solid rgba(255, 214, 93, 0.4);
     }
 
     .eat-resort-feature .eat-area-subhead {
@@ -2436,6 +2457,14 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       margin: 12px 0 6px;
+    }
+
+    @media (max-width: 640px) {
+      .eat-resort-feature .eat-area-subhead {
+        padding-top: 10px;
+        border-top: 1px solid rgba(180, 230, 220, 0.22);
+        margin-top: 16px;
+      }
     }
 
     .eat-district-feature__shell .eat-area-link,
@@ -2669,18 +2698,18 @@
         <header class="eat-section-head">
           <p class="eyebrow">Downtown + River Walk</p>
           <h2 id="eat-downtown-feature-title">Curated downtown &amp; River Walk food</h2>
-          <p class="section-text">Walkable convention nights, iconic river scenery, and Willie Approved polish &mdash; without treating every tourist name like a top food pick.</p>
+          <p class="section-text">Walkable convention nights, iconic river scenery, and curated polish &mdash; without treating every tourist name like a top food pick.</p>
         </header>
         <div class="eat-district-feature__grid">
-          <article class="eat-district-spot"><h3>Bohanan&rsquo;s Prime Steaks and Seafood</h3><span class="eat-google-pill">Google: 4.7 ★ · 3.1K reviews</span><p><span class="eat-status-pill">Willie Approved</span> Premium steakhouse / business dinner downtown.</p></article>
+          <article class="eat-district-spot"><h3>Bohanan&rsquo;s Prime Steaks and Seafood</h3><span class="eat-google-pill">Google: 4.7 ★ · 3.1K reviews</span><p>Premium steakhouse / business dinner downtown.</p></article>
           <article class="eat-district-spot"><h3>Biga on the Banks</h3><span class="eat-google-pill">Google: 4.7 ★ · 1.9K reviews</span><p>Upscale river dinner / foodie pick.</p></article>
           <article class="eat-district-spot"><h3>Paesanos Riverwalk</h3><span class="eat-google-pill">Google: 4.4 ★ · 2.8K reviews</span><p>Italian / River Walk / convention-friendly.</p></article>
           <article class="eat-district-spot"><h3>Boudro&rsquo;s on the Riverwalk</h3><span class="eat-google-pill">Google: 4.5 ★ · 8.2K reviews</span><p>Iconic River Walk / tableside guacamole / seafood.</p></article>
-          <article class="eat-district-spot"><h3>Domingo</h3><span class="eat-google-pill">Google: 4.4 ★ · 2.1K reviews</span><p><span class="eat-status-pill">Willie Approved</span> Modern Mexican / brunch / stylish River Walk patio.</p></article>
+          <article class="eat-district-spot"><h3>Domingo</h3><span class="eat-google-pill">Google: 4.4 ★ · 2.1K reviews</span><p>Modern Mexican / brunch / stylish River Walk patio.</p></article>
           <article class="eat-district-spot"><h3>Pinkerton&rsquo;s Barbecue</h3><span class="eat-google-pill">Google: 4.4 ★ · 3.5K reviews</span><p>Downtown Texas barbecue.</p></article>
           <article class="eat-district-spot"><h3>Mi Tierra</h3><span class="eat-google-pill">Google: 4.4 ★ · 13.5K reviews</span><p>Market Square / culture / late-night.</p></article>
           <article class="eat-district-spot"><h3>Schilo&rsquo;s</h3><span class="eat-google-pill">Google: 4.5 ★ · 4.2K reviews</span><p>Historic casual lunch.</p></article>
-          <article class="eat-district-spot"><h3>Esquire Tavern</h3><span class="eat-google-pill">Google: 4.4 ★ · 4.3K reviews</span><p><span class="eat-status-pill">Willie Approved</span> Historic bar / gastropub.</p></article>
+          <article class="eat-district-spot"><h3>Esquire Tavern</h3><span class="eat-google-pill">Google: 4.4 ★ · 4.3K reviews</span><p>Historic bar / gastropub.</p></article>
           <article class="eat-district-spot eat-district-spot--muted"><h3>Casa Rio</h3><span class="eat-google-pill">Google: 4.1 ★ · 4.8K reviews</span><p>Classic River Walk photo / history stop &mdash; not a top food-first pick.</p></article>
         </div>
         <div class="eat-district-feature__cta">
@@ -2785,8 +2814,8 @@
               <li><strong>Cibolo Moon</strong> <span class="eat-area-rating">Google: 4.4 ★ · 1.4K reviews</span></li>
               <li><strong>High Velocity</strong> <span class="eat-area-rating">Google: 4.3 ★ · 780 reviews</span></li>
               <li><strong>Crooked Branch</strong> <span class="eat-area-rating">Google: 4.5 ★ · 120 reviews</span></li>
-              <li><strong>Fiamm&eacute; Pizzeria</strong> <span class="eat-area-rating">Rating not provided &mdash; verify before publishing</span></li>
-              <li><strong>Replenish Spa Bistro</strong> <span class="eat-area-rating">Rating not provided &mdash; verify before publishing</span></li>
+              <li><strong>Fiamm&eacute; Pizzeria</strong> <span class="eat-area-rating">Resort on-property &middot; casual Italian</span></li>
+              <li><strong>Replenish Spa Bistro</strong> <span class="eat-area-rating">Spa bistro &middot; wellness-focused</span></li>
             </ul>
             <p class="eat-area-subhead">Nearby Stone Oak upgrades</p>
             <ul class="eat-resort-zone-picks">
@@ -3458,7 +3487,7 @@
           <p class="eat-visitor-strip-item"><strong>Best rooftop:</strong> Aleteo, Moon&rsquo;s Daughter, Fairmount, Rosario&rsquo;s.</p>
         </div>
         <div class="eat-section-head" style="margin-top:1.5rem;">
-          <h3 class="section-text" style="font-size:1.1rem;margin:0;">Restaurants</h3>
+          <h3 class="eat-lane-sublabel">Restaurants</h3>
         </div>
         <div class="eat-lane-grid eat-lane-grid--2">
           <article class="card orange eat-guide-card eat-rec-card eat-card eat-rec-card--premium restaurant-card eat-rec--accent-coral">
@@ -3482,7 +3511,7 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.7 ★ · 3.1K reviews</span>
-                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Old-World Luxury</span><span class="eat-proof-pill">Mesquite-Grilled Prime Beef</span><p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p></div>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Old-World Luxury</span><span class="eat-proof-pill">Mesquite-Grilled Prime Beef</span></div>
               </div>
               <h3>Bohanan&rsquo;s Prime Steaks and Seafood</h3>
               <div class="eat-zone-chips">
@@ -3550,7 +3579,7 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.4 ★ · 2.1K reviews</span>
-                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">River Walk Levels</span><span class="eat-proof-pill">Canopied Tree Patio</span><p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p></div>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">River Walk Levels</span><span class="eat-proof-pill">Canopied Tree Patio</span></div>
               </div>
               <h3>Domingo Restaurant</h3>
               <div class="eat-zone-chips">
@@ -3618,7 +3647,7 @@
             <div class="eat-rec-card__inner">
               <div class="eat-rec-card__rating-row">
                 <span class="eat-google-pill">Google: 4.4 ★ · 4.3K reviews</span>
-                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Texas&rsquo; Longest Wooden Bar</span><span class="eat-proof-pill">Elevated Pub Comfort</span><p class="eat-card-badge"><span class="eat-status-pill">Willie Approved</span></p></div>
+                <div class="eat-rec-card__rating-trust"><span class="eat-proof-pill">Texas&rsquo; Longest Wooden Bar</span><span class="eat-proof-pill">Elevated Pub Comfort</span></div>
               </div>
               <h3>The Esquire Tavern</h3>
               <div class="eat-zone-chips">
@@ -3650,7 +3679,7 @@
           </article>
         </div>
         <div class="eat-section-head" style="margin-top:1.75rem;">
-          <h3 class="section-text" style="font-size:1.1rem;margin:0 0 8px;">Downtown rooftops and skyline drinks</h3>
+          <h3 class="eat-lane-sublabel">Downtown rooftops and skyline drinks</h3>
           <p class="section-text">Pick the rooftop after dinner, or make it the main stop when skyline energy beats a long food crawl.</p>
         </div>
         <div class="eat-lane-grid">
@@ -3707,7 +3736,7 @@
           </article>
         </div>
         <div class="eat-section-head" style="margin-top:1.75rem;">
-          <h3 class="section-text" style="font-size:1.1rem;margin:0 0 8px;">Bars, lounges, and speakeasies</h3>
+          <h3 class="eat-lane-sublabel">Bars, lounges, and speakeasies</h3>
           <p class="section-text">After-dinner moves when the group wants cocktails, a darker room, or one last memorable stop.</p>
         </div>
         <div class="eat-lane-grid">
