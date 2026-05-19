@@ -143,6 +143,25 @@
     <div id="owner-dash-loading" class="owner-dash-loading" aria-live="polite">
       <p>Loading dashboard…</p>
     </div>
+
+    <div id="owner-dash-detail-overlay" class="owner-dash-detail-overlay" hidden>
+      <button type="button" class="owner-dash-detail-backdrop" data-action="close-detail" aria-label="Close details"></button>
+      <div
+        class="owner-dash-detail-panel owner-dash-glass"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="owner-dash-detail-title"
+      >
+        <header class="owner-dash-detail-head">
+          <div class="owner-dash-detail-head-text">
+            <p class="owner-dash-detail-eyebrow">Lead command sheet</p>
+            <h2 id="owner-dash-detail-title" class="owner-dash-detail-title">Details</h2>
+          </div>
+          <button type="button" class="owner-dash-detail-close" data-action="close-detail" aria-label="Close details">Close</button>
+        </header>
+        <div id="owner-dash-detail-body" class="owner-dash-detail-body"></div>
+      </div>
+    </div>
   </main>
 
   <script>
@@ -158,6 +177,7 @@
         "Contacted",
         "Qualified",
         "Not a fit",
+        "Needs follow-up",
         "Won",
         "Lost",
         "Archived",
@@ -171,6 +191,7 @@
         counts: null,
         activeFilter: "all",
         tabsReady: false,
+        detailOpen: null,
       };
 
       var els = {
@@ -195,6 +216,9 @@
         refreshError: document.getElementById("owner-dash-refresh-error"),
         lastLoaded: document.getElementById("owner-dash-last-loaded"),
         lastLoadedTime: document.getElementById("owner-dash-last-loaded-time"),
+        detailOverlay: document.getElementById("owner-dash-detail-overlay"),
+        detailBody: document.getElementById("owner-dash-detail-body"),
+        detailTitle: document.getElementById("owner-dash-detail-title"),
       };
 
       function show(el) {
@@ -281,6 +305,469 @@
           esc(value) +
           "</dd></div>"
         );
+      }
+
+      function detailRow(label, value, wide) {
+        var val =
+          value == null || value === ""
+            ? '<span class="owner-dash-detail-value owner-dash-detail-value--empty">—</span>'
+            : '<span class="owner-dash-detail-value">' + esc(value) + "</span>";
+        return (
+          '<div class="owner-dash-detail-row' +
+          (wide ? " owner-dash-detail-row--wide" : "") +
+          '"><span class="owner-dash-detail-label">' +
+          esc(label) +
+          "</span>" +
+          val +
+          "</div>"
+        );
+      }
+
+      function detailRowLink(label, href, text) {
+        if (!href && !text) return detailRow(label, null);
+        var display = text || href;
+        var link =
+          href && String(href).trim()
+            ? '<a class="owner-dash-detail-link" href="' +
+              esc(href) +
+              '" target="_blank" rel="noopener noreferrer">' +
+              esc(display) +
+              "</a>"
+            : esc(display);
+        return (
+          '<div class="owner-dash-detail-row"><span class="owner-dash-detail-label">' +
+          esc(label) +
+          '</span><span class="owner-dash-detail-value">' +
+          link +
+          "</span></div>"
+        );
+      }
+
+      function openDetailsBtn(table, id) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="open-details" data-table="' +
+          esc(table) +
+          '" data-id="' +
+          esc(id) +
+          '">Open details</button>'
+        );
+      }
+
+      function buildBusinessSummary(lead) {
+        return [
+          "Where To Go SA / The AI Plug Lead",
+          "Business: " + (lead.business_name || "—"),
+          "Contact: " + (lead.contact_name || "—"),
+          "Phone: " + (lead.contact_phone || "—"),
+          "Email: " + (lead.contact_email || "—"),
+          "Problem: " + (lead.current_problem || "—"),
+          "Interested in: " + (lead.services_interested || "—"),
+          "Urgency: " + (lead.urgency || "—"),
+          "Timeline: " + (lead.timeline || "—"),
+          "Recommended system: " + (lead.recommended_system || "—"),
+          "AI Summary: " + (lead.ai_summary || "—"),
+          "Status: " + (displayStatus(lead.status) || "—"),
+          "Owner notes: " + (lead.owner_notes || "—"),
+        ].join("\n");
+      }
+
+      function buildTransportSummary(row) {
+        var route = [row.pickup_area, row.destination].filter(Boolean).join(" to ");
+        var notes = row.conversation_excerpt || row.notes || "—";
+        return [
+          "Where To Go SA Transportation Request",
+          "Name: " + (row.name || "—"),
+          "Phone: " + (row.phone || "—"),
+          "Email: " + (row.email || "—"),
+          "Route: " + (route || "—"),
+          "When: " + (row.date_time || "—"),
+          "Group: " + (row.group_size || "—"),
+          "Request type: " + (row.request_type || "—"),
+          "Notes: " + notes,
+          "Status: " + (displayStatus(row.status) || "—"),
+          "Owner notes: " + (row.owner_notes || "—"),
+        ].join("\n");
+      }
+
+      function buildBusinessFollowUp(lead) {
+        var contact = lead.contact_name || "there";
+        var problem = lead.current_problem || "your business request";
+        var system =
+          lead.recommended_system ||
+          "tightening your lead capture and follow-up flow";
+        return (
+          "Hi " +
+          contact +
+          ", this is Willie with The AI Plug / Where To Go SA. I saw your request about " +
+          problem +
+          ". Based on what you shared, it sounds like the first move is " +
+          system +
+          ". I can take a quick look and map the best starting system for your business."
+        );
+      }
+
+      function buildTransportFollowUp(row) {
+        var name = row.name || "there";
+        var route = [row.pickup_area, row.destination].filter(Boolean).join(" to ");
+        route = route || "your route";
+        return (
+          "Hi " +
+          name +
+          ", this is Willie with Where To Go SA. I saw your transportation/visitor help request for " +
+          route +
+          ". I’m reviewing the details now. Availability is not guaranteed, but I’ll follow up if I can help or point you in the right direction."
+        );
+      }
+
+      function copyActionsBlock(table, row) {
+        var isBusiness = table === "business_leads";
+        var summary = isBusiness ? buildBusinessSummary(row) : buildTransportSummary(row);
+        var followUp = isBusiness ? buildBusinessFollowUp(row) : buildTransportFollowUp(row);
+        return (
+          '<section class="owner-dash-detail-section">' +
+          '<h3 class="owner-dash-detail-section-title">Copy & follow-up</h3>' +
+          '<div class="owner-dash-detail-copy-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="phone">Copy phone</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="email">Copy email</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="summary">Copy ' +
+          (isBusiness ? "lead summary" : "request summary") +
+          "</button>" +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-field" data-copy-kind="followup">Copy follow-up message</button>' +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          "</div>" +
+          '<label class="owner-dash-detail-followup-label"><span>Follow-up message (copy only — not sent)</span>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-followup" readonly rows="5">' +
+          esc(followUp) +
+          "</textarea></label>" +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<pre class="owner-dash-detail-manual-copy-text"></pre>' +
+          "</div></section>"
+        );
+      }
+
+      function quickStatusBlock() {
+        return (
+          '<section class="owner-dash-detail-section">' +
+          '<h3 class="owner-dash-detail-section-title">Quick status</h3>' +
+          '<div class="owner-dash-detail-quick-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="quick-status" data-status="Reviewed">Mark Reviewed</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="quick-status" data-status="Contacted">Mark Contacted</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="quick-status" data-status="Needs follow-up">Needs follow-up</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="quick-status" data-status="Won">Won</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="quick-status" data-status="Lost">Lost</button>' +
+          '<span class="owner-dash-detail-quick-feedback" data-quick-feedback hidden aria-live="polite"></span>' +
+          "</div></section>"
+        );
+      }
+
+      function renderBusinessDetail(lead) {
+        var industryLoc = [lead.business_industry, lead.business_location].filter(Boolean).join(" · ");
+        var website = lead.business_website;
+        var websiteHref =
+          website && !/^https?:\/\//i.test(String(website))
+            ? "https://" + String(website).trim()
+            : website;
+        return (
+          '<div class="owner-dash-detail-sheet" data-detail-table="business_leads" data-detail-id="' +
+          esc(lead.id) +
+          '">' +
+          '<div class="owner-dash-detail-badges">' +
+          '<span class="owner-dash-badge ' +
+          qualityClass(lead.lead_quality) +
+          '">' +
+          esc(lead.lead_quality || "Lead") +
+          "</span>" +
+          '<span class="owner-dash-badge ' +
+          statusClass(lead.status) +
+          '">' +
+          esc(displayStatus(lead.status)) +
+          "</span>" +
+          '<time class="owner-dash-time" datetime="' +
+          esc(lead.created_at) +
+          '">' +
+          esc(fmtDate(lead.created_at)) +
+          "</time></div>" +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Business name", lead.business_name) +
+          detailRow("Contact name", lead.contact_name) +
+          detailRow("Email", lead.contact_email) +
+          detailRow("Phone", lead.contact_phone) +
+          detailRow("Preferred contact", lead.preferred_contact_method) +
+          detailRow("Industry / location", industryLoc || null) +
+          detailRowLink("Website", websiteHref, website) +
+          detailRow("Current problem", lead.current_problem, true) +
+          detailRow("Services interested", lead.services_interested, true) +
+          detailRow("Urgency", lead.urgency) +
+          detailRow("Timeline", lead.timeline) +
+          detailRow("Recommended system", lead.recommended_system, true) +
+          detailRow("AI summary", lead.ai_summary, true) +
+          detailRow("Page path", lead.page_path) +
+          detailRow("Created", fmtDate(lead.created_at)) +
+          detailRow("Status", displayStatus(lead.status)) +
+          detailRow("Owner notes", lead.owner_notes, true) +
+          "</div>" +
+          '<div class="owner-dash-detail-alerts">' +
+          alertPill(lead.alert_email_sent, "Email") +
+          alertPill(lead.alert_sms_sent, "SMS") +
+          "</div>" +
+          copyActionsBlock("business_leads", lead) +
+          quickStatusBlock() +
+          workflowBlock("business_leads", lead) +
+          "</div>"
+        );
+      }
+
+      function renderTransportDetail(row) {
+        var route = [row.pickup_area, row.destination].filter(Boolean).join(" → ");
+        return (
+          '<div class="owner-dash-detail-sheet" data-detail-table="transportation_requests" data-detail-id="' +
+          esc(row.id) +
+          '">' +
+          '<div class="owner-dash-detail-badges">' +
+          '<span class="owner-dash-badge ' +
+          statusClass(row.status) +
+          '">' +
+          esc(displayStatus(row.status)) +
+          "</span>" +
+          (row.request_type
+            ? '<span class="owner-dash-badge owner-dash-badge--neutral">' + esc(row.request_type) + "</span>"
+            : "") +
+          '<time class="owner-dash-time" datetime="' +
+          esc(row.created_at) +
+          '">' +
+          esc(fmtDate(row.created_at)) +
+          "</time></div>" +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Request type", row.request_type) +
+          detailRow("Name", row.name) +
+          detailRow("Email", row.email) +
+          detailRow("Phone", row.phone) +
+          detailRow("Pickup area", row.pickup_area) +
+          detailRow("Destination", row.destination) +
+          detailRow("Route", route || null) +
+          detailRow("Date / time", row.date_time) +
+          detailRow("Group size", row.group_size) +
+          detailRow("Conversation excerpt", row.conversation_excerpt, true) +
+          detailRow("Notes", row.notes, true) +
+          detailRow("Page path", row.page_path) +
+          detailRow("Created", fmtDate(row.created_at)) +
+          detailRow("Status", displayStatus(row.status)) +
+          detailRow("Owner notes", row.owner_notes, true) +
+          "</div>" +
+          '<div class="owner-dash-detail-alerts">' +
+          alertPill(row.alert_email_sent, "Email") +
+          alertPill(row.alert_sms_sent, "SMS") +
+          "</div>" +
+          copyActionsBlock("transportation_requests", row) +
+          quickStatusBlock() +
+          workflowBlock("transportation_requests", row) +
+          "</div>"
+        );
+      }
+
+      function leadTitle(lead) {
+        return lead.business_name || lead.contact_name || "Business lead";
+      }
+
+      function renderDetailPanel(row) {
+        if (!els.detailBody || !state.detailOpen) return;
+        var table = state.detailOpen.table;
+        els.detailBody.innerHTML =
+          table === "business_leads" ? renderBusinessDetail(row) : renderTransportDetail(row);
+        if (els.detailTitle) {
+          els.detailTitle.textContent =
+            table === "business_leads" ? leadTitle(row) : row.name || "Transportation request";
+        }
+      }
+
+      function openDetail(table, id) {
+        var hit = findRecord(table, id);
+        if (!hit || !els.detailOverlay) return;
+        state.detailOpen = { table: table, id: String(id) };
+        renderDetailPanel(hit.row);
+        els.detailOverlay.hidden = false;
+        els.detailOverlay.setAttribute("aria-hidden", "false");
+        document.body.classList.add("owner-dash-detail-open");
+        var closeBtn = els.detailOverlay.querySelector(".owner-dash-detail-close");
+        if (closeBtn) closeBtn.focus();
+      }
+
+      function closeDetail() {
+        state.detailOpen = null;
+        if (els.detailOverlay) {
+          els.detailOverlay.hidden = true;
+          els.detailOverlay.setAttribute("aria-hidden", "true");
+        }
+        if (els.detailBody) els.detailBody.innerHTML = "";
+        document.body.classList.remove("owner-dash-detail-open");
+      }
+
+      function refreshDetailIfOpen() {
+        if (!state.detailOpen) return;
+        var hit = findRecord(state.detailOpen.table, state.detailOpen.id);
+        if (hit) renderDetailPanel(hit.row);
+        else closeDetail();
+      }
+
+      function setCopyFeedback(container, message, isError) {
+        var fb = container && container.querySelector("[data-copy-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className =
+          "owner-dash-detail-copy-feedback" + (isError ? " owner-dash-detail-copy-feedback--error" : "");
+        window.clearTimeout(fb._copyTimer);
+        fb._copyTimer = window.setTimeout(function () {
+          fb.hidden = true;
+          fb.textContent = "";
+        }, 2200);
+      }
+
+      function showManualCopy(container, text) {
+        var wrap = container && container.querySelector("[data-manual-copy]");
+        var pre = container && container.querySelector(".owner-dash-detail-manual-copy-text");
+        if (!wrap || !pre) return;
+        pre.textContent = text;
+        wrap.hidden = false;
+        try {
+          var range = document.createRange();
+          range.selectNodeContents(pre);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        } catch {
+          /* ignore */
+        }
+      }
+
+      function hideManualCopy(container) {
+        var wrap = container && container.querySelector("[data-manual-copy]");
+        if (wrap) wrap.hidden = true;
+      }
+
+      function getDetailRecord() {
+        if (!state.detailOpen) return null;
+        var hit = findRecord(state.detailOpen.table, state.detailOpen.id);
+        return hit ? hit.row : null;
+      }
+
+      function copyTextForKind(kind, row, table) {
+        if (!row) return "";
+        if (kind === "phone") {
+          return table === "business_leads" ? row.contact_phone || "" : row.phone || "";
+        }
+        if (kind === "email") {
+          return table === "business_leads" ? row.contact_email || "" : row.email || "";
+        }
+        if (kind === "summary") {
+          return table === "business_leads" ? buildBusinessSummary(row) : buildTransportSummary(row);
+        }
+        if (kind === "followup") {
+          return table === "business_leads" ? buildBusinessFollowUp(row) : buildTransportFollowUp(row);
+        }
+        return "";
+      }
+
+      function copyFromDetail(kind) {
+        var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
+        if (!sheet || !state.detailOpen) return;
+        var section = sheet.querySelector(".owner-dash-detail-section");
+        var row = getDetailRecord();
+        var text = copyTextForKind(kind, row, state.detailOpen.table);
+        if (!text) {
+          setCopyFeedback(section, "Nothing to copy.", true);
+          return;
+        }
+        hideManualCopy(section);
+        function onSuccess() {
+          setCopyFeedback(section, "Copied.");
+        }
+        function onFail() {
+          showManualCopy(section, text);
+          setCopyFeedback(section, "Select text below to copy.", true);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(onSuccess)
+            .catch(function () {
+              if (fallbackExecCopy(text)) onSuccess();
+              else onFail();
+            });
+        } else if (fallbackExecCopy(text)) {
+          onSuccess();
+        } else {
+          onFail();
+        }
+      }
+
+      function fallbackExecCopy(text) {
+        try {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+          return ok;
+        } catch {
+          return false;
+        }
+      }
+
+      function setQuickFeedback(sheet, message, isError) {
+        var fb = sheet && sheet.querySelector("[data-quick-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className =
+          "owner-dash-detail-quick-feedback" + (isError ? " owner-dash-detail-quick-feedback--error" : "");
+      }
+
+      function handleQuickStatus(sheet, statusLabel) {
+        if (!state.detailOpen || !sheet) return;
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var notes = workflowEl ? readWorkflowValues(workflowEl).owner_notes : null;
+        var payload = { status: statusLabel, owner_notes: notes };
+        if (normStatus(statusLabel) === "contacted") {
+          payload.last_contacted_at = new Date().toISOString();
+        }
+        var buttons = sheet.querySelectorAll('[data-action="quick-status"]');
+        buttons.forEach(function (b) {
+          b.disabled = true;
+        });
+        setQuickFeedback(sheet, "Updating…", false);
+
+        postUpdate(table, id, payload)
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setQuickFeedback(
+                sheet,
+                (result.data && result.data.error) || "Update failed. Try again.",
+                true
+              );
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            renderAll();
+            refreshDetailIfOpen();
+            setQuickFeedback(sheet, "Status updated.", false);
+            refreshCounts();
+          })
+          .catch(function () {
+            setQuickFeedback(sheet, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            buttons.forEach(function (b) {
+              b.disabled = false;
+            });
+          });
       }
 
       function statusOptions(table, current) {
@@ -385,6 +872,9 @@
               "<h3 class=\"owner-dash-card-title\">" +
               esc(lead.business_name || "Business TBD") +
               "</h3>" +
+              '<div class="owner-dash-card-actions">' +
+              openDetailsBtn("business_leads", lead.id) +
+              "</div>" +
               '<dl class="owner-dash-fields">' +
               block("Contact", lead.contact_name) +
               block("Email", lead.contact_email) +
@@ -450,6 +940,9 @@
               "<h3 class=\"owner-dash-card-title\">" +
               esc(row.name || "Guest") +
               "</h3>" +
+              '<div class="owner-dash-card-actions">' +
+              openDetailsBtn("transportation_requests", row.id) +
+              "</div>" +
               '<dl class="owner-dash-fields">' +
               block("Email", row.email) +
               block("Phone", row.phone) +
@@ -478,6 +971,7 @@
       function renderAll() {
         renderBusiness(state.businessLeads);
         renderTransport(state.transportRows);
+        refreshDetailIfOpen();
       }
 
       function setCounts(counts) {
@@ -600,9 +1094,7 @@
             }
             applyRecordUpdate(table, id, result.data.record);
             renderAll();
-            var wf = document.querySelector(
-              '.owner-dash-workflow[data-table="' + table + '"][data-id="' + id + '"]'
-            );
+            var wf = findWorkflowEl(table, id) || workflowEl;
             if (wf) {
               setWorkflowFeedback(wf, "success", "Saved.");
             }
@@ -618,6 +1110,18 @@
             }
             if (markBtn) markBtn.disabled = false;
           });
+      }
+
+      function findWorkflowEl(table, id) {
+        if (els.detailBody) {
+          var inDetail = els.detailBody.querySelector(
+            '.owner-dash-workflow[data-table="' + table + '"][data-id="' + id + '"]'
+          );
+          if (inDetail) return inDetail;
+        }
+        return document.querySelector(
+          '.owner-dash-workflow[data-table="' + table + '"][data-id="' + id + '"]'
+        );
       }
 
       function handleMarkContacted(workflowEl) {
@@ -654,9 +1158,7 @@
             }
             applyRecordUpdate(table, id, result.data.record);
             renderAll();
-            var wf = document.querySelector(
-              '.owner-dash-workflow[data-table="' + table + '"][data-id="' + id + '"]'
-            );
+            var wf = findWorkflowEl(table, id) || workflowEl;
             if (wf) {
               setWorkflowFeedback(wf, "success", "Marked contacted.");
             }
@@ -792,15 +1294,45 @@
         document.addEventListener("click", function (ev) {
           var btn = ev.target.closest("[data-action]");
           if (!btn) return;
+          var action = btn.getAttribute("data-action");
+
+          if (action === "open-details") {
+            var table = btn.getAttribute("data-table");
+            var id = btn.getAttribute("data-id");
+            if (table && id) openDetail(table, id);
+            return;
+          }
+
+          if (action === "close-detail") {
+            closeDetail();
+            return;
+          }
+
+          var sheet = btn.closest(".owner-dash-detail-sheet");
+          if (sheet && action === "copy-field") {
+            copyFromDetail(btn.getAttribute("data-copy-kind"));
+            return;
+          }
+
+          if (sheet && action === "quick-status") {
+            var statusLabel = btn.getAttribute("data-status");
+            if (statusLabel) handleQuickStatus(sheet, statusLabel);
+            return;
+          }
+
           var workflowEl = btn.closest(".owner-dash-workflow");
           if (!workflowEl) return;
-          var action = btn.getAttribute("data-action");
           if (action === "save") handleSave(workflowEl);
           if (action === "mark-contacted") handleMarkContacted(workflowEl);
+        });
+
+        document.addEventListener("keydown", function (ev) {
+          if (ev.key === "Escape" && state.detailOpen) closeDetail();
         });
       }
 
       function finishUnauthorized() {
+        closeDetail();
         hide(els.loading);
         hide(els.content);
         hide(els.error);

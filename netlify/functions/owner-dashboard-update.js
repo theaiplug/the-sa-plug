@@ -22,6 +22,7 @@ const BUSINESS_STATUSES = new Set([
   "Contacted",
   "Qualified",
   "Not a fit",
+  "Needs follow-up",
   "Won",
   "Lost",
   "Archived",

@@ -55,7 +55,7 @@
             <h1 id="ask-hero-heading" class="hero-title">Tell us where you are. We&rsquo;ll tell you the move.</h1>
             <p class="hero-text hero-text-on-dark">Food, downtown plans, resort dinners, airport timing, family stops, nightlife, and transportation help &mdash; built around your situation.</p>
             <div class="hero-actions hero-cta-row ask-page-hero-actions">
-              <a class="btn btn-primary" href="#live-concierge">Get My Local Answer <span aria-hidden="true">&rarr;</span></a>
+              <a class="btn btn-primary" href="#live-concierge">Ask A Local <span aria-hidden="true">&rarr;</span></a>
               <a class="btn btn-secondary-hero" href="#popular-routes">Browse Picks</a>
             </div>
           </div>
@@ -76,7 +76,20 @@
 
         <div class="live-concierge-studio">
           <div class="live-concierge-card">
-              <div class="live-concierge__glass-panel live-concierge__glass-panel--tool-first">
+            <div class="live-concierge__image-band">
+              <div class="live-concierge__image-band-media">
+                <img
+                  src="../assets/ask-sa-plug-hero-riverwalk-tower.png"
+                  alt="San Antonio River Walk and downtown skyline"
+                  width="1200"
+                  height="630"
+                  decoding="async"
+                  loading="eager"
+                />
+              </div>
+            </div>
+
+            <div class="live-concierge__glass-panel live-concierge__glass-panel--tool-first">
             <div class="live-concierge__main-card">
               <div class="live-concierge__error" id="live-concierge-error" hidden role="alert"></div>
 
@@ -92,10 +105,12 @@
                       <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge answer"></div>
                     </div>
                   </div>
+                </div>
 
                   <div class="live-concierge__composer-stack" id="live-concierge-composer">
                     <form class="live-concierge__form" id="live-concierge-form" aria-label="Ask A Local concierge">
                       <label class="live-concierge__input-label visually-hidden" for="live-concierge-input">Your question</label>
+                      <p class="live-concierge__engage-hint">Ask about dinner, parking, timing, cost, what to do next, or whether a place is worth it.</p>
                       <div class="live-concierge__composer-unit">
                         <textarea
                           id="live-concierge-input"
@@ -107,11 +122,9 @@
                           autocomplete="off"
                           placeholder="Example: We&rsquo;re staying at La Cantera with two kids and want dinner tonight without driving downtown."
                         ></textarea>
-                        <p class="live-concierge__engage-hint">Ask in plain language &mdash; hotel, group, timing, food mood, or what you&rsquo;re trying to avoid.</p>
-                        <button type="submit" class="live-concierge__send" id="live-concierge-send">Get My Local Answer <span aria-hidden="true">&rarr;</span></button>
                       </div>
+                      <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local <span aria-hidden="true">&rarr;</span></button>
                     </form>
-                  </div>
                 </div>
               </div>
             </div>
@@ -125,19 +138,6 @@
                 <button type="button" class="live-concierge__chip live-concierge__chip--lane live-concierge__chip--starter" data-concierge-chip data-chip-text="I'm staying at a resort">I&rsquo;m staying at a resort</button>
                 <button type="button" class="live-concierge__chip live-concierge__chip--lane live-concierge__chip--starter" data-concierge-chip data-chip-text="I have kids with me">I have kids with me</button>
                 <button type="button" class="live-concierge__chip live-concierge__chip--lane live-concierge__chip--starter" data-concierge-chip data-chip-text="I need transportation help">I need transportation help</button>
-              </div>
-            </div>
-
-            <div class="live-concierge__image-band">
-              <div class="live-concierge__image-band-media">
-                <img
-                  src="../assets/ask-sa-plug-hero-riverwalk-tower.png"
-                  alt="San Antonio River Walk and downtown skyline"
-                  width="1200"
-                  height="630"
-                  decoding="async"
-                  loading="lazy"
-                />
               </div>
             </div>
 
@@ -186,7 +186,7 @@
                   <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="We need a quick meal before returning to the airport">We need a quick meal before returning to the airport</button>
                 </div>
               </details>
-              <p class="live-concierge__trust-note">Answers are for your trip, not marketing lists. <a href="/privacy/">Privacy Policy</a> &middot; <a href="../driver-concierge.html#route-operator">Transportation help</a></p>
+              <p class="live-concierge__trust-note">Answers are for your trip, not a marketing list. For human transportation help, use the <a href="../driver-concierge.html#route-operator">transportation request</a> option. <a href="/privacy/">Privacy Policy</a></p>
             </div>
             </div>
           </div>
@@ -346,7 +346,7 @@
           <h2 id="final-cta-heading">Still not sure what the move is?</h2>
           <p class="section-text section-text-light">Start with your situation. We&rsquo;ll point you toward the cleaner route.</p>
           <div class="hero-cta-row ask-final-actions">
-            <a class="btn btn-primary" href="#live-concierge">Get My Local Answer <span aria-hidden="true">&rarr;</span></a>
+            <a class="btn btn-primary" href="#live-concierge">Ask A Local <span aria-hidden="true">&rarr;</span></a>
             <a class="btn btn-secondary-hero" href="../driver-concierge.html#route-operator">Get Route Help</a>
           </div>
           <div data-wtgsa-social-inline></div>
