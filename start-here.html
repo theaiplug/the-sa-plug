@@ -842,7 +842,7 @@
           <p class="live-concierge__status" id="live-concierge-status" aria-live="polite">Live · ready</p>
         </header>
 
-        <div class="live-concierge-studio">
+        <div class="live-concierge-studio ask-local-tool">
           <div class="live-concierge-card">
             <div class="live-concierge__image-band">
               <div class="live-concierge__image-band-media">
@@ -858,8 +858,8 @@
               </div>
             </div>
 
-              <div class="live-concierge__glass-panel">
-              <div class="live-concierge__panel-copy">
+              <div class="live-concierge__glass-panel live-concierge__glass-panel--tool-first">
+              <div class="live-concierge__panel-copy" hidden>
                 <p class="live-concierge__panel-intro">Pick the situation closest to yours, or type your hotel, group, timing, and what kind of night you want.</p>
                 <p class="live-concierge__panel-support"><a href="driver-concierge.html#route-operator">Transportation help</a> for airport, resort pickups, and timing.</p>
               </div>
@@ -935,6 +935,7 @@
                       <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge answer"></div>
                     </div>
                   </div>
+                </div>
 
                   <div class="live-concierge__composer-stack" id="live-concierge-composer">
                     <form class="live-concierge__form" id="live-concierge-form" aria-label="Ask A Local concierge">
@@ -950,12 +951,11 @@
                           autocomplete="off"
                           placeholder="Example: We&rsquo;re staying at La Cantera with two kids and want dinner tonight without driving downtown."
                         ></textarea>
-                        <p class="live-concierge__engage-hint">Ask in plain language &mdash; hotel, group, timing, food mood, or what you&rsquo;re trying to avoid.</p>
-                        <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local <span aria-hidden="true">&rarr;</span></button>
                       </div>
+                      <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local <span aria-hidden="true">&rarr;</span></button>
                     </form>
+                    <p class="live-concierge__engage-hint">Try asking about dinner, parking, timing, cost, what to do next, or whether a place is worth it.</p>
                   </div>
-                </div>
               </div>
             </div>
           </div>

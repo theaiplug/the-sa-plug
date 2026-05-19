@@ -307,20 +307,31 @@
         );
       }
 
+      function truncatePreview(text, maxLen) {
+        maxLen = maxLen || 120;
+        if (text == null || text === "") return "";
+        var s = String(text).trim().replace(/\s+/g, " ");
+        if (!s) return "";
+        if (s.length <= maxLen) return s;
+        return s.slice(0, maxLen - 1) + "…";
+      }
+
       function blockPreview(label, value) {
         if (value == null || value === "") return "";
+        var clipped = truncatePreview(value, 120);
+        if (!clipped) return "";
         return (
           '<div class="owner-dash-field owner-dash-field--wide">' +
           '<dt>' +
           esc(label) +
           '</dt><dd class="owner-dash-preview-clamp">' +
-          esc(value) +
+          esc(clipped) +
           "</dd></div>"
         );
       }
 
       var AI_SECTION_PATTERN =
-        /^(Quick read|What I'd tighten next|Best system fit|Tradeoffs)\s*:\s*(.*)$/i;
+        /^(?:AI Plug operator:\s*)?(Quick read|What I'd tighten next|Best system fit|Tradeoffs)\s*:\s*(.*)$/i;
 
       function parseAiSections(text) {
         var out = {
@@ -372,21 +383,15 @@
       }
 
       function businessPreviewText(lead) {
-        if (lead.recommended_system) return lead.recommended_system;
-        var sections = parseAiSections(lead.ai_summary);
-        if (sections.quickRead) return sections.quickRead;
-        if (lead.ai_summary) {
-          var first = String(lead.ai_summary).trim().split(/\r?\n/)[0];
-          return first.length > 180 ? first.slice(0, 177) + "…" : first;
-        }
+        if (lead.recommended_system) return truncatePreview(lead.recommended_system, 120);
+        if (lead.ai_summary) return truncatePreview(lead.ai_summary, 120);
         return null;
       }
 
       function transportPreviewText(row) {
         var text = row.conversation_excerpt || row.notes || "";
         if (!text) return null;
-        var first = String(text).trim().split(/\r?\n/)[0];
-        return first.length > 180 ? first.slice(0, 177) + "…" : first;
+        return truncatePreview(text, 120);
       }
 
       function contactLine(phone, email) {
@@ -409,6 +414,9 @@
         if (!lead.ai_summary) return "";
         var sections = parseAiSections(lead.ai_summary);
         var html = detailRow("Full AI summary", lead.ai_summary, true);
+        if (sections.quickRead) {
+          html += detailRow("Quick read", sections.quickRead, true);
+        }
         if (sections.tightenNext) {
           html += detailRow("What I'd tighten next", sections.tightenNext, true);
         }
@@ -999,6 +1007,9 @@
               openDetailsBtn("business_leads", lead.id) +
               "</div>" +
               workflowBlock("business_leads", lead) +
+              (lead.page_path
+                ? '<p class="owner-dash-meta">' + esc(lead.page_path) + "</p>"
+                : "") +
               cardAlertRow(lead) +
               "</article>"
             );
