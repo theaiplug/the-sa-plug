@@ -14106,3 +14106,45 @@ body.owner-dash-detail-open {
   padding-top: 14px;
   border-top: 1px solid rgba(20, 184, 166, 0.28);
 }
+
+/* Owner Command Dashboard v3 — compact summary cards */
+.page-owner-dashboard .owner-dash-lead-card--compact {
+  padding: clamp(14px, 2vw, 18px);
+}
+
+.page-owner-dashboard .owner-dash-lead-card--compact .owner-dash-card-title {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.page-owner-dashboard .owner-dash-fields--compact {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.page-owner-dashboard .owner-dash-preview-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-lead-card--compact .owner-dash-card-actions {
+  margin: 4px 0 10px;
+}
+
+.page-owner-dashboard .owner-dash-lead-card--compact .owner-dash-workflow {
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+.page-owner-dashboard .owner-dash-card-alerts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 246, 230, 0.08);
+}

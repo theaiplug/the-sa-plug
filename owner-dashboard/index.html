@@ -307,6 +307,120 @@
         );
       }
 
+      function blockPreview(label, value) {
+        if (value == null || value === "") return "";
+        return (
+          '<div class="owner-dash-field owner-dash-field--wide">' +
+          '<dt>' +
+          esc(label) +
+          '</dt><dd class="owner-dash-preview-clamp">' +
+          esc(value) +
+          "</dd></div>"
+        );
+      }
+
+      var AI_SECTION_PATTERN =
+        /^(Quick read|What I'd tighten next|Best system fit|Tradeoffs)\s*:\s*(.*)$/i;
+
+      function parseAiSections(text) {
+        var out = {
+          quickRead: null,
+          tightenNext: null,
+          bestSystemFit: null,
+          tradeoffs: null,
+          hasSections: false,
+        };
+        if (!text || !String(text).trim()) return out;
+
+        var lines = String(text).split(/\r?\n/);
+        var currentKey = null;
+        var buffers = { quickRead: [], tightenNext: [], bestSystemFit: [], tradeoffs: [] };
+
+        function keyForLabel(label) {
+          var l = String(label).toLowerCase();
+          if (l === "quick read") return "quickRead";
+          if (l.indexOf("tighten") !== -1) return "tightenNext";
+          if (l.indexOf("best system") !== -1) return "bestSystemFit";
+          if (l === "tradeoffs") return "tradeoffs";
+          return null;
+        }
+
+        lines.forEach(function (line) {
+          var trimmed = line.trim();
+          if (!trimmed) return;
+          var match = trimmed.match(AI_SECTION_PATTERN);
+          if (match) {
+            currentKey = keyForLabel(match[1]);
+            if (currentKey) {
+              out.hasSections = true;
+              if (match[2]) buffers[currentKey].push(match[2]);
+            }
+            return;
+          }
+          if (currentKey) {
+            buffers[currentKey].push(trimmed);
+          } else if (!out.hasSections) {
+            buffers.quickRead.push(trimmed);
+          }
+        });
+
+        ["quickRead", "tightenNext", "bestSystemFit", "tradeoffs"].forEach(function (key) {
+          if (buffers[key].length) out[key] = buffers[key].join("\n").trim();
+        });
+
+        return out;
+      }
+
+      function businessPreviewText(lead) {
+        if (lead.recommended_system) return lead.recommended_system;
+        var sections = parseAiSections(lead.ai_summary);
+        if (sections.quickRead) return sections.quickRead;
+        if (lead.ai_summary) {
+          var first = String(lead.ai_summary).trim().split(/\r?\n/)[0];
+          return first.length > 180 ? first.slice(0, 177) + "…" : first;
+        }
+        return null;
+      }
+
+      function transportPreviewText(row) {
+        var text = row.conversation_excerpt || row.notes || "";
+        if (!text) return null;
+        var first = String(text).trim().split(/\r?\n/)[0];
+        return first.length > 180 ? first.slice(0, 177) + "…" : first;
+      }
+
+      function contactLine(phone, email) {
+        var parts = [];
+        if (phone) parts.push(String(phone));
+        if (email) parts.push(String(email));
+        return parts.length ? parts.join(" · ") : null;
+      }
+
+      function cardAlertRow(row) {
+        return (
+          '<div class="owner-dash-card-alerts">' +
+          alertPill(row.alert_email_sent, "Email") +
+          alertPill(row.alert_sms_sent, "SMS") +
+          "</div>"
+        );
+      }
+
+      function businessAiDetailRows(lead) {
+        if (!lead.ai_summary) return "";
+        var sections = parseAiSections(lead.ai_summary);
+        var html = detailRow("Full AI summary", lead.ai_summary, true);
+        if (sections.tightenNext) {
+          html += detailRow("What I'd tighten next", sections.tightenNext, true);
+        }
+        if (sections.bestSystemFit) {
+          html += detailRow("Best system fit", sections.bestSystemFit, true);
+        }
+        if (sections.tradeoffs) {
+          html += detailRow("Tradeoffs", sections.tradeoffs, true);
+        }
+        return html;
+      }
+
       function detailRow(label, value, wide) {
         var val =
           value == null || value === ""
@@ -501,7 +615,7 @@
           detailRow("Urgency", lead.urgency) +
           detailRow("Timeline", lead.timeline) +
           detailRow("Recommended system", lead.recommended_system, true) +
-          detailRow("AI summary", lead.ai_summary, true) +
+          businessAiDetailRows(lead) +
           detailRow("Page path", lead.page_path) +
           detailRow("Created", fmtDate(lead.created_at)) +
           detailRow("Status", displayStatus(lead.status)) +
@@ -858,11 +972,10 @@
               '">' +
               esc(displayStatus(lead.status)) +
               "</span>";
-            var industryLoc = [lead.business_industry, lead.business_location]
-              .filter(Boolean)
-              .join(" · ");
+            var preview = businessPreviewText(lead);
+            var previewLabel = lead.recommended_system ? "Recommended system" : "AI summary preview";
             return (
-              '<article class="owner-dash-glass owner-dash-lead-card" data-record-id="' +
+              '<article class="owner-dash-glass owner-dash-lead-card owner-dash-lead-card--compact" data-record-id="' +
               esc(lead.id) +
               '">' +
               '<div class="owner-dash-card-top">' +
@@ -875,34 +988,19 @@
               "<h3 class=\"owner-dash-card-title\">" +
               esc(lead.business_name || "Business TBD") +
               "</h3>" +
+              '<dl class="owner-dash-fields owner-dash-fields--compact">' +
+              block("Contact", lead.contact_name) +
+              block("Phone", lead.contact_phone) +
+              block("Email", lead.contact_email) +
+              block("Current problem", lead.current_problem) +
+              blockPreview(previewLabel, preview) +
+              "</dl>" +
               '<div class="owner-dash-card-actions">' +
               openDetailsBtn("business_leads", lead.id) +
               "</div>" +
-              '<dl class="owner-dash-fields">' +
-              block("Contact", lead.contact_name) +
-              block("Email", lead.contact_email) +
-              block("Phone", lead.contact_phone) +
-              block("Preferred contact", lead.preferred_contact_method) +
-              block("Industry / location", industryLoc) +
-              block("Current problem", lead.current_problem) +
-              block("Services interested", lead.services_interested) +
-              block("Recommended system", lead.recommended_system) +
-              block("Urgency", lead.urgency) +
-              block("Timeline", lead.timeline) +
-              (lead.ai_summary
-                ? '<div class="owner-dash-field owner-dash-field--wide"><dt>AI summary</dt><dd class="owner-dash-excerpt">' +
-                  esc(lead.ai_summary) +
-                  "</dd></div>"
-                : "") +
-              "</dl>" +
               workflowBlock("business_leads", lead) +
-              '<div class="owner-dash-card-foot">' +
-              alertPill(lead.alert_email_sent, "Email") +
-              alertPill(lead.alert_sms_sent, "SMS") +
-              (lead.page_path
-                ? '<span class="owner-dash-meta">' + esc(lead.page_path) + "</span>"
-                : "") +
-              "</div></article>"
+              cardAlertRow(lead) +
+              "</article>"
             );
           })
           .join("");
@@ -919,9 +1017,9 @@
         els.transportList.innerHTML = filtered
           .map(function (row) {
             var route = [row.pickup_area, row.destination].filter(Boolean).join(" → ");
-            var excerpt = row.conversation_excerpt || row.notes || "";
+            var preview = transportPreviewText(row);
             return (
-              '<article class="owner-dash-glass owner-dash-lead-card" data-record-id="' +
+              '<article class="owner-dash-glass owner-dash-lead-card owner-dash-lead-card--compact" data-record-id="' +
               esc(row.id) +
               '">' +
               '<div class="owner-dash-card-top">' +
@@ -943,29 +1041,18 @@
               "<h3 class=\"owner-dash-card-title\">" +
               esc(row.name || "Guest") +
               "</h3>" +
+              '<dl class="owner-dash-fields owner-dash-fields--compact">' +
+              block("Phone / email", contactLine(row.phone, row.email)) +
+              block("Route", route || null) +
+              block("Date / time", row.date_time) +
+              blockPreview("Notes preview", preview) +
+              "</dl>" +
               '<div class="owner-dash-card-actions">' +
               openDetailsBtn("transportation_requests", row.id) +
               "</div>" +
-              '<dl class="owner-dash-fields">' +
-              block("Email", row.email) +
-              block("Phone", row.phone) +
-              block("Route", route) +
-              block("Date / time", row.date_time) +
-              block("Group size", row.group_size) +
-              (excerpt
-                ? '<div class="owner-dash-field owner-dash-field--wide"><dt>Notes / conversation</dt><dd class="owner-dash-excerpt">' +
-                  esc(excerpt) +
-                  "</dd></div>"
-                : "") +
-              "</dl>" +
               workflowBlock("transportation_requests", row) +
-              '<div class="owner-dash-card-foot">' +
-              alertPill(row.alert_email_sent, "Email") +
-              alertPill(row.alert_sms_sent, "SMS") +
-              (row.page_path
-                ? '<span class="owner-dash-meta">' + esc(row.page_path) + "</span>"
-                : "") +
-              "</div></article>"
+              cardAlertRow(row) +
+              "</article>"
             );
           })
           .join("");
