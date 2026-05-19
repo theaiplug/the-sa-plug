@@ -12797,6 +12797,42 @@ body.page-ask main {
   border: 1px dashed rgba(255, 139, 31, 0.35);
 }
 
+.page-owner-dashboard .owner-dash-stat-value--teal {
+  color: #5eead4;
+}
+
+.page-owner-dashboard .owner-dash-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.page-owner-dashboard .owner-dash-filter {
+  appearance: none;
+  border: 1px solid rgba(20, 184, 166, 0.35);
+  background: rgba(4, 10, 22, 0.55);
+  color: rgba(255, 246, 230, 0.82);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.page-owner-dashboard .owner-dash-filter.is-active {
+  border-color: rgba(20, 184, 166, 0.75);
+  background: rgba(20, 184, 166, 0.2);
+  color: var(--on-dark-heading);
+}
+
+.page-owner-dashboard .owner-dash-filter:focus-visible {
+  outline: 2px solid rgba(255, 139, 31, 0.75);
+  outline-offset: 2px;
+}
+
 .page-owner-dashboard .owner-dash-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -12970,6 +13006,145 @@ body.page-ask main {
   background: rgba(255, 246, 230, 0.08);
   border: 1px solid rgba(255, 246, 230, 0.18);
   color: rgba(255, 246, 230, 0.88);
+}
+
+.page-owner-dashboard .owner-dash-badge--teal {
+  background: rgba(20, 184, 166, 0.2);
+  border: 1px solid rgba(20, 184, 166, 0.55);
+  color: #c8fff5;
+}
+
+.page-owner-dashboard .owner-dash-workflow {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(20, 184, 166, 0.28);
+}
+
+.page-owner-dashboard .owner-dash-workflow-title {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(20, 184, 166, 0.95);
+}
+
+.page-owner-dashboard .owner-dash-workflow-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .page-owner-dashboard .owner-dash-workflow-grid {
+    grid-template-columns: minmax(160px, 220px) 1fr;
+  }
+
+  .page-owner-dashboard .owner-dash-workflow-field--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+.page-owner-dashboard .owner-dash-workflow-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-workflow-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 246, 230, 0.7);
+}
+
+.page-owner-dashboard .owner-dash-select,
+.page-owner-dashboard .owner-dash-textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 246, 230, 0.18);
+  background: rgba(4, 10, 22, 0.65);
+  color: rgba(255, 246, 230, 0.95);
+  font: inherit;
+  font-size: 0.92rem;
+  padding: 10px 12px;
+}
+
+.page-owner-dashboard .owner-dash-select:focus-visible,
+.page-owner-dashboard .owner-dash-textarea:focus-visible {
+  outline: 2px solid rgba(255, 139, 31, 0.65);
+  outline-offset: 1px;
+  border-color: rgba(255, 139, 31, 0.45);
+}
+
+.page-owner-dashboard .owner-dash-textarea {
+  resize: vertical;
+  min-height: 4.5rem;
+  line-height: 1.5;
+}
+
+.page-owner-dashboard .owner-dash-workflow-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: rgba(255, 246, 230, 0.62);
+}
+
+.page-owner-dashboard .owner-dash-workflow-feedback {
+  font-weight: 700;
+}
+
+.page-owner-dashboard .owner-dash-workflow-feedback--success {
+  color: #86efac;
+}
+
+.page-owner-dashboard .owner-dash-workflow-feedback--error {
+  color: #fca5a5;
+}
+
+.page-owner-dashboard .owner-dash-workflow-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.page-owner-dashboard .owner-dash-btn {
+  appearance: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.page-owner-dashboard .owner-dash-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.page-owner-dashboard .owner-dash-btn--primary {
+  background: linear-gradient(135deg, rgba(255, 139, 31, 0.95), rgba(242, 178, 26, 0.88));
+  color: #1a1208;
+  border-color: rgba(255, 180, 80, 0.5);
+}
+
+.page-owner-dashboard .owner-dash-btn--secondary {
+  background: rgba(20, 184, 166, 0.14);
+  color: rgba(255, 246, 230, 0.92);
+  border-color: rgba(20, 184, 166, 0.45);
+}
+
+.page-owner-dashboard .owner-dash-btn:focus-visible {
+  outline: 2px solid rgba(255, 246, 230, 0.65);
+  outline-offset: 2px;
 }
 
 .page-owner-dashboard .owner-dash-meta {

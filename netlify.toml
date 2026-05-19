@@ -33,6 +33,8 @@
 #   TWILIO_*                    — optional; SMS failures never fail the lead save
 #   Supabase public.business_leads needs boolean alert_email_sent (default false); set true after Resend succeeds.
 #
-# Owner Command Dashboard (owner-dashboard-data function):
+# Owner Command Dashboard (owner-dashboard-data + owner-dashboard-update):
 #   OWNER_DASHBOARD_KEY          — private key for /owner-dashboard/?key=... (never commit or expose in JS source)
 #   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY — same as lead intake functions
+#   Supabase: business_leads + transportation_requests need status, owner_notes,
+#             last_contacted_at, updated_at (see supabase/owner-dashboard-v2-migration.sql)

@@ -60,9 +60,24 @@
             <p class="owner-dash-stat-meta"><span id="count-total-business">0</span> total</p>
           </article>
           <article class="owner-dash-glass owner-dash-stat">
-            <p class="owner-dash-stat-label">New Transportation Requests</p>
+            <p class="owner-dash-stat-label">New Transportation</p>
             <p class="owner-dash-stat-value" id="count-transport-new">—</p>
             <p class="owner-dash-stat-meta"><span id="count-total-transport">0</span> total</p>
+          </article>
+          <article class="owner-dash-glass owner-dash-stat">
+            <p class="owner-dash-stat-label">Needs Follow-up</p>
+            <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-needs-follow-up">—</p>
+            <p class="owner-dash-stat-meta">Both pipelines</p>
+          </article>
+          <article class="owner-dash-glass owner-dash-stat">
+            <p class="owner-dash-stat-label">Contacted</p>
+            <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-contacted">—</p>
+            <p class="owner-dash-stat-meta">Marked contacted</p>
+          </article>
+          <article class="owner-dash-glass owner-dash-stat">
+            <p class="owner-dash-stat-label">Won</p>
+            <p class="owner-dash-stat-value" id="count-won">—</p>
+            <p class="owner-dash-stat-meta">Closed won</p>
           </article>
           <article class="owner-dash-glass owner-dash-stat">
             <p class="owner-dash-stat-label">Email Alerts Sent</p>
@@ -77,7 +92,16 @@
         </div>
       </section>
 
-      <p class="owner-dash-placeholder">Status editing and owner notes coming next.</p>
+      <div class="owner-dash-filters" role="group" aria-label="Status filters">
+        <button type="button" class="owner-dash-filter is-active" data-filter="all">All</button>
+        <button type="button" class="owner-dash-filter" data-filter="new">New</button>
+        <button type="button" class="owner-dash-filter" data-filter="reviewed">Reviewed</button>
+        <button type="button" class="owner-dash-filter" data-filter="contacted">Contacted</button>
+        <button type="button" class="owner-dash-filter" data-filter="qualified">Qualified</button>
+        <button type="button" class="owner-dash-filter" data-filter="won">Won</button>
+        <button type="button" class="owner-dash-filter" data-filter="lost">Lost</button>
+        <button type="button" class="owner-dash-filter" data-filter="needs follow-up">Needs follow-up</button>
+      </div>
 
       <div class="owner-dash-tabs" role="tablist" aria-label="Lead sections">
         <button type="button" class="owner-dash-tab is-active" role="tab" aria-selected="true" aria-controls="panel-business" id="tab-business" data-panel="panel-business">Business Leads</button>
@@ -87,10 +111,10 @@
       <section id="panel-business" class="owner-dash-panel is-active" role="tabpanel" aria-labelledby="tab-business">
         <header class="owner-dash-panel-head">
           <h2>Business Leads</h2>
-          <p>Latest operator and intake submissions.</p>
+          <p>Latest operator and intake submissions. Update status and owner notes below.</p>
         </header>
         <div id="business-leads-empty" class="owner-dash-empty" hidden>
-          <p>No requests yet. Submit a test from the Business Operator or Transportation page.</p>
+          <p>No matching leads. Submit a test from the Business Operator or change the filter.</p>
         </div>
         <div id="business-leads-list" class="owner-dash-card-list"></div>
       </section>
@@ -98,10 +122,10 @@
       <section id="panel-transport" class="owner-dash-panel" role="tabpanel" aria-labelledby="tab-transport" hidden>
         <header class="owner-dash-panel-head">
           <h2>Transportation Requests</h2>
-          <p>Route operator and human-help handoffs.</p>
+          <p>Route operator and human-help handoffs. Update status and owner notes below.</p>
         </header>
         <div id="transport-empty" class="owner-dash-empty" hidden>
-          <p>No requests yet. Submit a test from the Business Operator or Transportation page.</p>
+          <p>No matching requests. Submit a test from Transportation or change the filter.</p>
         </div>
         <div id="transport-list" class="owner-dash-card-list"></div>
       </section>
@@ -114,12 +138,33 @@
 
   <script>
     (function () {
-      var API_URL = "/.netlify/functions/owner-dashboard-data";
+      var DATA_URL = "/.netlify/functions/owner-dashboard-data";
+      var UPDATE_URL = "/.netlify/functions/owner-dashboard-update";
       var params = new URLSearchParams(window.location.search);
       var accessKey = params.get("key");
 
+      var BUSINESS_STATUSES = [
+        "New",
+        "Reviewed",
+        "Contacted",
+        "Qualified",
+        "Not a fit",
+        "Won",
+        "Lost",
+        "Archived",
+      ];
+
+      var TRANSPORT_STATUSES = BUSINESS_STATUSES.concat(["Needs follow-up", "Handled", "Cancelled"]);
+
+      var state = {
+        businessLeads: [],
+        transportRows: [],
+        counts: null,
+        activeFilter: "all",
+        tabsReady: false,
+      };
+
       var els = {
-        main: document.getElementById("owner-dash-main"),
         loading: document.getElementById("owner-dash-loading"),
         unauthorized: document.getElementById("owner-dash-state-unauthorized"),
         error: document.getElementById("owner-dash-state-error"),
@@ -130,6 +175,9 @@
         transportEmpty: document.getElementById("transport-empty"),
         countBusinessNew: document.getElementById("count-business-new"),
         countTransportNew: document.getElementById("count-transport-new"),
+        countNeedsFollowUp: document.getElementById("count-needs-follow-up"),
+        countContacted: document.getElementById("count-contacted"),
+        countWon: document.getElementById("count-won"),
         countEmailAlerts: document.getElementById("count-email-alerts"),
         countSmsAlerts: document.getElementById("count-sms-alerts"),
         countTotalBusiness: document.getElementById("count-total-business"),
@@ -169,6 +217,25 @@
         }
       }
 
+      function normStatus(st) {
+        return String(st || "new").trim().toLowerCase();
+      }
+
+      function displayStatus(st) {
+        var n = normStatus(st);
+        if (n === "new") return "New";
+        var labels = BUSINESS_STATUSES.concat(["Needs follow-up", "Handled", "Cancelled"]);
+        for (var i = 0; i < labels.length; i++) {
+          if (normStatus(labels[i]) === n) return labels[i];
+        }
+        return st || "New";
+      }
+
+      function matchesFilter(row) {
+        if (state.activeFilter === "all") return true;
+        return normStatus(row.status) === normStatus(state.activeFilter);
+      }
+
       function alertPill(sent, label) {
         var cls = sent ? "owner-dash-badge--ok" : "owner-dash-badge--pending";
         var text = sent ? label + " sent" : label + " pending";
@@ -183,9 +250,12 @@
       }
 
       function statusClass(st) {
-        var s = String(st || "new").toLowerCase();
+        var s = normStatus(st);
         if (s === "new") return "owner-dash-badge--new";
-        if (/done|closed|complete/.test(s)) return "owner-dash-badge--ok";
+        if (s === "contacted" || s === "qualified") return "owner-dash-badge--teal";
+        if (s === "won" || s === "handled") return "owner-dash-badge--ok";
+        if (s === "lost" || s === "cancelled" || s === "archived") return "owner-dash-badge--muted";
+        if (s === "needs follow-up") return "owner-dash-badge--pending";
         return "owner-dash-badge--neutral";
       }
 
@@ -200,14 +270,78 @@
         );
       }
 
+      function statusOptions(table, current) {
+        var list = table === "transportation_requests" ? TRANSPORT_STATUSES : BUSINESS_STATUSES;
+        var cur = displayStatus(current);
+        return list
+          .map(function (opt) {
+            return (
+              '<option value="' +
+              esc(opt) +
+              '"' +
+              (opt === cur ? " selected" : "") +
+              ">" +
+              esc(opt) +
+              "</option>"
+            );
+          })
+          .join("");
+      }
+
+      function workflowBlock(table, row) {
+        var id = esc(row.id);
+        var tableEsc = esc(table);
+        var updated = row.updated_at ? fmtDate(row.updated_at) : "—";
+        var contacted = row.last_contacted_at ? fmtDate(row.last_contacted_at) : null;
+        return (
+          '<section class="owner-dash-workflow" data-table="' +
+          tableEsc +
+          '" data-id="' +
+          id +
+          '">' +
+          '<h4 class="owner-dash-workflow-title">Owner workflow</h4>' +
+          '<div class="owner-dash-workflow-grid">' +
+          '<label class="owner-dash-workflow-field"><span class="owner-dash-workflow-label">Status</span>' +
+          '<select class="owner-dash-select" data-field="status" aria-label="Status">' +
+          statusOptions(table, row.status) +
+          "</select></label>" +
+          '<label class="owner-dash-workflow-field owner-dash-workflow-field--wide">' +
+          '<span class="owner-dash-workflow-label">Owner notes (internal)</span>' +
+          '<textarea class="owner-dash-textarea" data-field="owner_notes" rows="3" placeholder="Follow-up notes, call outcomes, next steps…">' +
+          esc(row.owner_notes || "") +
+          "</textarea></label>" +
+          "</div>" +
+          '<div class="owner-dash-workflow-meta">' +
+          "<span>Last updated: <time datetime=\"" +
+          esc(row.updated_at || "") +
+          '">' +
+          esc(updated) +
+          "</time></span>" +
+          (contacted
+            ? '<span>Last contacted: <time datetime="' +
+              esc(row.last_contacted_at) +
+              '">' +
+              esc(contacted) +
+              "</time></span>"
+            : "") +
+          '<span class="owner-dash-workflow-feedback" data-feedback hidden aria-live="polite"></span>' +
+          "</div>" +
+          '<div class="owner-dash-workflow-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--primary" data-action="save">Save</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="mark-contacted">Mark contacted</button>' +
+          "</div></section>"
+        );
+      }
+
       function renderBusiness(leads) {
-        if (!leads.length) {
+        var filtered = leads.filter(matchesFilter);
+        if (!filtered.length) {
           show(els.businessEmpty);
           els.businessList.innerHTML = "";
           return;
         }
         hide(els.businessEmpty);
-        els.businessList.innerHTML = leads
+        els.businessList.innerHTML = filtered
           .map(function (lead) {
             var badge =
               '<span class="owner-dash-badge ' +
@@ -215,19 +349,19 @@
               '">' +
               esc(lead.lead_quality || "Lead") +
               "</span>";
-            if (lead.status) {
-              badge +=
-                ' <span class="owner-dash-badge ' +
-                statusClass(lead.status) +
-                '">' +
-                esc(lead.status) +
-                "</span>";
-            }
+            badge +=
+              ' <span class="owner-dash-badge ' +
+              statusClass(lead.status) +
+              '">' +
+              esc(displayStatus(lead.status)) +
+              "</span>";
             var industryLoc = [lead.business_industry, lead.business_location]
               .filter(Boolean)
               .join(" · ");
             return (
-              '<article class="owner-dash-glass owner-dash-lead-card">' +
+              '<article class="owner-dash-glass owner-dash-lead-card" data-record-id="' +
+              esc(lead.id) +
+              '">' +
               '<div class="owner-dash-card-top">' +
               badge +
               '<time class="owner-dash-time" datetime="' +
@@ -255,6 +389,7 @@
                   "</dd></div>"
                 : "") +
               "</dl>" +
+              workflowBlock("business_leads", lead) +
               '<div class="owner-dash-card-foot">' +
               alertPill(lead.alert_email_sent, "Email") +
               alertPill(lead.alert_sms_sent, "SMS") +
@@ -268,23 +403,26 @@
       }
 
       function renderTransport(rows) {
-        if (!rows.length) {
+        var filtered = rows.filter(matchesFilter);
+        if (!filtered.length) {
           show(els.transportEmpty);
           els.transportList.innerHTML = "";
           return;
         }
         hide(els.transportEmpty);
-        els.transportList.innerHTML = rows
+        els.transportList.innerHTML = filtered
           .map(function (row) {
             var route = [row.pickup_area, row.destination].filter(Boolean).join(" → ");
             var excerpt = row.conversation_excerpt || row.notes || "";
             return (
-              '<article class="owner-dash-glass owner-dash-lead-card">' +
+              '<article class="owner-dash-glass owner-dash-lead-card" data-record-id="' +
+              esc(row.id) +
+              '">' +
               '<div class="owner-dash-card-top">' +
               '<span class="owner-dash-badge ' +
               statusClass(row.status) +
               '">' +
-              esc(row.status || "new") +
+              esc(displayStatus(row.status)) +
               "</span>" +
               (row.request_type
                 ? '<span class="owner-dash-badge owner-dash-badge--neutral">' +
@@ -311,6 +449,7 @@
                   "</dd></div>"
                 : "") +
               "</dl>" +
+              workflowBlock("transportation_requests", row) +
               '<div class="owner-dash-card-foot">' +
               alertPill(row.alert_email_sent, "Email") +
               alertPill(row.alert_sms_sent, "SMS") +
@@ -323,17 +462,226 @@
           .join("");
       }
 
+      function renderAll() {
+        renderBusiness(state.businessLeads);
+        renderTransport(state.transportRows);
+      }
+
       function setCounts(counts) {
         if (!counts) return;
         els.countBusinessNew.textContent = String(counts.business_new ?? 0);
         els.countTransportNew.textContent = String(counts.transportation_new ?? 0);
+        els.countNeedsFollowUp.textContent = String(counts.needs_follow_up ?? 0);
+        els.countContacted.textContent = String(counts.contacted ?? 0);
+        els.countWon.textContent = String(counts.won ?? 0);
         els.countEmailAlerts.textContent = String(counts.email_alerts_sent ?? 0);
         els.countSmsAlerts.textContent = String(counts.sms_alerts_sent ?? 0);
         els.countTotalBusiness.textContent = String(counts.total_business ?? 0);
         els.countTotalTransport.textContent = String(counts.total_transportation ?? 0);
       }
 
+      function findRecord(table, id) {
+        var list = table === "business_leads" ? state.businessLeads : state.transportRows;
+        for (var i = 0; i < list.length; i++) {
+          if (String(list[i].id) === String(id)) return { list: list, index: i, row: list[i] };
+        }
+        return null;
+      }
+
+      function applyRecordUpdate(table, id, record) {
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        hit.row.status = record.status;
+        hit.row.owner_notes = record.owner_notes;
+        hit.row.last_contacted_at = record.last_contacted_at;
+        hit.row.updated_at = record.updated_at;
+      }
+
+      function setWorkflowFeedback(workflowEl, type, message) {
+        var fb = workflowEl.querySelector("[data-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-workflow-feedback owner-dash-workflow-feedback--" + type;
+      }
+
+      function clearWorkflowFeedback(workflowEl) {
+        var fb = workflowEl.querySelector("[data-feedback]");
+        if (fb) {
+          fb.hidden = true;
+          fb.textContent = "";
+          fb.className = "owner-dash-workflow-feedback";
+        }
+      }
+
+      function readWorkflowValues(workflowEl) {
+        var statusEl = workflowEl.querySelector('[data-field="status"]');
+        var notesEl = workflowEl.querySelector('[data-field="owner_notes"]');
+        return {
+          status: statusEl ? statusEl.value : null,
+          owner_notes: notesEl ? notesEl.value : null,
+        };
+      }
+
+      function updateWorkflowMeta(workflowEl, record) {
+        var meta = workflowEl.querySelector(".owner-dash-workflow-meta");
+        if (!meta) return;
+        var updated = record.updated_at ? fmtDate(record.updated_at) : "—";
+        var contacted = record.last_contacted_at ? fmtDate(record.last_contacted_at) : null;
+        var html =
+          "<span>Last updated: <time datetime=\"" +
+          esc(record.updated_at || "") +
+          '">' +
+          esc(updated) +
+          "</time></span>";
+        if (contacted) {
+          html +=
+            '<span>Last contacted: <time datetime="' +
+            esc(record.last_contacted_at) +
+            '">' +
+            esc(contacted) +
+            "</time></span>";
+        }
+        html += '<span class="owner-dash-workflow-feedback" data-feedback hidden aria-live="polite"></span>';
+        meta.innerHTML = html;
+      }
+
+      function postUpdate(table, id, payload) {
+        var body = Object.assign({ key: accessKey, table: table, id: id }, payload);
+        return fetch(UPDATE_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(body),
+        }).then(function (res) {
+          return res.json().then(function (data) {
+            return { ok: res.ok && data && data.ok, status: res.status, data: data };
+          });
+        });
+      }
+
+      function handleSave(workflowEl) {
+        var table = workflowEl.getAttribute("data-table");
+        var id = workflowEl.getAttribute("data-id");
+        var values = readWorkflowValues(workflowEl);
+        var saveBtn = workflowEl.querySelector('[data-action="save"]');
+        var markBtn = workflowEl.querySelector('[data-action="mark-contacted"]');
+        clearWorkflowFeedback(workflowEl);
+        if (saveBtn) {
+          saveBtn.disabled = true;
+          saveBtn.textContent = "Saving…";
+        }
+        if (markBtn) markBtn.disabled = true;
+
+        postUpdate(table, id, {
+          status: values.status,
+          owner_notes: values.owner_notes,
+        })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setWorkflowFeedback(
+                workflowEl,
+                "error",
+                (result.data && result.data.error) || "Save failed. Try again."
+              );
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            renderAll();
+            var wf = document.querySelector(
+              '.owner-dash-workflow[data-table="' + table + '"][data-id="' + id + '"]'
+            );
+            if (wf) {
+              setWorkflowFeedback(wf, "success", "Saved.");
+            }
+            refreshCounts();
+          })
+          .catch(function () {
+            setWorkflowFeedback(workflowEl, "error", "Network error. Try again.");
+          })
+          .finally(function () {
+            if (saveBtn) {
+              saveBtn.disabled = false;
+              saveBtn.textContent = "Save";
+            }
+            if (markBtn) markBtn.disabled = false;
+          });
+      }
+
+      function handleMarkContacted(workflowEl) {
+        var table = workflowEl.getAttribute("data-table");
+        var id = workflowEl.getAttribute("data-id");
+        var values = readWorkflowValues(workflowEl);
+        var statusEl = workflowEl.querySelector('[data-field="status"]');
+        var cur = normStatus(values.status);
+        var nextStatus = cur === "new" || cur === "reviewed" ? "Contacted" : values.status;
+        if (statusEl && nextStatus !== values.status) statusEl.value = nextStatus;
+
+        var saveBtn = workflowEl.querySelector('[data-action="save"]');
+        var markBtn = workflowEl.querySelector('[data-action="mark-contacted"]');
+        clearWorkflowFeedback(workflowEl);
+        if (markBtn) {
+          markBtn.disabled = true;
+          markBtn.textContent = "Saving…";
+        }
+        if (saveBtn) saveBtn.disabled = true;
+
+        postUpdate(table, id, {
+          status: nextStatus,
+          owner_notes: values.owner_notes,
+          last_contacted_at: new Date().toISOString(),
+        })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setWorkflowFeedback(
+                workflowEl,
+                "error",
+                (result.data && result.data.error) || "Update failed. Try again."
+              );
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            renderAll();
+            var wf = document.querySelector(
+              '.owner-dash-workflow[data-table="' + table + '"][data-id="' + id + '"]'
+            );
+            if (wf) {
+              setWorkflowFeedback(wf, "success", "Marked contacted.");
+            }
+            refreshCounts();
+          })
+          .catch(function () {
+            setWorkflowFeedback(workflowEl, "error", "Network error. Try again.");
+          })
+          .finally(function () {
+            if (markBtn) {
+              markBtn.disabled = false;
+              markBtn.textContent = "Mark contacted";
+            }
+            if (saveBtn) saveBtn.disabled = false;
+          });
+      }
+
+      function refreshCounts() {
+        return fetch(DATA_URL + "?key=" + encodeURIComponent(accessKey), {
+          method: "GET",
+          headers: { Accept: "application/json" },
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              if (res.ok && data && data.ok && data.counts) {
+                state.counts = data.counts;
+                setCounts(data.counts);
+              }
+            });
+          })
+          .catch(function () {
+            /* counts refresh is best-effort */
+          });
+      }
+
       function initTabs() {
+        if (state.tabsReady) return;
+        state.tabsReady = true;
         var tabs = document.querySelectorAll(".owner-dash-tab");
         var panels = document.querySelectorAll(".owner-dash-panel");
         tabs.forEach(function (tab) {
@@ -350,6 +698,31 @@
               panel.hidden = !showPanel;
             });
           });
+        });
+      }
+
+      function initFilters() {
+        var filters = document.querySelectorAll(".owner-dash-filter");
+        filters.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            state.activeFilter = btn.getAttribute("data-filter") || "all";
+            filters.forEach(function (b) {
+              b.classList.toggle("is-active", b === btn);
+            });
+            renderAll();
+          });
+        });
+      }
+
+      function initWorkflowDelegation() {
+        document.addEventListener("click", function (ev) {
+          var btn = ev.target.closest("[data-action]");
+          if (!btn) return;
+          var workflowEl = btn.closest(".owner-dash-workflow");
+          if (!workflowEl) return;
+          var action = btn.getAttribute("data-action");
+          if (action === "save") handleSave(workflowEl);
+          if (action === "mark-contacted") handleMarkContacted(workflowEl);
         });
       }
 
@@ -372,18 +745,23 @@
         hide(els.unauthorized);
         hide(els.error);
         show(els.content);
-        setCounts(data.counts);
-        renderBusiness(data.business_leads || []);
-        renderTransport(data.transportation_requests || []);
+        state.businessLeads = data.business_leads || [];
+        state.transportRows = data.transportation_requests || [];
+        state.counts = data.counts || null;
+        setCounts(state.counts);
+        renderAll();
         initTabs();
+        initFilters();
       }
+
+      initWorkflowDelegation();
 
       if (!accessKey || !String(accessKey).trim()) {
         finishUnauthorized();
         return;
       }
 
-      fetch(API_URL + "?key=" + encodeURIComponent(accessKey), {
+      fetch(DATA_URL + "?key=" + encodeURIComponent(accessKey), {
         method: "GET",
         headers: { Accept: "application/json" },
       })

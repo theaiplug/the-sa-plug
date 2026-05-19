@@ -18,12 +18,18 @@ const CORS_HEADERS = {
 const ROW_LIMIT = 25;
 
 const BUSINESS_SELECT_FULL =
+  "id,created_at,status,owner_notes,last_contacted_at,updated_at,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,alert_sms_sent,page_path";
+
+const BUSINESS_SELECT_STATUS =
   "id,created_at,status,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,alert_sms_sent,page_path";
 
 const BUSINESS_SELECT_CORE =
   "id,created_at,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,page_path";
 
-const TRANSPORT_SELECT =
+const TRANSPORT_SELECT_FULL =
+  "id,created_at,status,owner_notes,last_contacted_at,updated_at,visitor_name,visitor_phone,visitor_email,pickup_area,destination,requested_time,party_size,request_type,conversation_excerpt,notes,alert_email_sent,alert_sms_sent,page_path";
+
+const TRANSPORT_SELECT_CORE =
   "id,created_at,status,visitor_name,visitor_phone,visitor_email,pickup_area,destination,requested_time,party_size,request_type,conversation_excerpt,notes,alert_email_sent,alert_sms_sent,page_path";
 
 function json(statusCode, body) {
@@ -103,11 +109,32 @@ async function fetchBusinessLeads(url, serviceKey) {
     return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_FULL);
   } catch (firstErr) {
     try {
-      return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_CORE);
+      return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_STATUS);
+    } catch {
+      try {
+        return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_CORE);
+      } catch {
+        throw firstErr;
+      }
+    }
+  }
+}
+
+async function fetchTransportRequests(url, serviceKey) {
+  try {
+    return await fetchRecentRows(url, serviceKey, "transportation_requests", TRANSPORT_SELECT_FULL);
+  } catch (firstErr) {
+    try {
+      return await fetchRecentRows(url, serviceKey, "transportation_requests", TRANSPORT_SELECT_CORE);
     } catch {
       throw firstErr;
     }
   }
+}
+
+async function supabaseCountByStatusIlike(url, serviceKey, table, statusValue) {
+  const filter = `&status=ilike.${encodeURIComponent(statusValue)}`;
+  return supabaseCountWithHeaders(url, serviceKey, table, filter);
 }
 
 function mapBusinessLead(row) {
@@ -115,6 +142,9 @@ function mapBusinessLead(row) {
     id: row.id,
     created_at: row.created_at,
     status: row.status ?? null,
+    owner_notes: row.owner_notes ?? null,
+    last_contacted_at: row.last_contacted_at ?? null,
+    updated_at: row.updated_at ?? null,
     lead_quality: row.lead_quality ?? null,
     contact_name: row.contact_name ?? null,
     contact_email: row.contact_email ?? null,
@@ -141,6 +171,9 @@ function mapTransportRequest(row) {
     id: row.id,
     created_at: row.created_at,
     status: row.status ?? null,
+    owner_notes: row.owner_notes ?? null,
+    last_contacted_at: row.last_contacted_at ?? null,
+    updated_at: row.updated_at ?? null,
     name: row.visitor_name ?? null,
     phone: row.visitor_phone ?? null,
     email: row.visitor_email ?? null,
@@ -190,17 +223,29 @@ exports.handler = async (event) => {
       totalTransportation,
       businessNew,
       transportationNew,
+      businessNeedsFollowUp,
+      transportNeedsFollowUp,
+      businessContacted,
+      transportContacted,
+      businessWon,
+      transportWon,
       businessEmailAlerts,
       transportEmailAlerts,
       businessSmsAlerts,
       transportSmsAlerts,
     ] = await Promise.all([
       fetchBusinessLeads(supabaseUrl, serviceKey),
-      fetchRecentRows(supabaseUrl, serviceKey, "transportation_requests", TRANSPORT_SELECT),
+      fetchTransportRequests(supabaseUrl, serviceKey),
       supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", ""),
       supabaseCountWithHeaders(supabaseUrl, serviceKey, "transportation_requests", ""),
-      supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", "&status=eq.new"),
-      supabaseCountWithHeaders(supabaseUrl, serviceKey, "transportation_requests", "&status=eq.new"),
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "new"),
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "new"),
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "needs follow-up"),
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "needs follow-up"),
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "contacted"),
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "contacted"),
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "won"),
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "won"),
       supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", "&alert_email_sent=eq.true"),
       supabaseCountWithHeaders(
         supabaseUrl,
@@ -224,6 +269,9 @@ exports.handler = async (event) => {
       counts: {
         business_new: businessNew,
         transportation_new: transportationNew,
+        needs_follow_up: businessNeedsFollowUp + transportNeedsFollowUp,
+        contacted: businessContacted + transportContacted,
+        won: businessWon + transportWon,
         total_business: totalBusiness,
         total_transportation: totalTransportation,
         email_alerts_sent: businessEmailAlerts + transportEmailAlerts,
