@@ -781,7 +781,7 @@
         var services = String(lead.services_interested || "").toLowerCase();
         return {
           text: text,
-          missedCalls: /missed call|missed calls|voicemail|phone agent|after hours|ring|answering|call back/.test(
+          missedCalls: /missed call|missed calls|voicemail|phone agent|after hours|\bring\b|answering|\bcall back\b/.test(
             text
           ),
           website:
@@ -794,7 +794,7 @@
             ) ||
             /lead capture|forms|qr|intake|owner alert|routing/.test(services),
           followUp: /follow[- ]?up|scattered|visibility|crm|pipeline|no system|spreadsheet/.test(text),
-          booking: /book|booking|appointment|schedule|calendar/.test(text),
+          booking: /\bbook(?:ing)?\b|\bappointment\b|\bschedule\b|\bcalendar\b/.test(text),
           automation:
             /automation|chatbot|ai operator|phone agent|workflow|business system|operating system/.test(text),
           dashboard: /dashboard|owner visibility|command center|reporting/.test(text),
@@ -855,9 +855,8 @@
           painCount >= 3 &&
           (sig.urgent || textIncludesAny(lead.urgency, ["urgent", "losing revenue", "high"])) &&
           (shortTimeline || sig.urgent) &&
-          (sig.commandCenter ||
-            sig.multiple ||
-            (sig.website && sig.leadCapture && (sig.missedCalls || sig.automation || sig.dashboard)))
+          ((sig.website && painCount >= 3) ||
+            /crm|reporting|command center|multiple system|full system|owner visibility/.test(text))
         ) {
           return "Full Business Command Center";
         }
@@ -975,17 +974,27 @@
 
         if (offer === "Foundation System") {
           bits.push(
-            "This lead’s main gap looks like online presence—a clear website or landing page with a simple customer path before layering automation."
+            "This lead’s main gap looks like online presence (" +
+              problem +
+              ")—a clear website or landing page with a simple customer path before layering automation."
           );
         } else if (offer === "Lead Capture System") {
-          bits.push(
-            "They described lead flow or follow-up friction (" +
-              problem +
-              "), so the first useful layer is intake, routing, and owner visibility—not a full rebuild."
-          );
+          if (sig.missedCalls && sig.urgent) {
+            bits.push(
+              "This lead mentioned missed calls and urgent revenue risk, so the first useful system is not just a website. Start with a lead capture and follow-up layer that catches the request, routes it, and gives the owner visibility."
+            );
+          } else {
+            bits.push(
+              "They described lead flow or follow-up friction (" +
+                problem +
+                "), so the first useful layer is intake, routing, and owner visibility—not a full rebuild."
+            );
+          }
         } else if (offer === "Operating System Layer") {
           bits.push(
-            "Multiple touchpoints (calls, intake, follow-up, or dashboards) show up in what they shared, so the first win is connecting the operating flow—not adding another isolated tool."
+            "Multiple touchpoints (calls, intake, follow-up, or dashboards) show up in what they shared (" +
+              (services || problem) +
+              "), so the first win is connecting the operating flow—not adding another isolated tool."
           );
         } else if (offer === "Full Business Command Center") {
           bits.push(
@@ -995,11 +1004,13 @@
           );
         } else if (offer === "AI Media Engine") {
           bits.push(
-            "They asked for ongoing content or marketing output, so the first offer should be a repeatable production workflow—not a generic website project."
+            "They asked for ongoing content or marketing output (" +
+              problem +
+              "), so the first offer should be a repeatable production workflow—not a generic website project."
           );
         }
 
-        if (sig.urgent && offer !== "AI Media Engine") {
+        if (sig.urgent && offer !== "AI Media Engine" && offer !== "Lead Capture System") {
           bits.push(
             "Urgency or revenue risk is present; prioritize catching and routing real customer requests before expanding scope."
           );
@@ -1013,6 +1024,9 @@
           return "Review current website and intake path first.";
         }
         if (offer === "Lead Capture System") {
+          if (sig.automation || sig.missedCalls) {
+            return "Start with lead capture and owner alerts before a full AI stack.";
+          }
           return "Ask how leads arrive, who responds, and where follow-up breaks.";
         }
         if (offer === "Operating System Layer") {
