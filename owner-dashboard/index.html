@@ -13,6 +13,96 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .page-owner-dashboard .owner-dash-last-activity {
+      margin: 0 0 10px;
+      font-size: 0.74rem;
+      line-height: 1.35;
+      color: rgba(255, 246, 230, 0.58);
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-activity {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 246, 230, 0.09);
+      background:
+        linear-gradient(150deg, rgba(20, 184, 166, 0.09), transparent 58%),
+        rgba(4, 10, 22, 0.46);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-activity .owner-dash-detail-section-title {
+      color: #c8fff5;
+    }
+
+    .page-owner-dashboard .owner-dash-activity-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-activity-item {
+      display: grid;
+      grid-template-columns: 12px minmax(0, 1fr);
+      gap: 8px;
+      align-items: flex-start;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-activity-dot {
+      width: 8px;
+      height: 8px;
+      margin-top: 0.42em;
+      border-radius: 999px;
+      background: rgba(255, 246, 230, 0.38);
+      box-shadow: 0 0 0 3px rgba(255, 246, 230, 0.06);
+    }
+
+    .page-owner-dashboard .owner-dash-activity-item--ok .owner-dash-activity-dot {
+      background: #5eead4;
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.16);
+    }
+
+    .page-owner-dashboard .owner-dash-activity-item--pending .owner-dash-activity-dot {
+      background: #f2b21a;
+      box-shadow: 0 0 0 3px rgba(255, 139, 31, 0.16);
+    }
+
+    .page-owner-dashboard .owner-dash-activity-item--error .owner-dash-activity-dot {
+      background: #fca5a5;
+      box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.14);
+    }
+
+    .page-owner-dashboard .owner-dash-activity-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px 6px;
+      align-items: baseline;
+      min-width: 0;
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .page-owner-dashboard .owner-dash-activity-label {
+      color: rgba(255, 246, 230, 0.92);
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-activity-detail {
+      color: rgba(255, 246, 230, 0.58);
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-activity-detail::before {
+      content: "— ";
+      color: rgba(255, 246, 230, 0.32);
+    }
+  </style>
 </head>
 <body class="page-owner-dashboard">
   <header class="owner-dash-header">
@@ -198,6 +288,8 @@
         filtersReady: false,
         priorityFiltersReady: false,
         detailOpen: null,
+        clientActivity: {},
+        lastLoadedAt: null,
       };
 
       var els = {
@@ -254,6 +346,21 @@
             hour: "numeric",
             minute: "2-digit",
           });
+        } catch {
+          return iso;
+        }
+      }
+
+      function fmtShortDate(iso) {
+        if (!iso) return "";
+        try {
+          var d = new Date(iso);
+          if (Number.isNaN(d.getTime())) return iso;
+          return (
+            d.toLocaleDateString(undefined, { month: "short", day: "numeric" }) +
+            " at " +
+            d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })
+          );
         } catch {
           return iso;
         }
@@ -656,6 +763,170 @@
           alertPill(row.alert_email_sent, "Email") +
           alertPill(row.alert_sms_sent, "SMS") +
           "</div>"
+        );
+      }
+
+      function activityKey(table, id) {
+        return table + ":" + String(id || "");
+      }
+
+      function clientActivityFor(table, id) {
+        return state.clientActivity[activityKey(table, id)] || [];
+      }
+
+      function addClientActivity(table, id, label, tone) {
+        if (!table || !id || !label) return;
+        var key = activityKey(table, id);
+        var items = state.clientActivity[key] || [];
+        items.unshift({
+          label: label,
+          detail: "just now",
+          tone: tone || "ok",
+          transient: true,
+        });
+        state.clientActivity[key] = items.slice(0, 6);
+      }
+
+      function copyActivityLabel(kind, table) {
+        var labels = {
+          "sms-followup": "SMS follow-up copied",
+          "email-reply": "Email follow-up copied",
+          "call-script": "Call script copied",
+          phone: "Phone copied",
+          email: "Email copied",
+          summary: table === "business_leads" ? "Lead summary copied" : "Request summary copied",
+          "request-summary": "Request summary copied",
+          "discovery-questions": "Discovery questions copied",
+          "first-offer": "First-offer recommendation copied",
+          "mini-proposal": "Mini-proposal copied",
+          "discovery-agenda": "Discovery agenda copied",
+          "proposal-notes": "Proposal notes copied",
+        };
+        return labels[kind] || "Copy action completed";
+      }
+
+      function recordCopyActivity(kind, table, id) {
+        addClientActivity(table, id, copyActivityLabel(kind, table), "ok");
+        updateOpenActivityTimeline();
+      }
+
+      function statusTone(status) {
+        var s = normStatus(status);
+        if (s === "won" || s === "handled" || s === "contacted" || s === "qualified") return "ok";
+        if (s === "needs follow-up" || s === "new" || s === "reviewed") return "pending";
+        if (s === "lost" || s === "cancelled" || s === "not a fit") return "error";
+        return "info";
+      }
+
+      function timelineItem(label, detail, tone, iso) {
+        return {
+          label: label,
+          detail: detail || "",
+          tone: tone || "info",
+          iso: iso || null,
+        };
+      }
+
+      function alertTimelineItem(label, sent, pendingText) {
+        return timelineItem(label, sent ? "Sent" : pendingText || "Pending", sent ? "ok" : "pending");
+      }
+
+      function buildActivityTimelineItems(table, row) {
+        var isBusiness = table === "business_leads";
+        var items = clientActivityFor(table, row.id).slice(0, 3);
+        items.push(
+          timelineItem(
+            isBusiness ? "Lead received" : "Request received",
+            fmtDate(row.created_at),
+            "info",
+            row.created_at
+          )
+        );
+        items.push(alertTimelineItem("Email alert", row.alert_email_sent, "Pending"));
+        items.push(alertTimelineItem("SMS", row.alert_sms_sent, "Pending A2P"));
+        items.push(timelineItem("Status", displayStatus(row.status), statusTone(row.status)));
+        if (row.owner_notes && String(row.owner_notes).trim()) {
+          items.push(timelineItem("Owner notes", "Saved", "ok"));
+        }
+        if (row.last_contacted_at) {
+          items.push(timelineItem("Last contacted", fmtDate(row.last_contacted_at), "ok", row.last_contacted_at));
+        }
+        if (state.lastLoadedAt) {
+          items.push(timelineItem("Last refreshed", fmtDate(state.lastLoadedAt), "info", state.lastLoadedAt));
+        }
+        return items.slice(0, 8);
+      }
+
+      function activityTimelineHtml(items) {
+        if (!items.length) return "";
+        return items
+          .map(function (item) {
+            return (
+              '<li class="owner-dash-activity-item owner-dash-activity-item--' +
+              esc(item.tone || "info") +
+              '">' +
+              '<span class="owner-dash-activity-dot" aria-hidden="true"></span>' +
+              '<div class="owner-dash-activity-content">' +
+              '<span class="owner-dash-activity-label">' +
+              esc(item.label) +
+              "</span>" +
+              (item.detail
+                ? '<span class="owner-dash-activity-detail">' +
+                  (item.iso
+                    ? '<time datetime="' + esc(item.iso) + '">' + esc(item.detail) + "</time>"
+                    : esc(item.detail)) +
+                  "</span>"
+                : "") +
+              "</div></li>"
+            );
+          })
+          .join("");
+      }
+
+      function activityTimelineBlock(table, row) {
+        var items = buildActivityTimelineItems(table, row);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-activity" data-activity-timeline>' +
+          '<h3 class="owner-dash-detail-section-title">Activity Timeline</h3>' +
+          '<ol class="owner-dash-activity-list">' +
+          activityTimelineHtml(items) +
+          "</ol></section>"
+        );
+      }
+
+      function updateOpenActivityTimeline() {
+        if (!state.detailOpen || !els.detailBody) return;
+        var hit = findRecord(state.detailOpen.table, state.detailOpen.id);
+        var section = els.detailBody.querySelector("[data-activity-timeline]");
+        if (!hit || !section) return;
+        section.outerHTML = activityTimelineBlock(state.detailOpen.table, hit.row);
+      }
+
+      function lastActivityMeta(row, table) {
+        var updatedTs = row.updated_at ? new Date(row.updated_at).getTime() : 0;
+        var contactedTs = row.last_contacted_at ? new Date(row.last_contacted_at).getTime() : 0;
+        if (contactedTs && (!updatedTs || contactedTs >= updatedTs)) {
+          return { label: "contacted", iso: row.last_contacted_at };
+        }
+        if (row.owner_notes && String(row.owner_notes).trim() && updatedTs) {
+          return { label: "note updated", iso: row.updated_at };
+        }
+        if (contactedTs) {
+          return { label: "contacted", iso: row.last_contacted_at };
+        }
+        if (updatedTs && row.updated_at !== row.created_at) {
+          return { label: "updated", iso: row.updated_at };
+        }
+        return { label: table === "business_leads" ? "new lead" : "new request", iso: row.created_at };
+      }
+
+      function lastActivityHint(row, table) {
+        var meta = lastActivityMeta(row, table);
+        var date = fmtShortDate(meta.iso);
+        return (
+          '<p class="owner-dash-last-activity">Last activity: ' +
+          esc(meta.label + (date ? " " + date : "")) +
+          "</p>"
         );
       }
 
@@ -1662,6 +1933,7 @@
           groupedToolsBlock("business_leads") +
           quickStatusBlock("business_leads", lead.status) +
           workflowBlock("business_leads", lead) +
+          activityTimelineBlock("business_leads", lead) +
           businessLeadDetailsBlock(lead) +
           businessAiTranscriptBlock(lead) +
           "</div>"
@@ -1716,6 +1988,7 @@
           groupedToolsBlock("transportation_requests") +
           quickStatusBlock("transportation_requests", row.status) +
           workflowBlock("transportation_requests", row) +
+          activityTimelineBlock("transportation_requests", row) +
           "</div>"
         );
       }
@@ -1854,6 +2127,9 @@
         hideManualCopy(section);
         function onSuccess() {
           setCopyFeedback(section, "Copied.");
+          if (state.detailOpen) {
+            recordCopyActivity(kind, state.detailOpen.table, state.detailOpen.id);
+          }
         }
         function onFail() {
           showManualCopy(section, text);
@@ -1906,6 +2182,9 @@
         var id = state.detailOpen.id;
         var workflowEl = sheet.querySelector(".owner-dash-workflow");
         var notes = workflowEl ? readWorkflowValues(workflowEl).owner_notes : null;
+        var before = findRecord(table, id);
+        var previousStatus = before ? displayStatus(before.row.status) : null;
+        var previousNotes = before ? String(before.row.owner_notes || "") : "";
         var payload = { status: statusLabel, owner_notes: notes };
         if (normStatus(statusLabel) === "contacted") {
           payload.last_contacted_at = new Date().toISOString();
@@ -1927,6 +2206,14 @@
               return;
             }
             applyRecordUpdate(table, id, result.data.record);
+            if (normStatus(statusLabel) === "contacted") {
+              addClientActivity(table, id, "Marked contacted", "ok");
+            } else if (previousStatus !== displayStatus(result.data.record.status)) {
+              addClientActivity(table, id, "Status changed to " + displayStatus(result.data.record.status), "info");
+            }
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
             renderAll();
             refreshDetailIfOpen();
             setQuickFeedback(sheet, "Status updated.", false);
@@ -2050,6 +2337,7 @@
               blockPreview("AI summary preview", preview) +
               "</dl>" +
               opportunityCardRow(lead) +
+              lastActivityHint(lead, "business_leads") +
               '<div class="owner-dash-card-actions">' +
               openDetailsBtn("business_leads", lead.id) +
               "</div>" +
@@ -2105,6 +2393,7 @@
               block("Date / time", row.date_time) +
               blockPreview("Notes preview", preview) +
               "</dl>" +
+              lastActivityHint(row, "transportation_requests") +
               '<div class="owner-dash-card-actions">' +
               openDetailsBtn("transportation_requests", row.id) +
               "</div>" +
@@ -2223,6 +2512,9 @@
         var table = workflowEl.getAttribute("data-table");
         var id = workflowEl.getAttribute("data-id");
         var values = readWorkflowValues(workflowEl);
+        var before = findRecord(table, id);
+        var previousStatus = before ? displayStatus(before.row.status) : null;
+        var previousNotes = before ? String(before.row.owner_notes || "") : "";
         var saveBtn = workflowEl.querySelector('[data-action="save"]');
         var markBtn = workflowEl.querySelector('[data-action="mark-contacted"]');
         clearWorkflowFeedback(workflowEl);
@@ -2246,6 +2538,12 @@
               return;
             }
             applyRecordUpdate(table, id, result.data.record);
+            if (previousStatus !== displayStatus(result.data.record.status)) {
+              addClientActivity(table, id, "Status changed to " + displayStatus(result.data.record.status), "info");
+            }
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
             renderAll();
             var wf = findWorkflowEl(table, id) || workflowEl;
             if (wf) {
@@ -2281,6 +2579,8 @@
         var table = workflowEl.getAttribute("data-table");
         var id = workflowEl.getAttribute("data-id");
         var values = readWorkflowValues(workflowEl);
+        var before = findRecord(table, id);
+        var previousNotes = before ? String(before.row.owner_notes || "") : "";
         var statusEl = workflowEl.querySelector('[data-field="status"]');
         var cur = normStatus(values.status);
         var nextStatus = cur === "new" || cur === "reviewed" ? "Contacted" : values.status;
@@ -2310,6 +2610,10 @@
               return;
             }
             applyRecordUpdate(table, id, result.data.record);
+            addClientActivity(table, id, "Marked contacted", "ok");
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
             renderAll();
             var wf = findWorkflowEl(table, id) || workflowEl;
             if (wf) {
@@ -2356,6 +2660,7 @@
       function updateLastLoaded() {
         if (!els.lastLoaded || !els.lastLoadedTime) return;
         var now = new Date();
+        state.lastLoadedAt = now.toISOString();
         els.lastLoadedTime.dateTime = now.toISOString();
         els.lastLoadedTime.textContent = now.toLocaleString(undefined, {
           month: "short",
@@ -2530,6 +2835,7 @@
         state.businessLeads = data.business_leads || [];
         state.transportRows = data.transportation_requests || [];
         state.counts = data.counts || null;
+        state.clientActivity = {};
         setCounts(state.counts);
         updateLastLoaded();
         renderAll();
