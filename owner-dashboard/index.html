@@ -659,25 +659,6 @@
         );
       }
 
-      function businessAiDetailRows(lead) {
-        if (!lead.ai_summary) return "";
-        var sections = parseAiSections(lead.ai_summary);
-        var html = detailRow("Full AI summary", lead.ai_summary, true);
-        if (sections.quickRead) {
-          html += detailRow("Quick read", sections.quickRead, true);
-        }
-        if (sections.tightenNext) {
-          html += detailRow("What I'd tighten next", sections.tightenNext, true);
-        }
-        if (sections.bestSystemFit) {
-          html += detailRow("Best system fit", sections.bestSystemFit, true);
-        }
-        if (sections.tradeoffs) {
-          html += detailRow("Tradeoffs", sections.tradeoffs, true);
-        }
-        return html;
-      }
-
       function detailRow(label, value, wide) {
         var val =
           value == null || value === ""
@@ -1197,26 +1178,46 @@
           '<p class="owner-dash-opportunity-blurb"><span class="owner-dash-opportunity-k">Suggested first move</span> ' +
           esc(opp.suggestedFirstMove) +
           "</p>" +
-          '<div class="owner-dash-opportunity-block">' +
-          '<p class="owner-dash-opportunity-k">Discovery call agenda</p>' +
-          '<pre class="owner-dash-opportunity-pre">' +
-          esc(opp.discoveryAgenda) +
-          "</pre></div>" +
-          '<div class="owner-dash-opportunity-block">' +
-          '<p class="owner-dash-opportunity-k">Proposal notes</p>' +
-          '<pre class="owner-dash-opportunity-pre">' +
-          esc(opp.proposalNotes) +
-          "</pre></div>" +
+          '<div class="owner-dash-opportunity-preview-grid">' +
+          opportunityPreviewCard("Discovery agenda preview", opp.discoveryAgenda) +
+          opportunityPreviewCard("Proposal notes preview", opp.proposalNotes) +
+          "</div>" +
           '<div class="owner-dash-opportunity-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-opportunity" data-copy-kind="mini-proposal">Copy mini-proposal</button>' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-opportunity" data-copy-kind="discovery-agenda">Copy discovery agenda</button>' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-opportunity" data-copy-kind="proposal-notes">Copy proposal notes</button>' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-opportunity" data-copy-kind="mini-proposal">Copy mini-proposal</button>' +
           "</div>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
           '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
           '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
           "</div></section>"
+        );
+      }
+
+      function opportunityPreviewText(text) {
+        if (!text) return "Preview unavailable.";
+        var lines = String(text)
+          .split(/\r?\n/)
+          .map(function (line) {
+            return line.trim();
+          })
+          .filter(Boolean)
+          .filter(function (line, idx) {
+            return idx !== 0 || !/agenda|notes|proposal/i.test(line);
+          });
+        return lines.slice(0, 4).join(" · ");
+      }
+
+      function opportunityPreviewCard(label, text) {
+        return (
+          '<div class="owner-dash-opportunity-preview-card">' +
+          '<p class="owner-dash-opportunity-k">' +
+          esc(label) +
+          "</p>" +
+          '<p class="owner-dash-opportunity-preview-text">' +
+          esc(opportunityPreviewText(text)) +
+          "</p></div>"
         );
       }
 
@@ -1500,14 +1501,11 @@
         );
       }
 
-      function pipelineBlock(table, status) {
+      function pipelineInlineHtml(table, status) {
         if (table !== "business_leads") return "";
         var steps = ["New", "Reviewed", "Contacted", "Qualified", "Won/Lost"];
         var cur = normStatus(status);
-        var html =
-          '<section class="owner-dash-detail-section owner-dash-detail-section--pipeline">' +
-          '<h3 class="owner-dash-detail-section-title">Sales pipeline</h3>' +
-          '<div class="owner-dash-pipeline" role="list" aria-label="Sales pipeline">';
+        var html = '<div class="owner-dash-pipeline owner-dash-pipeline--quick" role="list" aria-label="Sales pipeline">';
         steps.forEach(function (step, idx) {
           var isCurrent = false;
           if (step === "Won/Lost") {
@@ -1523,11 +1521,11 @@
             esc(step) +
             "</span>";
         });
-        html += "</div></section>";
+        html += "</div>";
         return html;
       }
 
-      function quickStatusBlock(table) {
+      function quickStatusBlock(table, status) {
         var buttons =
           table === "business_leads"
             ? [
@@ -1565,6 +1563,7 @@
         return (
           '<section class="owner-dash-detail-section">' +
           '<h3 class="owner-dash-detail-section-title">Quick status</h3>' +
+          pipelineInlineHtml(table, status) +
           '<div class="owner-dash-detail-quick-actions">' +
           btnHtml +
           '<span class="owner-dash-detail-quick-feedback" data-quick-feedback hidden aria-live="polite"></span>' +
@@ -1572,15 +1571,76 @@
         );
       }
 
-      function renderBusinessDetail(lead) {
-        var priority = calcBusinessPriority(lead);
-        var nextAction = calcBusinessNextAction(lead, priority);
+      function collapsibleBlock(label, bodyHtml, extraClass) {
+        return (
+          '<details class="owner-dash-collapsible' +
+          (extraClass ? " " + esc(extraClass) : "") +
+          '">' +
+          '<summary class="owner-dash-collapsible-summary">' +
+          esc(label) +
+          "</summary>" +
+          '<div class="owner-dash-collapsible-body">' +
+          bodyHtml +
+          "</div></details>"
+        );
+      }
+
+      function businessLeadDetailsBlock(lead) {
         var industryLoc = [lead.business_industry, lead.business_location].filter(Boolean).join(" · ");
         var website = lead.business_website;
         var websiteHref =
           website && !/^https?:\/\//i.test(String(website))
             ? "https://" + String(website).trim()
             : website;
+        var grid =
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Business name", lead.business_name) +
+          detailRow("Contact name", lead.contact_name) +
+          detailRow("Email", lead.contact_email) +
+          detailRow("Phone", lead.contact_phone) +
+          detailRow("Preferred contact", lead.preferred_contact_method) +
+          detailRow("Industry / location", industryLoc || null) +
+          detailRowLink("Website", websiteHref, website) +
+          detailRow("Current problem", lead.current_problem, true) +
+          detailRow("Services interested", lead.services_interested, true) +
+          detailRow("Urgency", lead.urgency) +
+          detailRow("Timeline", lead.timeline) +
+          detailRow("Page path", lead.page_path) +
+          detailRow("Created", fmtDate(lead.created_at)) +
+          detailRow("Status", displayStatus(lead.status)) +
+          detailRow("Owner notes", lead.owner_notes, true) +
+          "</div>" +
+          '<div class="owner-dash-detail-alerts">' +
+          alertPill(lead.alert_email_sent, "Email") +
+          alertPill(lead.alert_sms_sent, "SMS") +
+          "</div>";
+        return collapsibleBlock("Show full lead details", grid, "owner-dash-collapsible--lead-details");
+      }
+
+      function businessAiTranscriptBlock(lead) {
+        if (!lead.ai_summary) return "";
+        var sections = parseAiSections(lead.ai_summary);
+        var html = '<div class="owner-dash-detail-grid">';
+        html += detailRow("Full AI summary", lead.ai_summary, true);
+        if (sections.quickRead) {
+          html += detailRow("Quick read", sections.quickRead, true);
+        }
+        if (sections.tightenNext) {
+          html += detailRow("What I'd tighten next", sections.tightenNext, true);
+        }
+        if (sections.bestSystemFit) {
+          html += detailRow("Best system fit", sections.bestSystemFit, true);
+        }
+        if (sections.tradeoffs) {
+          html += detailRow("Tradeoffs", sections.tradeoffs, true);
+        }
+        html += "</div>";
+        return collapsibleBlock("Show AI transcript", html, "owner-dash-collapsible--ai");
+      }
+
+      function renderBusinessDetail(lead) {
+        var priority = calcBusinessPriority(lead);
+        var nextAction = calcBusinessNextAction(lead, priority);
         return (
           '<div class="owner-dash-detail-sheet" data-detail-table="business_leads" data-detail-id="' +
           esc(lead.id) +
@@ -1599,33 +1659,11 @@
           "</time></div>" +
           nextActionHtml(nextAction) +
           opportunityBuilderBlock(lead) +
-          pipelineBlock("business_leads", lead.status) +
-          '<div class="owner-dash-detail-grid">' +
-          detailRow("Business name", lead.business_name) +
-          detailRow("Contact name", lead.contact_name) +
-          detailRow("Email", lead.contact_email) +
-          detailRow("Phone", lead.contact_phone) +
-          detailRow("Preferred contact", lead.preferred_contact_method) +
-          detailRow("Industry / location", industryLoc || null) +
-          detailRowLink("Website", websiteHref, website) +
-          detailRow("Current problem", lead.current_problem, true) +
-          detailRow("Services interested", lead.services_interested, true) +
-          detailRow("Urgency", lead.urgency) +
-          detailRow("Timeline", lead.timeline) +
-          detailRow("Recommended system", lead.recommended_system, true) +
-          businessAiDetailRows(lead) +
-          detailRow("Page path", lead.page_path) +
-          detailRow("Created", fmtDate(lead.created_at)) +
-          detailRow("Status", displayStatus(lead.status)) +
-          detailRow("Owner notes", lead.owner_notes, true) +
-          "</div>" +
-          '<div class="owner-dash-detail-alerts">' +
-          alertPill(lead.alert_email_sent, "Email") +
-          alertPill(lead.alert_sms_sent, "SMS") +
-          "</div>" +
           groupedToolsBlock("business_leads") +
-          quickStatusBlock("business_leads") +
+          quickStatusBlock("business_leads", lead.status) +
           workflowBlock("business_leads", lead) +
+          businessLeadDetailsBlock(lead) +
+          businessAiTranscriptBlock(lead) +
           "</div>"
         );
       }
@@ -1676,7 +1714,7 @@
           alertPill(row.alert_sms_sent, "SMS") +
           "</div>" +
           groupedToolsBlock("transportation_requests") +
-          quickStatusBlock("transportation_requests") +
+          quickStatusBlock("transportation_requests", row.status) +
           workflowBlock("transportation_requests", row) +
           "</div>"
         );
@@ -1945,6 +1983,10 @@
           esc(row.owner_notes || "") +
           "</textarea></label>" +
           "</div>" +
+          '<div class="owner-dash-workflow-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--primary" data-action="save">Save</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="mark-contacted">Mark contacted</button>' +
+          "</div>" +
           '<div class="owner-dash-workflow-meta">' +
           "<span>Last updated: <time datetime=\"" +
           esc(row.updated_at || "") +
@@ -1959,10 +2001,6 @@
               "</time></span>"
             : "") +
           '<span class="owner-dash-workflow-feedback" data-feedback hidden aria-live="polite"></span>' +
-          "</div>" +
-          '<div class="owner-dash-workflow-actions">' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--primary" data-action="save">Save</button>' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="mark-contacted">Mark contacted</button>' +
           "</div></section>"
         );
       }
@@ -2004,7 +2042,6 @@
               "<h3 class=\"owner-dash-card-title\">" +
               esc(lead.business_name || "Business TBD") +
               "</h3>" +
-              opportunityCardRow(lead) +
               '<dl class="owner-dash-fields owner-dash-fields--compact">' +
               block("Contact", lead.contact_name) +
               block("Phone", lead.contact_phone) +
@@ -2012,12 +2049,11 @@
               block("Current problem", lead.current_problem) +
               blockPreview("AI summary preview", preview) +
               "</dl>" +
+              opportunityCardRow(lead) +
               '<div class="owner-dash-card-actions">' +
               openDetailsBtn("business_leads", lead.id) +
               "</div>" +
               workflowBlock("business_leads", lead) +
-              cardAlertRow(lead) +
-              pagePathMeta(lead.page_path) +
               "</article>"
             );
           })
