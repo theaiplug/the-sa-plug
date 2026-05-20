@@ -14324,6 +14324,10 @@ body.owner-dash-detail-open {
   color: rgba(255, 246, 230, 0.35);
 }
 
+.page-owner-dashboard .owner-dash-pipeline--quick {
+  margin: 0 0 10px;
+}
+
 .page-owner-dashboard .owner-dash-detail-section--pipeline {
   margin-bottom: 14px;
   padding-top: 0;
@@ -14480,26 +14484,33 @@ body.owner-dash-detail-open {
   overflow-wrap: anywhere;
 }
 
-.page-owner-dashboard .owner-dash-opportunity-block {
-  margin-bottom: 10px;
+.page-owner-dashboard .owner-dash-opportunity-preview-grid {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
   min-width: 0;
 }
 
-.page-owner-dashboard .owner-dash-opportunity-pre {
-  margin: 6px 0 0;
+.page-owner-dashboard .owner-dash-opportunity-preview-card {
   padding: 10px 12px;
-  max-height: 11rem;
-  overflow: auto;
-  border-radius: 10px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.72rem;
-  line-height: 1.45;
-  white-space: pre-wrap;
-  word-break: break-word;
-  color: rgba(255, 246, 230, 0.82);
-  background: rgba(0, 0, 0, 0.28);
+  border-radius: 12px;
+  background: rgba(255, 246, 230, 0.055);
   border: 1px solid rgba(255, 246, 230, 0.1);
-  -webkit-overflow-scrolling: touch;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-opportunity-preview-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin: 0;
+  overflow: hidden;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(255, 246, 230, 0.82);
 }
 
 .page-owner-dashboard .owner-dash-opportunity-actions {
@@ -14536,4 +14547,68 @@ body.owner-dash-detail-open {
 .page-owner-dashboard .owner-dash-detail-section--opportunity .owner-dash-detail-copy-feedback {
   display: block;
   margin-top: 8px;
+}
+
+.page-owner-dashboard .owner-dash-collapsible {
+  margin: 0 0 14px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-collapsible-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  background: rgba(20, 184, 166, 0.1);
+  color: rgba(255, 246, 230, 0.94);
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-collapsible-summary::-webkit-details-marker {
+  display: none;
+}
+
+.page-owner-dashboard .owner-dash-collapsible-summary::after {
+  content: "+";
+  flex-shrink: 0;
+  color: rgba(20, 184, 166, 0.95);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.page-owner-dashboard .owner-dash-collapsible[open] .owner-dash-collapsible-summary::after {
+  content: "-";
+}
+
+.page-owner-dashboard .owner-dash-collapsible-summary:focus-visible {
+  outline: 2px solid rgba(255, 139, 31, 0.65);
+  outline-offset: 2px;
+}
+
+.page-owner-dashboard .owner-dash-collapsible-body {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 246, 230, 0.08);
+  background: rgba(4, 10, 22, 0.38);
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-collapsible-body .owner-dash-detail-grid {
+  margin-bottom: 0;
+}
+
+.page-owner-dashboard .owner-dash-collapsible-body .owner-dash-detail-alerts {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 246, 230, 0.08);
 }
