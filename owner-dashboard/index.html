@@ -715,11 +715,6 @@
         return s === "won" || s === "lost" || s === "archived" || s === "not a fit";
       }
 
-      function isClosedAnyStatus(status) {
-        var s = normStatus(status);
-        return s === "won" || s === "lost" || s === "archived" || s === "not a fit" || s === "handled" || s === "cancelled";
-      }
-
       function rowHasContact(row, table) {
         if (table === "business_leads") return Boolean(row.contact_phone || row.contact_email);
         return Boolean(row.phone || row.email);
@@ -761,10 +756,9 @@
 
         if (key === "needs-follow-up") {
           return (
-            !isClosedAnyStatus(row.status) &&
-            (status === "needs follow-up" ||
-              textIncludesAny(nextAction, ["follow up", "follow-up"]) ||
-              textIncludesAny(notes, ["follow up", "follow-up", "callback", "call back"]))
+            status === "needs follow-up" ||
+            textIncludesAny(nextAction, ["follow up", "follow-up"]) ||
+            textIncludesAny(notes, ["follow up", "follow-up", "callback", "call back"])
           );
         }
 
@@ -793,7 +787,6 @@
         if (key === "needs-notes") {
           return (
             (status === "contacted" || status === "qualified" || status === "needs follow-up") &&
-            !isClosedAnyStatus(row.status) &&
             ownerNotesAreShort(row)
           );
         }
