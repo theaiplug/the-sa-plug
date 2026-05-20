@@ -151,6 +151,41 @@
         </div>
         <p id="owner-dash-refresh-error" class="owner-dash-refresh-error" hidden role="alert" aria-live="polite"></p>
       </div>
+
+      <section id="owner-dash-today-actions" class="owner-dash-today owner-dash-glass" aria-labelledby="owner-dash-today-heading">
+        <div class="owner-dash-today-head">
+          <div>
+            <p class="eyebrow eyebrow-on-dark">FOLLOW-UP QUEUE</p>
+            <h2 id="owner-dash-today-heading">Today’s Actions</h2>
+            <p>Start with the leads most likely to turn into real work.</p>
+          </div>
+          <div class="owner-dash-today-copy">
+            <button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-today-actions">Copy today’s action list</button>
+            <span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>
+          </div>
+        </div>
+        <div id="owner-dash-active-queue" class="owner-dash-active-queue" hidden></div>
+        <div id="owner-dash-today-buckets" class="owner-dash-today-buckets" aria-label="Today’s action queues"></div>
+        <div class="owner-dash-today-footer">
+          <div class="owner-dash-today-order" aria-label="Today’s recommended order">
+            <p>Recommended order:</p>
+            <ol>
+              <li>Hot leads to contact</li>
+              <li>Needs follow-up</li>
+              <li>Ready for proposal</li>
+              <li>New transportation requests</li>
+              <li>Needs notes</li>
+              <li>Waiting on reply</li>
+            </ol>
+          </div>
+          <p class="owner-dash-today-safe-note">Copy only. No messages are sent automatically.</p>
+        </div>
+        <div class="owner-dash-detail-manual-copy owner-dash-today-manual-copy" data-manual-copy hidden>
+          <p class="owner-dash-detail-manual-copy-label">Select and copy:</p>
+          <textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>
+        </div>
+      </section>
+
       <section class="owner-dash-summary" aria-label="Summary counts">
         <div class="owner-dash-summary-grid owner-dash-summary-grid--v5">
           <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
@@ -278,12 +313,46 @@
 
       var TRANSPORT_STATUSES = BUSINESS_STATUSES.concat(["Handled", "Cancelled"]);
 
+      var TODAY_ACTION_BUCKETS = [
+        {
+          key: "hot-leads",
+          label: "Hot leads to contact",
+          explanation: "Hot business leads still New or Reviewed with phone or email.",
+        },
+        {
+          key: "needs-follow-up",
+          label: "Needs follow-up",
+          explanation: "Rows marked for follow-up or notes that mention a callback.",
+        },
+        {
+          key: "ready-proposal",
+          label: "Ready for proposal",
+          explanation: "Qualified or contacted warm/hot leads with a recommended offer.",
+        },
+        {
+          key: "waiting-reply",
+          label: "Waiting on reply",
+          explanation: "Contacted business leads with a saved last-contacted date.",
+        },
+        {
+          key: "needs-notes",
+          label: "Needs notes",
+          explanation: "Active contacted or follow-up rows missing useful owner notes.",
+        },
+        {
+          key: "new-transport",
+          label: "New transportation requests",
+          explanation: "New or reviewed transportation requests still needing review.",
+        },
+      ];
+
       var state = {
         businessLeads: [],
         transportRows: [],
         counts: null,
         activeFilter: "all",
         activePriorityFilter: "all",
+        activeQueueKey: null,
         tabsReady: false,
         filtersReady: false,
         priorityFiltersReady: false,
@@ -313,6 +382,9 @@
         refreshError: document.getElementById("owner-dash-refresh-error"),
         lastLoaded: document.getElementById("owner-dash-last-loaded"),
         lastLoadedTime: document.getElementById("owner-dash-last-loaded-time"),
+        todayActions: document.getElementById("owner-dash-today-actions"),
+        todayBuckets: document.getElementById("owner-dash-today-buckets"),
+        activeQueue: document.getElementById("owner-dash-active-queue"),
         detailOverlay: document.getElementById("owner-dash-detail-overlay"),
         detailBody: document.getElementById("owner-dash-detail-body"),
         detailTitle: document.getElementById("owner-dash-detail-title"),
@@ -583,6 +655,9 @@
       }
 
       function matchesFilter(row, table) {
+        if (state.activeQueueKey) {
+          return matchesTodayActionQueue(state.activeQueueKey, table, row);
+        }
         if (state.activeFilter !== "all" && normStatus(row.status) !== normStatus(state.activeFilter)) {
           return false;
         }
@@ -626,6 +701,181 @@
           if (calcBusinessPriority(state.businessLeads[i]).key === "hot") n++;
         }
         return n;
+      }
+
+      function todayBucketForKey(key) {
+        for (var i = 0; i < TODAY_ACTION_BUCKETS.length; i++) {
+          if (TODAY_ACTION_BUCKETS[i].key === key) return TODAY_ACTION_BUCKETS[i];
+        }
+        return null;
+      }
+
+      function isClosedBusinessStatus(status) {
+        var s = normStatus(status);
+        return s === "won" || s === "lost" || s === "archived" || s === "not a fit";
+      }
+
+      function rowHasContact(row, table) {
+        if (table === "business_leads") return Boolean(row.contact_phone || row.contact_email);
+        return Boolean(row.phone || row.email);
+      }
+
+      function ownerNotesText(row) {
+        return String((row && row.owner_notes) || "").trim();
+      }
+
+      function ownerNotesAreShort(row) {
+        return ownerNotesText(row).length < 12;
+      }
+
+      function nextActionForQueue(table, row) {
+        if (table === "business_leads") {
+          return calcBusinessNextAction(row, calcBusinessPriority(row));
+        }
+        return calcTransportNextAction(row, calcTransportPriority(row));
+      }
+
+      function readyProposalHasOffer(row) {
+        var opp = calcBusinessOpportunity(row);
+        return Boolean(opp && opp.offer && String(opp.offer).trim());
+      }
+
+      function matchesTodayActionQueue(key, table, row) {
+        var status = normStatus(row.status);
+        var notes = ownerNotesText(row);
+        var nextAction = nextActionForQueue(table, row);
+
+        if (key === "hot-leads") {
+          return (
+            table === "business_leads" &&
+            calcBusinessPriority(row).key === "hot" &&
+            (status === "new" || status === "reviewed") &&
+            rowHasContact(row, table)
+          );
+        }
+
+        if (key === "needs-follow-up") {
+          return (
+            status === "needs follow-up" ||
+            textIncludesAny(nextAction, ["follow up", "follow-up"]) ||
+            textIncludesAny(notes, ["follow up", "follow-up", "callback", "call back"])
+          );
+        }
+
+        if (key === "ready-proposal") {
+          var priority = table === "business_leads" ? calcBusinessPriority(row).key : "";
+          return (
+            table === "business_leads" &&
+            (status === "qualified" || status === "contacted") &&
+            (priority === "hot" || priority === "warm") &&
+            readyProposalHasOffer(row) &&
+            !isClosedBusinessStatus(row.status)
+          );
+        }
+
+        if (key === "waiting-reply") {
+          return (
+            table === "business_leads" &&
+            status === "contacted" &&
+            Boolean(row.last_contacted_at) &&
+            status !== "won" &&
+            status !== "lost" &&
+            status !== "archived"
+          );
+        }
+
+        if (key === "needs-notes") {
+          return (
+            (status === "contacted" || status === "qualified" || status === "needs follow-up") &&
+            ownerNotesAreShort(row)
+          );
+        }
+
+        if (key === "new-transport") {
+          var transportPriority = table === "transportation_requests" ? calcTransportPriority(row).key : "";
+          return (
+            table === "transportation_requests" &&
+            (status === "new" || status === "reviewed") &&
+            (transportPriority === "time-sensitive" || transportPriority === "standard")
+          );
+        }
+
+        return false;
+      }
+
+      function todayActionReason(key, table, row) {
+        if (!matchesTodayActionQueue(key, table, row)) return "";
+        var status = displayStatus(row.status);
+
+        if (key === "hot-leads") return "Hot lead still " + status;
+        if (key === "needs-follow-up") return "Follow-up needed";
+        if (key === "ready-proposal") return status + " lead ready for proposal";
+        if (key === "waiting-reply") return "Waiting on reply after last contact";
+        if (key === "needs-notes") return status === "Contacted" ? "Needs owner notes after contact" : "Needs owner notes for next step";
+        if (key === "new-transport") return "Transportation request still " + status;
+        return "";
+      }
+
+      function queueReasonHtml(table, row) {
+        if (!state.activeQueueKey) return "";
+        var reason = todayActionReason(state.activeQueueKey, table, row);
+        if (!reason) return "";
+        return (
+          '<p class="owner-dash-queue-reason"><span>Queue reason:</span> ' +
+          esc(reason) +
+          "</p>"
+        );
+      }
+
+      function getTodayActionMatches(key) {
+        var matches = [];
+        sortBusinessLeads(state.businessLeads).forEach(function (row) {
+          if (matchesTodayActionQueue(key, "business_leads", row)) {
+            matches.push({ table: "business_leads", row: row, reason: todayActionReason(key, "business_leads", row) });
+          }
+        });
+        sortTransportRows(state.transportRows).forEach(function (row) {
+          if (matchesTodayActionQueue(key, "transportation_requests", row)) {
+            matches.push({
+              table: "transportation_requests",
+              row: row,
+              reason: todayActionReason(key, "transportation_requests", row),
+            });
+          }
+        });
+        return matches;
+      }
+
+      function todayActionCounts() {
+        var counts = {};
+        TODAY_ACTION_BUCKETS.forEach(function (bucket) {
+          counts[bucket.key] = getTodayActionMatches(bucket.key).length;
+        });
+        return counts;
+      }
+
+      function buildTodayActionCopyText() {
+        var counts = todayActionCounts();
+        return [
+          "Where To Go SA Owner Dashboard — Today’s Actions",
+          "",
+          "Hot leads to contact: " + (counts["hot-leads"] || 0),
+          "Needs follow-up: " + (counts["needs-follow-up"] || 0),
+          "Ready for proposal: " + (counts["ready-proposal"] || 0),
+          "Waiting on reply: " + (counts["waiting-reply"] || 0),
+          "Needs notes: " + (counts["needs-notes"] || 0),
+          "New transportation requests: " + (counts["new-transport"] || 0),
+          "",
+          "Recommended order:",
+          "1. Contact hot leads",
+          "2. Handle follow-ups",
+          "3. Prepare proposals",
+          "4. Review transportation requests",
+          "5. Add missing owner notes",
+          "6. Check waiting replies",
+          "",
+          "No messages are sent automatically.",
+        ].join("\n");
       }
 
       function alertPill(sent, label) {
@@ -2292,6 +2542,145 @@
         );
       }
 
+      function renderTodayActions() {
+        if (!els.todayBuckets) return;
+        var counts = todayActionCounts();
+        els.todayBuckets.innerHTML = TODAY_ACTION_BUCKETS.map(function (bucket) {
+          var count = counts[bucket.key] || 0;
+          var active = state.activeQueueKey === bucket.key;
+          return (
+            '<article class="owner-dash-today-bucket' +
+            (active ? " is-active" : "") +
+            '">' +
+            '<button type="button" class="owner-dash-today-bucket-main" data-action="apply-queue" data-queue-key="' +
+            esc(bucket.key) +
+            '">' +
+            '<span class="owner-dash-today-bucket-count">' +
+            esc(count) +
+            "</span>" +
+            '<span class="owner-dash-today-bucket-copy"><strong>' +
+            esc(bucket.label) +
+            "</strong><small>" +
+            esc(bucket.explanation) +
+            "</small></span></button>" +
+            (count > 0
+              ? '<button type="button" class="owner-dash-today-open-first" data-action="open-queue-first" data-queue-key="' +
+                esc(bucket.key) +
+                '">Open first</button>'
+              : "") +
+            "</article>"
+          );
+        }).join("");
+
+        if (!els.activeQueue) return;
+        if (!state.activeQueueKey) {
+          els.activeQueue.hidden = true;
+          els.activeQueue.innerHTML = "";
+          return;
+        }
+        var activeBucket = todayBucketForKey(state.activeQueueKey);
+        els.activeQueue.hidden = false;
+        els.activeQueue.innerHTML =
+          '<span>Viewing: <strong>' +
+          esc(activeBucket ? activeBucket.label : "Today’s Actions") +
+          "</strong></span>" +
+          '<button type="button" class="owner-dash-clear-queue" data-action="clear-queue">Clear queue</button>';
+      }
+
+      function setActivePanelForTable(table) {
+        var panelId = table === "transportation_requests" ? "panel-transport" : "panel-business";
+        var tabs = document.querySelectorAll(".owner-dash-tab");
+        var panels = document.querySelectorAll(".owner-dash-panel");
+        tabs.forEach(function (tab) {
+          var active = tab.getAttribute("data-panel") === panelId;
+          tab.classList.toggle("is-active", active);
+          tab.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        panels.forEach(function (panel) {
+          var showPanel = panel.id === panelId;
+          panel.classList.toggle("is-active", showPanel);
+          panel.hidden = !showPanel;
+        });
+      }
+
+      function setDefaultPanelForQueue(key) {
+        var matches = getTodayActionMatches(key);
+        if (!matches.length) return;
+        var activePanel = document.querySelector(".owner-dash-panel.is-active");
+        var activeTable = activePanel && activePanel.id === "panel-transport" ? "transportation_requests" : "business_leads";
+        var activeHasMatch = matches.some(function (match) {
+          return match.table === activeTable;
+        });
+        if (!activeHasMatch) setActivePanelForTable(matches[0].table);
+      }
+
+      function applyTodayQueue(key) {
+        if (!todayBucketForKey(key)) return;
+        state.activeQueueKey = key;
+        renderAll();
+        setDefaultPanelForQueue(key);
+      }
+
+      function clearTodayQueue() {
+        state.activeQueueKey = null;
+        renderAll();
+      }
+
+      function findRenderedCard(table, id) {
+        var cards = document.querySelectorAll(".owner-dash-lead-card[data-table]");
+        for (var i = 0; i < cards.length; i++) {
+          if (cards[i].getAttribute("data-table") === table && String(cards[i].getAttribute("data-record-id")) === String(id)) {
+            return cards[i];
+          }
+        }
+        return null;
+      }
+
+      function openFirstQueueMatch(key) {
+        if (!todayBucketForKey(key)) return;
+        var matches = getTodayActionMatches(key);
+        state.activeQueueKey = key;
+        renderAll();
+        if (!matches.length) return;
+        setActivePanelForTable(matches[0].table);
+        window.requestAnimationFrame(function () {
+          var card = findRenderedCard(matches[0].table, matches[0].row.id);
+          if (!card) return;
+          card.scrollIntoView({ behavior: "smooth", block: "start" });
+          card.focus({ preventScroll: true });
+          card.classList.add("is-queue-focus");
+          window.setTimeout(function () {
+            card.classList.remove("is-queue-focus");
+          }, 2200);
+        });
+      }
+
+      function copyTodayActionList() {
+        if (!els.todayActions) return;
+        var text = buildTodayActionCopyText();
+        hideManualCopy(els.todayActions);
+        function onSuccess() {
+          setCopyFeedback(els.todayActions, "Copied.");
+        }
+        function onFail() {
+          showManualCopy(els.todayActions, text);
+          setCopyFeedback(els.todayActions, "Select text below to copy.", true);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(onSuccess)
+            .catch(function () {
+              if (fallbackExecCopy(text)) onSuccess();
+              else onFail();
+            });
+        } else if (fallbackExecCopy(text)) {
+          onSuccess();
+        } else {
+          onFail();
+        }
+      }
+
       function renderBusiness(leads) {
         var filtered = sortBusinessLeads(leads).filter(function (lead) {
           return matchesFilter(lead, "business_leads");
@@ -2317,7 +2706,7 @@
             return (
               '<article class="owner-dash-glass owner-dash-lead-card owner-dash-lead-card--compact" data-record-id="' +
               esc(lead.id) +
-              '">' +
+              '" data-table="business_leads" tabindex="-1">' +
               '<div class="owner-dash-card-top">' +
               badge +
               '<time class="owner-dash-time" datetime="' +
@@ -2326,6 +2715,7 @@
               esc(fmtDate(lead.created_at)) +
               "</time></div>" +
               nextActionHtml(nextAction) +
+              queueReasonHtml("business_leads", lead) +
               "<h3 class=\"owner-dash-card-title\">" +
               esc(lead.business_name || "Business TBD") +
               "</h3>" +
@@ -2370,7 +2760,7 @@
             return (
               '<article class="owner-dash-glass owner-dash-lead-card owner-dash-lead-card--compact" data-record-id="' +
               esc(row.id) +
-              '">' +
+              '" data-table="transportation_requests" tabindex="-1">' +
               '<div class="owner-dash-card-top">' +
               priorityBadgeHtml(priority) +
               ' <span class="owner-dash-badge ' +
@@ -2384,6 +2774,7 @@
               esc(fmtDate(row.created_at)) +
               "</time></div>" +
               nextActionHtml(nextAction) +
+              queueReasonHtml("transportation_requests", row) +
               "<h3 class=\"owner-dash-card-title\">" +
               esc(title) +
               "</h3>" +
@@ -2407,6 +2798,7 @@
       }
 
       function renderAll() {
+        renderTodayActions();
         renderBusiness(state.businessLeads);
         renderTransport(state.transportRows);
         if (els.countHotLeads) {
@@ -2770,6 +3162,26 @@
           var btn = ev.target.closest("[data-action]");
           if (!btn) return;
           var action = btn.getAttribute("data-action");
+
+          if (action === "apply-queue") {
+            applyTodayQueue(btn.getAttribute("data-queue-key"));
+            return;
+          }
+
+          if (action === "open-queue-first") {
+            openFirstQueueMatch(btn.getAttribute("data-queue-key"));
+            return;
+          }
+
+          if (action === "clear-queue") {
+            clearTodayQueue();
+            return;
+          }
+
+          if (action === "copy-today-actions") {
+            copyTodayActionList();
+            return;
+          }
 
           if (action === "open-details") {
             var table = btn.getAttribute("data-table");
