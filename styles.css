@@ -13428,6 +13428,7 @@ body.page-ask main {
   border: 1px solid rgba(20, 184, 166, 0.2);
   background: rgba(4, 10, 22, 0.42);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .page-owner-dashboard .owner-dash-today-bucket.is-active {
@@ -13448,6 +13449,11 @@ body.page-ask main {
   padding: 10px;
   text-align: left;
   cursor: pointer;
+}
+
+.page-owner-dashboard .owner-dash-today-bucket-main:hover,
+.page-owner-dashboard .owner-dash-today-bucket:hover .owner-dash-today-bucket-main {
+  background: rgba(20, 184, 166, 0.06);
 }
 
 .page-owner-dashboard .owner-dash-today-bucket-count {
@@ -13485,9 +13491,18 @@ body.page-ask main {
   overflow-wrap: anywhere;
 }
 
+.page-owner-dashboard .owner-dash-today-bucket-actions {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 10px 10px 58px;
+}
+
 .page-owner-dashboard .owner-dash-today-open-first {
-  margin: 0 10px 10px;
-  width: calc(100% - 20px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: auto;
   background: rgba(20, 184, 166, 0.12);
 }
 
@@ -13510,10 +13525,8 @@ body.page-ask main {
 }
 
 .page-owner-dashboard .owner-dash-today-order {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 10px;
+  display: grid;
+  gap: 4px;
   min-width: 0;
 }
 
@@ -13527,14 +13540,17 @@ body.page-ask main {
 }
 
 .page-owner-dashboard .owner-dash-today-order ol {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 14px;
+  display: grid;
+  gap: 3px;
   margin: 0;
   padding-left: 18px;
   color: rgba(255, 246, 230, 0.74);
   font-size: 0.76rem;
   line-height: 1.35;
+}
+
+.page-owner-dashboard .owner-dash-today-order li {
+  padding-left: 2px;
 }
 
 .page-owner-dashboard .owner-dash-today-safe-note {
@@ -13578,8 +13594,7 @@ body.page-ask main {
   margin: 0 0 6px;
   font-size: 0.82rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   color: rgba(255, 246, 230, 0.7);
 }
 
@@ -14034,6 +14049,94 @@ body.page-ask main {
 }
 
 @media (max-width: 639px) {
+  .page-owner-dashboard .owner-dash-today {
+    margin: 8px 0 12px;
+    padding: 10px;
+  }
+
+  .page-owner-dashboard .owner-dash-today-head {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .page-owner-dashboard .owner-dash-today-head h2 {
+    font-size: clamp(1.08rem, 5vw, 1.28rem);
+  }
+
+  .page-owner-dashboard .owner-dash-today-head p {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .page-owner-dashboard .owner-dash-active-queue {
+    margin-bottom: 8px;
+    padding: 7px 8px;
+    font-size: 0.78rem;
+  }
+
+  .page-owner-dashboard .owner-dash-today-buckets {
+    gap: 7px;
+  }
+
+  .page-owner-dashboard .owner-dash-today-bucket {
+    border-radius: 12px;
+  }
+
+  .page-owner-dashboard .owner-dash-today-bucket-main {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .page-owner-dashboard .owner-dash-today-bucket-count {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 6px;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+
+  .page-owner-dashboard .owner-dash-today-bucket-copy {
+    gap: 1px;
+  }
+
+  .page-owner-dashboard .owner-dash-today-bucket-copy strong {
+    font-size: 0.8rem;
+    line-height: 1.18;
+  }
+
+  .page-owner-dashboard .owner-dash-today-bucket-copy small {
+    font-size: 0.68rem;
+    line-height: 1.25;
+  }
+
+  .page-owner-dashboard .owner-dash-today-bucket-actions {
+    padding: 0 8px 8px 48px;
+  }
+
+  .page-owner-dashboard .owner-dash-today-open-first,
+  .page-owner-dashboard .owner-dash-clear-queue {
+    padding: 4px 8px;
+    font-size: 0.68rem;
+  }
+
+  .page-owner-dashboard .owner-dash-today-footer {
+    gap: 7px;
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+
+  .page-owner-dashboard .owner-dash-today-order p,
+  .page-owner-dashboard .owner-dash-today-order ol,
+  .page-owner-dashboard .owner-dash-today-safe-note {
+    font-size: 0.7rem;
+  }
+
+  .page-owner-dashboard .owner-dash-today-order ol {
+    gap: 2px;
+    padding-left: 16px;
+    line-height: 1.3;
+  }
+
   .page-owner-dashboard .owner-dash-utility {
     margin-top: 14px;
     padding-bottom: 10px;
@@ -14046,7 +14149,8 @@ body.page-ask main {
   }
 
   .page-owner-dashboard .owner-dash-summary {
-    margin-top: 8px;
+    margin-top: 6px;
+    margin-bottom: 12px;
   }
 
   .page-owner-dashboard .owner-dash-main {
@@ -14060,25 +14164,26 @@ body.page-ask main {
   }
 
   .page-owner-dashboard .owner-dash-stat {
-    padding: 12px 14px;
+    padding: 9px 10px;
   }
 
   .page-owner-dashboard .owner-dash-stat-label {
-    margin-bottom: 4px;
-    font-size: 0.78rem;
+    margin-bottom: 3px;
+    font-size: 0.7rem;
   }
 
   .page-owner-dashboard .owner-dash-stat-value {
-    font-size: clamp(1.65rem, 6.5vw, 1.95rem);
+    font-size: clamp(1.35rem, 5.4vw, 1.65rem);
   }
 
   .page-owner-dashboard .owner-dash-stat-meta {
-    margin-top: 6px;
-    font-size: 0.82rem;
+    margin-top: 3px;
+    font-size: 0.72rem;
+    line-height: 1.25;
   }
 
   .page-owner-dashboard .owner-dash-summary-grid {
-    gap: 10px;
+    gap: 8px;
   }
 }
 
@@ -14476,6 +14581,16 @@ body.owner-dash-detail-open {
 
 .page-owner-dashboard .owner-dash-stat-value--hot {
   color: #ff8a6b;
+}
+
+@media (max-width: 639px) {
+  .page-owner-dashboard .owner-dash-stat--compact {
+    padding: 9px 10px;
+  }
+
+  .page-owner-dashboard .owner-dash-stat--compact .owner-dash-stat-value {
+    font-size: clamp(1.35rem, 5.4vw, 1.65rem);
+  }
 }
 
 .page-owner-dashboard .owner-dash-badge--warm {

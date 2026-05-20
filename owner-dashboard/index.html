@@ -189,12 +189,12 @@
       <section class="owner-dash-summary" aria-label="Summary counts">
         <div class="owner-dash-summary-grid owner-dash-summary-grid--v5">
           <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
-            <p class="owner-dash-stat-label">Hot Leads</p>
+            <p class="owner-dash-stat-label">Hot leads</p>
             <p class="owner-dash-stat-value owner-dash-stat-value--hot" id="count-hot-leads">—</p>
             <p class="owner-dash-stat-meta">Loaded business leads</p>
           </article>
           <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
-            <p class="owner-dash-stat-label">Needs Follow-up</p>
+            <p class="owner-dash-stat-label">Needs follow-up</p>
             <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-needs-follow-up">—</p>
             <p class="owner-dash-stat-meta">Both pipelines</p>
           </article>
@@ -209,12 +209,12 @@
             <p class="owner-dash-stat-meta">Closed won</p>
           </article>
           <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
-            <p class="owner-dash-stat-label">New Business Leads</p>
+            <p class="owner-dash-stat-label">New business leads</p>
             <p class="owner-dash-stat-value" id="count-business-new">—</p>
             <p class="owner-dash-stat-meta"><span id="count-total-business">0</span> total</p>
           </article>
           <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
-            <p class="owner-dash-stat-label">New Transportation</p>
+            <p class="owner-dash-stat-label">New transportation</p>
             <p class="owner-dash-stat-value" id="count-transport-new">—</p>
             <p class="owner-dash-stat-meta"><span id="count-total-transport">0</span> total</p>
           </article>
@@ -317,32 +317,32 @@
         {
           key: "hot-leads",
           label: "Hot leads to contact",
-          explanation: "Hot business leads still New or Reviewed with phone or email.",
+          explanation: "High-priority business leads with contact info.",
         },
         {
           key: "needs-follow-up",
           label: "Needs follow-up",
-          explanation: "Rows marked for follow-up or notes that mention a callback.",
+          explanation: "Rows marked for follow-up or callback.",
         },
         {
           key: "ready-proposal",
           label: "Ready for proposal",
-          explanation: "Qualified or contacted warm/hot leads with a recommended offer.",
-        },
-        {
-          key: "waiting-reply",
-          label: "Waiting on reply",
-          explanation: "Contacted business leads with a saved last-contacted date.",
-        },
-        {
-          key: "needs-notes",
-          label: "Needs notes",
-          explanation: "Active contacted or follow-up rows missing useful owner notes.",
+          explanation: "Qualified warm or hot leads with an offer.",
         },
         {
           key: "new-transport",
           label: "New transportation requests",
-          explanation: "New or reviewed transportation requests still needing review.",
+          explanation: "New transport requests needing review.",
+        },
+        {
+          key: "needs-notes",
+          label: "Needs notes",
+          explanation: "Active rows missing useful owner notes.",
+        },
+        {
+          key: "waiting-reply",
+          label: "Waiting on reply",
+          explanation: "Contacted leads waiting after last outreach.",
         },
       ];
 
@@ -862,17 +862,17 @@
           "Hot leads to contact: " + (counts["hot-leads"] || 0),
           "Needs follow-up: " + (counts["needs-follow-up"] || 0),
           "Ready for proposal: " + (counts["ready-proposal"] || 0),
-          "Waiting on reply: " + (counts["waiting-reply"] || 0),
-          "Needs notes: " + (counts["needs-notes"] || 0),
           "New transportation requests: " + (counts["new-transport"] || 0),
+          "Needs notes: " + (counts["needs-notes"] || 0),
+          "Waiting on reply: " + (counts["waiting-reply"] || 0),
           "",
           "Recommended order:",
-          "1. Contact hot leads",
-          "2. Handle follow-ups",
-          "3. Prepare proposals",
-          "4. Review transportation requests",
-          "5. Add missing owner notes",
-          "6. Check waiting replies",
+          "1. Hot leads to contact",
+          "2. Needs follow-up",
+          "3. Ready for proposal",
+          "4. New transportation requests",
+          "5. Needs notes",
+          "6. Waiting on reply",
           "",
           "No messages are sent automatically.",
         ].join("\n");
@@ -2551,9 +2551,13 @@
           return (
             '<article class="owner-dash-today-bucket' +
             (active ? " is-active" : "") +
+            '" data-action="apply-queue" data-queue-key="' +
+            esc(bucket.key) +
             '">' +
             '<button type="button" class="owner-dash-today-bucket-main" data-action="apply-queue" data-queue-key="' +
             esc(bucket.key) +
+            '" aria-pressed="' +
+            (active ? "true" : "false") +
             '">' +
             '<span class="owner-dash-today-bucket-count">' +
             esc(count) +
@@ -2564,9 +2568,9 @@
             esc(bucket.explanation) +
             "</small></span></button>" +
             (count > 0
-              ? '<button type="button" class="owner-dash-today-open-first" data-action="open-queue-first" data-queue-key="' +
+              ? '<div class="owner-dash-today-bucket-actions"><button type="button" class="owner-dash-today-open-first" data-action="open-queue-first" data-queue-key="' +
                 esc(bucket.key) +
-                '">Open first</button>'
+                '">Open first</button></div>'
               : "") +
             "</article>"
           );
