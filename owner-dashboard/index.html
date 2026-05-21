@@ -103,18 +103,25 @@
 
     .page-owner-dashboard .owner-dash-daily-brief-controls .owner-dash-utility-row {
       gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
       justify-content: flex-start;
     }
 
     .page-owner-dashboard .owner-dash-daily-brief-controls .owner-dash-refresh-btn {
+      flex: 0 0 auto;
+      min-height: 44px;
       padding: 7px 11px;
       font-size: 0.78rem;
+      line-height: 1.2;
+      white-space: nowrap;
     }
 
     .page-owner-dashboard .owner-dash-daily-brief-controls .owner-dash-last-loaded,
     .page-owner-dashboard .owner-dash-daily-brief-controls .owner-dash-refresh-error {
       margin: 0;
       font-size: 0.74rem;
+      line-height: 1.32;
     }
 
     .page-owner-dashboard .owner-dash-brief-block {
@@ -141,7 +148,7 @@
 
     .page-owner-dashboard .owner-dash-brief-card {
       min-width: 0;
-      padding: 11px;
+      padding: 12px;
       border-radius: 14px;
       border: 1px solid rgba(20, 184, 166, 0.2);
       background: rgba(4, 10, 22, 0.52);
@@ -154,19 +161,20 @@
     }
 
     .page-owner-dashboard .owner-dash-brief-card-top {
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: flex-start;
-      justify-content: space-between;
       gap: 10px;
       min-width: 0;
-      margin-bottom: 8px;
+      margin-bottom: 9px;
     }
 
     .page-owner-dashboard .owner-dash-brief-card-title {
       margin: 0;
+      min-width: 0;
       color: var(--on-dark-heading);
-      font-size: 0.9rem;
-      font-weight: 850;
+      font-size: 0.92rem;
+      font-weight: 900;
       line-height: 1.25;
     }
 
@@ -182,6 +190,7 @@
       font-weight: 950;
       line-height: 1;
       text-align: center;
+      white-space: nowrap;
     }
 
     .page-owner-dashboard .owner-dash-brief-card--orange .owner-dash-brief-card-value {
@@ -199,9 +208,9 @@
     }
 
     .page-owner-dashboard .owner-dash-brief-line {
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: baseline;
-      justify-content: space-between;
       gap: 8px;
       min-width: 0;
       color: rgba(255, 246, 230, 0.66);
@@ -209,9 +218,16 @@
       line-height: 1.3;
     }
 
+    .page-owner-dashboard .owner-dash-brief-line span {
+      min-width: 0;
+    }
+
     .page-owner-dashboard .owner-dash-brief-line strong {
+      min-width: 1.5rem;
       color: rgba(255, 246, 230, 0.9);
       font-weight: 850;
+      text-align: right;
+      white-space: nowrap;
     }
 
     .page-owner-dashboard .owner-dash-brief-order-list {
@@ -227,11 +243,11 @@
     .page-owner-dashboard .owner-dash-brief-order-row {
       counter-increment: daily-brief-order;
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-columns: auto minmax(0, 1fr) auto;
       gap: 9px;
-      align-items: center;
+      align-items: flex-start;
       min-width: 0;
-      padding: 9px;
+      padding: 10px;
       border-radius: 13px;
       border: 1px solid rgba(255, 246, 230, 0.08);
       background: rgba(4, 10, 22, 0.42);
@@ -250,11 +266,15 @@
       color: #c8fff5;
       font-size: 0.76rem;
       font-weight: 900;
+      grid-column: 1;
+      grid-row: 1;
     }
 
     .page-owner-dashboard .owner-dash-brief-order-copy {
       display: grid;
       gap: 3px;
+      grid-column: 2;
+      grid-row: 1;
       min-width: 0;
     }
 
@@ -272,6 +292,7 @@
 
     .page-owner-dashboard .owner-dash-brief-count {
       display: inline-flex;
+      flex: 0 0 auto;
       align-items: center;
       justify-content: center;
       width: fit-content;
@@ -284,11 +305,21 @@
       font-size: 0.72rem;
       font-weight: 900;
       line-height: 1.15;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-order-row > .owner-dash-brief-count {
+      grid-column: 3;
+      grid-row: 1;
+      justify-self: end;
     }
 
     .page-owner-dashboard .owner-dash-brief-jump {
       appearance: none;
-      min-height: 40px;
+      grid-column: 2 / -1;
+      grid-row: 2;
+      min-height: 44px;
       width: 100%;
       border-radius: 999px;
       border: 1px solid rgba(20, 184, 166, 0.46);
@@ -298,9 +329,10 @@
       font: inherit;
       font-size: 0.76rem;
       font-weight: 850;
-      line-height: 1.2;
+      line-height: 1.25;
       padding: 8px 12px;
       text-align: center;
+      white-space: normal;
     }
 
     .page-owner-dashboard .owner-dash-brief-copy-actions {
@@ -311,10 +343,15 @@
     }
 
     .page-owner-dashboard .owner-dash-brief-copy-actions .owner-dash-btn {
-      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
       min-width: 0;
       width: 100%;
       padding: 9px 10px;
+      line-height: 1.25;
+      text-align: center;
       white-space: normal;
     }
 
@@ -328,13 +365,17 @@
     }
 
     .page-owner-dashboard .owner-dash-daily-brief,
-    .page-owner-dashboard .owner-dash-daily-brief :is(p, h2, h3, li, span, strong, small, button) {
+    .page-owner-dashboard .owner-dash-daily-brief * {
       word-break: normal;
       overflow-wrap: normal;
       hyphens: none;
     }
 
-    .page-owner-dashboard .owner-dash-daily-brief :is(.owner-dash-daily-brief-safe, .owner-dash-brief-count) {
+    .page-owner-dashboard .owner-dash-daily-brief :is(
+      .owner-dash-daily-brief-safe,
+      .owner-dash-brief-count,
+      .owner-dash-brief-card-value
+    ) {
       white-space: nowrap;
     }
 
@@ -366,19 +407,39 @@
         justify-content: flex-end;
       }
 
-      .page-owner-dashboard .owner-dash-brief-order-row {
-        grid-template-columns: auto minmax(0, 1fr) auto;
-      }
-
       .page-owner-dashboard .owner-dash-brief-jump {
         width: auto;
         min-width: 7.5rem;
+        justify-self: start;
       }
     }
 
     @media (min-width: 980px) {
       .page-owner-dashboard .owner-dash-brief-snapshot-grid {
         grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 420px) {
+      .page-owner-dashboard .owner-dash-brief-card {
+        padding: 11px;
+      }
+
+      .page-owner-dashboard .owner-dash-brief-card-title {
+        font-size: 0.86rem;
+      }
+
+      .page-owner-dashboard .owner-dash-brief-line {
+        gap: 7px;
+        font-size: 0.72rem;
+      }
+
+      .page-owner-dashboard .owner-dash-brief-order-copy strong {
+        font-size: 0.8rem;
+      }
+
+      .page-owner-dashboard .owner-dash-brief-order-copy small {
+        font-size: 0.7rem;
       }
     }
 
@@ -1843,8 +1904,8 @@
             <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="action-list">Copy today’s action list</button>
             <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="call-list">Copy call list</button>
             <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="quote-prep">Copy quote prep list</button>
-            <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="delivery-follow-up">Copy delivery follow-up list</button>
-            <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="support-check-in">Copy support check-in list</button>
+            <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="delivery-follow-up" aria-label="Copy delivery follow-up list">Copy delivery follow&#8209;up list</button>
+            <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="support-check-in" aria-label="Copy support check-in list">Copy support check&#8209;in list</button>
             <button type="button" class="owner-dash-btn owner-dash-btn--primary" data-action="copy-daily-brief" data-copy-kind="full-daily-brief">Copy full daily brief</button>
           </div>
           <span class="owner-dash-detail-copy-feedback owner-dash-brief-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>
@@ -2211,23 +2272,34 @@
           key: "materials-needed",
           label: "Materials needed",
           explanation: "Projects waiting on materials, access, or owner handoff.",
+          mobileExplanation: "Waiting on materials or access.",
         },
         {
           key: "launch-support-tasks",
           label: "Launch/support tasks",
           explanation: "Preview, launch, launched, or support review items.",
+          mobileLabel: "Launch tasks",
+          mobileExplanation: "Preview, launch, or support items.",
         },
         {
           key: "testimonial-referral-asks",
           label: "Testimonial/referral asks",
           explanation: "Support-active clients or social proof opportunities.",
+          mobileLabel: "Social proof asks",
+          mobileExplanation: "Support clients or social proof opportunities.",
         },
         {
           key: "new-transportation-requests",
           label: "New transportation requests",
           explanation: "Transportation requests still New or Reviewed.",
+          mobileLabel: "Transportation requests",
         },
       ];
+      var DAILY_BRIEF_MOBILE_LABEL_QUERY = "(max-width: 420px)";
+      var dailyBriefMobileLabelMedia = window.matchMedia
+        ? window.matchMedia(DAILY_BRIEF_MOBILE_LABEL_QUERY)
+        : null;
+      var dailyBriefResponsiveReady = false;
 
       var state = {
         businessLeads: [],
@@ -3085,12 +3157,29 @@
         };
       }
 
-      function briefLineHtml(label, value) {
+      function isDailyBriefCompactLabels() {
+        if (dailyBriefMobileLabelMedia) return dailyBriefMobileLabelMedia.matches;
+        return window.innerWidth <= 420;
+      }
+
+      function dailyBriefDisplayText(text, mobileText) {
+        if (mobileText && isDailyBriefCompactLabels()) return mobileText;
+        return text;
+      }
+
+      function escDailyBriefText(text) {
+        return esc(text).replace(/-/g, "&#8209;");
+      }
+
+      function briefLineHtml(line, value) {
+        var label = Array.isArray(line) ? line[0] : line;
+        var lineValue = Array.isArray(line) ? line[1] : value;
+        var mobileLabel = Array.isArray(line) ? line[2] : "";
         return (
           '<li class="owner-dash-brief-line"><span>' +
-          esc(label) +
+          escDailyBriefText(dailyBriefDisplayText(label, mobileLabel)) +
           "</span><strong>" +
-          esc(value) +
+          esc(lineValue) +
           "</strong></li>"
         );
       }
@@ -3101,14 +3190,14 @@
           (tone === "orange" ? " owner-dash-brief-card--orange" : "") +
           '">' +
           '<div class="owner-dash-brief-card-top"><h4 class="owner-dash-brief-card-title">' +
-          esc(title) +
+          escDailyBriefText(title) +
           '</h4><span class="owner-dash-brief-card-value">' +
           esc(value) +
           "</span></div>" +
           '<ul class="owner-dash-brief-lines">' +
           lines
             .map(function (line) {
-              return briefLineHtml(line[0], line[1]);
+              return briefLineHtml(line);
             })
             .join("") +
           "</ul></article>"
@@ -3129,10 +3218,10 @@
               ["Leads needing follow-up", counts["leads-needing-follow-up"] || 0],
               ["Quote/proposal ready", counts["quote-proposal-ready"] || 0],
               ["Materials needed", counts["materials-needed"] || 0],
-              ["Launch/support tasks", counts["launch-support-tasks"] || 0],
+              ["Launch/support tasks", counts["launch-support-tasks"] || 0, "Launch tasks"],
               ["Projects ready for launch", metrics.firstPreviewReady + metrics.approvedForLaunch],
               ["Support reviews due", metrics.supportReviewDue],
-              ["Testimonial/referral asks", counts["testimonial-referral-asks"] || 0],
+              ["Testimonial/referral asks", counts["testimonial-referral-asks"] || 0, "Social proof asks"],
             ],
             "orange"
           ),
@@ -3141,7 +3230,7 @@
             metrics.newBusinessLeads + metrics.newTransportationRequests,
             [
               ["New business leads", metrics.newBusinessLeads],
-              ["New transportation requests", metrics.newTransportationRequests],
+              ["New transportation requests", metrics.newTransportationRequests, "Transportation requests"],
             ],
             "teal"
           ),
@@ -3150,7 +3239,7 @@
             metrics.readyForProposal + metrics.quoteInvoicePrep + metrics.qualifiedLeads + metrics.wonProjects,
             [
               ["Ready for proposal", metrics.readyForProposal],
-              ["Quote/invoice prep", metrics.quoteInvoicePrep],
+              ["Quote/invoice prep", metrics.quoteInvoicePrep, "Quote prep"],
               ["Qualified leads", metrics.qualifiedLeads],
               ["Won projects", metrics.wonProjects],
             ],
@@ -3177,7 +3266,7 @@
               ["Support review due", metrics.supportReviewDue],
               ["Support active", metrics.supportActive],
               ["Next-phase opportunity", metrics.nextPhaseOpportunity],
-              ["Testimonial/referral opportunity", metrics.testimonialReferralOpportunity],
+              ["Testimonial/referral opportunity", metrics.testimonialReferralOpportunity, "Social proof"],
             ],
             "orange"
           ),
@@ -3186,20 +3275,22 @@
         els.dailyBriefOrder.innerHTML = DAILY_BRIEF_PRIORITY_ROWS.slice(0, 6)
           .map(function (row) {
             var count = counts[row.key] || 0;
+            var label = dailyBriefDisplayText(row.label, row.mobileLabel);
+            var explanation = dailyBriefDisplayText(row.explanation, row.mobileExplanation);
             return (
               '<li class="owner-dash-brief-order-row">' +
               '<span class="owner-dash-brief-order-copy"><strong>' +
-              esc(row.label) +
-              ' <span class="owner-dash-brief-count">' +
+              escDailyBriefText(label) +
+              "</strong><small>" +
+              escDailyBriefText(explanation) +
+              '</small></span><span class="owner-dash-brief-count">' +
               esc(count) +
-              "</span></strong><small>" +
-              esc(row.explanation) +
-              "</small></span>" +
+              "</span>" +
               (count > 0
                 ? '<button type="button" class="owner-dash-brief-jump" data-action="open-daily-brief-first" data-brief-key="' +
                   esc(row.key) +
                   '">Open first</button>'
-                : '<span class="owner-dash-brief-count">0</span>') +
+                : "") +
               "</li>"
             );
           })
@@ -11138,8 +11229,22 @@
         els.refreshBtn.addEventListener("click", handleRefresh);
       }
 
+      function initDailyBriefResponsive() {
+        if (dailyBriefResponsiveReady || !dailyBriefMobileLabelMedia) return;
+        dailyBriefResponsiveReady = true;
+        var handleDailyBriefLabelChange = function () {
+          renderDailyBrief();
+        };
+        if (dailyBriefMobileLabelMedia.addEventListener) {
+          dailyBriefMobileLabelMedia.addEventListener("change", handleDailyBriefLabelChange);
+        } else if (dailyBriefMobileLabelMedia.addListener) {
+          dailyBriefMobileLabelMedia.addListener(handleDailyBriefLabelChange);
+        }
+      }
+
       initWorkflowDelegation();
       initRefresh();
+      initDailyBriefResponsive();
 
       if (!accessKey || !String(accessKey).trim()) {
         finishUnauthorized();
