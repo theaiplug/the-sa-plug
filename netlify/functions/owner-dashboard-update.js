@@ -265,11 +265,11 @@ async function insertBusinessLeadWithFallbacks(url, serviceKey, baseRow, fallbac
 async function createRestaurantProspect(url, serviceKey, body) {
   const raw = body && body.prospect && typeof body.prospect === "object" ? body.prospect : body;
   const restaurantName = trimStr(raw.restaurant_name || raw.business_name, 200);
-  const contactName = trimStr(raw.contact_name, 200);
+  const contactName = trimStr(raw.contact_name, 200) || "Restaurant contact TBD";
   const phone = trimStr(raw.phone || raw.contact_phone, 80);
   const email = trimStr(raw.email || raw.contact_email, 200);
 
-  if (!restaurantName || !contactName || !phone || !email || !validEmail(email)) {
+  if (!restaurantName || (email && !validEmail(email))) {
     return json(400, { ok: false, error: "validation_error" });
   }
 
@@ -294,8 +294,8 @@ async function createRestaurantProspect(url, serviceKey, body) {
   const fallbackNotes = restaurantProspectOwnerNotes(input, Boolean(input.priority));
   const fallbackRow = {
     contact_name: input.contact_name,
-    contact_email: input.email,
-    contact_phone: input.phone,
+    contact_email: input.email || null,
+    contact_phone: input.phone || null,
     preferred_contact_method: null,
     business_name: input.restaurant_name,
     business_website: input.website,
