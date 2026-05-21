@@ -479,6 +479,210 @@
         flex: 1 1 auto;
       }
     }
+
+    /* Owner Command Dashboard v15 - Quote / Invoice Prep */
+    .page-owner-dashboard .owner-dash-detail-section--quote-prep {
+      margin-bottom: 16px;
+      padding: 12px;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at top left, rgba(255, 139, 31, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(242, 178, 26, 0.14), transparent 34%),
+        linear-gradient(155deg, rgba(4, 10, 22, 0.88), rgba(35, 20, 8, 0.78));
+      border: 1px solid rgba(255, 139, 31, 0.42);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 246, 230, 0.08),
+        0 14px 32px rgba(0, 0, 0, 0.22);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-head {
+      display: grid;
+      gap: 9px;
+      margin-bottom: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--quote-prep .owner-dash-detail-section-title {
+      margin-bottom: 5px;
+      color: #ffd08a;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: max-content;
+      max-width: 100%;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 139, 31, 0.16);
+      border: 1px solid rgba(255, 139, 31, 0.48);
+      color: #ffe0ad;
+      font-size: 0.69rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-card-label {
+      display: block;
+      margin: 0 0 8px;
+      font-size: 0.66rem;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(255, 178, 56, 0.96);
+    }
+
+    .page-owner-dashboard .owner-dash-quote-money-card,
+    .page-owner-dashboard .owner-dash-quote-card,
+    .page-owner-dashboard .owner-dash-quote-copy {
+      padding: 10px;
+      border-radius: 13px;
+      background: rgba(4, 10, 22, 0.58);
+      border: 1px solid rgba(255, 178, 56, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.04);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-money-card,
+    .page-owner-dashboard .owner-dash-quote-grid,
+    .page-owner-dashboard .owner-dash-quote-copy {
+      margin-bottom: 10px;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-snapshot,
+    .page-owner-dashboard .owner-dash-quote-grid,
+    .page-owner-dashboard .owner-dash-quote-copy-actions,
+    .page-owner-dashboard .owner-dash-quote-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-snapshot-item,
+    .page-owner-dashboard .owner-dash-quote-mini-row,
+    .page-owner-dashboard .owner-dash-quote-not-included {
+      padding: 8px 9px;
+      border-radius: 11px;
+      background: rgba(255, 246, 230, 0.055);
+      border: 1px solid rgba(255, 178, 56, 0.14);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-snapshot-item span,
+    .page-owner-dashboard .owner-dash-quote-mini-row span,
+    .page-owner-dashboard .owner-dash-quote-not-included > span {
+      display: block;
+      margin: 0 0 4px;
+      font-size: 0.64rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 190, 92, 0.9);
+    }
+
+    .page-owner-dashboard .owner-dash-quote-snapshot-item strong,
+    .page-owner-dashboard .owner-dash-quote-mini-row strong {
+      display: block;
+      font-size: 0.82rem;
+      line-height: 1.35;
+      color: rgba(255, 246, 230, 0.94);
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-card--invoice .owner-dash-quote-mini-row + .owner-dash-quote-mini-row,
+    .page-owner-dashboard .owner-dash-quote-not-included {
+      margin-top: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-list {
+      margin: 0;
+      padding-left: 17px;
+      display: grid;
+      gap: 3px;
+      font-size: 0.78rem;
+      line-height: 1.35;
+      color: rgba(255, 246, 230, 0.8);
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-list--compact {
+      font-size: 0.75rem;
+      color: rgba(255, 246, 230, 0.72);
+    }
+
+    .page-owner-dashboard .owner-dash-quote-support-positioning {
+      margin: 0 0 8px;
+      font-size: 0.8rem;
+      line-height: 1.42;
+      color: rgba(255, 246, 230, 0.78);
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--quote-prep .owner-dash-btn {
+      width: 100%;
+      min-height: 44px;
+      min-width: 0;
+      max-width: 100%;
+      white-space: normal;
+      text-align: center;
+      line-height: 1.25;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-actions {
+      margin-bottom: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-safe-note {
+      margin: 0;
+      font-size: 0.76rem;
+      line-height: 1.4;
+      color: rgba(255, 246, 230, 0.62);
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--quote-prep .owner-dash-detail-copy-feedback,
+    .page-owner-dashboard .owner-dash-quote-feedback {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-quote-feedback {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: rgba(94, 234, 212, 0.95);
+    }
+
+    .page-owner-dashboard .owner-dash-quote-feedback--error {
+      color: #fca5a5;
+    }
+
+    @media (min-width: 560px) {
+      .page-owner-dashboard .owner-dash-quote-head {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+      }
+
+      .page-owner-dashboard .owner-dash-quote-snapshot,
+      .page-owner-dashboard .owner-dash-quote-copy-actions,
+      .page-owner-dashboard .owner-dash-quote-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard .owner-dash-quote-snapshot-item--wide,
+      .page-owner-dashboard .owner-dash-quote-copy-actions .owner-dash-btn:first-child,
+      .page-owner-dashboard .owner-dash-quote-copy-actions .owner-dash-btn:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (min-width: 760px) {
+      .page-owner-dashboard .owner-dash-quote-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
   </style>
 </head>
 <body class="page-owner-dashboard">
