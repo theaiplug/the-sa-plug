@@ -335,6 +335,114 @@
 
       var TRANSPORT_STATUSES = BUSINESS_STATUSES.concat(["Handled", "Cancelled"]);
 
+      var PROPOSAL_TYPES = ["Starter Fix", "Lead Capture System", "Business Command System", "Full AI Growth System"];
+      var PROPOSAL_PACKAGE_MAP = {
+        "Starter Fix": {
+          recommendedPackage: "Starter Website + Lead Path Fix",
+          firstDeliverable: "Clearer landing page and request path",
+          projectType: "Starter",
+          outcome: "Give visitors a cleaner reason to take action and make the next step obvious.",
+          scope: [
+            "Clean up the main landing path",
+            "Sharpen CTA wording",
+            "Improve contact/request flow",
+            "Add basic lead capture",
+            "Add owner-approved copy",
+          ],
+          included: [
+            "Mobile-first landing path review",
+            "Clearer offer and CTA copy",
+            "Basic request/contact capture",
+            "Owner-approved page copy",
+          ],
+          leaveOut: ["Advanced AI", "Full dashboard build", "CRM migration", "Phone automation"],
+          nextStep: "Confirm the current page, best CTA, and what a visitor should do first.",
+        },
+        "Lead Capture System": {
+          recommendedPackage: "Lead Capture System",
+          firstDeliverable: "Smart intake form + owner alert flow",
+          projectType: "Standard",
+          outcome:
+            "Stop good leads from getting lost by capturing the right details and routing them to the owner clearly.",
+          scope: [
+            "Smart intake path",
+            "Better request questions",
+            "Email owner alert",
+            "Follow-up copy tools",
+            "Basic dashboard visibility",
+            "Status tracking",
+          ],
+          included: [
+            "Smart intake questions",
+            "Owner alert flow",
+            "Follow-up copy tools",
+            "Basic dashboard visibility",
+            "Status tracking",
+          ],
+          leaveOut: ["Full AI phone agent", "Large CRM migration", "Complex automation", "Guaranteed booked jobs"],
+          nextStep: "Map how leads arrive now, who answers them, and where they get missed.",
+        },
+        "Business Command System": {
+          recommendedPackage: "Business Command System Package",
+          firstDeliverable: "Owner dashboard + lead routing layer",
+          projectType: "Premium",
+          outcome:
+            "Build a practical command layer where requests, notes, follow-up, and owner decisions live in one place.",
+          scope: [
+            "Map current lead flow",
+            "Build first intake layer",
+            "Add dashboard visibility",
+            "Add owner workflow statuses",
+            "Add follow-up copy/tools",
+            "Add proposal-ready workflow",
+          ],
+          included: [
+            "Lead flow mapping",
+            "First intake layer",
+            "Owner dashboard visibility",
+            "Workflow statuses and notes",
+            "Follow-up and proposal-ready tools",
+          ],
+          leaveOut: [
+            "Overbuilt automation",
+            "Complex CRM migration",
+            "Guaranteed booking/revenue claims",
+            "Replacing staff",
+            "Advanced AI before the workflow is mapped",
+          ],
+          nextStep: "Book a workflow mapping call to confirm intake, routing, statuses, and approval checkpoints.",
+        },
+        "Full AI Growth System": {
+          recommendedPackage: "Full AI Growth System",
+          firstDeliverable: "Website + intake + dashboard + automation roadmap",
+          projectType: "Custom",
+          outcome:
+            "Build a complete customer-flow system that can grow from website lead capture into AI-assisted follow-up, content, routing, and reporting.",
+          scope: [
+            "Website/customer path review",
+            "Lead capture/intake system",
+            "Owner dashboard",
+            "Follow-up workflow",
+            "Automation roadmap",
+            "AI assistant planning",
+          ],
+          included: [
+            "Customer path review",
+            "Lead capture and intake system",
+            "Owner dashboard layer",
+            "Follow-up workflow",
+            "Automation and AI assistant roadmap",
+          ],
+          leaveOut: [
+            "Fully autonomous AI decisions",
+            "Unapproved customer-facing responses",
+            "Guaranteed revenue claims",
+            "Large integrations before phase one is proven",
+          ],
+          nextStep: "Choose the first phase and owner approval rules before any automation goes live.",
+        },
+      };
+
       var TODAY_ACTION_BUCKETS = [
         {
           key: "hot-leads",
@@ -390,6 +498,7 @@
         priorityFiltersReady: false,
         detailOpen: null,
         clientActivity: {},
+        proposalSelections: {},
         lastLoadedAt: null,
       };
 
@@ -2207,8 +2316,243 @@
         );
       }
 
+      function proposalTypeIsValid(type) {
+        return PROPOSAL_TYPES.indexOf(type) !== -1;
+      }
+
+      function proposalSelectionKey(lead) {
+        return lead && lead.id ? String(lead.id) : "";
+      }
+
+      function recommendProposalType(lead) {
+        var sig = leadSignals(lead);
+        var text = sig.text || "";
+        var painCount = countLeadPainPoints(sig);
+        var onlyWebsite =
+          sig.website &&
+          !sig.leadCapture &&
+          !sig.missedCalls &&
+          !sig.followUp &&
+          !sig.booking &&
+          !sig.automation &&
+          !sig.dashboard &&
+          painCount <= 2;
+        var growthLanguage =
+          sig.media ||
+          /content|social|seo|search ranking|google ranking|automations?|automation roadmap|growth|full ai|full growth|full system|marketing system/.test(
+            text
+          );
+        var commandLanguage =
+          /i['’]?m open|open to|urgent|asap|multiple problems|several problems|chat|phone|website|system|workflow|dashboard|owner visibility|command/.test(
+            text
+          );
+        var leadCaptureLanguage =
+          sig.missedCalls ||
+          sig.leadCapture ||
+          sig.followUp ||
+          sig.booking ||
+          /weak forms?|slow follow[- ]?up|no booking path|missed leads?|lost leads?|unanswered|after hours|after-hours/.test(
+            text
+          );
+
+        if (growthLanguage) return "Full AI Growth System";
+        if ((sig.urgent || painCount >= 3 || /i['’]?m open|open to/.test(text)) && commandLanguage) {
+          return "Business Command System";
+        }
+        if (leadCaptureLanguage) return "Lead Capture System";
+        if (onlyWebsite) return "Starter Fix";
+        if (sig.website || sig.foundation) return "Starter Fix";
+        return "Lead Capture System";
+      }
+
+      function selectedProposalType(lead) {
+        var key = proposalSelectionKey(lead);
+        var selected = key ? state.proposalSelections[key] : "";
+        return proposalTypeIsValid(selected) ? selected : recommendProposalType(lead);
+      }
+
+      function proposalPackageForType(type) {
+        return PROPOSAL_PACKAGE_MAP[type] || PROPOSAL_PACKAGE_MAP["Lead Capture System"];
+      }
+
+      function calcProposalEstimate(lead) {
+        var type = selectedProposalType(lead);
+        var base = proposalPackageForType(type);
+        var sig = leadSignals(lead);
+        return {
+          type: type,
+          recommendedPackage: base.recommendedPackage,
+          packageName: base.recommendedPackage,
+          firstDeliverable: base.firstDeliverable,
+          bestFirstDeliverable: base.firstDeliverable,
+          projectType: base.projectType,
+          outcome: base.outcome,
+          scope: base.scope.slice(),
+          included: base.included.slice(),
+          leaveOut: base.leaveOut.slice(),
+          nextStep: base.nextStep,
+          mainPainPoint: mainPainPointForDeal(lead, sig),
+        };
+      }
+
+      function proposalTextForKind(kind, lead) {
+        if (!lead) return "";
+        var proposal = calcProposalEstimate(lead);
+        if (kind === "proposal-simple") return buildSimpleProposalCopy(lead, proposal);
+        if (kind === "proposal-text-message") return buildProposalSmsCopy(lead, proposal);
+        if (kind === "proposal-email") return buildProposalEmailCopy(lead, proposal);
+        if (kind === "proposal-estimate-notes") return buildProposalEstimateNotes(lead, proposal);
+        if (kind === "proposal-owner-checklist") return buildProposalOwnerChecklist(lead, proposal);
+        return "";
+      }
+
+      function firstScopeBullets(proposal) {
+        return proposal.scope.slice(0, 4);
+      }
+
+      function buildSimpleProposalCopy(lead, proposal) {
+        var business = lead.business_name || "your business";
+        return [
+          "Simple proposal for " + business,
+          "",
+          "Based on what you shared, I would start with a practical " +
+            proposal.recommendedPackage +
+            " instead of trying to rebuild everything at once.",
+          "",
+          "Main problem to fix:",
+          proposal.mainPainPoint,
+          "",
+          "Best first deliverable:",
+          proposal.firstDeliverable,
+          "",
+          "What this would help with:",
+          proposal.outcome,
+          "",
+          "Suggested first scope:",
+          bulletText(firstScopeBullets(proposal)),
+          "",
+          "What I would leave out for now:",
+          "- Overbuilt automation",
+          "- Complicated CRM migration",
+          "- Guaranteed booking or revenue claims",
+          "- Replacing your staff",
+          "",
+          "Recommended next step:",
+          proposal.nextStep,
+          "",
+          "This would be built around your actual workflow, with owner approval before anything goes live.",
+        ].join("\n");
+      }
+
+      function buildProposalSmsCopy(lead, proposal) {
+        var contact = lead.contact_name || "there";
+        return (
+          "Hi " +
+          contact +
+          ", based on what you shared, I'd start with a practical " +
+          proposal.recommendedPackage +
+          " focused on fixing " +
+          proposal.mainPainPoint +
+          ". The first move would be " +
+          proposal.firstDeliverable +
+          ", so your leads have a clearer path and you can see what needs attention. Want me to map the first version for you?"
+        );
+      }
+
+      function buildProposalEmailCopy(lead, proposal) {
+        var business = lead.business_name || "your business";
+        var contact = lead.contact_name || "there";
+        return [
+          "Subject: First system recommendation for " + business,
+          "",
+          "Hi " + contact + ",",
+          "",
+          "Based on what you shared, I would start with a practical " +
+            proposal.recommendedPackage +
+            " rather than a giant rebuild.",
+          "",
+          "The main issue to fix first is:",
+          proposal.mainPainPoint,
+          "",
+          "The best first deliverable would be:",
+          proposal.firstDeliverable,
+          "",
+          "The goal is to create a clearer customer path, better intake, stronger follow-up, and more owner visibility without overbuilding the system before the workflow is mapped.",
+          "",
+          "A good first scope would include:",
+          bulletText(firstScopeBullets(proposal)),
+          "",
+          "I would leave out complex automation, CRM migration, or big AI promises until the first workflow is proven.",
+          "",
+          "Recommended next step:",
+          proposal.nextStep,
+          "",
+          "Everything would stay owner-approved before going live.",
+        ].join("\n");
+      }
+
+      function buildProposalEstimateNotes(lead, proposal) {
+        return [
+          "Estimate notes for " + (lead.business_name || "Lead"),
+          "",
+          "Recommended package:",
+          proposal.recommendedPackage,
+          "",
+          "Project type:",
+          proposal.projectType,
+          "",
+          "Main pain point:",
+          proposal.mainPainPoint,
+          "",
+          "Best first deliverable:",
+          proposal.firstDeliverable,
+          "",
+          "Suggested scope:",
+          bulletText(proposal.scope),
+          "",
+          "Possible add-ons later:",
+          "- Phone/voice agent planning",
+          "- SMS follow-up flow",
+          "- Review/reputation capture",
+          "- Content/SEO support",
+          "- Dashboard expansion",
+          "- CRM or calendar integration",
+          "",
+          "Do not promise:",
+          "- Guaranteed bookings",
+          "- Guaranteed revenue",
+          "- Replacing staff",
+          "- Fully autonomous AI decisions",
+        ].join("\n");
+      }
+
+      function buildProposalOwnerChecklist(lead) {
+        return [
+          "Owner checklist for " + (lead.business_name || "Lead"),
+          "",
+          "Before building:",
+          "- Confirm the current lead flow",
+          "- Confirm where leads are being missed",
+          "- Confirm who replies now",
+          "- Confirm business hours and after-hours handling",
+          "- Confirm preferred contact method",
+          "- Confirm what questions customers ask before booking",
+          "- Confirm what the owner wants to approve before launch",
+          "",
+          "First build should include:",
+          "- Clear customer path",
+          "- Intake questions",
+          "- Owner alert",
+          "- Follow-up path",
+          "- Simple dashboard visibility",
+          "- Manual approval checkpoint",
+        ].join("\n");
+      }
+
       function dealTextForKind(kind, lead) {
         if (!lead) return "";
+        var proposalText = proposalTextForKind(kind, lead);
+        if (proposalText) return proposalText;
         var deal = calcDealBuilder(lead);
         if (kind === "deal-proposal-summary") return buildDealProposalSummaryCopy(lead, deal);
         if (kind === "deal-estimate-notes") return buildDealEstimateNotes(lead, deal);
@@ -2334,6 +2678,80 @@
           "</div>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<span class="owner-dash-deal-stage-feedback" data-deal-stage-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
+      function proposalTypeButton(type, activeType) {
+        var active = type === activeType;
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (active ? "owner-dash-btn--primary is-active" : "owner-dash-btn--secondary") +
+          '" data-action="select-proposal-type" data-proposal-type="' +
+          esc(type) +
+          '" aria-pressed="' +
+          (active ? "true" : "false") +
+          '">' +
+          esc(type) +
+          "</button>"
+        );
+      }
+
+      function proposalEstimateBlock(lead) {
+        var proposal = calcProposalEstimate(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--proposal" data-proposal-estimate-generator>' +
+          '<div class="owner-dash-proposal-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Proposal / Estimate Generator</h3>' +
+          '<p class="owner-dash-detail-section-note">Build a simple first offer from this lead. Copy only — nothing is sent automatically.</p></div>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary owner-dash-proposal-ready-btn" data-action="move-proposal-ready">Move to Proposal Ready</button>' +
+          "</div>" +
+          '<div class="owner-dash-proposal-types" aria-label="Proposal Type">' +
+          PROPOSAL_TYPES.map(function (type) {
+            return proposalTypeButton(type, proposal.type);
+          }).join("") +
+          "</div>" +
+          '<div class="owner-dash-proposal-preview-card">' +
+          '<div class="owner-dash-proposal-metrics">' +
+          '<div class="owner-dash-deal-metric"><span>Recommended package</span><strong>' +
+          esc(proposal.recommendedPackage) +
+          "</strong></div>" +
+          '<div class="owner-dash-deal-metric"><span>Best first deliverable</span><strong>' +
+          esc(proposal.firstDeliverable) +
+          "</strong></div>" +
+          '<div class="owner-dash-deal-metric"><span>Estimated project type</span><strong>' +
+          esc(proposal.projectType) +
+          "</strong></div></div>" +
+          '<div class="owner-dash-proposal-outcome"><p class="owner-dash-deal-k">Plain-English outcome</p>' +
+          '<p class="owner-dash-proposal-outcome-text">' +
+          esc(proposal.outcome) +
+          "</p></div>" +
+          '<div class="owner-dash-proposal-lists">' +
+          '<div><p class="owner-dash-deal-k">Suggested scope</p>' +
+          bulletListHtml(proposal.scope) +
+          "</div>" +
+          '<div><p class="owner-dash-deal-k">What is included</p>' +
+          bulletListHtml(proposal.included) +
+          "</div>" +
+          '<div><p class="owner-dash-deal-k">What is not included yet</p>' +
+          bulletListHtml(proposal.leaveOut) +
+          "</div></div>" +
+          '<p class="owner-dash-proposal-next"><span class="owner-dash-deal-k">Next step</span>' +
+          esc(proposal.nextStep) +
+          "</p></div>" +
+          '<div class="owner-dash-proposal-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="proposal-simple">Copy simple proposal</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="proposal-text-message">Copy text-message version</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="proposal-email">Copy email version</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="proposal-estimate-notes">Copy estimate notes</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="proposal-owner-checklist">Copy owner checklist</button>' +
+          "</div>" +
+          '<p class="owner-dash-proposal-safe-note">Copy only. No emails, SMS, or customer messages are sent automatically.</p>' +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<span class="owner-dash-deal-feedback owner-dash-proposal-feedback" data-deal-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
           '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
           '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
@@ -2856,6 +3274,7 @@
           opportunityBuilderBlock(lead) +
           dealBuilderBlock(lead) +
           dealStageTrackerBlock(lead) +
+          proposalEstimateBlock(lead) +
           groupedToolsBlock("business_leads") +
           quickStatusBlock("business_leads", lead.status) +
           workflowBlock("business_leads", lead) +
@@ -3040,10 +3459,12 @@
         var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
         if (!sheet || !state.detailOpen) return;
         var section =
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--proposal")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--deal")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--opportunity")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--tools")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section")) ||
+          sheet.querySelector(".owner-dash-detail-section--proposal") ||
           sheet.querySelector(".owner-dash-detail-section--deal") ||
           sheet.querySelector(".owner-dash-detail-section--opportunity") ||
           sheet.querySelector(".owner-dash-detail-section--tools") ||
@@ -3131,13 +3552,13 @@
       }
 
       function appendProposalReadyNote(existing, deal) {
+        var packageName = deal.recommendedPackage || deal.packageName;
+        var deliverable = deal.firstDeliverable || deal.bestFirstDeliverable;
         var note =
           "Proposal ready: " +
-          deal.packageName +
-          " · " +
-          deal.valueTier +
-          ". First deliverable: " +
-          deal.bestFirstDeliverable +
+          packageName +
+          " / " +
+          deliverable +
           ".";
         return appendCleanOwnerNote(existing, note);
       }
@@ -3196,6 +3617,17 @@
           },
         };
         return configs[stageKey] || null;
+      }
+
+      function handleProposalTypeSelection(sheet, sourceBtn) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
+        var type = sourceBtn.getAttribute("data-proposal-type");
+        if (!proposalTypeIsValid(type)) return;
+        var hit = findRecord(state.detailOpen.table, state.detailOpen.id);
+        if (!hit) return;
+        state.proposalSelections[proposalSelectionKey(hit.row)] = type;
+        var section = sourceBtn.closest(".owner-dash-detail-section--proposal");
+        if (section) section.outerHTML = proposalEstimateBlock(hit.row);
       }
 
       function handleDealStageAction(sheet, sourceBtn) {
@@ -3263,17 +3695,18 @@
         var id = state.detailOpen.id;
         var hit = findRecord(table, id);
         if (!hit) return;
-        var deal = calcDealBuilder(hit.row);
+        var proposalSection = sourceBtn ? sourceBtn.closest(".owner-dash-detail-section--proposal") : null;
+        var readyInfo = proposalSection ? calcProposalEstimate(hit.row) : calcDealBuilder(hit.row);
         var workflowEl = sheet.querySelector(".owner-dash-workflow");
         var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
         var previousNotes = String(hit.row.owner_notes || "");
         var nextNotes = appendProposalReadyNote(
           workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes,
-          deal
+          readyInfo
         );
-        var section = sourceBtn
+        var section = proposalSection || (sourceBtn
           ? sourceBtn.closest(".owner-dash-detail-section--deal")
-          : sheet.querySelector(".owner-dash-detail-section--deal");
+          : sheet.querySelector(".owner-dash-detail-section--deal"));
         var btn = sourceBtn || (section && section.querySelector('[data-action="move-proposal-ready"]'));
         if (btn) {
           btn.disabled = true;
@@ -3300,7 +3733,11 @@
             }
             addClientActivity(table, id, "Proposal ready marked just now", "ok", "");
             renderAll();
-            var freshSection = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--deal");
+            var freshSection =
+              els.detailBody &&
+              els.detailBody.querySelector(
+                proposalSection ? ".owner-dash-detail-section--proposal" : ".owner-dash-detail-section--deal"
+              );
             setDealFeedback(freshSection || section, "Moved to Qualified and proposal-ready note added.", false);
             refreshCounts();
           })
@@ -4105,6 +4542,11 @@
 
           if (sheet && action === "move-proposal-ready") {
             handleMoveToProposalReady(sheet, btn);
+            return;
+          }
+
+          if (sheet && action === "select-proposal-type") {
+            handleProposalTypeSelection(sheet, btn);
             return;
           }
 
