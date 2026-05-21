@@ -107,6 +107,18 @@ const RESTAURANT_NEXT_ACTIONS = new Set([
   "Archive for later",
 ]);
 
+const RESTAURANT_FIRST_50_TARGETS = new Set(["Yes", "No"]);
+
+const RESTAURANT_RESEARCH_STATUSES = new Set([
+  "Needs research",
+  "Researched",
+  "Ready for contact",
+  "Contacted",
+  "Interested",
+  "Not now",
+  "Not a fit",
+]);
+
 function json(statusCode, body) {
   return {
     statusCode,
@@ -212,6 +224,8 @@ function mapCreatedBusinessLead(row) {
 function restaurantProspectOwnerNotes(input, includePriorityInNotes) {
   const lines = [
     "Restaurant: prospect.",
+    ...(input.first_50_target === "Yes" ? ["Restaurant First 50: yes."] : []),
+    `Restaurant stage: ${String(input.research_status || "Needs research").toLowerCase()}.`,
     `Restaurant lane: ${input.visitor_lane}.`,
     `Restaurant type: ${input.restaurant_type}.`,
     `Restaurant opportunity: ${input.main_opportunity}.`,
@@ -285,6 +299,8 @@ async function createRestaurantProspect(url, serviceKey, body) {
     main_opportunity: pickAllowed(raw.main_opportunity, RESTAURANT_OPPORTUNITIES, "Unknown"),
     recommended_offer: pickAllowed(raw.recommended_offer, RESTAURANT_OFFERS, "Not sure yet"),
     priority: pickAllowed(raw.priority, RESTAURANT_PRIORITIES, ""),
+    first_50_target: pickAllowed(raw.first_50_target, RESTAURANT_FIRST_50_TARGETS, "Yes"),
+    research_status: pickAllowed(raw.research_status, RESTAURANT_RESEARCH_STATUSES, "Needs research"),
     next_action: pickAllowed(raw.next_action, RESTAURANT_NEXT_ACTIONS, "Research restaurant"),
     internal_notes: trimStr(raw.internal_notes, 4000),
   };

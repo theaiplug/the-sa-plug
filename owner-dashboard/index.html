@@ -689,7 +689,7 @@
       line-height: 1.2;
       padding: 9px 12px;
       text-align: center;
-      white-space: nowrap;
+      white-space: normal;
       word-break: normal;
       overflow-wrap: normal;
       hyphens: none;
@@ -2281,6 +2281,95 @@
         rgba(4, 10, 22, 0.68);
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-first50 {
+      margin: 0 0 14px;
+      padding: clamp(12px, 2vw, 16px);
+      border: 1px solid rgba(251, 146, 60, 0.28);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at top right, rgba(251, 146, 60, 0.14), transparent 32%),
+        rgba(4, 10, 22, 0.58);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-first50,
+    .page-owner-dashboard .owner-dash-restaurant-first50 *,
+    .page-owner-dashboard .owner-dash-restaurant-prospect-modes,
+    .page-owner-dashboard .owner-dash-first50-summary {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-first50-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 9px;
+      margin-bottom: 12px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-first50 h3 {
+      margin: 0;
+      color: #ffe4c4;
+      font-size: clamp(1.02rem, 2.1vw, 1.24rem);
+      line-height: 1.15;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-prospect-modes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-prospect-mode {
+      white-space: normal;
+    }
+
+    .page-owner-dashboard .owner-dash-first50-summary {
+      display: grid;
+      gap: 10px;
+    }
+
+    .page-owner-dashboard .owner-dash-first50-counts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+      gap: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-first50-count {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 8px 9px;
+      background: rgba(255, 255, 255, 0.05);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-first50-count span {
+      display: block;
+      color: rgba(255, 246, 230, 0.7);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-first50-count strong {
+      display: block;
+      margin-top: 3px;
+      color: #fff;
+      font-size: 1rem;
+      line-height: 1.1;
+    }
+
+    .page-owner-dashboard .owner-dash-first50-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
     .page-owner-dashboard .owner-dash-restaurant-create-head {
       display: grid;
       gap: 7px;
@@ -2409,7 +2498,10 @@
       }
 
       .page-owner-dashboard .owner-dash-restaurant-create-actions,
-      .page-owner-dashboard .owner-dash-restaurant-create-actions .owner-dash-btn {
+      .page-owner-dashboard .owner-dash-restaurant-create-actions .owner-dash-btn,
+      .page-owner-dashboard .owner-dash-restaurant-prospect-mode,
+      .page-owner-dashboard .owner-dash-first50-actions,
+      .page-owner-dashboard .owner-dash-first50-actions .owner-dash-btn {
         width: 100%;
       }
     }
@@ -2419,6 +2511,24 @@
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 8px;
       margin: 10px 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-card-meta--workflow {
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-first50-line {
+      grid-column: 1 / -1;
+      margin: 0;
+      border: 1px solid rgba(251, 146, 60, 0.34);
+      border-radius: 14px;
+      padding: 7px 9px;
+      background: rgba(251, 146, 60, 0.12);
+      color: #fed7aa;
+      font-size: 0.76rem;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .page-owner-dashboard .owner-dash-restaurant-card-meta div,
@@ -2503,6 +2613,54 @@
       gap: 10px;
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-workflow-module {
+      border: 1px solid rgba(20, 184, 166, 0.24);
+      border-radius: 16px;
+      padding: 10px;
+      background: rgba(20, 184, 166, 0.08);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-workflow-status {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-workflow-status div {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-workflow-status span {
+      display: block;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.74rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-workflow-status strong,
+    .page-owner-dashboard .owner-dash-restaurant-workflow-status p {
+      display: block;
+      margin: 3px 0 0;
+      color: #fff;
+      font-size: 0.88rem;
+      line-height: 1.35;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-workflow-guardrail {
+      margin: 8px 0 10px;
+      color: #ffe4c4;
+      font-size: 0.78rem;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
     .page-owner-dashboard .owner-dash-restaurant-two-col {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -2528,6 +2686,15 @@
 
     .page-owner-dashboard .owner-dash-restaurant-feedback--error {
       color: #fecaca;
+    }
+
+    @media (max-width: 640px) {
+      .page-owner-dashboard .owner-dash-restaurant-command-copy,
+      .page-owner-dashboard .owner-dash-restaurant-command-actions,
+      .page-owner-dashboard .owner-dash-restaurant-command-copy .owner-dash-btn,
+      .page-owner-dashboard .owner-dash-restaurant-command-actions .owner-dash-btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -2805,6 +2972,7 @@
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="proposal-ready" aria-pressed="false">Proposal-ready leads</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="won-clients" aria-pressed="false">Won / active clients</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-prospects" aria-pressed="false">Restaurant prospects</button>
+            <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-first50" aria-pressed="false">First 50 restaurant list</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-clients" aria-pressed="false">Restaurant clients</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-proposal-ready" aria-pressed="false">Restaurant proposal-ready</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-recap-renewal" aria-pressed="false">Restaurant recap/renewal</button>
@@ -2825,6 +2993,7 @@
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="proposal-ready">Copy proposal-ready report</button>
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="won-client">Copy won/client report</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-pipeline">Copy restaurant pipeline report</button>
+            <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-first50">Copy First 50 restaurant report</button>
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="transportation">Copy transportation report</button>
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="weekly-recap">Copy weekly recap</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="full-pipeline">Copy full pipeline report</button>
@@ -2977,6 +3146,25 @@
                 </select>
               </label>
               <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">First 50 target?</span>
+                <select class="owner-dash-restaurant-create-select" name="first_50_target">
+                  <option selected>Yes</option>
+                  <option>No</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Research status</span>
+                <select class="owner-dash-restaurant-create-select" name="research_status">
+                  <option selected>Needs research</option>
+                  <option>Researched</option>
+                  <option>Ready for contact</option>
+                  <option>Contacted</option>
+                  <option>Interested</option>
+                  <option>Not now</option>
+                  <option>Not a fit</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
                 <span class="owner-dash-restaurant-create-label">Next action</span>
                 <select class="owner-dash-restaurant-create-select" name="next_action">
                   <option value="Research restaurant">Research restaurant</option>
@@ -3001,6 +3189,32 @@
             </div>
           </form>
         </article>
+        <section class="owner-dash-restaurant-first50 owner-dash-glass" aria-labelledby="owner-dash-first50-heading">
+          <div class="owner-dash-restaurant-first50-head">
+            <div>
+              <p class="eyebrow eyebrow-on-dark">First 50 List Mode</p>
+              <h3 id="owner-dash-first50-heading">First 50 Restaurant List</h3>
+            </div>
+            <p class="owner-dash-restaurant-create-guardrail">Internal prospecting tool only. Nothing is sent, published, invoiced, or promised automatically.</p>
+          </div>
+          <div class="owner-dash-restaurant-prospect-modes" role="group" aria-label="Restaurant prospect workflow filters">
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode is-active" data-restaurant-prospect-mode="all" aria-pressed="true">All Restaurant Prospects</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="first-50" aria-pressed="false">First 50 List</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="needs-research" aria-pressed="false">Needs Research</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="ready-for-contact" aria-pressed="false">Ready for Contact</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="contacted" aria-pressed="false">Contacted</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="interested" aria-pressed="false">Interested</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="proposal-ready" aria-pressed="false">Proposal Ready</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="not-now" aria-pressed="false">Not Now</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="not-a-fit" aria-pressed="false">Not a Fit</button>
+          </div>
+          <div id="owner-dash-first50-summary" class="owner-dash-first50-summary"></div>
+          <span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>
+          <div class="owner-dash-detail-manual-copy" data-manual-copy hidden>
+            <p class="owner-dash-detail-manual-copy-label">Select and copy:</p>
+            <textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea>
+          </div>
+        </section>
         <p id="restaurant-prospects-result-count" class="owner-dash-result-count" aria-live="polite">Showing 0 of 0 restaurant prospects</p>
         <div id="restaurant-prospects-empty" class="owner-dash-empty" hidden>
           <p>No restaurant prospects yet. Add your first restaurant prospect manually or create a restaurant intake page later.</p>
@@ -3290,6 +3504,7 @@
         { key: "proposal-ready", label: "Proposal-ready leads" },
         { key: "won-clients", label: "Won / active clients" },
         { key: "restaurant-prospects", label: "Restaurant prospects" },
+        { key: "restaurant-first50", label: "First 50 restaurant list" },
         { key: "restaurant-clients", label: "Restaurant clients" },
         { key: "restaurant-proposal-ready", label: "Restaurant proposal-ready" },
         { key: "restaurant-recap-renewal", label: "Restaurant recap/renewal" },
@@ -3436,6 +3651,7 @@
         activeFilter: "all",
         activePriorityFilter: "all",
         activeRestaurantFilter: "all",
+        activeRestaurantProspectMode: "all",
         searchQuery: "",
         sortKey: "needs-action",
         needsActionOnly: false,
@@ -3464,6 +3680,8 @@
         restaurantProspectsList: document.getElementById("restaurant-prospects-list"),
         restaurantProspectsEmpty: document.getElementById("restaurant-prospects-empty"),
         restaurantProspectsResultCount: document.getElementById("restaurant-prospects-result-count"),
+        first50Summary: document.getElementById("owner-dash-first50-summary"),
+        first50Panel: document.querySelector(".owner-dash-restaurant-first50"),
         restaurantProspectForm: document.getElementById("owner-dash-restaurant-prospect-form"),
         restaurantProspectFeedback: document.getElementById("owner-dash-restaurant-prospect-feedback"),
         restaurantClientsList: document.getElementById("restaurant-clients-list"),
@@ -3906,26 +4124,64 @@
         );
       }
 
+      function restaurantStageMarkerValue(row) {
+        var notes = ownerNotesText(row);
+        if (!notes) return "";
+        var match = notes.match(/restaurant stage:\s*([^\r\n.]*)/i);
+        return match ? String(match[1] || "").trim() : "";
+      }
+
+      function normalizeRestaurantWorkflowStage(value) {
+        var stage = String(value || "").trim().toLowerCase();
+        if (!stage) return "";
+        if (stage === "needs research" || stage === "research needed") return "Needs research";
+        if (stage === "researched") return "Researched";
+        if (stage === "ready for contact") return "Ready for contact";
+        if (stage === "contacted") return "Contacted";
+        if (stage === "interested") return "Interested";
+        if (stage === "proposal ready") return "Proposal ready";
+        if (stage === "not now") return "Not now";
+        if (stage === "not a fit") return "Not a fit";
+        return value ? String(value).trim().replace(/\b\w/g, function (c) { return c.toUpperCase(); }) : "";
+      }
+
+      function explicitRestaurantWorkflowStage(row) {
+        return normalizeRestaurantWorkflowStage(restaurantStageMarkerValue(row));
+      }
+
+      function isFirst50Restaurant(row) {
+        return ownerNotesInclude(row, ["restaurant first 50: yes", "first 50"]);
+      }
+
       function restaurantBadgeHtml(row) {
         if (!isRestaurantRow(row)) return "";
-        return ' <span class="owner-dash-badge owner-dash-badge--neutral">Restaurant Prospect</span>';
+        return (
+          ' <span class="owner-dash-badge owner-dash-badge--neutral">Restaurant Prospect</span>' +
+          (isFirst50Restaurant(row)
+            ? ' <span class="owner-dash-badge owner-dash-badge--warm">First 50</span>'
+            : "")
+        );
       }
 
       function restaurantCardMetaHtml(row) {
         if (!isRestaurantRow(row)) return "";
         var snap = restaurantSnapshot(row);
         return (
-          '<div class="owner-dash-restaurant-card-meta">' +
-          "<div><span>Restaurant lane</span><strong>" +
-          esc(snap.lane) +
-          "</strong></div>" +
-          "<div><span>Recommended restaurant offer</span><strong>" +
-          esc(snap.recommendedOffer) +
-          "</strong></div>" +
-          "<div><span>Restaurant stage</span><strong>" +
+          '<div class="owner-dash-restaurant-card-meta owner-dash-restaurant-card-meta--workflow">' +
+          (isFirst50Restaurant(row) ? '<p class="owner-dash-restaurant-first50-line">FIRST 50 TARGET</p>' : "") +
+          "<div><span>Stage</span><strong>" +
           esc(snap.stage) +
           "</strong></div>" +
-          "<div><span>Next restaurant action</span><strong>" +
+          "<div><span>Lane</span><strong>" +
+          esc(snap.lane) +
+          "</strong></div>" +
+          "<div><span>Restaurant type</span><strong>" +
+          esc(snap.restaurantType) +
+          "</strong></div>" +
+          "<div><span>Offer</span><strong>" +
+          esc(snap.recommendedOffer) +
+          "</strong></div>" +
+          "<div><span>Next</span><strong>" +
           esc(snap.nextAction) +
           "</strong></div>" +
           "</div>"
@@ -4306,6 +4562,8 @@
       function restaurantStage(row) {
         var status = normStatus(row && row.status);
         var notes = ownerNotesText(row).toLowerCase();
+        var workflowStage = explicitRestaurantWorkflowStage(row);
+        if (workflowStage) return workflowStage;
         if (status === "lost" || status === "archived" || status === "not a fit" || /restaurant:\s*not a fit|not a fit/.test(notes)) {
           return "Not a fit";
         }
@@ -4327,13 +4585,13 @@
       }
 
       function restaurantNextAction(row) {
-        var manualNextAction = ownerNoteMarkerValue(row, "Restaurant next action:");
-        if (manualNextAction) return manualNextAction;
         var stage = restaurantStage(row);
         var rec = restaurantOfferRecommendation(row);
         var map = {
+          "Needs research": "Research restaurant",
           Prospect: "Research restaurant lane and copy first outreach.",
           Researched: "Copy restaurant first outreach.",
+          "Ready for contact": "Make first contact",
           Contacted: "Send warm follow-up manually if appropriate.",
           Interested: "Ask restaurant discovery questions.",
           "Discovery needed": "Run discovery and confirm the first useful system.",
@@ -4347,8 +4605,12 @@
           "Monthly recap due": "Copy monthly recap message.",
           "Renewal due": "Copy renewal message and review value before renewal.",
           "Case study needed": "Copy testimonial / case study request.",
+          "Not now": "Set follow-up reminder note or archive for later.",
           "Not a fit": "Do not pursue unless owner reopens.",
         };
+        if (explicitRestaurantWorkflowStage(row) && map[stage]) return map[stage];
+        var manualNextAction = ownerNoteMarkerValue(row, "Restaurant next action:");
+        if (manualNextAction) return manualNextAction;
         return map[stage] || "Review restaurant notes and choose the next action.";
       }
 
@@ -4384,13 +4646,54 @@
         return stage === filter || ownerNotesInclude(row, ["restaurant: " + filter, filter]);
       }
 
+      function restaurantNextActionIncludes(row, term) {
+        return String(restaurantNextAction(row) || "").toLowerCase().indexOf(String(term || "").toLowerCase()) !== -1;
+      }
+
+      function restaurantPriorityIsNotFit(row) {
+        return (
+          explicitPriorityKey(row, "business_leads") === "not-a-fit" ||
+          calcBusinessPriority(row || {}).key === "not-a-fit"
+        );
+      }
+
+      function matchesRestaurantFirst50Bucket(row, bucket) {
+        var notes = ownerNotesText(row).toLowerCase();
+        var status = normStatus(row && row.status);
+        if (bucket === "first-50") return isFirst50Restaurant(row);
+        if (bucket === "needs-research") {
+          return notes.indexOf("restaurant stage: needs research") !== -1 || restaurantNextActionIncludes(row, "Research restaurant");
+        }
+        if (bucket === "ready-for-contact") {
+          return notes.indexOf("restaurant stage: ready for contact") !== -1 || restaurantNextActionIncludes(row, "Make first contact");
+        }
+        if (bucket === "contacted") {
+          return notes.indexOf("restaurant stage: contacted") !== -1 || status === "contacted";
+        }
+        if (bucket === "interested") return notes.indexOf("restaurant stage: interested") !== -1;
+        if (bucket === "proposal-ready") {
+          return notes.indexOf("restaurant: proposal ready") !== -1 || notes.indexOf("restaurant stage: proposal ready") !== -1;
+        }
+        if (bucket === "not-now") return notes.indexOf("restaurant stage: not now") !== -1;
+        if (bucket === "not-a-fit") {
+          return notes.indexOf("restaurant stage: not a fit") !== -1 || restaurantPriorityIsNotFit(row);
+        }
+        return true;
+      }
+
+      function matchesRestaurantProspectMode(row) {
+        var mode = state.activeRestaurantProspectMode || "all";
+        if (mode === "all") return true;
+        return matchesRestaurantFirst50Bucket(row, mode);
+      }
+
       function matchesRestaurantPanel(row, mode) {
         if (mode === "clients") {
           if (!isRestaurantClient(row)) return false;
         } else if (!isRestaurantRow(row) || isRestaurantClient(row)) {
           return false;
         }
-        return matchesFilter(row, "business_leads") && matchesRestaurantFilter(row);
+        return matchesFilter(row, "business_leads") && matchesRestaurantFilter(row) && (mode === "clients" || matchesRestaurantProspectMode(row));
       }
 
       function visibleRestaurantRows(mode) {
@@ -10569,8 +10872,168 @@
         ].join("\n");
       }
 
+      function restaurantContactName(lead) {
+        return lead.contact_name || "[contact_name]";
+      }
+
+      function restaurantPhone(lead) {
+        return lead.contact_phone || "[phone]";
+      }
+
+      function restaurantEmail(lead) {
+        return lead.contact_email || "[email]";
+      }
+
+      function buildRestaurantScoutingNotesTemplate(lead) {
+        var snap = restaurantSnapshot(lead);
+        return [
+          "Restaurant scouting notes — " + snap.business,
+          "",
+          "Restaurant type:",
+          snap.restaurantType,
+          "",
+          "Visitor lane:",
+          snap.lane,
+          "",
+          "Why it may fit Where To Go SA:",
+          "- ",
+          "",
+          "What I noticed:",
+          "- Website/menu:",
+          "- Reservation path:",
+          "- Google profile:",
+          "- Social presence:",
+          "- Private dining/group path:",
+          "- QR/funnel opportunity:",
+          "- Review/follow-up opportunity:",
+          "",
+          "Best first offer:",
+          snap.recommendedOffer,
+          "",
+          "Next action:",
+          snap.nextAction,
+        ].join("\n");
+      }
+
+      function buildRestaurantWalkInOpening() {
+        return [
+          "Hi, my name is Willie. I run Where To Go SA, a local visitor guide for people trying to figure out where to eat and where to go in San Antonio.",
+          "",
+          "I’m putting together a small group of restaurants for visitor-facing recommendations and restaurant growth systems. I’m not here to interrupt service — I just wanted to find out who handles marketing, private dining, or owner decisions.",
+          "",
+          "What’s the best way to introduce the restaurant program?",
+        ].join("\n");
+      }
+
+      function buildRestaurantOwnerManagerAsk(lead) {
+        var business = lead.business_name || "[business_name]";
+        return [
+          "Who would be the best person to talk to about getting " + business + " in front of more San Antonio visitors — especially people looking for business dinners, River Walk plans, resort food, date night, brunch, or group dining?",
+          "",
+          "I can send a short overview. Nothing is automatic and there are no fake reservation promises. It is mainly visitor visibility, better customer paths, QR funnels, and AI-assisted restaurant systems if needed.",
+        ].join("\n");
+      }
+
+      function buildRestaurantAfterVisitFollowUp(lead) {
+        var business = lead.business_name || "[business_name]";
+        return [
+          "Hi [contact_name], this is Willie with Where To Go SA. Good meeting you.",
+          "",
+          "I wanted to send a quick recap of what I’m building. Where To Go SA helps visitors decide where to eat and what to do in San Antonio. For restaurants, there are two sides:",
+          "",
+          "1. Visitor visibility through the Restaurant Partner Program.",
+          "2. AI Restaurant Growth Systems for QR funnels, private dining inquiries, guest questions, reviews, reporting, and follow-up.",
+          "",
+          "I’d be happy to show you the simple version first and see if " + business + " is a fit.",
+        ].join("\n");
+      }
+
+      function buildRestaurantInstagramDmOpener(lead) {
+        var business = lead.business_name || "[business_name]";
+        return [
+          "Hi — this is Willie with Where To Go SA.",
+          "",
+          "I’m building a local visitor guide that helps San Antonio visitors find the right restaurant for business dinners, River Walk nights, resort stays, date nights, group dining, brunch, and more.",
+          "",
+          "I’m opening a small number of restaurant partner spots and wanted to see who handles marketing or partnership questions for " + business + ".",
+        ].join("\n");
+      }
+
+      function buildRestaurantPhoneCallOpener(lead) {
+        var business = lead.business_name || "[business_name]";
+        return [
+          "Hi, this is Willie with Where To Go SA. I’m a local San Antonio guide building visitor-facing restaurant recommendations and AI restaurant growth systems.",
+          "",
+          "I’m not calling with a generic ad pitch. I’m trying to find the right person to speak with about getting " + business + " in front of visitors and improving the guest inquiry path.",
+          "",
+          "Who would be best to talk to?",
+        ].join("\n");
+      }
+
+      function buildRestaurantResearchChecklist(lead) {
+        var business = lead.business_name || "[business_name]";
+        return [
+          "Restaurant research checklist — " + business,
+          "",
+          "Before first contact:",
+          "- Confirm website",
+          "- Confirm Google Business Profile",
+          "- Check menu link",
+          "- Check reservation link",
+          "- Check Instagram/Facebook",
+          "- Check if private dining or catering exists",
+          "- Check visitor fit: business dinner, River Walk, resort, date night, group, brunch",
+          "- Check obvious issue: weak website, no QR path, poor inquiry path, reviews, low visibility",
+          "- Choose best first offer",
+          "- Choose first contact method",
+          "- Add owner notes",
+        ].join("\n");
+      }
+
+      function buildRestaurantFirst50ProspectSummary(lead) {
+        var snap = restaurantSnapshot(lead);
+        var priority = calcBusinessPriority(lead);
+        return [
+          "First 50 restaurant prospect — " + snap.business,
+          "",
+          "Stage:",
+          snap.stage,
+          "",
+          "Priority:",
+          priority.label,
+          "",
+          "Visitor lane:",
+          snap.lane,
+          "",
+          "Main opportunity:",
+          snap.mainOpportunity,
+          "",
+          "Recommended offer:",
+          snap.recommendedOffer,
+          "",
+          "Why this restaurant may fit:",
+          snap.mainAngle,
+          "",
+          "Next action:",
+          snap.nextAction,
+          "",
+          "Contact:",
+          restaurantContactName(lead),
+          restaurantPhone(lead),
+          restaurantEmail(lead),
+        ].join("\n");
+      }
+
       function restaurantTextForKind(kind, lead) {
         if (!lead || !isRestaurantRow(lead)) return "";
+        if (kind === "restaurant-scouting-notes-template") return buildRestaurantScoutingNotesTemplate(lead);
+        if (kind === "restaurant-walk-in-opening") return buildRestaurantWalkInOpening(lead);
+        if (kind === "restaurant-owner-manager-ask") return buildRestaurantOwnerManagerAsk(lead);
+        if (kind === "restaurant-after-visit-follow-up") return buildRestaurantAfterVisitFollowUp(lead);
+        if (kind === "restaurant-instagram-dm-opener") return buildRestaurantInstagramDmOpener(lead);
+        if (kind === "restaurant-phone-call-opener") return buildRestaurantPhoneCallOpener(lead);
+        if (kind === "restaurant-research-checklist") return buildRestaurantResearchChecklist(lead);
+        if (kind === "restaurant-first50-prospect-summary") return buildRestaurantFirst50ProspectSummary(lead);
         if (kind === "restaurant-first-outreach") return buildRestaurantFirstOutreach(lead);
         if (kind === "restaurant-warm-follow-up") return buildRestaurantWarmFollowUp(lead);
         if (kind === "restaurant-discovery-questions") return restaurantQuestionText();
@@ -10640,6 +11103,73 @@
           '<div class="owner-dash-restaurant-guardrails">' +
           restaurantCardList("Do not promise", RESTAURANT_GUARDRAILS_DO_NOT_PROMISE) +
           restaurantCardList("Allowed positioning", RESTAURANT_GUARDRAILS_ALLOWED) +
+          "</div>"
+        );
+      }
+
+      function restaurantWorkflowSuggestedStep(stage) {
+        var key = String(stage || "").toLowerCase();
+        if (key === "needs research" || key === "prospect" || key === "researched") {
+          return "Research website, menu, Google profile, social, visitor lane, and likely offer before contacting.";
+        }
+        if (key === "ready for contact") {
+          return "Make first contact with a short local visitor visibility pitch.";
+        }
+        if (key === "contacted") {
+          return "Add notes from the conversation and decide if follow-up, discovery, or proposal is next.";
+        }
+        if (key === "interested" || key === "discovery needed") {
+          return "Ask discovery questions and confirm best first offer.";
+        }
+        if (key === "proposal ready") {
+          return "Copy proposal or pricing assets and send manually.";
+        }
+        if (key === "not now") {
+          return "Set follow-up reminder note or archive for later.";
+        }
+        if (key === "not a fit") {
+          return "Mark not a fit and keep notes private.";
+        }
+        return "Review notes, confirm visitor lane, and choose research, first contact, discovery, or proposal as the next manual step.";
+      }
+
+      function restaurantProspectWorkflowBlock(lead) {
+        var snap = restaurantSnapshot(lead);
+        return (
+          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-workflow-module">' +
+          '<h3 class="owner-dash-detail-section-title">Restaurant Prospect Workflow</h3>' +
+          '<p class="owner-dash-detail-section-note">Move this restaurant from research to first contact to proposal without sending anything automatically.</p>' +
+          '<div class="owner-dash-restaurant-workflow-status">' +
+          '<div><span>Current stage</span><strong>' +
+          esc(snap.stage) +
+          "</strong></div>" +
+          '<div><span>Suggested next step</span><p>' +
+          esc(restaurantWorkflowSuggestedStep(snap.stage)) +
+          "</p></div>" +
+          "</div>" +
+          '<p class="owner-dash-restaurant-workflow-guardrail">Internal prospecting tool only. Nothing is sent, published, invoiced, or promised automatically.</p>' +
+          '<div class="owner-dash-restaurant-command-actions">' +
+          restaurantActionButton("first-50", "Mark First 50 target", false) +
+          restaurantActionButton("needs-research", "Mark needs research", false) +
+          restaurantActionButton("researched", "Mark researched", false) +
+          restaurantActionButton("ready-for-contact", "Mark ready for contact", false) +
+          restaurantActionButton("contacted", "Mark restaurant contacted", false) +
+          restaurantActionButton("interested", "Mark restaurant interested", false) +
+          restaurantActionButton("not-now", "Mark not now", false) +
+          restaurantActionButton("not-a-fit", "Mark restaurant not a fit", false) +
+          restaurantActionButton("proposal-ready", "Mark restaurant proposal ready", true) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-copy-grid"><p class="owner-dash-restaurant-card-label">Restaurant scouting copy tools</p>' +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          restaurantCopyButton("restaurant-scouting-notes-template", "Copy scouting notes template", false) +
+          restaurantCopyButton("restaurant-walk-in-opening", "Copy walk-in opening", false) +
+          restaurantCopyButton("restaurant-owner-manager-ask", "Copy owner/manager ask", false) +
+          restaurantCopyButton("restaurant-after-visit-follow-up", "Copy after-visit follow-up", false) +
+          restaurantCopyButton("restaurant-instagram-dm-opener", "Copy Instagram DM opener", false) +
+          restaurantCopyButton("restaurant-phone-call-opener", "Copy phone call opener", false) +
+          restaurantCopyButton("restaurant-research-checklist", "Copy research checklist", false) +
+          restaurantCopyButton("restaurant-first50-prospect-summary", "Copy First 50 prospect summary", true) +
+          "</div></div>" +
           "</div>"
         );
       }
@@ -10717,6 +11247,7 @@
           restaurantActionButton("renewal-due", "Mark renewal due", false) +
           restaurantActionButton("case-study-needed", "Mark case study needed", false) +
           "</div></div>" +
+          restaurantProspectWorkflowBlock(lead) +
           '<div class="owner-dash-restaurant-command-block"><p class="owner-dash-restaurant-card-label">Restaurant Guardrails</p>' +
           restaurantGuardrailsCard() +
           "</div>" +
@@ -11471,7 +12002,17 @@
       }
 
       function appendRestaurantNote(existing, noteLabel) {
-        return appendCleanOwnerNote(existing, noteLabel);
+        var current = String(existing || "").trim();
+        var cleanNote = String(noteLabel || "").trim();
+        if (!cleanNote) return current;
+        if (current.toLowerCase().indexOf(cleanNote.toLowerCase()) !== -1) return current;
+        var timestamp = "";
+        try {
+          timestamp = new Date().toISOString();
+        } catch {
+          timestamp = "";
+        }
+        return appendCleanOwnerNote(existing, (timestamp ? timestamp + " - " : "") + cleanNote);
       }
 
 
@@ -12328,6 +12869,31 @@
         var archivedClosed = currentKey === "lost" || currentKey === "archived" || currentKey === "not a fit";
         var rec = restaurantOfferRecommendation(lead);
         var configs = {
+          "first-50": {
+            note: "Restaurant First 50: yes.",
+            activity: "Restaurant — First 50 target marked",
+            label: "First 50 target",
+            tone: "ok",
+          },
+          "needs-research": {
+            note: "Restaurant stage: needs research.",
+            activity: "Restaurant — Needs research marked",
+            label: "Needs research",
+            tone: "pending",
+          },
+          researched: {
+            status: currentKey === "new" ? "Reviewed" : null,
+            note: "Restaurant stage: researched.",
+            activity: "Restaurant — Researched marked",
+            label: "Researched",
+            tone: "info",
+          },
+          "ready-for-contact": {
+            note: "Restaurant stage: ready for contact.",
+            activity: "Restaurant — Ready for contact marked",
+            label: "Ready for contact",
+            tone: "ok",
+          },
           prospect: {
             note: "Restaurant: prospect.",
             activity: "Restaurant — Prospect marked",
@@ -12336,11 +12902,18 @@
           },
           contacted: {
             status: currentKey === "new" || currentKey === "reviewed" ? "Contacted" : null,
-            note: "Restaurant: contacted.",
+            note: "Restaurant stage: contacted.",
             activity: "Restaurant — Contacted marked",
             label: "Restaurant contacted",
             tone: "ok",
             lastContacted: true,
+          },
+          interested: {
+            status: closed ? null : "Qualified",
+            note: "Restaurant stage: interested.",
+            activity: "Restaurant — Interested marked",
+            label: "Restaurant interested",
+            tone: "ok",
           },
           "discovery-needed": {
             status: "Needs follow-up",
@@ -12351,10 +12924,23 @@
           },
           "proposal-ready": {
             status: closed ? null : "Qualified",
-            note: "Restaurant: proposal ready. Recommended offer: " + rec.offer + ".",
+            note: "Restaurant stage: proposal ready.\nRestaurant: proposal ready. Recommended offer: " + rec.offer + ".",
             activity: "Restaurant — Proposal ready",
             label: "Restaurant proposal ready",
             tone: "ok",
+          },
+          "not-now": {
+            note: "Restaurant stage: not now.",
+            activity: "Restaurant — Not now marked",
+            label: "Not now",
+            tone: "pending",
+          },
+          "not-a-fit": {
+            status: "Not a fit",
+            note: "Restaurant stage: not a fit.",
+            activity: "Restaurant — Not a fit marked",
+            label: "Restaurant not a fit",
+            tone: "pending",
           },
           "payment-link-needed": {
             note: "Restaurant: payment link needed.",
@@ -12885,6 +13471,11 @@
             (btn.getAttribute("data-restaurant-filter") || "all") === state.activeRestaurantFilter
           );
         });
+        document.querySelectorAll(".owner-dash-restaurant-prospect-mode").forEach(function (btn) {
+          var active = (btn.getAttribute("data-restaurant-prospect-mode") || "all") === state.activeRestaurantProspectMode;
+          btn.classList.toggle("is-active", active);
+          btn.setAttribute("aria-pressed", active ? "true" : "false");
+        });
       }
 
       function openFirstDailyBriefMatch(key) {
@@ -12973,6 +13564,9 @@
         }
         if (ownerDashboardActiveRestaurantMode()) {
           parts.push("Restaurant: " + (state.activeRestaurantFilter || "all"));
+          if (ownerDashboardActiveRestaurantMode() === "prospects") {
+            parts.push("Prospect mode: " + (state.activeRestaurantProspectMode || "all"));
+          }
         }
         return parts.join("; ");
       }
@@ -13170,6 +13764,32 @@
         }
       }
 
+      function copyFirst50RestaurantList() {
+        if (!els.first50Panel) return;
+        var text = buildFirst50RestaurantListCopy(first50RestaurantRows());
+        hideManualCopy(els.first50Panel);
+        function onSuccess() {
+          setCopyFeedback(els.first50Panel, "Copied.");
+        }
+        function onFail() {
+          showManualCopy(els.first50Panel, text);
+          setCopyFeedback(els.first50Panel, "Select text below to copy.", true);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(onSuccess)
+            .catch(function () {
+              if (fallbackExecCopy(text)) onSuccess();
+              else onFail();
+            });
+        } else if (fallbackExecCopy(text)) {
+          onSuccess();
+        } else {
+          onFail();
+        }
+      }
+
       function exportModeForKey(key) {
         for (var i = 0; i < EXPORT_MODES.length; i++) {
           if (EXPORT_MODES[i].key === key) return EXPORT_MODES[i];
@@ -13197,6 +13817,98 @@
       function exportMultilineValue(value) {
         if (value == null || value === "") return "—";
         return String(value).trim() || "—";
+      }
+
+      function restaurantPriorityTextForReport(row) {
+        return exportValue((row && row.priority) || calcBusinessPriority(row || {}).label);
+      }
+
+      function first50RestaurantListRow(row) {
+        var snap = restaurantSnapshot(row);
+        return [
+          "Restaurant name: " + exportValue(snap.business),
+          "Type: " + exportValue(snap.restaurantType),
+          "Location / area: " + exportValue(snap.location),
+          "Visitor lane: " + exportValue(snap.lane),
+          "Main opportunity: " + exportValue(snap.mainOpportunity),
+          "Recommended offer: " + exportValue(snap.recommendedOffer),
+          "Priority: " + restaurantPriorityTextForReport(row),
+          "Stage: " + exportValue(snap.stage),
+          "Next action: " + exportValue(snap.nextAction),
+          "Contact info: " + exportValue([row.contact_name, row.contact_phone, row.contact_email].filter(Boolean).join(" / ")),
+          "Notes: " + exportMultilineValue(row.owner_notes),
+        ].join("\n");
+      }
+
+      function buildFirst50RestaurantListCopy(rows) {
+        var matches = rows || first50RestaurantRows();
+        if (!matches.length) return buildNoRowsExportReport("First 50 Restaurant List");
+        return [
+          "First 50 Restaurant List",
+          "",
+          "Generated:",
+          exportGeneratedAt(),
+          "",
+          matches.map(first50RestaurantListRow).join("\n\n"),
+          "",
+          "Internal prospecting tool only. Nothing is sent, published, invoiced, or promised automatically.",
+        ].join("\n");
+      }
+
+      function first50RestaurantReportLine(row) {
+        var snap = restaurantSnapshot(row);
+        return [
+          exportValue(snap.business),
+          exportValue(row.contact_name),
+          exportValue(row.contact_phone),
+          exportValue(row.contact_email),
+          exportValue(snap.restaurantType),
+          exportValue(snap.lane),
+          exportValue(snap.recommendedOffer),
+          exportValue(snap.stage),
+          exportValue(snap.nextAction),
+          exportMultilineValue(row.owner_notes).replace(/\r?\n/g, " "),
+        ].join(" | ");
+      }
+
+      function first50RestaurantReportGroup(title, rows, bucket) {
+        var matches = rows.filter(function (row) {
+          return matchesRestaurantFirst50Bucket(row, bucket);
+        });
+        return [
+          title,
+          matches.length ? matches.map(first50RestaurantReportLine).join("\n") : "- None",
+        ].join("\n");
+      }
+
+      function buildFirst50RestaurantReport(rows) {
+        var matches = rows || first50RestaurantRows();
+        if (!matches.length) return buildNoRowsExportReport("First 50 Restaurant Report");
+        return [
+          "First 50 Restaurant Report",
+          "",
+          "Generated:",
+          exportGeneratedAt(),
+          "",
+          "Columns:",
+          "Restaurant | Contact | Phone | Email | Type | Lane | Offer | Stage | Next action | Notes",
+          "",
+          first50RestaurantReportGroup("Ready for contact", matches, "ready-for-contact"),
+          "",
+          first50RestaurantReportGroup("Needs research", matches, "needs-research"),
+          "",
+          first50RestaurantReportGroup("Contacted", matches, "contacted"),
+          "",
+          first50RestaurantReportGroup("Interested", matches, "interested"),
+          "",
+          first50RestaurantReportGroup("Proposal ready", matches, "proposal-ready"),
+          "",
+          first50RestaurantReportGroup("Not now", matches, "not-now"),
+          "",
+          first50RestaurantReportGroup("Not a fit", matches, "not-a-fit"),
+          "",
+          "Internal prospecting tool only. Nothing is sent, published, invoiced, or promised automatically.",
+        ].join("\n");
       }
 
       function businessDisplayName(row) {
@@ -13342,6 +14054,9 @@
         if (mode === "restaurant-prospects") {
           return { business: restaurantProspectRows(), transport: [] };
         }
+        if (mode === "restaurant-first50") {
+          return { business: first50RestaurantRows(), transport: [] };
+        }
         if (mode === "restaurant-clients") {
           return { business: restaurantClientRows(), transport: [] };
         }
@@ -13391,6 +14106,9 @@
           restaurantProspects: business.filter(function (row) {
             return isRestaurantRow(row) && !isRestaurantClient(row);
           }).length,
+          restaurantFirst50: business.filter(function (row) {
+            return isRestaurantRow(row) && !isRestaurantClient(row) && isFirst50Restaurant(row);
+          }).length,
           restaurantClients: business.filter(isRestaurantClient).length,
           restaurantProposalReady: business.filter(function (row) {
             return isRestaurantRow(row) && restaurantStage(row) === "Proposal ready";
@@ -13422,6 +14140,7 @@
           ["Proposal-ready", visibleBusiness.filter(matchesProposalReadyReport).length],
           ["Won / active clients", visibleBusiness.filter(matchesWonActiveClientReport).length],
           ["Restaurant prospects", restaurantProspectRows().length],
+          ["First 50 restaurants", first50RestaurantRows().length],
           ["Restaurant clients", restaurantClientRows().length],
           [
             "Restaurant proposal-ready",
@@ -13473,6 +14192,9 @@
           if (counts.restaurantProspects || counts.restaurantClients) {
             els.exportStatus.innerHTML +=
               " | Restaurant rows: " + esc(counts.restaurantProspects + counts.restaurantClients);
+          }
+          if (counts.restaurantFirst50) {
+            els.exportStatus.innerHTML += " | First 50: " + esc(counts.restaurantFirst50);
           }
         }
         if (els.exportEmpty) {
@@ -13978,6 +14700,9 @@
           "Restaurant pipeline:",
           buildRestaurantPipelineReport({ business: restaurantAllRows(), transport: [] }),
           "",
+          "First 50 restaurants:",
+          buildFirst50RestaurantReport(first50RestaurantRows()),
+          "",
           "Weekly recap:",
           buildWeeklyRecap(rows),
           "",
@@ -13995,6 +14720,7 @@
         if (kind === "proposal-ready") return buildProposalReadyReport(rows);
         if (kind === "won-client") return buildWonClientReport(rows);
         if (kind === "restaurant-pipeline") return buildRestaurantPipelineReport({ business: restaurantAllRows(), transport: [] });
+        if (kind === "restaurant-first50") return buildFirst50RestaurantReport(first50RestaurantRows());
         if (kind === "transportation") return buildTransportationReport(rows);
         if (kind === "weekly-recap") return buildWeeklyRecap(rows);
         if (kind === "full-pipeline") return buildFullPipelineReport(rows);
@@ -14153,6 +14879,53 @@
         );
       }
 
+      function first50RestaurantRows() {
+        return restaurantProspectRows().filter(isFirst50Restaurant);
+      }
+
+      function first50SummaryCounts() {
+        var rows = first50RestaurantRows();
+        return {
+          total: rows.length,
+          needsResearch: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "needs-research"); }).length,
+          readyForContact: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "ready-for-contact"); }).length,
+          contacted: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "contacted"); }).length,
+          interested: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "interested"); }).length,
+          proposalReady: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "proposal-ready"); }).length,
+          notNow: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "not-now"); }).length,
+          notAFit: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "not-a-fit"); }).length,
+        };
+      }
+
+      function first50CountHtml(label, value) {
+        return (
+          '<div class="owner-dash-first50-count"><span>' +
+          esc(label) +
+          '</span><strong>' +
+          esc(value) +
+          "</strong></div>"
+        );
+      }
+
+      function renderFirst50SummaryCard() {
+        if (!els.first50Summary) return;
+        var counts = first50SummaryCounts();
+        els.first50Summary.innerHTML =
+          '<div class="owner-dash-first50-counts">' +
+          first50CountHtml("Total First 50", counts.total) +
+          first50CountHtml("Needs research", counts.needsResearch) +
+          first50CountHtml("Ready for contact", counts.readyForContact) +
+          first50CountHtml("Contacted", counts.contacted) +
+          first50CountHtml("Interested", counts.interested) +
+          first50CountHtml("Proposal ready", counts.proposalReady) +
+          first50CountHtml("Not now", counts.notNow) +
+          first50CountHtml("Not a fit", counts.notAFit) +
+          "</div>" +
+          '<div class="owner-dash-first50-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--primary owner-dash-btn--compact" data-action="copy-first50-restaurant-list">Copy First 50 restaurant list</button>' +
+          "</div>";
+      }
+
       function renderRestaurantCard(lead) {
         var priority = calcBusinessPriority(lead);
         var nextAction = calcBusinessNextAction(lead, priority);
@@ -14207,6 +14980,7 @@
         var empty = mode === "clients" ? els.restaurantClientsEmpty : els.restaurantProspectsEmpty;
         var list = mode === "clients" ? els.restaurantClientsList : els.restaurantProspectsList;
         var label = mode === "clients" ? "restaurant clients" : "restaurant prospects";
+        if (mode === "prospects") renderFirst50SummaryCard();
         if (resultCount) resultCount.textContent = "Showing " + filtered.length + " of " + rows.length + " " + label;
         if (!list) return;
         if (!filtered.length) {
@@ -14435,6 +15209,7 @@
         state.activeFilter = "all";
         state.activePriorityFilter = "all";
         state.activeRestaurantFilter = "all";
+        state.activeRestaurantProspectMode = "all";
         state.needsActionOnly = false;
         state.searchQuery = "";
       }
@@ -14462,6 +15237,8 @@
           main_opportunity: formValue(form, "main_opportunity"),
           recommended_offer: formValue(form, "recommended_offer"),
           priority: formValue(form, "priority"),
+          first_50_target: formValue(form, "first_50_target"),
+          research_status: formValue(form, "research_status"),
           next_action: formValue(form, "next_action"),
           internal_notes: formValue(form, "internal_notes"),
         };
@@ -14770,6 +15547,18 @@
             renderAll();
           });
         });
+        var restaurantProspectModes = document.querySelectorAll(".owner-dash-restaurant-prospect-mode");
+        restaurantProspectModes.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            state.activeRestaurantProspectMode = btn.getAttribute("data-restaurant-prospect-mode") || "all";
+            restaurantProspectModes.forEach(function (b) {
+              var active = b === btn;
+              b.classList.toggle("is-active", active);
+              b.setAttribute("aria-pressed", active ? "true" : "false");
+            });
+            renderAll();
+          });
+        });
       }
 
       function initPriorityFilters() {
@@ -14867,6 +15656,11 @@
 
           if (action === "copy-export-report") {
             copyExportReport(btn.getAttribute("data-export-kind"));
+            return;
+          }
+
+          if (action === "copy-first50-restaurant-list") {
+            copyFirst50RestaurantList();
             return;
           }
 
