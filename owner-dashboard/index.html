@@ -420,6 +420,183 @@
       }
     }
 
+    /* Owner Command Dashboard v21 - search, sort, and priority UX polish */
+    .page-owner-dashboard .owner-dash-dashboard-controls {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 16px;
+      padding: clamp(12px, 2vw, 16px);
+      border-radius: 18px;
+      border: 1px solid rgba(20, 184, 166, 0.26);
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.12), transparent 34%),
+        rgba(4, 10, 22, 0.5);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-search-row,
+    .page-owner-dashboard .owner-dash-sort-row {
+      display: grid;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-search-field,
+    .page-owner-dashboard .owner-dash-sort-field {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-control-label {
+      color: rgba(255, 246, 230, 0.88);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.035em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-search-input,
+    .page-owner-dashboard .owner-dash-sort-select {
+      width: 100%;
+      min-height: 44px;
+      min-width: 0;
+      border-radius: 14px;
+      border: 1px solid rgba(20, 184, 166, 0.34);
+      background: rgba(4, 10, 22, 0.72);
+      color: rgba(255, 246, 230, 0.94);
+      font: inherit;
+      font-size: 0.92rem;
+      line-height: 1.25;
+      padding: 10px 12px;
+    }
+
+    .page-owner-dashboard .owner-dash-search-input::placeholder {
+      color: rgba(255, 246, 230, 0.48);
+    }
+
+    .page-owner-dashboard .owner-dash-search-input:focus-visible,
+    .page-owner-dashboard .owner-dash-sort-select:focus-visible,
+    .page-owner-dashboard .owner-dash-copy-visible:focus-visible,
+    .page-owner-dashboard .owner-dash-clear-search:focus-visible {
+      outline: 2px solid rgba(255, 139, 31, 0.7);
+      outline-offset: 2px;
+    }
+
+    .page-owner-dashboard .owner-dash-search-actions,
+    .page-owner-dashboard .owner-dash-copy-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-clear-search,
+    .page-owner-dashboard .owner-dash-copy-visible {
+      appearance: none;
+      min-height: 44px;
+      min-width: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(20, 184, 166, 0.36);
+      background: rgba(20, 184, 166, 0.12);
+      color: rgba(255, 246, 230, 0.9);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 850;
+      line-height: 1.2;
+      padding: 9px 14px;
+      text-align: center;
+    }
+
+    .page-owner-dashboard .owner-dash-copy-visible {
+      border-color: rgba(255, 139, 31, 0.38);
+      background: rgba(255, 139, 31, 0.12);
+    }
+
+    .page-owner-dashboard .owner-dash-controls-note,
+    .page-owner-dashboard .owner-dash-copy-feedback,
+    .page-owner-dashboard .owner-dash-result-count {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.68);
+      font-size: 0.8rem;
+      line-height: 1.35;
+    }
+
+    .page-owner-dashboard .owner-dash-result-count {
+      margin-bottom: 10px;
+      font-weight: 800;
+      color: rgba(255, 246, 230, 0.78);
+    }
+
+    .page-owner-dashboard .owner-dash-copy-feedback {
+      font-weight: 800;
+      color: rgba(94, 234, 212, 0.94);
+    }
+
+    .page-owner-dashboard .owner-dash-copy-feedback--error,
+    .page-owner-dashboard .owner-dash-loaded-row-note {
+      color: #fca5a5;
+    }
+
+    .page-owner-dashboard .owner-dash-loaded-row-note {
+      margin: -2px 0 12px;
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .page-owner-dashboard .owner-dash-empty-title {
+      margin: 0 0 6px;
+      color: var(--on-dark-heading);
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .page-owner-dashboard .owner-dash-empty-copy {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.72);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-controls,
+    .page-owner-dashboard .owner-dash-dashboard-controls *,
+    .page-owner-dashboard .owner-dash-result-count,
+    .page-owner-dashboard .owner-dash-loaded-row-note,
+    .page-owner-dashboard .owner-dash-empty {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    @media (min-width: 680px) {
+      .page-owner-dashboard .owner-dash-search-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+      }
+
+      .page-owner-dashboard .owner-dash-sort-row {
+        grid-template-columns: minmax(12rem, 0.48fr) minmax(0, 1fr);
+        align-items: end;
+      }
+    }
+
+    @media (max-width: 679px) {
+      .page-owner-dashboard .owner-dash-search-input,
+      .page-owner-dashboard .owner-dash-sort-select,
+      .page-owner-dashboard .owner-dash-clear-search,
+      .page-owner-dashboard .owner-dash-copy-visible {
+        width: 100%;
+      }
+
+      .page-owner-dashboard .owner-dash-search-actions,
+      .page-owner-dashboard .owner-dash-copy-row {
+        display: grid;
+      }
+    }
+
     @media (max-width: 420px) {
       .page-owner-dashboard .owner-dash-brief-card {
         padding: 11px;
@@ -1827,6 +2004,36 @@
         gap: 7px;
       }
     }
+
+    /* Owner Command Dashboard v21 - final mobile tap and word-break safety */
+    .page-owner-dashboard :is(.owner-dash-btn, .owner-dash-filter, .owner-dash-tab, .owner-dash-clear-search, .owner-dash-copy-visible) {
+      min-height: 44px;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard :is(.owner-dash-filter, .owner-dash-tab, .owner-dash-badge, .owner-dash-control-label) {
+      white-space: nowrap;
+    }
+
+    .page-owner-dashboard :is(.owner-dash-search-input, .owner-dash-sort-select, .owner-dash-dashboard-controls, .owner-dash-empty, .owner-dash-result-count) {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard :is(.owner-dash-detail-value, .owner-dash-field dd) {
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard :is(.owner-dash-detail-row--long-value .owner-dash-detail-value, .owner-dash-field--long-value dd, .owner-dash-detail-link, .owner-dash-page-path-value) {
+      overflow-wrap: break-word;
+      word-break: normal;
+      hyphens: none;
+    }
   </style>
 </head>
 <body class="page-owner-dashboard">
@@ -2015,6 +2222,7 @@
         <button type="button" class="owner-dash-filter" data-filter="won">Won</button>
         <button type="button" class="owner-dash-filter" data-filter="lost">Lost</button>
         <button type="button" class="owner-dash-filter" data-filter="needs follow-up">Needs follow-up</button>
+        <button type="button" class="owner-dash-filter" data-needs-action-filter="true" aria-pressed="false">Needs action</button>
       </div>
 
       <div class="owner-dash-filters owner-dash-priority-filters" role="group" aria-label="Priority filters">
@@ -2024,6 +2232,45 @@
         <button type="button" class="owner-dash-filter owner-dash-priority-filter" data-priority-filter="low">Low</button>
         <button type="button" class="owner-dash-filter owner-dash-priority-filter" data-priority-filter="not-a-fit">Not a fit</button>
       </div>
+
+      <section class="owner-dash-dashboard-controls owner-dash-glass" aria-label="Dashboard search and sort controls">
+        <div class="owner-dash-search-row">
+          <label class="owner-dash-search-field" for="owner-dash-search">
+            <span class="owner-dash-control-label">Search dashboard</span>
+            <input
+              id="owner-dash-search"
+              class="owner-dash-search-input"
+              type="search"
+              inputmode="search"
+              autocomplete="off"
+              placeholder="Search name, phone, email, problem, notes..."
+            />
+          </label>
+          <div class="owner-dash-search-actions">
+            <button type="button" id="owner-dash-clear-search" class="owner-dash-clear-search" hidden>Clear</button>
+          </div>
+        </div>
+        <div class="owner-dash-sort-row">
+          <label class="owner-dash-sort-field" for="owner-dash-sort">
+            <span class="owner-dash-control-label">Sort</span>
+            <select id="owner-dash-sort" class="owner-dash-sort-select">
+              <option value="needs-action">Needs action first</option>
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="hot">Hot leads first</option>
+              <option value="status">Status</option>
+              <option value="last-contacted">Last contacted</option>
+              <option value="recently-updated">Recently updated</option>
+            </select>
+          </label>
+          <div class="owner-dash-copy-row">
+            <button type="button" id="owner-dash-copy-visible" class="owner-dash-copy-visible" data-action="copy-visible-summary">Copy visible list summary</button>
+            <span id="owner-dash-copy-visible-feedback" class="owner-dash-copy-feedback" hidden aria-live="polite"></span>
+          </div>
+        </div>
+        <p id="owner-dash-priority-note" class="owner-dash-controls-note" hidden>Priority filters apply to business leads.</p>
+        <p id="owner-dash-loaded-row-note" class="owner-dash-loaded-row-note" hidden>Matching item may be outside the loaded rows. Refresh or expand loaded rows later.</p>
+      </section>
 
       <div class="owner-dash-tabs" role="tablist" aria-label="Lead sections">
         <button type="button" class="owner-dash-tab is-active" role="tab" aria-selected="true" aria-controls="panel-business" id="tab-business" data-panel="panel-business">Business Leads</button>
@@ -2035,8 +2282,10 @@
           <h2>Business Leads</h2>
           <p>Latest operator and intake submissions. Update status and owner notes below.</p>
         </header>
+        <p id="business-leads-result-count" class="owner-dash-result-count" aria-live="polite">Showing 0 of 0 business leads</p>
         <div id="business-leads-empty" class="owner-dash-empty" hidden>
-          <p>No matching leads. Submit a test from the Business Operator or change the filter.</p>
+          <p>No requests found yet.</p>
+          <p>New business leads and transportation requests will appear here when submitted.</p>
         </div>
         <div id="business-leads-list" class="owner-dash-card-list"></div>
       </section>
@@ -2046,8 +2295,10 @@
           <h2>Transportation Requests</h2>
           <p>Route operator and human-help handoffs. Update status and owner notes below.</p>
         </header>
+        <p id="transport-result-count" class="owner-dash-result-count" aria-live="polite">Showing 0 of 0 transportation requests</p>
         <div id="transport-empty" class="owner-dash-empty" hidden>
-          <p>No matching requests. Submit a test from Transportation or change the filter.</p>
+          <p>No requests found yet.</p>
+          <p>New business leads and transportation requests will appear here when submitted.</p>
         </div>
         <div id="transport-list" class="owner-dash-card-list"></div>
       </section>
@@ -2307,10 +2558,14 @@
         counts: null,
         activeFilter: "all",
         activePriorityFilter: "all",
+        searchQuery: "",
+        sortKey: "needs-action",
+        needsActionOnly: false,
         activeQueueKey: null,
         tabsReady: false,
         filtersReady: false,
         priorityFiltersReady: false,
+        dashboardControlsReady: false,
         detailOpen: null,
         clientActivity: {},
         proposalSelections: {},
@@ -2343,6 +2598,15 @@
         refreshError: document.getElementById("owner-dash-refresh-error"),
         lastLoaded: document.getElementById("owner-dash-last-loaded"),
         lastLoadedTime: document.getElementById("owner-dash-last-loaded-time"),
+        searchInput: document.getElementById("owner-dash-search"),
+        clearSearchBtn: document.getElementById("owner-dash-clear-search"),
+        sortSelect: document.getElementById("owner-dash-sort"),
+        priorityNote: document.getElementById("owner-dash-priority-note"),
+        loadedRowNote: document.getElementById("owner-dash-loaded-row-note"),
+        copyVisibleBtn: document.getElementById("owner-dash-copy-visible"),
+        copyVisibleFeedback: document.getElementById("owner-dash-copy-visible-feedback"),
+        businessResultCount: document.getElementById("business-leads-result-count"),
+        transportResultCount: document.getElementById("transport-result-count"),
         dailyBrief: document.getElementById("owner-dash-daily-brief"),
         dailyBriefSnapshot: document.getElementById("owner-dash-brief-snapshot"),
         dailyBriefOrder: document.getElementById("owner-dash-brief-order"),
@@ -2422,6 +2686,136 @@
           if (s.indexOf(terms[i]) !== -1) return true;
         }
         return false;
+      }
+
+      function safeText(value) {
+        return value == null ? "" : String(value);
+      }
+
+      function dateMs(value) {
+        if (!value) return 0;
+        var t = new Date(value).getTime();
+        return Number.isNaN(t) ? 0 : t;
+      }
+
+      function firstValue(row, keys) {
+        for (var i = 0; i < keys.length; i++) {
+          var value = row && row[keys[i]];
+          if (value != null && value !== "") return value;
+        }
+        return "";
+      }
+
+      function ownerDashboardActiveTable() {
+        var activePanel = document.querySelector(".owner-dash-panel.is-active");
+        return activePanel && activePanel.id === "panel-transport" ? "transportation_requests" : "business_leads";
+      }
+
+      function rowPriorityText(row, table) {
+        if (table === "business_leads") {
+          var priority = calcBusinessPriority(row);
+          return [
+            priority.label,
+            priority.key,
+            row.priority,
+            row.lead_temperature,
+            row.lead_quality,
+          ].join(" ");
+        }
+        return [
+          row.priority,
+          row.lead_temperature,
+          row.lead_priority,
+          row.priority_label,
+        ].join(" ");
+      }
+
+      function searchTextForRow(row, table) {
+        if (table === "business_leads") {
+          return [
+            row.business_name,
+            row.contact_name,
+            firstValue(row, ["contact_phone", "phone"]),
+            firstValue(row, ["contact_email", "email"]),
+            firstValue(row, ["business_industry", "industry"]),
+            firstValue(row, ["business_location", "location"]),
+            row.current_problem,
+            row.services_interested,
+            row.urgency,
+            row.timeline,
+            row.ai_summary,
+            row.owner_notes,
+            displayStatus(row.status),
+            rowPriorityText(row, table),
+          ].join(" ");
+        }
+        var route = [firstValue(row, ["pickup_area", "pickup"]), firstValue(row, ["destination", "dropoff", "dropoff_area"])]
+          .filter(Boolean)
+          .join(" ");
+        return [
+          row.name,
+          row.phone,
+          row.email,
+          firstValue(row, ["pickup_area", "pickup"]),
+          firstValue(row, ["destination", "dropoff", "dropoff_area"]),
+          route,
+          row.request_type,
+          row.route,
+          row.request_text,
+          row.conversation_excerpt,
+          row.notes,
+          row.owner_notes,
+          displayStatus(row.status),
+        ].join(" ");
+      }
+
+      function matchesSearch(row, table) {
+        var q = String(state.searchQuery || "").trim().toLowerCase();
+        if (!q) return true;
+        return searchTextForRow(row, table).toLowerCase().indexOf(q) !== -1;
+      }
+
+      function transportHasPriorityData(row) {
+        return Boolean(
+          row &&
+            (row.priority ||
+              row.lead_temperature ||
+              row.lead_priority ||
+              row.priority_label)
+        );
+      }
+
+      function hasAnyTransportPriorityData() {
+        return state.transportRows.some(transportHasPriorityData);
+      }
+
+      function explicitPriorityKey(row, table) {
+        var text =
+          table === "business_leads"
+            ? rowPriorityText(row, table)
+            : [row.priority, row.lead_temperature, row.lead_priority, row.priority_label].join(" ");
+        text = String(text || "").toLowerCase();
+        if (/not[\s-]?a[\s-]?fit|spam|unqualified|bad fit|cancelled|handled/.test(text)) return "not-a-fit";
+        if (/hot|urgent|high|priority|time-sensitive/.test(text)) return "hot";
+        if (/warm|standard|medium/.test(text)) return "warm";
+        if (/low|cold/.test(text)) return "low";
+        return "";
+      }
+
+      function needsAction(row) {
+        var status = normStatus(row && row.status);
+        if (status === "new" || status === "reviewed" || status === "needs follow-up") return true;
+        return ownerNotesInclude(row, [
+          "callback",
+          "follow-up",
+          "materials requested",
+          "materials needed",
+          "proposal ready",
+          "quote prepared",
+          "support review due",
+          "testimonial requested",
+          "referral requested",
+        ]);
       }
 
       function calcBusinessPriority(lead) {
@@ -2613,33 +3007,89 @@
         if (table === "business_leads") {
           return calcBusinessPriority(row).key === state.activePriorityFilter;
         }
-        var pri = calcTransportPriority(row);
-        var pf = state.activePriorityFilter;
-        if (pf === "hot") return pri.key === "time-sensitive";
-        if (pf === "warm") return pri.key === "standard";
-        if (pf === "low") return false;
-        if (pf === "not-a-fit") return pri.key === "handled" || pri.key === "cancelled";
-        return true;
+        if (!transportHasPriorityData(row)) return true;
+        return explicitPriorityKey(row, table) === state.activePriorityFilter;
       }
 
       function matchesFilter(row, table) {
         if (state.activeQueueKey) {
-          return matchesTodayActionQueue(state.activeQueueKey, table, row);
+          return (
+            matchesTodayActionQueue(state.activeQueueKey, table, row) &&
+            matchesPriorityFilter(row, table) &&
+            (!state.needsActionOnly || needsAction(row)) &&
+            matchesSearch(row, table)
+          );
         }
         if (state.activeFilter !== "all" && normStatus(row.status) !== normStatus(state.activeFilter)) {
           return false;
         }
-        return matchesPriorityFilter(row, table);
+        if (!matchesPriorityFilter(row, table)) return false;
+        if (state.needsActionOnly && !needsAction(row)) return false;
+        return matchesSearch(row, table);
+      }
+
+      function compareByCreated(a, b, oldestFirst) {
+        var ta = dateMs(a.created_at);
+        var tb = dateMs(b.created_at);
+        return oldestFirst ? ta - tb : tb - ta;
+      }
+
+      function businessPriorityScore(row) {
+        return calcBusinessPriority(row).score || 0;
+      }
+
+      function transportSortPriorityScore(row) {
+        if (transportHasPriorityData(row)) {
+          var explicit = explicitPriorityKey(row, "transportation_requests");
+          if (explicit === "hot") return 5;
+          if (explicit === "warm") return 3;
+          if (explicit === "low") return 1;
+          if (explicit === "not-a-fit") return -1;
+        }
+        return transportPriorityRank(calcTransportPriority(row).key);
+      }
+
+      function statusSortValue(row) {
+        return displayStatus(row.status).toLowerCase();
+      }
+
+      function compareRows(a, b, table) {
+        var sortKey = state.sortKey || "needs-action";
+        if (sortKey === "oldest") return compareByCreated(a, b, true);
+        if (sortKey === "newest") return compareByCreated(a, b, false);
+        if (sortKey === "hot") {
+          var pa = table === "business_leads" ? businessPriorityScore(a) : transportSortPriorityScore(a);
+          var pb = table === "business_leads" ? businessPriorityScore(b) : transportSortPriorityScore(b);
+          if (pb !== pa) return pb - pa;
+          return compareByCreated(a, b, false);
+        }
+        if (sortKey === "status") {
+          var sa = statusSortValue(a);
+          var sb = statusSortValue(b);
+          if (sa !== sb) return sa < sb ? -1 : 1;
+          return compareByCreated(a, b, false);
+        }
+        if (sortKey === "last-contacted") {
+          var ca = dateMs(a.last_contacted_at);
+          var cb = dateMs(b.last_contacted_at);
+          if (cb !== ca) return cb - ca;
+          return compareByCreated(a, b, false);
+        }
+        if (sortKey === "recently-updated") {
+          var ua = dateMs(a.updated_at) || dateMs(a.created_at);
+          var ub = dateMs(b.updated_at) || dateMs(b.created_at);
+          if (ub !== ua) return ub - ua;
+          return compareByCreated(a, b, false);
+        }
+        var na = needsAction(a) ? 1 : 0;
+        var nb = needsAction(b) ? 1 : 0;
+        if (nb !== na) return nb - na;
+        return compareByCreated(a, b, false);
       }
 
       function sortBusinessLeads(leads) {
         return leads.slice().sort(function (a, b) {
-          var pa = calcBusinessPriority(a);
-          var pb = calcBusinessPriority(b);
-          if (pb.score !== pa.score) return pb.score - pa.score;
-          var ta = new Date(a.created_at || 0).getTime();
-          var tb = new Date(b.created_at || 0).getTime();
-          return tb - ta;
+          return compareRows(a, b, "business_leads");
         });
       }
 
@@ -2652,14 +3102,7 @@
 
       function sortTransportRows(rows) {
         return rows.slice().sort(function (a, b) {
-          var pa = calcTransportPriority(a);
-          var pb = calcTransportPriority(b);
-          var ra = transportPriorityRank(pa.key);
-          var rb = transportPriorityRank(pb.key);
-          if (rb !== ra) return rb - ra;
-          var ta = new Date(a.created_at || 0).getTime();
-          var tb = new Date(b.created_at || 0).getTime();
-          return tb - ta;
+          return compareRows(a, b, "transportation_requests");
         });
       }
 
@@ -3580,8 +4023,11 @@
 
       function block(label, value) {
         if (value == null || value === "") return "";
+        var longValue = /email|website|url|id|path/i.test(String(label || ""));
         return (
-          '<div class="owner-dash-field"><dt>' +
+          '<div class="owner-dash-field' +
+          (longValue ? " owner-dash-field--long-value" : "") +
+          '"><dt>' +
           esc(label) +
           '</dt><dd>' +
           esc(value) +
@@ -3929,9 +4375,11 @@
           value == null || value === ""
             ? '<span class="owner-dash-detail-value owner-dash-detail-value--empty">—</span>'
             : '<span class="owner-dash-detail-value">' + esc(value) + "</span>";
+        var longValue = /email|website|url|id|path/i.test(String(label || ""));
         return (
           '<div class="owner-dash-detail-row' +
           (wide ? " owner-dash-detail-row--wide" : "") +
+          (longValue ? " owner-dash-detail-row--long-value" : "") +
           '"><span class="owner-dash-detail-label">' +
           esc(label) +
           "</span>" +
@@ -3952,7 +4400,7 @@
               "</a>"
             : esc(display);
         return (
-          '<div class="owner-dash-detail-row"><span class="owner-dash-detail-label">' +
+          '<div class="owner-dash-detail-row owner-dash-detail-row--long-value"><span class="owner-dash-detail-label">' +
           esc(label) +
           '</span><span class="owner-dash-detail-value">' +
           link +
@@ -10450,6 +10898,7 @@
           panel.classList.toggle("is-active", showPanel);
           panel.hidden = !showPanel;
         });
+        updatePriorityNote();
       }
 
       function setDefaultPanelForQueue(key) {
@@ -10485,10 +10934,77 @@
         return null;
       }
 
+      function tableHasUnloadedRows(table) {
+        if (!state.counts) return false;
+        if (table === "business_leads") {
+          return Number(state.counts.total_business || 0) > state.businessLeads.length;
+        }
+        return Number(state.counts.total_transportation || 0) > state.transportRows.length;
+      }
+
+      function anyTableHasUnloadedRows() {
+        return tableHasUnloadedRows("business_leads") || tableHasUnloadedRows("transportation_requests");
+      }
+
+      function firstVisibleMatch(matches) {
+        if (!matches || !matches.length) return null;
+        var activeTable = ownerDashboardActiveTable();
+        var tables = [activeTable, activeTable === "business_leads" ? "transportation_requests" : "business_leads"];
+        for (var t = 0; t < tables.length; t++) {
+          var table = tables[t];
+          var visible = visibleRowsForTable(table);
+          for (var i = 0; i < visible.length; i++) {
+            for (var j = 0; j < matches.length; j++) {
+              if (matches[j].table === table && String(matches[j].row.id) === String(visible[i].id)) {
+                return matches[j];
+              }
+            }
+          }
+        }
+        return null;
+      }
+
+      function ensureMatchCanRender(match, mode, key) {
+        if (!match) return;
+        if (mode === "queue") {
+          state.activeQueueKey = key;
+        } else {
+          state.activeQueueKey = null;
+        }
+        if (matchesFilter(match.row, match.table)) return;
+        state.searchQuery = "";
+        state.activePriorityFilter = "all";
+        state.needsActionOnly = false;
+        if (mode !== "queue") state.activeFilter = "all";
+        syncFilterButtonStates();
+      }
+
+      function scrollToMatch(match, mode, key) {
+        if (!match) return;
+        updateLoadedRowNote(false);
+        ensureMatchCanRender(match, mode, key);
+        renderAll();
+        setActivePanelForTable(match.table);
+        window.requestAnimationFrame(function () {
+          var card = findRenderedCard(match.table, match.row.id);
+          if (!card) {
+            if (tableHasUnloadedRows(match.table)) updateLoadedRowNote(true);
+            return;
+          }
+          card.scrollIntoView({ behavior: "smooth", block: "start" });
+          card.focus({ preventScroll: true });
+          card.classList.add("is-queue-focus");
+          window.setTimeout(function () {
+            card.classList.remove("is-queue-focus");
+          }, 2400);
+        });
+      }
+
       function syncFilterButtonStates() {
         document.querySelectorAll(".owner-dash-filter[data-filter]").forEach(function (btn) {
           btn.classList.toggle("is-active", (btn.getAttribute("data-filter") || "all") === state.activeFilter);
         });
+        syncNeedsActionButtonState();
         document.querySelectorAll(".owner-dash-priority-filter").forEach(function (btn) {
           btn.classList.toggle(
             "is-active",
@@ -10500,42 +11016,23 @@
       function openFirstDailyBriefMatch(key) {
         if (!briefPriorityRowForKey(key)) return;
         var matches = getDailyBriefMatches(key);
-        if (!matches.length) return;
-        state.activeQueueKey = null;
-        state.activeFilter = "all";
-        state.activePriorityFilter = "all";
-        syncFilterButtonStates();
-        renderAll();
-        setActivePanelForTable(matches[0].table);
-        window.requestAnimationFrame(function () {
-          var card = findRenderedCard(matches[0].table, matches[0].row.id);
-          if (!card) return;
-          card.scrollIntoView({ behavior: "smooth", block: "start" });
-          card.focus({ preventScroll: true });
-          card.classList.add("is-queue-focus");
-          window.setTimeout(function () {
-            card.classList.remove("is-queue-focus");
-          }, 2400);
-        });
+        if (!matches.length) {
+          updateLoadedRowNote(anyTableHasUnloadedRows());
+          return;
+        }
+        scrollToMatch(firstVisibleMatch(matches) || matches[0], "daily-brief", key);
       }
 
       function openFirstQueueMatch(key) {
         if (!todayBucketForKey(key)) return;
         var matches = getTodayActionMatches(key);
         state.activeQueueKey = key;
-        renderAll();
-        if (!matches.length) return;
-        setActivePanelForTable(matches[0].table);
-        window.requestAnimationFrame(function () {
-          var card = findRenderedCard(matches[0].table, matches[0].row.id);
-          if (!card) return;
-          card.scrollIntoView({ behavior: "smooth", block: "start" });
-          card.focus({ preventScroll: true });
-          card.classList.add("is-queue-focus");
-          window.setTimeout(function () {
-            card.classList.remove("is-queue-focus");
-          }, 2200);
-        });
+        if (!matches.length) {
+          renderAll();
+          updateLoadedRowNote(anyTableHasUnloadedRows());
+          return;
+        }
+        scrollToMatch(firstVisibleMatch(matches) || matches[0], "queue", key);
       }
 
       function copyTodayActionList() {
@@ -10564,12 +11061,226 @@
         }
       }
 
-      function renderBusiness(leads) {
-        var filtered = sortBusinessLeads(leads).filter(function (lead) {
-          return matchesFilter(lead, "business_leads");
+      function rowsForTable(table) {
+        return table === "business_leads" ? state.businessLeads : state.transportRows;
+      }
+
+      function visibleRowsForTable(table) {
+        var rows = rowsForTable(table);
+        var sorter = table === "business_leads" ? sortBusinessLeads : sortTransportRows;
+        return sorter(rows).filter(function (row) {
+          return matchesFilter(row, table);
         });
+      }
+
+      function totalRowsLoaded() {
+        return state.businessLeads.length + state.transportRows.length;
+      }
+
+      function activeFiltersLabel(table) {
+        var parts = [];
+        if (state.activeQueueKey) {
+          var bucket = todayBucketForKey(state.activeQueueKey);
+          parts.push("Queue: " + (bucket ? bucket.label : state.activeQueueKey));
+        } else if (state.activeFilter !== "all") {
+          parts.push("Status: " + displayStatus(state.activeFilter));
+        } else {
+          parts.push("Status: all");
+        }
+        parts.push("Needs action: " + (state.needsActionOnly ? "on" : "off"));
+        if (state.activePriorityFilter !== "all") {
+          if (table === "business_leads" || hasAnyTransportPriorityData()) {
+            parts.push("Priority: " + state.activePriorityFilter);
+          } else {
+            parts.push("Priority: business leads only");
+          }
+        } else {
+          parts.push("Priority: all");
+        }
+        return parts.join("; ");
+      }
+
+      function sortLabel() {
+        var select = els.sortSelect;
+        if (select && select.selectedOptions && select.selectedOptions.length) {
+          return select.selectedOptions[0].textContent;
+        }
+        var labels = {
+          "needs-action": "Needs action first",
+          newest: "Newest first",
+          oldest: "Oldest first",
+          hot: "Hot leads first",
+          status: "Status",
+          "last-contacted": "Last contacted",
+          "recently-updated": "Recently updated",
+        };
+        return labels[state.sortKey] || labels["needs-action"];
+      }
+
+      function emptyStateHtml(table, visibleCount) {
+        if (totalRowsLoaded() === 0) {
+          return (
+            '<p class="owner-dash-empty-title">No requests found yet.</p>' +
+            '<p class="owner-dash-empty-copy">New business leads and transportation requests will appear here when submitted.</p>'
+          );
+        }
+        var q = String(state.searchQuery || "").trim();
+        if (q && visibleCount === 0) {
+          return (
+            '<p class="owner-dash-empty-title">No matches for "' +
+            esc(q) +
+            '".</p><p class="owner-dash-empty-copy">Try another name, phone, email, problem, or note.</p>'
+          );
+        }
+        return (
+          '<p class="owner-dash-empty-title">No leads match this filter.</p>' +
+          '<p class="owner-dash-empty-copy">Clear filters or refresh data.</p>'
+        );
+      }
+
+      function updateResultCount(table, visibleCount, totalCount) {
+        var label = table === "business_leads" ? "business leads" : "transportation requests";
+        var el = table === "business_leads" ? els.businessResultCount : els.transportResultCount;
+        if (el) el.textContent = "Showing " + visibleCount + " of " + totalCount + " " + label;
+      }
+
+      function syncSearchControls() {
+        if (els.searchInput && els.searchInput.value !== state.searchQuery) {
+          els.searchInput.value = state.searchQuery;
+        }
+        if (els.clearSearchBtn) {
+          els.clearSearchBtn.hidden = !String(state.searchQuery || "").trim();
+        }
+        if (els.sortSelect && els.sortSelect.value !== state.sortKey) {
+          els.sortSelect.value = state.sortKey;
+        }
+      }
+
+      function syncNeedsActionButtonState() {
+        var btn = document.querySelector("[data-needs-action-filter]");
+        if (!btn) return;
+        btn.classList.toggle("is-active", state.needsActionOnly);
+        btn.setAttribute("aria-pressed", state.needsActionOnly ? "true" : "false");
+      }
+
+      function updatePriorityNote() {
+        if (!els.priorityNote) return;
+        var isTransport = ownerDashboardActiveTable() === "transportation_requests";
+        els.priorityNote.hidden = !(isTransport && !hasAnyTransportPriorityData());
+      }
+
+      function updateLoadedRowNote(showNote) {
+        if (!els.loadedRowNote) return;
+        els.loadedRowNote.hidden = !showNote;
+      }
+
+      function copyVisibleSummaryRow(row, table) {
+        if (table === "business_leads") {
+          var priority = calcBusinessPriority(row);
+          return (
+            "- " +
+            (row.business_name || row.contact_name || "Business lead") +
+            " | Contact: " +
+            (row.contact_name || "—") +
+            " | Phone/email: " +
+            ([row.contact_phone, row.contact_email].filter(Boolean).join(" / ") || "—") +
+            " | Status: " +
+            displayStatus(row.status) +
+            " | Priority: " +
+            priority.label +
+            " | Problem: " +
+            (row.current_problem || row.ai_summary || "—")
+          );
+        }
+        var route = [row.pickup_area, row.destination].filter(Boolean).join(" to ");
+        return (
+          "- " +
+          (row.name || "Transportation request") +
+          " | Contact: " +
+          (row.name || "—") +
+          " | Phone/email: " +
+          ([row.phone, row.email].filter(Boolean).join(" / ") || "—") +
+          " | Status: " +
+          displayStatus(row.status) +
+          " | Priority: " +
+          (transportHasPriorityData(row) ? explicitPriorityKey(row, table) || safeText(row.priority) : "—") +
+          " | Request: " +
+          (route || row.conversation_excerpt || row.notes || row.request_type || "—")
+        );
+      }
+
+      function buildVisibleListSummaryCopy() {
+        var table = ownerDashboardActiveTable();
+        var tab = table === "business_leads" ? "Business Leads" : "Transportation";
+        var rows = visibleRowsForTable(table);
+        var lines = [
+          "Visible Dashboard Summary",
+          "",
+          "Tab:",
+          tab,
+          "",
+          "Search:",
+          String(state.searchQuery || "").trim() || "none",
+          "",
+          "Filters:",
+          activeFiltersLabel(table),
+          "",
+          "Sort:",
+          sortLabel(),
+          "",
+          "Visible rows:",
+        ];
+        if (!rows.length) {
+          lines.push("None");
+        } else {
+          rows.forEach(function (row) {
+            lines.push(copyVisibleSummaryRow(row, table));
+          });
+        }
+        return lines.join("\n");
+      }
+
+      function setVisibleCopyFeedback(message, isError) {
+        if (!els.copyVisibleFeedback) return;
+        els.copyVisibleFeedback.hidden = false;
+        els.copyVisibleFeedback.textContent = message;
+        els.copyVisibleFeedback.className = "owner-dash-copy-feedback" + (isError ? " owner-dash-copy-feedback--error" : "");
+        window.clearTimeout(els.copyVisibleFeedback._copyTimer);
+        els.copyVisibleFeedback._copyTimer = window.setTimeout(function () {
+          els.copyVisibleFeedback.hidden = true;
+          els.copyVisibleFeedback.textContent = "";
+        }, 3000);
+      }
+
+      function copyVisibleListSummary() {
+        var text = buildVisibleListSummaryCopy();
+        function onSuccess() {
+          setVisibleCopyFeedback("Copied.");
+        }
+        function onFail() {
+          setVisibleCopyFeedback("Copy failed. Select visible row details manually.", true);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(onSuccess)
+            .catch(function () {
+              if (fallbackExecCopy(text)) onSuccess();
+              else onFail();
+            });
+        } else if (fallbackExecCopy(text)) {
+          onSuccess();
+        } else {
+          onFail();
+        }
+      }
+
+      function renderBusiness(leads) {
+        var filtered = visibleRowsForTable("business_leads");
+        updateResultCount("business_leads", filtered.length, leads.length);
         if (!filtered.length) {
           show(els.businessEmpty);
+          if (els.businessEmpty) els.businessEmpty.innerHTML = emptyStateHtml("business_leads", filtered.length);
           els.businessList.innerHTML = "";
           return;
         }
@@ -10623,11 +11334,11 @@
       }
 
       function renderTransport(rows) {
-        var filtered = sortTransportRows(rows).filter(function (row) {
-          return matchesFilter(row, "transportation_requests");
-        });
+        var filtered = visibleRowsForTable("transportation_requests");
+        updateResultCount("transportation_requests", filtered.length, rows.length);
         if (!filtered.length) {
           show(els.transportEmpty);
+          if (els.transportEmpty) els.transportEmpty.innerHTML = emptyStateHtml("transportation_requests", filtered.length);
           els.transportList.innerHTML = "";
           return;
         }
@@ -10682,10 +11393,13 @@
       }
 
       function renderAll() {
+        syncSearchControls();
+        syncNeedsActionButtonState();
         renderDailyBrief();
         renderTodayActions();
         renderBusiness(state.businessLeads);
         renderTransport(state.transportRows);
+        updatePriorityNote();
         if (els.countHotLeads) {
           els.countHotLeads.textContent = String(countHotLeadsFromState());
         }
@@ -11010,6 +11724,7 @@
               panel.classList.toggle("is-active", showPanel);
               panel.hidden = !showPanel;
             });
+            updatePriorityNote();
           });
         });
       }
@@ -11027,6 +11742,13 @@
             renderAll();
           });
         });
+        var needsActionBtn = document.querySelector("[data-needs-action-filter]");
+        if (needsActionBtn) {
+          needsActionBtn.addEventListener("click", function () {
+            state.needsActionOnly = !state.needsActionOnly;
+            renderAll();
+          });
+        }
       }
 
       function initPriorityFilters() {
@@ -11042,6 +11764,38 @@
             renderAll();
           });
         });
+      }
+
+      function initDashboardControls() {
+        if (state.dashboardControlsReady) return;
+        state.dashboardControlsReady = true;
+        if (els.searchInput) {
+          els.searchInput.addEventListener("input", function () {
+            state.searchQuery = els.searchInput.value || "";
+            updateLoadedRowNote(false);
+            renderAll();
+          });
+        }
+        if (els.clearSearchBtn) {
+          els.clearSearchBtn.addEventListener("click", function () {
+            state.searchQuery = "";
+            if (els.searchInput) {
+              els.searchInput.value = "";
+              els.searchInput.focus();
+            }
+            updateLoadedRowNote(false);
+            renderAll();
+          });
+        }
+        if (els.sortSelect) {
+          els.sortSelect.addEventListener("change", function () {
+            state.sortKey = els.sortSelect.value || "needs-action";
+            renderAll();
+          });
+        }
+        if (els.copyVisibleBtn) {
+          els.copyVisibleBtn.addEventListener("click", copyVisibleListSummary);
+        }
       }
 
       function initWorkflowDelegation() {
@@ -11222,6 +11976,7 @@
         initTabs();
         initFilters();
         initPriorityFilters();
+        initDashboardControls();
       }
 
       function initRefresh() {
