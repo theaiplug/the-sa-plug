@@ -1736,6 +1736,14 @@
           "pricing-monthly-support": "Monthly support pitch copied",
           "pricing-caution-notes": "Pricing caution notes copied",
           "pricing-internal-quote-notes": "Internal quote notes copied",
+          "quote-outline": "Quote outline copied",
+          "quote-invoice-notes": "Invoice notes copied",
+          "quote-line-items": "Quote line items copied",
+          "quote-deposit-terms": "Quote deposit terms copied",
+          "quote-monthly-support": "Quote monthly support add-on copied",
+          "quote-follow-up": "Quote follow-up text copied",
+          "quote-approval": "Quote approval message copied",
+          "quote-prep-bundle": "Full quote prep bundle copied",
         };
         return labels[kind] || "Copy action completed";
       }
@@ -3459,6 +3467,17 @@
           range: "$750–$1,500",
           payment: "50% to start, 50% before launch",
           monthly: "$150–$300/mo",
+          quotePosition:
+            "Start near $1,200 if scope includes page cleanup + lead path; start near $750 if very simple.",
+          deposit: "50% to start",
+          milestone: "50% before launch",
+          lineItems: [
+            "Landing page / customer path cleanup",
+            "CTA and request flow improvement",
+            "Basic lead capture setup",
+            "Owner-approved copy updates",
+            "Launch QA",
+          ],
           confidenceBase: "Medium",
           goodRange: "$750–$950",
           betterRange: "$1,000–$1,500",
@@ -3468,6 +3487,17 @@
           range: "$1,500–$3,500",
           payment: "50% to start, 25% after intake/dashboard preview, 25% before launch",
           monthly: "$300–$750/mo",
+          quotePosition: "Start near $2,500 for smart intake + alerts + basic dashboard.",
+          deposit: "50% to start",
+          milestone: "25% after intake/dashboard preview, 25% before launch",
+          lineItems: [
+            "Smart intake flow",
+            "Request/question structure",
+            "Owner email alert",
+            "Basic dashboard visibility",
+            "Follow-up copy tools",
+            "Launch QA",
+          ],
           confidenceBase: "Medium",
           goodRange: "$1,500–$2,000",
           betterRange: "$2,250–$3,500",
@@ -3477,6 +3507,19 @@
           range: "$3,500–$7,500",
           payment: "40% to start, 30% after workflow/dashboard preview, 30% before launch",
           monthly: "$750–$1,500/mo",
+          quotePosition:
+            "Start near $5,500 if the scope includes intake, dashboard, workflow statuses, and follow-up tools.",
+          deposit: "40% to start",
+          milestone: "30% after workflow/dashboard preview, 30% before launch",
+          lineItems: [
+            "Workflow mapping",
+            "Intake / request path",
+            "Owner dashboard layer",
+            "Lead status workflow",
+            "Follow-up copy tools",
+            "Proposal-ready workflow",
+            "Launch QA",
+          ],
           confidenceBase: "Medium",
           goodRange: "$3,500–$4,500",
           betterRange: "$5,000–$7,500",
@@ -3484,14 +3527,45 @@
         },
         "Full AI Growth System": {
           range: "$7,500–$15,000+",
-          payment: "Phase 1 deposit, then milestone billing",
+          payment: "Phase 1 deposit, then milestone billing after phase scope is confirmed",
           monthly: "$1,500–$3,500+/mo",
+          quotePosition:
+            "Do not quote final number until discovery. Start with a paid Phase 1 planning/build sprint if needed.",
+          deposit: "Phase 1 deposit",
+          milestone: "Milestone billing after phase scope is confirmed",
+          lineItems: [
+            "Website/customer path review",
+            "Intake and lead capture system",
+            "Owner dashboard layer",
+            "Follow-up workflow",
+            "Automation roadmap",
+            "AI assistant planning",
+            "Phase one launch QA",
+          ],
           confidenceBase: "Needs discovery",
           goodRange: "$7,500–$9,500",
           betterRange: "$10,000–$15,000",
           bestRange: "$15,000+",
         },
       };
+
+      var QUOTE_NOT_INCLUDED_ITEMS = [
+        "Complex CRM migration",
+        "Fully autonomous AI decisions",
+        "Guaranteed booking/revenue claims",
+        "Replacing staff",
+        "Unapproved customer-facing automations",
+      ];
+
+      var QUOTE_MONTHLY_SUPPORT_ITEMS = [
+        "Monthly dashboard review",
+        "Intake/form improvements",
+        "Follow-up copy improvements",
+        "Lead source review",
+        "Workflow refinements",
+        "New content/page support if included",
+        "Automation planning",
+      ];
 
       function pricingLogicForPackage(packageName) {
         if (PRICING_LOGIC[packageName]) return PRICING_LOGIC[packageName];
@@ -3602,6 +3676,209 @@
         };
         pricing.options = goodBetterBestOptions(pricing);
         return pricing;
+      }
+
+      function calcQuoteInvoicePrep(lead) {
+        var p = calcPricingBuilder(lead);
+        var logic = p.logic || {};
+        var lineItems = uniqueLimitedBullets(logic.lineItems || [], 7);
+        while (lineItems.length < 4) {
+          lineItems.push(p.firstDeliverable || "First useful system build");
+        }
+        return {
+          business: p.business,
+          contact: lead.contact_name || "there",
+          recommendedPackage: p.recommendedPackage,
+          projectType: p.projectType,
+          priceRange: p.priceRange,
+          quotePosition: logic.quotePosition || "Use the range midpoint after scope, approvals, and timeline are confirmed.",
+          depositRecommendation: logic.deposit || "Initial project payment to start",
+          milestoneRecommendation: logic.milestone || "Milestone payment before launch or handoff",
+          paymentTerms: logic.payment || p.paymentStructure,
+          monthlySupport: p.monthlySupport,
+          quoteConfidence: p.confidence,
+          mainPainPoint: p.mainPainPoint || "the main bottleneck",
+          firstDeliverable: p.firstDeliverable || "the first useful system",
+          lineItems: lineItems,
+          invoiceTitle: p.recommendedPackage + " — Phase 1 Build",
+          invoiceDescription:
+            "Phase 1 business system build for " +
+            p.business +
+            ", focused on " +
+            (p.mainPainPoint || "the main bottleneck") +
+            ", " +
+            (p.firstDeliverable || "the first useful system") +
+            ", owner visibility, and human-approved launch steps.",
+        };
+      }
+
+      function buildQuoteOutlineCopy(lead) {
+        var q = calcQuoteInvoicePrep(lead);
+        return [
+          "Quote outline — " + q.business,
+          "",
+          "Recommended package:",
+          q.recommendedPackage,
+          "",
+          "Project type:",
+          q.projectType,
+          "",
+          "Suggested quote range:",
+          q.priceRange,
+          "",
+          "Recommended quote position:",
+          q.quotePosition,
+          "",
+          "Deposit recommendation:",
+          q.depositRecommendation,
+          "",
+          "Milestone recommendation:",
+          q.milestoneRecommendation,
+          "",
+          "Monthly support option:",
+          q.monthlySupport,
+          "",
+          "Suggested line items:",
+          bulletText(q.lineItems),
+          "",
+          "Quote confidence:",
+          q.quoteConfidence,
+          "",
+          "Before final quote, confirm workflow, scope, integrations, approval steps, and timeline.",
+        ].join("\n");
+      }
+
+      function buildQuoteInvoiceNotesCopy(lead) {
+        var q = calcQuoteInvoicePrep(lead);
+        return [
+          "Invoice notes — " + q.business,
+          "",
+          "Invoice title:",
+          q.invoiceTitle,
+          "",
+          "Description:",
+          q.invoiceDescription,
+          "",
+          "Line items:",
+          bulletText(q.lineItems),
+          "",
+          "Payment terms:",
+          q.paymentTerms,
+          "",
+          "Not included in phase one:",
+          "- Complex CRM migration",
+          "- Fully autonomous AI decisions",
+          "- Guaranteed booking or revenue claims",
+          "- Replacing staff",
+          "- Unapproved customer-facing automations",
+        ].join("\n");
+      }
+
+      function buildQuoteLineItemsCopy(lead) {
+        var q = calcQuoteInvoicePrep(lead);
+        return [
+          "Suggested line items for " + q.business,
+          "",
+          "Package:",
+          q.recommendedPackage,
+          "",
+          "Line items:",
+          bulletText(q.lineItems),
+        ].join("\n");
+      }
+
+      function buildQuoteDepositTermsCopy(lead) {
+        var q = calcQuoteInvoicePrep(lead);
+        return [
+          "Deposit terms for " + q.business,
+          "",
+          "Recommended package:",
+          q.recommendedPackage,
+          "",
+          "Suggested payment structure:",
+          q.paymentTerms,
+          "",
+          "Plain-English terms:",
+          "To begin, the first payment starts the workflow mapping and initial build. The next milestone is due after the first working preview. The final milestone is due before launch or handoff. Customer-facing wording, routing, and approval steps remain owner-approved before anything goes live.",
+        ].join("\n");
+      }
+
+      function buildQuoteMonthlySupportCopy(lead) {
+        var q = calcQuoteInvoicePrep(lead);
+        return [
+          "Monthly support add-on — " + q.business,
+          "",
+          "Recommended support range:",
+          q.monthlySupport,
+          "",
+          "This support is for ongoing improvement of the customer path, lead intake, follow-up workflow, dashboard visibility, and next-phase planning.",
+          "",
+          "Possible support items:",
+          bulletText(QUOTE_MONTHLY_SUPPORT_ITEMS),
+        ].join("\n");
+      }
+
+      function buildQuoteFollowUpCopy(lead) {
+        var q = calcQuoteInvoicePrep(lead);
+        return (
+          "Hi " +
+          q.contact +
+          ", I mapped the first quote direction for " +
+          q.business +
+          ". I’d keep phase one focused on " +
+          q.firstDeliverable +
+          " so we solve the main bottleneck first without overbuilding. The next step is confirming scope, approval points, and timeline so the quote is clean."
+        );
+      }
+
+      function buildQuoteApprovalCopy(lead) {
+        var q = calcQuoteInvoicePrep(lead);
+        return (
+          "Hi " +
+          q.contact +
+          ", before I finalize the quote, I want to confirm the first-phase scope: " +
+          q.recommendedPackage +
+          ", focused on " +
+          q.mainPainPoint +
+          " with " +
+          q.firstDeliverable +
+          ". Once you confirm the scope and approval steps, I can tighten the quote and next steps."
+        );
+      }
+
+      function buildQuotePrepBundleCopy(lead) {
+        var q = calcQuoteInvoicePrep(lead);
+        return [
+          "Quote prep bundle — " + q.business,
+          "",
+          "Quote outline:",
+          buildQuoteOutlineCopy(lead),
+          "",
+          "Invoice notes:",
+          buildQuoteInvoiceNotesCopy(lead),
+          "",
+          "Deposit terms:",
+          buildQuoteDepositTermsCopy(lead),
+          "",
+          "Monthly support add-on:",
+          buildQuoteMonthlySupportCopy(lead),
+          "",
+          "Quote follow-up:",
+          buildQuoteFollowUpCopy(lead),
+        ].join("\n");
+      }
+
+      function quoteTextForKind(kind, lead) {
+        if (!lead) return "";
+        if (kind === "quote-outline") return buildQuoteOutlineCopy(lead);
+        if (kind === "quote-invoice-notes") return buildQuoteInvoiceNotesCopy(lead);
+        if (kind === "quote-line-items") return buildQuoteLineItemsCopy(lead);
+        if (kind === "quote-deposit-terms") return buildQuoteDepositTermsCopy(lead);
+        if (kind === "quote-monthly-support") return buildQuoteMonthlySupportCopy(lead);
+        if (kind === "quote-follow-up") return buildQuoteFollowUpCopy(lead);
+        if (kind === "quote-approval") return buildQuoteApprovalCopy(lead);
+        if (kind === "quote-prep-bundle") return buildQuotePrepBundleCopy(lead);
+        return "";
       }
 
       function buildPricingRecommendationCopy(lead) {
@@ -3884,6 +4161,108 @@
           '<p class="owner-dash-pricing-safe-note">Internal guidance only. This is not a public quote and nothing is sent automatically.</p>' +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<span class="owner-dash-pricing-feedback" data-pricing-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
+      function quotePrepSnapshotItem(label, value, wide) {
+        return (
+          '<div class="owner-dash-quote-snapshot-item' +
+          (wide ? " owner-dash-quote-snapshot-item--wide" : "") +
+          '"><span>' +
+          esc(label) +
+          '</span><strong>' +
+          esc(value || "—") +
+          "</strong></div>"
+        );
+      }
+
+      function quotePrepCopyButton(kind, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="copy-quote" data-copy-kind="' +
+          esc(kind) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function quotePrepMiniRow(label, value) {
+        return (
+          '<div class="owner-dash-quote-mini-row"><span>' +
+          esc(label) +
+          "</span><strong>" +
+          esc(value || "—") +
+          "</strong></div>"
+        );
+      }
+
+      function quoteInvoicePrepBlock(lead) {
+        var q = calcQuoteInvoicePrep(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--quote-prep" data-quote-invoice-prep>' +
+          '<div class="owner-dash-quote-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Quote / Invoice Prep</h3>' +
+          '<p class="owner-dash-detail-section-note">Prepare a clean quote structure, deposit terms, and invoice notes. Copy only — nothing is sent automatically.</p></div>' +
+          '<span class="owner-dash-quote-badge">Not a final invoice</span>' +
+          "</div>" +
+          '<div class="owner-dash-quote-money-card">' +
+          '<p class="owner-dash-quote-card-label">Quote Snapshot</p>' +
+          '<div class="owner-dash-quote-snapshot">' +
+          quotePrepSnapshotItem("Business", q.business, false) +
+          quotePrepSnapshotItem("Recommended package", q.recommendedPackage, false) +
+          quotePrepSnapshotItem("Project type", q.projectType, false) +
+          quotePrepSnapshotItem("Suggested quote range", q.priceRange, false) +
+          quotePrepSnapshotItem("Recommended quote position", q.quotePosition, true) +
+          quotePrepSnapshotItem("Deposit recommendation", q.depositRecommendation, false) +
+          quotePrepSnapshotItem("Milestone recommendation", q.milestoneRecommendation, true) +
+          quotePrepSnapshotItem("Monthly support option", q.monthlySupport, false) +
+          quotePrepSnapshotItem("Quote confidence", q.quoteConfidence, false) +
+          "</div></div>" +
+          '<div class="owner-dash-quote-grid">' +
+          '<article class="owner-dash-quote-card owner-dash-quote-card--line-items">' +
+          '<p class="owner-dash-quote-card-label">Suggested Line Items</p>' +
+          bulletListHtml(q.lineItems, "owner-dash-quote-list") +
+          "</article>" +
+          '<article class="owner-dash-quote-card owner-dash-quote-card--invoice">' +
+          '<p class="owner-dash-quote-card-label">Invoice Notes Preview</p>' +
+          quotePrepMiniRow("Invoice title", q.invoiceTitle) +
+          quotePrepMiniRow("Invoice description", q.invoiceDescription) +
+          quotePrepMiniRow("Payment terms", q.paymentTerms) +
+          '<div class="owner-dash-quote-not-included"><span>Not included</span>' +
+          bulletListHtml(QUOTE_NOT_INCLUDED_ITEMS, "owner-dash-quote-list owner-dash-quote-list--compact") +
+          "</div></article>" +
+          '<article class="owner-dash-quote-card owner-dash-quote-card--support">' +
+          '<p class="owner-dash-quote-card-label">Optional Monthly Support Add-On</p>' +
+          quotePrepMiniRow("Recommended monthly support", q.monthlySupport) +
+          '<p class="owner-dash-quote-support-positioning">Ongoing workflow improvements, follow-up copy updates, dashboard refinements, intake adjustments, reporting, and next-phase planning.</p>' +
+          bulletListHtml(QUOTE_MONTHLY_SUPPORT_ITEMS, "owner-dash-quote-list owner-dash-quote-list--compact") +
+          "</article></div>" +
+          '<div class="owner-dash-quote-copy">' +
+          '<p class="owner-dash-quote-card-label">Copy quote prep assets</p>' +
+          '<div class="owner-dash-quote-copy-actions">' +
+          quotePrepCopyButton("quote-outline", "Copy quote outline", true) +
+          quotePrepCopyButton("quote-invoice-notes", "Copy invoice notes", false) +
+          quotePrepCopyButton("quote-line-items", "Copy line items", false) +
+          quotePrepCopyButton("quote-deposit-terms", "Copy deposit terms", false) +
+          quotePrepCopyButton("quote-monthly-support", "Copy monthly support add-on", false) +
+          quotePrepCopyButton("quote-follow-up", "Copy quote follow-up text", false) +
+          quotePrepCopyButton("quote-approval", "Copy quote approval message", false) +
+          quotePrepCopyButton("quote-prep-bundle", "Copy full quote prep bundle", true) +
+          "</div></div>" +
+          '<div class="owner-dash-quote-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="mark-quote-prepared">Mark quote prepared</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="mark-invoice-ready">Mark invoice ready</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="mark-deposit-requested">Mark deposit requested</button>' +
+          "</div>" +
+          '<p class="owner-dash-quote-safe-note">Internal guidance and copy-only prep. This is not a final invoice, and nothing is sent automatically.</p>' +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<span class="owner-dash-quote-feedback" data-quote-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
           '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
           '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
@@ -5133,6 +5512,7 @@
           followUpCommandCenterBlock(lead) +
           clientProposalSheetBlock(lead) +
           pricingBuilderBlock(lead) +
+          quoteInvoicePrepBlock(lead) +
           groupedToolsBlock("business_leads") +
           quickStatusBlock("business_leads", lead.status) +
           workflowBlock("business_leads", lead) +
@@ -5296,6 +5676,8 @@
         if (table === "business_leads") {
           var commandText = followUpCommandTextForKind(kind, row);
           if (commandText) return commandText;
+          var quoteText = quoteTextForKind(kind, row);
+          if (quoteText) return quoteText;
           var pricingText = pricingTextForKind(kind, row);
           if (pricingText) return pricingText;
           var dealText = dealTextForKind(kind, row);
@@ -5321,12 +5703,14 @@
         var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
         if (!sheet || !state.detailOpen) return;
         var section =
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--quote-prep")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--pricing")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--proposal")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--deal")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--opportunity")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--tools")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section")) ||
+          sheet.querySelector(".owner-dash-detail-section--quote-prep") ||
           sheet.querySelector(".owner-dash-detail-section--pricing") ||
           sheet.querySelector(".owner-dash-detail-section--proposal") ||
           sheet.querySelector(".owner-dash-detail-section--deal") ||
@@ -5433,6 +5817,14 @@
         fb.className = "owner-dash-pricing-feedback" + (isError ? " owner-dash-pricing-feedback--error" : "");
       }
 
+      function setQuotePrepFeedback(section, message, isError) {
+        var fb = section && section.querySelector("[data-quote-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-quote-feedback" + (isError ? " owner-dash-quote-feedback--error" : "");
+      }
+
       function appendCleanOwnerNote(existing, note) {
         var current = String(existing || "").trim();
         var cleanNote = String(note || "").trim();
@@ -5475,6 +5867,24 @@
           existing,
           "Quote needed: confirm scope for " + pricing.recommendedPackage + "."
         );
+      }
+
+      function appendQuotePreparedNote(existing, quote) {
+        return appendCleanOwnerNote(
+          existing,
+          "Quote prepared: " + quote.recommendedPackage + " / " + quote.priceRange + "."
+        );
+      }
+
+      function appendInvoiceReadyNote(existing, quote) {
+        return appendCleanOwnerNote(
+          existing,
+          "Invoice ready: " + quote.recommendedPackage + " / " + quote.paymentTerms + "."
+        );
+      }
+
+      function appendDepositRequestedNote(existing, quote) {
+        return appendCleanOwnerNote(existing, "Deposit requested: " + quote.recommendedPackage + ".");
       }
 
       function dealStageActionConfig(stageKey, lead) {
@@ -5666,6 +6076,8 @@
         if (clientProposalSection) clientProposalSection.outerHTML = clientProposalSheetBlock(hit.row);
         var pricingSection = sheet.querySelector(".owner-dash-detail-section--pricing");
         if (pricingSection) pricingSection.outerHTML = pricingBuilderBlock(hit.row);
+        var quoteSection = sheet.querySelector(".owner-dash-detail-section--quote-prep");
+        if (quoteSection) quoteSection.outerHTML = quoteInvoicePrepBlock(hit.row);
       }
 
       function handleClientProposalToneSelection(sheet, sourceBtn) {
@@ -5815,6 +6227,118 @@
           })
           .catch(function () {
             setPricingFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            buttons.forEach(function (b) {
+              b.disabled = false;
+            });
+            if (sourceBtn) {
+              sourceBtn.textContent =
+                sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
+            }
+          });
+      }
+
+      function quotePrepStatusConfig(action, quote, currentStatus) {
+        var currentKey = normStatus(currentStatus);
+        if (action === "mark-quote-prepared") {
+          return {
+            status: currentKey === "new" || currentKey === "reviewed" ? "Qualified" : currentStatus,
+            note: function (notes) {
+              return appendQuotePreparedNote(notes, quote);
+            },
+            activity: "Quote — Quote prepared",
+            success: "Quote prepared marked. Nothing was sent.",
+            saving: "Saving quote-prepared note...",
+            tone: "ok",
+          };
+        }
+        if (action === "mark-invoice-ready") {
+          return {
+            status: currentKey === "won" ? currentStatus : "Qualified",
+            note: function (notes) {
+              return appendInvoiceReadyNote(notes, quote);
+            },
+            activity: "Quote — Invoice ready",
+            success: "Invoice ready marked. Nothing was sent.",
+            saving: "Saving invoice-ready note...",
+            tone: "ok",
+          };
+        }
+        if (action === "mark-deposit-requested") {
+          return {
+            status: currentKey === "won" ? currentStatus : "Qualified",
+            note: function (notes) {
+              return appendDepositRequestedNote(notes, quote);
+            },
+            activity: "Quote — Deposit requested",
+            success: "Deposit requested marked. Nothing was sent.",
+            saving: "Saving deposit-requested note...",
+            tone: "pending",
+          };
+        }
+        return null;
+      }
+
+      function handleQuotePrepStatusAction(sheet, sourceBtn, action) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet) return;
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        var quote = calcQuoteInvoicePrep(hit.row);
+        var section =
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--quote-prep")) ||
+          sheet.querySelector(".owner-dash-detail-section--quote-prep");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var previousNotes = String(hit.row.owner_notes || "");
+        var currentStatus = displayStatus(hit.row.status);
+        var config = quotePrepStatusConfig(action, quote, currentStatus);
+        if (!config) return;
+        var nextStatus = config.status;
+        if (!nextStatus || nextStatus === "—") nextStatus = "Qualified";
+        var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
+        var nextNotes = config.note(notesBase);
+        var buttons = section
+          ? section.querySelectorAll(
+              '[data-action="mark-quote-prepared"], [data-action="mark-invoice-ready"], [data-action="mark-deposit-requested"]'
+            )
+          : [];
+        buttons.forEach(function (b) {
+          b.disabled = true;
+        });
+        if (sourceBtn) {
+          sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+          sourceBtn.textContent = "Saving...";
+        }
+        setQuotePrepFeedback(section, config.saving, false);
+
+        postUpdate(table, id, {
+          status: nextStatus,
+          owner_notes: nextNotes,
+        })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setQuotePrepFeedback(
+                section,
+                (result.data && result.data.error) || "Could not update quote prep status. Try saving manually.",
+                true
+              );
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(table, id, config.activity, config.tone, "");
+            renderAll();
+            var freshSection = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--quote-prep");
+            setQuotePrepFeedback(freshSection || section, config.success, false);
+            refreshCounts();
+          })
+          .catch(function () {
+            setQuotePrepFeedback(section, "Network error. Try again.", true);
           })
           .finally(function () {
             buttons.forEach(function (b) {
@@ -6734,6 +7258,7 @@
               action === "copy-opportunity" ||
               action === "copy-deal" ||
               action === "copy-pricing" ||
+              action === "copy-quote" ||
               action === "copy-client-proposal")
           ) {
             copyFromDetail(btn.getAttribute("data-copy-kind"), btn);
@@ -6762,6 +7287,16 @@
 
           if (sheet && (action === "mark-pricing-discussed" || action === "mark-quote-needed")) {
             handlePricingStatusAction(sheet, btn, action);
+            return;
+          }
+
+          if (
+            sheet &&
+            (action === "mark-quote-prepared" ||
+              action === "mark-invoice-ready" ||
+              action === "mark-deposit-requested")
+          ) {
+            handleQuotePrepStatusAction(sheet, btn, action);
             return;
           }
 
