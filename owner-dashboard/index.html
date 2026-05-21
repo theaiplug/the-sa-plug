@@ -173,6 +173,8 @@
               <li>Hot leads to contact</li>
               <li>Needs follow-up</li>
               <li>Ready for proposal</li>
+              <li>Proposal follow-up due</li>
+              <li>Negotiating</li>
               <li>New transportation requests</li>
               <li>Needs notes</li>
               <li>Waiting on reply</li>
@@ -193,12 +195,32 @@
             <p class="owner-dash-stat-value owner-dash-stat-value--hot" id="count-hot-leads">—</p>
             <p class="owner-dash-stat-meta">Loaded business leads</p>
           </article>
-          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact owner-dash-stat--mobile-optional">
             <p class="owner-dash-stat-label">Needs follow-up</p>
             <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-needs-follow-up">—</p>
             <p class="owner-dash-stat-meta">Both pipelines</p>
           </article>
           <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
+            <p class="owner-dash-stat-label">Proposal ready</p>
+            <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-proposal-ready">—</p>
+            <p class="owner-dash-stat-meta">Ready to send</p>
+          </article>
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
+            <p class="owner-dash-stat-label">Proposal follow-up</p>
+            <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-proposal-follow-up">—</p>
+            <p class="owner-dash-stat-meta">Due next</p>
+          </article>
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact owner-dash-stat--mobile-optional">
+            <p class="owner-dash-stat-label">Proposal sent</p>
+            <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-proposal-sent">—</p>
+            <p class="owner-dash-stat-meta">Manual send noted</p>
+          </article>
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact owner-dash-stat--mobile-optional">
+            <p class="owner-dash-stat-label">Negotiating</p>
+            <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-negotiating">—</p>
+            <p class="owner-dash-stat-meta">Scope / price / timing</p>
+          </article>
+          <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact owner-dash-stat--mobile-optional">
             <p class="owner-dash-stat-label">Contacted</p>
             <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-contacted">—</p>
             <p class="owner-dash-stat-meta">Marked contacted</p>
@@ -327,7 +349,17 @@
         {
           key: "ready-proposal",
           label: "Ready for proposal",
-          explanation: "Qualified warm or hot leads with an offer.",
+          explanation: "Qualified leads with a recommended package.",
+        },
+        {
+          key: "proposal-followup",
+          label: "Proposal follow-up due",
+          explanation: "Proposal, quote, or next-step follow-up.",
+        },
+        {
+          key: "negotiating",
+          label: "Negotiating",
+          explanation: "Scope, price, timing, or proposal review.",
         },
         {
           key: "new-transport",
@@ -373,6 +405,10 @@
         countBusinessNew: document.getElementById("count-business-new"),
         countTransportNew: document.getElementById("count-transport-new"),
         countNeedsFollowUp: document.getElementById("count-needs-follow-up"),
+        countProposalReady: document.getElementById("count-proposal-ready"),
+        countProposalFollowUp: document.getElementById("count-proposal-follow-up"),
+        countProposalSent: document.getElementById("count-proposal-sent"),
+        countNegotiating: document.getElementById("count-negotiating"),
         countContacted: document.getElementById("count-contacted"),
         countWon: document.getElementById("count-won"),
         countHotLeads: document.getElementById("count-hot-leads"),
@@ -536,6 +572,10 @@
         if (status === "won" || status === "lost" || status === "archived") {
           return "No active follow-up";
         }
+        var stageKey = dealStageInfo(lead).key;
+        if (stageKey === "proposal-ready") return "Send proposal manually";
+        if (stageKey === "proposal-sent") return "Follow up on proposal";
+        if (stageKey === "negotiating") return "Confirm scope, price, or timing";
         if (status === "needs follow-up") return "Follow up today";
         if (status === "contacted") return "Add call notes and set next step";
         if (
@@ -703,6 +743,31 @@
         return n;
       }
 
+      function countDealStageFromState(stageKey) {
+        var n = 0;
+        for (var i = 0; i < state.businessLeads.length; i++) {
+          if (dealStageInfo(state.businessLeads[i]).key === stageKey) n++;
+        }
+        return n;
+      }
+
+      function countReadyForProposalFromState() {
+        var n = 0;
+        for (var i = 0; i < state.businessLeads.length; i++) {
+          if (matchesTodayActionQueue("ready-proposal", "business_leads", state.businessLeads[i])) n++;
+        }
+        return n;
+      }
+
+      function updateDealMetricCounts() {
+        if (els.countProposalReady) els.countProposalReady.textContent = String(countReadyForProposalFromState());
+        if (els.countProposalFollowUp) {
+          els.countProposalFollowUp.textContent = String(getTodayActionMatches("proposal-followup").length);
+        }
+        if (els.countProposalSent) els.countProposalSent.textContent = String(countDealStageFromState("proposal-sent"));
+        if (els.countNegotiating) els.countNegotiating.textContent = String(countDealStageFromState("negotiating"));
+      }
+
       function todayBucketForKey(key) {
         for (var i = 0; i < TODAY_ACTION_BUCKETS.length; i++) {
           if (TODAY_ACTION_BUCKETS[i].key === key) return TODAY_ACTION_BUCKETS[i];
@@ -724,6 +789,73 @@
         return String((row && row.owner_notes) || "").trim();
       }
 
+      function ownerNotesInclude(row, terms) {
+        return textIncludesAny(ownerNotesText(row), terms);
+      }
+
+      function hasProposalReadyNote(row) {
+        return ownerNotesInclude(row, ["proposal ready"]);
+      }
+
+      function hasProposalSentNote(row) {
+        return ownerNotesInclude(row, ["proposal sent", "proposal summary copied/sent"]);
+      }
+
+      function hasFollowUpDueNote(row) {
+        return ownerNotesInclude(row, ["follow-up due", "follow up with client on proposal", "follow up with client on quote"]);
+      }
+
+      function hasNegotiatingNote(row) {
+        return ownerNotesInclude(row, ["negotiating", "reviewing scope", "scope, price, or timing"]);
+      }
+
+      function dealStageInfo(row) {
+        var status = normStatus(row && row.status);
+        var stage = {
+          key: "new-lead",
+          label: "New lead",
+          explanation: "Lead is newly received and needs first review.",
+        };
+        if (status === "not a fit") {
+          return { key: "not-a-fit", label: "Not a fit", explanation: "Lead is not a fit for the current offer." };
+        }
+        if (status === "archived") {
+          return { key: "archived", label: "Archived", explanation: "Lead is inactive or stored for reference." };
+        }
+        if (status === "lost") {
+          return { key: "lost", label: "Lost", explanation: "Client did not move forward." };
+        }
+        if (status === "won") {
+          return { key: "won", label: "Won", explanation: "Client agreed to move forward." };
+        }
+        if (hasNegotiatingNote(row)) {
+          return { key: "negotiating", label: "Negotiating", explanation: "Client is reviewing scope, price, or timing." };
+        }
+        if (status === "needs follow-up" || hasFollowUpDueNote(row)) {
+          return { key: "follow-up-due", label: "Follow-up due", explanation: "Proposal or next-step follow-up should happen next." };
+        }
+        if (hasProposalSentNote(row)) {
+          return { key: "proposal-sent", label: "Proposal sent", explanation: "Proposal was copied or sent manually and needs tracking." };
+        }
+        if (hasProposalReadyNote(row)) {
+          return { key: "proposal-ready", label: "Proposal ready", explanation: "Recommended package and first deliverable are ready." };
+        }
+        if (status === "qualified") {
+          return { key: "qualified", label: "Qualified", explanation: "Lead looks viable and needs proposal or next step." };
+        }
+        if (status === "contacted") {
+          return { key: "contacted", label: "Contacted", explanation: "Initial outreach happened; add notes and next step." };
+        }
+        if (status === "reviewed") {
+          return { key: "reviewed", label: "Reviewed", explanation: "Lead has been reviewed and needs outreach." };
+        }
+        return stage;
+      }
+
+      function dealStageLabel(row) {
+        return dealStageInfo(row).label;
+      }
+
       function ownerNotesAreShort(row) {
         return ownerNotesText(row).length < 12;
       }
@@ -738,6 +870,12 @@
       function readyProposalHasOffer(row) {
         var opp = calcBusinessOpportunity(row);
         return Boolean(opp && opp.offer && String(opp.offer).trim());
+      }
+
+      function hasRecommendedDealPackage(row) {
+        if (!row) return false;
+        var deal = calcDealBuilder(row);
+        return Boolean(deal && deal.packageName && String(deal.packageName).trim());
       }
 
       function matchesTodayActionQueue(key, table, row) {
@@ -763,13 +901,31 @@
         }
 
         if (key === "ready-proposal") {
-          var priority = table === "business_leads" ? calcBusinessPriority(row).key : "";
           return (
             table === "business_leads" &&
-            (status === "qualified" || status === "contacted") &&
-            (priority === "hot" || priority === "warm") &&
-            readyProposalHasOffer(row) &&
+            status === "qualified" &&
+            hasRecommendedDealPackage(row) &&
+            !hasProposalSentNote(row) &&
             !isClosedBusinessStatus(row.status)
+          );
+        }
+
+        if (key === "proposal-followup") {
+          return (
+            table === "business_leads" &&
+            !isClosedBusinessStatus(row.status) &&
+            (dealStageInfo(row).key === "follow-up-due" ||
+              (status === "needs follow-up" &&
+                textIncludesAny(notes, ["proposal", "follow up", "follow-up", "quote", "estimate", "next step"])))
+          );
+        }
+
+        if (key === "negotiating") {
+          return (
+            table === "business_leads" &&
+            !isClosedBusinessStatus(row.status) &&
+            (dealStageInfo(row).key === "negotiating" ||
+              textIncludesAny(notes, ["negotiating", "scope", "price", "timing", "reviewing", "proposal sent"]))
           );
         }
 
@@ -810,6 +966,8 @@
         if (key === "hot-leads") return "Hot lead still " + status;
         if (key === "needs-follow-up") return "Follow-up needed";
         if (key === "ready-proposal") return status + " lead ready for proposal";
+        if (key === "proposal-followup") return "Proposal follow-up due";
+        if (key === "negotiating") return "Negotiating next step";
         if (key === "waiting-reply") return "Waiting on reply after last contact";
         if (key === "needs-notes") return status === "Contacted" ? "Needs owner notes after contact" : "Needs owner notes for next step";
         if (key === "new-transport") return "Transportation request still " + status;
@@ -862,6 +1020,8 @@
           "Hot leads to contact: " + (counts["hot-leads"] || 0),
           "Needs follow-up: " + (counts["needs-follow-up"] || 0),
           "Ready for proposal: " + (counts["ready-proposal"] || 0),
+          "Proposal follow-up due: " + (counts["proposal-followup"] || 0),
+          "Negotiating: " + (counts["negotiating"] || 0),
           "New transportation requests: " + (counts["new-transport"] || 0),
           "Needs notes: " + (counts["needs-notes"] || 0),
           "Waiting on reply: " + (counts["waiting-reply"] || 0),
@@ -870,9 +1030,11 @@
           "1. Hot leads to contact",
           "2. Needs follow-up",
           "3. Ready for proposal",
-          "4. New transportation requests",
-          "5. Needs notes",
-          "6. Waiting on reply",
+          "4. Proposal follow-up due",
+          "5. Negotiating",
+          "6. New transportation requests",
+          "7. Needs notes",
+          "8. Waiting on reply",
           "",
           "No messages are sent automatically.",
         ].join("\n");
@@ -896,7 +1058,7 @@
         if (s === "new") return "owner-dash-badge--new";
         if (s === "contacted" || s === "qualified") return "owner-dash-badge--teal";
         if (s === "won" || s === "handled") return "owner-dash-badge--ok";
-        if (s === "lost" || s === "cancelled" || s === "archived") return "owner-dash-badge--muted";
+        if (s === "lost" || s === "cancelled" || s === "archived" || s === "not a fit") return "owner-dash-badge--muted";
         if (s === "needs follow-up") return "owner-dash-badge--pending";
         return "owner-dash-badge--neutral";
       }
@@ -1054,6 +1216,9 @@
           "deal-proposal-summary": "Proposal summary copied just now",
           "deal-estimate-notes": "Estimate notes copied just now",
           "deal-proposal-checklist": "Proposal checklist copied just now",
+          "proposal-followup": "Proposal follow-up copied",
+          "proposal-checkin": "Gentle check-in copied",
+          "proposal-close-loop": "Close-the-loop message copied",
         };
         return labels[kind] || "Copy action completed";
       }
@@ -2003,12 +2168,54 @@
         ].join("\n");
       }
 
+      function buildProposalFollowUpCopy(lead) {
+        var contact = lead.contact_name || "there";
+        var business = lead.business_name || "your business";
+        var pain = calcDealBuilder(lead).mainPainPoint;
+        return (
+          "Hi " +
+          contact +
+          ", just checking in on the system plan we discussed for " +
+          business +
+          ". The goal is to start with the first bottleneck — " +
+          pain +
+          " — and build a practical path your team can actually use. Want me to map the next step?"
+        );
+      }
+
+      function buildGentleCheckInCopy(lead) {
+        var contact = lead.contact_name || "there";
+        var pain = calcDealBuilder(lead).mainPainPoint;
+        return (
+          "Hi " +
+          contact +
+          ", wanted to follow up and see if improving " +
+          pain +
+          " is still a priority. No pressure — I can help you start small with the first useful system instead of overbuilding."
+        );
+      }
+
+      function buildCloseLoopCopy(lead) {
+        var contact = lead.contact_name || "there";
+        var business = lead.business_name || "your business";
+        return (
+          "Hi " +
+          contact +
+          ", I wanted to close the loop on the system recommendation for " +
+          business +
+          ". If now is not the right time, no problem. If you want to revisit it later, I can help map the first practical step."
+        );
+      }
+
       function dealTextForKind(kind, lead) {
         if (!lead) return "";
         var deal = calcDealBuilder(lead);
         if (kind === "deal-proposal-summary") return buildDealProposalSummaryCopy(lead, deal);
         if (kind === "deal-estimate-notes") return buildDealEstimateNotes(lead, deal);
         if (kind === "deal-proposal-checklist") return buildDealDiscoveryChecklist(lead);
+        if (kind === "proposal-followup") return buildProposalFollowUpCopy(lead);
+        if (kind === "proposal-checkin") return buildGentleCheckInCopy(lead);
+        if (kind === "proposal-close-loop") return buildCloseLoopCopy(lead);
         return "";
       }
 
@@ -2022,6 +2229,15 @@
           '<span class="owner-dash-opportunity-tier">' +
           esc(deal.valueTier) +
           "</span></p>"
+        );
+      }
+
+      function dealStageCardRow(lead) {
+        return (
+          '<p class="owner-dash-deal-stage-card-row">' +
+          '<span>Deal stage:</span> ' +
+          esc(dealStageLabel(lead)) +
+          "</p>"
         );
       }
 
@@ -2060,11 +2276,64 @@
           "</p></div>" +
           '<div class="owner-dash-deal-actions">' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="deal-proposal-summary">Copy proposal summary</button>' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="deal-estimate-notes">Copy estimate/invoice notes</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="deal-estimate-notes">Copy estimate notes</button>' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="deal-proposal-checklist">Copy discovery-to-proposal checklist</button>' +
           "</div>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<span class="owner-dash-deal-feedback" data-deal-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
+      function dealStageButton(stageKey, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="mark-deal-stage" data-stage="' +
+          esc(stageKey) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function dealStageTrackerBlock(lead) {
+        var stage = dealStageInfo(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--deal-stage" data-deal-stage-tracker>' +
+          '<div class="owner-dash-stage-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Deal Stage Tracker</h3>' +
+          '<p class="owner-dash-detail-section-note">Lightweight stage tracking using status and owner notes.</p></div>' +
+          '<div class="owner-dash-stage-current"><span>Current stage</span><strong class="owner-dash-stage-pill owner-dash-stage-pill--' +
+          esc(stage.key) +
+          '">' +
+          esc(stage.label) +
+          "</strong></div></div>" +
+          '<p class="owner-dash-stage-explanation">' +
+          esc(stage.explanation) +
+          "</p>" +
+          '<div class="owner-dash-stage-actions" aria-label="Quick deal stage actions">' +
+          dealStageButton("proposal-ready", "Mark proposal ready", true) +
+          dealStageButton("proposal-sent", "Mark proposal sent", false) +
+          dealStageButton("follow-up-due", "Mark follow-up due", false) +
+          dealStageButton("negotiating", "Mark negotiating", false) +
+          dealStageButton("won", "Mark won", false) +
+          dealStageButton("lost", "Mark lost", false) +
+          "</div>" +
+          '<div class="owner-dash-stage-copy">' +
+          '<p class="owner-dash-deal-k">Proposal follow-up copy tools</p>' +
+          '<div class="owner-dash-stage-copy-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="proposal-followup">Copy proposal follow-up</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="proposal-checkin">Copy gentle check-in</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="proposal-close-loop">Copy close-the-loop message</button>' +
+          "</div>" +
+          '<p class="owner-dash-stage-safe-note">Copy only. No messages are sent automatically.</p>' +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<span class="owner-dash-deal-stage-feedback" data-deal-stage-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
           '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
           '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
@@ -2586,6 +2855,7 @@
           nextActionHtml(nextAction) +
           opportunityBuilderBlock(lead) +
           dealBuilderBlock(lead) +
+          dealStageTrackerBlock(lead) +
           groupedToolsBlock("business_leads") +
           quickStatusBlock("business_leads", lead.status) +
           workflowBlock("business_leads", lead) +
@@ -2844,6 +3114,22 @@
         fb.className = "owner-dash-deal-feedback" + (isError ? " owner-dash-deal-feedback--error" : "");
       }
 
+      function setDealStageFeedback(section, message, isError) {
+        var fb = section && section.querySelector("[data-deal-stage-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-deal-stage-feedback" + (isError ? " owner-dash-deal-stage-feedback--error" : "");
+      }
+
+      function appendCleanOwnerNote(existing, note) {
+        var current = String(existing || "").trim();
+        var cleanNote = String(note || "").trim();
+        if (!cleanNote) return current;
+        if (current.toLowerCase().indexOf(cleanNote.toLowerCase()) !== -1) return current;
+        return current ? current + "\n" + cleanNote : cleanNote;
+      }
+
       function appendProposalReadyNote(existing, deal) {
         var note =
           "Proposal ready: " +
@@ -2853,10 +3139,122 @@
           ". First deliverable: " +
           deal.bestFirstDeliverable +
           ".";
-        var current = String(existing || "").trim();
-        if (!current) return note;
-        if (current.indexOf(note) !== -1) return current;
-        return current + "\n" + note;
+        return appendCleanOwnerNote(existing, note);
+      }
+
+      function dealStageActionConfig(stageKey, lead) {
+        var deal = calcDealBuilder(lead);
+        var configs = {
+          "proposal-ready": {
+            status: "Qualified",
+            note:
+              "Proposal ready: " +
+              deal.packageName +
+              " · " +
+              deal.valueTier +
+              ". First deliverable: " +
+              deal.bestFirstDeliverable +
+              ".",
+            activity: "Proposal ready marked just now",
+            success: "Proposal ready marked. Status saved as Qualified.",
+            tone: "ok",
+          },
+          "proposal-sent": {
+            status: "Qualified",
+            note: "Proposal sent: Proposal summary copied/sent manually. Follow up in 2–3 business days.",
+            activity: "Proposal sent marked just now",
+            success: "Proposal sent marked. Status saved as Qualified.",
+            tone: "ok",
+          },
+          "follow-up-due": {
+            status: "Needs follow-up",
+            note: "Follow-up due: Follow up with client on proposal or next step.",
+            activity: "Follow-up due marked just now",
+            success: "Follow-up due marked. Status saved.",
+            tone: "pending",
+          },
+          negotiating: {
+            status: "Qualified",
+            note: "Negotiating: Client is reviewing scope, price, or timing.",
+            activity: "Negotiating marked just now",
+            success: "Negotiating marked. Status saved as Qualified.",
+            tone: "ok",
+          },
+          won: {
+            status: "Won",
+            note: "Won: Client agreed to move forward.",
+            activity: "Won marked just now",
+            success: "Won marked. Status saved.",
+            tone: "ok",
+          },
+          lost: {
+            status: "Lost",
+            note: "Lost: Client did not move forward or is no longer a fit.",
+            activity: "Lost marked just now",
+            success: "Lost marked. Status saved.",
+            tone: "error",
+          },
+        };
+        return configs[stageKey] || null;
+      }
+
+      function handleDealStageAction(sheet, sourceBtn) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
+        var stageKey = sourceBtn.getAttribute("data-stage");
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        var config = dealStageActionConfig(stageKey, hit.row);
+        if (!config) return;
+        var section = sourceBtn.closest(".owner-dash-detail-section--deal-stage");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var previousNotes = String(hit.row.owner_notes || "");
+        var nextNotes = appendCleanOwnerNote(
+          workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes,
+          config.note
+        );
+        var buttons = section ? section.querySelectorAll('[data-action="mark-deal-stage"]') : [];
+        buttons.forEach(function (b) {
+          b.disabled = true;
+        });
+        sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+        sourceBtn.textContent = "Saving...";
+        setDealStageFeedback(section, "Updating status and owner note...", false);
+
+        postUpdate(table, id, {
+          status: config.status,
+          owner_notes: nextNotes,
+        })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setDealStageFeedback(
+                section,
+                (result.data && result.data.error) || "Could not update deal stage. Try saving manually.",
+                true
+              );
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(table, id, config.activity, config.tone, "");
+            renderAll();
+            var freshSection = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--deal-stage");
+            setDealStageFeedback(freshSection || section, config.success, false);
+            refreshCounts();
+          })
+          .catch(function () {
+            setDealStageFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            buttons.forEach(function (b) {
+              b.disabled = false;
+            });
+            sourceBtn.textContent = sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
+          });
       }
 
       function handleMoveToProposalReady(sheet, sourceBtn) {
@@ -2897,10 +3295,10 @@
               return;
             }
             applyRecordUpdate(table, id, result.data.record);
-            addClientActivity(table, id, "Moved to Qualified / proposal ready just now", "ok", "");
             if (String(result.data.record.owner_notes || "") !== previousNotes) {
               addClientActivity(table, id, "Owner note updated", "ok");
             }
+            addClientActivity(table, id, "Proposal ready marked just now", "ok", "");
             renderAll();
             var freshSection = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--deal");
             setDealFeedback(freshSection || section, "Moved to Qualified and proposal-ready note added.", false);
@@ -3222,6 +3620,7 @@
               blockPreview("AI summary preview", preview) +
               "</dl>" +
               dealCardRow(lead) +
+              dealStageCardRow(lead) +
               lastActivityHint(lead, "business_leads") +
               '<div class="owner-dash-card-actions">' +
               openDetailsBtn("business_leads", lead.id) +
@@ -3299,6 +3698,7 @@
         if (els.countHotLeads) {
           els.countHotLeads.textContent = String(countHotLeadsFromState());
         }
+        updateDealMetricCounts();
         refreshDetailIfOpen();
       }
 
@@ -3312,6 +3712,7 @@
         if (els.countHotLeads) {
           els.countHotLeads.textContent = String(countHotLeadsFromState());
         }
+        updateDealMetricCounts();
         els.countTotalBusiness.textContent = String(counts.total_business ?? 0);
         els.countTotalTransport.textContent = String(counts.total_transportation ?? 0);
       }
@@ -3704,6 +4105,11 @@
 
           if (sheet && action === "move-proposal-ready") {
             handleMoveToProposalReady(sheet, btn);
+            return;
+          }
+
+          if (sheet && action === "mark-deal-stage") {
+            handleDealStageAction(sheet, btn);
             return;
           }
 
