@@ -17,6 +17,9 @@ const CORS_HEADERS = {
 
 const ROW_LIMIT = 25;
 
+const BUSINESS_SELECT_ENHANCED =
+  "id,created_at,status,owner_notes,last_contacted_at,updated_at,priority,lead_temperature,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,alert_sms_sent,page_path";
+
 const BUSINESS_SELECT_FULL =
   "id,created_at,status,owner_notes,last_contacted_at,updated_at,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,alert_sms_sent,page_path";
 
@@ -106,15 +109,19 @@ async function fetchRecentRows(url, serviceKey, table, selectCols) {
 
 async function fetchBusinessLeads(url, serviceKey) {
   try {
-    return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_FULL);
+    return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_ENHANCED);
   } catch (firstErr) {
     try {
-      return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_STATUS);
+      return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_FULL);
     } catch {
       try {
-        return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_CORE);
+        return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_STATUS);
       } catch {
-        throw firstErr;
+        try {
+          return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_CORE);
+        } catch {
+          throw firstErr;
+        }
       }
     }
   }
@@ -145,6 +152,8 @@ function mapBusinessLead(row) {
     owner_notes: row.owner_notes ?? null,
     last_contacted_at: row.last_contacted_at ?? null,
     updated_at: row.updated_at ?? null,
+    priority: row.priority ?? null,
+    lead_temperature: row.lead_temperature ?? null,
     lead_quality: row.lead_quality ?? null,
     contact_name: row.contact_name ?? null,
     contact_email: row.contact_email ?? null,

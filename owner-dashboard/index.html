@@ -14,6 +14,374 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
   <style>
+    .page-owner-dashboard .owner-dash-daily-brief {
+      position: relative;
+      margin: 12px 0 16px;
+      padding: clamp(14px, 2vw, 20px);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.22), transparent 34%),
+        linear-gradient(145deg, rgba(255, 139, 31, 0.12), transparent 45%),
+        linear-gradient(186deg, rgba(11, 29, 58, 0.72), rgba(4, 10, 22, 0.96));
+      border-color: rgba(20, 184, 166, 0.4);
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.08);
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief-head {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 14px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief-head .eyebrow {
+      margin-bottom: 5px;
+      font-size: 0.68rem;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief-head h2 {
+      margin: 0 0 5px;
+      color: #c8fff5;
+      font-size: clamp(1.32rem, 3vw, 1.72rem);
+      line-height: 1.12;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief-subtitle {
+      margin: 0;
+      max-width: 40rem;
+      color: rgba(255, 246, 230, 0.74);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief-safe {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      max-width: 100%;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 139, 31, 0.36);
+      background: rgba(255, 139, 31, 0.12);
+      color: #ffe4c4;
+      font-size: 0.68rem;
+      font-weight: 850;
+      letter-spacing: 0.035em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief-controls {
+      display: grid;
+      gap: 7px;
+      align-content: start;
+      justify-items: start;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief-controls .owner-dash-utility-row {
+      gap: 8px;
+      justify-content: flex-start;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief-controls .owner-dash-refresh-btn {
+      padding: 7px 11px;
+      font-size: 0.78rem;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief-controls .owner-dash-last-loaded,
+    .page-owner-dashboard .owner-dash-daily-brief-controls .owner-dash-refresh-error {
+      margin: 0;
+      font-size: 0.74rem;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-block {
+      min-width: 0;
+      margin-top: 14px;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-block-title {
+      margin: 0 0 9px;
+      color: rgba(255, 246, 230, 0.92);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-snapshot-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-card {
+      min-width: 0;
+      padding: 11px;
+      border-radius: 14px;
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      background: rgba(4, 10, 22, 0.52);
+      box-shadow: inset 3px 0 0 rgba(20, 184, 166, 0.78);
+    }
+
+    .page-owner-dashboard .owner-dash-brief-card--orange {
+      border-color: rgba(255, 139, 31, 0.28);
+      box-shadow: inset 3px 0 0 rgba(255, 139, 31, 0.86);
+    }
+
+    .page-owner-dashboard .owner-dash-brief-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      min-width: 0;
+      margin-bottom: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-card-title {
+      margin: 0;
+      color: var(--on-dark-heading);
+      font-size: 0.9rem;
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-card-value {
+      flex: 0 0 auto;
+      min-width: 2.35rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(255, 139, 31, 0.14));
+      border: 1px solid rgba(20, 184, 166, 0.3);
+      color: #5eead4;
+      font-size: 1.2rem;
+      font-weight: 950;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-card--orange .owner-dash-brief-card-value {
+      border-color: rgba(255, 180, 80, 0.36);
+      color: #ffe4c4;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-lines {
+      display: grid;
+      gap: 5px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      min-width: 0;
+      color: rgba(255, 246, 230, 0.66);
+      font-size: 0.76rem;
+      line-height: 1.3;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-line strong {
+      color: rgba(255, 246, 230, 0.9);
+      font-weight: 850;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-order-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: daily-brief-order;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-order-row {
+      counter-increment: daily-brief-order;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 9px;
+      align-items: center;
+      min-width: 0;
+      padding: 9px;
+      border-radius: 13px;
+      border: 1px solid rgba(255, 246, 230, 0.08);
+      background: rgba(4, 10, 22, 0.42);
+    }
+
+    .page-owner-dashboard .owner-dash-brief-order-row::before {
+      content: counter(daily-brief-order);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.65rem;
+      height: 1.65rem;
+      border-radius: 999px;
+      background: rgba(20, 184, 166, 0.14);
+      border: 1px solid rgba(20, 184, 166, 0.28);
+      color: #c8fff5;
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-order-copy {
+      display: grid;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-order-copy strong {
+      color: rgba(255, 246, 230, 0.92);
+      font-size: 0.82rem;
+      line-height: 1.25;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-order-copy small {
+      color: rgba(255, 246, 230, 0.58);
+      font-size: 0.72rem;
+      line-height: 1.32;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-width: 2rem;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(255, 139, 31, 0.13);
+      border: 1px solid rgba(255, 139, 31, 0.3);
+      color: #ffe4c4;
+      font-size: 0.72rem;
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-jump {
+      appearance: none;
+      min-height: 40px;
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid rgba(20, 184, 166, 0.46);
+      background: rgba(20, 184, 166, 0.13);
+      color: rgba(255, 246, 230, 0.92);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.76rem;
+      font-weight: 850;
+      line-height: 1.2;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-copy-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-copy-actions .owner-dash-btn {
+      min-height: 42px;
+      min-width: 0;
+      width: 100%;
+      padding: 9px 10px;
+      white-space: normal;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-copy-feedback {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-brief-manual-copy {
+      margin-top: 10px;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief,
+    .page-owner-dashboard .owner-dash-daily-brief :is(p, h2, h3, li, span, strong, small, button) {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-daily-brief :is(.owner-dash-daily-brief-safe, .owner-dash-brief-count) {
+      white-space: nowrap;
+    }
+
+    @media (min-width: 560px) {
+      .page-owner-dashboard .owner-dash-brief-snapshot-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard .owner-dash-brief-copy-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard .owner-dash-brief-copy-actions .owner-dash-btn:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (min-width: 760px) {
+      .page-owner-dashboard .owner-dash-daily-brief-head {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+      }
+
+      .page-owner-dashboard .owner-dash-daily-brief-controls {
+        justify-items: end;
+      }
+
+      .page-owner-dashboard .owner-dash-daily-brief-controls .owner-dash-utility-row {
+        justify-content: flex-end;
+      }
+
+      .page-owner-dashboard .owner-dash-brief-order-row {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+      }
+
+      .page-owner-dashboard .owner-dash-brief-jump {
+        width: auto;
+        min-width: 7.5rem;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .page-owner-dashboard .owner-dash-brief-snapshot-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
+
     .page-owner-dashboard .owner-dash-last-activity {
       margin: 0 0 10px;
       font-size: 0.74rem;
@@ -1438,15 +1806,54 @@
     </div>
 
     <div id="owner-dash-content" hidden>
-      <div class="owner-dash-utility" aria-label="Data controls">
-        <div class="owner-dash-utility-row">
-          <button type="button" id="owner-dash-refresh" class="owner-dash-refresh-btn">Refresh</button>
-          <p id="owner-dash-last-loaded" class="owner-dash-last-loaded" hidden>
-            Last loaded: <time id="owner-dash-last-loaded-time" datetime=""></time>
-          </p>
+      <section id="owner-dash-daily-brief" class="owner-dash-daily-brief owner-dash-glass" aria-labelledby="owner-dash-daily-brief-heading">
+        <div class="owner-dash-daily-brief-head">
+          <div>
+            <p class="eyebrow eyebrow-on-dark">PIPELINE SUMMARY</p>
+            <h2 id="owner-dash-daily-brief-heading">Owner Daily Brief</h2>
+            <p class="owner-dash-daily-brief-subtitle">A quick operating view of what needs attention before leads get cold.</p>
+            <div class="owner-dash-daily-brief-meta">
+              <span class="owner-dash-daily-brief-safe">Copy only — nothing sends automatically.</span>
+            </div>
+          </div>
+          <div class="owner-dash-daily-brief-controls" aria-label="Daily brief data controls">
+            <div class="owner-dash-utility-row">
+              <button type="button" id="owner-dash-refresh" class="owner-dash-refresh-btn">Refresh</button>
+              <p id="owner-dash-last-loaded" class="owner-dash-last-loaded" hidden>
+                Last loaded: <time id="owner-dash-last-loaded-time" datetime=""></time>
+              </p>
+            </div>
+            <p id="owner-dash-refresh-error" class="owner-dash-refresh-error" hidden role="alert" aria-live="polite"></p>
+          </div>
         </div>
-        <p id="owner-dash-refresh-error" class="owner-dash-refresh-error" hidden role="alert" aria-live="polite"></p>
-      </div>
+
+        <div class="owner-dash-brief-block" aria-label="Brief Snapshot">
+          <h3 class="owner-dash-brief-block-title">Brief Snapshot</h3>
+          <div id="owner-dash-brief-snapshot" class="owner-dash-brief-snapshot-grid"></div>
+        </div>
+
+        <div class="owner-dash-brief-block" aria-labelledby="owner-dash-brief-order-heading">
+          <h3 id="owner-dash-brief-order-heading" class="owner-dash-brief-block-title">Today’s Recommended Order</h3>
+          <ol id="owner-dash-brief-order" class="owner-dash-brief-order-list"></ol>
+        </div>
+
+        <div class="owner-dash-brief-block">
+          <h3 class="owner-dash-brief-block-title">Copy tools</h3>
+          <div class="owner-dash-brief-copy-actions">
+            <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="action-list">Copy today’s action list</button>
+            <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="call-list">Copy call list</button>
+            <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="quote-prep">Copy quote prep list</button>
+            <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="delivery-follow-up">Copy delivery follow-up list</button>
+            <button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-daily-brief" data-copy-kind="support-check-in">Copy support check-in list</button>
+            <button type="button" class="owner-dash-btn owner-dash-btn--primary" data-action="copy-daily-brief" data-copy-kind="full-daily-brief">Copy full daily brief</button>
+          </div>
+          <span class="owner-dash-detail-copy-feedback owner-dash-brief-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>
+          <div class="owner-dash-detail-manual-copy owner-dash-brief-manual-copy" data-manual-copy hidden>
+            <p class="owner-dash-detail-manual-copy-label">Select and copy:</p>
+            <textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea>
+          </div>
+        </div>
+      </section>
 
       <section id="owner-dash-today-actions" class="owner-dash-today owner-dash-glass" aria-labelledby="owner-dash-today-heading">
         <div class="owner-dash-today-head">
@@ -1783,6 +2190,45 @@
         },
       ];
 
+      var DAILY_BRIEF_SAFE_TEXT = "Copy only — nothing sends automatically.";
+      var DAILY_BRIEF_PRIORITY_ROWS = [
+        {
+          key: "hot-leads-to-contact",
+          label: "Hot leads to contact",
+          explanation: "New or reviewed Hot business leads should get first contact.",
+        },
+        {
+          key: "leads-needing-follow-up",
+          label: "Leads needing follow-up",
+          explanation: "Marked follow-up, callback, or owner follow-up notes.",
+        },
+        {
+          key: "quote-proposal-ready",
+          label: "Quote/proposal ready",
+          explanation: "Qualified leads or quote, invoice, deposit, or proposal notes.",
+        },
+        {
+          key: "materials-needed",
+          label: "Materials needed",
+          explanation: "Projects waiting on materials, access, or owner handoff.",
+        },
+        {
+          key: "launch-support-tasks",
+          label: "Launch/support tasks",
+          explanation: "Preview, launch, launched, or support review items.",
+        },
+        {
+          key: "testimonial-referral-asks",
+          label: "Testimonial/referral asks",
+          explanation: "Support-active clients or social proof opportunities.",
+        },
+        {
+          key: "new-transportation-requests",
+          label: "New transportation requests",
+          explanation: "Transportation requests still New or Reviewed.",
+        },
+      ];
+
       var state = {
         businessLeads: [],
         transportRows: [],
@@ -1825,6 +2271,9 @@
         refreshError: document.getElementById("owner-dash-refresh-error"),
         lastLoaded: document.getElementById("owner-dash-last-loaded"),
         lastLoadedTime: document.getElementById("owner-dash-last-loaded-time"),
+        dailyBrief: document.getElementById("owner-dash-daily-brief"),
+        dailyBriefSnapshot: document.getElementById("owner-dash-brief-snapshot"),
+        dailyBriefOrder: document.getElementById("owner-dash-brief-order"),
         todayActions: document.getElementById("owner-dash-today-actions"),
         todayBuckets: document.getElementById("owner-dash-today-buckets"),
         activeQueue: document.getElementById("owner-dash-active-queue"),
@@ -2451,6 +2900,568 @@
           "",
           "No messages are sent automatically.",
         ].join("\n");
+      }
+
+      function briefPriorityRowForKey(key) {
+        for (var i = 0; i < DAILY_BRIEF_PRIORITY_ROWS.length; i++) {
+          if (DAILY_BRIEF_PRIORITY_ROWS[i].key === key) return DAILY_BRIEF_PRIORITY_ROWS[i];
+        }
+        return null;
+      }
+
+      function textLooksHot(value) {
+        return /\bhot\b/i.test(String(value || ""));
+      }
+
+      function isHotLeadForDailyBrief(lead) {
+        return (
+          textLooksHot(lead && lead.priority) ||
+          textLooksHot(lead && lead.lead_temperature) ||
+          textLooksHot(lead && lead.lead_quality) ||
+          calcBusinessPriority(lead || {}).key === "hot"
+        );
+      }
+
+      function businessRowsMatching(fn) {
+        return sortBusinessLeads(state.businessLeads).filter(fn);
+      }
+
+      function transportRowsMatching(fn) {
+        return sortTransportRows(state.transportRows).filter(fn);
+      }
+
+      function dailyBriefBusinessNoteMatches(row, terms) {
+        return ownerNotesInclude(row, terms);
+      }
+
+      function matchesDailyBriefCategory(key, table, row) {
+        var status = normStatus(row && row.status);
+
+        if (key === "hot-leads-to-contact") {
+          return (
+            table === "business_leads" &&
+            isHotLeadForDailyBrief(row) &&
+            (status === "new" || status === "reviewed")
+          );
+        }
+
+        if (key === "leads-needing-follow-up") {
+          return (
+            table === "business_leads" &&
+            (status === "needs follow-up" ||
+              dailyBriefBusinessNoteMatches(row, ["callback", "call back", "follow-up", "follow up"]))
+          );
+        }
+
+        if (key === "quote-proposal-ready") {
+          return (
+            table === "business_leads" &&
+            (status === "qualified" ||
+              dailyBriefBusinessNoteMatches(row, [
+                "proposal ready",
+                "quote prepared",
+                "invoice ready",
+                "deposit requested",
+              ]))
+          );
+        }
+
+        if (key === "materials-needed") {
+          return (
+            table === "business_leads" &&
+            dailyBriefBusinessNoteMatches(row, [
+              "materials needed",
+              "materials requested",
+              "access needed",
+              "access requested",
+            ])
+          );
+        }
+
+        if (key === "launch-support-tasks") {
+          return (
+            table === "business_leads" &&
+            dailyBriefBusinessNoteMatches(row, [
+              "first preview ready",
+              "approved for launch",
+              "launched",
+              "support review due",
+            ])
+          );
+        }
+
+        if (key === "testimonial-referral-asks") {
+          return (
+            table === "business_leads" &&
+            dailyBriefBusinessNoteMatches(row, ["testimonial requested", "referral requested", "support active"])
+          );
+        }
+
+        if (key === "new-transportation-requests") {
+          return table === "transportation_requests" && (status === "new" || status === "reviewed");
+        }
+
+        return false;
+      }
+
+      function getDailyBriefMatches(key) {
+        var matches = [];
+        sortBusinessLeads(state.businessLeads).forEach(function (row) {
+          if (matchesDailyBriefCategory(key, "business_leads", row)) {
+            matches.push({ table: "business_leads", row: row });
+          }
+        });
+        sortTransportRows(state.transportRows).forEach(function (row) {
+          if (matchesDailyBriefCategory(key, "transportation_requests", row)) {
+            matches.push({ table: "transportation_requests", row: row });
+          }
+        });
+        return matches;
+      }
+
+      function dailyBriefCategoryCounts() {
+        var counts = {};
+        DAILY_BRIEF_PRIORITY_ROWS.forEach(function (row) {
+          counts[row.key] = getDailyBriefMatches(row.key).length;
+        });
+        return counts;
+      }
+
+      function countBusinessStatusForBrief(statusKey) {
+        return businessRowsMatching(function (row) {
+          return normStatus(row.status) === statusKey;
+        }).length;
+      }
+
+      function countBusinessNotesForBrief(terms) {
+        return businessRowsMatching(function (row) {
+          return dailyBriefBusinessNoteMatches(row, terms);
+        }).length;
+      }
+
+      function dailyBriefMetrics() {
+        var counts = dailyBriefCategoryCounts();
+        var newBusinessLeads = countBusinessStatusForBrief("new");
+        var newTransportationRequests = counts["new-transportation-requests"] || 0;
+        var quoteInvoicePrep = countBusinessNotesForBrief(["quote prepared", "invoice ready", "deposit requested"]);
+        var firstPreviewReady = countBusinessNotesForBrief(["first preview ready"]);
+        var approvedForLaunch = countBusinessNotesForBrief(["approved for launch"]);
+        var launched = countBusinessNotesForBrief(["launched"]);
+        var supportReviewDue = countBusinessNotesForBrief(["support review due"]);
+        var supportActive = countBusinessNotesForBrief(["support active"]);
+        var nextPhaseOpportunity = countBusinessNotesForBrief([
+          "next-phase opportunity",
+          "next phase opportunity",
+          "next phase",
+        ]);
+        var testimonialReferralOpportunity = counts["testimonial-referral-asks"] || 0;
+        var priorityToday =
+          (counts["hot-leads-to-contact"] || 0) +
+          (counts["leads-needing-follow-up"] || 0) +
+          (counts["quote-proposal-ready"] || 0) +
+          (counts["materials-needed"] || 0) +
+          (counts["launch-support-tasks"] || 0) +
+          testimonialReferralOpportunity;
+
+        return {
+          counts: counts,
+          priorityToday: priorityToday,
+          newBusinessLeads: newBusinessLeads,
+          newTransportationRequests: newTransportationRequests,
+          readyForProposal: businessRowsMatching(function (row) {
+            return normStatus(row.status) === "qualified" || dailyBriefBusinessNoteMatches(row, ["proposal ready"]);
+          }).length,
+          quoteInvoicePrep: quoteInvoicePrep,
+          qualifiedLeads: countBusinessStatusForBrief("qualified"),
+          wonProjects: countBusinessStatusForBrief("won"),
+          materialsNeeded: counts["materials-needed"] || 0,
+          firstPreviewReady: firstPreviewReady,
+          approvedForLaunch: approvedForLaunch,
+          launched: launched,
+          supportReviewDue: supportReviewDue,
+          supportActive: supportActive,
+          nextPhaseOpportunity: nextPhaseOpportunity,
+          testimonialReferralOpportunity: testimonialReferralOpportunity,
+        };
+      }
+
+      function briefLineHtml(label, value) {
+        return (
+          '<li class="owner-dash-brief-line"><span>' +
+          esc(label) +
+          "</span><strong>" +
+          esc(value) +
+          "</strong></li>"
+        );
+      }
+
+      function briefSnapshotCardHtml(title, value, lines, tone) {
+        return (
+          '<article class="owner-dash-brief-card' +
+          (tone === "orange" ? " owner-dash-brief-card--orange" : "") +
+          '">' +
+          '<div class="owner-dash-brief-card-top"><h4 class="owner-dash-brief-card-title">' +
+          esc(title) +
+          '</h4><span class="owner-dash-brief-card-value">' +
+          esc(value) +
+          "</span></div>" +
+          '<ul class="owner-dash-brief-lines">' +
+          lines
+            .map(function (line) {
+              return briefLineHtml(line[0], line[1]);
+            })
+            .join("") +
+          "</ul></article>"
+        );
+      }
+
+      function renderDailyBrief() {
+        if (!els.dailyBriefSnapshot || !els.dailyBriefOrder) return;
+        var metrics = dailyBriefMetrics();
+        var counts = metrics.counts;
+
+        els.dailyBriefSnapshot.innerHTML = [
+          briefSnapshotCardHtml(
+            "Priority Today",
+            metrics.priorityToday,
+            [
+              ["Hot leads to contact", counts["hot-leads-to-contact"] || 0],
+              ["Leads needing follow-up", counts["leads-needing-follow-up"] || 0],
+              ["Quote/proposal ready", counts["quote-proposal-ready"] || 0],
+              ["Materials needed", counts["materials-needed"] || 0],
+              ["Launch/support tasks", counts["launch-support-tasks"] || 0],
+              ["Projects ready for launch", metrics.firstPreviewReady + metrics.approvedForLaunch],
+              ["Support reviews due", metrics.supportReviewDue],
+              ["Testimonial/referral asks", counts["testimonial-referral-asks"] || 0],
+            ],
+            "orange"
+          ),
+          briefSnapshotCardHtml(
+            "New Lead Intake",
+            metrics.newBusinessLeads + metrics.newTransportationRequests,
+            [
+              ["New business leads", metrics.newBusinessLeads],
+              ["New transportation requests", metrics.newTransportationRequests],
+            ],
+            "teal"
+          ),
+          briefSnapshotCardHtml(
+            "Money Pipeline",
+            metrics.readyForProposal + metrics.quoteInvoicePrep + metrics.qualifiedLeads + metrics.wonProjects,
+            [
+              ["Ready for proposal", metrics.readyForProposal],
+              ["Quote/invoice prep", metrics.quoteInvoicePrep],
+              ["Qualified leads", metrics.qualifiedLeads],
+              ["Won projects", metrics.wonProjects],
+            ],
+            "teal"
+          ),
+          briefSnapshotCardHtml(
+            "Delivery Pipeline",
+            metrics.materialsNeeded + metrics.firstPreviewReady + metrics.approvedForLaunch + metrics.launched,
+            [
+              ["Materials needed", metrics.materialsNeeded],
+              ["First preview ready", metrics.firstPreviewReady],
+              ["Approved for launch", metrics.approvedForLaunch],
+              ["Launched", metrics.launched],
+            ],
+            "teal"
+          ),
+          briefSnapshotCardHtml(
+            "Retention Pipeline",
+            metrics.supportReviewDue +
+              metrics.supportActive +
+              metrics.nextPhaseOpportunity +
+              metrics.testimonialReferralOpportunity,
+            [
+              ["Support review due", metrics.supportReviewDue],
+              ["Support active", metrics.supportActive],
+              ["Next-phase opportunity", metrics.nextPhaseOpportunity],
+              ["Testimonial/referral opportunity", metrics.testimonialReferralOpportunity],
+            ],
+            "orange"
+          ),
+        ].join("");
+
+        els.dailyBriefOrder.innerHTML = DAILY_BRIEF_PRIORITY_ROWS.slice(0, 6)
+          .map(function (row) {
+            var count = counts[row.key] || 0;
+            return (
+              '<li class="owner-dash-brief-order-row">' +
+              '<span class="owner-dash-brief-order-copy"><strong>' +
+              esc(row.label) +
+              ' <span class="owner-dash-brief-count">' +
+              esc(count) +
+              "</span></strong><small>" +
+              esc(row.explanation) +
+              "</small></span>" +
+              (count > 0
+                ? '<button type="button" class="owner-dash-brief-jump" data-action="open-daily-brief-first" data-brief-key="' +
+                  esc(row.key) +
+                  '">Open first</button>'
+                : '<span class="owner-dash-brief-count">0</span>') +
+              "</li>"
+            );
+          })
+          .join("");
+      }
+
+      function businessCallLine(lead) {
+        return (
+          "- " +
+          (lead.business_name || "Business TBD") +
+          " | Contact: " +
+          (lead.contact_name || "Contact TBD") +
+          " | Phone: " +
+          (lead.contact_phone || "No phone loaded") +
+          " | Current problem: " +
+          (lead.current_problem || "Not provided") +
+          " | Status: " +
+          displayStatus(lead.status)
+        );
+      }
+
+      function businessQuotePrepLine(lead) {
+        var quote = calcQuoteInvoicePrep(lead);
+        return (
+          "- " +
+          quote.business +
+          " | Recommended package: " +
+          quote.recommendedPackage +
+          " | First deliverable: " +
+          quote.firstDeliverable +
+          " | Quote range: " +
+          quote.priceRange +
+          " | Status: " +
+          displayStatus(lead.status)
+        );
+      }
+
+      function materialMissingAction(lead) {
+        if (dailyBriefBusinessNoteMatches(lead, ["access needed", "access requested"])) return "Access needed or requested";
+        if (dailyBriefBusinessNoteMatches(lead, ["materials needed", "materials requested"])) {
+          return "Materials needed or requested";
+        }
+        return "Confirm missing materials or access";
+      }
+
+      function businessDeliveryMaterialsLine(lead) {
+        var delivery = calcProjectDeliveryData(lead);
+        return (
+          "- " +
+          delivery.business +
+          " | First deliverable: " +
+          delivery.firstDeliverable +
+          " | Missing action: " +
+          materialMissingAction(lead) +
+          " | Status: " +
+          displayStatus(lead.status)
+        );
+      }
+
+      function businessLaunchSupportLine(lead) {
+        var delivery = calcProjectDeliveryData(lead);
+        return (
+          "- " +
+          delivery.business +
+          " | Delivery stage: " +
+          delivery.deliveryStage +
+          " | Next action: " +
+          delivery.nextAction +
+          " | Status: " +
+          displayStatus(lead.status)
+        );
+      }
+
+      function businessSupportReviewLine(lead) {
+        var retention = calcClientRetentionData(lead);
+        return (
+          "- " +
+          retention.business +
+          " | Current system: " +
+          retention.recommendedPackage +
+          " | Next phase opportunity: " +
+          retention.nextPhaseOpportunity +
+          " | Status: " +
+          displayStatus(lead.status)
+        );
+      }
+
+      function businessTestimonialReferralLine(lead) {
+        var retention = calcClientRetentionData(lead);
+        return (
+          "- " +
+          retention.business +
+          " | Testimonial/referral status: " +
+          retention.referralTestimonialStatus +
+          " | Status: " +
+          displayStatus(lead.status)
+        );
+      }
+
+      function copyLinesForMatches(matches, formatter) {
+        var lines = matches
+          .filter(function (match) {
+            return match.table === "business_leads";
+          })
+          .map(function (match) {
+            return formatter(match.row);
+          });
+        return lines.length ? lines.join("\n") : "- None loaded.";
+      }
+
+      function buildDailyBriefActionListCopy() {
+        var counts = dailyBriefCategoryCounts();
+        return [
+          "Owner Daily Brief — Today’s Action List",
+          "",
+          "Priority order:",
+          "1. Hot leads to contact: " + (counts["hot-leads-to-contact"] || 0),
+          "2. Leads needing follow-up: " + (counts["leads-needing-follow-up"] || 0),
+          "3. Quote/proposal ready: " + (counts["quote-proposal-ready"] || 0),
+          "4. Materials needed: " + (counts["materials-needed"] || 0),
+          "5. Launch/support tasks: " + (counts["launch-support-tasks"] || 0),
+          "6. Testimonial/referral asks: " + (counts["testimonial-referral-asks"] || 0),
+          "7. New transportation requests: " + (counts["new-transportation-requests"] || 0),
+          "",
+          "Recommended move:",
+          "Start with hot leads and follow-ups first, then handle quote/proposal work, then delivery/support tasks.",
+          "",
+          DAILY_BRIEF_SAFE_TEXT,
+        ].join("\n");
+      }
+
+      function buildDailyBriefCallListCopy() {
+        return [
+          "Owner Call List",
+          "",
+          "Hot leads to contact:",
+          copyLinesForMatches(getDailyBriefMatches("hot-leads-to-contact"), businessCallLine),
+          "",
+          "Needs follow-up:",
+          copyLinesForMatches(getDailyBriefMatches("leads-needing-follow-up"), businessCallLine),
+          "",
+          "Recommended call order:",
+          "1. Hot leads",
+          "2. Follow-up leads",
+          "3. Qualified/proposal-ready leads",
+          "",
+          DAILY_BRIEF_SAFE_TEXT,
+        ].join("\n");
+      }
+
+      function buildDailyBriefQuotePrepCopy() {
+        return [
+          "Quote / Proposal Prep List",
+          "",
+          "Ready for quote/proposal:",
+          copyLinesForMatches(getDailyBriefMatches("quote-proposal-ready"), businessQuotePrepLine),
+          "",
+          "Recommended next action:",
+          "Confirm scope, approval steps, timeline, and payment structure before final quote.",
+          "",
+          DAILY_BRIEF_SAFE_TEXT,
+        ].join("\n");
+      }
+
+      function buildDailyBriefDeliveryFollowUpCopy() {
+        return [
+          "Delivery Follow-Up List",
+          "",
+          "Materials/access needed:",
+          copyLinesForMatches(getDailyBriefMatches("materials-needed"), businessDeliveryMaterialsLine),
+          "",
+          "Launch/support tasks:",
+          copyLinesForMatches(getDailyBriefMatches("launch-support-tasks"), businessLaunchSupportLine),
+          "",
+          "Recommended next action:",
+          "Collect missing materials first, then move preview/launch items forward.",
+          "",
+          DAILY_BRIEF_SAFE_TEXT,
+        ].join("\n");
+      }
+
+      function buildDailyBriefSupportCheckInCopy() {
+        var supportReviewMatches = businessRowsMatching(function (lead) {
+          return dailyBriefBusinessNoteMatches(lead, ["support review due"]);
+        }).map(function (row) {
+          return { table: "business_leads", row: row };
+        });
+        return [
+          "Support / Retention Check-In List",
+          "",
+          "Support reviews due:",
+          copyLinesForMatches(supportReviewMatches, businessSupportReviewLine),
+          "",
+          "Testimonial/referral opportunities:",
+          copyLinesForMatches(getDailyBriefMatches("testimonial-referral-asks"), businessTestimonialReferralLine),
+          "",
+          "Recommended next action:",
+          "Check in with launched clients, identify optimization opportunities, and ask for social proof only when the client is happy.",
+          "",
+          DAILY_BRIEF_SAFE_TEXT,
+        ].join("\n");
+      }
+
+      function dailyBriefCopyTextForKind(kind) {
+        if (kind === "action-list") return buildDailyBriefActionListCopy();
+        if (kind === "call-list") return buildDailyBriefCallListCopy();
+        if (kind === "quote-prep") return buildDailyBriefQuotePrepCopy();
+        if (kind === "delivery-follow-up") return buildDailyBriefDeliveryFollowUpCopy();
+        if (kind === "support-check-in") return buildDailyBriefSupportCheckInCopy();
+        if (kind === "full-daily-brief") {
+          return [
+            "Owner Daily Brief",
+            "",
+            "Today’s Action List:",
+            buildDailyBriefActionListCopy(),
+            "",
+            "Call List:",
+            buildDailyBriefCallListCopy(),
+            "",
+            "Quote / Proposal Prep:",
+            buildDailyBriefQuotePrepCopy(),
+            "",
+            "Delivery Follow-Up:",
+            buildDailyBriefDeliveryFollowUpCopy(),
+            "",
+            "Support / Retention:",
+            buildDailyBriefSupportCheckInCopy(),
+            "",
+            DAILY_BRIEF_SAFE_TEXT,
+          ].join("\n");
+        }
+        return "";
+      }
+
+      function copyDailyBrief(kind) {
+        if (!els.dailyBrief) return;
+        var text = dailyBriefCopyTextForKind(kind);
+        if (!text) {
+          setCopyFeedback(els.dailyBrief, "Nothing to copy.", true);
+          return;
+        }
+        hideManualCopy(els.dailyBrief);
+        function onSuccess() {
+          setCopyFeedback(els.dailyBrief, "Copied.");
+        }
+        function onFail() {
+          showManualCopy(els.dailyBrief, text);
+          setCopyFeedback(els.dailyBrief, "Select text below to copy.", true);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(onSuccess)
+            .catch(function () {
+              if (fallbackExecCopy(text)) onSuccess();
+              else onFail();
+            });
+        } else if (fallbackExecCopy(text)) {
+          onSuccess();
+        } else {
+          onFail();
+        }
       }
 
       function alertPill(sent, label) {
@@ -9383,6 +10394,40 @@
         return null;
       }
 
+      function syncFilterButtonStates() {
+        document.querySelectorAll(".owner-dash-filter[data-filter]").forEach(function (btn) {
+          btn.classList.toggle("is-active", (btn.getAttribute("data-filter") || "all") === state.activeFilter);
+        });
+        document.querySelectorAll(".owner-dash-priority-filter").forEach(function (btn) {
+          btn.classList.toggle(
+            "is-active",
+            (btn.getAttribute("data-priority-filter") || "all") === state.activePriorityFilter
+          );
+        });
+      }
+
+      function openFirstDailyBriefMatch(key) {
+        if (!briefPriorityRowForKey(key)) return;
+        var matches = getDailyBriefMatches(key);
+        if (!matches.length) return;
+        state.activeQueueKey = null;
+        state.activeFilter = "all";
+        state.activePriorityFilter = "all";
+        syncFilterButtonStates();
+        renderAll();
+        setActivePanelForTable(matches[0].table);
+        window.requestAnimationFrame(function () {
+          var card = findRenderedCard(matches[0].table, matches[0].row.id);
+          if (!card) return;
+          card.scrollIntoView({ behavior: "smooth", block: "start" });
+          card.focus({ preventScroll: true });
+          card.classList.add("is-queue-focus");
+          window.setTimeout(function () {
+            card.classList.remove("is-queue-focus");
+          }, 2400);
+        });
+      }
+
       function openFirstQueueMatch(key) {
         if (!todayBucketForKey(key)) return;
         var matches = getTodayActionMatches(key);
@@ -9546,6 +10591,7 @@
       }
 
       function renderAll() {
+        renderDailyBrief();
         renderTodayActions();
         renderBusiness(state.businessLeads);
         renderTransport(state.transportRows);
@@ -9930,6 +10976,16 @@
 
           if (action === "copy-today-actions") {
             copyTodayActionList();
+            return;
+          }
+
+          if (action === "copy-daily-brief") {
+            copyDailyBrief(btn.getAttribute("data-copy-kind"));
+            return;
+          }
+
+          if (action === "open-daily-brief-first") {
+            openFirstDailyBriefMatch(btn.getAttribute("data-brief-key"));
             return;
           }
 
