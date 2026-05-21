@@ -2256,11 +2256,155 @@
       .owner-dash-restaurant-command,
       .owner-dash-restaurant-command *,
       .owner-dash-restaurant-guardrails,
-      .owner-dash-restaurant-guardrails *
+      .owner-dash-restaurant-guardrails *,
+      .owner-dash-restaurant-create,
+      .owner-dash-restaurant-create *
     ) {
       word-break: normal;
       overflow-wrap: normal;
       hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create {
+      margin: 0 0 14px;
+      padding: clamp(14px, 2vw, 18px);
+      border: 1px solid rgba(20, 184, 166, 0.34);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 34%),
+        rgba(4, 10, 22, 0.68);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-head {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 14px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create h3 {
+      margin: 0;
+      color: #c8fff5;
+      font-size: clamp(1.08rem, 2.3vw, 1.32rem);
+      line-height: 1.15;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-subtitle,
+    .page-owner-dashboard .owner-dash-restaurant-create-helper {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.74);
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-guardrail {
+      margin: 0;
+      padding: 9px 10px;
+      border: 1px solid rgba(251, 146, 60, 0.28);
+      border-radius: 14px;
+      background: rgba(251, 146, 60, 0.09);
+      color: #ffe4c4;
+      font-size: 0.78rem;
+      font-weight: 780;
+      line-height: 1.4;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-form {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-field {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-field--wide {
+      grid-column: 1 / -1;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-label {
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.76rem;
+      font-weight: 850;
+      letter-spacing: 0.035em;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard :is(
+      .owner-dash-restaurant-create-input,
+      .owner-dash-restaurant-create-select,
+      .owner-dash-restaurant-create-textarea
+    ) {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      background: rgba(3, 7, 18, 0.72);
+      color: #fff;
+      font: inherit;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .page-owner-dashboard :is(.owner-dash-restaurant-create-input, .owner-dash-restaurant-create-select) {
+      min-height: 46px;
+      padding: 10px 11px;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-textarea {
+      min-height: 98px;
+      padding: 11px;
+      resize: vertical;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-input::placeholder,
+    .page-owner-dashboard .owner-dash-restaurant-create-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.42);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-actions .owner-dash-btn {
+      white-space: normal;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-feedback {
+      color: #a7f3d0;
+      font-size: 0.84rem;
+      font-weight: 850;
+      line-height: 1.35;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-create-feedback--error {
+      color: #fecaca;
+    }
+
+    @media (max-width: 640px) {
+      .page-owner-dashboard .owner-dash-restaurant-create-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-owner-dashboard .owner-dash-restaurant-create-actions,
+      .page-owner-dashboard .owner-dash-restaurant-create-actions .owner-dash-btn {
+        width: 100%;
+      }
     }
 
     .page-owner-dashboard .owner-dash-restaurant-card-meta {
@@ -2714,6 +2858,143 @@
           <h2>Restaurant Prospects</h2>
           <p>Restaurant partner prospects and AI growth leads detected from loaded business lead rows.</p>
         </header>
+        <article class="owner-dash-restaurant-create owner-dash-glass" aria-labelledby="owner-dash-add-restaurant-prospect-heading">
+          <div class="owner-dash-restaurant-create-head">
+            <p class="eyebrow eyebrow-on-dark">Restaurant Sales Mode</p>
+            <h3 id="owner-dash-add-restaurant-prospect-heading">Add Restaurant Prospect</h3>
+            <p class="owner-dash-restaurant-create-subtitle">Create a restaurant sales lead manually before the public restaurant intake page exists.</p>
+            <p class="owner-dash-restaurant-create-helper">Use this for restaurants you meet in person, research from your first 50 list, or want to pitch before the public restaurant form is live.</p>
+            <p class="owner-dash-restaurant-create-guardrail">Internal only. Creating a prospect does not contact the restaurant, publish a listing, create an invoice, or add them to the public website.</p>
+          </div>
+          <form id="owner-dash-restaurant-prospect-form" class="owner-dash-restaurant-create-form">
+            <div class="owner-dash-restaurant-create-grid">
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Restaurant name</span>
+                <input class="owner-dash-restaurant-create-input" type="text" name="restaurant_name" autocomplete="organization" required />
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Contact name</span>
+                <input class="owner-dash-restaurant-create-input" type="text" name="contact_name" autocomplete="name" required />
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Phone</span>
+                <input class="owner-dash-restaurant-create-input" type="tel" name="phone" autocomplete="tel" required />
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Email</span>
+                <input class="owner-dash-restaurant-create-input" type="email" name="email" autocomplete="email" required />
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Website</span>
+                <input class="owner-dash-restaurant-create-input" type="url" name="website" autocomplete="url" placeholder="https://..." />
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Location / area</span>
+                <input class="owner-dash-restaurant-create-input" type="text" name="location_area" autocomplete="address-level2" />
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Restaurant type</span>
+                <select class="owner-dash-restaurant-create-select" name="restaurant_type">
+                  <option value="Other">Other</option>
+                  <option>Mexican / Tex-Mex</option>
+                  <option>Steakhouse</option>
+                  <option>Seafood</option>
+                  <option>Italian</option>
+                  <option>BBQ</option>
+                  <option>Brunch</option>
+                  <option>Bar / lounge</option>
+                  <option>Rooftop</option>
+                  <option>Bakery / cafe</option>
+                  <option>Pizza</option>
+                  <option>Fine dining</option>
+                  <option>Casual dining</option>
+                  <option>Private dining / catering</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Visitor lane</span>
+                <select class="owner-dash-restaurant-create-select" name="visitor_lane">
+                  <option value="Unknown">Unknown</option>
+                  <option>Business dinner</option>
+                  <option>River Walk dinner</option>
+                  <option>Resort food</option>
+                  <option>Date night</option>
+                  <option>Group dining</option>
+                  <option>Brunch</option>
+                  <option>Private dining / catering</option>
+                  <option>Bar / nightlife</option>
+                  <option>Visitor favorite</option>
+                  <option>Local SEO / discovery</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Main opportunity</span>
+                <select class="owner-dash-restaurant-create-select" name="main_opportunity">
+                  <option value="Unknown">Unknown</option>
+                  <option>Visitor visibility</option>
+                  <option>Better reservation path</option>
+                  <option>QR funnel</option>
+                  <option>Private dining leads</option>
+                  <option>Catering / group inquiries</option>
+                  <option>AI guest answers</option>
+                  <option>Website + local SEO</option>
+                  <option>Reviews + repeat guests</option>
+                  <option>Reporting + alerts</option>
+                  <option>Full growth system</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Recommended offer</span>
+                <select class="owner-dash-restaurant-create-select" name="recommended_offer">
+                  <option value="Not sure yet">Not sure yet</option>
+                  <option>Starter Visibility</option>
+                  <option>Featured Visitor Placement</option>
+                  <option>Route Partner</option>
+                  <option>Website + Local SEO Upgrade</option>
+                  <option>Lead + Inquiry System</option>
+                  <option>AI Restaurant Concierge</option>
+                  <option>QR Funnel System</option>
+                  <option>Review + Repeat Guest System</option>
+                  <option>Full AI Restaurant Growth System</option>
+                  <option>Monthly Growth Management</option>
+                  <option>Restaurant Founding Growth Bundle</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Priority</span>
+                <select class="owner-dash-restaurant-create-select" name="priority">
+                  <option value="">Select priority</option>
+                  <option>Hot</option>
+                  <option>Warm</option>
+                  <option>Low</option>
+                  <option>Not a fit</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Next action</span>
+                <select class="owner-dash-restaurant-create-select" name="next_action">
+                  <option value="Research restaurant">Research restaurant</option>
+                  <option>Make first contact</option>
+                  <option>Send partner program pitch</option>
+                  <option>Ask discovery questions</option>
+                  <option>Send pricing</option>
+                  <option>Build proposal</option>
+                  <option>Request intake details</option>
+                  <option>Follow up</option>
+                  <option>Archive for later</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field owner-dash-restaurant-create-field--wide">
+                <span class="owner-dash-restaurant-create-label">Internal notes</span>
+                <textarea class="owner-dash-restaurant-create-textarea" name="internal_notes" rows="4" placeholder="Private owner notes only. Nothing sends."></textarea>
+              </label>
+            </div>
+            <div class="owner-dash-restaurant-create-actions">
+              <button type="submit" class="owner-dash-btn owner-dash-btn--primary">Create restaurant prospect</button>
+              <span id="owner-dash-restaurant-prospect-feedback" class="owner-dash-restaurant-create-feedback" hidden aria-live="polite"></span>
+            </div>
+          </form>
+        </article>
         <p id="restaurant-prospects-result-count" class="owner-dash-result-count" aria-live="polite">Showing 0 of 0 restaurant prospects</p>
         <div id="restaurant-prospects-empty" class="owner-dash-empty" hidden>
           <p>No restaurant prospects match this view.</p>
@@ -3080,6 +3361,69 @@
         "Practical AI assistance with owner approval",
       ];
 
+      var RESTAURANT_MANUAL_OFFER_MAP = {
+        "Starter Visibility": {
+          packageName: "Starter Visibility",
+          price: "$399 / 90 days",
+          angle: "Start with a low-friction visitor visibility test before adding systems.",
+        },
+        "Featured Visitor Placement": {
+          packageName: "Featured Visitor Placement",
+          price: "$750 / 90 days",
+          angle: "Improve visitor-facing placement when people are deciding where to eat.",
+        },
+        "Route Partner": {
+          packageName: "Route Partner",
+          price: "$1,250 / 90 days",
+          angle: "Fit the restaurant into situation-based visitor routes and private recommendation paths.",
+        },
+        "Website + Local SEO Upgrade": {
+          packageName: "Website + Local SEO Upgrade",
+          price: "From $1,500",
+          angle: "Make the mobile customer path clearer from search, menu, maps, and reservations.",
+        },
+        "Lead + Inquiry System": {
+          packageName: "Lead + Inquiry System",
+          price: "From $2,500",
+          angle: "Capture group, catering, and private dining requests before they get lost.",
+        },
+        "AI Restaurant Concierge": {
+          packageName: "AI Restaurant Concierge",
+          price: "From $3,500",
+          angle: "Help guests get owner-approved answers without replacing staff.",
+        },
+        "QR Funnel System": {
+          packageName: "QR Funnel System",
+          price: "From $1,000",
+          angle: "Turn scans into a cleaner next step for menus, reviews, inquiries, or offers.",
+        },
+        "Review + Repeat Guest System": {
+          packageName: "Review + Repeat Guest System",
+          price: "From $1,500",
+          angle: "Improve review follow-up and repeat-guest paths with owner approval.",
+        },
+        "Full AI Restaurant Growth System": {
+          packageName: "Full AI Restaurant Growth System",
+          price: "From $7,500+",
+          angle: "Map the full growth system after the first useful workflow is clear.",
+        },
+        "Monthly Growth Management": {
+          packageName: "Monthly Growth Management",
+          price: "$500-$2,500/month",
+          angle: "Keep visitor visibility, reporting, follow-up, and growth improvements moving monthly.",
+        },
+        "Restaurant Founding Growth Bundle": {
+          packageName: "Visibility plus capture system",
+          price: "$2,500-$5,000 setup",
+          angle: "Pair visitor visibility with the first useful capture or follow-up system.",
+        },
+        "Not sure yet": {
+          packageName: "Confirm offer after discovery",
+          price: "TBD",
+          angle: "Use discovery to choose the first useful restaurant offer.",
+        },
+      };
+
       var state = {
         businessLeads: [],
         transportRows: [],
@@ -3096,6 +3440,7 @@
         priorityFiltersReady: false,
         restaurantFiltersReady: false,
         dashboardControlsReady: false,
+        restaurantCreateReady: false,
         detailOpen: null,
         clientActivity: {},
         proposalSelections: {},
@@ -3114,6 +3459,8 @@
         restaurantProspectsList: document.getElementById("restaurant-prospects-list"),
         restaurantProspectsEmpty: document.getElementById("restaurant-prospects-empty"),
         restaurantProspectsResultCount: document.getElementById("restaurant-prospects-result-count"),
+        restaurantProspectForm: document.getElementById("owner-dash-restaurant-prospect-form"),
+        restaurantProspectFeedback: document.getElementById("owner-dash-restaurant-prospect-feedback"),
         restaurantClientsList: document.getElementById("restaurant-clients-list"),
         restaurantClientsEmpty: document.getElementById("restaurant-clients-empty"),
         restaurantClientsResultCount: document.getElementById("restaurant-clients-result-count"),
@@ -3747,6 +4094,16 @@
         return String((row && row.owner_notes) || "").trim();
       }
 
+      function ownerNoteMarkerValue(row, marker) {
+        var notes = ownerNotesText(row);
+        if (!notes) return "";
+        var escapedMarker = String(marker || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        var re = new RegExp("^\\s*" + escapedMarker + "\\s*([^\\r\\n]*)", "im");
+        var match = notes.match(re);
+        if (!match) return "";
+        return String(match[1] || "").replace(/\s*\.\s*$/, "").trim();
+      }
+
       function ownerNotesInclude(row, terms) {
         return textIncludesAny(ownerNotesText(row), terms);
       }
@@ -3809,6 +4166,8 @@
       }
 
       function restaurantLane(row) {
+        var manualLane = ownerNoteMarkerValue(row, "Restaurant lane:");
+        if (manualLane) return manualLane;
         var text = restaurantAllText(row).toLowerCase();
         if (/business dinner|client dinner|corporate dinner|convention dinner/.test(text)) return "Business dinner";
         if (/river walk|riverwalk|downtown dinner/.test(text)) return "River Walk dinner";
@@ -3823,7 +4182,35 @@
         return "Unknown";
       }
 
+      function restaurantType(row) {
+        var manualType = ownerNoteMarkerValue(row, "Restaurant type:");
+        if (manualType) return manualType;
+        var industry = firstValue(row, ["business_industry", "industry"]);
+        if (/restaurant\s*\//i.test(String(industry || ""))) {
+          return String(industry).replace(/.*restaurant\s*\/\s*/i, "").trim() || "Other";
+        }
+        return industry || "Other";
+      }
+
+      function restaurantOpportunity(row) {
+        return ownerNoteMarkerValue(row, "Restaurant opportunity:") || row.current_problem || "Unknown";
+      }
+
+      function restaurantManualRecommendedOffer(row) {
+        return ownerNoteMarkerValue(row, "Recommended restaurant offer:");
+      }
+
       function restaurantOfferRecommendation(row) {
+        var manualOffer = restaurantManualRecommendedOffer(row);
+        if (manualOffer) {
+          var manualConfig = RESTAURANT_MANUAL_OFFER_MAP[manualOffer] || {};
+          return {
+            offer: manualOffer,
+            packageName: manualConfig.packageName || manualOffer,
+            price: manualConfig.price || "TBD",
+            angle: manualConfig.angle || "Use the owner-selected restaurant offer as the next sales path.",
+          };
+        }
         var current = String((row && row.current_problem) || "").toLowerCase();
         var services = String((row && row.services_interested) || "").toLowerCase();
         var notes = ownerNotesText(row).toLowerCase();
@@ -3935,6 +4322,8 @@
       }
 
       function restaurantNextAction(row) {
+        var manualNextAction = ownerNoteMarkerValue(row, "Restaurant next action:");
+        if (manualNextAction) return manualNextAction;
         var stage = restaurantStage(row);
         var rec = restaurantOfferRecommendation(row);
         var map = {
@@ -3966,6 +4355,8 @@
           contactLine: [row.contact_phone, row.contact_email].filter(Boolean).join(" / ") || "—",
           location: firstValue(row, ["business_location", "location"]) || "—",
           lane: restaurantLane(row),
+          restaurantType: restaurantType(row),
+          mainOpportunity: restaurantOpportunity(row),
           mainAngle: rec.angle,
           recommendedOffer: rec.offer,
           suggestedPackage: rec.packageName,
@@ -10120,8 +10511,12 @@
 
       function buildRestaurantFullSalesBundle(lead) {
         var business = lead.business_name || "[business_name]";
+        var snap = restaurantSnapshot(lead);
         return [
           "Restaurant Sales Bundle — " + business,
+          "Contact: " + (lead.contact_name || "[contact_name]"),
+          "Recommended offer: " + snap.recommendedOffer,
+          "Next action: " + snap.nextAction,
           "",
           "First outreach:",
           buildRestaurantFirstOutreach(lead),
@@ -10270,6 +10665,8 @@
           restaurantSnapshotItem("Phone / email", snap.contactLine, false) +
           restaurantSnapshotItem("Location / visitor zone", snap.location, false) +
           restaurantSnapshotItem("Restaurant lane", snap.lane, false) +
+          restaurantSnapshotItem("Restaurant type", snap.restaurantType, false) +
+          restaurantSnapshotItem("Main opportunity", snap.mainOpportunity, true) +
           restaurantSnapshotItem("Main sales angle", snap.mainAngle, true) +
           restaurantSnapshotItem("Recommended offer", snap.recommendedOffer, false) +
           restaurantSnapshotItem("Suggested first package", snap.suggestedPackage, false) +
@@ -13724,6 +14121,12 @@
 
       function restaurantEmptyStateHtml(mode, visibleCount) {
         var label = mode === "clients" ? "restaurant clients" : "restaurant prospects";
+        if (mode === "prospects" && !restaurantProspectRows().length) {
+          return (
+            '<p class="owner-dash-empty-title">No restaurant prospects yet.</p>' +
+            '<p class="owner-dash-empty-copy">Add your first restaurant prospect manually or create a restaurant intake page later.</p>'
+          );
+        }
         if (!restaurantAllRows().length) {
           return (
             '<p class="owner-dash-empty-title">No restaurant rows detected yet.</p>' +
@@ -13981,6 +14384,128 @@
             return { ok: res.ok && data && data.ok, status: res.status, data: data };
           });
         });
+      }
+
+      function formValue(form, name) {
+        var field = form && form.elements ? form.elements[name] : null;
+        return field ? String(field.value || "").trim() : "";
+      }
+
+      function setRestaurantProspectCreateFeedback(message, isError) {
+        if (!els.restaurantProspectFeedback) return;
+        els.restaurantProspectFeedback.hidden = false;
+        els.restaurantProspectFeedback.textContent = message;
+        els.restaurantProspectFeedback.className =
+          "owner-dash-restaurant-create-feedback" +
+          (isError ? " owner-dash-restaurant-create-feedback--error" : "");
+      }
+
+      function postCreateRestaurantProspect(payload) {
+        return fetch(UPDATE_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            key: accessKey,
+            action: "create_restaurant_prospect",
+            table: "business_leads",
+            prospect: payload,
+          }),
+        }).then(function (res) {
+          return res.json().then(function (data) {
+            return { ok: res.ok && data && data.ok, status: res.status, data: data };
+          });
+        });
+      }
+
+      function mergeCreatedBusinessLead(record) {
+        if (!record || record.id == null) return;
+        var id = String(record.id);
+        state.businessLeads = state.businessLeads.filter(function (row) {
+          return String(row.id) !== id;
+        });
+        state.businessLeads.unshift(record);
+      }
+
+      function clearFiltersForCreatedRestaurantProspect() {
+        state.activeQueueKey = null;
+        state.activeFilter = "all";
+        state.activePriorityFilter = "all";
+        state.activeRestaurantFilter = "all";
+        state.needsActionOnly = false;
+        state.searchQuery = "";
+      }
+
+      function handleRestaurantProspectCreate(form) {
+        if (!form) return;
+        if (form.checkValidity && !form.checkValidity()) {
+          form.reportValidity();
+          setRestaurantProspectCreateFeedback(
+            "Restaurant prospect could not be created. Check required fields and database connection.",
+            true
+          );
+          return;
+        }
+
+        var payload = {
+          restaurant_name: formValue(form, "restaurant_name"),
+          contact_name: formValue(form, "contact_name"),
+          phone: formValue(form, "phone"),
+          email: formValue(form, "email"),
+          website: formValue(form, "website"),
+          location_area: formValue(form, "location_area"),
+          restaurant_type: formValue(form, "restaurant_type"),
+          visitor_lane: formValue(form, "visitor_lane"),
+          main_opportunity: formValue(form, "main_opportunity"),
+          recommended_offer: formValue(form, "recommended_offer"),
+          priority: formValue(form, "priority"),
+          next_action: formValue(form, "next_action"),
+          internal_notes: formValue(form, "internal_notes"),
+        };
+
+        var submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Creating...";
+        }
+        setRestaurantProspectCreateFeedback("Creating restaurant prospect...", false);
+
+        postCreateRestaurantProspect(payload)
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setRestaurantProspectCreateFeedback(
+                "Restaurant prospect could not be created. Check required fields and database connection.",
+                true
+              );
+              return;
+            }
+            form.reset();
+            clearFiltersForCreatedRestaurantProspect();
+            mergeCreatedBusinessLead(result.data.record);
+            renderAll();
+            setRestaurantProspectCreateFeedback("Restaurant prospect created. Nothing was sent.", false);
+            fetchDashboard()
+              .then(function (fresh) {
+                if (fresh.ok && fresh.data && fresh.data.ok) {
+                  finishSuccess(fresh.data);
+                  setRestaurantProspectCreateFeedback("Restaurant prospect created. Nothing was sent.", false);
+                }
+              })
+              .catch(function () {
+                /* The created row is already visible; refresh is best-effort. */
+              });
+          })
+          .catch(function () {
+            setRestaurantProspectCreateFeedback(
+              "Restaurant prospect could not be created. Check required fields and database connection.",
+              true
+            );
+          })
+          .finally(function () {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = "Create restaurant prospect";
+            }
+          });
       }
 
       function handleSave(workflowEl) {
@@ -14290,6 +14815,15 @@
         }
       }
 
+      function initRestaurantProspectCreate() {
+        if (state.restaurantCreateReady || !els.restaurantProspectForm) return;
+        state.restaurantCreateReady = true;
+        els.restaurantProspectForm.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          handleRestaurantProspectCreate(els.restaurantProspectForm);
+        });
+      }
+
       function initWorkflowDelegation() {
         document.addEventListener("click", function (ev) {
           var btn = ev.target.closest("[data-action]");
@@ -14490,6 +15024,7 @@
         initFilters();
         initPriorityFilters();
         initDashboardControls();
+        initRestaurantProspectCreate();
       }
 
       function initRefresh() {
