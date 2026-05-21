@@ -2709,6 +2709,56 @@
       margin: 10px 0;
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-research-helper {
+      margin: 8px 0 10px;
+      color: rgba(255, 246, 230, 0.78);
+      font-size: 0.8rem;
+      font-weight: 750;
+      line-height: 1.4;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-form {
+      display: grid;
+      gap: 10px;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid rgba(20, 184, 166, 0.22);
+      border-radius: 16px;
+      background: rgba(7, 18, 38, 0.46);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 9px;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-field {
+      display: grid;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-label {
+      color: rgba(255, 246, 230, 0.74);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-select {
+      width: 100%;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
     .page-owner-dashboard .owner-dash-restaurant-card-meta--research {
       grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
     }
@@ -2728,6 +2778,7 @@
 
       .page-owner-dashboard .owner-dash-restaurant-research-score-row,
       .page-owner-dashboard .owner-dash-restaurant-research-grid,
+      .page-owner-dashboard .owner-dash-restaurant-research-form-grid,
       .page-owner-dashboard .owner-dash-restaurant-card-meta--research {
         grid-template-columns: 1fr;
       }
@@ -3769,6 +3820,82 @@
       };
 
       var RESTAURANT_RESEARCH_GUARDRAIL = "Internal research score only. This does not rank restaurants publicly or promise results.";
+      var RESTAURANT_WEBSITE_STATUS_OPTIONS = ["Unknown", "Strong", "Needs improvement", "Missing / weak", "Mobile issue"];
+      var RESTAURANT_GOOGLE_PROFILE_STATUS_OPTIONS = ["Unknown", "Strong", "Needs updates", "Low visibility", "Review issue"];
+      var RESTAURANT_MENU_RESERVATION_PATH_OPTIONS = [
+        "Unknown",
+        "Strong",
+        "Needs improvement",
+        "Missing reservation path",
+        "Confusing mobile path",
+      ];
+      var RESTAURANT_SOCIAL_PRESENCE_OPTIONS = ["Unknown", "Strong", "Active but not converting", "Weak", "Missing"];
+      var RESTAURANT_PRIVATE_DINING_GROUP_PATH_OPTIONS = [
+        "Unknown",
+        "Strong",
+        "Needs improvement",
+        "Missing",
+        "Not applicable",
+      ];
+      var RESTAURANT_RESEARCH_OPPORTUNITY_OPTIONS = ["Unknown", "High", "Medium", "Low"];
+      var RESTAURANT_RESEARCH_FIELDS = [
+        {
+          key: "websiteStatus",
+          name: "website_status",
+          label: "Website status",
+          marker: "Website status",
+          options: RESTAURANT_WEBSITE_STATUS_OPTIONS,
+        },
+        {
+          key: "googleStatus",
+          name: "google_profile_status",
+          label: "Google profile status",
+          marker: "Google profile status",
+          options: RESTAURANT_GOOGLE_PROFILE_STATUS_OPTIONS,
+        },
+        {
+          key: "menuReservationStatus",
+          name: "menu_reservation_path",
+          label: "Menu/reservation path",
+          marker: "Menu/reservation path",
+          options: RESTAURANT_MENU_RESERVATION_PATH_OPTIONS,
+        },
+        {
+          key: "socialStatus",
+          name: "social_presence",
+          label: "Social presence",
+          marker: "Social presence",
+          options: RESTAURANT_SOCIAL_PRESENCE_OPTIONS,
+        },
+        {
+          key: "privateDiningStatus",
+          name: "private_dining_group_path",
+          label: "Private dining/group path",
+          marker: "Private dining/group path",
+          options: RESTAURANT_PRIVATE_DINING_GROUP_PATH_OPTIONS,
+        },
+        {
+          key: "visitorFit",
+          name: "visitor_fit",
+          label: "Visitor fit",
+          marker: "Visitor fit",
+          options: RESTAURANT_RESEARCH_OPPORTUNITY_OPTIONS,
+        },
+        {
+          key: "qrOpportunity",
+          name: "qr_funnel_opportunity",
+          label: "QR/funnel opportunity",
+          marker: "QR/funnel opportunity",
+          options: RESTAURANT_RESEARCH_OPPORTUNITY_OPTIONS,
+        },
+        {
+          key: "reviewOpportunity",
+          name: "review_repeat_guest_opportunity",
+          label: "Review/repeat guest opportunity",
+          marker: "Review/repeat guest opportunity",
+          options: RESTAURANT_RESEARCH_OPPORTUNITY_OPTIONS,
+        },
+      ];
 
       var state = {
         businessLeads: [],
@@ -11449,6 +11576,55 @@
         );
       }
 
+      function restaurantResearchOptionsHtml(options, current) {
+        return (options || [])
+          .map(function (opt) {
+            return (
+              '<option value="' +
+              esc(opt) +
+              '"' +
+              (opt === current ? " selected" : "") +
+              ">" +
+              esc(opt) +
+              "</option>"
+            );
+          })
+          .join("");
+      }
+
+      function restaurantResearchSelectField(field, research) {
+        var current = research && research[field.key] ? research[field.key] : "Unknown";
+        return (
+          '<label class="owner-dash-restaurant-research-field">' +
+          '<span class="owner-dash-restaurant-research-label">' +
+          esc(field.label + ":") +
+          "</span>" +
+          '<select class="owner-dash-select owner-dash-restaurant-research-select" name="' +
+          esc(field.name) +
+          '" data-restaurant-research-field="' +
+          esc(field.name) +
+          '">' +
+          restaurantResearchOptionsHtml(field.options, current) +
+          "</select></label>"
+        );
+      }
+
+      function restaurantResearchFormHtml(research) {
+        return (
+          '<div class="owner-dash-restaurant-research-form" data-restaurant-research-form>' +
+          '<p class="owner-dash-restaurant-research-helper">Research score improves when visitor fit is strong and there is a clear website, Google, QR, review, private dining, or reservation-path opportunity.</p>' +
+          '<div class="owner-dash-restaurant-research-form-grid">' +
+          RESTAURANT_RESEARCH_FIELDS.map(function (field) {
+            return restaurantResearchSelectField(field, research);
+          }).join("") +
+          "</div>" +
+          '<div class="owner-dash-restaurant-research-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--primary owner-dash-btn--compact" data-action="save-restaurant-research">Save restaurant research</button>' +
+          "</div>" +
+          "</div>"
+        );
+      }
+
       function restaurantCopyButton(kind, label, primary) {
         return (
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
@@ -11583,6 +11759,7 @@
           restaurantSnapshotItem("Best visitor lane", snap.lane, false) +
           restaurantSnapshotItem("Best first offer", snap.recommendedOffer, false) +
           "</div>" +
+          restaurantResearchFormHtml(research) +
           '<p class="owner-dash-restaurant-workflow-guardrail">' +
           esc(RESTAURANT_RESEARCH_GUARDRAIL) +
           "</p>" +
@@ -12355,6 +12532,73 @@
         if (!cleanNote) return current;
         if (current.toLowerCase().indexOf(cleanNote.toLowerCase()) !== -1) return current;
         return current ? current + "\n" + cleanNote : cleanNote;
+      }
+
+      function restaurantResearchFieldValue(form, field) {
+        var input = form && form.querySelector('[name="' + field.name + '"]');
+        var value = input ? String(input.value || "").trim() : "";
+        return field.options.indexOf(value) !== -1 ? value : "Unknown";
+      }
+
+      function readRestaurantResearchFormValues(form) {
+        var values = {};
+        RESTAURANT_RESEARCH_FIELDS.forEach(function (field) {
+          values[field.key] = restaurantResearchFieldValue(form, field);
+        });
+        return values;
+      }
+
+      function buildRestaurantResearchBlock(values) {
+        return ["Restaurant research:"]
+          .concat(
+            RESTAURANT_RESEARCH_FIELDS.map(function (field) {
+              return field.marker + ": " + (values[field.key] || "Unknown") + ".";
+            })
+          )
+          .join("\n");
+      }
+
+      function isRestaurantResearchFieldLine(line) {
+        var text = String(line || "").trim().toLowerCase();
+        return RESTAURANT_RESEARCH_FIELDS.some(function (field) {
+          return text.indexOf(field.marker.toLowerCase() + ":") === 0;
+        });
+      }
+
+      function upsertRestaurantResearchBlock(existing, values) {
+        var block = buildRestaurantResearchBlock(values);
+        var current = String(existing || "").replace(/\r\n/g, "\n").trim();
+        if (!current) return block;
+        var lines = current.split("\n");
+        var blockLines = block.split("\n");
+        var nextLines = [];
+        var inserted = false;
+        for (var i = 0; i < lines.length; i++) {
+          if (/^\s*Restaurant research:\s*$/i.test(lines[i])) {
+            if (!inserted) {
+              nextLines = nextLines.concat(blockLines);
+              inserted = true;
+            }
+            i += 1;
+            while (i < lines.length) {
+              if (!String(lines[i] || "").trim() || isRestaurantResearchFieldLine(lines[i])) {
+                i += 1;
+                continue;
+              }
+              break;
+            }
+            i -= 1;
+            continue;
+          }
+          nextLines.push(lines[i]);
+        }
+        if (!inserted) {
+          nextLines.push(block);
+        }
+        return nextLines
+          .join("\n")
+          .replace(/\n{3,}/g, "\n\n")
+          .trim();
       }
 
       function appendProposalReadyNote(existing, deal) {
@@ -13537,6 +13781,80 @@
           .finally(function () {
             buttons.forEach(function (b) {
               b.disabled = false;
+            });
+            sourceBtn.textContent =
+              sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
+          });
+      }
+
+      function handleRestaurantResearchSave(sheet, sourceBtn) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        var form = sourceBtn.closest("[data-restaurant-research-form]");
+        if (!form) return;
+        var section =
+          sourceBtn.closest(".owner-dash-detail-section--restaurant-command") ||
+          sheet.querySelector(".owner-dash-detail-section--restaurant-command");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var values = readRestaurantResearchFormValues(form);
+        var previousNotes = String(hit.row.owner_notes || "");
+        var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
+        var nextNotes = upsertRestaurantResearchBlock(notesBase, values);
+        var controls = form.querySelectorAll("button, select");
+        controls.forEach(function (control) {
+          control.disabled = true;
+        });
+        sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+        sourceBtn.textContent = "Saving...";
+        setRestaurantFeedback(section, "Saving restaurant research...", false);
+
+        postUpdate(table, id, { owner_notes: nextNotes })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setRestaurantFeedback(
+                section,
+                (result.data && result.data.error) || "Could not save restaurant research. Try saving manually.",
+                true
+              );
+              return null;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(table, id, "Restaurant research updated", "ok", "");
+            return fetchDashboard()
+              .then(function (fresh) {
+                if (fresh.ok && fresh.data && fresh.data.ok) {
+                  finishSuccess(fresh.data);
+                } else {
+                  renderAll();
+                }
+              })
+              .catch(function () {
+                renderAll();
+              })
+              .then(function () {
+                var freshSection =
+                  els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--restaurant-command");
+                setRestaurantFeedback(
+                  freshSection || section,
+                  "Restaurant research saved. Nothing was sent.",
+                  false
+                );
+                refreshCounts();
+              });
+          })
+          .catch(function () {
+            setRestaurantFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            controls.forEach(function (control) {
+              control.disabled = false;
             });
             sourceBtn.textContent =
               sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
@@ -16346,6 +16664,11 @@
 
           if (sheet && action === "mark-restaurant-stage") {
             handleRestaurantStageAction(sheet, btn);
+            return;
+          }
+
+          if (sheet && action === "save-restaurant-research") {
+            handleRestaurantResearchSave(sheet, btn);
             return;
           }
 
