@@ -2141,6 +2141,12 @@
       hyphens: none;
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-create,
+    .page-owner-dashboard .owner-dash-restaurant-create * {
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+
     .page-owner-dashboard :is(.owner-dash-btn, .owner-dash-filter, .owner-dash-tab) {
       white-space: normal;
       text-align: center;
@@ -2326,6 +2332,7 @@
       display: grid;
       gap: 6px;
       min-width: 0;
+      width: 100%;
     }
 
     .page-owner-dashboard .owner-dash-restaurant-create-field--wide {
@@ -2863,7 +2870,6 @@
             <p class="eyebrow eyebrow-on-dark">Restaurant Sales Mode</p>
             <h3 id="owner-dash-add-restaurant-prospect-heading">Add Restaurant Prospect</h3>
             <p class="owner-dash-restaurant-create-subtitle">Create a restaurant sales lead manually before the public restaurant intake page exists.</p>
-            <p class="owner-dash-restaurant-create-helper">Use this for restaurants you meet in person, research from your first 50 list, or want to pitch before the public restaurant form is live.</p>
             <p class="owner-dash-restaurant-create-guardrail">Internal only. Creating a prospect does not contact the restaurant, publish a listing, create an invoice, or add them to the public website.</p>
           </div>
           <form id="owner-dash-restaurant-prospect-form" class="owner-dash-restaurant-create-form">
@@ -2874,15 +2880,15 @@
               </label>
               <label class="owner-dash-restaurant-create-field">
                 <span class="owner-dash-restaurant-create-label">Contact name</span>
-                <input class="owner-dash-restaurant-create-input" type="text" name="contact_name" autocomplete="name" required />
+                <input class="owner-dash-restaurant-create-input" type="text" name="contact_name" autocomplete="name" />
               </label>
               <label class="owner-dash-restaurant-create-field">
                 <span class="owner-dash-restaurant-create-label">Phone</span>
-                <input class="owner-dash-restaurant-create-input" type="tel" name="phone" autocomplete="tel" required />
+                <input class="owner-dash-restaurant-create-input" type="tel" name="phone" autocomplete="tel" />
               </label>
               <label class="owner-dash-restaurant-create-field">
                 <span class="owner-dash-restaurant-create-label">Email</span>
-                <input class="owner-dash-restaurant-create-input" type="email" name="email" autocomplete="email" required />
+                <input class="owner-dash-restaurant-create-input" type="email" name="email" autocomplete="email" />
               </label>
               <label class="owner-dash-restaurant-create-field">
                 <span class="owner-dash-restaurant-create-label">Website</span>
@@ -2997,8 +3003,7 @@
         </article>
         <p id="restaurant-prospects-result-count" class="owner-dash-result-count" aria-live="polite">Showing 0 of 0 restaurant prospects</p>
         <div id="restaurant-prospects-empty" class="owner-dash-empty" hidden>
-          <p>No restaurant prospects match this view.</p>
-          <p>Restaurant rows are detected from industry, notes, problem, services, and AI summary terms.</p>
+          <p>No restaurant prospects yet. Add your first restaurant prospect manually or create a restaurant intake page later.</p>
         </div>
         <div id="restaurant-prospects-list" class="owner-dash-card-list"></div>
       </section>
@@ -14123,8 +14128,7 @@
         var label = mode === "clients" ? "restaurant clients" : "restaurant prospects";
         if (mode === "prospects" && !restaurantProspectRows().length) {
           return (
-            '<p class="owner-dash-empty-title">No restaurant prospects yet.</p>' +
-            '<p class="owner-dash-empty-copy">Add your first restaurant prospect manually or create a restaurant intake page later.</p>'
+            '<p class="owner-dash-empty-title">No restaurant prospects yet. Add your first restaurant prospect manually or create a restaurant intake page later.</p>'
           );
         }
         if (!restaurantAllRows().length) {
