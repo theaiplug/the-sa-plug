@@ -19,7 +19,7 @@
       font-size: 0.74rem;
       line-height: 1.35;
       color: rgba(255, 246, 230, 0.58);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-activity {
@@ -90,12 +90,12 @@
     .page-owner-dashboard .owner-dash-activity-label {
       color: rgba(255, 246, 230, 0.92);
       font-weight: 750;
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-activity-detail {
       color: rgba(255, 246, 230, 0.58);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-activity-detail::before {
@@ -188,7 +188,7 @@
       color: rgba(255, 246, 230, 0.9);
       font-size: 0.82rem;
       line-height: 1.35;
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-followup-reason {
@@ -324,7 +324,7 @@
       color: #fff7ed;
       font-size: 1rem;
       line-height: 1.2;
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-client-proposal-hero p {
@@ -332,7 +332,7 @@
       color: rgba(255, 246, 230, 0.72);
       font-size: 0.82rem;
       line-height: 1.45;
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-client-proposal-snapshot {
@@ -366,7 +366,7 @@
       color: rgba(255, 246, 230, 0.92);
       font-size: 0.82rem;
       line-height: 1.35;
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-client-proposal-scope-grid {
@@ -590,7 +590,7 @@
       font-size: 0.82rem;
       line-height: 1.35;
       color: rgba(255, 246, 230, 0.94);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-quote-card--invoice .owner-dash-quote-mini-row + .owner-dash-quote-mini-row,
@@ -606,7 +606,7 @@
       font-size: 0.78rem;
       line-height: 1.35;
       color: rgba(255, 246, 230, 0.8);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-quote-list--compact {
@@ -619,7 +619,7 @@
       font-size: 0.8rem;
       line-height: 1.42;
       color: rgba(255, 246, 230, 0.78);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-detail-section--quote-prep .owner-dash-btn {
@@ -795,7 +795,7 @@
       font-size: 0.82rem;
       line-height: 1.35;
       color: rgba(255, 246, 230, 0.94);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-close-check-card h4 {
@@ -813,7 +813,7 @@
       font-size: 0.78rem;
       line-height: 1.35;
       color: rgba(255, 246, 230, 0.8);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-close-week-grid {
@@ -968,7 +968,7 @@
       font-size: 0.82rem;
       line-height: 1.35;
       color: rgba(255, 246, 230, 0.94);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-delivery-check-card h4 {
@@ -986,7 +986,7 @@
       font-size: 0.78rem;
       line-height: 1.35;
       color: rgba(255, 246, 230, 0.8);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-delivery-caution,
@@ -1151,7 +1151,7 @@
       font-size: 0.82rem;
       line-height: 1.35;
       color: rgba(255, 246, 230, 0.94);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-retention-check-card h4,
@@ -1171,7 +1171,7 @@
       font-size: 0.78rem;
       line-height: 1.35;
       color: rgba(255, 246, 230, 0.8);
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .page-owner-dashboard .owner-dash-retention-next-summary + .owner-dash-retention-next-summary {
@@ -1294,6 +1294,110 @@
         grid-template-columns: repeat(5, minmax(0, 1fr));
       }
     }
+
+    /* Owner Command Dashboard v19 - mobile word-break QA */
+    .page-owner-dashboard,
+    .page-owner-dashboard :is(
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      li,
+      span,
+      strong,
+      small,
+      button,
+      label,
+      dt,
+      dd,
+      textarea,
+      .owner-dash-btn,
+      .owner-dash-filter,
+      .owner-dash-tab,
+      .owner-dash-pill,
+      .owner-dash-badge,
+      .owner-dash-detail-section-title
+    ) {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard :is(.owner-dash-btn, .owner-dash-filter, .owner-dash-tab) {
+      white-space: normal;
+      text-align: center;
+      line-height: 1.25;
+    }
+
+    .page-owner-dashboard :is(
+      .owner-dash-filter,
+      .owner-dash-tab,
+      .owner-dash-pill,
+      .owner-dash-badge,
+      .owner-dash-stage-pill,
+      .owner-dash-pipeline-step
+    ) {
+      white-space: nowrap;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard :is(
+      .owner-dash-detail-value,
+      .owner-dash-field dd,
+      .owner-dash-page-path-value
+    ) {
+      overflow-wrap: break-word;
+      word-break: normal;
+      hyphens: none;
+    }
+
+    @media (max-width: 420px) {
+      .page-owner-dashboard .owner-dash-detail-section-title {
+        font-size: 0.72rem;
+        letter-spacing: 0.035em;
+        line-height: 1.28;
+      }
+
+      .page-owner-dashboard :is(
+        .owner-dash-followup-block-label,
+        .owner-dash-followup-group-label,
+        .owner-dash-client-proposal-label,
+        .owner-dash-client-proposal-card-label,
+        .owner-dash-quote-snapshot-item span,
+        .owner-dash-close-card-label,
+        .owner-dash-delivery-card-label,
+        .owner-dash-retention-card-label,
+        .owner-dash-pricing-card-label
+      ) {
+        letter-spacing: 0.035em;
+      }
+
+      .page-owner-dashboard :is(
+        .owner-dash-detail-section--followup-command,
+        .owner-dash-detail-section--client-proposal,
+        .owner-dash-detail-section--quote-prep,
+        .owner-dash-detail-section--close-onboarding,
+        .owner-dash-detail-section--project-delivery,
+        .owner-dash-detail-section--client-retention,
+        .owner-dash-detail-section--pricing
+      ) {
+        margin-bottom: 12px;
+        padding: 10px;
+      }
+
+      .page-owner-dashboard :is(
+        .owner-dash-followup-stage-actions,
+        .owner-dash-followup-copy-actions,
+        .owner-dash-client-proposal-tone-actions,
+        .owner-dash-client-proposal-copy-actions,
+        .owner-dash-client-proposal-actions
+      ) {
+        gap: 7px;
+      }
+    }
   </style>
 </head>
 <body class="page-owner-dashboard">
@@ -1362,12 +1466,12 @@
           <div class="owner-dash-today-order" aria-label="Today’s recommended order">
             <p>Recommended order:</p>
             <ol>
-              <li>Hot leads to contact</li>
+              <li>Hot leads</li>
               <li>Needs follow-up</li>
               <li>Ready for proposal</li>
               <li>Proposal follow-up due</li>
               <li>Waiting on reply</li>
-              <li>New transportation requests</li>
+              <li>New transportation</li>
               <li>Needs notes</li>
             </ol>
           </div>
@@ -1392,7 +1496,7 @@
             <p class="owner-dash-stat-meta">Both pipelines</p>
           </article>
           <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
-            <p class="owner-dash-stat-label">Proposal ready</p>
+            <p class="owner-dash-stat-label">Ready for proposal</p>
             <p class="owner-dash-stat-value owner-dash-stat-value--teal" id="count-proposal-ready">—</p>
             <p class="owner-dash-stat-meta">Ready to send</p>
           </article>
@@ -1644,7 +1748,7 @@
       var TODAY_ACTION_BUCKETS = [
         {
           key: "hot-leads",
-          label: "Hot leads to contact",
+          label: "Hot leads",
           explanation: "High-priority business leads with contact info.",
         },
         {
@@ -1669,7 +1773,7 @@
         },
         {
           key: "new-transport",
-          label: "New transportation requests",
+          label: "New transportation",
           explanation: "New transport requests needing review.",
         },
         {
@@ -2141,7 +2245,7 @@
           return { key: "proposal-sent", label: "Proposal sent", explanation: "Proposal was copied or sent manually and needs tracking." };
         }
         if (hasProposalReadyNote(row)) {
-          return { key: "proposal-ready", label: "Proposal ready", explanation: "Recommended package and first deliverable are ready." };
+          return { key: "proposal-ready", label: "Ready for proposal", explanation: "Recommended package and first deliverable are ready." };
         }
         if (status === "qualified") {
           return { key: "qualified", label: "Qualified", explanation: "Lead looks viable and needs proposal or next step." };
@@ -2328,21 +2432,21 @@
         return [
           "Where To Go SA Owner Dashboard — Today’s Actions",
           "",
-          "Hot leads to contact: " + (counts["hot-leads"] || 0),
+          "Hot leads: " + (counts["hot-leads"] || 0),
           "Needs follow-up: " + (counts["needs-follow-up"] || 0),
           "Ready for proposal: " + (counts["ready-proposal"] || 0),
           "Proposal follow-up due: " + (counts["proposal-followup"] || 0),
           "Waiting on reply: " + (counts["waiting-reply"] || 0),
-          "New transportation requests: " + (counts["new-transport"] || 0),
+          "New transportation: " + (counts["new-transport"] || 0),
           "Needs notes: " + (counts["needs-notes"] || 0),
           "",
           "Recommended order:",
-          "1. Hot leads to contact",
+          "1. Hot leads",
           "2. Needs follow-up",
           "3. Ready for proposal",
           "4. Proposal follow-up due",
           "5. Waiting on reply",
-          "6. New transportation requests",
+          "6. New transportation",
           "7. Needs notes",
           "",
           "No messages are sent automatically.",
@@ -5868,7 +5972,7 @@
           '<div class="owner-dash-retention-copy-actions">' +
           clientRetentionCopyButton("retention-monthly-check-in", "Copy monthly check-in", true) +
           clientRetentionCopyButton("retention-support-review", "Copy support review message", false) +
-          clientRetentionCopyButton("retention-optimization-recommendation", "Copy optimization recommendation", false) +
+          clientRetentionCopyButton("retention-optimization-recommendation", "Copy optimization rec", false) +
           clientRetentionCopyButton("retention-next-phase-offer", "Copy next-phase offer", false) +
           clientRetentionCopyButton("retention-testimonial-request", "Copy testimonial request", false) +
           clientRetentionCopyButton("retention-referral-request", "Copy referral request", false) +
@@ -6601,7 +6705,7 @@
           '<div class="owner-dash-deal-actions">' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="deal-proposal-summary">Copy proposal summary</button>' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="deal-estimate-notes">Copy estimate notes</button>' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="deal-proposal-checklist">Copy discovery-to-proposal checklist</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="deal-proposal-checklist">Copy proposal checklist</button>' +
           "</div>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<span class="owner-dash-deal-feedback" data-deal-feedback hidden aria-live="polite"></span>' +
@@ -7470,7 +7574,7 @@
           ? [
               { kind: "summary", label: "Copy lead summary" },
               { kind: "discovery-questions", label: "Copy discovery questions", action: "copy-followup" },
-              { kind: "first-offer", label: "Copy first-offer recommendation", action: "copy-followup" },
+              { kind: "first-offer", label: "Copy first offer", action: "copy-followup" },
             ]
           : [{ kind: "request-summary", label: "Copy request summary", action: "copy-followup" }];
         return (

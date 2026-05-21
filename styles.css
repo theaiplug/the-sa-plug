@@ -13212,7 +13212,7 @@ body.page-ask main {
   color: var(--on-dark-heading);
   font-size: clamp(1.75rem, 5vw, 2.65rem);
   max-width: 22ch;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-utility {
@@ -13278,7 +13278,7 @@ body.page-ask main {
   line-height: 1.35;
   color: rgba(255, 246, 230, 0.5);
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-refresh-error {
@@ -13481,14 +13481,14 @@ body.page-ask main {
   font-size: 0.84rem;
   line-height: 1.25;
   color: var(--on-dark-heading);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-today-bucket-copy small {
   font-size: 0.72rem;
   line-height: 1.35;
   color: rgba(255, 246, 230, 0.6);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-today-bucket-actions {
@@ -13771,7 +13771,7 @@ body.page-ask main {
   font-size: 0.92rem;
   line-height: 1.5;
   color: rgba(255, 246, 230, 0.9);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .page-owner-dashboard .owner-dash-excerpt {
@@ -14003,8 +14003,8 @@ body.page-ask main {
   font-size: 0.78rem;
   line-height: 1.4;
   color: rgba(255, 246, 230, 0.55);
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
   min-width: 0;
 }
 
@@ -14281,7 +14281,7 @@ body.owner-dash-detail-open {
   font-weight: 880;
   line-height: 1.3;
   color: var(--on-dark-heading);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-detail-close {
@@ -14352,7 +14352,7 @@ body.owner-dash-detail-open {
   font-size: 0.94rem;
   line-height: 1.55;
   color: rgba(255, 246, 230, 0.92);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   white-space: pre-wrap;
 }
 
@@ -14483,7 +14483,7 @@ body.owner-dash-detail-open {
   font-size: 0.82rem;
   line-height: 1.45;
   white-space: pre-wrap;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   color: rgba(255, 246, 230, 0.92);
   user-select: all;
 }
@@ -14519,7 +14519,7 @@ body.owner-dash-detail-open {
   -webkit-box-orient: vertical;
   overflow: hidden;
   white-space: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   max-height: 3.2em;
 }
 
@@ -14623,7 +14623,7 @@ body.owner-dash-detail-open {
   color: rgba(255, 246, 230, 0.88);
   background: rgba(255, 139, 31, 0.1);
   border: 1px solid rgba(255, 139, 31, 0.28);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-next-action-label {
@@ -14773,7 +14773,7 @@ body.owner-dash-detail-open {
   color: rgba(255, 246, 230, 0.9);
   background: rgba(20, 184, 166, 0.08);
   border: 1px solid rgba(20, 184, 166, 0.28);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-opportunity-label {
@@ -14818,7 +14818,7 @@ body.owner-dash-detail-open {
   font-size: 0.86rem;
   line-height: 1.45;
   color: rgba(255, 246, 230, 0.92);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-opportunity-k {
@@ -14852,7 +14852,7 @@ body.owner-dash-detail-open {
   font-size: 0.82rem;
   line-height: 1.5;
   color: rgba(255, 246, 230, 0.86);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-opportunity-preview-grid {
@@ -14878,7 +14878,7 @@ body.owner-dash-detail-open {
   margin: 0;
   overflow: hidden;
   white-space: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   font-size: 0.82rem;
   line-height: 1.45;
   color: rgba(255, 246, 230, 0.82);
@@ -14986,7 +14986,7 @@ body.owner-dash-detail-open {
   font-size: 0.86rem;
   line-height: 1.35;
   color: rgba(255, 246, 230, 0.94);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-deal-scope,
@@ -15010,7 +15010,7 @@ body.owner-dash-detail-open {
   font-size: 0.81rem;
   line-height: 1.42;
   color: rgba(255, 246, 230, 0.84);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-deal-preview {
@@ -15028,7 +15028,7 @@ body.owner-dash-detail-open {
   margin: 0;
   overflow: hidden;
   white-space: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   font-size: 0.82rem;
   line-height: 1.45;
   color: rgba(255, 246, 230, 0.84);
@@ -15104,7 +15104,7 @@ body.owner-dash-detail-open {
   font-size: 0.78rem;
   line-height: 1.35;
   color: rgba(255, 246, 230, 0.78);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-deal-stage-card-row span {
@@ -15165,7 +15165,7 @@ body.owner-dash-detail-open {
   color: #c8fff5;
   background: rgba(20, 184, 166, 0.18);
   border: 1px solid rgba(20, 184, 166, 0.48);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-stage-pill--won {
@@ -15193,7 +15193,7 @@ body.owner-dash-detail-open {
   font-size: 0.8rem;
   line-height: 1.45;
   color: rgba(255, 246, 230, 0.78);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-stage-actions,
@@ -15353,7 +15353,7 @@ body.owner-dash-detail-open {
   font-size: 0.81rem;
   line-height: 1.43;
   color: rgba(255, 246, 230, 0.84);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-detail-section--proposal .owner-dash-deal-list {
@@ -15367,7 +15367,7 @@ body.owner-dash-detail-open {
   font-size: 0.81rem;
   line-height: 1.43;
   color: rgba(255, 246, 230, 0.84);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-proposal-safe-note {
@@ -15571,7 +15571,7 @@ body.owner-dash-detail-open {
   font-size: 0.8rem;
   line-height: 1.42;
   color: rgba(255, 246, 230, 0.8);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-pricing-snapshot,
@@ -15605,7 +15605,7 @@ body.owner-dash-detail-open {
   font-size: 0.84rem;
   line-height: 1.35;
   color: rgba(255, 246, 230, 0.95);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-pricing-caution {
@@ -15627,7 +15627,7 @@ body.owner-dash-detail-open {
   font-size: 0.78rem;
   line-height: 1.35;
   color: rgba(255, 246, 230, 0.8);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-pricing-options {
@@ -15654,7 +15654,7 @@ body.owner-dash-detail-open {
   font-size: 0.78rem;
   line-height: 1.4;
   color: rgba(255, 246, 230, 0.78);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .page-owner-dashboard .owner-dash-pricing-option-card strong {
@@ -15735,5 +15735,112 @@ body.owner-dash-detail-open {
 @media (min-width: 760px) {
   .page-owner-dashboard .owner-dash-pricing-options {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Owner Command Dashboard v19 - mobile word-break QA */
+.page-owner-dashboard,
+.page-owner-dashboard :is(
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li,
+  span,
+  strong,
+  small,
+  button,
+  label,
+  dt,
+  dd,
+  textarea,
+  .owner-dash-btn,
+  .owner-dash-filter,
+  .owner-dash-tab,
+  .owner-dash-pill,
+  .owner-dash-badge,
+  .owner-dash-detail-section-title
+) {
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+}
+
+.page-owner-dashboard :is(.owner-dash-btn, .owner-dash-filter, .owner-dash-tab) {
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.page-owner-dashboard :is(
+  .owner-dash-filter,
+  .owner-dash-tab,
+  .owner-dash-pill,
+  .owner-dash-badge,
+  .owner-dash-stage-pill,
+  .owner-dash-pipeline-step
+) {
+  white-space: nowrap;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+}
+
+.page-owner-dashboard :is(
+  .owner-dash-detail-link,
+  .owner-dash-detail-value,
+  .owner-dash-field dd,
+  .owner-dash-page-path-value
+) {
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  hyphens: none !important;
+}
+
+@media (max-width: 420px) {
+  .page-owner-dashboard .owner-dash-detail-section-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.035em;
+    line-height: 1.28;
+  }
+
+  .page-owner-dashboard :is(
+    .owner-dash-detail-eyebrow,
+    .owner-dash-workflow-title,
+    .owner-dash-workflow-label,
+    .owner-dash-detail-label,
+    .owner-dash-tool-group-label,
+    .owner-dash-next-action-label,
+    .owner-dash-queue-reason span,
+    .owner-dash-opportunity-label,
+    .owner-dash-opportunity-k,
+    .owner-dash-deal-k,
+    .owner-dash-deal-stage-card-row span,
+    .owner-dash-stage-current span,
+    .owner-dash-pricing-card-label
+  ) {
+    letter-spacing: 0.035em;
+  }
+
+  .page-owner-dashboard :is(
+    .owner-dash-detail-section,
+    .owner-dash-detail-section--followup,
+    .owner-dash-detail-section--tools,
+    .owner-dash-detail-section--opportunity,
+    .owner-dash-detail-section--deal,
+    .owner-dash-detail-section--deal-stage,
+    .owner-dash-detail-section--proposal,
+    .owner-dash-detail-section--pricing
+  ) {
+    margin-bottom: 12px;
+  }
+
+  .page-owner-dashboard .owner-dash-detail-body {
+    padding: 12px 14px 22px;
+  }
+
+  .page-owner-dashboard .owner-dash-detail-head {
+    padding: 12px 14px 10px;
   }
 }
