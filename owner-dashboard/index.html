@@ -102,6 +102,183 @@
       content: "— ";
       color: rgba(255, 246, 230, 0.32);
     }
+
+    .page-owner-dashboard .owner-dash-detail-section--followup-command {
+      margin-bottom: 16px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      background:
+        linear-gradient(145deg, rgba(20, 184, 166, 0.16), rgba(255, 139, 31, 0.08) 52%, transparent 78%),
+        rgba(4, 10, 22, 0.58);
+      border: 1px solid rgba(20, 184, 166, 0.32);
+      box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.06);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-followup-command-head {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--followup-command .owner-dash-detail-section-title {
+      margin-bottom: 5px;
+      color: #c8fff5;
+    }
+
+    .page-owner-dashboard .owner-dash-followup-safe-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      max-width: 100%;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 139, 31, 0.34);
+      background: rgba(255, 139, 31, 0.12);
+      color: #ffe4c4;
+      font-size: 0.68rem;
+      font-weight: 850;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .page-owner-dashboard .owner-dash-followup-recommendation,
+    .page-owner-dashboard .owner-dash-followup-preview {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-followup-recommendation {
+      padding: 9px;
+      border-radius: 12px;
+      background: rgba(255, 246, 230, 0.055);
+      border: 1px solid rgba(20, 184, 166, 0.18);
+    }
+
+    .page-owner-dashboard .owner-dash-followup-recommendation div,
+    .page-owner-dashboard .owner-dash-followup-preview-item {
+      min-width: 0;
+      padding: 8px 9px;
+      border-radius: 10px;
+      background: rgba(4, 10, 22, 0.38);
+      border: 1px solid rgba(255, 246, 230, 0.08);
+    }
+
+    .page-owner-dashboard .owner-dash-followup-recommendation span,
+    .page-owner-dashboard .owner-dash-followup-preview-item span,
+    .page-owner-dashboard .owner-dash-followup-block-label,
+    .page-owner-dashboard .owner-dash-followup-group-label {
+      display: block;
+      margin: 0 0 4px;
+      font-size: 0.66rem;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(20, 184, 166, 0.92);
+    }
+
+    .page-owner-dashboard .owner-dash-followup-recommendation strong,
+    .page-owner-dashboard .owner-dash-followup-preview-item strong {
+      display: block;
+      color: rgba(255, 246, 230, 0.9);
+      font-size: 0.82rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-followup-reason {
+      border-color: rgba(255, 139, 31, 0.2);
+    }
+
+    .page-owner-dashboard .owner-dash-followup-reason span,
+    .page-owner-dashboard .owner-dash-followup-group-label {
+      color: rgba(255, 180, 80, 0.95);
+    }
+
+    .page-owner-dashboard .owner-dash-followup-stage-block,
+    .page-owner-dashboard .owner-dash-followup-copy-block {
+      margin-bottom: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-followup-stage-actions,
+    .page-owner-dashboard .owner-dash-followup-copy-actions,
+    .page-owner-dashboard .owner-dash-followup-plan-action {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-followup-copy-groups {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-followup-copy-group {
+      min-width: 0;
+      padding: 9px 10px;
+      border-radius: 12px;
+      background: rgba(4, 10, 22, 0.38);
+      border: 1px solid rgba(255, 246, 230, 0.08);
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--followup-command .owner-dash-btn {
+      flex: 1 1 calc(50% - 4px);
+      min-width: 0;
+      max-width: 100%;
+      white-space: normal;
+      text-align: center;
+      line-height: 1.25;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-followup-plan-action .owner-dash-btn {
+      flex-basis: 100%;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--followup-command .owner-dash-detail-copy-feedback,
+    .page-owner-dashboard .owner-dash-followup-stage-feedback {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-followup-stage-feedback {
+      font-size: 0.78rem;
+      color: rgba(94, 234, 212, 0.95);
+    }
+
+    .page-owner-dashboard .owner-dash-followup-stage-feedback--error {
+      color: #fca5a5;
+    }
+
+    @media (min-width: 560px) {
+      .page-owner-dashboard .owner-dash-followup-command-head {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+      }
+
+      .page-owner-dashboard .owner-dash-followup-recommendation,
+      .page-owner-dashboard .owner-dash-followup-preview {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard .owner-dash-followup-reason,
+      .page-owner-dashboard .owner-dash-followup-preview-item--wide {
+        grid-column: 1 / -1;
+      }
+
+      .page-owner-dashboard .owner-dash-detail-section--followup-command .owner-dash-btn {
+        flex: 1 1 auto;
+      }
+    }
   </style>
 </head>
 <body class="page-owner-dashboard">
@@ -174,10 +351,9 @@
               <li>Needs follow-up</li>
               <li>Ready for proposal</li>
               <li>Proposal follow-up due</li>
-              <li>Negotiating</li>
+              <li>Waiting on reply</li>
               <li>New transportation requests</li>
               <li>Needs notes</li>
-              <li>Waiting on reply</li>
             </ol>
           </div>
           <p class="owner-dash-today-safe-note">Copy only. No messages are sent automatically.</p>
@@ -465,9 +641,9 @@
           explanation: "Proposal, quote, or next-step follow-up.",
         },
         {
-          key: "negotiating",
-          label: "Negotiating",
-          explanation: "Scope, price, timing, or proposal review.",
+          key: "waiting-reply",
+          label: "Waiting on reply",
+          explanation: "Contacted leads waiting after owner outreach.",
         },
         {
           key: "new-transport",
@@ -478,11 +654,6 @@
           key: "needs-notes",
           label: "Needs notes",
           explanation: "Active rows missing useful owner notes.",
-        },
-        {
-          key: "waiting-reply",
-          label: "Waiting on reply",
-          explanation: "Contacted leads waiting after last outreach.",
         },
       ];
 
@@ -1025,7 +1196,15 @@
             !isClosedBusinessStatus(row.status) &&
             (dealStageInfo(row).key === "follow-up-due" ||
               (status === "needs follow-up" &&
-                textIncludesAny(notes, ["proposal", "follow up", "follow-up", "quote", "estimate", "next step"])))
+                textIncludesAny(notes, [
+                  "proposal",
+                  "follow up",
+                  "follow-up",
+                  "proposal follow-up due",
+                  "quote",
+                  "estimate",
+                  "next step",
+                ])))
           );
         }
 
@@ -1042,7 +1221,7 @@
           return (
             table === "business_leads" &&
             status === "contacted" &&
-            Boolean(row.last_contacted_at) &&
+            (Boolean(row.last_contacted_at) || textIncludesAny(notes, ["waiting", "waiting on reply", "no response"])) &&
             status !== "won" &&
             status !== "lost" &&
             status !== "archived"
@@ -1077,7 +1256,7 @@
         if (key === "ready-proposal") return status + " lead ready for proposal";
         if (key === "proposal-followup") return "Proposal follow-up due";
         if (key === "negotiating") return "Negotiating next step";
-        if (key === "waiting-reply") return "Waiting on reply after last contact";
+        if (key === "waiting-reply") return "Waiting on reply after owner outreach";
         if (key === "needs-notes") return status === "Contacted" ? "Needs owner notes after contact" : "Needs owner notes for next step";
         if (key === "new-transport") return "Transportation request still " + status;
         return "";
@@ -1130,20 +1309,18 @@
           "Needs follow-up: " + (counts["needs-follow-up"] || 0),
           "Ready for proposal: " + (counts["ready-proposal"] || 0),
           "Proposal follow-up due: " + (counts["proposal-followup"] || 0),
-          "Negotiating: " + (counts["negotiating"] || 0),
+          "Waiting on reply: " + (counts["waiting-reply"] || 0),
           "New transportation requests: " + (counts["new-transport"] || 0),
           "Needs notes: " + (counts["needs-notes"] || 0),
-          "Waiting on reply: " + (counts["waiting-reply"] || 0),
           "",
           "Recommended order:",
           "1. Hot leads to contact",
           "2. Needs follow-up",
           "3. Ready for proposal",
           "4. Proposal follow-up due",
-          "5. Negotiating",
+          "5. Waiting on reply",
           "6. New transportation requests",
           "7. Needs notes",
-          "8. Waiting on reply",
           "",
           "No messages are sent automatically.",
         ].join("\n");
@@ -1328,6 +1505,14 @@
           "proposal-followup": "Proposal follow-up copied",
           "proposal-checkin": "Gentle check-in copied",
           "proposal-close-loop": "Close-the-loop message copied",
+          "followup-first": "Follow-up copy — First follow-up copied",
+          "followup-second": "Follow-up copy — Second follow-up copied",
+          "followup-proposal": "Follow-up copy — Proposal follow-up copied",
+          "followup-callback": "Follow-up copy — Callback text copied",
+          "followup-no-response": "Follow-up copy — No-response message copied",
+          "followup-reactivation": "Follow-up copy — Reactivation message copied",
+          "followup-call-notes": "Follow-up copy — Call notes template copied",
+          "followup-plan": "Follow-up copy — Lead follow-up plan copied",
         };
         return labels[kind] || "Copy action completed";
       }
@@ -2759,6 +2944,402 @@
         );
       }
 
+      function followUpNotesHaveSignal(lead) {
+        return ownerNotesInclude(lead, [
+          "callback",
+          "call back",
+          "follow up",
+          "follow-up",
+          "tomorrow",
+          "later",
+          "waiting",
+          "proposal",
+          "estimate",
+          "quote",
+        ]);
+      }
+
+      function calcFollowUpRecommendation(lead) {
+        var status = normStatus(lead.status);
+        var closed = status === "lost" || status === "not a fit" || status === "archived";
+        var rec = {
+          action: "Review lead and make first contact",
+          timing: "Now",
+          reason: "New lead needs owner review before the first touch.",
+        };
+
+        if (status === "reviewed") {
+          rec = {
+            action: "Send first follow-up",
+            timing: "Today",
+            reason: "Lead has been reviewed and needs the first owner-controlled outreach.",
+          };
+        } else if (status === "contacted") {
+          rec = {
+            action: "Check for reply or send gentle follow-up",
+            timing: "1–2 days after last contact",
+            reason: "Initial contact has happened; the next move is reply-check or a light nudge.",
+          };
+        } else if (status === "qualified") {
+          rec = {
+            action: "Send proposal or confirm next step",
+            timing: "Today",
+            reason: "Lead is qualified, so the next touch should move them toward scope or proposal.",
+          };
+        } else if (status === "needs follow-up") {
+          rec = {
+            action: "Follow up now",
+            timing: "Now",
+            reason: "Lead is explicitly marked for follow-up.",
+          };
+        } else if (status === "won") {
+          rec = {
+            action: "Add delivery notes and next fulfillment step",
+            timing: "Today",
+            reason: "Lead is won, so the owner needs delivery context and fulfillment next steps.",
+          };
+        } else if (closed) {
+          rec = {
+            action: "No active follow-up needed",
+            timing: "None",
+            reason: "Lead is closed or inactive.",
+          };
+        }
+
+        if (!closed && followUpNotesHaveSignal(lead)) {
+          if (ownerNotesInclude(lead, ["callback", "call back"])) {
+            rec.action = "Call back or confirm callback time";
+            rec.timing = status === "needs follow-up" ? "Now" : rec.timing;
+            rec.reason = "Owner notes mention a callback, so prioritize the promised return touch.";
+          } else if (ownerNotesInclude(lead, ["proposal", "estimate", "quote"])) {
+            rec.action = "Follow up on proposal, estimate, or quote";
+            rec.timing = "Today";
+            rec.reason = "Owner notes reference proposal or pricing follow-up.";
+          } else if (ownerNotesInclude(lead, ["waiting"])) {
+            rec.action = "Check waiting-on-reply status";
+            rec.reason = "Owner notes show the lead is waiting on a reply or response window.";
+          } else if (ownerNotesInclude(lead, ["tomorrow"])) {
+            rec.timing = "Tomorrow";
+            rec.reason = "Owner notes mention tomorrow, so keep the next touch aligned with that timing.";
+          } else if (ownerNotesInclude(lead, ["later"])) {
+            rec.timing = "Later per owner note";
+            rec.reason = "Owner notes ask for a later touch instead of an immediate push.";
+          } else if (ownerNotesInclude(lead, ["follow up", "follow-up"])) {
+            rec.action = "Follow up now";
+            rec.timing = "Now";
+            rec.reason = "Owner notes already call out follow-up as the next move.";
+          }
+        }
+
+        return rec;
+      }
+
+      function leadTemperatureLabel(priority) {
+        if (!priority) return "Low";
+        if (priority.key === "hot") return "Hot";
+        if (priority.key === "warm") return "Warm";
+        if (priority.key === "not-a-fit") return "Not a fit";
+        return "Low";
+      }
+
+      function bestFollowUpMessageType(lead) {
+        var status = normStatus(lead.status);
+        if (ownerNotesInclude(lead, ["callback", "call back"])) return "callback text";
+        if (ownerNotesInclude(lead, ["no response", "dormant"])) return "no-response message";
+        if (ownerNotesInclude(lead, ["proposal", "estimate", "quote"]) || status === "qualified") {
+          return "proposal follow-up";
+        }
+        if (status === "contacted" || ownerNotesInclude(lead, ["waiting"])) return "second follow-up";
+        if (status === "lost" || status === "archived") return "no-response message";
+        if (status === "not a fit") return "no-response message";
+        return "first follow-up";
+      }
+
+      function followUpTemplateData(lead) {
+        var proposal = calcProposalEstimate(lead);
+        return {
+          contact: lead.contact_name || "there",
+          business: lead.business_name || "your business",
+          pain: proposal.mainPainPoint || "your main bottleneck",
+          packageName: proposal.recommendedPackage || "the recommended first system",
+          deliverable: proposal.firstDeliverable || "the first practical deliverable",
+        };
+      }
+
+      function buildFollowUpFirstCopy(lead) {
+        var data = followUpTemplateData(lead);
+        return (
+          "Hi " +
+          data.contact +
+          ", this is Willie with The AI Plug / Where To Go SA. I saw your request for help with " +
+          data.pain +
+          ". Based on what you shared, I’d start with " +
+          data.packageName +
+          " so the first bottleneck gets fixed before anything gets overbuilt. Want me to map the first step?"
+        );
+      }
+
+      function buildFollowUpSecondCopy(lead) {
+        var data = followUpTemplateData(lead);
+        return (
+          "Hi " +
+          data.contact +
+          ", just following up on your request for " +
+          data.business +
+          ". The main thing I noticed was " +
+          data.pain +
+          ", and the first practical move would be " +
+          data.deliverable +
+          ". Still want help mapping that out?"
+        );
+      }
+
+      function buildFollowUpProposalCopy(lead) {
+        var data = followUpTemplateData(lead);
+        return (
+          "Hi " +
+          data.contact +
+          ", wanted to follow up on the proposal direction for " +
+          data.business +
+          ". I’d keep the first build focused on " +
+          data.deliverable +
+          " so your team gets a useful system before adding more automation. Want me to send the next-step version?"
+        );
+      }
+
+      function buildFollowUpCallbackCopy(lead) {
+        var data = followUpTemplateData(lead);
+        return (
+          "Hi " +
+          data.contact +
+          ", this is Willie with The AI Plug / Where To Go SA. I’m following up on your request about " +
+          data.pain +
+          ". What’s a good time for a quick call to understand how leads come in and where they’re getting stuck?"
+        );
+      }
+
+      function buildFollowUpNoResponseCopy(lead) {
+        var data = followUpTemplateData(lead);
+        return (
+          "Hi " +
+          data.contact +
+          ", I don’t want to keep bugging you. I’ll close the loop for now, but if fixing " +
+          data.pain +
+          " becomes a priority again, I can help you start with a simple first system instead of a giant rebuild."
+        );
+      }
+
+      function buildFollowUpReactivationCopy(lead) {
+        var data = followUpTemplateData(lead);
+        return (
+          "Hi " +
+          data.contact +
+          ", checking back in. If " +
+          data.pain +
+          " is still slowing things down, I can help map a practical first system for " +
+          data.business +
+          " — lead capture, owner alerts, follow-up, or dashboard visibility depending on what you need most."
+        );
+      }
+
+      function buildFollowUpCallNotesTemplate(lead) {
+        var data = followUpTemplateData(lead);
+        return [
+          "Call notes — " + data.business,
+          "",
+          "Contact:",
+          data.contact,
+          "",
+          "Main pain point:",
+          data.pain,
+          "",
+          "Current lead flow:",
+          "- How do customers find you?",
+          "- Where do calls/forms/messages go?",
+          "- Who follows up?",
+          "- What gets missed?",
+          "- What happens after hours?",
+          "",
+          "Best first system:",
+          data.packageName,
+          "",
+          "First deliverable:",
+          data.deliverable,
+          "",
+          "Decision:",
+          "- Interested:",
+          "- Budget/timeline:",
+          "- Next step:",
+          "- Follow-up date:",
+        ].join("\n");
+      }
+
+      function buildFollowUpPlanCopy(lead) {
+        var data = followUpTemplateData(lead);
+        var priority = leadTemperatureLabel(calcBusinessPriority(lead));
+        var rec = calcFollowUpRecommendation(lead);
+        return [
+          "Follow-up plan for " + data.business,
+          "",
+          "Lead temperature:",
+          priority,
+          "",
+          "Current status:",
+          displayStatus(lead.status),
+          "",
+          "Main pain point:",
+          data.pain,
+          "",
+          "Recommended package:",
+          data.packageName,
+          "",
+          "Best first deliverable:",
+          data.deliverable,
+          "",
+          "Next recommended action:",
+          rec.action,
+          "",
+          "Suggested timing:",
+          rec.timing,
+          "",
+          "Recommended message:",
+          bestFollowUpMessageType(lead),
+          "",
+          "Owner note:",
+          "Add outcome after contact and set next follow-up step.",
+        ].join("\n");
+      }
+
+      function followUpCommandTextForKind(kind, lead) {
+        if (kind === "followup-first") return buildFollowUpFirstCopy(lead);
+        if (kind === "followup-second") return buildFollowUpSecondCopy(lead);
+        if (kind === "followup-proposal") return buildFollowUpProposalCopy(lead);
+        if (kind === "followup-callback") return buildFollowUpCallbackCopy(lead);
+        if (kind === "followup-no-response") return buildFollowUpNoResponseCopy(lead);
+        if (kind === "followup-reactivation") return buildFollowUpReactivationCopy(lead);
+        if (kind === "followup-call-notes") return buildFollowUpCallNotesTemplate(lead);
+        if (kind === "followup-plan") return buildFollowUpPlanCopy(lead);
+        return "";
+      }
+
+      function followUpStageButton(stageKey, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="mark-followup-stage" data-followup-stage="' +
+          esc(stageKey) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function followUpCopyButton(kind, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="copy-followup-command" data-copy-kind="' +
+          esc(kind) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function followUpCommandCopyGroup(label, buttons) {
+        return (
+          '<div class="owner-dash-followup-copy-group">' +
+          '<p class="owner-dash-followup-group-label">' +
+          esc(label) +
+          "</p>" +
+          '<div class="owner-dash-followup-copy-actions">' +
+          buttons.join("") +
+          "</div></div>"
+        );
+      }
+
+      function followUpSummaryPreviewBlock(lead, rec) {
+        var priority = leadTemperatureLabel(calcBusinessPriority(lead));
+        var data = followUpTemplateData(lead);
+        return (
+          '<div class="owner-dash-followup-preview" aria-label="Follow-up summary preview">' +
+          '<div class="owner-dash-followup-preview-item"><span>Lead temperature</span><strong>' +
+          esc(priority) +
+          "</strong></div>" +
+          '<div class="owner-dash-followup-preview-item"><span>Recommended package</span><strong>' +
+          esc(data.packageName) +
+          "</strong></div>" +
+          '<div class="owner-dash-followup-preview-item"><span>Best next message</span><strong>' +
+          esc(bestFollowUpMessageType(lead)) +
+          "</strong></div>" +
+          '<div class="owner-dash-followup-preview-item owner-dash-followup-preview-item--wide"><span>Next action</span><strong>' +
+          esc(rec.action) +
+          "</strong></div></div>"
+        );
+      }
+
+      function followUpCommandCenterBlock(lead) {
+        var rec = calcFollowUpRecommendation(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--followup-command" data-followup-command-center>' +
+          '<div class="owner-dash-followup-command-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Follow-Up Command Center</h3>' +
+          '<p class="owner-dash-detail-section-note">Know the next touch, copy the right message, and keep the lead moving. Copy only — nothing is sent automatically.</p></div>' +
+          '<span class="owner-dash-followup-safe-badge">Copy only — nothing is sent automatically</span>' +
+          "</div>" +
+          '<div class="owner-dash-followup-recommendation">' +
+          '<div><span>Next recommended action:</span><strong>' +
+          esc(rec.action) +
+          "</strong></div>" +
+          '<div><span>Suggested timing:</span><strong>' +
+          esc(rec.timing) +
+          "</strong></div>" +
+          '<div class="owner-dash-followup-reason"><span>Reason:</span><strong>' +
+          esc(rec.reason) +
+          "</strong></div></div>" +
+          followUpSummaryPreviewBlock(lead, rec) +
+          '<div class="owner-dash-followup-stage-block">' +
+          '<p class="owner-dash-followup-block-label">Follow-Up Stage Buttons</p>' +
+          '<div class="owner-dash-followup-stage-actions">' +
+          followUpStageButton("first-follow-up-due", "Mark first follow-up due", false) +
+          followUpStageButton("waiting-on-reply", "Mark waiting on reply", false) +
+          followUpStageButton("proposal-follow-up-due", "Mark proposal follow-up due", true) +
+          followUpStageButton("callback-needed", "Mark callback needed", false) +
+          followUpStageButton("no-response", "Mark no response", false) +
+          followUpStageButton("dormant", "Mark dormant", false) +
+          followUpStageButton("reactivated", "Mark reactivated", false) +
+          "</div></div>" +
+          '<div class="owner-dash-followup-copy-block">' +
+          '<p class="owner-dash-followup-block-label">Follow-Up Copy Tools</p>' +
+          '<div class="owner-dash-followup-copy-groups">' +
+          followUpCommandCopyGroup("Contact follow-up", [
+            followUpCopyButton("followup-first", "Copy first follow-up", true),
+            followUpCopyButton("followup-second", "Copy second follow-up", false),
+            followUpCopyButton("followup-callback", "Copy callback text", false),
+          ]) +
+          followUpCommandCopyGroup("Proposal follow-up", [
+            followUpCopyButton("followup-proposal", "Copy proposal follow-up", false),
+          ]) +
+          followUpCommandCopyGroup("Close/revive", [
+            followUpCopyButton("followup-no-response", "Copy no-response message", false),
+            followUpCopyButton("followup-reactivation", "Copy reactivation message", false),
+          ]) +
+          followUpCommandCopyGroup("Call prep", [
+            followUpCopyButton("followup-call-notes", "Copy call notes template", false),
+          ]) +
+          "</div></div>" +
+          '<div class="owner-dash-followup-plan-action">' +
+          followUpCopyButton("followup-plan", "Copy lead follow-up plan", true) +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<span class="owner-dash-followup-stage-feedback" data-followup-stage-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
       function opportunityCardRow(lead) {
         var opp = calcBusinessOpportunity(lead);
         return (
@@ -3099,7 +3680,7 @@
           : [{ kind: "request-summary", label: "Copy request summary", action: "copy-followup" }];
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--tools">' +
-          '<h3 class="owner-dash-detail-section-title">Owner tools</h3>' +
+          '<h3 class="owner-dash-detail-section-title">Owner Tools</h3>' +
           '<p class="owner-dash-detail-section-note">Copy only — nothing is sent automatically.</p>' +
           '<div class="owner-dash-tool-groups">' +
           toolGroup("Contact Copy Tools", contactButtons) +
@@ -3175,7 +3756,7 @@
           .join("");
         return (
           '<section class="owner-dash-detail-section">' +
-          '<h3 class="owner-dash-detail-section-title">Quick status</h3>' +
+          '<h3 class="owner-dash-detail-section-title">Quick Status</h3>' +
           pipelineInlineHtml(table, status) +
           '<div class="owner-dash-detail-quick-actions">' +
           btnHtml +
@@ -3275,6 +3856,7 @@
           dealBuilderBlock(lead) +
           dealStageTrackerBlock(lead) +
           proposalEstimateBlock(lead) +
+          followUpCommandCenterBlock(lead) +
           groupedToolsBlock("business_leads") +
           quickStatusBlock("business_leads", lead.status) +
           workflowBlock("business_leads", lead) +
@@ -3436,6 +4018,8 @@
       function copyTextForKind(kind, row, table) {
         if (!row) return "";
         if (table === "business_leads") {
+          var commandText = followUpCommandTextForKind(kind, row);
+          if (commandText) return commandText;
           var dealText = dealTextForKind(kind, row);
           if (dealText) return dealText;
           var oppText = opportunityTextForKind(kind, row);
@@ -3543,6 +4127,15 @@
         fb.className = "owner-dash-deal-stage-feedback" + (isError ? " owner-dash-deal-stage-feedback--error" : "");
       }
 
+      function setFollowUpCommandFeedback(section, message, isError) {
+        var fb = section && section.querySelector("[data-followup-stage-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className =
+          "owner-dash-followup-stage-feedback" + (isError ? " owner-dash-followup-stage-feedback--error" : "");
+      }
+
       function appendCleanOwnerNote(existing, note) {
         var current = String(existing || "").trim();
         var cleanNote = String(note || "").trim();
@@ -3617,6 +4210,126 @@
           },
         };
         return configs[stageKey] || null;
+      }
+
+      function followUpStageActionConfig(stageKey) {
+        var configs = {
+          "first-follow-up-due": {
+            status: "Needs follow-up",
+            note: "Follow-up stage: First follow-up due.",
+            activity: "Follow-up stage — First follow-up due",
+            success: "First follow-up marked due. Status saved as Needs follow-up.",
+            tone: "pending",
+          },
+          "waiting-on-reply": {
+            status: "Contacted",
+            note: "Follow-up stage: Waiting on reply.",
+            activity: "Follow-up stage — Waiting on reply",
+            success: "Waiting on reply marked. Status saved as Contacted.",
+            tone: "ok",
+          },
+          "proposal-follow-up-due": {
+            status: "Needs follow-up",
+            note: "Follow-up stage: Proposal follow-up due.",
+            activity: "Follow-up stage — Proposal follow-up due",
+            success: "Proposal follow-up marked due. Status saved as Needs follow-up.",
+            tone: "pending",
+          },
+          "callback-needed": {
+            status: "Needs follow-up",
+            note: "Follow-up stage: Callback needed.",
+            activity: "Follow-up stage — Callback needed",
+            success: "Callback needed marked. Status saved as Needs follow-up.",
+            tone: "pending",
+          },
+          "no-response": {
+            status: "Contacted",
+            note: "Follow-up stage: No response.",
+            activity: "Follow-up stage — No response",
+            success: "No response marked. Status saved as Contacted.",
+            tone: "info",
+          },
+          dormant: {
+            status: "Archived",
+            note: "Follow-up stage: Dormant.",
+            activity: "Follow-up stage — Dormant",
+            success: "Dormant marked. Status saved as Archived.",
+            tone: "info",
+          },
+          reactivated: {
+            status: "Reviewed",
+            note: "Follow-up stage: Reactivated.",
+            activity: "Follow-up stage — Reactivated",
+            success: "Reactivated marked. Status saved as Reviewed.",
+            tone: "ok",
+          },
+        };
+        return configs[stageKey] || null;
+      }
+
+      function followUpStageNoteWithTimestamp(note) {
+        return note + " " + fmtDate(new Date().toISOString());
+      }
+
+      function handleFollowUpStageAction(sheet, sourceBtn) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
+        var stageKey = sourceBtn.getAttribute("data-followup-stage");
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        var config = followUpStageActionConfig(stageKey);
+        if (!config) return;
+        var section = sourceBtn.closest(".owner-dash-detail-section--followup-command");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var previousNotes = String(hit.row.owner_notes || "");
+        var nextNotes = appendCleanOwnerNote(
+          workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes,
+          followUpStageNoteWithTimestamp(config.note)
+        );
+        var buttons = section ? section.querySelectorAll('[data-action="mark-followup-stage"]') : [];
+        buttons.forEach(function (b) {
+          b.disabled = true;
+        });
+        sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+        sourceBtn.textContent = "Saving...";
+        setFollowUpCommandFeedback(section, "Updating status and owner note...", false);
+
+        postUpdate(table, id, {
+          status: config.status,
+          owner_notes: nextNotes,
+        })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setFollowUpCommandFeedback(
+                section,
+                (result.data && result.data.error) || "Could not update follow-up stage. Try saving manually.",
+                true
+              );
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(table, id, config.activity, config.tone, "");
+            renderAll();
+            var freshSection =
+              els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--followup-command");
+            setFollowUpCommandFeedback(freshSection || section, config.success, false);
+            refreshCounts();
+          })
+          .catch(function () {
+            setFollowUpCommandFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            buttons.forEach(function (b) {
+              b.disabled = false;
+            });
+            sourceBtn.textContent =
+              sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
+          });
       }
 
       function handleProposalTypeSelection(sheet, sourceBtn) {
@@ -3834,7 +4547,7 @@
           '" data-id="' +
           id +
           '">' +
-          '<h4 class="owner-dash-workflow-title">Owner workflow</h4>' +
+          '<h4 class="owner-dash-workflow-title">Owner Workflow</h4>' +
           '<div class="owner-dash-workflow-grid">' +
           '<label class="owner-dash-workflow-field"><span class="owner-dash-workflow-label">Status</span>' +
           '<select class="owner-dash-select" data-field="status" aria-label="Status">' +
@@ -4533,6 +5246,7 @@
             sheet &&
             (action === "copy-field" ||
               action === "copy-followup" ||
+              action === "copy-followup-command" ||
               action === "copy-opportunity" ||
               action === "copy-deal")
           ) {
@@ -4552,6 +5266,11 @@
 
           if (sheet && action === "mark-deal-stage") {
             handleDealStageAction(sheet, btn);
+            return;
+          }
+
+          if (sheet && action === "mark-followup-stage") {
+            handleFollowUpStageAction(sheet, btn);
             return;
           }
 
