@@ -15483,3 +15483,257 @@ body.owner-dash-detail-open {
   padding-top: 12px;
   border-top: 1px solid rgba(255, 246, 230, 0.08);
 }
+
+/* Owner Command Dashboard v14 - Pricing Builder */
+.page-owner-dashboard .owner-dash-detail-section--pricing {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 196, 120, 0.2), transparent 34%),
+    linear-gradient(150deg, rgba(255, 139, 31, 0.18), rgba(255, 178, 56, 0.07) 48%, rgba(4, 10, 22, 0.68));
+  border: 1px solid rgba(255, 180, 80, 0.36);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 230, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.18);
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-pricing-head {
+  display: grid;
+  gap: 9px;
+  margin-bottom: 10px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-detail-section--pricing .owner-dash-detail-section-title {
+  margin-bottom: 5px;
+  color: #ffe4c4;
+}
+
+.page-owner-dashboard .owner-dash-pricing-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  max-width: 100%;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 196, 120, 0.16);
+  border: 1px solid rgba(255, 196, 120, 0.42);
+  color: #ffe4c4;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.page-owner-dashboard .owner-dash-pricing-card-label {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(255, 210, 140, 0.95);
+}
+
+.page-owner-dashboard .owner-dash-pricing-card-label--full {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.page-owner-dashboard .owner-dash-pricing-money-card,
+.page-owner-dashboard .owner-dash-pricing-caution article,
+.page-owner-dashboard .owner-dash-pricing-copy {
+  padding: 10px;
+  border-radius: 13px;
+  background: rgba(4, 10, 22, 0.5);
+  border: 1px solid rgba(255, 220, 160, 0.14);
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-pricing-money-card {
+  margin-bottom: 10px;
+}
+
+.page-owner-dashboard .owner-dash-pricing-logic {
+  margin-bottom: 10px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  background: rgba(255, 196, 120, 0.09);
+  border: 1px solid rgba(255, 196, 120, 0.22);
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-pricing-logic p:last-child {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.42;
+  color: rgba(255, 246, 230, 0.8);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-pricing-snapshot,
+.page-owner-dashboard .owner-dash-pricing-caution,
+.page-owner-dashboard .owner-dash-pricing-options {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-pricing-snapshot-item {
+  padding: 9px 10px;
+  border-radius: 11px;
+  background: rgba(255, 246, 230, 0.06);
+  border: 1px solid rgba(255, 220, 160, 0.12);
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-pricing-snapshot-item span {
+  display: block;
+  margin: 0 0 4px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 196, 120, 0.88);
+}
+
+.page-owner-dashboard .owner-dash-pricing-snapshot-item strong {
+  display: block;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: rgba(255, 246, 230, 0.95);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-pricing-caution {
+  margin-bottom: 10px;
+}
+
+.page-owner-dashboard .owner-dash-pricing-caution strong {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 0.82rem;
+  color: rgba(255, 246, 230, 0.92);
+}
+
+.page-owner-dashboard .owner-dash-pricing-list {
+  margin: 0;
+  padding-left: 17px;
+  display: grid;
+  gap: 3px;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: rgba(255, 246, 230, 0.8);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-pricing-options {
+  margin-bottom: 10px;
+}
+
+.page-owner-dashboard .owner-dash-pricing-option-card {
+  padding: 10px;
+  border-radius: 13px;
+  background: rgba(255, 246, 230, 0.06);
+  border: 1px solid rgba(255, 220, 160, 0.13);
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-pricing-option-card h4 {
+  margin: 0 0 5px;
+  color: #fff6e6;
+  font-size: 0.88rem;
+  line-height: 1.25;
+}
+
+.page-owner-dashboard .owner-dash-pricing-option-card p {
+  margin: 0 0 7px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(255, 246, 230, 0.78);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-pricing-option-card strong {
+  display: block;
+  color: #ffe4c4;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.page-owner-dashboard .owner-dash-pricing-copy {
+  margin-bottom: 10px;
+}
+
+.page-owner-dashboard .owner-dash-pricing-copy-actions,
+.page-owner-dashboard .owner-dash-pricing-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-pricing-actions {
+  margin-bottom: 8px;
+}
+
+.page-owner-dashboard .owner-dash-detail-section--pricing .owner-dash-btn {
+  width: 100%;
+  min-height: 42px;
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.page-owner-dashboard .owner-dash-pricing-safe-note {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: rgba(255, 246, 230, 0.62);
+}
+
+.page-owner-dashboard .owner-dash-detail-section--pricing .owner-dash-detail-copy-feedback,
+.page-owner-dashboard .owner-dash-pricing-feedback {
+  display: block;
+  margin-top: 8px;
+}
+
+.page-owner-dashboard .owner-dash-pricing-feedback {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: rgba(94, 234, 212, 0.95);
+}
+
+.page-owner-dashboard .owner-dash-pricing-feedback--error {
+  color: #fca5a5;
+}
+
+@media (min-width: 560px) {
+  .page-owner-dashboard .owner-dash-pricing-head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  .page-owner-dashboard .owner-dash-pricing-snapshot,
+  .page-owner-dashboard .owner-dash-pricing-caution,
+  .page-owner-dashboard .owner-dash-pricing-copy-actions,
+  .page-owner-dashboard .owner-dash-pricing-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-owner-dashboard .owner-dash-pricing-snapshot-item--wide,
+  .page-owner-dashboard .owner-dash-pricing-copy-actions .owner-dash-btn:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 760px) {
+  .page-owner-dashboard .owner-dash-pricing-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
