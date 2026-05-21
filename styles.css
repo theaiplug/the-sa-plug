@@ -15737,7 +15737,6 @@ body.owner-dash-detail-open {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-
 /* Owner Command Dashboard v15 - Quote / Invoice Prep */
 .page-owner-dashboard .owner-dash-detail-section--quote-prep {
   margin-bottom: 16px;
