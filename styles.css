@@ -14584,6 +14584,10 @@ body.owner-dash-detail-open {
 }
 
 @media (max-width: 639px) {
+  .page-owner-dashboard .owner-dash-stat--mobile-optional {
+    display: none;
+  }
+
   .page-owner-dashboard .owner-dash-stat--compact {
     padding: 9px 10px;
   }
@@ -15090,6 +15094,174 @@ body.owner-dash-detail-open {
   }
 
   .page-owner-dashboard .owner-dash-detail-section--deal .owner-dash-btn--primary {
+    flex: 1 1 auto;
+  }
+}
+
+/* Owner Command Dashboard v10 - proposal sent / deal stage tracker */
+.page-owner-dashboard .owner-dash-deal-stage-card-row {
+  margin: -2px 0 10px;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: rgba(255, 246, 230, 0.78);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-deal-stage-card-row span {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 196, 120, 0.9);
+}
+
+.page-owner-dashboard .owner-dash-detail-section--deal-stage {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background:
+    linear-gradient(150deg, rgba(20, 184, 166, 0.1), transparent 58%),
+    rgba(4, 10, 22, 0.54);
+  border: 1px solid rgba(20, 184, 166, 0.24);
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-stage-head {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 10px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-detail-section--deal-stage .owner-dash-detail-section-title {
+  margin-bottom: 5px;
+  color: #c8fff5;
+}
+
+.page-owner-dashboard .owner-dash-stage-current {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-stage-current span {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(20, 184, 166, 0.9);
+}
+
+.page-owner-dashboard .owner-dash-stage-pill {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  line-height: 1.2;
+  color: #c8fff5;
+  background: rgba(20, 184, 166, 0.18);
+  border: 1px solid rgba(20, 184, 166, 0.48);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-stage-pill--won {
+  color: #dcfff8;
+  background: rgba(20, 184, 166, 0.24);
+}
+
+.page-owner-dashboard .owner-dash-stage-pill--lost,
+.page-owner-dashboard .owner-dash-stage-pill--archived,
+.page-owner-dashboard .owner-dash-stage-pill--not-a-fit {
+  color: rgba(226, 232, 240, 0.9);
+  background: rgba(148, 163, 184, 0.18);
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+.page-owner-dashboard .owner-dash-stage-pill--follow-up-due {
+  color: #ffe4c4;
+  background: rgba(255, 139, 31, 0.16);
+  border-color: rgba(255, 139, 31, 0.42);
+}
+
+.page-owner-dashboard .owner-dash-stage-explanation,
+.page-owner-dashboard .owner-dash-stage-safe-note {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: rgba(255, 246, 230, 0.78);
+  overflow-wrap: anywhere;
+}
+
+.page-owner-dashboard .owner-dash-stage-actions,
+.page-owner-dashboard .owner-dash-stage-copy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-stage-actions {
+  margin-bottom: 12px;
+}
+
+.page-owner-dashboard .owner-dash-stage-copy {
+  padding: 10px 11px;
+  border-radius: 12px;
+  background: rgba(255, 246, 230, 0.055);
+  border: 1px solid rgba(255, 246, 230, 0.1);
+  min-width: 0;
+}
+
+.page-owner-dashboard .owner-dash-stage-safe-note {
+  margin: 8px 0 0;
+  font-size: 0.76rem;
+  color: rgba(255, 246, 230, 0.58);
+}
+
+.page-owner-dashboard .owner-dash-detail-section--deal-stage .owner-dash-btn {
+  flex: 1 1 calc(50% - 4px);
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.page-owner-dashboard .owner-dash-detail-section--deal-stage .owner-dash-btn--primary {
+  flex: 1 1 100%;
+}
+
+.page-owner-dashboard .owner-dash-detail-section--deal-stage .owner-dash-detail-copy-feedback,
+.page-owner-dashboard .owner-dash-deal-stage-feedback {
+  display: block;
+  margin-top: 8px;
+}
+
+.page-owner-dashboard .owner-dash-deal-stage-feedback {
+  font-size: 0.78rem;
+  color: rgba(94, 234, 212, 0.95);
+}
+
+.page-owner-dashboard .owner-dash-deal-stage-feedback--error {
+  color: #fca5a5;
+}
+
+@media (min-width: 560px) {
+  .page-owner-dashboard .owner-dash-stage-head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  .page-owner-dashboard .owner-dash-detail-section--deal-stage .owner-dash-btn {
+    flex: 1 1 auto;
+    white-space: nowrap;
+  }
+
+  .page-owner-dashboard .owner-dash-detail-section--deal-stage .owner-dash-btn--primary {
     flex: 1 1 auto;
   }
 }
