@@ -683,6 +683,208 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
+
+    /* Owner Command Dashboard v16 - Close / Onboarding Command */
+    .page-owner-dashboard .owner-dash-detail-section--close-onboarding {
+      margin-bottom: 16px;
+      padding: 12px;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.24), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 139, 31, 0.16), transparent 32%),
+        linear-gradient(150deg, rgba(4, 22, 20, 0.9), rgba(4, 10, 22, 0.78) 62%, rgba(42, 24, 8, 0.74));
+      border: 1px solid rgba(20, 184, 166, 0.42);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 246, 230, 0.08),
+        0 14px 34px rgba(0, 0, 0, 0.24);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-close-head {
+      display: grid;
+      gap: 9px;
+      margin-bottom: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--close-onboarding .owner-dash-detail-section-title {
+      margin-bottom: 5px;
+      color: #c8fff5;
+    }
+
+    .page-owner-dashboard .owner-dash-close-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: max-content;
+      max-width: 100%;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(20, 184, 166, 0.16);
+      border: 1px solid rgba(94, 234, 212, 0.48);
+      color: #d7fff7;
+      font-size: 0.69rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-close-card-label {
+      display: block;
+      margin: 0 0 8px;
+      font-size: 0.66rem;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(94, 234, 212, 0.96);
+    }
+
+    .page-owner-dashboard .owner-dash-close-snapshot-card,
+    .page-owner-dashboard .owner-dash-close-check-card,
+    .page-owner-dashboard .owner-dash-close-copy,
+    .page-owner-dashboard .owner-dash-close-actions {
+      padding: 10px;
+      border-radius: 13px;
+      background: rgba(4, 10, 22, 0.58);
+      border: 1px solid rgba(94, 234, 212, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.04);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-close-snapshot-card,
+    .page-owner-dashboard .owner-dash-close-check-grid,
+    .page-owner-dashboard .owner-dash-close-copy,
+    .page-owner-dashboard .owner-dash-close-actions {
+      margin-bottom: 10px;
+    }
+
+    .page-owner-dashboard .owner-dash-close-snapshot,
+    .page-owner-dashboard .owner-dash-close-check-grid,
+    .page-owner-dashboard .owner-dash-close-week-grid,
+    .page-owner-dashboard .owner-dash-close-copy-actions,
+    .page-owner-dashboard .owner-dash-close-action-buttons {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-close-snapshot-item,
+    .page-owner-dashboard .owner-dash-close-day-card {
+      padding: 8px 9px;
+      border-radius: 11px;
+      background: rgba(255, 246, 230, 0.055);
+      border: 1px solid rgba(94, 234, 212, 0.14);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-close-snapshot-item span,
+    .page-owner-dashboard .owner-dash-close-day-card span {
+      display: block;
+      margin: 0 0 4px;
+      font-size: 0.64rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(94, 234, 212, 0.88);
+    }
+
+    .page-owner-dashboard .owner-dash-close-snapshot-item strong,
+    .page-owner-dashboard .owner-dash-close-day-card strong {
+      display: block;
+      font-size: 0.82rem;
+      line-height: 1.35;
+      color: rgba(255, 246, 230, 0.94);
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-close-check-card h4 {
+      margin: 0 0 8px;
+      color: #fff7ed;
+      font-size: 0.92rem;
+      line-height: 1.2;
+    }
+
+    .page-owner-dashboard .owner-dash-close-list {
+      margin: 0;
+      padding-left: 17px;
+      display: grid;
+      gap: 3px;
+      font-size: 0.78rem;
+      line-height: 1.35;
+      color: rgba(255, 246, 230, 0.8);
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-close-week-grid {
+      margin-top: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-close-safe-note,
+    .page-owner-dashboard .owner-dash-close-feedback {
+      display: block;
+      margin: 8px 0 0;
+      font-size: 0.76rem;
+      line-height: 1.4;
+      color: rgba(255, 246, 230, 0.64);
+    }
+
+    .page-owner-dashboard .owner-dash-close-feedback {
+      font-weight: 800;
+      color: rgba(94, 234, 212, 0.95);
+    }
+
+    .page-owner-dashboard .owner-dash-close-feedback--error {
+      color: #fca5a5;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--close-onboarding .owner-dash-btn {
+      width: 100%;
+      min-height: 44px;
+      min-width: 0;
+      max-width: 100%;
+      white-space: normal;
+      text-align: center;
+      line-height: 1.25;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--close-onboarding .owner-dash-btn--primary {
+      background: linear-gradient(135deg, #ffb238, #ff8b1f);
+      border-color: rgba(255, 178, 56, 0.78);
+      color: #1f1205;
+      box-shadow: 0 10px 22px rgba(255, 139, 31, 0.2);
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--close-onboarding .owner-dash-detail-copy-feedback {
+      display: block;
+      margin-top: 8px;
+    }
+
+    @media (min-width: 560px) {
+      .page-owner-dashboard .owner-dash-close-head {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+      }
+
+      .page-owner-dashboard .owner-dash-close-snapshot,
+      .page-owner-dashboard .owner-dash-close-check-grid,
+      .page-owner-dashboard .owner-dash-close-copy-actions,
+      .page-owner-dashboard .owner-dash-close-action-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard .owner-dash-close-snapshot-item--wide,
+      .page-owner-dashboard .owner-dash-close-copy-actions .owner-dash-btn:first-child,
+      .page-owner-dashboard .owner-dash-close-copy-actions .owner-dash-btn:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (min-width: 760px) {
+      .page-owner-dashboard .owner-dash-close-week-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
   </style>
 </head>
 <body class="page-owner-dashboard">
@@ -1948,6 +2150,15 @@
           "quote-follow-up": "Quote follow-up text copied",
           "quote-approval": "Quote approval message copied",
           "quote-prep-bundle": "Full quote prep bundle copied",
+          "close-onboarding-message": "Close — Onboarding message copied",
+          "close-client-kickoff-checklist": "Close — Client kickoff checklist copied",
+          "close-project-intake-questions": "Close — Project intake questions copied",
+          "close-what-i-need": "Close — What I need from you copied",
+          "close-first-week-build-plan": "Close — First-week build plan copied",
+          "close-deposit-received-reply": "Close — Deposit received reply copied",
+          "close-project-won-summary": "Close — Project won summary copied",
+          "close-kickoff-call-agenda": "Close — Kickoff call agenda copied",
+          "close-full-onboarding-bundle": "Close — Full onboarding bundle copied",
         };
         return labels[kind] || "Copy action completed";
       }
@@ -4085,6 +4296,236 @@
         return "";
       }
 
+      var CLOSE_CHECKLIST_ITEMS = [
+        "Scope confirmed",
+        "Price/deposit confirmed",
+        "Client understands phase one",
+        "Owner approval steps explained",
+        "Timeline confirmed",
+        "First materials requested",
+        "Payment/deposit path ready",
+        "Kickoff message prepared",
+      ];
+
+      var ONBOARDING_CHECKLIST_ITEMS = [
+        "Best contact name and email",
+        "Business phone number",
+        "Website/domain access or current website link",
+        "Logo/brand assets if available",
+        "Current lead sources",
+        "Current forms/messages/call flow",
+        "Top customer questions",
+        "Services/areas served",
+        "Approval person",
+        "Preferred launch timeline",
+      ];
+
+      var FIRST_WEEK_BUILD_PLAN = [
+        {
+          day: "Day 1",
+          plan: "Confirm scope, collect access/materials, map current workflow.",
+        },
+        {
+          day: "Day 2",
+          plan: "Build or outline first customer path and intake flow.",
+        },
+        {
+          day: "Day 3",
+          plan: "Create owner dashboard/alert plan and approval checkpoints.",
+        },
+        {
+          day: "Day 4",
+          plan: "Prepare follow-up copy and first working preview.",
+        },
+        {
+          day: "Day 5",
+          plan: "Review with owner, tighten flow, prepare launch checklist.",
+        },
+      ];
+
+      function closeNextActionForStatus(status) {
+        var key = normStatus(status);
+        if (key === "new" || key === "reviewed") {
+          return "Review lead, confirm interest, and move toward discovery.";
+        }
+        if (key === "contacted") return "Confirm scope and send proposal or quote.";
+        if (key === "qualified") return "Confirm quote, request approval, and prepare deposit/kickoff.";
+        if (key === "needs follow-up") return "Send follow-up and ask if they want to move forward.";
+        if (key === "won") return "Start onboarding and collect kickoff materials.";
+        if (key === "lost" || key === "not a fit" || key === "archived") {
+          return "Do not pursue unless reactivated.";
+        }
+        return "Review lead, confirm interest, and move toward discovery.";
+      }
+
+      function calcCloseOnboardingData(lead) {
+        var quote = calcQuoteInvoicePrep(lead);
+        var status = displayStatus(lead.status);
+        return {
+          business: quote.business,
+          contact: quote.contact,
+          recommendedPackage: quote.recommendedPackage,
+          firstDeliverable: quote.firstDeliverable,
+          priceRange: quote.priceRange,
+          paymentTerms: quote.paymentTerms,
+          currentStatus: status,
+          nextAction: closeNextActionForStatus(status),
+        };
+      }
+
+      function buildCloseOnboardingMessage(lead) {
+        var c = calcCloseOnboardingData(lead);
+        return [
+          "Hi " + c.contact + ", great — I’m ready to get the first phase started for " + c.business + ".",
+          "",
+          "The first build will stay focused on:",
+          c.firstDeliverable,
+          "",
+          "The goal is to solve the first bottleneck without overbuilding, keep approval steps clear, and make sure the workflow matches how your business actually operates.",
+          "",
+          "Next, I’ll need a few details and any access/materials required so I can map the first version correctly.",
+        ].join("\n");
+      }
+
+      function buildClientKickoffChecklist(lead) {
+        var c = calcCloseOnboardingData(lead);
+        return ["Kickoff checklist — " + c.business, "", "To get started, I need:", "", bulletText(ONBOARDING_CHECKLIST_ITEMS)].join(
+          "\n"
+        );
+      }
+
+      function buildProjectIntakeQuestions(lead) {
+        var c = calcCloseOnboardingData(lead);
+        return [
+          "Project intake questions — " + c.business,
+          "",
+          "1. How do most customers find you right now?",
+          "2. What usually happens when a new lead comes in?",
+          "3. What gets missed most often?",
+          "4. Who responds to calls, forms, or messages?",
+          "5. What questions do customers ask before booking?",
+          "6. What services should be highlighted first?",
+          "7. What areas do you serve?",
+          "8. What should never be automated?",
+          "9. What wording needs owner approval?",
+          "10. What does a successful first phase look like?",
+        ].join("\n");
+      }
+
+      function buildWhatINeedFromYou(lead) {
+        return [
+          "To start phase one, I’ll need the basics from you:",
+          "",
+          "- Current website link",
+          "- Logo or brand files if you have them",
+          "- Best phone/email for customer requests",
+          "- Any current forms, booking links, or messages",
+          "- Main services you want to promote",
+          "- Service area",
+          "- Common customer questions",
+          "- Any wording or promises you do not want used",
+          "- Who approves the final version before launch",
+          "",
+          "Once I have that, I can map the first workflow and build the first useful version.",
+        ].join("\n");
+      }
+
+      function buildFirstWeekBuildPlan(lead) {
+        var c = calcCloseOnboardingData(lead);
+        var lines = ["First-week build plan — " + c.business, ""];
+        FIRST_WEEK_BUILD_PLAN.forEach(function (item, idx) {
+          if (idx > 0) lines.push("");
+          lines.push(item.day + ":", item.plan);
+        });
+        return lines.join("\n");
+      }
+
+      function buildDepositReceivedReply(lead) {
+        var c = calcCloseOnboardingData(lead);
+        return [
+          "Hi " + c.contact + ", deposit received — thank you. I’ll start by mapping the phase one workflow, confirming the customer path, and collecting anything needed for the first build.",
+          "",
+          "I’ll keep the first version focused, owner-approved, and built around the first useful system.",
+        ].join("\n");
+      }
+
+      function buildProjectWonSummary(lead) {
+        var c = calcCloseOnboardingData(lead);
+        return [
+          "Project won — " + c.business,
+          "",
+          "Package:",
+          c.recommendedPackage,
+          "",
+          "First deliverable:",
+          c.firstDeliverable,
+          "",
+          "Payment structure:",
+          c.paymentTerms,
+          "",
+          "Phase one focus:",
+          "Build the first useful system around the main bottleneck, owner visibility, and human-approved launch steps.",
+          "",
+          "Next:",
+          "Collect kickoff materials and begin workflow mapping.",
+        ].join("\n");
+      }
+
+      function buildKickoffCallAgenda(lead) {
+        var c = calcCloseOnboardingData(lead);
+        return [
+          "Kickoff call agenda — " + c.business,
+          "",
+          "1. Confirm phase one scope",
+          "2. Review current customer/lead flow",
+          "3. Confirm tools, website, forms, and access needs",
+          "4. Confirm approval person",
+          "5. Review customer-facing wording rules",
+          "6. Confirm timeline",
+          "7. Confirm first working preview goal",
+          "8. Confirm launch checklist",
+        ].join("\n");
+      }
+
+      function buildFullOnboardingBundle(lead) {
+        var c = calcCloseOnboardingData(lead);
+        return [
+          "Onboarding bundle — " + c.business,
+          "",
+          "Onboarding message:",
+          buildCloseOnboardingMessage(lead),
+          "",
+          "Kickoff checklist:",
+          buildClientKickoffChecklist(lead),
+          "",
+          "Project intake questions:",
+          buildProjectIntakeQuestions(lead),
+          "",
+          "What I need from you:",
+          buildWhatINeedFromYou(lead),
+          "",
+          "First-week build plan:",
+          buildFirstWeekBuildPlan(lead),
+          "",
+          "Kickoff call agenda:",
+          buildKickoffCallAgenda(lead),
+        ].join("\n");
+      }
+
+      function closeOnboardingTextForKind(kind, lead) {
+        if (!lead) return "";
+        if (kind === "close-onboarding-message") return buildCloseOnboardingMessage(lead);
+        if (kind === "close-client-kickoff-checklist") return buildClientKickoffChecklist(lead);
+        if (kind === "close-project-intake-questions") return buildProjectIntakeQuestions(lead);
+        if (kind === "close-what-i-need") return buildWhatINeedFromYou(lead);
+        if (kind === "close-first-week-build-plan") return buildFirstWeekBuildPlan(lead);
+        if (kind === "close-deposit-received-reply") return buildDepositReceivedReply(lead);
+        if (kind === "close-project-won-summary") return buildProjectWonSummary(lead);
+        if (kind === "close-kickoff-call-agenda") return buildKickoffCallAgenda(lead);
+        if (kind === "close-full-onboarding-bundle") return buildFullOnboardingBundle(lead);
+        return "";
+      }
+
       function buildPricingRecommendationCopy(lead) {
         var p = calcPricingBuilder(lead);
         return [
@@ -4467,6 +4908,131 @@
           '<p class="owner-dash-quote-safe-note">Internal guidance and copy-only prep. This is not a final invoice, and nothing is sent automatically.</p>' +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<span class="owner-dash-quote-feedback" data-quote-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
+      function closeOnboardingSnapshotItem(label, value, wide) {
+        return (
+          '<div class="owner-dash-close-snapshot-item' +
+          (wide ? " owner-dash-close-snapshot-item--wide" : "") +
+          '"><span>' +
+          esc(label) +
+          '</span><strong>' +
+          esc(value || "—") +
+          "</strong></div>"
+        );
+      }
+
+      function closeOnboardingCopyButton(kind, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="copy-close-onboarding" data-copy-kind="' +
+          esc(kind) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function closeOnboardingChecklistCard(title, intro, items) {
+        return (
+          '<article class="owner-dash-close-check-card"><h4>' +
+          esc(title) +
+          "</h4>" +
+          '<p class="owner-dash-close-card-label">' +
+          esc(intro) +
+          "</p>" +
+          bulletListHtml(items, "owner-dash-close-list") +
+          "</article>"
+        );
+      }
+
+      function closeOnboardingWeekPlanCard() {
+        return (
+          '<article class="owner-dash-close-check-card owner-dash-close-check-card--week"><h4>First Week Build Plan</h4>' +
+          '<p class="owner-dash-close-card-label">Compact preview</p>' +
+          '<div class="owner-dash-close-week-grid">' +
+          FIRST_WEEK_BUILD_PLAN.map(function (item) {
+            return (
+              '<div class="owner-dash-close-day-card"><span>' +
+              esc(item.day) +
+              '</span><strong>' +
+              esc(item.plan) +
+              "</strong></div>"
+            );
+          }).join("") +
+          "</div></article>"
+        );
+      }
+
+      function closeOnboardingActionButton(closeAction, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="mark-close-onboarding" data-close-action="' +
+          esc(closeAction) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function closeOnboardingCommandBlock(lead) {
+        var c = calcCloseOnboardingData(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--close-onboarding" data-close-onboarding-command>' +
+          '<div class="owner-dash-close-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Close / Onboarding Command</h3>' +
+          '<p class="owner-dash-detail-section-note">Turn a yes into a clean kickoff. Copy only — nothing is sent automatically.</p></div>' +
+          '<span class="owner-dash-close-badge">Internal copy-only guidance</span>' +
+          "</div>" +
+          '<div class="owner-dash-close-snapshot-card">' +
+          '<p class="owner-dash-close-card-label">Close Snapshot</p>' +
+          '<div class="owner-dash-close-snapshot">' +
+          closeOnboardingSnapshotItem("Business", c.business, false) +
+          closeOnboardingSnapshotItem("Contact", c.contact, false) +
+          closeOnboardingSnapshotItem("Recommended package", c.recommendedPackage, false) +
+          closeOnboardingSnapshotItem("First deliverable", c.firstDeliverable, false) +
+          closeOnboardingSnapshotItem("Suggested quote range", c.priceRange, false) +
+          closeOnboardingSnapshotItem("Payment structure", c.paymentTerms, false) +
+          closeOnboardingSnapshotItem("Current stage", c.currentStatus, false) +
+          closeOnboardingSnapshotItem("Next closing action", c.nextAction, true) +
+          "</div></div>" +
+          '<div class="owner-dash-close-check-grid">' +
+          closeOnboardingChecklistCard("Closing Checklist", "Before calling it won", CLOSE_CHECKLIST_ITEMS) +
+          closeOnboardingChecklistCard("Onboarding Checklist", "What to collect after yes", ONBOARDING_CHECKLIST_ITEMS) +
+          closeOnboardingWeekPlanCard() +
+          "</div>" +
+          '<div class="owner-dash-close-copy">' +
+          '<p class="owner-dash-close-card-label">Copy onboarding assets</p>' +
+          '<div class="owner-dash-close-copy-actions">' +
+          closeOnboardingCopyButton("close-onboarding-message", "Copy onboarding message", true) +
+          closeOnboardingCopyButton("close-client-kickoff-checklist", "Copy client kickoff checklist", false) +
+          closeOnboardingCopyButton("close-project-intake-questions", "Copy project intake questions", false) +
+          closeOnboardingCopyButton("close-what-i-need", "Copy what I need from you", false) +
+          closeOnboardingCopyButton("close-first-week-build-plan", "Copy first-week build plan", false) +
+          closeOnboardingCopyButton("close-deposit-received-reply", "Copy deposit received reply", false) +
+          closeOnboardingCopyButton("close-project-won-summary", "Copy project won summary", false) +
+          closeOnboardingCopyButton("close-kickoff-call-agenda", "Copy kickoff call agenda", false) +
+          closeOnboardingCopyButton("close-full-onboarding-bundle", "Copy full onboarding bundle", true) +
+          "</div></div>" +
+          '<div class="owner-dash-close-actions">' +
+          '<p class="owner-dash-close-card-label">Internal close actions</p>' +
+          '<div class="owner-dash-close-action-buttons">' +
+          closeOnboardingActionButton("deposit-received", "Mark deposit received", true) +
+          closeOnboardingActionButton("project-won", "Mark project won", true) +
+          closeOnboardingActionButton("kickoff-scheduled", "Mark kickoff scheduled", false) +
+          closeOnboardingActionButton("materials-needed", "Mark materials needed", false) +
+          "</div>" +
+          '<p class="owner-dash-close-safe-note">Copy-only internal guidance. Nothing sends automatically. No invoices, payments, or payment processors are connected here.</p>' +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<span class="owner-dash-close-feedback" data-close-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
           '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
           '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
@@ -5717,6 +6283,7 @@
           clientProposalSheetBlock(lead) +
           pricingBuilderBlock(lead) +
           quoteInvoicePrepBlock(lead) +
+          closeOnboardingCommandBlock(lead) +
           groupedToolsBlock("business_leads") +
           quickStatusBlock("business_leads", lead.status) +
           workflowBlock("business_leads", lead) +
@@ -5880,6 +6447,8 @@
         if (table === "business_leads") {
           var commandText = followUpCommandTextForKind(kind, row);
           if (commandText) return commandText;
+          var closeText = closeOnboardingTextForKind(kind, row);
+          if (closeText) return closeText;
           var quoteText = quoteTextForKind(kind, row);
           if (quoteText) return quoteText;
           var pricingText = pricingTextForKind(kind, row);
@@ -5907,6 +6476,7 @@
         var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
         if (!sheet || !state.detailOpen) return;
         var section =
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--close-onboarding")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--quote-prep")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--pricing")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--proposal")) ||
@@ -5914,6 +6484,7 @@
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--opportunity")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--tools")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section")) ||
+          sheet.querySelector(".owner-dash-detail-section--close-onboarding") ||
           sheet.querySelector(".owner-dash-detail-section--quote-prep") ||
           sheet.querySelector(".owner-dash-detail-section--pricing") ||
           sheet.querySelector(".owner-dash-detail-section--proposal") ||
@@ -6029,6 +6600,14 @@
         fb.className = "owner-dash-quote-feedback" + (isError ? " owner-dash-quote-feedback--error" : "");
       }
 
+      function setCloseOnboardingFeedback(section, message, isError) {
+        var fb = section && section.querySelector("[data-close-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-close-feedback" + (isError ? " owner-dash-close-feedback--error" : "");
+      }
+
       function appendCleanOwnerNote(existing, note) {
         var current = String(existing || "").trim();
         var cleanNote = String(note || "").trim();
@@ -6089,6 +6668,25 @@
 
       function appendDepositRequestedNote(existing, quote) {
         return appendCleanOwnerNote(existing, "Deposit requested: " + quote.recommendedPackage + ".");
+      }
+
+      function appendDepositReceivedNote(existing, closeData) {
+        return appendCleanOwnerNote(existing, "Deposit received: " + closeData.recommendedPackage + " / kickoff next.");
+      }
+
+      function appendProjectWonNote(existing, closeData) {
+        return appendCleanOwnerNote(
+          existing,
+          "Project won: " + closeData.recommendedPackage + " / " + closeData.firstDeliverable + "."
+        );
+      }
+
+      function appendKickoffScheduledNote(existing) {
+        return appendCleanOwnerNote(existing, "Kickoff scheduled: collect materials and confirm first-week build plan.");
+      }
+
+      function appendMaterialsNeededNote(existing) {
+        return appendCleanOwnerNote(existing, "Materials needed: logo/assets/access/current workflow details.");
       }
 
       function dealStageActionConfig(stageKey, lead) {
@@ -6282,6 +6880,8 @@
         if (pricingSection) pricingSection.outerHTML = pricingBuilderBlock(hit.row);
         var quoteSection = sheet.querySelector(".owner-dash-detail-section--quote-prep");
         if (quoteSection) quoteSection.outerHTML = quoteInvoicePrepBlock(hit.row);
+        var closeSection = sheet.querySelector(".owner-dash-detail-section--close-onboarding");
+        if (closeSection) closeSection.outerHTML = closeOnboardingCommandBlock(hit.row);
       }
 
       function handleClientProposalToneSelection(sheet, sourceBtn) {
@@ -6552,6 +7152,123 @@
               sourceBtn.textContent =
                 sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
             }
+          });
+      }
+
+      function closeOnboardingStatusConfig(closeAction, closeData, currentStatus) {
+        var currentKey = normStatus(currentStatus);
+        if (closeAction === "deposit-received") {
+          return {
+            status: currentKey === "won" ? currentStatus : "Qualified",
+            note: function (notes) {
+              return appendDepositReceivedNote(notes, closeData);
+            },
+            activity: "Close — Deposit received",
+            success: "Deposit received marked. Nothing was sent.",
+            saving: "Saving deposit-received note...",
+            tone: "ok",
+          };
+        }
+        if (closeAction === "project-won") {
+          return {
+            status: "Won",
+            note: function (notes) {
+              return appendProjectWonNote(notes, closeData);
+            },
+            activity: "Close — Project won",
+            success: "Project won marked. Nothing was sent.",
+            saving: "Saving project-won note...",
+            tone: "ok",
+          };
+        }
+        if (closeAction === "kickoff-scheduled") {
+          return {
+            status:
+              currentKey === "archived" || currentKey === "lost" || currentKey === "not a fit"
+                ? currentStatus
+                : "Won",
+            note: appendKickoffScheduledNote,
+            activity: "Onboarding — Kickoff scheduled",
+            success: "Kickoff scheduled marked. Nothing was sent.",
+            saving: "Saving kickoff-scheduled note...",
+            tone: "ok",
+          };
+        }
+        if (closeAction === "materials-needed") {
+          return {
+            status: currentKey === "won" ? currentStatus : "Needs follow-up",
+            note: appendMaterialsNeededNote,
+            activity: "Onboarding — Materials needed",
+            success: "Materials needed marked. Nothing was sent.",
+            saving: "Saving materials-needed note...",
+            tone: "pending",
+          };
+        }
+        return null;
+      }
+
+      function handleCloseOnboardingStatusAction(sheet, sourceBtn) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        var closeAction = sourceBtn.getAttribute("data-close-action");
+        var closeData = calcCloseOnboardingData(hit.row);
+        var currentStatus = displayStatus(hit.row.status);
+        var config = closeOnboardingStatusConfig(closeAction, closeData, currentStatus);
+        if (!config) return;
+        var section =
+          sourceBtn.closest(".owner-dash-detail-section--close-onboarding") ||
+          sheet.querySelector(".owner-dash-detail-section--close-onboarding");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var previousNotes = String(hit.row.owner_notes || "");
+        var nextStatus = config.status;
+        if (!nextStatus || nextStatus === "—") nextStatus = currentStatus || "Qualified";
+        var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
+        var nextNotes = config.note(notesBase);
+        var buttons = section ? section.querySelectorAll('[data-action="mark-close-onboarding"]') : [];
+        buttons.forEach(function (b) {
+          b.disabled = true;
+        });
+        sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+        sourceBtn.textContent = "Saving...";
+        setCloseOnboardingFeedback(section, config.saving, false);
+
+        postUpdate(table, id, {
+          status: nextStatus,
+          owner_notes: nextNotes,
+        })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setCloseOnboardingFeedback(
+                section,
+                (result.data && result.data.error) || "Could not update close/onboarding status. Try saving manually.",
+                true
+              );
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(table, id, config.activity, config.tone, "");
+            renderAll();
+            var freshSection =
+              els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--close-onboarding");
+            setCloseOnboardingFeedback(freshSection || section, config.success, false);
+            refreshCounts();
+          })
+          .catch(function () {
+            setCloseOnboardingFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            buttons.forEach(function (b) {
+              b.disabled = false;
+            });
+            sourceBtn.textContent =
+              sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
           });
       }
 
@@ -7463,6 +8180,7 @@
               action === "copy-deal" ||
               action === "copy-pricing" ||
               action === "copy-quote" ||
+              action === "copy-close-onboarding" ||
               action === "copy-client-proposal")
           ) {
             copyFromDetail(btn.getAttribute("data-copy-kind"), btn);
@@ -7501,6 +8219,11 @@
               action === "mark-deposit-requested")
           ) {
             handleQuotePrepStatusAction(sheet, btn, action);
+            return;
+          }
+
+          if (sheet && action === "mark-close-onboarding") {
+            handleCloseOnboardingStatusAction(sheet, btn);
             return;
           }
 
