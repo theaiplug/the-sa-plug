@@ -1035,6 +1035,193 @@
       margin-top: 8px;
     }
 
+    /* Owner Command Dashboard v18 - Client Support / Retention Command */
+    .page-owner-dashboard .owner-dash-detail-section--client-retention {
+      margin-bottom: 16px;
+      padding: 12px;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.26), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.18), transparent 34%),
+        linear-gradient(150deg, rgba(3, 24, 28, 0.94), rgba(5, 36, 31, 0.82) 58%, rgba(42, 24, 8, 0.72));
+      border: 1px solid rgba(45, 212, 191, 0.44);
+      box-shadow:
+        inset 0 1px 0 rgba(240, 253, 250, 0.08),
+        0 14px 34px rgba(0, 0, 0, 0.24);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-head {
+      display: grid;
+      gap: 9px;
+      margin-bottom: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--client-retention .owner-dash-detail-section-title {
+      margin-bottom: 5px;
+      color: #d1fae5;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: max-content;
+      max-width: 100%;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(20, 184, 166, 0.16);
+      border: 1px solid rgba(94, 234, 212, 0.48);
+      color: #ccfbf1;
+      font-size: 0.69rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-card-label {
+      display: block;
+      margin: 0 0 8px;
+      font-size: 0.66rem;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(94, 234, 212, 0.96);
+    }
+
+    .page-owner-dashboard .owner-dash-retention-snapshot-card,
+    .page-owner-dashboard .owner-dash-retention-check-card,
+    .page-owner-dashboard .owner-dash-retention-next-phase,
+    .page-owner-dashboard .owner-dash-retention-readiness,
+    .page-owner-dashboard .owner-dash-retention-copy,
+    .page-owner-dashboard .owner-dash-retention-actions {
+      padding: 10px;
+      border-radius: 13px;
+      background: rgba(4, 10, 22, 0.58);
+      border: 1px solid rgba(94, 234, 212, 0.17);
+      box-shadow: inset 0 1px 0 rgba(240, 253, 250, 0.04);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-snapshot-card,
+    .page-owner-dashboard .owner-dash-retention-check-grid,
+    .page-owner-dashboard .owner-dash-retention-next-phase,
+    .page-owner-dashboard .owner-dash-retention-readiness,
+    .page-owner-dashboard .owner-dash-retention-copy,
+    .page-owner-dashboard .owner-dash-retention-actions {
+      margin-bottom: 10px;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-snapshot,
+    .page-owner-dashboard .owner-dash-retention-check-grid,
+    .page-owner-dashboard .owner-dash-retention-deliverables,
+    .page-owner-dashboard .owner-dash-retention-readiness-grid,
+    .page-owner-dashboard .owner-dash-retention-copy-actions,
+    .page-owner-dashboard .owner-dash-retention-action-buttons {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-snapshot-item,
+    .page-owner-dashboard .owner-dash-retention-next-summary {
+      padding: 8px 9px;
+      border-radius: 11px;
+      background: rgba(255, 246, 230, 0.055);
+      border: 1px solid rgba(94, 234, 212, 0.14);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-snapshot-item span,
+    .page-owner-dashboard .owner-dash-retention-next-summary span {
+      display: block;
+      margin: 0 0 4px;
+      font-size: 0.64rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(94, 234, 212, 0.9);
+    }
+
+    .page-owner-dashboard .owner-dash-retention-snapshot-item strong,
+    .page-owner-dashboard .owner-dash-retention-next-summary strong {
+      display: block;
+      font-size: 0.82rem;
+      line-height: 1.35;
+      color: rgba(255, 246, 230, 0.94);
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-check-card h4,
+    .page-owner-dashboard .owner-dash-retention-next-phase h4,
+    .page-owner-dashboard .owner-dash-retention-readiness h4 {
+      margin: 0 0 8px;
+      color: #fff7ed;
+      font-size: 0.92rem;
+      line-height: 1.2;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-list {
+      margin: 0;
+      padding-left: 17px;
+      display: grid;
+      gap: 3px;
+      font-size: 0.78rem;
+      line-height: 1.35;
+      color: rgba(255, 246, 230, 0.8);
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-next-summary + .owner-dash-retention-next-summary {
+      margin-top: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-deliverables {
+      margin-top: 9px;
+    }
+
+    .page-owner-dashboard .owner-dash-retention-safe-note,
+    .page-owner-dashboard .owner-dash-retention-feedback {
+      display: block;
+      margin: 8px 0 0;
+      font-size: 0.76rem;
+      line-height: 1.4;
+      color: rgba(255, 246, 230, 0.64);
+    }
+
+    .page-owner-dashboard .owner-dash-retention-feedback {
+      font-weight: 800;
+      color: rgba(94, 234, 212, 0.95);
+    }
+
+    .page-owner-dashboard .owner-dash-retention-feedback--error {
+      color: #fca5a5;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--client-retention .owner-dash-btn {
+      width: 100%;
+      min-height: 44px;
+      min-width: 0;
+      max-width: 100%;
+      white-space: normal;
+      text-align: center;
+      line-height: 1.25;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--client-retention .owner-dash-btn--primary {
+      background: linear-gradient(135deg, #ffb238, #ff8b1f);
+      border-color: rgba(255, 178, 56, 0.78);
+      color: #1f1205;
+      box-shadow: 0 10px 22px rgba(255, 139, 31, 0.2);
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--client-retention .owner-dash-detail-copy-feedback {
+      display: block;
+      margin-top: 8px;
+    }
+
     @media (min-width: 560px) {
       .page-owner-dashboard .owner-dash-delivery-head {
         grid-template-columns: minmax(0, 1fr) auto;
@@ -1053,10 +1240,31 @@
       .page-owner-dashboard .owner-dash-delivery-copy-actions .owner-dash-btn:last-child {
         grid-column: 1 / -1;
       }
+
+      .page-owner-dashboard .owner-dash-retention-head {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+      }
+
+      .page-owner-dashboard .owner-dash-retention-snapshot,
+      .page-owner-dashboard .owner-dash-retention-check-grid,
+      .page-owner-dashboard .owner-dash-retention-deliverables,
+      .page-owner-dashboard .owner-dash-retention-readiness-grid,
+      .page-owner-dashboard .owner-dash-retention-copy-actions,
+      .page-owner-dashboard .owner-dash-retention-action-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard .owner-dash-retention-snapshot-item--wide,
+      .page-owner-dashboard .owner-dash-retention-copy-actions .owner-dash-btn:first-child,
+      .page-owner-dashboard .owner-dash-retention-copy-actions .owner-dash-btn:last-child {
+        grid-column: 1 / -1;
+      }
     }
 
     @media (min-width: 760px) {
-      .page-owner-dashboard .owner-dash-delivery-check-grid {
+      .page-owner-dashboard .owner-dash-delivery-check-grid,
+      .page-owner-dashboard .owner-dash-retention-check-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
@@ -2360,6 +2568,16 @@
           "close-project-won-summary": "Close — Project won summary copied",
           "close-kickoff-call-agenda": "Close — Kickoff call agenda copied",
           "close-full-onboarding-bundle": "Close — Full onboarding bundle copied",
+          "retention-monthly-check-in": "Retention — Monthly check-in copied",
+          "retention-support-review": "Retention — Support review message copied",
+          "retention-optimization-recommendation": "Retention — Optimization recommendation copied",
+          "retention-next-phase-offer": "Retention — Next-phase offer copied",
+          "retention-testimonial-request": "Retention — Testimonial request copied",
+          "retention-referral-request": "Retention — Referral request copied",
+          "retention-case-study-questions": "Retention — Case study questions copied",
+          "retention-support-recap": "Retention — Support recap copied",
+          "retention-renewal-support-pitch": "Retention — Renewal/support pitch copied",
+          "retention-full-bundle": "Retention — Full retention bundle copied",
         };
         return labels[kind] || "Copy action completed";
       }
@@ -5182,6 +5400,504 @@
         );
       }
 
+      var RETENTION_SUPPORT_REVIEW_CHECKLIST = [
+        "Did the system launch correctly?",
+        "Did test leads work?",
+        "Did real leads come in?",
+        "Did alerts reach the owner?",
+        "Did the dashboard make sense?",
+        "Did customers get stuck anywhere?",
+        "What questions repeated?",
+        "What follow-up was needed?",
+        "What should be improved next?",
+        "What should not be automated yet?",
+      ];
+
+      var RETENTION_OPTIMIZATION_OPPORTUNITIES = [
+        "Improve intake questions",
+        "Improve follow-up copy",
+        "Add a better thank-you page",
+        "Add lead source tracking",
+        "Add FAQ/customer answer flow",
+        "Add missed-call follow-up",
+        "Add dashboard filters",
+        "Add reporting summary",
+        "Add new service page",
+        "Add local SEO page",
+        "Add AI assistant planning",
+        "Add automation after approval rules are clear",
+      ];
+
+      var RETENTION_NEXT_DELIVERABLES = [
+        "Dashboard improvements",
+        "Follow-up automation plan",
+        "New landing page",
+        "Local SEO/service page",
+        "Better intake routing",
+        "Reporting layer",
+        "AI assistant planning",
+        "Monthly optimization support",
+      ];
+
+      var RETENTION_TESTIMONIAL_READINESS = [
+        "Client says the system helped",
+        "Launch went smoothly",
+        "Owner understands the dashboard",
+        "First lead or workflow improvement is clear",
+        "Support relationship feels positive",
+      ];
+
+      var RETENTION_REFERRAL_READINESS = [
+        "Client is happy",
+        "Client has used the system",
+        "You have a clear result or improvement",
+        "They know another business with a similar problem",
+      ];
+
+      function retentionNotesInclude(lead, phrase) {
+        return ownerNotesText(lead).toLowerCase().indexOf(String(phrase || "").toLowerCase()) !== -1;
+      }
+
+      function clientRetentionSupportStage(lead) {
+        var statusKey = normStatus(lead && lead.status);
+        if (retentionNotesInclude(lead, "launched")) {
+          return {
+            stage: "Launch follow-up",
+            action: "Check first usage, issues, and lead flow.",
+          };
+        }
+        if (retentionNotesInclude(lead, "support review due")) {
+          return {
+            stage: "Support review",
+            action: "Schedule review and identify improvements.",
+          };
+        }
+        if (retentionNotesInclude(lead, "support active")) {
+          return {
+            stage: "Active support",
+            action: "Review dashboard, leads, and next optimization.",
+          };
+        }
+        if (retentionNotesInclude(lead, "testimonial requested")) {
+          return {
+            stage: "Social proof",
+            action: "Follow up for testimonial or case study.",
+          };
+        }
+        if (retentionNotesInclude(lead, "referral requested")) {
+          return {
+            stage: "Referral",
+            action: "Ask for intro or referral if client is happy.",
+          };
+        }
+        if (statusKey === "won") {
+          return {
+            stage: "Post-sale / delivery support",
+            action: "Confirm launch or support review timing.",
+          };
+        }
+        return {
+          stage: "Not active yet",
+          action: "Wait until project is won or launched.",
+        };
+      }
+
+      function clientRetentionNextPhase(packageName) {
+        var p = String(packageName || "");
+        if (/starter/i.test(p)) {
+          return {
+            recommendedNextPhase: "Lead Capture System",
+            reason:
+              "After the basic customer path is fixed, the next value is better intake, alerts, and lead tracking.",
+          };
+        }
+        if (/lead capture/i.test(p)) {
+          return {
+            recommendedNextPhase: "Business Command System Package",
+            reason:
+              "Once leads are captured, the next value is owner workflow, status tracking, and follow-up tools.",
+          };
+        }
+        if (/business command/i.test(p)) {
+          return {
+            recommendedNextPhase: "Monthly Support + Optimization",
+            reason:
+              "The system is useful after launch, but real lead behavior should guide improvements.",
+          };
+        }
+        if (/full ai/i.test(p)) {
+          return {
+            recommendedNextPhase: "Phased AI roadmap review",
+            reason:
+              "Keep advanced automation controlled, approved, and based on real workflow data.",
+          };
+        }
+        return {
+          recommendedNextPhase: "Support Review",
+          reason:
+            "Start by reviewing what launched and where the next useful improvement should happen.",
+        };
+      }
+
+      function clientRetentionProofStatus(lead) {
+        var testimonial = retentionNotesInclude(lead, "testimonial requested");
+        var referral = retentionNotesInclude(lead, "referral requested");
+        if (testimonial && referral) return "Testimonial + referral requested";
+        if (testimonial) return "Testimonial requested";
+        if (referral) return "Referral requested";
+        if (retentionNotesInclude(lead, "launched") || retentionNotesInclude(lead, "support active") || normStatus(lead && lead.status) === "won") {
+          return "Watch for proof after results are clear";
+        }
+        return "Not ready yet";
+      }
+
+      function calcClientRetentionData(lead) {
+        var q = calcQuoteInvoicePrep(lead);
+        var support = clientRetentionSupportStage(lead);
+        var nextPhase = clientRetentionNextPhase(q.recommendedPackage);
+        return {
+          business: q.business,
+          contact: q.contact,
+          recommendedPackage: q.recommendedPackage,
+          firstDeliverable: q.firstDeliverable,
+          currentStatus: displayStatus(lead.status),
+          supportStage: support.stage,
+          nextRetentionAction: support.action,
+          monthlySupport: q.monthlySupport,
+          recommendedNextPhase: nextPhase.recommendedNextPhase,
+          nextPhaseReason: nextPhase.reason,
+          nextPhaseOpportunity: nextPhase.recommendedNextPhase,
+          referralTestimonialStatus: clientRetentionProofStatus(lead),
+        };
+      }
+
+      function buildRetentionMonthlyCheckIn(lead) {
+        var r = calcClientRetentionData(lead);
+        return [
+          "Hi " + r.contact + ", checking in on " + r.business + ".",
+          "",
+          "I wanted to see how the first system is working:",
+          "- Are leads coming through clearly?",
+          "- Are alerts reaching you?",
+          "- Is the dashboard useful?",
+          "- Are customers asking the same questions repeatedly?",
+          "- Is there anything you wish the system handled better?",
+          "",
+          "If anything feels clunky, this is the right time to tighten it.",
+        ].join("\n");
+      }
+
+      function buildRetentionSupportReviewMessage(lead) {
+        var r = calcClientRetentionData(lead);
+        return [
+          "Hi " + r.contact + ", I’d like to do a quick support review for " + r.business + ".",
+          "",
+          "The goal is to look at what happened after launch:",
+          "- What worked",
+          "- What leads came in",
+          "- Where people got stuck",
+          "- What follow-up was needed",
+          "- What should be improved next",
+          "",
+          "That review will help us decide the smartest next step without overbuilding.",
+        ].join("\n");
+      }
+
+      function buildRetentionOptimizationRecommendation(lead) {
+        var r = calcClientRetentionData(lead);
+        return [
+          "Optimization recommendation — " + r.business,
+          "",
+          "Based on the first system, the next useful improvement is:",
+          r.recommendedNextPhase,
+          "",
+          "Why:",
+          r.nextPhaseReason,
+          "",
+          "Possible next deliverables:",
+          "- Dashboard improvements",
+          "- Follow-up copy improvements",
+          "- Better intake routing",
+          "- New service/local SEO page",
+          "- Reporting layer",
+          "- AI assistant planning",
+          "- Monthly support and optimization",
+        ].join("\n");
+      }
+
+      function buildRetentionNextPhaseOffer(lead) {
+        var r = calcClientRetentionData(lead);
+        return [
+          "Hi " + r.contact + ", now that the first phase is in place, I’d recommend the next phase be focused on " + r.recommendedNextPhase + ".",
+          "",
+          "The reason is simple: the first build gives us the foundation, but the next value comes from improving the workflow based on real customer behavior.",
+          "",
+          "We can keep it practical and phase it so nothing gets overbuilt.",
+        ].join("\n");
+      }
+
+      function buildRetentionTestimonialRequest(lead) {
+        var r = calcClientRetentionData(lead);
+        return [
+          "Hi " + r.contact + ", if the first system has been helpful, would you be open to sending a short testimonial?",
+          "",
+          "A simple version is perfect:",
+          "- What problem were you trying to fix?",
+          "- What did we build?",
+          "- What feels easier or clearer now?",
+          "- Would you recommend this to another business owner?",
+          "",
+          "A few sentences is enough.",
+        ].join("\n");
+      }
+
+      function buildRetentionReferralRequest(lead) {
+        var r = calcClientRetentionData(lead);
+        return [
+          "Hi " + r.contact + ", I’m glad we were able to help with " + r.business + ".",
+          "",
+          "If you know another business owner who is dealing with missed calls, weak lead follow-up, confusing forms, or no clear owner dashboard, I’d appreciate an intro.",
+          "",
+          "I’m looking for businesses where a practical AI-assisted system can solve a real workflow problem.",
+        ].join("\n");
+      }
+
+      function buildRetentionCaseStudyQuestions(lead) {
+        var r = calcClientRetentionData(lead);
+        return [
+          "Case study questions — " + r.business,
+          "",
+          "1. What problem were you trying to solve before this project?",
+          "2. What was happening with leads, calls, forms, or follow-up?",
+          "3. What did we build first?",
+          "4. What changed after launch?",
+          "5. What became easier for the owner or team?",
+          "6. What would you improve next?",
+          "7. Would you recommend this kind of system to another business?",
+          "8. What type of business would benefit from this?",
+        ].join("\n");
+      }
+
+      function buildRetentionSupportRecap(lead) {
+        var r = calcClientRetentionData(lead);
+        return [
+          "Support recap — " + r.business,
+          "",
+          "Current system:",
+          r.firstDeliverable,
+          "",
+          "What we reviewed:",
+          "- Lead flow",
+          "- Dashboard visibility",
+          "- Alerts",
+          "- Customer questions",
+          "- Follow-up needs",
+          "- Next improvement opportunities",
+          "",
+          "Recommended next step:",
+          r.recommendedNextPhase,
+          "",
+          "Reason:",
+          r.nextPhaseReason,
+        ].join("\n");
+      }
+
+      function buildRetentionRenewalSupportPitch(lead) {
+        var r = calcClientRetentionData(lead);
+        return [
+          "Hi " + r.contact + ", I recommend keeping a monthly support layer active so we can keep improving the system after launch.",
+          "",
+          "Support can include:",
+          "- Dashboard review",
+          "- Lead flow improvements",
+          "- Intake/form updates",
+          "- Follow-up copy improvements",
+          "- New content/page support if included",
+          "- Reporting",
+          "- Next-phase planning",
+          "",
+          "The goal is to keep the system useful instead of letting it sit untouched.",
+        ].join("\n");
+      }
+
+      function buildRetentionFullBundle(lead) {
+        var r = calcClientRetentionData(lead);
+        return [
+          "Retention bundle — " + r.business,
+          "",
+          "Monthly check-in:",
+          buildRetentionMonthlyCheckIn(lead),
+          "",
+          "Support review:",
+          buildRetentionSupportReviewMessage(lead),
+          "",
+          "Optimization recommendation:",
+          buildRetentionOptimizationRecommendation(lead),
+          "",
+          "Next-phase offer:",
+          buildRetentionNextPhaseOffer(lead),
+          "",
+          "Testimonial request:",
+          buildRetentionTestimonialRequest(lead),
+          "",
+          "Referral request:",
+          buildRetentionReferralRequest(lead),
+          "",
+          "Case study questions:",
+          buildRetentionCaseStudyQuestions(lead),
+          "",
+          "Support recap:",
+          buildRetentionSupportRecap(lead),
+          "",
+          "Renewal/support pitch:",
+          buildRetentionRenewalSupportPitch(lead),
+        ].join("\n");
+      }
+
+      function clientRetentionTextForKind(kind, lead) {
+        if (!lead) return "";
+        if (kind === "retention-monthly-check-in") return buildRetentionMonthlyCheckIn(lead);
+        if (kind === "retention-support-review") return buildRetentionSupportReviewMessage(lead);
+        if (kind === "retention-optimization-recommendation") return buildRetentionOptimizationRecommendation(lead);
+        if (kind === "retention-next-phase-offer") return buildRetentionNextPhaseOffer(lead);
+        if (kind === "retention-testimonial-request") return buildRetentionTestimonialRequest(lead);
+        if (kind === "retention-referral-request") return buildRetentionReferralRequest(lead);
+        if (kind === "retention-case-study-questions") return buildRetentionCaseStudyQuestions(lead);
+        if (kind === "retention-support-recap") return buildRetentionSupportRecap(lead);
+        if (kind === "retention-renewal-support-pitch") return buildRetentionRenewalSupportPitch(lead);
+        if (kind === "retention-full-bundle") return buildRetentionFullBundle(lead);
+        return "";
+      }
+
+      function clientRetentionSnapshotItem(label, value, wide) {
+        return (
+          '<div class="owner-dash-retention-snapshot-item' +
+          (wide ? " owner-dash-retention-snapshot-item--wide" : "") +
+          '"><span>' +
+          esc(label) +
+          '</span><strong>' +
+          esc(value || "—") +
+          "</strong></div>"
+        );
+      }
+
+      function clientRetentionChecklistCard(title, intro, items) {
+        return (
+          '<article class="owner-dash-retention-check-card"><h4>' +
+          esc(title) +
+          "</h4>" +
+          '<p class="owner-dash-retention-card-label">' +
+          esc(intro) +
+          "</p>" +
+          bulletListHtml(items, "owner-dash-retention-list") +
+          "</article>"
+        );
+      }
+
+      function clientRetentionCopyButton(kind, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="copy-client-retention" data-copy-kind="' +
+          esc(kind) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function clientRetentionActionButton(retentionAction, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="mark-client-retention" data-retention-action="' +
+          esc(retentionAction) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function clientSupportRetentionCommandBlock(lead) {
+        var r = calcClientRetentionData(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--client-retention" data-client-retention-command>' +
+          '<div class="owner-dash-retention-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Client Support / Retention Command</h3>' +
+          '<p class="owner-dash-detail-section-note">Keep launched clients active, supported, and moving into the next phase. Copy only — nothing is sent automatically.</p></div>' +
+          '<span class="owner-dash-retention-badge">Internal support guidance</span>' +
+          "</div>" +
+          '<div class="owner-dash-retention-snapshot-card">' +
+          '<p class="owner-dash-retention-card-label">Retention Snapshot</p>' +
+          '<div class="owner-dash-retention-snapshot">' +
+          clientRetentionSnapshotItem("Business", r.business, false) +
+          clientRetentionSnapshotItem("Recommended package", r.recommendedPackage, false) +
+          clientRetentionSnapshotItem("First deliverable", r.firstDeliverable, false) +
+          clientRetentionSnapshotItem("Current status", r.currentStatus, false) +
+          clientRetentionSnapshotItem("Support stage", r.supportStage, false) +
+          clientRetentionSnapshotItem("Next retention action", r.nextRetentionAction, true) +
+          clientRetentionSnapshotItem("Monthly support opportunity", r.monthlySupport, false) +
+          clientRetentionSnapshotItem("Next-phase opportunity", r.nextPhaseOpportunity, false) +
+          clientRetentionSnapshotItem("Referral/testimonial status", r.referralTestimonialStatus, false) +
+          "</div></div>" +
+          '<div class="owner-dash-retention-check-grid">' +
+          clientRetentionChecklistCard("Support Review Checklist", "During support review:", RETENTION_SUPPORT_REVIEW_CHECKLIST) +
+          clientRetentionChecklistCard("Optimization Opportunities", "Possible next improvements:", RETENTION_OPTIMIZATION_OPPORTUNITIES) +
+          "</div>" +
+          '<div class="owner-dash-retention-next-phase">' +
+          '<h4>Next-Phase Builder</h4>' +
+          '<div class="owner-dash-retention-next-summary"><span>Recommended next phase</span><strong>' +
+          esc(r.recommendedNextPhase) +
+          '</strong></div><div class="owner-dash-retention-next-summary"><span>Why this makes sense</span><strong>' +
+          esc(r.nextPhaseReason) +
+          "</strong></div>" +
+          '<div class="owner-dash-retention-deliverables">' +
+          '<div><p class="owner-dash-retention-card-label">Possible next deliverables</p>' +
+          bulletListHtml(RETENTION_NEXT_DELIVERABLES, "owner-dash-retention-list") +
+          "</div></div></div>" +
+          '<div class="owner-dash-retention-readiness">' +
+          '<h4>Testimonial / Referral Readiness</h4>' +
+          '<div class="owner-dash-retention-readiness-grid">' +
+          '<article><p class="owner-dash-retention-card-label">Ask for testimonial when:</p>' +
+          bulletListHtml(RETENTION_TESTIMONIAL_READINESS, "owner-dash-retention-list") +
+          '</article><article><p class="owner-dash-retention-card-label">Ask for referral when:</p>' +
+          bulletListHtml(RETENTION_REFERRAL_READINESS, "owner-dash-retention-list") +
+          "</article></div></div>" +
+          '<div class="owner-dash-retention-copy">' +
+          '<p class="owner-dash-retention-card-label">Copy retention assets</p>' +
+          '<div class="owner-dash-retention-copy-actions">' +
+          clientRetentionCopyButton("retention-monthly-check-in", "Copy monthly check-in", true) +
+          clientRetentionCopyButton("retention-support-review", "Copy support review message", false) +
+          clientRetentionCopyButton("retention-optimization-recommendation", "Copy optimization recommendation", false) +
+          clientRetentionCopyButton("retention-next-phase-offer", "Copy next-phase offer", false) +
+          clientRetentionCopyButton("retention-testimonial-request", "Copy testimonial request", false) +
+          clientRetentionCopyButton("retention-referral-request", "Copy referral request", false) +
+          clientRetentionCopyButton("retention-case-study-questions", "Copy case study questions", false) +
+          clientRetentionCopyButton("retention-support-recap", "Copy support recap", false) +
+          clientRetentionCopyButton("retention-renewal-support-pitch", "Copy renewal/support pitch", false) +
+          clientRetentionCopyButton("retention-full-bundle", "Copy full retention bundle", true) +
+          "</div></div>" +
+          '<div class="owner-dash-retention-actions">' +
+          '<p class="owner-dash-retention-card-label">Internal retention actions</p>' +
+          '<div class="owner-dash-retention-action-buttons">' +
+          clientRetentionActionButton("support-review-due", "Mark support review due", false) +
+          clientRetentionActionButton("support-active", "Mark support active", true) +
+          clientRetentionActionButton("optimization-opportunity", "Mark optimization opportunity", false) +
+          clientRetentionActionButton("next-phase-discussed", "Mark next phase discussed", false) +
+          clientRetentionActionButton("testimonial-requested", "Mark testimonial requested", false) +
+          clientRetentionActionButton("referral-requested", "Mark referral requested", false) +
+          "</div>" +
+          '<p class="owner-dash-retention-safe-note">Internal support guidance only. Nothing sends automatically. No invoices, payments, payment processors, emails, SMS, or client accounts are created here.</p>' +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<span class="owner-dash-retention-feedback" data-retention-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
       function buildPricingRecommendationCopy(lead) {
         var p = calcPricingBuilder(lead);
         return [
@@ -6941,6 +7657,7 @@
           quoteInvoicePrepBlock(lead) +
           closeOnboardingCommandBlock(lead) +
           projectDeliveryCommandBlock(lead) +
+          clientSupportRetentionCommandBlock(lead) +
           groupedToolsBlock("business_leads") +
           quickStatusBlock("business_leads", lead.status) +
           workflowBlock("business_leads", lead) +
@@ -7106,6 +7823,8 @@
           if (commandText) return commandText;
           var closeText = closeOnboardingTextForKind(kind, row);
           if (closeText) return closeText;
+          var retentionText = clientRetentionTextForKind(kind, row);
+          if (retentionText) return retentionText;
           var deliveryText = projectDeliveryTextForKind(kind, row);
           if (deliveryText) return deliveryText;
           var quoteText = quoteTextForKind(kind, row);
@@ -7136,6 +7855,8 @@
         if (!sheet || !state.detailOpen) return;
         var section =
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--close-onboarding")) ||
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--client-retention")) ||
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--project-delivery")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--quote-prep")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--pricing")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--proposal")) ||
@@ -7144,6 +7865,8 @@
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--tools")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section")) ||
           sheet.querySelector(".owner-dash-detail-section--close-onboarding") ||
+          sheet.querySelector(".owner-dash-detail-section--client-retention") ||
+          sheet.querySelector(".owner-dash-detail-section--project-delivery") ||
           sheet.querySelector(".owner-dash-detail-section--quote-prep") ||
           sheet.querySelector(".owner-dash-detail-section--pricing") ||
           sheet.querySelector(".owner-dash-detail-section--proposal") ||
@@ -7275,6 +7998,14 @@
         fb.className = "owner-dash-delivery-feedback" + (isError ? " owner-dash-delivery-feedback--error" : "");
       }
 
+      function setClientRetentionFeedback(section, message, isError) {
+        var fb = section && section.querySelector("[data-retention-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-retention-feedback" + (isError ? " owner-dash-retention-feedback--error" : "");
+      }
+
 
       function appendCleanOwnerNote(existing, note) {
         var current = String(existing || "").trim();
@@ -7359,6 +8090,10 @@
 
       function appendProjectDeliveryNote(existing, noteLabel) {
         return appendCleanOwnerNote(existing, "Delivery: " + noteLabel + ".");
+      }
+
+      function appendClientRetentionNote(existing, noteLabel) {
+        return appendCleanOwnerNote(existing, "Retention: " + noteLabel + ".");
       }
 
 
@@ -7555,6 +8290,8 @@
         if (quoteSection) quoteSection.outerHTML = quoteInvoicePrepBlock(hit.row);
         var closeSection = sheet.querySelector(".owner-dash-detail-section--close-onboarding");
         if (closeSection) closeSection.outerHTML = closeOnboardingCommandBlock(hit.row);
+        var retentionSection = sheet.querySelector(".owner-dash-detail-section--client-retention");
+        if (retentionSection) retentionSection.outerHTML = clientSupportRetentionCommandBlock(hit.row);
       }
 
       function handleClientProposalToneSelection(sheet, sourceBtn) {
@@ -8067,6 +8804,135 @@
           })
           .catch(function () {
             setProjectDeliveryFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            buttons.forEach(function (b) {
+              b.disabled = false;
+            });
+            sourceBtn.textContent =
+              sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
+          });
+      }
+
+      function clientRetentionStatusConfig(retentionAction, retentionData, currentStatus) {
+        var currentKey = normStatus(currentStatus);
+        var preserveStatus = currentStatus && currentStatus !== "—" ? currentStatus : "Reviewed";
+        if (retentionAction === "support-review-due") {
+          return {
+            status: currentKey === "new" || currentKey === "reviewed" ? "Needs follow-up" : preserveStatus,
+            note: "support review due",
+            activity: "Retention — Support review due",
+            success: "Support review due marked. Nothing was sent.",
+            saving: "Saving support-review note...",
+            tone: "pending",
+          };
+        }
+        if (retentionAction === "support-active") {
+          return {
+            status: currentKey === "archived" || currentKey === "lost" || currentKey === "not a fit" ? preserveStatus : "Won",
+            note: "support active",
+            activity: "Retention — Support active",
+            success: "Support active marked. Nothing was sent.",
+            saving: "Saving support-active note...",
+            tone: "ok",
+          };
+        }
+        if (retentionAction === "optimization-opportunity") {
+          return {
+            status: currentKey === "new" || currentKey === "reviewed" ? "Qualified" : preserveStatus,
+            note: "optimization opportunity — " + retentionData.recommendedNextPhase,
+            activity: "Retention — Optimization opportunity",
+            success: "Optimization opportunity marked. Nothing was sent.",
+            saving: "Saving optimization note...",
+            tone: "ok",
+          };
+        }
+        if (retentionAction === "next-phase-discussed") {
+          return {
+            status: currentKey === "new" || currentKey === "reviewed" ? "Qualified" : preserveStatus,
+            note: "next phase discussed — " + retentionData.recommendedNextPhase,
+            activity: "Retention — Next phase discussed",
+            success: "Next phase discussed marked. Nothing was sent.",
+            saving: "Saving next-phase note...",
+            tone: "ok",
+          };
+        }
+        if (retentionAction === "testimonial-requested") {
+          return {
+            status: preserveStatus,
+            note: "testimonial requested",
+            activity: "Retention — Testimonial requested",
+            success: "Testimonial requested marked. Nothing was sent.",
+            saving: "Saving testimonial-request note...",
+            tone: "ok",
+          };
+        }
+        if (retentionAction === "referral-requested") {
+          return {
+            status: preserveStatus,
+            note: "referral requested",
+            activity: "Retention — Referral requested",
+            success: "Referral requested marked. Nothing was sent.",
+            saving: "Saving referral-request note...",
+            tone: "ok",
+          };
+        }
+        return null;
+      }
+
+      function handleClientRetentionStatusAction(sheet, sourceBtn) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        var retentionAction = sourceBtn.getAttribute("data-retention-action");
+        var retentionData = calcClientRetentionData(hit.row);
+        var currentStatus = displayStatus(hit.row.status);
+        var config = clientRetentionStatusConfig(retentionAction, retentionData, currentStatus);
+        if (!config) return;
+        var section =
+          sourceBtn.closest(".owner-dash-detail-section--client-retention") ||
+          sheet.querySelector(".owner-dash-detail-section--client-retention");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var previousNotes = String(hit.row.owner_notes || "");
+        var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
+        var nextNotes = appendClientRetentionNote(notesBase, config.note);
+        var buttons = section ? section.querySelectorAll('[data-action="mark-client-retention"]') : [];
+        buttons.forEach(function (b) {
+          b.disabled = true;
+        });
+        sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+        sourceBtn.textContent = "Saving...";
+        setClientRetentionFeedback(section, config.saving, false);
+
+        postUpdate(table, id, {
+          status: config.status,
+          owner_notes: nextNotes,
+        })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setClientRetentionFeedback(
+                section,
+                (result.data && result.data.error) || "Could not update retention status. Try saving manually.",
+                true
+              );
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(table, id, config.activity, config.tone, "");
+            renderAll();
+            var freshSection =
+              els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--client-retention");
+            setClientRetentionFeedback(freshSection || section, config.success, false);
+            refreshCounts();
+          })
+          .catch(function () {
+            setClientRetentionFeedback(section, "Network error. Try again.", true);
           })
           .finally(function () {
             buttons.forEach(function (b) {
@@ -8987,6 +9853,7 @@
               action === "copy-quote" ||
               action === "copy-close-onboarding" ||
               action === "copy-project-delivery" ||
+              action === "copy-client-retention" ||
               action === "copy-client-proposal")
           ) {
             copyFromDetail(btn.getAttribute("data-copy-kind"), btn);
@@ -9035,6 +9902,11 @@
 
           if (sheet && action === "mark-project-delivery") {
             handleProjectDeliveryStatusAction(sheet, btn);
+            return;
+          }
+
+          if (sheet && action === "mark-client-retention") {
+            handleClientRetentionStatusAction(sheet, btn);
             return;
           }
 
