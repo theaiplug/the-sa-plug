@@ -1729,6 +1729,13 @@
           "client-proposal-scope-confirmation": "Scope confirmation copied",
           "client-proposal-next-step-close": "Next-step close copied",
           "client-proposal-assets": "All proposal assets copied",
+          "pricing-recommendation": "Pricing recommendation copied",
+          "pricing-conversation": "Pricing conversation copied",
+          "pricing-good-better-best": "Good / Better / Best options copied",
+          "pricing-deposit-terms": "Deposit/payment terms copied",
+          "pricing-monthly-support": "Monthly support pitch copied",
+          "pricing-caution-notes": "Pricing caution notes copied",
+          "pricing-internal-quote-notes": "Internal quote notes copied",
         };
         return labels[kind] || "Copy action completed";
       }
@@ -3429,6 +3436,461 @@
         return "";
       }
 
+      var PRICING_CAUTION_CONFIRM = [
+        "Lead flow is mapped",
+        "Required pages/forms/dashboard pieces are confirmed",
+        "Owner approval steps are clear",
+        "Integrations are known",
+        "Timeline is understood",
+        "Follow-up/support expectations are defined",
+      ];
+
+      var PRICING_CAUTION_NEVER_PROMISE = [
+        "Guaranteed bookings",
+        "Guaranteed revenue",
+        "Fully autonomous AI decisions",
+        "Replacing employees",
+        "Compliance/legal outcomes",
+        "SMS approval timing",
+      ];
+
+      var PRICING_LOGIC = {
+        "Starter Website + Lead Path Fix": {
+          range: "$750–$1,500",
+          payment: "50% to start, 50% before launch",
+          monthly: "$150–$300/mo",
+          confidenceBase: "Medium",
+          goodRange: "$750–$950",
+          betterRange: "$1,000–$1,500",
+          bestRange: "$1,500–$2,250",
+        },
+        "Lead Capture System": {
+          range: "$1,500–$3,500",
+          payment: "50% to start, 25% after intake/dashboard preview, 25% before launch",
+          monthly: "$300–$750/mo",
+          confidenceBase: "Medium",
+          goodRange: "$1,500–$2,000",
+          betterRange: "$2,250–$3,500",
+          bestRange: "$3,500–$5,000",
+        },
+        "Business Command System Package": {
+          range: "$3,500–$7,500",
+          payment: "40% to start, 30% after workflow/dashboard preview, 30% before launch",
+          monthly: "$750–$1,500/mo",
+          confidenceBase: "Medium",
+          goodRange: "$3,500–$4,500",
+          betterRange: "$5,000–$7,500",
+          bestRange: "$7,500–$10,000",
+        },
+        "Full AI Growth System": {
+          range: "$7,500–$15,000+",
+          payment: "Phase 1 deposit, then milestone billing",
+          monthly: "$1,500–$3,500+/mo",
+          confidenceBase: "Needs discovery",
+          goodRange: "$7,500–$9,500",
+          betterRange: "$10,000–$15,000",
+          bestRange: "$15,000+",
+        },
+      };
+
+      function pricingLogicForPackage(packageName) {
+        if (PRICING_LOGIC[packageName]) return PRICING_LOGIC[packageName];
+        if (/starter|website|foundation/i.test(packageName)) return PRICING_LOGIC["Starter Website + Lead Path Fix"];
+        if (/command/i.test(packageName)) return PRICING_LOGIC["Business Command System Package"];
+        if (/growth|full ai|content|media|seo|ongoing/i.test(packageName)) return PRICING_LOGIC["Full AI Growth System"];
+        return PRICING_LOGIC["Lead Capture System"];
+      }
+
+      function pricingConfidence(lead, proposal, sig) {
+        var packageName = proposal.recommendedPackage;
+        var text = sig.text || "";
+        var painCount = countLeadPainPoints(sig);
+        if (packageName === "Full AI Growth System") {
+          if (/full system|growth|content|automation|automations|ai|seo|ongoing support|monthly support/i.test(text)) {
+            return "Medium";
+          }
+          return "Needs discovery";
+        }
+        if (packageName === "Business Command System Package") {
+          if (sig.urgent || sig.multiple || sig.commandCenter || sig.dashboard || painCount >= 3) return "High";
+          return "Medium";
+        }
+        if (packageName === "Lead Capture System") {
+          if (
+            sig.missedCalls ||
+            sig.leadCapture ||
+            sig.followUp ||
+            sig.booking ||
+            /weak forms?|slow follow[- ]?up|no booking path|missed calls?|missed leads?|unanswered/i.test(text)
+          ) {
+            return "High";
+          }
+          return "Medium";
+        }
+        if (
+          packageName === "Starter Website + Lead Path Fix" &&
+          sig.website &&
+          !sig.automation &&
+          !sig.commandCenter &&
+          painCount <= 1
+        ) {
+          return "High";
+        }
+        return "Medium";
+      }
+
+      function pricingReason(lead, proposal, sig, confidence) {
+        var pain = proposal.mainPainPoint || "the first lead-flow bottleneck";
+        var scopeBits = proposal.scope && proposal.scope.length ? proposal.scope.slice(0, 2).join(" + ") : "first useful system";
+        var urgency = sig.urgent || textIncludesAny(lead.urgency, ["urgent", "asap", "high", "losing revenue"])
+          ? " Urgency or revenue risk is present."
+          : "";
+        var discovery = confidence === "Needs discovery" ? " Needs discovery before a final quote." : "";
+        return (
+          proposal.recommendedPackage +
+          " fits because the pain point is " +
+          pain +
+          " and the first scope centers on " +
+          scopeBits +
+          "." +
+          urgency +
+          discovery
+        );
+      }
+
+      function goodBetterBestOptions(pricing) {
+        var packageName = pricing.recommendedPackage;
+        return {
+          good: {
+            name: "Good — First useful system",
+            description:
+              "Smallest launchable version focused on the main bottleneck: " + pricing.firstDeliverable + ".",
+            range: pricing.logic.goodRange,
+          },
+          better: {
+            name: "Better — System + dashboard + follow-up support",
+            description:
+              "Stronger owner workflow with dashboard visibility, follow-up support, and a more complete first phase.",
+            range: pricing.logic.betterRange,
+          },
+          best: {
+            name: "Best — Supported " + packageName,
+            description:
+              "System + dashboard + follow-up + monthly optimization for the strongest support/retainer angle.",
+            range: pricing.logic.bestRange,
+          },
+        };
+      }
+
+      function calcPricingBuilder(lead) {
+        var proposal = calcProposalEstimate(lead);
+        var sig = leadSignals(lead);
+        var logic = pricingLogicForPackage(proposal.recommendedPackage);
+        var confidence = pricingConfidence(lead, proposal, sig);
+        var pricing = {
+          business: lead.business_name || "Lead",
+          recommendedPackage: proposal.recommendedPackage,
+          projectType: proposal.projectType || "first system",
+          priceRange: logic.range,
+          paymentStructure: logic.payment,
+          monthlySupport: logic.monthly,
+          confidence: confidence,
+          reason: pricingReason(lead, proposal, sig, confidence),
+          mainPainPoint: proposal.mainPainPoint || "the main bottleneck",
+          firstDeliverable: proposal.firstDeliverable || "the first useful system",
+          logic: logic,
+        };
+        pricing.options = goodBetterBestOptions(pricing);
+        return pricing;
+      }
+
+      function buildPricingRecommendationCopy(lead) {
+        var p = calcPricingBuilder(lead);
+        return [
+          "Internal pricing recommendation — " + p.business,
+          "",
+          "Recommended package:",
+          p.recommendedPackage,
+          "",
+          "Project type:",
+          p.projectType,
+          "",
+          "Suggested starting range:",
+          p.priceRange,
+          "",
+          "Best payment structure:",
+          p.paymentStructure,
+          "",
+          "Monthly support opportunity:",
+          p.monthlySupport,
+          "",
+          "Confidence:",
+          p.confidence,
+          "",
+          "Reason:",
+          p.reason,
+          "",
+          "Do not quote final pricing until the workflow, scope, integrations, approval steps, and timeline are confirmed.",
+        ].join("\n");
+      }
+
+      function buildPricingConversationCopy(lead) {
+        var p = calcPricingBuilder(lead);
+        return [
+          "For pricing, I would not recommend guessing before we map the first workflow.",
+          "",
+          "Based on what you shared, this looks like a " +
+            p.projectType +
+            " first build because the main issue is " +
+            p.mainPainPoint +
+            " and the best first deliverable is " +
+            p.firstDeliverable +
+            ".",
+          "",
+          "The smart way to price this is around the first useful system:",
+          "- What needs to be captured",
+          "- Where requests need to go",
+          "- What the owner needs to see",
+          "- What follow-up needs to happen",
+          "- What should stay human-approved",
+          "",
+          "After that, I can give you a tighter first-phase number.",
+        ].join("\n");
+      }
+
+      function buildPricingGoodBetterBestCopy(lead) {
+        var p = calcPricingBuilder(lead);
+        return [
+          "Good / Better / Best options for " + p.business,
+          "",
+          "Good:",
+          p.options.good.name + " — " + p.options.good.description,
+          "Internal range: " + p.options.good.range,
+          "",
+          "Better:",
+          p.options.better.name + " — " + p.options.better.description,
+          "Internal range: " + p.options.better.range,
+          "",
+          "Best:",
+          p.options.best.name + " — " + p.options.best.description,
+          "Internal range: " + p.options.best.range,
+          "",
+          "Best recommendation:",
+          "Start with the smallest version that solves the real bottleneck, then expand once the workflow is proven.",
+        ].join("\n");
+      }
+
+      function buildPricingDepositTermsCopy(lead) {
+        var p = calcPricingBuilder(lead);
+        return [
+          "Suggested payment terms for " + p.business,
+          "",
+          "Recommended package:",
+          p.recommendedPackage,
+          "",
+          "Suggested structure:",
+          p.paymentStructure,
+          "",
+          "Payment language:",
+          "To start the project, I’d collect the initial project payment, map the workflow, build the first preview, then collect the next milestone before launch. That keeps the project moving while making sure the owner approves the workflow before anything goes live.",
+        ].join("\n");
+      }
+
+      function buildPricingMonthlySupportCopy(lead) {
+        var p = calcPricingBuilder(lead);
+        return [
+          "Monthly support opportunity for " + p.business,
+          "",
+          "After the first build, the ongoing support could cover:",
+          "- Workflow adjustments",
+          "- Form/question improvements",
+          "- Dashboard updates",
+          "- Follow-up copy improvements",
+          "- Lead review",
+          "- Monthly reporting",
+          "- New page or campaign support",
+          "- Automation planning",
+          "",
+          "Suggested support range:",
+          p.monthlySupport,
+          "",
+          "Positioning:",
+          "The monthly support is not just website maintenance. It is ongoing improvement of the customer path, intake, follow-up, and owner visibility.",
+        ].join("\n");
+      }
+
+      function buildPricingCautionCopy(lead) {
+        return [
+          "Pricing caution notes — " + (lead.business_name || "Lead"),
+          "",
+          "Do not quote final pricing until:",
+          "- Lead flow is mapped",
+          "- First build scope is confirmed",
+          "- Approval steps are clear",
+          "- Required integrations are known",
+          "- Timeline is understood",
+          "- Ongoing support expectations are defined",
+          "",
+          "Do not promise:",
+          "- Guaranteed bookings",
+          "- Guaranteed revenue",
+          "- Fully autonomous AI decisions",
+          "- Replacing staff",
+          "- SMS approval timing",
+          "- Legal/compliance outcomes",
+        ].join("\n");
+      }
+
+      function buildPricingInternalQuoteNotesCopy(lead) {
+        var p = calcPricingBuilder(lead);
+        return [
+          "Internal quote notes — " + p.business,
+          "",
+          "Pain point:",
+          p.mainPainPoint,
+          "",
+          "Recommended package:",
+          p.recommendedPackage,
+          "",
+          "First deliverable:",
+          p.firstDeliverable,
+          "",
+          "Suggested range:",
+          p.priceRange,
+          "",
+          "Monthly support:",
+          p.monthlySupport,
+          "",
+          "Likely first phase:",
+          "- Map workflow",
+          "- Build intake/customer path",
+          "- Add owner alerts/dashboard visibility",
+          "- Add follow-up support",
+          "- Keep approvals human-controlled",
+          "",
+          "Questions before final quote:",
+          "- What tools do they already use?",
+          "- How many lead sources?",
+          "- Who responds now?",
+          "- What needs to be automated vs owner-approved?",
+          "- What is the launch timeline?",
+          "- Do they need monthly support?",
+        ].join("\n");
+      }
+
+      function pricingTextForKind(kind, lead) {
+        if (!lead) return "";
+        if (kind === "pricing-recommendation") return buildPricingRecommendationCopy(lead);
+        if (kind === "pricing-conversation") return buildPricingConversationCopy(lead);
+        if (kind === "pricing-good-better-best") return buildPricingGoodBetterBestCopy(lead);
+        if (kind === "pricing-deposit-terms") return buildPricingDepositTermsCopy(lead);
+        if (kind === "pricing-monthly-support") return buildPricingMonthlySupportCopy(lead);
+        if (kind === "pricing-caution-notes") return buildPricingCautionCopy(lead);
+        if (kind === "pricing-internal-quote-notes") return buildPricingInternalQuoteNotesCopy(lead);
+        return "";
+      }
+
+      function pricingSnapshotItem(label, value, wide) {
+        return (
+          '<div class="owner-dash-pricing-snapshot-item' +
+          (wide ? " owner-dash-pricing-snapshot-item--wide" : "") +
+          '"><span>' +
+          esc(label) +
+          '</span><strong>' +
+          esc(value || "—") +
+          "</strong></div>"
+        );
+      }
+
+      function pricingOptionCard(label, option) {
+        return (
+          '<article class="owner-dash-pricing-option-card">' +
+          '<span class="owner-dash-pricing-card-label">' +
+          esc(label) +
+          "</span><h4>" +
+          esc(option.name) +
+          "</h4><p>" +
+          esc(option.description) +
+          '</p><strong>Internal range: ' +
+          esc(option.range) +
+          "</strong></article>"
+        );
+      }
+
+      function pricingCopyButton(kind, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="copy-pricing" data-copy-kind="' +
+          esc(kind) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function pricingBuilderBlock(lead) {
+        var p = calcPricingBuilder(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--pricing" data-pricing-builder>' +
+          '<div class="owner-dash-pricing-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Pricing Builder</h3>' +
+          '<p class="owner-dash-detail-section-note">Internal pricing guidance for the first useful system. Copy only — nothing is sent automatically.</p></div>' +
+          '<span class="owner-dash-pricing-badge">Internal guidance only</span>' +
+          "</div>" +
+          '<div class="owner-dash-pricing-money-card">' +
+          '<p class="owner-dash-pricing-card-label">Pricing Snapshot</p>' +
+          '<div class="owner-dash-pricing-snapshot">' +
+          pricingSnapshotItem("Recommended package", p.recommendedPackage, false) +
+          pricingSnapshotItem("Project type", p.projectType, false) +
+          pricingSnapshotItem("Suggested starting range", p.priceRange, false) +
+          pricingSnapshotItem("Best first payment structure", p.paymentStructure, true) +
+          pricingSnapshotItem("Monthly support opportunity", p.monthlySupport, false) +
+          pricingSnapshotItem("Confidence", p.confidence, false) +
+          pricingSnapshotItem("Reason", p.reason, true) +
+          "</div></div>" +
+          '<div class="owner-dash-pricing-logic">' +
+          '<p class="owner-dash-pricing-card-label">Pricing logic</p>' +
+          '<p>Uses the internal starting range for the selected package, then tightens after workflow, scope, integrations, approvals, and timeline are confirmed.</p>' +
+          "</div>" +
+          '<div class="owner-dash-pricing-caution">' +
+          '<article><p class="owner-dash-pricing-card-label">Pricing Caution</p>' +
+          '<strong>Do not quote final pricing until:</strong>' +
+          bulletListHtml(PRICING_CAUTION_CONFIRM, "owner-dash-pricing-list") +
+          "</article><article><p class=\"owner-dash-pricing-card-label\">Never promise</p>" +
+          bulletListHtml(PRICING_CAUTION_NEVER_PROMISE, "owner-dash-pricing-list") +
+          "</article></div>" +
+          '<div class="owner-dash-pricing-options" aria-label="Good / Better / Best">' +
+          '<p class="owner-dash-pricing-card-label owner-dash-pricing-card-label--full">Good / Better / Best</p>' +
+          pricingOptionCard("Good option", p.options.good) +
+          pricingOptionCard("Better option", p.options.better) +
+          pricingOptionCard("Best option", p.options.best) +
+          "</div>" +
+          '<div class="owner-dash-pricing-copy">' +
+          '<p class="owner-dash-pricing-card-label">Copy pricing assets</p>' +
+          '<div class="owner-dash-pricing-copy-actions">' +
+          pricingCopyButton("pricing-recommendation", "Copy pricing recommendation", true) +
+          pricingCopyButton("pricing-conversation", "Copy pricing conversation", false) +
+          pricingCopyButton("pricing-good-better-best", "Copy good/better/best options", false) +
+          pricingCopyButton("pricing-deposit-terms", "Copy deposit/payment terms", false) +
+          pricingCopyButton("pricing-monthly-support", "Copy monthly support pitch", false) +
+          pricingCopyButton("pricing-caution-notes", "Copy pricing caution notes", false) +
+          pricingCopyButton("pricing-internal-quote-notes", "Copy internal quote notes", false) +
+          "</div></div>" +
+          '<div class="owner-dash-pricing-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="mark-pricing-discussed">Mark pricing discussed</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="mark-quote-needed">Mark quote needed</button>' +
+          "</div>" +
+          '<p class="owner-dash-pricing-safe-note">Internal guidance only. This is not a public quote and nothing is sent automatically.</p>' +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<span class="owner-dash-pricing-feedback" data-pricing-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
       function clientProposalSnapshotItem(label, value, wide) {
         return (
           '<div class="owner-dash-client-proposal-snapshot-item' +
@@ -4670,6 +5132,7 @@
           proposalEstimateBlock(lead) +
           followUpCommandCenterBlock(lead) +
           clientProposalSheetBlock(lead) +
+          pricingBuilderBlock(lead) +
           groupedToolsBlock("business_leads") +
           quickStatusBlock("business_leads", lead.status) +
           workflowBlock("business_leads", lead) +
@@ -4833,6 +5296,8 @@
         if (table === "business_leads") {
           var commandText = followUpCommandTextForKind(kind, row);
           if (commandText) return commandText;
+          var pricingText = pricingTextForKind(kind, row);
+          if (pricingText) return pricingText;
           var dealText = dealTextForKind(kind, row);
           if (dealText) return dealText;
           var oppText = opportunityTextForKind(kind, row);
@@ -4856,11 +5321,13 @@
         var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
         if (!sheet || !state.detailOpen) return;
         var section =
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--pricing")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--proposal")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--deal")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--opportunity")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--tools")) ||
           (sourceBtn && sourceBtn.closest(".owner-dash-detail-section")) ||
+          sheet.querySelector(".owner-dash-detail-section--pricing") ||
           sheet.querySelector(".owner-dash-detail-section--proposal") ||
           sheet.querySelector(".owner-dash-detail-section--deal") ||
           sheet.querySelector(".owner-dash-detail-section--opportunity") ||
@@ -4958,6 +5425,14 @@
           "owner-dash-client-proposal-feedback" + (isError ? " owner-dash-client-proposal-feedback--error" : "");
       }
 
+      function setPricingFeedback(section, message, isError) {
+        var fb = section && section.querySelector("[data-pricing-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-pricing-feedback" + (isError ? " owner-dash-pricing-feedback--error" : "");
+      }
+
       function appendCleanOwnerNote(existing, note) {
         var current = String(existing || "").trim();
         var cleanNote = String(note || "").trim();
@@ -4986,6 +5461,20 @@
           proposal.firstDeliverable +
           ".";
         return appendCleanOwnerNote(existing, note);
+      }
+
+      function appendPricingDiscussedNote(existing, pricing) {
+        return appendCleanOwnerNote(
+          existing,
+          "Pricing discussed: " + pricing.recommendedPackage + " / " + pricing.priceRange + "."
+        );
+      }
+
+      function appendQuoteNeededNote(existing, pricing) {
+        return appendCleanOwnerNote(
+          existing,
+          "Quote needed: confirm scope for " + pricing.recommendedPackage + "."
+        );
       }
 
       function dealStageActionConfig(stageKey, lead) {
@@ -5175,6 +5664,8 @@
         if (section) section.outerHTML = proposalEstimateBlock(hit.row);
         var clientProposalSection = sheet.querySelector(".owner-dash-detail-section--client-proposal");
         if (clientProposalSection) clientProposalSection.outerHTML = clientProposalSheetBlock(hit.row);
+        var pricingSection = sheet.querySelector(".owner-dash-detail-section--pricing");
+        if (pricingSection) pricingSection.outerHTML = pricingBuilderBlock(hit.row);
       }
 
       function handleClientProposalToneSelection(sheet, sourceBtn) {
@@ -5245,6 +5736,85 @@
           })
           .catch(function () {
             setClientProposalFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            buttons.forEach(function (b) {
+              b.disabled = false;
+            });
+            if (sourceBtn) {
+              sourceBtn.textContent =
+                sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
+            }
+          });
+      }
+
+      function handlePricingStatusAction(sheet, sourceBtn, action) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet) return;
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        var pricing = calcPricingBuilder(hit.row);
+        var section =
+          (sourceBtn && sourceBtn.closest(".owner-dash-detail-section--pricing")) ||
+          sheet.querySelector(".owner-dash-detail-section--pricing");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var previousNotes = String(hit.row.owner_notes || "");
+        var currentStatus = displayStatus(hit.row.status);
+        var currentStatusKey = normStatus(currentStatus);
+        var isQuoteNeeded = action === "mark-quote-needed";
+        var nextStatus = isQuoteNeeded ? "Needs follow-up" : currentStatusKey === "new" ? "Reviewed" : currentStatus;
+        if (!nextStatus || nextStatus === "—") nextStatus = isQuoteNeeded ? "Needs follow-up" : "Reviewed";
+        var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
+        var nextNotes = isQuoteNeeded ? appendQuoteNeededNote(notesBase, pricing) : appendPricingDiscussedNote(notesBase, pricing);
+        var buttons = section
+          ? section.querySelectorAll('[data-action="mark-pricing-discussed"], [data-action="mark-quote-needed"]')
+          : [];
+        buttons.forEach(function (b) {
+          b.disabled = true;
+        });
+        if (sourceBtn) {
+          sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+          sourceBtn.textContent = "Saving...";
+        }
+        setPricingFeedback(section, isQuoteNeeded ? "Saving quote-needed note..." : "Saving pricing discussion note...", false);
+
+        postUpdate(table, id, {
+          status: nextStatus,
+          owner_notes: nextNotes,
+        })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setPricingFeedback(
+                section,
+                (result.data && result.data.error) || "Could not update pricing status. Try saving manually.",
+                true
+              );
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(
+              table,
+              id,
+              isQuoteNeeded ? "Pricing — Quote needed" : "Pricing — Pricing discussed",
+              isQuoteNeeded ? "pending" : "ok",
+              ""
+            );
+            renderAll();
+            var freshSection = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--pricing");
+            setPricingFeedback(
+              freshSection || section,
+              isQuoteNeeded ? "Quote needed marked. Nothing was sent." : "Pricing discussed marked. Nothing was sent.",
+              false
+            );
+            refreshCounts();
+          })
+          .catch(function () {
+            setPricingFeedback(section, "Network error. Try again.", true);
           })
           .finally(function () {
             buttons.forEach(function (b) {
@@ -6163,6 +6733,7 @@
               action === "copy-followup-command" ||
               action === "copy-opportunity" ||
               action === "copy-deal" ||
+              action === "copy-pricing" ||
               action === "copy-client-proposal")
           ) {
             copyFromDetail(btn.getAttribute("data-copy-kind"), btn);
@@ -6186,6 +6757,11 @@
 
           if (sheet && action === "mark-client-proposal-drafted") {
             handleMarkClientProposalDrafted(sheet, btn);
+            return;
+          }
+
+          if (sheet && (action === "mark-pricing-discussed" || action === "mark-quote-needed")) {
+            handlePricingStatusAction(sheet, btn, action);
             return;
           }
 
