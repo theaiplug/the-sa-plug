@@ -3184,6 +3184,7 @@
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-first50" aria-pressed="false">First 50 restaurant list</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-research-report" aria-pressed="false">Restaurant research report</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-proposal-report" aria-pressed="false">Restaurant proposal report</button>
+            <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-close-report" aria-pressed="false">Restaurant close report</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-clients" aria-pressed="false">Restaurant clients</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-proposal-ready" aria-pressed="false">Restaurant proposal-ready</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-recap-renewal" aria-pressed="false">Restaurant recap/renewal</button>
@@ -3207,6 +3208,7 @@
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-first50">Copy First 50 restaurant report</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-research-report">Copy restaurant research report</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-proposal-report">Copy restaurant proposal report</button>
+            <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-close-report">Copy restaurant close report</button>
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="transportation">Copy transportation report</button>
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="weekly-recap">Copy weekly recap</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="full-pipeline">Copy full pipeline report</button>
@@ -3805,6 +3807,7 @@
         { key: "restaurant-first50", label: "First 50 restaurant list" },
         { key: "restaurant-research-report", label: "Restaurant research report" },
         { key: "restaurant-proposal-report", label: "Restaurant proposal report" },
+        { key: "restaurant-close-report", label: "Restaurant close report" },
         { key: "restaurant-clients", label: "Restaurant clients" },
         { key: "restaurant-proposal-ready", label: "Restaurant proposal-ready" },
         { key: "restaurant-recap-renewal", label: "Restaurant recap/renewal" },
@@ -3838,6 +3841,11 @@
 
       var RESTAURANT_CLIENT_TERMS = [
         "restaurant client",
+        "restaurant: client.",
+        "restaurant stage: won.",
+        "restaurant close: deposit received.",
+        "restaurant launch: launched.",
+        "close status: won / client",
         "payment received",
         "launched",
         "restaurant: live",
@@ -4063,6 +4071,70 @@
         "Not ready",
       ];
 
+      var RESTAURANT_CLOSE_GUARDRAIL = "Internal close and launch guidance only. Nothing is sent, published, invoiced, charged, or promised automatically.";
+      var RESTAURANT_CLOSE_PROPOSAL_STATUS_OPTIONS = ["Not ready", "Ready", "Sent", "Follow-up due", "Approved", "Declined"];
+      var RESTAURANT_CLOSE_STATUS_OPTIONS = [
+        "Not started",
+        "Proposal ready",
+        "Proposal sent",
+        "Pricing discussed",
+        "Verbal yes",
+        "Deposit requested",
+        "Deposit received",
+        "Won / client",
+        "Not now",
+        "Lost",
+      ];
+      var RESTAURANT_MATERIALS_STATUS_OPTIONS = [
+        "Not requested",
+        "Requested",
+        "Partially received",
+        "Received",
+        "Not needed yet",
+      ];
+      var RESTAURANT_LAUNCH_READINESS_OPTIONS = [
+        "Not ready",
+        "Waiting on materials",
+        "Build ready",
+        "In progress",
+        "Preview ready",
+        "Approved for launch",
+        "Launched",
+      ];
+      var RESTAURANT_MATERIALS_CHECKLIST_ITEMS = [
+        "Logo / brand assets",
+        "Website link",
+        "Menu link or PDF",
+        "Reservation link",
+        "Google Business Profile link",
+        "Instagram / Facebook links",
+        "Best contact person",
+        "Business phone/email",
+        "Business hours",
+        "Address / location notes",
+        "Top categories / visitor lanes",
+        "Private dining or catering details",
+        "Photos if available",
+        "Offers / specials if included",
+        "Approval person",
+        "Launch timing",
+      ];
+      var RESTAURANT_LAUNCH_CHECKLIST_ITEMS = [
+        "Confirm selected offer",
+        "Confirm what is included",
+        "Confirm what is not included",
+        "Confirm restaurant materials received",
+        "Confirm visitor lane",
+        "Confirm category or route placement",
+        "Confirm CTA path",
+        "Confirm public wording",
+        "Confirm no unsupported promises",
+        "Confirm approval person",
+        "Confirm owner approval",
+        "Confirm launch date",
+        "Save launch notes",
+      ];
+
       var state = {
         businessLeads: [],
         transportRows: [],
@@ -4214,7 +4286,7 @@
       function textIncludesAny(text, terms) {
         var s = String(text || "").toLowerCase();
         for (var i = 0; i < terms.length; i++) {
-          if (s.indexOf(terms[i]) !== -1) return true;
+          if (s.indexOf(String(terms[i] || "").toLowerCase()) !== -1) return true;
         }
         return false;
       }
@@ -4559,6 +4631,8 @@
         if (stage === "contacted") return "Contacted";
         if (stage === "interested") return "Interested";
         if (stage === "proposal ready") return "Proposal ready";
+        if (stage === "won") return "Won";
+        if (stage === "lost") return "Lost";
         if (stage === "not now") return "Not now";
         if (stage === "not a fit") return "Not a fit";
         return value ? String(value).trim().replace(/\b\w/g, function (c) { return c.toUpperCase(); }) : "";
@@ -4574,6 +4648,9 @@
 
       function restaurantBadgeHtml(row) {
         if (!isRestaurantRow(row)) return "";
+        if (isRestaurantClient(row)) {
+          return ' <span class="owner-dash-badge owner-dash-badge--ok">Client</span>';
+        }
         return (
           ' <span class="owner-dash-badge owner-dash-badge--neutral">Restaurant Prospect</span>' +
           (isFirst50Restaurant(row)
@@ -4602,6 +4679,28 @@
         if (!isRestaurantRow(row)) return "";
         var snap = restaurantSnapshot(row);
         var research = restaurantResearchProfile(row);
+        var close = restaurantCloseData(row);
+        if (isRestaurantClient(row)) {
+          return (
+            '<div class="owner-dash-restaurant-card-meta owner-dash-restaurant-card-meta--workflow owner-dash-restaurant-card-meta--proposal">' +
+            "<div><span>Selected offer</span><strong>" +
+            esc(close.selectedOffer) +
+            "</strong></div>" +
+            "<div><span>Materials status</span><strong>" +
+            esc(close.materialsStatus) +
+            "</strong></div>" +
+            "<div><span>Launch readiness</span><strong>" +
+            esc(close.launchReadiness) +
+            "</strong></div>" +
+            (close.supportRecapStatus
+              ? "<div><span>Support/recap status</span><strong>" + esc(close.supportRecapStatus) + "</strong></div>"
+              : "") +
+            "<div><span>Next action</span><strong>" +
+            esc(close.nextCloseAction) +
+            "</strong></div>" +
+            "</div>"
+          );
+        }
         return (
           '<div class="owner-dash-restaurant-card-meta owner-dash-restaurant-card-meta--workflow owner-dash-restaurant-card-meta--research">' +
           (isFirst50Restaurant(row) ? '<p class="owner-dash-restaurant-first50-line">FIRST 50 TARGET</p>' : "") +
@@ -5215,6 +5314,120 @@
         return clean;
       }
 
+      function restaurantCloseOptionValue(value, options, fallback) {
+        var clean = String(value || "").replace(/\s*\.\s*$/, "").trim();
+        return options.indexOf(clean) !== -1 ? clean : fallback;
+      }
+
+      function restaurantCloseNotesMatch(row, terms) {
+        return ownerNotesInclude(row, terms || []);
+      }
+
+      function restaurantCloseProposalStatus(row) {
+        var saved = ownerNoteMarkerValue(row, "Proposal status:");
+        if (saved) return restaurantCloseOptionValue(saved, RESTAURANT_CLOSE_PROPOSAL_STATUS_OPTIONS, "Not ready");
+        if (restaurantCloseNotesMatch(row, ["Restaurant close: proposal sent.", "Restaurant proposal: proposal sent"])) return "Sent";
+        if (restaurantCloseNotesMatch(row, ["Restaurant proposal: follow-up due"])) return "Follow-up due";
+        if (restaurantCloseNotesMatch(row, ["Restaurant stage: proposal ready", "Restaurant: proposal ready"])) return "Ready";
+        if (restaurantCloseNotesMatch(row, ["Restaurant stage: lost"])) return "Declined";
+        return "Not ready";
+      }
+
+      function restaurantCloseStatus(row) {
+        var saved = ownerNoteMarkerValue(row, "Close status:");
+        if (saved) return restaurantCloseOptionValue(saved, RESTAURANT_CLOSE_STATUS_OPTIONS, "Not started");
+        if (restaurantCloseNotesMatch(row, ["Restaurant stage: lost"])) return "Lost";
+        if (restaurantCloseNotesMatch(row, ["Restaurant stage: not now"])) return "Not now";
+        if (restaurantCloseNotesMatch(row, ["Restaurant: client.", "Restaurant stage: won.", "Close status: Won / client"])) return "Won / client";
+        if (restaurantCloseNotesMatch(row, ["Restaurant close: deposit received."])) return "Deposit received";
+        if (restaurantCloseNotesMatch(row, ["Restaurant close: deposit requested."])) return "Deposit requested";
+        if (restaurantCloseNotesMatch(row, ["Restaurant close: verbal yes."])) return "Verbal yes";
+        if (restaurantCloseNotesMatch(row, ["Restaurant close: pricing discussed.", "Restaurant proposal: pricing discussed"])) return "Pricing discussed";
+        if (restaurantCloseNotesMatch(row, ["Restaurant close: proposal sent.", "Restaurant proposal: proposal sent"])) return "Proposal sent";
+        if (restaurantCloseNotesMatch(row, ["Restaurant stage: proposal ready", "Restaurant: proposal ready"])) return "Proposal ready";
+        return "Not started";
+      }
+
+      function restaurantMaterialsStatus(row) {
+        var saved = ownerNoteMarkerValue(row, "Materials status:");
+        if (saved) return restaurantCloseOptionValue(saved, RESTAURANT_MATERIALS_STATUS_OPTIONS, "Not requested");
+        if (restaurantCloseNotesMatch(row, ["Restaurant materials: received."])) return "Received";
+        if (restaurantCloseNotesMatch(row, ["Restaurant materials: partially received."])) return "Partially received";
+        if (restaurantCloseNotesMatch(row, ["Restaurant materials: requested.", "materials requested"])) return "Requested";
+        return "Not requested";
+      }
+
+      function restaurantLaunchReadiness(row) {
+        var saved = ownerNoteMarkerValue(row, "Launch readiness:");
+        if (saved) return restaurantCloseOptionValue(saved, RESTAURANT_LAUNCH_READINESS_OPTIONS, "Not ready");
+        if (restaurantCloseNotesMatch(row, ["Restaurant launch: launched."])) return "Launched";
+        if (restaurantCloseNotesMatch(row, ["Restaurant launch: approved."])) return "Approved for launch";
+        if (restaurantCloseNotesMatch(row, ["Restaurant launch: preview ready."])) return "Preview ready";
+        if (restaurantCloseNotesMatch(row, ["Restaurant launch: build ready."])) return "Build ready";
+        if (restaurantCloseNotesMatch(row, ["Restaurant: in build.", "Restaurant launch: in progress."])) return "In progress";
+        if (restaurantMaterialsStatus(row) === "Requested" || restaurantMaterialsStatus(row) === "Partially received") {
+          return "Waiting on materials";
+        }
+        return "Not ready";
+      }
+
+      function restaurantCloseNotes(row) {
+        return ownerNoteMarkerValue(row, "Close notes:");
+      }
+
+      function restaurantSupportRecapStatus(row) {
+        if (restaurantCloseNotesMatch(row, ["Restaurant: monthly recap due.", "monthly recap due"])) return "Monthly recap due";
+        if (restaurantCloseNotesMatch(row, ["Restaurant: renewal due.", "renewal due"])) return "Renewal due";
+        if (restaurantCloseNotesMatch(row, ["Restaurant: case study needed.", "case study needed"])) return "Case study needed";
+        if (restaurantCloseNotesMatch(row, ["support active"])) return "Support active";
+        return "";
+      }
+
+      function restaurantCloseNextAction(row, closeStatus, materialsStatus, launchReadiness) {
+        var status = closeStatus || restaurantCloseStatus(row);
+        var materials = materialsStatus || restaurantMaterialsStatus(row);
+        var launch = launchReadiness || restaurantLaunchReadiness(row);
+        if (status === "Lost") return "Do not pursue unless owner reopens.";
+        if (status === "Not now") return "Set a private follow-up reminder or archive for later.";
+        if (launch === "Launched") return "Schedule first recap and check links/customer path.";
+        if (launch === "Approved for launch") return "Launch manually after final owner check.";
+        if (launch === "Preview ready") return "Send preview manually and request approval.";
+        if (launch === "Build ready" || launch === "In progress") return "Build or QA the first deliverable.";
+        if (status === "Won / client" || status === "Deposit received") {
+          if (materials === "Received" || materials === "Not needed yet") return "Confirm build scope and prepare preview.";
+          return "Request or complete restaurant materials collection.";
+        }
+        if (status === "Deposit requested") return "Follow up on deposit/approval step manually.";
+        if (status === "Verbal yes") return "Confirm first phase and request deposit or approval step.";
+        if (status === "Pricing discussed") return "Confirm scope, selected offer, and close next step.";
+        if (status === "Proposal sent") return "Follow up on proposal and pricing questions.";
+        if (status === "Proposal ready") return "Send proposal manually and mark proposal sent.";
+        return "Move proposal-ready restaurant into the next close step.";
+      }
+
+      function restaurantCloseData(row) {
+        var proposal = restaurantProposalDirection(row);
+        var closeStatus = restaurantCloseStatus(row);
+        var materialsStatus = restaurantMaterialsStatus(row);
+        var launchReadiness = restaurantLaunchReadiness(row);
+        return {
+          business: (row && row.business_name) || "Restaurant TBD",
+          contact: (row && row.contact_name) || "Contact TBD",
+          currentStage: restaurantStage(row),
+          selectedOffer: proposal.suggestedFirstOffer || restaurantOfferRecommendation(row).offer,
+          suggestedFirstOffer: proposal.suggestedFirstOffer,
+          suggestedStartingRange: proposal.suggestedStartingRange,
+          bestFirstDeliverable: proposal.bestFirstDeliverable,
+          proposalStatus: restaurantCloseProposalStatus(row),
+          closeStatus: closeStatus,
+          materialsStatus: materialsStatus,
+          launchReadiness: launchReadiness,
+          closeNotes: restaurantCloseNotes(row),
+          supportRecapStatus: restaurantSupportRecapStatus(row),
+          nextCloseAction: restaurantCloseNextAction(row, closeStatus, materialsStatus, launchReadiness),
+        };
+      }
+
       function restaurantOfferRecommendation(row) {
         var manualOffer = restaurantManualRecommendedOffer(row);
         if (manualOffer) {
@@ -5324,6 +5537,12 @@
         if (/case study needed/.test(notes)) return "Case study needed";
         if (/renewal due/.test(notes)) return "Renewal due";
         if (/monthly recap due|recap due/.test(notes)) return "Monthly recap due";
+        if (/restaurant launch:\s*launched|launch readiness:\s*launched/.test(notes)) return "Live";
+        if (/restaurant launch:\s*approved|launch readiness:\s*approved for launch/.test(notes)) return "Approved for launch";
+        if (/restaurant launch:\s*preview ready|launch readiness:\s*preview ready/.test(notes)) return "Preview ready";
+        if (/restaurant launch:\s*build ready|launch readiness:\s*build ready/.test(notes)) return "Build ready";
+        if (/restaurant materials:\s*received|materials status:\s*received/.test(notes)) return "Build ready";
+        if (/restaurant materials:\s*requested|materials status:\s*requested|materials status:\s*partially received/.test(notes)) return "Waiting on materials";
         if (/restaurant:\s*live|restaurant partner active|support active|launched|live/.test(notes) || status === "won") return "Live";
         if (/preview ready|first preview ready/.test(notes)) return "Preview ready";
         if (/restaurant:\s*in build|in build|build active/.test(notes)) return "In build";
@@ -5332,8 +5551,11 @@
         if (/restaurant stage:\s*lost/.test(notes)) return "Lost";
         if (/restaurant stage:\s*not now/.test(notes)) return "Not now";
         if (/restaurant proposal:\s*follow-up due/.test(notes)) return "Follow-up due";
-        if (/restaurant proposal:\s*proposal sent/.test(notes)) return "Proposal sent";
-        if (/restaurant proposal:\s*pricing discussed|pricing discussed/.test(notes)) return "Pricing discussed";
+        if (/restaurant close:\s*deposit received|close status:\s*deposit received/.test(notes)) return "Deposit received";
+        if (/restaurant close:\s*deposit requested|close status:\s*deposit requested/.test(notes)) return "Deposit requested";
+        if (/restaurant close:\s*verbal yes|close status:\s*verbal yes/.test(notes)) return "Verbal yes";
+        if (/restaurant close:\s*proposal sent|restaurant proposal:\s*proposal sent/.test(notes)) return "Proposal sent";
+        if (/restaurant close:\s*pricing discussed|restaurant proposal:\s*pricing discussed|pricing discussed/.test(notes)) return "Pricing discussed";
         if (/restaurant:\s*client|restaurant stage:\s*won/.test(notes)) return "Live";
         if (/restaurant:\s*proposal ready|restaurant stage:\s*proposal ready|proposal ready/.test(notes)) return "Proposal ready";
         if (/restaurant:\s*discovery needed|discovery needed/.test(notes) || status === "needs follow-up") return "Discovery needed";
@@ -5356,10 +5578,18 @@
           "Discovery needed": "Run discovery and confirm the first useful system.",
           "Proposal ready": "Prepare proposal copy for " + rec.offer + ".",
           "Pricing discussed": "Confirm scope and owner-approved price position.",
+          "Verbal yes": "Confirm first phase and request deposit or approval step.",
+          "Deposit requested": "Follow up on deposit/approval step manually.",
+          "Deposit received": "Move into materials collection and launch prep.",
+          "Waiting on materials": "Collect restaurant materials before build starts.",
+          "Build ready": "Start or QA the first restaurant deliverable.",
           "Payment link needed": "Create payment link manually outside this dashboard.",
           "Intake needed": "Copy restaurant intake message and collect assets.",
           "In build": "Build or review the first owner-approved version.",
           "Preview ready": "Share preview manually and collect approval.",
+          "Approved for launch": "Launch manually after final owner check.",
+          Won: "Move into materials collection and launch prep.",
+          Lost: "Do not pursue unless owner reopens.",
           Live: "Watch visitor path, inquiries, reviews, and follow-up opportunities.",
           "Monthly recap due": "Copy monthly recap message.",
           "Renewal due": "Copy renewal message and review value before renewal.",
@@ -5894,16 +6124,37 @@
           return restaurantOwnerNotesMatch(row, ["Restaurant stage: proposal ready"]);
         }).length;
         var restaurantProposalSent = restaurantRowsMatching(function (row) {
-          return restaurantOwnerNotesMatch(row, ["Restaurant proposal: proposal sent"]);
+          return restaurantOwnerNotesMatch(row, ["Restaurant proposal: proposal sent", "Restaurant close: proposal sent."]);
         }).length;
         var restaurantPricingDiscussed = restaurantRowsMatching(function (row) {
-          return restaurantOwnerNotesMatch(row, ["Restaurant proposal: pricing discussed"]);
+          return restaurantOwnerNotesMatch(row, ["Restaurant proposal: pricing discussed", "Restaurant close: pricing discussed."]);
+        }).length;
+        var restaurantVerbalYes = restaurantRowsMatching(function (row) {
+          return restaurantOwnerNotesMatch(row, ["Restaurant close: verbal yes."]);
+        }).length;
+        var restaurantDepositRequested = restaurantRowsMatching(function (row) {
+          return restaurantOwnerNotesMatch(row, ["Restaurant close: deposit requested."]);
+        }).length;
+        var restaurantDepositReceived = restaurantRowsMatching(function (row) {
+          return restaurantOwnerNotesMatch(row, ["Restaurant close: deposit received."]);
+        }).length;
+        var restaurantMaterialsNeeded = restaurantRowsMatching(function (row) {
+          return restaurantOwnerNotesMatch(row, ["Restaurant materials: requested.", "Materials status: Requested", "Materials status: Partially received"]);
+        }).length;
+        var restaurantBuildReady = restaurantRowsMatching(function (row) {
+          return restaurantOwnerNotesMatch(row, ["Restaurant launch: build ready."]);
+        }).length;
+        var restaurantPreviewReady = restaurantRowsMatching(function (row) {
+          return restaurantOwnerNotesMatch(row, ["Restaurant launch: preview ready."]);
+        }).length;
+        var restaurantLaunched = restaurantRowsMatching(function (row) {
+          return restaurantOwnerNotesMatch(row, ["Restaurant launch: launched."]);
         }).length;
         var restaurantFollowUpDue = restaurantRowsMatching(function (row) {
           return restaurantOwnerNotesMatch(row, ["Restaurant proposal: follow-up due"]);
         }).length;
         var restaurantWonClient = restaurantRowsMatching(function (row) {
-          return restaurantOwnerNotesMatch(row, ["Restaurant: client", "Restaurant stage: won"]);
+          return restaurantOwnerNotesMatch(row, ["Restaurant: client", "Restaurant stage: won", "Close status: Won / client"]);
         }).length;
         var restaurantIntakeNeeded = restaurantRowsMatching(function (row) {
           return restaurantStage(row) === "Intake needed";
@@ -5946,6 +6197,13 @@
           restaurantProposalReady: restaurantProposalReady,
           restaurantProposalSent: restaurantProposalSent,
           restaurantPricingDiscussed: restaurantPricingDiscussed,
+          restaurantVerbalYes: restaurantVerbalYes,
+          restaurantDepositRequested: restaurantDepositRequested,
+          restaurantDepositReceived: restaurantDepositReceived,
+          restaurantMaterialsNeeded: restaurantMaterialsNeeded,
+          restaurantBuildReady: restaurantBuildReady,
+          restaurantPreviewReady: restaurantPreviewReady,
+          restaurantLaunched: restaurantLaunched,
           restaurantFollowUpDue: restaurantFollowUpDue,
           restaurantWonClient: restaurantWonClient,
           restaurantIntakeNeeded: restaurantIntakeNeeded,
@@ -6048,6 +6306,13 @@
               metrics.restaurantProposalReady +
               metrics.restaurantProposalSent +
               metrics.restaurantPricingDiscussed +
+              metrics.restaurantVerbalYes +
+              metrics.restaurantDepositRequested +
+              metrics.restaurantDepositReceived +
+              metrics.restaurantMaterialsNeeded +
+              metrics.restaurantBuildReady +
+              metrics.restaurantPreviewReady +
+              metrics.restaurantLaunched +
               metrics.restaurantFollowUpDue +
               metrics.restaurantWonClient,
             [
@@ -6055,6 +6320,13 @@
               ["Restaurant proposal ready", metrics.restaurantProposalReady, "Proposal ready"],
               ["Restaurant proposal sent", metrics.restaurantProposalSent, "Proposal sent"],
               ["Restaurant pricing discussed", metrics.restaurantPricingDiscussed, "Pricing discussed"],
+              ["Restaurant verbal yes", metrics.restaurantVerbalYes, "Verbal yes"],
+              ["Restaurant deposit requested", metrics.restaurantDepositRequested, "Deposit requested"],
+              ["Restaurant deposit received", metrics.restaurantDepositReceived, "Deposit received"],
+              ["Restaurant materials needed", metrics.restaurantMaterialsNeeded, "Materials needed"],
+              ["Restaurant build ready", metrics.restaurantBuildReady, "Build ready"],
+              ["Restaurant preview ready", metrics.restaurantPreviewReady, "Preview ready"],
+              ["Restaurant launched", metrics.restaurantLaunched, "Launched"],
               ["Restaurant follow-up due", metrics.restaurantFollowUpDue, "Follow-up due"],
               ["Restaurant won/client", metrics.restaurantWonClient, "Won/client"],
             ],
@@ -6622,6 +6894,16 @@
           "restaurant-best-first-offer-reason": "Best first offer reason copied",
           "restaurant-pre-contact-notes": "Restaurant pre-contact notes copied",
           "restaurant-research-to-outreach-plan": "Research-to-outreach plan copied",
+          "restaurant-materials-request": "Restaurant materials request copied",
+          "restaurant-launch-checklist": "Restaurant launch checklist copied",
+          "restaurant-close-recap": "Restaurant close recap copied",
+          "restaurant-deposit-request-next-step": "Restaurant deposit/request next step copied",
+          "restaurant-new-client-kickoff-message": "Restaurant new client kickoff message copied",
+          "restaurant-onboarding-checklist": "Restaurant onboarding checklist copied",
+          "restaurant-approval-request": "Restaurant approval request copied",
+          "restaurant-launch-preview-message": "Restaurant launch preview message copied",
+          "restaurant-post-launch-check-in": "Restaurant post-launch check-in copied",
+          "restaurant-monthly-recap-starter": "Restaurant monthly recap starter copied",
         };
         return labels[kind] || "Copy action completed";
       }
@@ -12230,6 +12512,196 @@
         ].join("\n");
       }
 
+      function restaurantCloseCopyData(lead) {
+        var close = restaurantCloseData(lead);
+        return {
+          business: close.business || "[business_name]",
+          contact: close.contact || "[contact_name]",
+          closeStatus: close.closeStatus || "Not started",
+          suggestedFirstOffer: close.suggestedFirstOffer || close.selectedOffer || "TBD",
+          suggestedStartingRange: close.suggestedStartingRange || "TBD",
+          bestFirstDeliverable: close.bestFirstDeliverable || "TBD",
+          materialsStatus: close.materialsStatus || "Not requested",
+          launchReadiness: close.launchReadiness || "Not ready",
+          nextCloseAction: close.nextCloseAction || "Confirm next close step.",
+        };
+      }
+
+      function buildRestaurantMaterialsRequest(lead) {
+        var d = restaurantCloseCopyData(lead);
+        return [
+          "Hi " + d.contact + ", this is Willie with Where To Go SA.",
+          "",
+          "To prepare the first restaurant setup for " + d.business + ", here is what I need when you have it:",
+          "",
+          "- Logo or brand assets",
+          "- Website link",
+          "- Menu link or menu PDF",
+          "- Reservation link if you use one",
+          "- Google Business Profile link",
+          "- Instagram/Facebook links",
+          "- Best contact person",
+          "- Business phone/email",
+          "- Hours",
+          "- Address/location notes",
+          "- Private dining or catering details if available",
+          "- Any photos you want considered",
+          "- Anything you do not want promoted",
+          "- Who should approve final wording before anything goes live",
+          "",
+          "Nothing gets published without approval.",
+        ].join("\n");
+      }
+
+      function buildRestaurantLaunchChecklistCopy(lead) {
+        var d = restaurantCloseCopyData(lead);
+        return [
+          "Restaurant Launch Checklist — " + d.business,
+          "",
+          "Before launch:",
+          bulletText(RESTAURANT_LAUNCH_CHECKLIST_ITEMS),
+          "",
+          RESTAURANT_CLOSE_GUARDRAIL,
+        ].join("\n");
+      }
+
+      function buildRestaurantCloseRecap(lead) {
+        var d = restaurantCloseCopyData(lead);
+        return [
+          "Restaurant close recap — " + d.business,
+          "",
+          "Current stage:",
+          d.closeStatus,
+          "",
+          "Selected offer:",
+          d.suggestedFirstOffer,
+          "",
+          "Starting range:",
+          d.suggestedStartingRange,
+          "",
+          "Best first deliverable:",
+          d.bestFirstDeliverable,
+          "",
+          "Materials status:",
+          d.materialsStatus,
+          "",
+          "Launch readiness:",
+          d.launchReadiness,
+          "",
+          "Next step:",
+          d.nextCloseAction,
+        ].join("\n");
+      }
+
+      function buildRestaurantDepositRequestNextStep(lead) {
+        var d = restaurantCloseCopyData(lead);
+        return [
+          "Hi " + d.contact + ", this is Willie with Where To Go SA.",
+          "",
+          "The next step for " + d.business + " is to confirm the first phase and collect the materials needed to build it correctly.",
+          "",
+          "Selected starting point:",
+          d.suggestedFirstOffer,
+          "",
+          "First deliverable:",
+          d.bestFirstDeliverable,
+          "",
+          "Once the deposit/approval step is handled, I can move this into setup and send the materials checklist.",
+        ].join("\n");
+      }
+
+      function buildRestaurantNewClientKickoffMessage(lead) {
+        var d = restaurantCloseCopyData(lead);
+        return [
+          "Hi " + d.contact + ", excited to get started with " + d.business + ".",
+          "",
+          "I’ll keep the first phase focused and practical. The goal is to build the agreed first deliverable, confirm the customer path, and make sure nothing goes live without approval.",
+          "",
+          "I’ll send the materials checklist next so we can collect what is needed.",
+        ].join("\n");
+      }
+
+      function buildRestaurantOnboardingChecklist(lead) {
+        var d = restaurantCloseCopyData(lead);
+        return [
+          "Restaurant onboarding checklist — " + d.business,
+          "",
+          "Needed:",
+          "- Confirm selected offer",
+          "- Confirm first deliverable",
+          "- Confirm approval person",
+          "- Collect brand/menu/website/social links",
+          "- Confirm visitor lane",
+          "- Confirm CTA path",
+          "- Draft wording",
+          "- Owner review",
+          "- Final edits",
+          "- Launch approval",
+          "- Launch",
+          "- Schedule first recap",
+        ].join("\n");
+      }
+
+      function buildRestaurantApprovalRequest(lead) {
+        var d = restaurantCloseCopyData(lead);
+        return [
+          "Hi " + d.contact + ", I have the first preview ready for " + d.business + ".",
+          "",
+          "Please review:",
+          "- Restaurant name/details",
+          "- Visitor positioning",
+          "- Description",
+          "- Call-to-action path",
+          "- Any menu/reservation/private dining wording",
+          "- Anything that should be removed or adjusted",
+          "",
+          "Nothing goes live until you approve it.",
+        ].join("\n");
+      }
+
+      function buildRestaurantLaunchPreviewMessage(lead) {
+        var d = restaurantCloseCopyData(lead);
+        return [
+          "Hi " + d.contact + ", the launch preview for " + d.business + " is ready.",
+          "",
+          "The main things to check are:",
+          "- Accuracy",
+          "- Visitor fit",
+          "- Offer/CTA wording",
+          "- Links",
+          "- Any wording you do not want public",
+          "",
+          "Once approved, I can mark it ready for launch.",
+        ].join("\n");
+      }
+
+      function buildRestaurantPostLaunchCheckIn(lead) {
+        var d = restaurantCloseCopyData(lead);
+        return [
+          "Hi " + d.contact + ", checking in after launch for " + d.business + ".",
+          "",
+          "I want to make sure the listing/system looks right, the links work, and the visitor path makes sense.",
+          "",
+          "If anything needs adjusting, send it over and I’ll add it to the next update.",
+        ].join("\n");
+      }
+
+      function buildRestaurantMonthlyRecapStarter(lead) {
+        var d = restaurantCloseCopyData(lead);
+        return [
+          "Restaurant monthly recap — " + d.business,
+          "",
+          "This month we should review:",
+          "- Visibility/listing status",
+          "- Visitor lane fit",
+          "- Clicks/inquiries if tracked",
+          "- QR or lead path if included",
+          "- Reviews/follow-up if included",
+          "- What needs improvement",
+          "- Next month’s priority",
+        ].join("\n");
+      }
+
       function restaurantTextForKind(kind, lead) {
         if (!lead || !isRestaurantRow(lead)) return "";
         if (kind === "restaurant-scouting-notes-template") return buildRestaurantScoutingNotesTemplate(lead);
@@ -12256,6 +12728,16 @@
         if (kind === "restaurant-pricing-conversation-opener") return buildRestaurantPricingConversationOpener(lead);
         if (kind === "restaurant-proposal-follow-up") return buildRestaurantProposalFollowUp(lead);
         if (kind === "restaurant-proposal-ready-checklist") return buildRestaurantProposalReadyChecklist(lead);
+        if (kind === "restaurant-materials-request") return buildRestaurantMaterialsRequest(lead);
+        if (kind === "restaurant-launch-checklist") return buildRestaurantLaunchChecklistCopy(lead);
+        if (kind === "restaurant-close-recap") return buildRestaurantCloseRecap(lead);
+        if (kind === "restaurant-deposit-request-next-step") return buildRestaurantDepositRequestNextStep(lead);
+        if (kind === "restaurant-new-client-kickoff-message") return buildRestaurantNewClientKickoffMessage(lead);
+        if (kind === "restaurant-onboarding-checklist") return buildRestaurantOnboardingChecklist(lead);
+        if (kind === "restaurant-approval-request") return buildRestaurantApprovalRequest(lead);
+        if (kind === "restaurant-launch-preview-message") return buildRestaurantLaunchPreviewMessage(lead);
+        if (kind === "restaurant-post-launch-check-in") return buildRestaurantPostLaunchCheckIn(lead);
+        if (kind === "restaurant-monthly-recap-starter") return buildRestaurantMonthlyRecapStarter(lead);
         if (kind === "restaurant-first-outreach") return buildRestaurantFirstOutreach(lead);
         if (kind === "restaurant-warm-follow-up") return buildRestaurantWarmFollowUp(lead);
         if (kind === "restaurant-discovery-questions") return restaurantQuestionText();
@@ -12611,6 +13093,106 @@
         );
       }
 
+      function restaurantCloseFormHtml(close) {
+        return (
+          '<div class="owner-dash-restaurant-proposal-form" data-restaurant-close-form>' +
+          '<div class="owner-dash-restaurant-proposal-form-grid">' +
+          restaurantProposalSelectField("Proposal status:", "proposal_status", RESTAURANT_CLOSE_PROPOSAL_STATUS_OPTIONS, close.proposalStatus) +
+          restaurantProposalSelectField("Close status:", "close_status", RESTAURANT_CLOSE_STATUS_OPTIONS, close.closeStatus) +
+          restaurantProposalSelectField("Materials status:", "materials_status", RESTAURANT_MATERIALS_STATUS_OPTIONS, close.materialsStatus) +
+          restaurantProposalSelectField("Launch readiness:", "launch_readiness", RESTAURANT_LAUNCH_READINESS_OPTIONS, close.launchReadiness) +
+          restaurantProposalTextareaField("Close notes:", "close_notes", close.closeNotes) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-proposal-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--primary owner-dash-btn--compact" data-action="save-restaurant-close-status">Save restaurant close status</button>' +
+          "</div></div>"
+        );
+      }
+
+      function restaurantChecklistCard(title, intro, items, copyKind, copyLabel) {
+        return (
+          '<article class="owner-dash-restaurant-command-block"><p class="owner-dash-restaurant-card-label">' +
+          esc(title) +
+          "</p>" +
+          (intro ? "<p>" + esc(intro) + "</p>" : "") +
+          bulletListHtml(items, "owner-dash-deal-list") +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          restaurantCopyButton(copyKind, copyLabel, false) +
+          "</div></article>"
+        );
+      }
+
+      function restaurantCloseCommandBlock(lead) {
+        var snap = restaurantSnapshot(lead);
+        var close = restaurantCloseData(lead);
+        return (
+          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-proposal-builder owner-dash-restaurant-close-command">' +
+          '<h3 class="owner-dash-detail-section-title">Restaurant Close Command</h3>' +
+          '<p class="owner-dash-restaurant-proposal-subtitle">Move a restaurant from proposal to signed client without losing the next step.</p>' +
+          '<div class="owner-dash-restaurant-snapshot owner-dash-restaurant-proposal-grid">' +
+          restaurantSnapshotItem("Restaurant name", close.business, false) +
+          restaurantSnapshotItem("Contact name", close.contact, false) +
+          restaurantSnapshotItem("Current restaurant stage", snap.stage, false) +
+          restaurantSnapshotItem("Suggested first offer", close.suggestedFirstOffer, false) +
+          restaurantSnapshotItem("Suggested starting range", close.suggestedStartingRange, false) +
+          restaurantSnapshotItem("Proposal status", close.proposalStatus, false) +
+          restaurantSnapshotItem("Close status", close.closeStatus, false) +
+          restaurantSnapshotItem("Materials status", close.materialsStatus, false) +
+          restaurantSnapshotItem("Launch readiness", close.launchReadiness, false) +
+          restaurantSnapshotItem("Next close action", close.nextCloseAction, true) +
+          "</div>" +
+          restaurantCloseFormHtml(close) +
+          '<p class="owner-dash-restaurant-proposal-guardrail">' +
+          esc(RESTAURANT_CLOSE_GUARDRAIL) +
+          "</p>" +
+          '<div class="owner-dash-restaurant-copy-grid"><p class="owner-dash-restaurant-card-label">Close action buttons</p>' +
+          '<div class="owner-dash-restaurant-command-actions">' +
+          restaurantActionButton("close-proposal-sent", "Mark proposal sent", false) +
+          restaurantActionButton("close-pricing-discussed", "Mark pricing discussed", false) +
+          restaurantActionButton("close-verbal-yes", "Mark verbal yes", true) +
+          restaurantActionButton("close-deposit-requested", "Mark deposit requested", false) +
+          restaurantActionButton("close-deposit-received", "Mark deposit received", true) +
+          restaurantActionButton("close-restaurant-client", "Mark restaurant client", true) +
+          restaurantActionButton("close-materials-requested", "Mark materials requested", false) +
+          restaurantActionButton("close-materials-received", "Mark materials received", false) +
+          restaurantActionButton("close-build-ready", "Mark build ready", false) +
+          restaurantActionButton("close-preview-ready", "Mark preview ready", false) +
+          restaurantActionButton("close-approved-launch", "Mark approved for launch", false) +
+          restaurantActionButton("close-restaurant-launched", "Mark restaurant launched", true) +
+          restaurantActionButton("close-not-now", "Mark restaurant not now", false) +
+          restaurantActionButton("close-lost", "Mark restaurant lost", false) +
+          "</div></div>" +
+          '<div class="owner-dash-restaurant-two-col">' +
+          restaurantChecklistCard(
+            "Restaurant Materials Checklist",
+            "Needed from restaurant:",
+            RESTAURANT_MATERIALS_CHECKLIST_ITEMS,
+            "restaurant-materials-request",
+            "Copy restaurant materials request"
+          ) +
+          restaurantChecklistCard(
+            "Restaurant Launch Checklist",
+            "Before launch:",
+            RESTAURANT_LAUNCH_CHECKLIST_ITEMS,
+            "restaurant-launch-checklist",
+            "Copy restaurant launch checklist"
+          ) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-copy-grid"><p class="owner-dash-restaurant-card-label">Client handoff copy tools</p>' +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          restaurantCopyButton("restaurant-close-recap", "Copy close recap", true) +
+          restaurantCopyButton("restaurant-deposit-request-next-step", "Copy deposit/request next step", false) +
+          restaurantCopyButton("restaurant-new-client-kickoff-message", "Copy new client kickoff message", false) +
+          restaurantCopyButton("restaurant-onboarding-checklist", "Copy restaurant onboarding checklist", false) +
+          restaurantCopyButton("restaurant-approval-request", "Copy approval request", false) +
+          restaurantCopyButton("restaurant-launch-preview-message", "Copy launch preview message", false) +
+          restaurantCopyButton("restaurant-post-launch-check-in", "Copy post-launch check-in", false) +
+          restaurantCopyButton("restaurant-monthly-recap-starter", "Copy restaurant monthly recap starter", false) +
+          "</div></div>" +
+          "</div>"
+        );
+      }
+
       function restaurantOfferLogicSummary(snap) {
         return [
           "Recommended offer: " + snap.recommendedOffer,
@@ -12687,6 +13269,7 @@
           restaurantProspectWorkflowBlock(lead) +
           restaurantResearchProfileBlock(lead) +
           restaurantProposalBuilderBlock(lead) +
+          restaurantCloseCommandBlock(lead) +
           '<div class="owner-dash-restaurant-command-block"><p class="owner-dash-restaurant-card-label">Restaurant Guardrails</p>' +
           restaurantGuardrailsCard() +
           "</div>" +
@@ -13490,6 +14073,75 @@
             i += 1;
             while (i < lines.length) {
               if (!String(lines[i] || "").trim() || isRestaurantProposalDirectionLine(lines[i])) {
+                i += 1;
+                continue;
+              }
+              break;
+            }
+            i -= 1;
+            continue;
+          }
+          nextLines.push(lines[i]);
+        }
+        if (!inserted) nextLines.push(block);
+        return nextLines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+      }
+
+      function restaurantCloseFormSelectValue(form, name, options, fallback) {
+        var input = form && form.querySelector('[name="' + name + '"]');
+        var value = input ? String(input.value || "").trim() : "";
+        return options.indexOf(value) !== -1 ? value : fallback;
+      }
+
+      function readRestaurantCloseFormValues(form) {
+        return {
+          proposalStatus: restaurantCloseFormSelectValue(form, "proposal_status", RESTAURANT_CLOSE_PROPOSAL_STATUS_OPTIONS, "Not ready"),
+          closeStatus: restaurantCloseFormSelectValue(form, "close_status", RESTAURANT_CLOSE_STATUS_OPTIONS, "Not started"),
+          materialsStatus: restaurantCloseFormSelectValue(form, "materials_status", RESTAURANT_MATERIALS_STATUS_OPTIONS, "Not requested"),
+          launchReadiness: restaurantCloseFormSelectValue(form, "launch_readiness", RESTAURANT_LAUNCH_READINESS_OPTIONS, "Not ready"),
+          closeNotes: restaurantProposalFormTextValue(form, "close_notes"),
+        };
+      }
+
+      function buildRestaurantCloseBlock(values) {
+        return [
+          "Restaurant close:",
+          "Proposal status: " + (values.proposalStatus || "Not ready") + ".",
+          "Close status: " + (values.closeStatus || "Not started") + ".",
+          "Materials status: " + (values.materialsStatus || "Not requested") + ".",
+          "Launch readiness: " + (values.launchReadiness || "Not ready") + ".",
+          "Close notes: " + (values.closeNotes || "None") + ".",
+        ].join("\n");
+      }
+
+      function isRestaurantCloseFieldLine(line) {
+        var text = String(line || "").trim().toLowerCase();
+        return (
+          text.indexOf("proposal status:") === 0 ||
+          text.indexOf("close status:") === 0 ||
+          text.indexOf("materials status:") === 0 ||
+          text.indexOf("launch readiness:") === 0 ||
+          text.indexOf("close notes:") === 0
+        );
+      }
+
+      function upsertRestaurantCloseBlock(existing, values) {
+        var block = buildRestaurantCloseBlock(values);
+        var current = String(existing || "").replace(/\r\n/g, "\n").trim();
+        if (!current) return block;
+        var lines = current.split("\n");
+        var blockLines = block.split("\n");
+        var nextLines = [];
+        var inserted = false;
+        for (var i = 0; i < lines.length; i++) {
+          if (/^\s*Restaurant close:\s*$/i.test(lines[i])) {
+            if (!inserted) {
+              nextLines = nextLines.concat(blockLines);
+              inserted = true;
+            }
+            i += 1;
+            while (i < lines.length) {
+              if (!String(lines[i] || "").trim() || isRestaurantCloseFieldLine(lines[i])) {
                 i += 1;
                 continue;
               }
@@ -14537,6 +15189,93 @@
             label: "Proposal sent",
             tone: "ok",
           },
+          "close-proposal-sent": {
+            note: "Restaurant close: proposal sent.",
+            activity: "Restaurant close — Proposal sent",
+            label: "Proposal sent",
+            tone: "ok",
+          },
+          "close-pricing-discussed": {
+            note: "Restaurant close: pricing discussed.",
+            activity: "Restaurant close — Pricing discussed",
+            label: "Pricing discussed",
+            tone: "ok",
+          },
+          "close-verbal-yes": {
+            note: "Restaurant close: verbal yes.",
+            activity: "Restaurant close — Verbal yes",
+            label: "Verbal yes",
+            tone: "ok",
+          },
+          "close-deposit-requested": {
+            note: "Restaurant close: deposit requested.",
+            activity: "Restaurant close — Deposit requested",
+            label: "Deposit requested",
+            tone: "pending",
+          },
+          "close-deposit-received": {
+            note: "Restaurant close: deposit received.",
+            activity: "Restaurant close — Deposit received",
+            label: "Deposit received",
+            tone: "ok",
+          },
+          "close-restaurant-client": {
+            status: archivedClosed ? null : "Won",
+            note: "Restaurant: client.\nRestaurant stage: won.",
+            activity: "Restaurant close — Client marked",
+            label: "Restaurant client",
+            tone: "ok",
+          },
+          "close-materials-requested": {
+            note: "Restaurant materials: requested.",
+            activity: "Restaurant materials — Requested",
+            label: "Materials requested",
+            tone: "pending",
+          },
+          "close-materials-received": {
+            note: "Restaurant materials: received.",
+            activity: "Restaurant materials — Received",
+            label: "Materials received",
+            tone: "ok",
+          },
+          "close-build-ready": {
+            note: "Restaurant launch: build ready.",
+            activity: "Restaurant launch — Build ready",
+            label: "Build ready",
+            tone: "ok",
+          },
+          "close-preview-ready": {
+            note: "Restaurant launch: preview ready.",
+            activity: "Restaurant launch — Preview ready",
+            label: "Preview ready",
+            tone: "ok",
+          },
+          "close-approved-launch": {
+            note: "Restaurant launch: approved.",
+            activity: "Restaurant launch — Approved",
+            label: "Approved for launch",
+            tone: "ok",
+          },
+          "close-restaurant-launched": {
+            status: archivedClosed ? null : "Won",
+            note: "Restaurant launch: launched.",
+            activity: "Restaurant launch — Launched",
+            label: "Restaurant launched",
+            tone: "ok",
+          },
+          "close-not-now": {
+            note: "Restaurant stage: not now.",
+            activity: "Restaurant close — Not now",
+            label: "Restaurant not now",
+            tone: "pending",
+          },
+          "close-lost": {
+            status: "Lost",
+            note: "Restaurant stage: lost.",
+            activity: "Restaurant close — Lost",
+            label: "Restaurant lost",
+            tone: "pending",
+          },
           "follow-up-due": {
             status: closed ? null : "Needs follow-up",
             note: "Restaurant proposal: follow-up due.",
@@ -14872,6 +15611,80 @@
                 setRestaurantFeedback(
                   freshSection || section,
                   "Restaurant proposal direction saved. Nothing was sent.",
+                  false
+                );
+                refreshCounts();
+              });
+          })
+          .catch(function () {
+            setRestaurantFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            controls.forEach(function (control) {
+              control.disabled = false;
+            });
+            sourceBtn.textContent =
+              sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
+          });
+      }
+
+      function handleRestaurantCloseStatusSave(sheet, sourceBtn) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        var form = sourceBtn.closest("[data-restaurant-close-form]");
+        if (!form) return;
+        var section =
+          sourceBtn.closest(".owner-dash-detail-section--restaurant-command") ||
+          sheet.querySelector(".owner-dash-detail-section--restaurant-command");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var values = readRestaurantCloseFormValues(form);
+        var previousNotes = String(hit.row.owner_notes || "");
+        var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
+        var nextNotes = upsertRestaurantCloseBlock(notesBase, values);
+        var controls = form.querySelectorAll("button, select, textarea");
+        controls.forEach(function (control) {
+          control.disabled = true;
+        });
+        sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+        sourceBtn.textContent = "Saving...";
+        setRestaurantFeedback(section, "Saving restaurant close status...", false);
+
+        postUpdate(table, id, { owner_notes: nextNotes })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setRestaurantFeedback(
+                section,
+                (result.data && result.data.error) || "Could not save restaurant close status. Try saving manually.",
+                true
+              );
+              return null;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(table, id, "Restaurant close status updated", "ok", "");
+            return fetchDashboard()
+              .then(function (fresh) {
+                if (fresh.ok && fresh.data && fresh.data.ok) {
+                  finishSuccess(fresh.data);
+                } else {
+                  renderAll();
+                }
+              })
+              .catch(function () {
+                renderAll();
+              })
+              .then(function () {
+                var freshSection =
+                  els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--restaurant-command");
+                setRestaurantFeedback(
+                  freshSection || section,
+                  "Restaurant close status saved. Nothing was sent.",
                   false
                 );
                 refreshCounts();
@@ -16021,6 +16834,9 @@
         if (mode === "restaurant-proposal-report") {
           return { business: restaurantAllRows(), transport: [] };
         }
+        if (mode === "restaurant-close-report") {
+          return { business: restaurantAllRows(), transport: [] };
+        }
         if (mode === "restaurant-clients") {
           return { business: restaurantClientRows(), transport: [] };
         }
@@ -16077,7 +16893,10 @@
             return isRestaurantRow(row) && restaurantResearchProfile(row).salesPriority === "High-priority prospect";
           }).length,
           restaurantProposalSent: business.filter(function (row) {
-            return isRestaurantRow(row) && restaurantOwnerNotesMatch(row, ["Restaurant proposal: proposal sent"]);
+            return isRestaurantRow(row) && restaurantOwnerNotesMatch(row, ["Restaurant proposal: proposal sent", "Restaurant close: proposal sent."]);
+          }).length,
+          restaurantDepositReceived: business.filter(function (row) {
+            return isRestaurantRow(row) && restaurantOwnerNotesMatch(row, ["Restaurant close: deposit received."]);
           }).length,
           restaurantClients: business.filter(isRestaurantClient).length,
           restaurantProposalReady: business.filter(function (row) {
@@ -16120,7 +16939,13 @@
           [
             "Restaurant proposals sent",
             restaurantAllRows().filter(function (row) {
-              return restaurantOwnerNotesMatch(row, ["Restaurant proposal: proposal sent"]);
+              return restaurantOwnerNotesMatch(row, ["Restaurant proposal: proposal sent", "Restaurant close: proposal sent."]);
+            }).length,
+          ],
+          [
+            "Restaurant deposits received",
+            restaurantAllRows().filter(function (row) {
+              return restaurantOwnerNotesMatch(row, ["Restaurant close: deposit received."]);
             }).length,
           ],
           ["Restaurant clients", restaurantClientRows().length],
@@ -16515,6 +17340,83 @@
         ].join("\n");
       }
 
+      function restaurantCloseReportLine(row) {
+        var close = restaurantCloseData(row);
+        return [
+          exportValue(close.business),
+          exportValue(row.contact_name),
+          exportValue(row.contact_phone),
+          exportValue(row.contact_email),
+          exportValue(close.suggestedFirstOffer || close.selectedOffer),
+          exportValue(close.suggestedStartingRange),
+          exportValue(close.closeStatus),
+          exportValue(close.materialsStatus),
+          exportValue(close.launchReadiness),
+          exportValue(close.nextCloseAction),
+          exportMultilineValue(row.owner_notes).replace(/\r?\n/g, " "),
+        ].join(" | ");
+      }
+
+      function restaurantCloseReportGroup(title, rows, predicate) {
+        var matches = rows.filter(predicate);
+        return [title, matches.length ? matches.map(restaurantCloseReportLine).join("\n") : "- None"].join("\n");
+      }
+
+      function buildRestaurantCloseReport(rows) {
+        var matches = (rows.business || restaurantAllRows()).filter(isRestaurantRow);
+        if (!matches.length) return buildNoRowsExportReport("Restaurant close report");
+        return [
+          "Restaurant close report",
+          "",
+          "Generated:",
+          exportGeneratedAt(),
+          "",
+          "Columns:",
+          "Restaurant | Contact | Phone | Email | Offer | Range | Close status | Materials status | Launch readiness | Next action | Notes",
+          "",
+          restaurantCloseReportGroup("Proposal sent", matches, function (row) {
+            var close = restaurantCloseData(row);
+            return close.closeStatus === "Proposal sent" || restaurantOwnerNotesMatch(row, ["Restaurant close: proposal sent.", "Restaurant proposal: proposal sent"]);
+          }),
+          "",
+          restaurantCloseReportGroup("Verbal yes", matches, function (row) {
+            return restaurantCloseData(row).closeStatus === "Verbal yes" || restaurantOwnerNotesMatch(row, ["Restaurant close: verbal yes."]);
+          }),
+          "",
+          restaurantCloseReportGroup("Deposit requested", matches, function (row) {
+            return restaurantCloseData(row).closeStatus === "Deposit requested" || restaurantOwnerNotesMatch(row, ["Restaurant close: deposit requested."]);
+          }),
+          "",
+          restaurantCloseReportGroup("Deposit received", matches, function (row) {
+            return restaurantCloseData(row).closeStatus === "Deposit received" || restaurantOwnerNotesMatch(row, ["Restaurant close: deposit received."]);
+          }),
+          "",
+          restaurantCloseReportGroup("Materials needed", matches, function (row) {
+            var close = restaurantCloseData(row);
+            return close.materialsStatus === "Requested" || close.materialsStatus === "Partially received" || restaurantOwnerNotesMatch(row, ["Restaurant materials: requested."]);
+          }),
+          "",
+          restaurantCloseReportGroup("Build ready", matches, function (row) {
+            return restaurantCloseData(row).launchReadiness === "Build ready" || restaurantOwnerNotesMatch(row, ["Restaurant launch: build ready."]);
+          }),
+          "",
+          restaurantCloseReportGroup("Preview ready", matches, function (row) {
+            return restaurantCloseData(row).launchReadiness === "Preview ready" || restaurantOwnerNotesMatch(row, ["Restaurant launch: preview ready."]);
+          }),
+          "",
+          restaurantCloseReportGroup("Launched", matches, function (row) {
+            return restaurantCloseData(row).launchReadiness === "Launched" || restaurantOwnerNotesMatch(row, ["Restaurant launch: launched."]);
+          }),
+          "",
+          restaurantCloseReportGroup("Not now/lost", matches, function (row) {
+            var close = restaurantCloseData(row);
+            return close.closeStatus === "Not now" || close.closeStatus === "Lost" || restaurantOwnerNotesMatch(row, ["Restaurant stage: not now", "Restaurant stage: lost"]);
+          }),
+          "",
+          RESTAURANT_CLOSE_GUARDRAIL,
+        ].join("\n");
+      }
+
       function buildTransportationReport(rows) {
         var transport = rows.transport || [];
         if (!transport.length) return buildNoRowsExportReport("Transportation Request Report");
@@ -16691,6 +17593,9 @@
           "Restaurant proposal report:",
           buildRestaurantProposalReport(restaurantAllRows()),
           "",
+          "Restaurant close report:",
+          buildRestaurantCloseReport({ business: restaurantAllRows(), transport: [] }),
+          "",
           "Weekly recap:",
           buildWeeklyRecap(rows),
           "",
@@ -16711,6 +17616,7 @@
         if (kind === "restaurant-first50") return buildFirst50RestaurantReport(first50RestaurantRows());
         if (kind === "restaurant-research-report") return buildRestaurantResearchReport(restaurantAllRows());
         if (kind === "restaurant-proposal-report") return buildRestaurantProposalReport(restaurantAllRows());
+        if (kind === "restaurant-close-report") return buildRestaurantCloseReport({ business: restaurantAllRows(), transport: [] });
         if (kind === "transportation") return buildTransportationReport(rows);
         if (kind === "weekly-recap") return buildWeeklyRecap(rows);
         if (kind === "full-pipeline") return buildFullPipelineReport(rows);
@@ -17782,6 +18688,11 @@
 
           if (sheet && action === "save-restaurant-proposal-direction") {
             handleRestaurantProposalDirectionSave(sheet, btn);
+            return;
+          }
+
+          if (sheet && action === "save-restaurant-close-status") {
+            handleRestaurantCloseStatusSave(sheet, btn);
             return;
           }
 
