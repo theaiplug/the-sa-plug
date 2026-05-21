@@ -561,6 +561,217 @@
       line-height: 1.45;
     }
 
+    /* Owner Command Dashboard v22 - Export / CRM Summary */
+    .page-owner-dashboard .owner-dash-export {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 16px;
+      padding: clamp(12px, 2vw, 16px);
+      border-radius: 18px;
+      border: 1px solid rgba(20, 184, 166, 0.32);
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.16), transparent 32%),
+        radial-gradient(circle at right, rgba(255, 139, 31, 0.12), transparent 34%),
+        rgba(4, 10, 22, 0.58);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-export-head {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-export-head h2 {
+      margin: 0;
+      color: #c8fff5;
+      font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+      line-height: 1.15;
+    }
+
+    .page-owner-dashboard .owner-dash-export-subtitle,
+    .page-owner-dashboard .owner-dash-export-note,
+    .page-owner-dashboard .owner-dash-export-empty,
+    .page-owner-dashboard .owner-dash-export-status {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.72);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .page-owner-dashboard .owner-dash-export-status strong {
+      color: rgba(255, 246, 230, 0.92);
+    }
+
+    .page-owner-dashboard .owner-dash-export-empty {
+      padding: 9px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 139, 31, 0.28);
+      background: rgba(255, 139, 31, 0.1);
+      color: #ffe4c4;
+      font-weight: 800;
+    }
+
+    .page-owner-dashboard .owner-dash-export-snapshot {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-export-count {
+      min-width: 0;
+      padding: 9px 10px;
+      border-radius: 13px;
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      background: rgba(4, 10, 22, 0.5);
+      box-shadow: inset 3px 0 0 rgba(20, 184, 166, 0.7);
+    }
+
+    .page-owner-dashboard .owner-dash-export-count:nth-child(even) {
+      border-color: rgba(255, 139, 31, 0.22);
+      box-shadow: inset 3px 0 0 rgba(255, 139, 31, 0.7);
+    }
+
+    .page-owner-dashboard .owner-dash-export-count span {
+      display: block;
+      margin: 0 0 4px;
+      color: rgba(255, 246, 230, 0.62);
+      font-size: 0.68rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-export-count strong {
+      display: block;
+      color: #5eead4;
+      font-size: 1.12rem;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .page-owner-dashboard .owner-dash-export-controls {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-export-label {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.88);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-export-mode-list,
+    .page-owner-dashboard .owner-dash-export-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-export-chip,
+    .page-owner-dashboard .owner-dash-export-btn {
+      appearance: none;
+      min-height: 42px;
+      min-width: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 850;
+      line-height: 1.2;
+      padding: 9px 12px;
+      text-align: center;
+      white-space: nowrap;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-export-chip {
+      border: 1px solid rgba(20, 184, 166, 0.34);
+      background: rgba(20, 184, 166, 0.1);
+      color: rgba(255, 246, 230, 0.88);
+    }
+
+    .page-owner-dashboard .owner-dash-export-chip.is-active {
+      border-color: rgba(94, 234, 212, 0.7);
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.28), rgba(20, 184, 166, 0.12));
+      color: #d7fff7;
+      box-shadow: 0 0 0 1px rgba(94, 234, 212, 0.12);
+    }
+
+    .page-owner-dashboard .owner-dash-export-btn {
+      border: 1px solid rgba(255, 139, 31, 0.36);
+      background: rgba(255, 139, 31, 0.12);
+      color: rgba(255, 246, 230, 0.92);
+    }
+
+    .page-owner-dashboard .owner-dash-export-btn--primary {
+      border-color: rgba(20, 184, 166, 0.52);
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.28), rgba(255, 139, 31, 0.14));
+      color: #f8fffd;
+    }
+
+    .page-owner-dashboard .owner-dash-export-chip:focus-visible,
+    .page-owner-dashboard .owner-dash-export-btn:focus-visible {
+      outline: 2px solid rgba(255, 139, 31, 0.7);
+      outline-offset: 2px;
+    }
+
+    .page-owner-dashboard .owner-dash-export .owner-dash-detail-copy-feedback {
+      display: block;
+      margin-top: -2px;
+    }
+
+    .page-owner-dashboard .owner-dash-export-manual-copy {
+      margin-top: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-export,
+    .page-owner-dashboard .owner-dash-export * {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    @media (min-width: 520px) {
+      .page-owner-dashboard .owner-dash-export-snapshot,
+      .page-owner-dashboard .owner-dash-export-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard .owner-dash-export-mode-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 860px) {
+      .page-owner-dashboard .owner-dash-export-head {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+      }
+
+      .page-owner-dashboard .owner-dash-export-snapshot {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard .owner-dash-export-mode-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard .owner-dash-export-actions {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
     .page-owner-dashboard .owner-dash-dashboard-controls,
     .page-owner-dashboard .owner-dash-dashboard-controls *,
     .page-owner-dashboard .owner-dash-result-count,
@@ -2272,6 +2483,58 @@
         <p id="owner-dash-loaded-row-note" class="owner-dash-loaded-row-note" hidden>Matching item may be outside the loaded rows. Refresh or expand loaded rows later.</p>
       </section>
 
+      <section id="owner-dash-export-crm" class="owner-dash-export owner-dash-glass" aria-labelledby="owner-dash-export-heading">
+        <div class="owner-dash-export-head">
+          <div>
+            <p class="eyebrow eyebrow-on-dark">COPY / EXPORT</p>
+            <h2 id="owner-dash-export-heading">Export / CRM Summary</h2>
+            <p class="owner-dash-export-subtitle">Copy clean pipeline summaries, CRM-ready lists, and weekly recaps. Copy only — nothing sends automatically.</p>
+          </div>
+          <p id="owner-dash-export-status" class="owner-dash-export-status" aria-live="polite">Mode: <strong>Visible results</strong></p>
+        </div>
+
+        <div id="owner-dash-export-snapshot" class="owner-dash-export-snapshot" aria-label="Export Snapshot"></div>
+
+        <div class="owner-dash-export-controls">
+          <p class="owner-dash-export-label">Export mode</p>
+          <div class="owner-dash-export-mode-list" role="group" aria-label="Export Mode selector">
+            <button type="button" class="owner-dash-export-chip is-active" data-action="select-export-mode" data-export-mode="visible" aria-pressed="true">Visible results</button>
+            <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="all-business" aria-pressed="false">All loaded business leads</button>
+            <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="hot" aria-pressed="false">Hot leads only</button>
+            <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="needs-action" aria-pressed="false">Needs-action leads</button>
+            <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="proposal-ready" aria-pressed="false">Proposal-ready leads</button>
+            <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="won-clients" aria-pressed="false">Won / active clients</button>
+            <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="transportation" aria-pressed="false">Transportation requests</button>
+          </div>
+        </div>
+
+        <p id="owner-dash-export-empty" class="owner-dash-export-empty" hidden>No rows match this export mode.</p>
+
+        <div class="owner-dash-export-controls">
+          <p class="owner-dash-export-label">Copy tools</p>
+          <div class="owner-dash-export-actions">
+            <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="crm-summary">Copy CRM summary</button>
+            <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="simple-list">Copy simple lead list</button>
+            <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="csv-list">Copy CSV-style list</button>
+            <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="hot-leads">Copy hot leads report</button>
+            <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="needs-action">Copy needs-action report</button>
+            <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="proposal-ready">Copy proposal-ready report</button>
+            <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="won-client">Copy won/client report</button>
+            <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="transportation">Copy transportation report</button>
+            <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="weekly-recap">Copy weekly recap</button>
+            <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="full-pipeline">Copy full pipeline report</button>
+            <button type="button" class="owner-dash-export-btn" data-action="download-visible-csv">Download visible CSV</button>
+          </div>
+        </div>
+
+        <p class="owner-dash-export-note">Copy only. Nothing sends automatically and no dashboard data is stored by these tools.</p>
+        <span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>
+        <div class="owner-dash-detail-manual-copy owner-dash-export-manual-copy" data-manual-copy hidden>
+          <p class="owner-dash-detail-manual-copy-label">Select and copy:</p>
+          <textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea>
+        </div>
+      </section>
+
       <div class="owner-dash-tabs" role="tablist" aria-label="Lead sections">
         <button type="button" class="owner-dash-tab is-active" role="tab" aria-selected="true" aria-controls="panel-business" id="tab-business" data-panel="panel-business">Business Leads</button>
         <button type="button" class="owner-dash-tab" role="tab" aria-selected="false" aria-controls="panel-transport" id="tab-transport" data-panel="panel-transport">Transportation</button>
@@ -2551,6 +2814,15 @@
         ? window.matchMedia(DAILY_BRIEF_MOBILE_LABEL_QUERY)
         : null;
       var dailyBriefResponsiveReady = false;
+      var EXPORT_MODES = [
+        { key: "visible", label: "Visible results" },
+        { key: "all-business", label: "All loaded business leads" },
+        { key: "hot", label: "Hot leads only" },
+        { key: "needs-action", label: "Needs-action leads" },
+        { key: "proposal-ready", label: "Proposal-ready leads" },
+        { key: "won-clients", label: "Won / active clients" },
+        { key: "transportation", label: "Transportation requests" },
+      ];
 
       var state = {
         businessLeads: [],
@@ -2571,6 +2843,7 @@
         proposalSelections: {},
         clientProposalTones: {},
         lastLoadedAt: null,
+        exportMode: "visible",
       };
 
       var els = {
@@ -2613,6 +2886,10 @@
         todayActions: document.getElementById("owner-dash-today-actions"),
         todayBuckets: document.getElementById("owner-dash-today-buckets"),
         activeQueue: document.getElementById("owner-dash-active-queue"),
+        exportSection: document.getElementById("owner-dash-export-crm"),
+        exportSnapshot: document.getElementById("owner-dash-export-snapshot"),
+        exportStatus: document.getElementById("owner-dash-export-status"),
+        exportEmpty: document.getElementById("owner-dash-export-empty"),
         detailOverlay: document.getElementById("owner-dash-detail-overlay"),
         detailBody: document.getElementById("owner-dash-detail-body"),
         detailTitle: document.getElementById("owner-dash-detail-title"),
@@ -11275,6 +11552,803 @@
         }
       }
 
+      function exportModeForKey(key) {
+        for (var i = 0; i < EXPORT_MODES.length; i++) {
+          if (EXPORT_MODES[i].key === key) return EXPORT_MODES[i];
+        }
+        return EXPORT_MODES[0];
+      }
+
+      function exportModeLabel(key) {
+        return exportModeForKey(key || state.exportMode).label;
+      }
+
+      function exportGeneratedAt() {
+        try {
+          return new Date().toLocaleString();
+        } catch {
+          return new Date().toISOString();
+        }
+      }
+
+      function exportValue(value) {
+        if (value == null || value === "") return "—";
+        return String(value).replace(/\s+/g, " ").trim() || "—";
+      }
+
+      function exportMultilineValue(value) {
+        if (value == null || value === "") return "—";
+        return String(value).trim() || "—";
+      }
+
+      function businessDisplayName(row) {
+        return exportValue(row && (row.business_name || row.contact_name || "Business lead"));
+      }
+
+      function transportDisplayName(row) {
+        return exportValue(row && (row.name || "Transportation request"));
+      }
+
+      function businessContactLine(row) {
+        return exportValue([row && row.contact_name, row && row.contact_phone, row && row.contact_email].filter(Boolean).join(" / "));
+      }
+
+      function transportContactLine(row) {
+        return exportValue([row && row.name, row && row.phone, row && row.email].filter(Boolean).join(" / "));
+      }
+
+      function transportPickup(row) {
+        return exportValue(firstValue(row, ["pickup_area", "pickup"]));
+      }
+
+      function transportDestination(row) {
+        return exportValue(firstValue(row, ["destination", "dropoff", "dropoff_area"]));
+      }
+
+      function transportRouteText(row) {
+        return exportValue(
+          [firstValue(row, ["pickup_area", "pickup"]), firstValue(row, ["destination", "dropoff", "dropoff_area"])]
+            .filter(Boolean)
+            .join(" to ") ||
+            row.route ||
+            row.request_text ||
+            row.conversation_excerpt ||
+            row.notes
+        );
+      }
+
+      function isExportHotLead(row) {
+        return isHotLeadForDailyBrief(row) || calcBusinessPriority(row || {}).key === "hot";
+      }
+
+      function isOpenTransportationRequest(row) {
+        var status = normStatus(row && row.status);
+        return status !== "handled" && status !== "cancelled" && status !== "lost" && status !== "archived";
+      }
+
+      function exportNeedsActionReason(row, table) {
+        var status = normStatus(row && row.status);
+        if (status === "new") return "Status is New";
+        if (status === "reviewed") return "Status is Reviewed";
+        if (status === "needs follow-up") return "Status is Needs follow-up";
+        if (
+          ownerNotesInclude(row, [
+            "callback",
+            "call back",
+            "follow-up",
+            "follow up",
+            "quote",
+            "proposal",
+            "materials",
+            "support review",
+            "testimonial",
+            "referral",
+          ])
+        ) {
+          return "Owner notes indicate follow-up, quote/proposal, materials, support review, testimonial, or referral action";
+        }
+        var nextAction = nextActionForQueue(table, row);
+        if (nextAction && !textIncludesAny(nextAction, ["no active follow-up", "do not pursue"])) {
+          return "Next action: " + nextAction;
+        }
+        return "";
+      }
+
+      function matchesNeedsActionReport(row, table) {
+        return Boolean(exportNeedsActionReason(row, table));
+      }
+
+      function matchesProposalReadyReport(row) {
+        var status = normStatus(row && row.status);
+        return (
+          status === "qualified" ||
+          dealStageInfo(row || {}).key === "proposal-ready" ||
+          ownerNotesInclude(row, ["proposal ready", "quote prepared", "invoice ready", "deposit requested"])
+        );
+      }
+
+      function matchesWonActiveClientReport(row) {
+        return (
+          normStatus(row && row.status) === "won" ||
+          ownerNotesInclude(row, [
+            "support active",
+            "launched",
+            "kickoff",
+            "delivery",
+            "retention",
+            "testimonial",
+            "referral",
+          ])
+        );
+      }
+
+      function exportRecommendedPackage(row) {
+        var proposal = calcProposalEstimate(row || {});
+        var deal = calcDealBuilder(row || {});
+        return exportValue((proposal && proposal.recommendedPackage) || (deal && deal.packageName) || row.recommended_system);
+      }
+
+      function selectedExportRows() {
+        var mode = state.exportMode || "visible";
+        if (mode === "visible") {
+          return {
+            business: visibleRowsForTable("business_leads"),
+            transport: visibleRowsForTable("transportation_requests"),
+          };
+        }
+        if (mode === "all-business") {
+          return { business: sortBusinessLeads(state.businessLeads), transport: [] };
+        }
+        if (mode === "hot") {
+          return {
+            business: sortBusinessLeads(state.businessLeads).filter(isExportHotLead),
+            transport: [],
+          };
+        }
+        if (mode === "needs-action") {
+          return {
+            business: sortBusinessLeads(state.businessLeads).filter(function (row) {
+              return matchesNeedsActionReport(row, "business_leads");
+            }),
+            transport: sortTransportRows(state.transportRows).filter(function (row) {
+              return matchesNeedsActionReport(row, "transportation_requests");
+            }),
+          };
+        }
+        if (mode === "proposal-ready") {
+          return { business: sortBusinessLeads(state.businessLeads).filter(matchesProposalReadyReport), transport: [] };
+        }
+        if (mode === "won-clients") {
+          return { business: sortBusinessLeads(state.businessLeads).filter(matchesWonActiveClientReport), transport: [] };
+        }
+        if (mode === "transportation") {
+          return { business: [], transport: sortTransportRows(state.transportRows) };
+        }
+        return { business: [], transport: [] };
+      }
+
+      function exportRowTotal(rows) {
+        return (rows.business ? rows.business.length : 0) + (rows.transport ? rows.transport.length : 0);
+      }
+
+      function exportCountsForRows(rows) {
+        var business = rows.business || [];
+        var transport = rows.transport || [];
+        var needsActionBusiness = business.filter(function (row) {
+          return matchesNeedsActionReport(row, "business_leads");
+        }).length;
+        var needsActionTransport = transport.filter(function (row) {
+          return matchesNeedsActionReport(row, "transportation_requests");
+        }).length;
+        return {
+          business: business.length,
+          transport: transport.length,
+          hot: business.filter(isExportHotLead).length,
+          needsAction: needsActionBusiness + needsActionTransport,
+          proposalReady: business.filter(matchesProposalReadyReport).length,
+          wonClients: business.filter(matchesWonActiveClientReport).length,
+          transportOpen: transport.filter(isOpenTransportationRequest).length,
+        };
+      }
+
+      function exportSnapshotCounts() {
+        var visibleBusiness = visibleRowsForTable("business_leads");
+        var visibleTransport = visibleRowsForTable("transportation_requests");
+        return [
+          ["Visible business leads", visibleBusiness.length],
+          ["Visible transportation requests", visibleTransport.length],
+          ["Hot leads", visibleBusiness.filter(isExportHotLead).length],
+          [
+            "Needs action",
+            visibleBusiness.filter(function (row) {
+              return matchesNeedsActionReport(row, "business_leads");
+            }).length +
+              visibleTransport.filter(function (row) {
+                return matchesNeedsActionReport(row, "transportation_requests");
+              }).length,
+          ],
+          ["Proposal-ready", visibleBusiness.filter(matchesProposalReadyReport).length],
+          ["Won / active clients", visibleBusiness.filter(matchesWonActiveClientReport).length],
+          ["Transportation open requests", visibleTransport.filter(isOpenTransportationRequest).length],
+        ];
+      }
+
+      function renderExportCrmSummary() {
+        if (!els.exportSection) return;
+        var rows = selectedExportRows();
+        var counts = exportCountsForRows(rows);
+        if (els.exportSnapshot) {
+          els.exportSnapshot.innerHTML = exportSnapshotCounts()
+            .map(function (item) {
+              return (
+                '<div class="owner-dash-export-count"><span>' +
+                esc(item[0]) +
+                '</span><strong>' +
+                esc(item[1]) +
+                "</strong></div>"
+              );
+            })
+            .join("");
+        }
+        els.exportSection.querySelectorAll("[data-export-mode]").forEach(function (btn) {
+          var active = btn.getAttribute("data-export-mode") === state.exportMode;
+          btn.classList.toggle("is-active", active);
+          btn.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+        if (els.exportStatus) {
+          els.exportStatus.innerHTML =
+            "Mode: <strong>" +
+            esc(exportModeLabel()) +
+            "</strong> | Business leads: " +
+            esc(counts.business) +
+            " | Transportation requests: " +
+            esc(counts.transport);
+        }
+        if (els.exportEmpty) {
+          els.exportEmpty.hidden = exportRowTotal(rows) !== 0;
+        }
+      }
+
+      function buildNoRowsExportReport(title) {
+        return [
+          title || "Export report",
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          "No rows found.",
+          "No rows match this export mode.",
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function businessSimpleLeadBlock(row) {
+        var priority = calcBusinessPriority(row);
+        return [
+          "- Business: " + businessDisplayName(row),
+          "  Contact: " + exportValue(row.contact_name),
+          "  Phone: " + exportValue(row.contact_phone),
+          "  Email: " + exportValue(row.contact_email),
+          "  Status: " + displayStatus(row.status),
+          "  Priority: " + priority.label,
+          "  Recommended package: " + exportRecommendedPackage(row),
+          "  Next action: " + exportValue(calcBusinessNextAction(row, priority)),
+          "  Main problem: " + exportMultilineValue(row.current_problem),
+          "  Owner notes: " + exportMultilineValue(row.owner_notes),
+        ].join("\n");
+      }
+
+      function transportationSimpleLeadBlock(row) {
+        return [
+          "- Name: " + transportDisplayName(row),
+          "  Phone: " + exportValue(row.phone),
+          "  Email: " + exportValue(row.email),
+          "  Status: " + displayStatus(row.status),
+          "  Request type: " + exportValue(row.request_type),
+          "  Route/request: " + transportRouteText(row),
+          "  Notes: " + exportMultilineValue(row.conversation_excerpt || row.notes),
+          "  Owner notes: " + exportMultilineValue(row.owner_notes),
+        ].join("\n");
+      }
+
+      function buildCrmSummaryExport(rows) {
+        if (exportRowTotal(rows) === 0) return buildNoRowsExportReport("CRM Summary");
+        var counts = exportCountsForRows(rows);
+        return [
+          "CRM Summary — Where To Go SA / The AI Plug",
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          "Generated:",
+          exportGeneratedAt(),
+          "",
+          "Business leads:",
+          counts.business,
+          "",
+          "Transportation requests:",
+          counts.transport,
+          "",
+          "Hot leads:",
+          counts.hot,
+          "",
+          "Needs action:",
+          counts.needsAction,
+          "",
+          "Proposal-ready:",
+          counts.proposalReady,
+          "",
+          "Won / active clients:",
+          counts.wonClients,
+          "",
+          "Top next actions:",
+          "1. Contact hot leads",
+          "2. Follow up on needs-action leads",
+          "3. Prepare proposals/quotes",
+          "4. Move delivery/support items forward",
+          "5. Ask for testimonials/referrals when appropriate",
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function buildSimpleLeadListExport(rows) {
+        if (exportRowTotal(rows) === 0) return buildNoRowsExportReport("Simple Lead List");
+        return [
+          "Simple Lead List",
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          "Business leads:",
+          rows.business.length ? rows.business.map(businessSimpleLeadBlock).join("\n\n") : "- None loaded.",
+          "",
+          "Transportation:",
+          rows.transport.length ? rows.transport.map(transportationSimpleLeadBlock).join("\n\n") : "- None loaded.",
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function csvField(value) {
+        var text = value == null ? "" : String(value).replace(/\r?\n/g, " ").replace(/"/g, '""');
+        return '"' + text + '"';
+      }
+
+      function businessCsvRow(row) {
+        var priority = calcBusinessPriority(row);
+        return [
+          row.created_at,
+          row.business_name,
+          row.contact_name,
+          row.contact_phone,
+          row.contact_email,
+          displayStatus(row.status),
+          priority.label,
+          exportRecommendedPackage(row),
+          calcBusinessNextAction(row, priority),
+          row.current_problem,
+          row.owner_notes,
+          row.page_path,
+        ].map(csvField).join(",");
+      }
+
+      function transportCsvRow(row) {
+        return [
+          row.created_at,
+          row.name,
+          row.phone,
+          row.email,
+          displayStatus(row.status),
+          row.request_type,
+          firstValue(row, ["pickup_area", "pickup"]),
+          firstValue(row, ["destination", "dropoff", "dropoff_area"]),
+          row.conversation_excerpt || row.notes,
+          row.owner_notes,
+          row.page_path,
+        ].map(csvField).join(",");
+      }
+
+      function buildCsvStyleExport(rows) {
+        if (exportRowTotal(rows) === 0) return buildNoRowsExportReport("CSV-style list");
+        var businessHeader =
+          "created_at,business_name,contact_name,phone,email,status,priority,recommended_package,next_action,current_problem,owner_notes,page_path";
+        var transportHeader =
+          "created_at,name,phone,email,status,request_type,pickup,destination,notes,owner_notes,page_path";
+        return [
+          "CSV-style list",
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          "Business leads CSV:",
+          businessHeader,
+          rows.business.length ? rows.business.map(businessCsvRow).join("\n") : "",
+          "",
+          "Transportation CSV:",
+          transportHeader,
+          rows.transport.length ? rows.transport.map(transportCsvRow).join("\n") : "",
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function buildHotLeadsReport(rows) {
+        var hotRows = (rows.business || []).filter(isExportHotLead);
+        if (!hotRows.length) return buildNoRowsExportReport("Hot Leads Report");
+        return [
+          "Hot Leads Report",
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          hotRows
+            .map(function (row) {
+              var priority = calcBusinessPriority(row);
+              return [
+                "Business: " + businessDisplayName(row),
+                "Contact: " + exportValue(row.contact_name),
+                "Phone: " + exportValue(row.contact_phone),
+                "Email: " + exportValue(row.contact_email),
+                "Main problem: " + exportMultilineValue(row.current_problem),
+                "Recommended package: " + exportRecommendedPackage(row),
+                "Next action: " + exportValue(calcBusinessNextAction(row, priority)),
+                "Status: " + displayStatus(row.status),
+                "Owner notes: " + exportMultilineValue(row.owner_notes),
+              ].join("\n");
+            })
+            .join("\n\n"),
+          "",
+          "Recommended move:",
+          "Contact hot leads first while the request is still fresh.",
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function buildNeedsActionReport(rows) {
+        var matches = [];
+        (rows.business || []).forEach(function (row) {
+          var reason = exportNeedsActionReason(row, "business_leads");
+          if (reason) matches.push({ table: "business_leads", row: row, reason: reason });
+        });
+        (rows.transport || []).forEach(function (row) {
+          var reason = exportNeedsActionReason(row, "transportation_requests");
+          if (reason) matches.push({ table: "transportation_requests", row: row, reason: reason });
+        });
+        if (!matches.length) return buildNoRowsExportReport("Needs-Action Report");
+        return [
+          "Needs-Action Report",
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          matches
+            .map(function (match) {
+              var row = match.row;
+              var isBusiness = match.table === "business_leads";
+              return [
+                "Business/request: " + (isBusiness ? businessDisplayName(row) : transportDisplayName(row)),
+                "Contact: " + (isBusiness ? businessContactLine(row) : transportContactLine(row)),
+                "Status: " + displayStatus(row.status),
+                "Reason action is needed: " + match.reason,
+                "Recommended next step: " + exportValue(nextActionForQueue(match.table, row)),
+              ].join("\n");
+            })
+            .join("\n\n"),
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function buildProposalReadyReport(rows) {
+        var matches = (rows.business || []).filter(matchesProposalReadyReport);
+        if (!matches.length) return buildNoRowsExportReport("Proposal-Ready Report");
+        return [
+          "Proposal-Ready Report",
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          matches
+            .map(function (row) {
+              var pricing = calcPricingBuilder(row);
+              var deal = calcDealBuilder(row);
+              return [
+                "Business: " + businessDisplayName(row),
+                "Contact: " + businessContactLine(row),
+                "Recommended package: " + exportValue(pricing.recommendedPackage || deal.packageName),
+                "Price range if available: " + exportValue(pricing.priceRange),
+                "Best first deliverable: " + exportValue(pricing.firstDeliverable || deal.bestFirstDeliverable),
+                "Proposal status: " + dealStageLabel(row),
+                "Next step: " + exportValue(calcBusinessNextAction(row, calcBusinessPriority(row))),
+              ].join("\n");
+            })
+            .join("\n\n"),
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function buildWonClientReport(rows) {
+        var matches = (rows.business || []).filter(matchesWonActiveClientReport);
+        if (!matches.length) return buildNoRowsExportReport("Won / Active Client Report");
+        return [
+          "Won / Active Client Report",
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          matches
+            .map(function (row) {
+              var delivery = calcProjectDeliveryData(row);
+              var retention = calcClientRetentionData(row);
+              return [
+                "Business: " + businessDisplayName(row),
+                "Contact: " + businessContactLine(row),
+                "Package: " + exportValue(retention.recommendedPackage || delivery.recommendedPackage),
+                "Delivery/support stage: " + exportValue(delivery.deliveryStage || retention.supportStage),
+                "Next retention action: " + exportValue(retention.nextRetentionAction),
+                "Testimonial/referral opportunity: " + exportValue(retention.referralTestimonialStatus),
+                "Owner notes: " + exportMultilineValue(row.owner_notes),
+              ].join("\n");
+            })
+            .join("\n\n"),
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function buildTransportationReport(rows) {
+        var transport = rows.transport || [];
+        if (!transport.length) return buildNoRowsExportReport("Transportation Request Report");
+        return [
+          "Transportation Request Report",
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          transport
+            .map(function (row) {
+              return [
+                "Created: " + exportValue(fmtDate(row.created_at)),
+                "Name: " + transportDisplayName(row),
+                "Phone: " + exportValue(row.phone),
+                "Email: " + exportValue(row.email),
+                "Status: " + displayStatus(row.status),
+                "Request type: " + exportValue(row.request_type),
+                "Pickup: " + transportPickup(row),
+                "Destination: " + transportDestination(row),
+                "Requested time: " + exportValue(row.date_time),
+                "Group size: " + exportValue(row.group_size),
+                "Email alert: " + (row.alert_email_sent ? "Sent" : "Pending"),
+                "SMS alert: " + (row.alert_sms_sent ? "Sent" : "Pending"),
+                "Notes: " + exportMultilineValue(row.conversation_excerpt || row.notes),
+                "Owner notes: " + exportMultilineValue(row.owner_notes),
+              ].join("\n");
+            })
+            .join("\n\n"),
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function rowIsInLastSevenDays(row) {
+        var created = dateMs(row && row.created_at);
+        if (!created) return false;
+        return created >= Date.now() - 7 * 24 * 60 * 60 * 1000;
+      }
+
+      function deliverySupportActionMatch(row) {
+        return ownerNotesInclude(row, [
+          "materials",
+          "first preview",
+          "approved for launch",
+          "launched",
+          "support review",
+          "support active",
+          "retention",
+          "testimonial",
+          "referral",
+        ]);
+      }
+
+      function weeklyHighlights(rows) {
+        var items = [];
+        (rows.business || []).forEach(function (row) {
+          if (items.length >= 5) return;
+          if (isExportHotLead(row)) items.push("Hot lead: " + businessDisplayName(row) + " — " + exportValue(row.current_problem));
+        });
+        (rows.business || []).forEach(function (row) {
+          if (items.length >= 5) return;
+          if (matchesProposalReadyReport(row)) items.push("Proposal-ready: " + businessDisplayName(row) + " — " + exportRecommendedPackage(row));
+        });
+        (rows.business || []).forEach(function (row) {
+          if (items.length >= 5) return;
+          if (matchesWonActiveClientReport(row)) items.push("Won/active client: " + businessDisplayName(row));
+        });
+        (rows.transport || []).forEach(function (row) {
+          if (items.length >= 5) return;
+          if (isOpenTransportationRequest(row)) items.push("Open transportation request: " + transportDisplayName(row) + " — " + transportRouteText(row));
+        });
+        if (!items.length) items.push("No notable items found in the selected loaded rows.");
+        return items.slice(0, 5).map(function (item) {
+          return "- " + item;
+        }).join("\n");
+      }
+
+      function buildWeeklyRecap(rows) {
+        if (exportRowTotal(rows) === 0) return buildNoRowsExportReport("Weekly Recap");
+        var weeklyBusiness = (rows.business || []).filter(rowIsInLastSevenDays);
+        var weeklyTransport = (rows.transport || []).filter(rowIsInLastSevenDays);
+        var weeklyRows = { business: weeklyBusiness, transport: weeklyTransport };
+        return [
+          "Weekly Recap — Where To Go SA / The AI Plug",
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          "Period:",
+          "Last 7 days based on loaded rows",
+          "",
+          "New business leads:",
+          weeklyBusiness.length,
+          "",
+          "New transportation requests:",
+          weeklyTransport.length,
+          "",
+          "Hot leads:",
+          weeklyBusiness.filter(isExportHotLead).length,
+          "",
+          "Qualified/proposal-ready:",
+          weeklyBusiness.filter(matchesProposalReadyReport).length,
+          "",
+          "Won/active clients:",
+          weeklyBusiness.filter(matchesWonActiveClientReport).length,
+          "",
+          "Open follow-ups:",
+          weeklyBusiness.filter(function (row) {
+            return matchesNeedsActionReport(row, "business_leads");
+          }).length +
+            weeklyTransport.filter(function (row) {
+              return matchesNeedsActionReport(row, "transportation_requests");
+            }).length,
+          "",
+          "Delivery/support actions:",
+          weeklyBusiness.filter(deliverySupportActionMatch).length,
+          "",
+          "Highlights:",
+          weeklyHighlights(weeklyRows),
+          "",
+          "Recommended next week:",
+          "1. Contact new hot leads",
+          "2. Follow up on contacted/needs-action leads",
+          "3. Prepare quote/proposal items",
+          "4. Move delivery tasks forward",
+          "5. Review support/retention opportunities",
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function buildFullPipelineReport(rows) {
+        if (exportRowTotal(rows) === 0) return buildNoRowsExportReport("Full Pipeline Report");
+        return [
+          "Full Pipeline Report — Where To Go SA / The AI Plug",
+          "",
+          "Generated:",
+          exportGeneratedAt(),
+          "",
+          "Mode:",
+          exportModeLabel(),
+          "",
+          "Dashboard summary:",
+          buildCrmSummaryExport(rows),
+          "",
+          "Business leads:",
+          buildSimpleLeadListExport({ business: rows.business || [], transport: [] }),
+          "",
+          "Transportation:",
+          buildTransportationReport({ business: [], transport: rows.transport || [] }),
+          "",
+          "Hot leads:",
+          buildHotLeadsReport(rows),
+          "",
+          "Needs action:",
+          buildNeedsActionReport(rows),
+          "",
+          "Proposal-ready:",
+          buildProposalReadyReport(rows),
+          "",
+          "Won / active clients:",
+          buildWonClientReport(rows),
+          "",
+          "Weekly recap:",
+          buildWeeklyRecap(rows),
+          "",
+          "Copy only — nothing sends automatically.",
+        ].join("\n");
+      }
+
+      function exportTextForKind(kind) {
+        var rows = selectedExportRows();
+        if (kind === "crm-summary") return buildCrmSummaryExport(rows);
+        if (kind === "simple-list") return buildSimpleLeadListExport(rows);
+        if (kind === "csv-list") return buildCsvStyleExport(rows);
+        if (kind === "hot-leads") return buildHotLeadsReport(rows);
+        if (kind === "needs-action") return buildNeedsActionReport(rows);
+        if (kind === "proposal-ready") return buildProposalReadyReport(rows);
+        if (kind === "won-client") return buildWonClientReport(rows);
+        if (kind === "transportation") return buildTransportationReport(rows);
+        if (kind === "weekly-recap") return buildWeeklyRecap(rows);
+        if (kind === "full-pipeline") return buildFullPipelineReport(rows);
+        return "";
+      }
+
+      function copyExportReport(kind) {
+        if (!els.exportSection) return;
+        var text = exportTextForKind(kind);
+        if (!text) {
+          setCopyFeedback(els.exportSection, "Nothing to copy.", true);
+          return;
+        }
+        hideManualCopy(els.exportSection);
+        function onSuccess() {
+          setCopyFeedback(els.exportSection, "Copied.");
+        }
+        function onFail() {
+          showManualCopy(els.exportSection, text);
+          setCopyFeedback(els.exportSection, "Select text below to copy.", true);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(onSuccess)
+            .catch(function () {
+              if (fallbackExecCopy(text)) onSuccess();
+              else onFail();
+            });
+        } else if (fallbackExecCopy(text)) {
+          onSuccess();
+        } else {
+          onFail();
+        }
+      }
+
+      function visibleRowsExportSet() {
+        return {
+          business: visibleRowsForTable("business_leads"),
+          transport: visibleRowsForTable("transportation_requests"),
+        };
+      }
+
+      function downloadVisibleCsv() {
+        if (!els.exportSection) return;
+        var previousMode = state.exportMode;
+        var rows = visibleRowsExportSet();
+        state.exportMode = "visible";
+        var text = buildCsvStyleExport(rows);
+        state.exportMode = previousMode;
+        try {
+          var blob = new Blob([text], { type: "text/csv;charset=utf-8" });
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.href = url;
+          a.download = "owner-dashboard-visible-export.csv";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.setTimeout(function () {
+            URL.revokeObjectURL(url);
+          }, 500);
+          setCopyFeedback(els.exportSection, "Download ready.");
+        } catch {
+          showManualCopy(els.exportSection, text);
+          setCopyFeedback(els.exportSection, "Download failed. Select CSV text below to copy.", true);
+        }
+      }
+
       function renderBusiness(leads) {
         var filtered = visibleRowsForTable("business_leads");
         updateResultCount("business_leads", filtered.length, leads.length);
@@ -11397,6 +12471,7 @@
         syncNeedsActionButtonState();
         renderDailyBrief();
         renderTodayActions();
+        renderExportCrmSummary();
         renderBusiness(state.businessLeads);
         renderTransport(state.transportRows);
         updatePriorityNote();
@@ -11826,6 +12901,22 @@
 
           if (action === "copy-daily-brief") {
             copyDailyBrief(btn.getAttribute("data-copy-kind"));
+            return;
+          }
+
+          if (action === "select-export-mode") {
+            state.exportMode = btn.getAttribute("data-export-mode") || "visible";
+            renderExportCrmSummary();
+            return;
+          }
+
+          if (action === "copy-export-report") {
+            copyExportReport(btn.getAttribute("data-export-kind"));
+            return;
+          }
+
+          if (action === "download-visible-csv") {
+            downloadVisibleCsv();
             return;
           }
 
