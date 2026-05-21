@@ -2688,12 +2688,48 @@
       color: #fecaca;
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-research-profile,
+    .page-owner-dashboard .owner-dash-restaurant-research-profile *,
+    .page-owner-dashboard .owner-dash-restaurant-score-card {
+      min-width: 0;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-score-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-grid {
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      margin: 10px 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-card-meta--research {
+      grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-score-card strong {
+      font-size: 0.86rem;
+      line-height: 1.25;
+    }
+
     @media (max-width: 640px) {
       .page-owner-dashboard .owner-dash-restaurant-command-copy,
       .page-owner-dashboard .owner-dash-restaurant-command-actions,
       .page-owner-dashboard .owner-dash-restaurant-command-copy .owner-dash-btn,
       .page-owner-dashboard .owner-dash-restaurant-command-actions .owner-dash-btn {
         width: 100%;
+      }
+
+      .page-owner-dashboard .owner-dash-restaurant-research-score-row,
+      .page-owner-dashboard .owner-dash-restaurant-research-grid,
+      .page-owner-dashboard .owner-dash-restaurant-card-meta--research {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -2973,6 +3009,7 @@
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="won-clients" aria-pressed="false">Won / active clients</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-prospects" aria-pressed="false">Restaurant prospects</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-first50" aria-pressed="false">First 50 restaurant list</button>
+            <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-research-report" aria-pressed="false">Restaurant research report</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-clients" aria-pressed="false">Restaurant clients</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-proposal-ready" aria-pressed="false">Restaurant proposal-ready</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-recap-renewal" aria-pressed="false">Restaurant recap/renewal</button>
@@ -2994,6 +3031,7 @@
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="won-client">Copy won/client report</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-pipeline">Copy restaurant pipeline report</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-first50">Copy First 50 restaurant report</button>
+            <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-research-report">Copy restaurant research report</button>
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="transportation">Copy transportation report</button>
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="weekly-recap">Copy weekly recap</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="full-pipeline">Copy full pipeline report</button>
@@ -3178,6 +3216,83 @@
                   <option>Archive for later</option>
                 </select>
               </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Website status</span>
+                <select class="owner-dash-restaurant-create-select" name="website_status">
+                  <option selected>Unknown</option>
+                  <option>Strong</option>
+                  <option>Needs improvement</option>
+                  <option>Missing / weak</option>
+                  <option>Mobile issue</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Google profile status</span>
+                <select class="owner-dash-restaurant-create-select" name="google_profile_status">
+                  <option selected>Unknown</option>
+                  <option>Strong</option>
+                  <option>Needs updates</option>
+                  <option>Low visibility</option>
+                  <option>Review issue</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Menu / reservation path</span>
+                <select class="owner-dash-restaurant-create-select" name="menu_reservation_path">
+                  <option selected>Unknown</option>
+                  <option>Strong</option>
+                  <option>Needs improvement</option>
+                  <option>Missing reservation path</option>
+                  <option>Confusing mobile path</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Social presence</span>
+                <select class="owner-dash-restaurant-create-select" name="social_presence">
+                  <option selected>Unknown</option>
+                  <option>Strong</option>
+                  <option>Active but not converting</option>
+                  <option>Weak</option>
+                  <option>Missing</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Private dining / group path</span>
+                <select class="owner-dash-restaurant-create-select" name="private_dining_group_path">
+                  <option selected>Unknown</option>
+                  <option>Strong</option>
+                  <option>Needs improvement</option>
+                  <option>Missing</option>
+                  <option>Not applicable</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Visitor fit</span>
+                <select class="owner-dash-restaurant-create-select" name="visitor_fit">
+                  <option selected>Unknown</option>
+                  <option>High</option>
+                  <option>Medium</option>
+                  <option>Low</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">QR / funnel opportunity</span>
+                <select class="owner-dash-restaurant-create-select" name="qr_funnel_opportunity">
+                  <option selected>Unknown</option>
+                  <option>High</option>
+                  <option>Medium</option>
+                  <option>Low</option>
+                </select>
+              </label>
+              <label class="owner-dash-restaurant-create-field">
+                <span class="owner-dash-restaurant-create-label">Review / repeat guest opportunity</span>
+                <select class="owner-dash-restaurant-create-select" name="review_repeat_guest_opportunity">
+                  <option selected>Unknown</option>
+                  <option>High</option>
+                  <option>Medium</option>
+                  <option>Low</option>
+                </select>
+              </label>
               <label class="owner-dash-restaurant-create-field owner-dash-restaurant-create-field--wide">
                 <span class="owner-dash-restaurant-create-label">Internal notes</span>
                 <textarea class="owner-dash-restaurant-create-textarea" name="internal_notes" rows="4" placeholder="Private owner notes only. Nothing sends."></textarea>
@@ -3205,6 +3320,14 @@
             <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="contacted" aria-pressed="false">Contacted</button>
             <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="interested" aria-pressed="false">Interested</button>
             <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="proposal-ready" aria-pressed="false">Proposal Ready</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="high-priority-prospects" aria-pressed="false">High-priority prospects</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="good-prospects" aria-pressed="false">Good prospects</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="research-incomplete" aria-pressed="false">Research incomplete</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="research-complete" aria-pressed="false">Research complete</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="high-visitor-fit" aria-pressed="false">High visitor fit</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="qr-opportunity" aria-pressed="false">QR opportunity</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="review-opportunity" aria-pressed="false">Review opportunity</button>
+            <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="private-dining-opportunity" aria-pressed="false">Private dining opportunity</button>
             <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="not-now" aria-pressed="false">Not Now</button>
             <button type="button" class="owner-dash-filter owner-dash-restaurant-prospect-mode" data-restaurant-prospect-mode="not-a-fit" aria-pressed="false">Not a Fit</button>
           </div>
@@ -3505,6 +3628,7 @@
         { key: "won-clients", label: "Won / active clients" },
         { key: "restaurant-prospects", label: "Restaurant prospects" },
         { key: "restaurant-first50", label: "First 50 restaurant list" },
+        { key: "restaurant-research-report", label: "Restaurant research report" },
         { key: "restaurant-clients", label: "Restaurant clients" },
         { key: "restaurant-proposal-ready", label: "Restaurant proposal-ready" },
         { key: "restaurant-recap-renewal", label: "Restaurant recap/renewal" },
@@ -3643,6 +3767,8 @@
           angle: "Use discovery to choose the first useful restaurant offer.",
         },
       };
+
+      var RESTAURANT_RESEARCH_GUARDRAIL = "Internal research score only. This does not rank restaurants publicly or promise results.";
 
       var state = {
         businessLeads: [],
@@ -4166,8 +4292,9 @@
       function restaurantCardMetaHtml(row) {
         if (!isRestaurantRow(row)) return "";
         var snap = restaurantSnapshot(row);
+        var research = restaurantResearchProfile(row);
         return (
-          '<div class="owner-dash-restaurant-card-meta owner-dash-restaurant-card-meta--workflow">' +
+          '<div class="owner-dash-restaurant-card-meta owner-dash-restaurant-card-meta--workflow owner-dash-restaurant-card-meta--research">' +
           (isFirst50Restaurant(row) ? '<p class="owner-dash-restaurant-first50-line">FIRST 50 TARGET</p>' : "") +
           "<div><span>Stage</span><strong>" +
           esc(snap.stage) +
@@ -4183,6 +4310,12 @@
           "</strong></div>" +
           "<div><span>Next</span><strong>" +
           esc(snap.nextAction) +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-score-card"><span>Research score:</span><strong>' +
+          esc(research.researchScore + " / 100") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-score-card"><span>Sales priority:</span><strong>' +
+          esc(research.salesPriority) +
           "</strong></div>" +
           "</div>"
         );
@@ -4461,6 +4594,108 @@
         return ownerNoteMarkerValue(row, "Recommended restaurant offer:");
       }
 
+      function restaurantResearchValue(row, marker, fallback) {
+        return ownerNoteMarkerValue(row, marker + ":") || fallback || "Unknown";
+      }
+
+      function restaurantResearchHasMarker(row, marker) {
+        return ownerNotesInclude(row, [marker]);
+      }
+
+      function restaurantWebsitePathIsWeak(profile) {
+        return (
+          ["Missing / weak", "Needs improvement", "Mobile issue"].indexOf(profile.websiteStatus) !== -1 ||
+          ["Low visibility", "Needs updates", "Review issue"].indexOf(profile.googleStatus) !== -1 ||
+          ["Missing reservation path", "Confusing mobile path", "Needs improvement"].indexOf(profile.menuReservationStatus) !== -1
+        );
+      }
+
+      function restaurantWebsitePathIsStrong(profile) {
+        return (
+          profile.websiteStatus === "Strong" &&
+          profile.googleStatus === "Strong" &&
+          profile.menuReservationStatus === "Strong"
+        );
+      }
+
+      function restaurantPrivateDiningIsOpportunity(profile) {
+        return profile.privateDiningStatus === "Missing" || profile.privateDiningStatus === "Needs improvement";
+      }
+
+      function restaurantResearchScoreLabel(score) {
+        if (score >= 75) return "High-priority prospect";
+        if (score >= 50) return "Good prospect";
+        if (score >= 25) return "Watch / research more";
+        return "Low priority";
+      }
+
+      function restaurantResearchScore(profile) {
+        var score = 0;
+        var visitorFitScores = { High: 25, Medium: 15, Low: 5 };
+        var websiteScores = { "Missing / weak": 15, "Needs improvement": 10, "Mobile issue": 10, Strong: 3 };
+        var googleScores = { "Low visibility": 15, "Needs updates": 10, "Review issue": 10, Strong: 3 };
+        var menuScores = { "Missing reservation path": 15, "Confusing mobile path": 12, "Needs improvement": 10, Strong: 3 };
+        var privateScores = { Missing: 10, "Needs improvement": 8, Strong: 3, "Not applicable": 0 };
+        var opportunityScores = { High: 10, Medium: 6, Low: 2 };
+        score += visitorFitScores[profile.visitorFit] || 0;
+        score += websiteScores[profile.websiteStatus] || 0;
+        score += googleScores[profile.googleStatus] || 0;
+        score += menuScores[profile.menuReservationStatus] || 0;
+        score += privateScores[profile.privateDiningStatus] || 0;
+        score += opportunityScores[profile.qrOpportunity] || 0;
+        score += opportunityScores[profile.reviewOpportunity] || 0;
+        return Math.max(0, Math.min(100, score));
+      }
+
+      function restaurantRecommendedFirstMove(profile) {
+        var score = profile.researchScore || 0;
+        var highVisitorFit = profile.visitorFit === "High" || profile.highVisitorFitMarked;
+        var weakCustomerPath = restaurantWebsitePathIsWeak(profile);
+        var strongCustomerPath = restaurantWebsitePathIsStrong(profile);
+        var privateOpportunity = restaurantPrivateDiningIsOpportunity(profile);
+        var qrHigh = profile.qrOpportunity === "High" || profile.qrOpportunityMarked;
+        var reviewHigh = profile.reviewOpportunity === "High" || profile.reviewOpportunityMarked;
+        var systemCount = 0;
+        if (highVisitorFit && (weakCustomerPath || strongCustomerPath)) systemCount += 1;
+        if (privateOpportunity) systemCount += 1;
+        if (qrHigh) systemCount += 1;
+        if (reviewHigh) systemCount += 1;
+        if (score < 25) return "Research more before contacting.";
+        if (systemCount > 1) return "Pitch Restaurant Founding Growth Bundle.";
+        if (highVisitorFit && weakCustomerPath) return "Pitch visibility + customer path improvement.";
+        if (highVisitorFit && strongCustomerPath) return "Pitch Featured Visitor Placement or Route Partner.";
+        if (privateOpportunity) return "Pitch Lead + Inquiry System.";
+        if (qrHigh) return "Pitch QR Funnel System.";
+        if (reviewHigh) return "Pitch Review + Repeat Guest System.";
+        return "Research more before contacting.";
+      }
+
+      function restaurantResearchProfile(row) {
+        var profile = {
+          websiteStatus: restaurantResearchValue(row, "Website status", "Unknown"),
+          googleStatus: restaurantResearchValue(row, "Google profile status", "Unknown"),
+          menuReservationStatus: restaurantResearchValue(row, "Menu/reservation path", "Unknown"),
+          socialStatus: restaurantResearchValue(row, "Social presence", "Unknown"),
+          privateDiningStatus: restaurantResearchValue(row, "Private dining/group path", "Unknown"),
+          visitorFit: restaurantResearchValue(row, "Visitor fit", "Unknown"),
+          qrOpportunity: restaurantResearchValue(row, "QR/funnel opportunity", "Unknown"),
+          reviewOpportunity: restaurantResearchValue(row, "Review/repeat guest opportunity", "Unknown"),
+          websiteReviewed: restaurantResearchHasMarker(row, "Restaurant research: website reviewed"),
+          googleReviewed: restaurantResearchHasMarker(row, "Restaurant research: Google reviewed"),
+          menuReviewed: restaurantResearchHasMarker(row, "Restaurant research: menu path reviewed"),
+          socialReviewed: restaurantResearchHasMarker(row, "Restaurant research: social reviewed"),
+          privateDiningReviewed: restaurantResearchHasMarker(row, "Restaurant research: private dining reviewed"),
+          highVisitorFitMarked: restaurantResearchHasMarker(row, "Restaurant research: high visitor fit"),
+          qrOpportunityMarked: restaurantResearchHasMarker(row, "Restaurant research: QR opportunity"),
+          reviewOpportunityMarked: restaurantResearchHasMarker(row, "Restaurant research: review opportunity"),
+          researchComplete: restaurantResearchHasMarker(row, "Restaurant stage: researched"),
+        };
+        profile.researchScore = restaurantResearchScore(profile);
+        profile.salesPriority = restaurantResearchScoreLabel(profile.researchScore);
+        profile.recommendedFirstMove = restaurantRecommendedFirstMove(profile);
+        return profile;
+      }
+
       function restaurantOfferRecommendation(row) {
         var manualOffer = restaurantManualRecommendedOffer(row);
         if (manualOffer) {
@@ -4616,6 +4851,7 @@
 
       function restaurantSnapshot(row) {
         var rec = restaurantOfferRecommendation(row);
+        var research = restaurantResearchProfile(row);
         return {
           business: row.business_name || "Restaurant TBD",
           contact: row.contact_name || "Contact TBD",
@@ -4630,6 +4866,9 @@
           suggestedPrice: rec.price,
           stage: restaurantStage(row),
           nextAction: restaurantNextAction(row),
+          researchScore: research.researchScore,
+          salesPriority: research.salesPriority,
+          recommendedFirstMove: research.recommendedFirstMove,
         };
       }
 
@@ -4674,6 +4913,15 @@
         if (bucket === "proposal-ready") {
           return notes.indexOf("restaurant: proposal ready") !== -1 || notes.indexOf("restaurant stage: proposal ready") !== -1;
         }
+        var research = restaurantResearchProfile(row);
+        if (bucket === "high-priority-prospects") return research.salesPriority === "High-priority prospect";
+        if (bucket === "good-prospects") return research.salesPriority === "Good prospect";
+        if (bucket === "research-complete") return research.researchComplete;
+        if (bucket === "research-incomplete") return !research.researchComplete;
+        if (bucket === "high-visitor-fit") return research.visitorFit === "High" || research.highVisitorFitMarked;
+        if (bucket === "qr-opportunity") return research.qrOpportunity === "High" || research.qrOpportunityMarked;
+        if (bucket === "review-opportunity") return research.reviewOpportunity === "High" || research.reviewOpportunityMarked;
+        if (bucket === "private-dining-opportunity") return restaurantPrivateDiningIsOpportunity(research);
         if (bucket === "not-now") return notes.indexOf("restaurant stage: not now") !== -1;
         if (bucket === "not-a-fit") {
           return notes.indexOf("restaurant stage: not a fit") !== -1 || restaurantPriorityIsNotFit(row);
@@ -5823,6 +6071,11 @@
           "restaurant-renewal-message": "Restaurant renewal message copied",
           "restaurant-testimonial-case-study": "Restaurant testimonial / case study request copied",
           "restaurant-full-sales-bundle": "Full restaurant sales bundle copied",
+          "restaurant-research-summary": "Restaurant research summary copied",
+          "restaurant-score-explanation": "Restaurant score explanation copied",
+          "restaurant-best-first-offer-reason": "Best first offer reason copied",
+          "restaurant-pre-contact-notes": "Restaurant pre-contact notes copied",
+          "restaurant-research-to-outreach-plan": "Research-to-outreach plan copied",
         };
         return labels[kind] || "Copy action completed";
       }
@@ -11024,6 +11277,133 @@
         ].join("\n");
       }
 
+      function buildRestaurantResearchSummary(lead) {
+        var snap = restaurantSnapshot(lead);
+        var research = restaurantResearchProfile(lead);
+        return [
+          "Restaurant research summary — " + snap.business,
+          "",
+          "Score:",
+          research.researchScore + " / 100",
+          "",
+          "Sales priority:",
+          research.salesPriority,
+          "",
+          "Visitor lane:",
+          snap.lane,
+          "",
+          "Restaurant type:",
+          snap.restaurantType,
+          "",
+          "Website status:",
+          research.websiteStatus,
+          "",
+          "Google profile status:",
+          research.googleStatus,
+          "",
+          "Menu/reservation path:",
+          research.menuReservationStatus,
+          "",
+          "Social presence:",
+          research.socialStatus,
+          "",
+          "Private dining/group path:",
+          research.privateDiningStatus,
+          "",
+          "QR/funnel opportunity:",
+          research.qrOpportunity,
+          "",
+          "Review/repeat guest opportunity:",
+          research.reviewOpportunity,
+          "",
+          "Best first offer:",
+          snap.recommendedOffer,
+          "",
+          "Recommended first move:",
+          research.recommendedFirstMove,
+        ].join("\n");
+      }
+
+      function buildRestaurantScoreExplanation(lead) {
+        var research = restaurantResearchProfile(lead);
+        return [
+          "Why this restaurant scored " + research.researchScore + " / 100:",
+          "",
+          "The strongest opportunity appears to be:",
+          research.recommendedFirstMove,
+          "",
+          "Main signals:",
+          "- Visitor fit: " + research.visitorFit,
+          "- Website/customer path: " + research.websiteStatus,
+          "- Google visibility: " + research.googleStatus,
+          "- Menu/reservation path: " + research.menuReservationStatus,
+          "- QR/funnel opportunity: " + research.qrOpportunity,
+          "- Review/repeat guest opportunity: " + research.reviewOpportunity,
+          "",
+          "This is internal guidance only. It is not a guarantee of results.",
+        ].join("\n");
+      }
+
+      function buildRestaurantBestFirstOfferReason(lead) {
+        var snap = restaurantSnapshot(lead);
+        var research = restaurantResearchProfile(lead);
+        return [
+          "Best first offer for " + snap.business + ":",
+          snap.recommendedOffer,
+          "",
+          "Reason:",
+          research.recommendedFirstMove,
+          "",
+          "I would keep the first conversation focused on the most useful starting point instead of trying to sell everything at once.",
+        ].join("\n");
+      }
+
+      function buildRestaurantPreContactNotes(lead) {
+        var snap = restaurantSnapshot(lead);
+        var research = restaurantResearchProfile(lead);
+        return [
+          "Pre-contact notes — " + snap.business,
+          "",
+          "Before outreach, lead with:",
+          research.recommendedFirstMove,
+          "",
+          "Avoid overpromising:",
+          "- No guaranteed reservations",
+          "- No guaranteed revenue",
+          "- No guaranteed rankings",
+          "- No fake recommendation claims",
+          "- No unapproved AI/customer messages",
+          "",
+          "Ask first:",
+          "- Who handles marketing or guest inquiries?",
+          "- Are visitors, private dining, QR, reviews, or repeat guests a priority?",
+          "- What would make the first 90 days useful?",
+        ].join("\n");
+      }
+
+      function buildRestaurantResearchToOutreachPlan(lead) {
+        var snap = restaurantSnapshot(lead);
+        var research = restaurantResearchProfile(lead);
+        return [
+          "Research-to-outreach plan — " + snap.business,
+          "",
+          "1. Confirm the restaurant’s best visitor lane:",
+          snap.lane,
+          "",
+          "2. Lead with the first useful opportunity:",
+          research.recommendedFirstMove,
+          "",
+          "3. Recommend:",
+          snap.recommendedOffer,
+          "",
+          "4. First contact message:",
+          "Use the walk-in opening, Instagram DM opener, or after-visit follow-up.",
+          "",
+          "5. Next dashboard action:",
+          "Mark ready for contact, contacted, interested, or proposal ready after the conversation.",
+        ].join("\n");
+      }
+
       function restaurantTextForKind(kind, lead) {
         if (!lead || !isRestaurantRow(lead)) return "";
         if (kind === "restaurant-scouting-notes-template") return buildRestaurantScoutingNotesTemplate(lead);
@@ -11034,6 +11414,11 @@
         if (kind === "restaurant-phone-call-opener") return buildRestaurantPhoneCallOpener(lead);
         if (kind === "restaurant-research-checklist") return buildRestaurantResearchChecklist(lead);
         if (kind === "restaurant-first50-prospect-summary") return buildRestaurantFirst50ProspectSummary(lead);
+        if (kind === "restaurant-research-summary") return buildRestaurantResearchSummary(lead);
+        if (kind === "restaurant-score-explanation") return buildRestaurantScoreExplanation(lead);
+        if (kind === "restaurant-best-first-offer-reason") return buildRestaurantBestFirstOfferReason(lead);
+        if (kind === "restaurant-pre-contact-notes") return buildRestaurantPreContactNotes(lead);
+        if (kind === "restaurant-research-to-outreach-plan") return buildRestaurantResearchToOutreachPlan(lead);
         if (kind === "restaurant-first-outreach") return buildRestaurantFirstOutreach(lead);
         if (kind === "restaurant-warm-follow-up") return buildRestaurantWarmFollowUp(lead);
         if (kind === "restaurant-discovery-questions") return restaurantQuestionText();
@@ -11174,6 +11559,57 @@
         );
       }
 
+      function restaurantResearchProfileBlock(lead) {
+        var snap = restaurantSnapshot(lead);
+        var research = restaurantResearchProfile(lead);
+        return (
+          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-research-profile">' +
+          '<h3 class="owner-dash-detail-section-title">Restaurant Research Profile</h3>' +
+          '<p class="owner-dash-detail-section-note">Score the restaurant before outreach so the first pitch matches the real opportunity.</p>' +
+          '<div class="owner-dash-restaurant-research-score-row">' +
+          restaurantSnapshotItem("Research score:", research.researchScore + " / 100", false) +
+          restaurantSnapshotItem("Sales priority:", research.salesPriority, false) +
+          restaurantSnapshotItem("Recommended first move", research.recommendedFirstMove, true) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-snapshot owner-dash-restaurant-research-grid">' +
+          restaurantSnapshotItem("Website status", research.websiteStatus, false) +
+          restaurantSnapshotItem("Google profile status", research.googleStatus, false) +
+          restaurantSnapshotItem("Menu/reservation path", research.menuReservationStatus, false) +
+          restaurantSnapshotItem("Social presence", research.socialStatus, false) +
+          restaurantSnapshotItem("Private dining/group path", research.privateDiningStatus, false) +
+          restaurantSnapshotItem("Visitor fit", research.visitorFit, false) +
+          restaurantSnapshotItem("QR/funnel opportunity", research.qrOpportunity, false) +
+          restaurantSnapshotItem("Review/repeat guest opportunity", research.reviewOpportunity, false) +
+          restaurantSnapshotItem("Best visitor lane", snap.lane, false) +
+          restaurantSnapshotItem("Best first offer", snap.recommendedOffer, false) +
+          "</div>" +
+          '<p class="owner-dash-restaurant-workflow-guardrail">' +
+          esc(RESTAURANT_RESEARCH_GUARDRAIL) +
+          "</p>" +
+          '<div class="owner-dash-restaurant-copy-grid"><p class="owner-dash-restaurant-card-label">Research action buttons</p>' +
+          '<div class="owner-dash-restaurant-command-actions">' +
+          restaurantActionButton("website-reviewed", "Mark website reviewed", false) +
+          restaurantActionButton("google-reviewed", "Mark Google reviewed", false) +
+          restaurantActionButton("menu-path-reviewed", "Mark menu path reviewed", false) +
+          restaurantActionButton("social-reviewed", "Mark social reviewed", false) +
+          restaurantActionButton("private-dining-reviewed", "Mark private dining reviewed", false) +
+          restaurantActionButton("high-visitor-fit", "Mark high visitor fit", false) +
+          restaurantActionButton("qr-opportunity", "Mark QR opportunity", false) +
+          restaurantActionButton("review-opportunity", "Mark review opportunity", false) +
+          restaurantActionButton("research-complete", "Mark research complete", true) +
+          "</div></div>" +
+          '<div class="owner-dash-restaurant-copy-grid"><p class="owner-dash-restaurant-card-label">Restaurant research copy tools</p>' +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          restaurantCopyButton("restaurant-research-summary", "Copy restaurant research summary", true) +
+          restaurantCopyButton("restaurant-score-explanation", "Copy score explanation", false) +
+          restaurantCopyButton("restaurant-best-first-offer-reason", "Copy best first offer reason", false) +
+          restaurantCopyButton("restaurant-pre-contact-notes", "Copy pre-contact notes", false) +
+          restaurantCopyButton("restaurant-research-to-outreach-plan", "Copy research-to-outreach plan", false) +
+          "</div></div>" +
+          "</div>"
+        );
+      }
+
       function restaurantOfferLogicSummary(snap) {
         return [
           "Recommended offer: " + snap.recommendedOffer,
@@ -11248,6 +11684,7 @@
           restaurantActionButton("case-study-needed", "Mark case study needed", false) +
           "</div></div>" +
           restaurantProspectWorkflowBlock(lead) +
+          restaurantResearchProfileBlock(lead) +
           '<div class="owner-dash-restaurant-command-block"><p class="owner-dash-restaurant-card-label">Restaurant Guardrails</p>' +
           restaurantGuardrailsCard() +
           "</div>" +
@@ -12986,6 +13423,61 @@
             label: "Case study needed",
             tone: "ok",
           },
+          "website-reviewed": {
+            note: "Restaurant research: website reviewed.",
+            activity: "Restaurant research — Website reviewed",
+            label: "Website reviewed",
+            tone: "info",
+          },
+          "google-reviewed": {
+            note: "Restaurant research: Google reviewed.",
+            activity: "Restaurant research — Google reviewed",
+            label: "Google reviewed",
+            tone: "info",
+          },
+          "menu-path-reviewed": {
+            note: "Restaurant research: menu path reviewed.",
+            activity: "Restaurant research — Menu path reviewed",
+            label: "Menu path reviewed",
+            tone: "info",
+          },
+          "social-reviewed": {
+            note: "Restaurant research: social reviewed.",
+            activity: "Restaurant research — Social reviewed",
+            label: "Social reviewed",
+            tone: "info",
+          },
+          "private-dining-reviewed": {
+            note: "Restaurant research: private dining reviewed.",
+            activity: "Restaurant research — Private dining reviewed",
+            label: "Private dining reviewed",
+            tone: "info",
+          },
+          "high-visitor-fit": {
+            note: "Restaurant research: high visitor fit.",
+            activity: "Restaurant research — High visitor fit",
+            label: "High visitor fit",
+            tone: "ok",
+          },
+          "qr-opportunity": {
+            note: "Restaurant research: QR opportunity.",
+            activity: "Restaurant research — QR opportunity",
+            label: "QR opportunity",
+            tone: "ok",
+          },
+          "review-opportunity": {
+            note: "Restaurant research: review opportunity.",
+            activity: "Restaurant research — Review opportunity",
+            label: "Review opportunity",
+            tone: "ok",
+          },
+          "research-complete": {
+            status: currentKey === "new" ? "Reviewed" : null,
+            note: "Restaurant stage: researched.",
+            activity: "Restaurant research — Research complete",
+            label: "Research complete",
+            tone: "ok",
+          },
         };
         return configs[action] || null;
       }
@@ -13911,6 +14403,62 @@
         ].join("\n");
       }
 
+      function restaurantResearchReportLine(row) {
+        var snap = restaurantSnapshot(row);
+        var research = restaurantResearchProfile(row);
+        return [
+          exportValue(snap.business),
+          exportValue(row.contact_name),
+          exportValue(row.contact_phone),
+          exportValue(row.contact_email),
+          exportValue(snap.restaurantType),
+          exportValue(snap.lane),
+          exportValue(research.researchScore + " / 100"),
+          exportValue(research.salesPriority),
+          exportValue(snap.recommendedOffer),
+          exportValue(research.recommendedFirstMove),
+          exportMultilineValue(row.owner_notes).replace(/\r?\n/g, " "),
+        ].join(" | ");
+      }
+
+      function restaurantResearchReportGroup(title, rows, predicate) {
+        var matches = rows.filter(predicate);
+        return [title, matches.length ? matches.map(restaurantResearchReportLine).join("\n") : "- None"].join("\n");
+      }
+
+      function buildRestaurantResearchReport(rows) {
+        var matches = rows || restaurantAllRows();
+        if (!matches.length) return buildNoRowsExportReport("Restaurant research report");
+        return [
+          "Restaurant research report",
+          "",
+          "Generated:",
+          exportGeneratedAt(),
+          "",
+          "Columns:",
+          "Restaurant | Contact | Phone | Email | Type | Lane | Score | Priority | Best offer | Recommended first move | Notes",
+          "",
+          restaurantResearchReportGroup("High-priority prospects", matches, function (row) {
+            return restaurantResearchProfile(row).salesPriority === "High-priority prospect";
+          }),
+          "",
+          restaurantResearchReportGroup("Good prospects", matches, function (row) {
+            return restaurantResearchProfile(row).salesPriority === "Good prospect";
+          }),
+          "",
+          restaurantResearchReportGroup("Needs more research", matches, function (row) {
+            return restaurantResearchProfile(row).salesPriority === "Watch / research more";
+          }),
+          "",
+          restaurantResearchReportGroup("Low priority", matches, function (row) {
+            return restaurantResearchProfile(row).salesPriority === "Low priority";
+          }),
+          "",
+          RESTAURANT_RESEARCH_GUARDRAIL,
+          "Copy only. Nothing sends automatically.",
+        ].join("\n");
+      }
+
       function businessDisplayName(row) {
         return exportValue(row && (row.business_name || row.contact_name || "Business lead"));
       }
@@ -14057,6 +14605,9 @@
         if (mode === "restaurant-first50") {
           return { business: first50RestaurantRows(), transport: [] };
         }
+        if (mode === "restaurant-research-report") {
+          return { business: restaurantAllRows(), transport: [] };
+        }
         if (mode === "restaurant-clients") {
           return { business: restaurantClientRows(), transport: [] };
         }
@@ -14109,6 +14660,9 @@
           restaurantFirst50: business.filter(function (row) {
             return isRestaurantRow(row) && !isRestaurantClient(row) && isFirst50Restaurant(row);
           }).length,
+          restaurantResearchHighPriority: business.filter(function (row) {
+            return isRestaurantRow(row) && restaurantResearchProfile(row).salesPriority === "High-priority prospect";
+          }).length,
           restaurantClients: business.filter(isRestaurantClient).length,
           restaurantProposalReady: business.filter(function (row) {
             return isRestaurantRow(row) && restaurantStage(row) === "Proposal ready";
@@ -14141,6 +14695,12 @@
           ["Won / active clients", visibleBusiness.filter(matchesWonActiveClientReport).length],
           ["Restaurant prospects", restaurantProspectRows().length],
           ["First 50 restaurants", first50RestaurantRows().length],
+          [
+            "High-priority restaurant research",
+            restaurantAllRows().filter(function (row) {
+              return restaurantResearchProfile(row).salesPriority === "High-priority prospect";
+            }).length,
+          ],
           ["Restaurant clients", restaurantClientRows().length],
           [
             "Restaurant proposal-ready",
@@ -14703,6 +15263,9 @@
           "First 50 restaurants:",
           buildFirst50RestaurantReport(first50RestaurantRows()),
           "",
+          "Restaurant research report:",
+          buildRestaurantResearchReport(restaurantAllRows()),
+          "",
           "Weekly recap:",
           buildWeeklyRecap(rows),
           "",
@@ -14721,6 +15284,7 @@
         if (kind === "won-client") return buildWonClientReport(rows);
         if (kind === "restaurant-pipeline") return buildRestaurantPipelineReport({ business: restaurantAllRows(), transport: [] });
         if (kind === "restaurant-first50") return buildFirst50RestaurantReport(first50RestaurantRows());
+        if (kind === "restaurant-research-report") return buildRestaurantResearchReport(restaurantAllRows());
         if (kind === "transportation") return buildTransportationReport(rows);
         if (kind === "weekly-recap") return buildWeeklyRecap(rows);
         if (kind === "full-pipeline") return buildFullPipelineReport(rows);
@@ -14892,6 +15456,14 @@
           contacted: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "contacted"); }).length,
           interested: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "interested"); }).length,
           proposalReady: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "proposal-ready"); }).length,
+          highPriority: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "high-priority-prospects"); }).length,
+          goodProspects: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "good-prospects"); }).length,
+          researchIncomplete: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "research-incomplete"); }).length,
+          researchComplete: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "research-complete"); }).length,
+          highVisitorFit: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "high-visitor-fit"); }).length,
+          qrOpportunity: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "qr-opportunity"); }).length,
+          reviewOpportunity: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "review-opportunity"); }).length,
+          privateDiningOpportunity: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "private-dining-opportunity"); }).length,
           notNow: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "not-now"); }).length,
           notAFit: rows.filter(function (row) { return matchesRestaurantFirst50Bucket(row, "not-a-fit"); }).length,
         };
@@ -14918,6 +15490,14 @@
           first50CountHtml("Contacted", counts.contacted) +
           first50CountHtml("Interested", counts.interested) +
           first50CountHtml("Proposal ready", counts.proposalReady) +
+          first50CountHtml("High-priority prospects", counts.highPriority) +
+          first50CountHtml("Good prospects", counts.goodProspects) +
+          first50CountHtml("Research incomplete", counts.researchIncomplete) +
+          first50CountHtml("Research complete", counts.researchComplete) +
+          first50CountHtml("High visitor fit", counts.highVisitorFit) +
+          first50CountHtml("QR opportunity", counts.qrOpportunity) +
+          first50CountHtml("Review opportunity", counts.reviewOpportunity) +
+          first50CountHtml("Private dining opportunity", counts.privateDiningOpportunity) +
           first50CountHtml("Not now", counts.notNow) +
           first50CountHtml("Not a fit", counts.notAFit) +
           "</div>" +
@@ -15240,6 +15820,14 @@
           first_50_target: formValue(form, "first_50_target"),
           research_status: formValue(form, "research_status"),
           next_action: formValue(form, "next_action"),
+          website_status: formValue(form, "website_status"),
+          google_profile_status: formValue(form, "google_profile_status"),
+          menu_reservation_path: formValue(form, "menu_reservation_path"),
+          social_presence: formValue(form, "social_presence"),
+          private_dining_group_path: formValue(form, "private_dining_group_path"),
+          visitor_fit: formValue(form, "visitor_fit"),
+          qr_funnel_opportunity: formValue(form, "qr_funnel_opportunity"),
+          review_repeat_guest_opportunity: formValue(form, "review_repeat_guest_opportunity"),
           internal_notes: formValue(form, "internal_notes"),
         };
 

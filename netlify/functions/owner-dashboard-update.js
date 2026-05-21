@@ -119,6 +119,48 @@ const RESTAURANT_RESEARCH_STATUSES = new Set([
   "Not a fit",
 ]);
 
+const RESTAURANT_WEBSITE_STATUSES = new Set([
+  "Unknown",
+  "Strong",
+  "Needs improvement",
+  "Missing / weak",
+  "Mobile issue",
+]);
+
+const RESTAURANT_GOOGLE_PROFILE_STATUSES = new Set([
+  "Unknown",
+  "Strong",
+  "Needs updates",
+  "Low visibility",
+  "Review issue",
+]);
+
+const RESTAURANT_MENU_RESERVATION_PATHS = new Set([
+  "Unknown",
+  "Strong",
+  "Needs improvement",
+  "Missing reservation path",
+  "Confusing mobile path",
+]);
+
+const RESTAURANT_SOCIAL_PRESENCES = new Set([
+  "Unknown",
+  "Strong",
+  "Active but not converting",
+  "Weak",
+  "Missing",
+]);
+
+const RESTAURANT_PRIVATE_DINING_GROUP_PATHS = new Set([
+  "Unknown",
+  "Strong",
+  "Needs improvement",
+  "Missing",
+  "Not applicable",
+]);
+
+const RESTAURANT_RESEARCH_OPPORTUNITY_LEVELS = new Set(["Unknown", "High", "Medium", "Low"]);
+
 function json(statusCode, body) {
   return {
     statusCode,
@@ -231,6 +273,15 @@ function restaurantProspectOwnerNotes(input, includePriorityInNotes) {
     `Restaurant opportunity: ${input.main_opportunity}.`,
     `Recommended restaurant offer: ${input.recommended_offer}.`,
     `Restaurant next action: ${input.next_action}.`,
+    "Restaurant research:",
+    `Website status: ${input.website_status}.`,
+    `Google profile status: ${input.google_profile_status}.`,
+    `Menu/reservation path: ${input.menu_reservation_path}.`,
+    `Social presence: ${input.social_presence}.`,
+    `Private dining/group path: ${input.private_dining_group_path}.`,
+    `Visitor fit: ${input.visitor_fit}.`,
+    `QR/funnel opportunity: ${input.qr_funnel_opportunity}.`,
+    `Review/repeat guest opportunity: ${input.review_repeat_guest_opportunity}.`,
   ];
   if (includePriorityInNotes && input.priority) {
     lines.push(`Restaurant priority: ${input.priority}.`);
@@ -302,6 +353,14 @@ async function createRestaurantProspect(url, serviceKey, body) {
     first_50_target: pickAllowed(raw.first_50_target, RESTAURANT_FIRST_50_TARGETS, "Yes"),
     research_status: pickAllowed(raw.research_status, RESTAURANT_RESEARCH_STATUSES, "Needs research"),
     next_action: pickAllowed(raw.next_action, RESTAURANT_NEXT_ACTIONS, "Research restaurant"),
+    website_status: pickAllowed(raw.website_status, RESTAURANT_WEBSITE_STATUSES, "Unknown"),
+    google_profile_status: pickAllowed(raw.google_profile_status, RESTAURANT_GOOGLE_PROFILE_STATUSES, "Unknown"),
+    menu_reservation_path: pickAllowed(raw.menu_reservation_path, RESTAURANT_MENU_RESERVATION_PATHS, "Unknown"),
+    social_presence: pickAllowed(raw.social_presence, RESTAURANT_SOCIAL_PRESENCES, "Unknown"),
+    private_dining_group_path: pickAllowed(raw.private_dining_group_path, RESTAURANT_PRIVATE_DINING_GROUP_PATHS, "Unknown"),
+    visitor_fit: pickAllowed(raw.visitor_fit, RESTAURANT_RESEARCH_OPPORTUNITY_LEVELS, "Unknown"),
+    qr_funnel_opportunity: pickAllowed(raw.qr_funnel_opportunity, RESTAURANT_RESEARCH_OPPORTUNITY_LEVELS, "Unknown"),
+    review_repeat_guest_opportunity: pickAllowed(raw.review_repeat_guest_opportunity, RESTAURANT_RESEARCH_OPPORTUNITY_LEVELS, "Unknown"),
     internal_notes: trimStr(raw.internal_notes, 4000),
   };
 
