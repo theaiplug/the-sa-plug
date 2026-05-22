@@ -2544,6 +2544,7 @@
     }
 
     .page-owner-dashboard .owner-dash-restaurant-crm,
+    .page-owner-dashboard .owner-dash-restaurant-research,
     .page-owner-dashboard .owner-dash-restaurant-proposal,
     .page-owner-dashboard .owner-dash-restaurant-package,
     .page-owner-dashboard .owner-dash-restaurant-crm-summary {
@@ -2552,6 +2553,7 @@
     }
 
     .page-owner-dashboard .owner-dash-restaurant-crm-head,
+    .page-owner-dashboard .owner-dash-restaurant-research-head,
     .page-owner-dashboard .owner-dash-restaurant-proposal-head,
     .page-owner-dashboard .owner-dash-restaurant-package-head {
       display: flex;
@@ -2564,6 +2566,8 @@
     }
 
     .page-owner-dashboard .owner-dash-restaurant-crm-grid,
+    .page-owner-dashboard .owner-dash-restaurant-research-grid,
+    .page-owner-dashboard .owner-dash-restaurant-research-score-grid,
     .page-owner-dashboard .owner-dash-restaurant-proposal-grid,
     .page-owner-dashboard .owner-dash-restaurant-package-grid,
     .page-owner-dashboard .owner-dash-restaurant-package-snapshot {
@@ -2574,9 +2578,83 @@
     }
 
     .page-owner-dashboard .owner-dash-restaurant-proposal,
+    .page-owner-dashboard .owner-dash-restaurant-research,
     .page-owner-dashboard .owner-dash-restaurant-package {
       display: grid;
       gap: 12px;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-score-card,
+    .page-owner-dashboard .owner-dash-restaurant-research-group {
+      min-width: 0;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-score-card span,
+    .page-owner-dashboard .owner-dash-restaurant-research-group strong {
+      display: block;
+      margin: 0 0 5px;
+      color: rgba(255, 246, 230, 0.58);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-score-card strong {
+      display: block;
+      color: #c8fff5;
+      font-size: 1rem;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-groups {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-group {
+      display: grid;
+      align-content: start;
+      gap: 7px;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-check {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+      min-height: 36px;
+      color: rgba(255, 246, 230, 0.78);
+      font-size: 0.82rem;
+      line-height: 1.35;
+      cursor: pointer;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-check input {
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      accent-color: #14b8a6;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-notes {
+      grid-column: 1 / -1;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-research-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
     }
 
     .page-owner-dashboard .owner-dash-restaurant-proposal-explanation,
@@ -2722,6 +2800,7 @@
     }
 
     .page-owner-dashboard .owner-dash-restaurant-crm textarea,
+    .page-owner-dashboard .owner-dash-restaurant-research textarea,
     .page-owner-dashboard .owner-dash-restaurant-proposal textarea,
     .page-owner-dashboard .owner-dash-restaurant-package textarea {
       min-height: 126px;
@@ -2861,6 +2940,7 @@
       .page-owner-dashboard .owner-dash-restaurant-followup-actions .owner-dash-btn,
       .page-owner-dashboard .owner-dash-restaurant-lead-actions--kit .owner-dash-btn,
       .page-owner-dashboard .owner-dash-restaurant-crm .owner-dash-btn,
+      .page-owner-dashboard .owner-dash-restaurant-research .owner-dash-btn,
       .page-owner-dashboard .owner-dash-restaurant-proposal .owner-dash-btn,
       .page-owner-dashboard .owner-dash-first50-actions,
       .page-owner-dashboard .owner-dash-first50-actions .owner-dash-btn {
@@ -2868,12 +2948,16 @@
       }
 
       .page-owner-dashboard .owner-dash-restaurant-crm-grid,
+      .page-owner-dashboard .owner-dash-restaurant-research-grid,
+      .page-owner-dashboard .owner-dash-restaurant-research-score-grid,
+      .page-owner-dashboard .owner-dash-restaurant-research-groups,
       .page-owner-dashboard .owner-dash-restaurant-proposal-grid,
       .page-owner-dashboard .owner-dash-restaurant-proposal-reasons {
         grid-template-columns: 1fr;
       }
 
       .page-owner-dashboard .owner-dash-restaurant-followup-kit-head,
+      .page-owner-dashboard .owner-dash-restaurant-research-head,
       .page-owner-dashboard .owner-dash-restaurant-proposal-head {
         display: grid;
       }
@@ -4580,6 +4664,78 @@
         "Not a fit",
       ];
       var RESTAURANT_LEAD_PRIORITY_OPTIONS = ["High", "Medium", "Low"];
+      var RESTAURANT_LEAD_RESEARCH_FIT_OPTIONS = [
+        "Strong fit - Partner Program",
+        "Strong fit - AI Systems",
+        "Strong fit - Both",
+        "Needs more discovery",
+        "Not a fit right now",
+      ];
+      var RESTAURANT_LEAD_RESEARCH_FIRST_MOVE_OPTIONS = [
+        "Send first email",
+        "Schedule discovery call",
+        "Send partner overview",
+        "Send AI systems overview",
+        "Prepare combined proposal",
+        "Research more",
+        "Hold / not a fit",
+      ];
+      var RESTAURANT_LEAD_RESEARCH_NOTES_PLACEHOLDER =
+        "Google rating, review count, website notes, menu/reservation path, visitor use case, AI system opportunity, and any caution flags.";
+      var RESTAURANT_LEAD_RESEARCH_CHECKLIST_SECTIONS = [
+        {
+          title: "Visitor Guide Fit",
+          key: "visitor",
+          items: [
+            "Clear visitor use case",
+            "Good location / area relevance",
+            "Useful for resort guests",
+            "Useful for downtown / River Walk visitors",
+            "Useful for airport timing",
+            "Useful for business dinners",
+            "Useful for family/group dining",
+            "Strong food category visitors ask about",
+          ],
+        },
+        {
+          title: "Trust Signals",
+          key: "trust",
+          items: [
+            "Google rating looks strong",
+            "Review count looks strong",
+            "Website or social presence looks active",
+            "Photos/menu look credible",
+            "Hours/location are clear",
+            "Reservation or contact path is clear",
+          ],
+        },
+        {
+          title: "AI Systems Opportunity",
+          key: "ai",
+          items: [
+            "Website/contact path needs improvement",
+            "Private events/catering inquiries need structure",
+            "QR/menu/funnel opportunity exists",
+            "Missed-call/form follow-up issue likely",
+            "Owner needs lead visibility",
+            "DMs/forms/messages appear hard to track",
+            "Content/SEO/social consistency could improve",
+          ],
+        },
+        {
+          title: "Risk Flags",
+          key: "risk",
+          risk: true,
+          items: [
+            "Weak public trust signals",
+            "Unclear offer/positioning",
+            "Poor visitor fit",
+            "Owner expects guaranteed results",
+            "Too early / needs more discovery",
+            "Not enough information yet",
+          ],
+        },
+      ];
 
       var PROPOSAL_TYPES = ["Starter Fix", "Lead Capture System", "Business Command System", "Full AI Growth System"];
       var PROPOSAL_PACKAGE_MAP = {
@@ -5198,8 +5354,11 @@
         "Send first email",
         "Schedule discovery call",
         "Send Restaurant Partner Program details",
+        "Send partner overview",
         "Send AI Restaurant Growth Systems details",
+        "Send AI systems overview",
         "Prepare combined proposal",
+        "Research more",
         "Ask for more information",
         "Hold / not a fit",
         "Mark proposal sent",
@@ -5458,6 +5617,7 @@
         "Send partner program details",
         "Send Restaurant Partner Program details",
         "Send AI systems details",
+        "Send AI systems overview",
         "Send AI Restaurant Growth Systems details",
         "Send starter offer",
         "Prepare proposal",
@@ -6688,6 +6848,8 @@
           ownerNoteMarkerValue(row, "Proposal direction:") || ownerNoteMarkerValue(row, "Proposal recommendation:")
         );
         if (saved) return saved;
+        var researchDirection = restaurantLeadResearchProposalDirection(row);
+        if (researchDirection) return researchDirection;
         var fitLabel = String(restaurantLeadFitLabel(row) || "").toLowerCase();
         if (fitLabel === "not a fit") return "Not a fit yet";
         if (fitLabel === "needs more info") return "Needs more discovery";
@@ -9425,13 +9587,234 @@
         return ownerNoteMarkerValue(row, marker) || fallback || "";
       }
 
+      function restaurantLeadResearchAllItems() {
+        var items = [];
+        RESTAURANT_LEAD_RESEARCH_CHECKLIST_SECTIONS.forEach(function (section) {
+          section.items.forEach(function (label) {
+            items.push({
+              label: label,
+              sectionKey: section.key,
+              sectionTitle: section.title,
+              risk: Boolean(section.risk),
+            });
+          });
+        });
+        return items;
+      }
+
+      function restaurantLeadResearchItemMeta(label) {
+        var clean = String(label || "").trim().toLowerCase();
+        var items = restaurantLeadResearchAllItems();
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].label.toLowerCase() === clean) return items[i];
+        }
+        return null;
+      }
+
+      function restaurantLeadResearchParseList(value) {
+        var selected = {};
+        String(value || "")
+          .replace(/\s*\.\s*$/, "")
+          .split(/\s*;\s*|\s*,\s*/)
+          .map(function (item) {
+            return String(item || "").trim();
+          })
+          .filter(Boolean)
+          .forEach(function (label) {
+            var meta = restaurantLeadResearchItemMeta(label);
+            if (meta) selected[meta.label] = true;
+          });
+        return Object.keys(selected);
+      }
+
+      function restaurantLeadResearchCheckedLabels(row) {
+        return restaurantLeadResearchParseList(
+          ownerNoteMarkerValue(row, "Research checked items:") || ownerNoteMarkerValue(row, "checked research items:")
+        );
+      }
+
+      function restaurantLeadResearchSavedScore(row) {
+        var saved = ownerNoteMarkerValue(row, "Research score:") || ownerNoteMarkerValue(row, "research_score:");
+        var match = String(saved || "").match(/\d+/);
+        if (!match) return null;
+        var score = Number(match[0]);
+        if (!Number.isFinite(score)) return null;
+        return Math.max(0, Math.min(100, score));
+      }
+
+      function restaurantLeadResearchSavedFitResult(row) {
+        var saved =
+          ownerNoteMarkerValue(row, "Research fit result:") ||
+          ownerNoteMarkerValue(row, "research_fit_result:");
+        return restaurantLeadResearchNormalizeFitResult(saved);
+      }
+
+      function restaurantLeadResearchFirstMove(row) {
+        var saved =
+          ownerNoteMarkerValue(row, "Research first move:") ||
+          ownerNoteMarkerValue(row, "research_first_move:");
+        return restaurantLeadResearchNormalizeFirstMove(saved);
+      }
+
+      function restaurantLeadResearchNotes(row) {
+        var saved = ownerNoteMarkerValue(row, "Research notes:") || ownerNoteMarkerValue(row, "research_notes:");
+        return saved === "None" ? "" : saved;
+      }
+
+      function restaurantLeadResearchUpdatedAt(row) {
+        return ownerNoteMarkerValue(row, "Research updated at:") || ownerNoteMarkerValue(row, "research_updated_at:");
+      }
+
+      function restaurantLeadResearchNormalizeFitResult(value) {
+        var clean = String(value || "").replace(/\s*\.\s*$/, "").trim();
+        var lower = clean.toLowerCase().replace(/[–—]/g, "-").replace(/\s*-\s*/g, " - ");
+        var aliases = {
+          "strong fit - partner program": "Strong fit - Partner Program",
+          "strong fit - ai systems": "Strong fit - AI Systems",
+          "strong fit - both": "Strong fit - Both",
+          "needs more info": "Needs more discovery",
+          "needs more discovery": "Needs more discovery",
+          "not a fit": "Not a fit right now",
+          "not a fit yet": "Not a fit right now",
+          "not a fit right now": "Not a fit right now",
+        };
+        if (aliases[lower]) return aliases[lower];
+        return RESTAURANT_LEAD_RESEARCH_FIT_OPTIONS.indexOf(clean) !== -1 ? clean : "";
+      }
+
+      function restaurantLeadResearchNormalizeFirstMove(value) {
+        var clean = String(value || "").replace(/\s*\.\s*$/, "").trim();
+        var aliases = {
+          "send ai systems details": "Send AI systems overview",
+          "send ai restaurant growth systems details": "Send AI systems overview",
+          "send restaurant partner program details": "Send partner overview",
+          "send partner program details": "Send partner overview",
+          "ask for more information": "Research more",
+          "not ready": "Research more",
+          "mark not fit": "Hold / not a fit",
+        };
+        var lower = clean.toLowerCase();
+        if (aliases[lower]) return aliases[lower];
+        return RESTAURANT_LEAD_RESEARCH_FIRST_MOVE_OPTIONS.indexOf(clean) !== -1 ? clean : "";
+      }
+
+      function restaurantLeadResearchScoreFromLabels(labels, savedScore) {
+        var checked = labels || [];
+        if (!checked.length && savedScore == null) {
+          return { hasScore: false, score: null, display: "Not scored yet" };
+        }
+        if (!checked.length && savedScore != null) {
+          return { hasScore: true, score: savedScore, display: String(savedScore) + " / 100" };
+        }
+        var score = 0;
+        checked.forEach(function (label) {
+          var meta = restaurantLeadResearchItemMeta(label);
+          if (!meta) return;
+          score += meta.risk ? -10 : 5;
+        });
+        score = Math.max(0, Math.min(100, score));
+        return { hasScore: true, score: score, display: String(score) + " / 100" };
+      }
+
+      function restaurantLeadResearchCounts(labels) {
+        var counts = { visitor: 0, trust: 0, ai: 0, risk: 0 };
+        (labels || []).forEach(function (label) {
+          var meta = restaurantLeadResearchItemMeta(label);
+          if (!meta) return;
+          counts[meta.risk ? "risk" : meta.sectionKey] += 1;
+        });
+        return counts;
+      }
+
+      function restaurantLeadResearchHasLabel(labels, wanted) {
+        return (labels || []).indexOf(wanted) !== -1;
+      }
+
+      function restaurantLeadResearchSuggestedFit(labels, scoreInfo) {
+        var checked = labels || [];
+        var score = scoreInfo && scoreInfo.hasScore ? scoreInfo.score || 0 : null;
+        var counts = restaurantLeadResearchCounts(checked);
+        var guaranteeRisk = restaurantLeadResearchHasLabel(checked, "Owner expects guaranteed results");
+        var poorVisitorFit = restaurantLeadResearchHasLabel(checked, "Poor visitor fit");
+        var tooEarly = restaurantLeadResearchHasLabel(checked, "Too early / needs more discovery");
+        var notEnough = restaurantLeadResearchHasLabel(checked, "Not enough information yet");
+        if (!scoreInfo || !scoreInfo.hasScore) return "Needs more discovery";
+        if (guaranteeRisk || (counts.risk >= 3 && score < 45) || (poorVisitorFit && counts.trust < 2)) {
+          return "Not a fit right now";
+        }
+        if (notEnough || tooEarly || score < 35) return "Needs more discovery";
+        if (counts.visitor >= 2 && counts.ai >= 2 && score >= 55) return "Strong fit - Both";
+        if (counts.visitor >= 2 && counts.trust >= 2 && score >= 45) return "Strong fit - Partner Program";
+        if (counts.ai >= 2 && score >= 40) return "Strong fit - AI Systems";
+        if (counts.visitor >= 1 && counts.ai >= 1 && score >= 50) return "Strong fit - Both";
+        return "Needs more discovery";
+      }
+
+      function restaurantLeadResearchSuggestedFirstMove(fitResult, labels, scoreInfo) {
+        var fit = restaurantLeadResearchNormalizeFitResult(fitResult) || "Needs more discovery";
+        var score = scoreInfo && scoreInfo.hasScore ? scoreInfo.score || 0 : 0;
+        if (!scoreInfo || !scoreInfo.hasScore) return "Research more";
+        if (fit === "Not a fit right now") return "Hold / not a fit";
+        if (fit === "Needs more discovery") return score >= 35 ? "Schedule discovery call" : "Research more";
+        if (fit === "Strong fit - Both") return score >= 70 ? "Prepare combined proposal" : "Schedule discovery call";
+        if (fit === "Strong fit - Partner Program") return score >= 55 ? "Send partner overview" : "Send first email";
+        if (fit === "Strong fit - AI Systems") return score >= 55 ? "Send AI systems overview" : "Schedule discovery call";
+        return "Research more";
+      }
+
+      function restaurantLeadResearchValues(row) {
+        var checkedLabels = restaurantLeadResearchCheckedLabels(row);
+        var scoreInfo = restaurantLeadResearchScoreFromLabels(checkedLabels, restaurantLeadResearchSavedScore(row));
+        var suggestedFit = restaurantLeadResearchSuggestedFit(checkedLabels, scoreInfo);
+        var fitResult = restaurantLeadResearchSavedFitResult(row) || suggestedFit;
+        var firstMove =
+          restaurantLeadResearchFirstMove(row) ||
+          restaurantLeadResearchSuggestedFirstMove(fitResult, checkedLabels, scoreInfo);
+        return {
+          checkedLabels: checkedLabels,
+          hasScore: scoreInfo.hasScore,
+          score: scoreInfo.score,
+          scoreDisplay: scoreInfo.display,
+          suggestedFitResult: suggestedFit,
+          fitResult: fitResult,
+          firstMove: firstMove,
+          notes: restaurantLeadResearchNotes(row),
+          updatedAt: restaurantLeadResearchUpdatedAt(row),
+          hasSavedFitResult: Boolean(restaurantLeadResearchSavedFitResult(row)),
+          hasSavedFirstMove: Boolean(restaurantLeadResearchFirstMove(row)),
+        };
+      }
+
+      function restaurantLeadResearchProposalDirection(row) {
+        var fit = restaurantLeadResearchSavedFitResult(row);
+        if (fit === "Strong fit - Both") return "Combined Partner + AI Systems";
+        if (fit === "Strong fit - Partner Program") return "Partner Program only";
+        if (fit === "Strong fit - AI Systems") return "AI Restaurant Growth Systems only";
+        if (fit === "Needs more discovery") return "Needs more discovery";
+        if (fit === "Not a fit right now") return "Not a fit yet";
+        return "";
+      }
+
+      function restaurantLeadResearchProposalNextStep(row) {
+        var firstMove = restaurantLeadResearchFirstMove(row);
+        if (firstMove === "Send partner overview") return "Send partner overview";
+        if (firstMove === "Send AI systems overview") return "Send AI systems overview";
+        if (firstMove === "Prepare combined proposal") return "Prepare combined proposal";
+        if (firstMove === "Schedule discovery call") return "Schedule discovery call";
+        if (firstMove === "Research more") return "Research more";
+        if (firstMove === "Hold / not a fit") return "Hold / not a fit";
+        if (firstMove === "Send first email") return "Send first email";
+        return "";
+      }
+
       function restaurantLeadProposalValues(row) {
-        var recommendation = restaurantProposalNormalizeDirection(restaurantLeadProposalValue(
-          row,
-          "Proposal recommendation:",
-          restaurantProposalDefaultRecommendation(row)
-        )) || restaurantProposalDefaultRecommendation(row);
-        var nextStep = restaurantLeadProposalValue(row, "Proposal next step:", restaurantLeadNextAction(row));
+        var recommendation = restaurantProposalNormalizeDirection(
+          restaurantLeadProposalValue(row, "Proposal recommendation:", restaurantProposalDefaultRecommendation(row))
+        ) || restaurantProposalDefaultRecommendation(row);
+        var nextStep =
+          restaurantLeadProposalValue(row, "Proposal next step:", "") ||
+          restaurantLeadResearchProposalNextStep(row) ||
+          restaurantLeadNextAction(row);
         if (RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS.indexOf(nextStep) === -1) {
           nextStep = "Send first email";
         }
@@ -9542,6 +9925,109 @@
         return '<pre>' + esc(restaurantProposalSummaryText(values)) + "</pre>";
       }
 
+      function restaurantLeadResearchOptionHtml(options, current) {
+        return restaurantLeadSelectOptions(options, current, "");
+      }
+
+      function restaurantLeadResearchSelectedMap(values) {
+        var map = {};
+        (values && values.checkedLabels ? values.checkedLabels : []).forEach(function (label) {
+          map[label] = true;
+        });
+        return map;
+      }
+
+      function restaurantLeadResearchChecklistGroupHtml(section, selectedMap, open) {
+        return (
+          '<details class="owner-dash-collapsible owner-dash-collapsible--restaurant-research" ' +
+          (open ? "open " : "") +
+          'data-research-group="' +
+          esc(section.key) +
+          '">' +
+          '<summary class="owner-dash-collapsible-summary">' +
+          esc(section.title) +
+          "</summary>" +
+          '<div class="owner-dash-collapsible-body">' +
+          '<div class="owner-dash-restaurant-research-group">' +
+          "<strong>" +
+          esc(section.risk ? "Subtracts from score" : "Adds to score") +
+          "</strong>" +
+          section.items
+            .map(function (label) {
+              return (
+                '<label class="owner-dash-restaurant-research-check"><input type="checkbox" name="research_items" value="' +
+                esc(label) +
+                '"' +
+                (selectedMap[label] ? " checked" : "") +
+                " /> <span>" +
+                esc(label) +
+                "</span></label>"
+              );
+            })
+            .join("") +
+          "</div></div></details>"
+        );
+      }
+
+      function restaurantLeadResearchFitBlock(row) {
+        var values = restaurantLeadResearchValues(row);
+        var selectedMap = restaurantLeadResearchSelectedMap(values);
+        var updated = values.updatedAt ? '<span>Saved: ' + esc(fmtDate(values.updatedAt)) + "</span>" : "";
+        return (
+          '<section class="owner-dash-detail-section owner-dash-restaurant-research" data-restaurant-research-fit>' +
+          '<div class="owner-dash-restaurant-research-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Restaurant Research + Fit Score</h3>' +
+          '<p class="owner-dash-detail-section-note">Internal checklist for proposal readiness. Scores are private and never published.</p></div>' +
+          '<span class="owner-dash-restaurant-followup-badge">Internal only</span>' +
+          "</div>" +
+          '<div class="owner-dash-restaurant-research-score-grid">' +
+          '<div class="owner-dash-restaurant-research-score-card"><span>Research Score</span><strong data-research-score-display>' +
+          esc(values.scoreDisplay) +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-research-score-card"><span>Suggested Fit Result</span><strong data-research-suggested-fit>' +
+          esc(values.suggestedFitResult) +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-research-score-card"><span>Recommended First Move</span><strong data-research-suggested-first-move>' +
+          esc(values.firstMove) +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-research-score-card"><span>Saved</span><strong>' +
+          esc(values.updatedAt ? fmtDate(values.updatedAt) : "Not saved yet") +
+          "</strong></div>" +
+          "</div>" +
+          '<div class="owner-dash-restaurant-research-groups">' +
+          RESTAURANT_LEAD_RESEARCH_CHECKLIST_SECTIONS.map(function (section, idx) {
+            return restaurantLeadResearchChecklistGroupHtml(section, selectedMap, idx < 2);
+          }).join("") +
+          "</div>" +
+          '<div class="owner-dash-restaurant-research-grid">' +
+          '<label class="owner-dash-workflow-field"><span class="owner-dash-workflow-label">Fit result override</span>' +
+          '<select class="owner-dash-select" name="research_fit_result" data-research-fit-select' +
+          (values.hasSavedFitResult ? ' data-user-overridden="1"' : "") +
+          ">" +
+          restaurantLeadResearchOptionHtml(RESTAURANT_LEAD_RESEARCH_FIT_OPTIONS, values.fitResult) +
+          "</select></label>" +
+          '<label class="owner-dash-workflow-field"><span class="owner-dash-workflow-label">Recommended first move</span>' +
+          '<select class="owner-dash-select" name="research_first_move" data-research-first-move-select' +
+          (values.hasSavedFirstMove ? ' data-user-overridden="1"' : "") +
+          ">" +
+          restaurantLeadResearchOptionHtml(RESTAURANT_LEAD_RESEARCH_FIRST_MOVE_OPTIONS, values.firstMove) +
+          "</select></label>" +
+          '<label class="owner-dash-workflow-field owner-dash-restaurant-research-notes"><span class="owner-dash-workflow-label">Research notes</span>' +
+          '<textarea class="owner-dash-textarea" name="research_notes" rows="6" placeholder="' +
+          esc(RESTAURANT_LEAD_RESEARCH_NOTES_PLACEHOLDER) +
+          '">' +
+          esc(values.notes || "") +
+          "</textarea></label>" +
+          "</div>" +
+          '<p class="owner-dash-restaurant-followup-guardrail">Internal only. Do not expose research scores publicly, create listings, or promise placement, traffic, reservations, revenue, rankings, or results.</p>' +
+          '<div class="owner-dash-restaurant-research-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--primary" data-action="save-restaurant-research-score">Save research score</button>' +
+          '<span class="owner-dash-workflow-feedback" data-restaurant-research-feedback hidden aria-live="polite"></span>' +
+          updated +
+          "</div></section>"
+        );
+      }
+
       function restaurantProposalCheckboxValues(section, name) {
         var values = [];
         var boxes = section ? section.querySelectorAll('input[name="' + name + '"]:checked') : [];
@@ -9549,6 +10035,66 @@
           values.push(String(box.value || "").trim());
         });
         return values.filter(Boolean);
+      }
+
+      function readRestaurantLeadResearchFitValues(section) {
+        var checkedLabels = [];
+        var boxes = section ? section.querySelectorAll('input[name="research_items"]:checked') : [];
+        boxes.forEach(function (box) {
+          var value = String(box.value || "").trim();
+          if (restaurantLeadResearchItemMeta(value)) checkedLabels.push(value);
+        });
+        var scoreInfo = restaurantLeadResearchScoreFromLabels(checkedLabels, null);
+        var suggestedFit = restaurantLeadResearchSuggestedFit(checkedLabels, scoreInfo);
+        var fitEl = section && section.querySelector('[name="research_fit_result"]');
+        var firstMoveEl = section && section.querySelector('[name="research_first_move"]');
+        var notesEl = section && section.querySelector('[name="research_notes"]');
+        var fitResult =
+          restaurantLeadResearchNormalizeFitResult(fitEl ? fitEl.value : "") ||
+          suggestedFit;
+        var suggestedFirstMove = restaurantLeadResearchSuggestedFirstMove(fitResult, checkedLabels, scoreInfo);
+        var firstMove =
+          restaurantLeadResearchNormalizeFirstMove(firstMoveEl ? firstMoveEl.value : "") ||
+          suggestedFirstMove;
+        return {
+          checkedLabels: checkedLabels,
+          hasScore: scoreInfo.hasScore,
+          score: scoreInfo.score,
+          scoreDisplay: scoreInfo.display,
+          suggestedFitResult: suggestedFit,
+          fitResult: fitResult,
+          suggestedFirstMove: suggestedFirstMove,
+          firstMove: firstMove,
+          notes: notesEl ? String(notesEl.value || "").trim() : "",
+        };
+      }
+
+      function updateRestaurantLeadResearchPreview(section, sourceEl) {
+        if (!section) return;
+        if (sourceEl && (sourceEl.name === "research_fit_result" || sourceEl.name === "research_first_move")) {
+          sourceEl.setAttribute("data-user-overridden", "1");
+        }
+        var values = readRestaurantLeadResearchFitValues(section);
+        var fitEl = section.querySelector('[name="research_fit_result"]');
+        var firstMoveEl = section.querySelector('[name="research_first_move"]');
+        if (fitEl && !fitEl.getAttribute("data-user-overridden")) {
+          fitEl.value = values.suggestedFitResult;
+          values.fitResult = values.suggestedFitResult;
+        }
+        values.suggestedFirstMove = restaurantLeadResearchSuggestedFirstMove(values.fitResult, values.checkedLabels, {
+          hasScore: values.hasScore,
+          score: values.score,
+        });
+        if (firstMoveEl && !firstMoveEl.getAttribute("data-user-overridden")) {
+          firstMoveEl.value = values.suggestedFirstMove;
+          values.firstMove = values.suggestedFirstMove;
+        }
+        var scoreEl = section.querySelector("[data-research-score-display]");
+        var fitDisplay = section.querySelector("[data-research-suggested-fit]");
+        var firstMoveDisplay = section.querySelector("[data-research-suggested-first-move]");
+        if (scoreEl) scoreEl.textContent = values.scoreDisplay;
+        if (fitDisplay) fitDisplay.textContent = values.suggestedFitResult;
+        if (firstMoveDisplay) firstMoveDisplay.textContent = values.firstMove;
       }
 
       function readRestaurantProposalValues(section) {
@@ -9574,6 +10120,7 @@
 
       function restaurantProposalCopyText(row, values) {
         var cautions = (values.cautionReasons || []).filter(Boolean);
+        var research = restaurantLeadResearchValues(row);
         var lines = [
           "Internal restaurant proposal notes",
           "",
@@ -9581,6 +10128,8 @@
           "Contact name: " + (row.contact_name || "Contact TBD"),
           "Area/neighborhood: " + (row.area_neighborhood || "Not specified"),
           "Interest type: " + restaurantLeadInterestType(row),
+          "Research score: " + research.scoreDisplay,
+          "Research fit result: " + (research.fitResult || "Needs more discovery"),
           "Recommended path: " + (values.recommendation || "Needs more discovery"),
           "",
           "Fit reasons:",
@@ -9613,7 +10162,17 @@
       function restaurantLeadProposalBuilderBlock(row) {
         var values = restaurantLeadProposalValues(row);
         var info = restaurantProposalRecommendationInfo(values.recommendation);
+        var research = restaurantLeadResearchValues(row);
         var updated = values.updatedAt ? '<span>Saved: ' + esc(fmtDate(values.updatedAt)) + "</span>" : "";
+        var researchConnection =
+          research.updatedAt || research.hasScore
+            ? "Research connection: " +
+              research.scoreDisplay +
+              " | " +
+              (research.fitResult || "Needs more discovery") +
+              " | first move: " +
+              (research.firstMove || "Research more")
+            : "Research connection: not scored yet. Use Research + Fit Score before finalizing a proposal.";
         return (
           '<section class="owner-dash-detail-section owner-dash-restaurant-proposal" data-restaurant-proposal-builder>' +
           '<div class="owner-dash-restaurant-proposal-head">' +
@@ -9621,6 +10180,9 @@
           '<p class="owner-dash-detail-section-note">Internal offer recommendation tool. Nothing here is public, sent, published, invoiced, charged, or promised automatically.</p></div>' +
           '<span class="owner-dash-restaurant-followup-badge">Internal only</span>' +
           "</div>" +
+          '<p class="owner-dash-restaurant-proposal-explanation">' +
+          esc(researchConnection) +
+          "</p>" +
           '<div class="owner-dash-restaurant-proposal-grid">' +
           '<label class="owner-dash-workflow-field owner-dash-workflow-field--wide"><span class="owner-dash-workflow-label">Offer path recommendation</span>' +
           '<select class="owner-dash-select" name="proposal_recommendation">' +
@@ -17788,6 +18350,7 @@
           nextActionHtml(restaurantLeadNextAction(row) || (restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review restaurant lead status and notes.")) +
           restaurantLeadCrmSummaryBlock(row) +
           restaurantLeadCrmEditorBlock(row) +
+          restaurantLeadResearchFitBlock(row) +
           restaurantLeadProposalBuilderBlock(row) +
           restaurantLeadProposalPackageBuilderBlock(row) +
           restaurantLeadFollowUpKitHtml(row, true) +
@@ -18475,6 +19038,80 @@
             continue;
           }
           if (isRestaurantLeadProposalLine(lines[i])) {
+            if (!inserted) {
+              nextLines = nextLines.concat(blockLines);
+              inserted = true;
+            }
+            continue;
+          }
+          nextLines.push(lines[i]);
+        }
+        if (!inserted) nextLines.push(block);
+        return nextLines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+      }
+
+      function restaurantLeadResearchOneLine(value) {
+        return String(value || "").replace(/\s+/g, " ").trim();
+      }
+
+      function buildRestaurantLeadResearchFitScoreBlock(values) {
+        var clean = values || {};
+        var scoreText = clean.hasScore ? String(clean.score == null ? 0 : clean.score) : "Not scored yet";
+        return [
+          "Restaurant Research + Fit Score:",
+          "Research score: " + scoreText + ".",
+          "Research fit result: " + (clean.fitResult || "Needs more discovery") + ".",
+          "Research first move: " + (clean.firstMove || "Research more") + ".",
+          "Research checked items: " + ((clean.checkedLabels || []).join("; ") || "None selected") + ".",
+          "Research notes: " + (restaurantLeadResearchOneLine(clean.notes) || "None") + ".",
+          "Research updated at: " + (clean.updatedAt || new Date().toISOString()) + ".",
+        ].join("\n");
+      }
+
+      function isRestaurantLeadResearchFitScoreLine(line) {
+        var text = String(line || "").trim().toLowerCase();
+        return (
+          text.indexOf("research score:") === 0 ||
+          text.indexOf("research_score:") === 0 ||
+          text.indexOf("research fit result:") === 0 ||
+          text.indexOf("research_fit_result:") === 0 ||
+          text.indexOf("research first move:") === 0 ||
+          text.indexOf("research_first_move:") === 0 ||
+          text.indexOf("research checked items:") === 0 ||
+          text.indexOf("checked research items:") === 0 ||
+          text.indexOf("research notes:") === 0 ||
+          text.indexOf("research_notes:") === 0 ||
+          text.indexOf("research updated at:") === 0 ||
+          text.indexOf("research_updated_at:") === 0
+        );
+      }
+
+      function upsertRestaurantLeadResearchFitScoreBlock(existing, values) {
+        var block = buildRestaurantLeadResearchFitScoreBlock(values);
+        var current = String(existing || "").replace(/\r\n/g, "\n").trim();
+        if (!current) return block;
+        var lines = current.split("\n");
+        var blockLines = block.split("\n");
+        var nextLines = [];
+        var inserted = false;
+        for (var i = 0; i < lines.length; i++) {
+          if (/^\s*Restaurant Research \+ Fit Score:\s*$/i.test(lines[i])) {
+            if (!inserted) {
+              nextLines = nextLines.concat(blockLines);
+              inserted = true;
+            }
+            i += 1;
+            while (i < lines.length) {
+              if (!String(lines[i] || "").trim() || isRestaurantLeadResearchFitScoreLine(lines[i])) {
+                i += 1;
+                continue;
+              }
+              break;
+            }
+            i -= 1;
+            continue;
+          }
+          if (isRestaurantLeadResearchFitScoreLine(lines[i])) {
             if (!inserted) {
               nextLines = nextLines.concat(blockLines);
               inserted = true;
@@ -23983,6 +24620,14 @@
         fb.className = "owner-dash-workflow-feedback owner-dash-workflow-feedback--" + type;
       }
 
+      function setRestaurantResearchScoreFeedback(section, type, message) {
+        var fb = section && section.querySelector("[data-restaurant-research-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-workflow-feedback owner-dash-workflow-feedback--" + type;
+      }
+
       function setRestaurantProposalFeedback(section, type, message) {
         var fb = section && section.querySelector("[data-restaurant-proposal-feedback]");
         if (!fb) return;
@@ -24254,6 +24899,60 @@
         } else {
           onFail();
         }
+      }
+
+      function handleRestaurantResearchScoreSave(sheet, btn) {
+        if (!sheet) return;
+        var id = sheet.getAttribute("data-detail-id");
+        var section = sheet.querySelector("[data-restaurant-research-fit]");
+        if (!id || !section) return;
+        updateRestaurantLeadResearchPreview(section);
+        var before = findRecord("restaurant_leads", id);
+        if (!before) return;
+        var values = readRestaurantLeadResearchFitValues(section);
+        values.updatedAt = new Date().toISOString();
+        var previousNotes = String(before.row.owner_notes || "");
+        var nextNotes = upsertRestaurantLeadResearchFitScoreBlock(previousNotes, values);
+        var buttons = section.querySelectorAll("button, input, select, textarea");
+        var originalLabel = btn ? btn.textContent : "";
+        buttons.forEach(function (button) {
+          button.disabled = true;
+        });
+        if (btn) btn.textContent = "Saving...";
+        setRestaurantResearchScoreFeedback(section, "success", "Saving research score...");
+
+        postUpdate("restaurant_leads", id, { owner_notes: nextNotes })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setRestaurantResearchScoreFeedback(
+                section,
+                "error",
+                (result.data && result.data.error) || "Research score save failed. Try again."
+              );
+              return;
+            }
+            applyRecordUpdate("restaurant_leads", id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity("restaurant_leads", id, "Restaurant research score saved", "ok");
+            }
+            renderAll();
+            var fresh = els.detailBody && els.detailBody.querySelector("[data-restaurant-research-fit]");
+            setRestaurantResearchScoreFeedback(
+              fresh || section,
+              "success",
+              "Research score saved. Proposal Builder defaults can now use this result; CRM fields were not overwritten."
+            );
+            refreshCounts();
+          })
+          .catch(function () {
+            setRestaurantResearchScoreFeedback(section, "error", "Network error. Try again.");
+          })
+          .finally(function () {
+            buttons.forEach(function (button) {
+              button.disabled = false;
+            });
+            if (btn) btn.textContent = originalLabel || "Save research score";
+          });
       }
 
       function handleRestaurantProposalSave(sheet, btn) {
@@ -25005,6 +25704,11 @@
             return;
           }
 
+          if (sheet && action === "save-restaurant-research-score") {
+            handleRestaurantResearchScoreSave(sheet, btn);
+            return;
+          }
+
           if (sheet && action === "save-restaurant-proposal-recommendation") {
             handleRestaurantProposalSave(sheet, btn);
             return;
@@ -25043,6 +25747,8 @@
         });
 
         document.addEventListener("change", function (ev) {
+          var researchSection = ev.target && ev.target.closest("[data-restaurant-research-fit]");
+          if (researchSection) updateRestaurantLeadResearchPreview(researchSection, ev.target);
           var section = ev.target && ev.target.closest("[data-restaurant-proposal-builder]");
           if (section) updateRestaurantProposalPreview(section);
           var packageSection = ev.target && ev.target.closest("[data-restaurant-proposal-package]");
