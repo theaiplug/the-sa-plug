@@ -15901,7 +15901,11 @@ body.owner-dash-detail-open {
 
 .page-restaurants .rest-band-head {
   max-width: 40rem;
-  margin-bottom: clamp(18px, 2.4vw, 26px);
+  margin-bottom: clamp(16px, 2.2vw, 24px);
+}
+
+.page-restaurants .rest-sec--proof .rest-band-head {
+  margin-bottom: clamp(14px, 2vw, 20px);
 }
 
 .page-restaurants .rest-band-head--dark {
@@ -16129,11 +16133,12 @@ body.owner-dash-detail-open {
 
 .page-restaurants .rest-form-shell {
   margin-top: clamp(16px, 2.4vw, 22px);
-  padding: clamp(16px, 2vw, 20px);
+  padding: clamp(16px, 2vw, 20px) clamp(16px, 2vw, 20px) clamp(18px, 2.4vw, 22px);
   border-radius: calc(var(--radius) + 2px);
   background: rgba(255, 253, 248, 0.92);
   border: 1px solid rgba(11, 29, 58, 0.1);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  overflow-x: hidden;
 }
 
 .page-restaurants .rest-intake-form .transport-field {
@@ -16250,11 +16255,50 @@ body.owner-dash-detail-open {
 .page-restaurants .rest-interest-check input {
   margin-top: 0.2em;
   flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  min-width: 1.125rem;
+  min-height: 1.125rem;
+}
+
+.page-restaurants .rest-intake-form .rest-consent-note {
+  margin: clamp(14px, 2vw, 18px) 0 clamp(12px, 1.6vw, 14px);
+  padding: 10px 12px;
+  max-width: 100%;
+  font-size: clamp(0.875rem, 2.4vw, 0.95rem);
+  line-height: 1.45;
+  font-weight: 600;
+  color: #243044;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  border: 1px solid rgba(11, 29, 58, 0.1);
 }
 
 .page-restaurants .rest-form-submit {
   width: 100%;
-  margin-top: 4px;
+  margin-top: 0;
+  margin-bottom: max(4px, env(safe-area-inset-bottom, 0px));
+  min-height: 48px;
+}
+
+.page-restaurants .rest-sec--form {
+  padding-bottom: max(clamp(40px, 5vw, 52px), calc(16px + env(safe-area-inset-bottom, 0px)));
+}
+
+.page-restaurants .rest-sec--guardrail {
+  padding-top: clamp(22px, 3vw, 30px);
+}
+
+@media (max-width: 640px) {
+  .page-restaurants .rest-intake-form .transport-field span,
+  .page-restaurants .rest-interest-fieldset .business-operator-check-legend {
+    font-size: 0.8rem;
+  }
+
+  .page-restaurants .rest-interest-check {
+    font-size: 0.92rem;
+    padding: 4px 0;
+  }
 }
 
 .page-restaurants .rest-guardrail-inner {
