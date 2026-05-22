@@ -3936,6 +3936,139 @@
         hyphens: none;
       }
     }
+
+    /* Owner Dashboard v32 - mobile command sheet navigation */
+    .page-owner-dashboard .owner-dash-command-sheet,
+    .page-owner-dashboard .owner-dash-command-sheet * {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-command-nav {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      display: grid;
+      gap: 9px;
+      margin: 0 0 14px;
+      padding: 10px;
+      border: 1px solid rgba(20, 184, 166, 0.28);
+      border-radius: 16px;
+      background:
+        linear-gradient(145deg, rgba(4, 10, 22, 0.96), rgba(7, 18, 38, 0.92)),
+        rgba(4, 10, 22, 0.94);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+    }
+
+    .page-owner-dashboard .owner-dash-command-nav-label {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.72);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.035em;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-command-mode,
+    .page-owner-dashboard .owner-dash-command-jumps,
+    .page-owner-dashboard .owner-dash-command-quick-copy-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-command-mode-btn,
+    .page-owner-dashboard .owner-dash-command-jump {
+      appearance: none;
+      min-height: 40px;
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 246, 230, 0.88);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 850;
+      line-height: 1.25;
+      padding: 8px 11px;
+      text-align: center;
+      white-space: normal;
+    }
+
+    .page-owner-dashboard .owner-dash-command-mode-btn.is-active,
+    .page-owner-dashboard .owner-dash-command-jump:focus-visible,
+    .page-owner-dashboard .owner-dash-command-mode-btn:focus-visible {
+      outline: 2px solid rgba(255, 139, 31, 0.66);
+      outline-offset: 2px;
+    }
+
+    .page-owner-dashboard .owner-dash-command-mode-btn.is-active {
+      border-color: rgba(94, 234, 212, 0.58);
+      background: rgba(20, 184, 166, 0.18);
+      color: #c8fff5;
+      outline: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-command-jump {
+      border-color: rgba(255, 139, 31, 0.24);
+      background: rgba(255, 139, 31, 0.1);
+      color: #ffe4c4;
+    }
+
+    .page-owner-dashboard .owner-dash-command-section {
+      min-width: 0;
+      scroll-margin-top: 112px;
+    }
+
+    .page-owner-dashboard .owner-dash-command-quick-copy {
+      margin-bottom: 14px;
+      padding: 11px;
+      border: 1px solid rgba(255, 139, 31, 0.25);
+      border-radius: 16px;
+      background: rgba(255, 139, 31, 0.08);
+    }
+
+    .page-owner-dashboard .owner-dash-command-quick-copy h3 {
+      margin: 0 0 5px;
+      color: #ffe4c4;
+    }
+
+    .page-owner-dashboard .owner-dash-command-quick-copy p {
+      margin: 0 0 9px;
+      color: rgba(255, 246, 230, 0.72);
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+    .page-owner-dashboard .owner-dash-command-sheet.is-quick-actions [data-command-view="full"],
+    .page-owner-dashboard .owner-dash-command-sheet.is-full-training [data-command-view="quick-only"] {
+      display: none !important;
+    }
+
+    @media (max-width: 640px) {
+      .page-owner-dashboard .owner-dash-command-nav {
+        margin-left: -2px;
+        margin-right: -2px;
+      }
+
+      .page-owner-dashboard .owner-dash-command-mode,
+      .page-owner-dashboard .owner-dash-command-jumps,
+      .page-owner-dashboard .owner-dash-command-quick-copy-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard .owner-dash-command-jump,
+      .page-owner-dashboard .owner-dash-command-mode-btn,
+      .page-owner-dashboard .owner-dash-command-quick-copy-actions .owner-dash-btn {
+        width: 100%;
+        min-height: 44px;
+      }
+    }
   </style>
 </head>
 <body class="page-owner-dashboard">
@@ -5895,6 +6028,7 @@
         clientActivity: {},
         proposalSelections: {},
         clientProposalTones: {},
+        commandSheetViewModes: {},
         lastLoadedAt: null,
         exportMode: "visible",
       };
@@ -18165,8 +18299,9 @@
 
       function restaurantDiscoveryQuestionsHtml() {
         return (
-          '<div class="owner-dash-restaurant-rep-card">' +
-          '<h4>Restaurant Discovery Questions</h4>' +
+          '<details class="owner-dash-collapsible owner-dash-collapsible--restaurant-training">' +
+          '<summary class="owner-dash-collapsible-summary">Restaurant Discovery Questions</summary>' +
+          '<div class="owner-dash-collapsible-body owner-dash-restaurant-rep-card">' +
           '<div class="owner-dash-restaurant-rep-two-col">' +
           restaurantQuestionGroupCard("Visibility", RESTAURANT_DISCOVERY_QUESTION_GROUPS.visibility) +
           restaurantQuestionGroupCard("Reservation / inquiry path", RESTAURANT_DISCOVERY_QUESTION_GROUPS.reservationPath) +
@@ -18181,14 +18316,15 @@
           restaurantCopyButton("restaurant-qr-funnel-questions", "Copy QR/funnel questions", false) +
           restaurantCopyButton("restaurant-review-repeat-guest-questions", "Copy review/repeat guest questions", false) +
           restaurantCopyButton("restaurant-owner-approval-questions", "Copy owner approval questions", false) +
-          "</div></div>"
+          "</div></div></details>"
         );
       }
 
       function restaurantObjectionHandlerHtml() {
         return (
-          '<div class="owner-dash-restaurant-rep-card">' +
-          '<h4>Restaurant Objection Handler</h4>' +
+          '<details class="owner-dash-collapsible owner-dash-collapsible--restaurant-training">' +
+          '<summary class="owner-dash-collapsible-summary">Restaurant Objection Handler</summary>' +
+          '<div class="owner-dash-collapsible-body owner-dash-restaurant-rep-card">' +
           '<div class="owner-dash-restaurant-rep-two-col">' +
           RESTAURANT_OBJECTION_RESPONSES.map(function (item, idx) {
             return restaurantQuestionGroupCard(String(idx + 1) + ". " + item.title, [item.response]);
@@ -18202,14 +18338,15 @@
           restaurantCopyButton("restaurant-price-objection", "Copy price objection response", false) +
           restaurantCopyButton("restaurant-think-about-it-objection", "Copy think-about-it response", false) +
           restaurantCopyButton("restaurant-full-objection-sheet", "Copy full objection sheet", true) +
-          "</div></div>"
+          "</div></div></details>"
         );
       }
 
       function restaurantFollowUpCadenceHtml() {
         return (
-          '<div class="owner-dash-restaurant-rep-card">' +
-          '<h4>Restaurant Follow-Up Cadence</h4>' +
+          '<details class="owner-dash-collapsible owner-dash-collapsible--restaurant-training">' +
+          '<summary class="owner-dash-collapsible-summary">Restaurant Follow-Up Cadence</summary>' +
+          '<div class="owner-dash-collapsible-body owner-dash-restaurant-rep-card">' +
           bulletListHtml(RESTAURANT_FOLLOW_UP_CADENCE.map(function (item) { return item.label; }), "owner-dash-deal-list") +
           '<div class="owner-dash-restaurant-rep-copy-actions">' +
           restaurantCopyButton("restaurant-day-0-follow-up", "Copy day 0 follow-up", false) +
@@ -18219,14 +18356,15 @@
           restaurantCopyButton("restaurant-day-14-not-now-check", "Copy day 14 not-now check", false) +
           restaurantCopyButton("restaurant-day-30-revisit-message", "Copy day 30 revisit message", false) +
           restaurantCopyButton("restaurant-full-follow-up-cadence", "Copy full follow-up cadence", true) +
-          "</div></div>"
+          "</div></div></details>"
         );
       }
 
       function restaurantRepManagerRecapHtml() {
         return (
-          '<div class="owner-dash-restaurant-rep-card">' +
-          '<h4>Restaurant Rep Manager Recap</h4>' +
+          '<details class="owner-dash-collapsible owner-dash-collapsible--restaurant-training">' +
+          '<summary class="owner-dash-collapsible-summary">Restaurant Rep Manager Recap</summary>' +
+          '<div class="owner-dash-collapsible-body owner-dash-restaurant-rep-card">' +
           '<div class="owner-dash-restaurant-rep-grid">' +
           restaurantRepManagerCountCard("New restaurant prospects", restaurantProspectRows().length) +
           restaurantRepManagerCountCard("Research needed", restaurantRowsByRepStage("Research needed").length) +
@@ -18249,7 +18387,7 @@
           restaurantCopyButton("restaurant-rep-weekly-recap", "Copy restaurant rep weekly recap", false) +
           restaurantCopyButton("restaurant-pipeline-summary", "Copy restaurant pipeline summary", false) +
           restaurantCopyButton("restaurant-manager-ready-report", "Copy manager-ready report", true) +
-          "</div></div>"
+          "</div></div></details>"
         );
       }
 
@@ -18259,12 +18397,13 @@
 
       function restaurantRepGuardrailsHtml() {
         return (
-          '<div class="owner-dash-restaurant-rep-card">' +
-          '<h4>Restaurant Rep Guardrails</h4>' +
+          '<details class="owner-dash-collapsible owner-dash-collapsible--restaurant-training">' +
+          '<summary class="owner-dash-collapsible-summary">Restaurant Rep Guardrails</summary>' +
+          '<div class="owner-dash-collapsible-body owner-dash-restaurant-rep-card">' +
           restaurantGuardrailsCard() +
           '<p class="owner-dash-restaurant-rep-guardrail-note">' +
           esc(RESTAURANT_REP_GUARDRAIL_NOTE) +
-          "</p></div>"
+          "</p></div></details>"
         );
       }
 
@@ -18274,7 +18413,7 @@
         var proposal = restaurantProposalDirection(lead);
         var repStage = restaurantRepStage(lead);
         return (
-          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-rep-command">' +
+          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-rep-command" data-command-view="full">' +
           '<div class="owner-dash-restaurant-rep-command-head">' +
           '<h3 class="owner-dash-detail-section-title">Restaurant Sales Rep Command</h3>' +
           '<p class="owner-dash-restaurant-rep-command-subtitle">Run the restaurant program like a rep: research, contact, qualify, propose, close, and report without losing the next move.</p>' +
@@ -18399,7 +18538,7 @@
         var snap = restaurantSnapshot(lead);
         var research = restaurantResearchProfile(lead);
         return (
-          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-research-profile">' +
+          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-research-profile" data-command-section="research" data-command-view="full">' +
           '<h3 class="owner-dash-detail-section-title">Restaurant Research Profile</h3>' +
           '<p class="owner-dash-detail-section-note">Score the restaurant before outreach so the first pitch matches the real opportunity.</p>' +
           '<div class="owner-dash-restaurant-research-score-row">' +
@@ -18524,7 +18663,7 @@
             "</div>"
           : "";
         return (
-          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-proposal-builder" data-restaurant-command-proposal-builder>' +
+          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-proposal-builder" data-restaurant-command-proposal-builder data-command-section="proposal" data-command-view="full">' +
           '<h3 class="owner-dash-detail-section-title">Restaurant Proposal Builder</h3>' +
           '<p class="owner-dash-restaurant-proposal-subtitle">Turn the research score into a practical first offer without overbuilding the pitch.</p>' +
           manualOverrideWarning +
@@ -18629,7 +18768,7 @@
         var snap = restaurantSnapshot(lead);
         var close = restaurantCloseData(lead);
         return (
-          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-proposal-builder owner-dash-restaurant-close-command">' +
+          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-proposal-builder owner-dash-restaurant-close-command" data-command-section="close" data-command-view="full">' +
           '<h3 class="owner-dash-detail-section-title">Restaurant Close Command</h3>' +
           '<p class="owner-dash-restaurant-proposal-subtitle">Move this restaurant from proposal to signed client, materials collection, launch prep, and support without losing the next step.</p>' +
           '<div class="owner-dash-restaurant-snapshot owner-dash-restaurant-proposal-grid">' +
@@ -18781,7 +18920,7 @@
         var success = restaurantClientSuccessData(lead);
         var recap = restaurantMonthlyRecapData(lead);
         return (
-          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-proposal-builder owner-dash-restaurant-client-success">' +
+          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-proposal-builder owner-dash-restaurant-client-success" data-command-section="support" data-command-view="full">' +
           '<h3 class="owner-dash-detail-section-title">Restaurant Client Success Command</h3>' +
           '<p class="owner-dash-restaurant-proposal-subtitle">Keep restaurant clients active, improve the system, capture wins, and prepare the next offer.</p>' +
           '<div class="owner-dash-restaurant-snapshot owner-dash-restaurant-proposal-grid">' +
@@ -18824,13 +18963,13 @@
         if (!isRestaurantRow(lead)) return "";
         var snap = restaurantSnapshot(lead);
         return (
-          '<section class="owner-dash-detail-section owner-dash-detail-section--restaurant-command owner-dash-restaurant-command" data-restaurant-command>' +
+          '<section class="owner-dash-detail-section owner-dash-detail-section--restaurant-command owner-dash-restaurant-command" data-restaurant-command data-command-section="sales">' +
           '<div class="owner-dash-restaurant-head">' +
           '<div><h3 class="owner-dash-detail-section-title">Restaurant Sales Command</h3>' +
           '<p class="owner-dash-detail-section-note">Restaurant-specific sales guidance for visitor visibility, reservation paths, QR funnels, AI guest help, reviews, and repeat business. Copy only — nothing sends automatically.</p></div>' +
           '<span class="owner-dash-restaurant-mode-badge">Restaurant Prospect</span>' +
           "</div>" +
-          '<div class="owner-dash-restaurant-command-block"><p class="owner-dash-restaurant-card-label">Restaurant Snapshot</p>' +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="snapshot"><p class="owner-dash-restaurant-card-label">Restaurant Snapshot</p>' +
           '<div class="owner-dash-restaurant-snapshot">' +
           restaurantSnapshotItem("Business / restaurant name", snap.business, false) +
           restaurantSnapshotItem("Contact", snap.contact, false) +
@@ -18846,14 +18985,14 @@
           restaurantSnapshotItem("Next restaurant action", snap.nextAction, true) +
           "</div></div>" +
           restaurantSalesRepCommandBlock(lead) +
-          '<div class="owner-dash-restaurant-two-col">' +
+          '<div class="owner-dash-restaurant-two-col" data-command-view="full">' +
           '<article class="owner-dash-restaurant-command-block"><p class="owner-dash-restaurant-card-label">Rep Quick Pitch</p><p>' +
           esc(buildRestaurantPitch()) +
           "</p></article>" +
           restaurantCardList("Restaurant Discovery Questions", RESTAURANT_DISCOVERY_QUESTIONS) +
           "</div>" +
-          restaurantCardList("Restaurant Offer Recommendation Logic", restaurantOfferLogicSummary(snap)) +
-          '<div class="owner-dash-restaurant-copy-grid"><p class="owner-dash-restaurant-card-label">Restaurant Copy Tools</p>' +
+          commandSection("", "full", restaurantCardList("Restaurant Offer Recommendation Logic", restaurantOfferLogicSummary(snap))) +
+          '<div class="owner-dash-restaurant-copy-grid" data-command-section="copy-tools" data-command-view="full"><p class="owner-dash-restaurant-card-label">Restaurant Copy Tools</p>' +
           '<div class="owner-dash-restaurant-command-copy">' +
           restaurantCopyButton("restaurant-first-outreach", "Copy restaurant first outreach", true) +
           restaurantCopyButton("restaurant-warm-follow-up", "Copy restaurant warm follow-up", false) +
@@ -18885,12 +19024,12 @@
           restaurantActionButton("renewal-due", "Mark renewal due", false) +
           restaurantActionButton("case-study-needed", "Mark case study needed", false) +
           "</div></div>" +
-          restaurantProspectWorkflowBlock(lead) +
+          commandSection("", "full", restaurantProspectWorkflowBlock(lead)) +
           restaurantResearchProfileBlock(lead) +
           restaurantProposalBuilderBlock(lead) +
           restaurantCloseCommandBlock(lead) +
           restaurantClientSuccessCommandBlock(lead) +
-          '<div class="owner-dash-restaurant-command-block"><p class="owner-dash-restaurant-card-label">Restaurant Guardrails</p>' +
+          '<div class="owner-dash-restaurant-command-block" data-command-view="full"><p class="owner-dash-restaurant-card-label">Restaurant Guardrails</p>' +
           restaurantGuardrailsCard() +
           "</div>" +
           '<p class="owner-dash-restaurant-v1-note">' +
@@ -19109,6 +19248,201 @@
         );
       }
 
+      var BUSINESS_COMMAND_NAV_ITEMS = [
+        { key: "snapshot", label: "Snapshot" },
+        { key: "sales", label: "Sales" },
+        { key: "proposal", label: "Proposal" },
+        { key: "follow-up", label: "Follow-Up" },
+        { key: "close", label: "Close" },
+        { key: "delivery", label: "Delivery" },
+        { key: "support", label: "Support" },
+        { key: "copy-tools", label: "Copy Tools" },
+      ];
+
+      var RESTAURANT_COMMAND_NAV_ITEMS = [
+        { key: "snapshot", label: "Snapshot" },
+        { key: "research", label: "Research" },
+        { key: "sales", label: "Sales" },
+        { key: "proposal", label: "Proposal" },
+        { key: "follow-up", label: "Follow-Up" },
+        { key: "close", label: "Close" },
+        { key: "delivery", label: "Delivery" },
+        { key: "support", label: "Support" },
+        { key: "copy-tools", label: "Copy Tools" },
+      ];
+
+      var RESTAURANT_LEAD_COMMAND_NAV_ITEMS = [
+        { key: "snapshot", label: "Snapshot" },
+        { key: "research", label: "Research" },
+        { key: "sales", label: "Sales" },
+        { key: "proposal", label: "Proposal" },
+        { key: "follow-up", label: "Follow-Up" },
+        { key: "close", label: "Close" },
+        { key: "copy-tools", label: "Copy Tools" },
+      ];
+
+      function commandSheetKey(table, id) {
+        return String(table || "") + ":" + String(id || "");
+      }
+
+      function isMobileCommandSheetDefault() {
+        return typeof window !== "undefined" &&
+          window.matchMedia &&
+          window.matchMedia("(max-width: 640px)").matches;
+      }
+
+      function commandSheetMode(table, id) {
+        var key = commandSheetKey(table, id);
+        return state.commandSheetViewModes[key] || (isMobileCommandSheetDefault() ? "quick" : "full");
+      }
+
+      function commandSheetClass(table, id, extraClass) {
+        var mode = commandSheetMode(table, id);
+        return [
+          "owner-dash-detail-sheet",
+          "owner-dash-command-sheet",
+          mode === "quick" ? "is-quick-actions" : "is-full-training",
+          extraClass || "",
+        ].filter(Boolean).join(" ");
+      }
+
+      function commandSection(key, view, html) {
+        if (!html) return "";
+        return (
+          '<div class="owner-dash-command-section"' +
+          (key ? ' data-command-section="' + esc(key) + '"' : "") +
+          (view ? ' data-command-view="' + esc(view) + '"' : "") +
+          ">" +
+          html +
+          "</div>"
+        );
+      }
+
+      function commandSheetNavHtml(table, id, items) {
+        var mode = commandSheetMode(table, id);
+        var modeButtons = [
+          { mode: "quick", label: "Quick Actions" },
+          { mode: "full", label: "Full Training View" },
+        ].map(function (item) {
+          var active = item.mode === mode;
+          return (
+            '<button type="button" class="owner-dash-command-mode-btn' +
+            (active ? " is-active" : "") +
+            '" data-action="command-view-mode" data-command-mode="' +
+            esc(item.mode) +
+            '" aria-pressed="' +
+            (active ? "true" : "false") +
+            '">' +
+            esc(item.label) +
+            "</button>"
+          );
+        }).join("");
+        var jumps = (items || []).map(function (item) {
+          return (
+            '<button type="button" class="owner-dash-command-jump" data-action="command-jump" data-command-target="' +
+            esc(item.key) +
+            '">' +
+            esc(item.label) +
+            "</button>"
+          );
+        }).join("");
+        return (
+          '<nav class="owner-dash-command-nav" aria-label="Command sheet quick navigation">' +
+          '<p class="owner-dash-command-nav-label">Mobile command sheet view</p>' +
+          '<div class="owner-dash-command-mode" role="group" aria-label="View mode">' +
+          modeButtons +
+          "</div>" +
+          '<p class="owner-dash-command-nav-label">Jump to section</p>' +
+          '<div class="owner-dash-command-jumps">' +
+          jumps +
+          "</div></nav>"
+        );
+      }
+
+      function businessCommandSnapshotBlock(lead, priority, nextAction) {
+        return (
+          '<section class="owner-dash-detail-section owner-dash-command-snapshot">' +
+          '<h3 class="owner-dash-detail-section-title">Lead Snapshot</h3>' +
+          '<p class="owner-dash-detail-section-note">Fast operating view for mobile. Full training and tool sections stay available in Full Training View.</p>' +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Business / restaurant", lead.business_name) +
+          detailRow("Contact", lead.contact_name) +
+          detailRow("Phone / email", [lead.contact_phone, lead.contact_email].filter(Boolean).join(" / ")) +
+          detailRow("Priority", priority && priority.label) +
+          detailRow("Status", displayStatus(lead.status)) +
+          detailRow("Recommended system", lead.recommended_system || (isRestaurantRow(lead) ? restaurantSnapshot(lead).recommendedOffer : null), true) +
+          detailRow("Next recommended action", nextAction, true) +
+          detailRow("Owner notes", lead.owner_notes, true) +
+          "</div></section>"
+        );
+      }
+
+      function commandQuickCopyButton(action, kind, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="' +
+          esc(action) +
+          '" data-copy-kind="' +
+          esc(kind) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function businessCommandQuickCopyBlock(lead) {
+        var restaurant = isRestaurantRow(lead);
+        var buttons =
+          commandQuickCopyButton("copy-field", "phone", "Copy phone", false) +
+          commandQuickCopyButton("copy-field", "email", "Copy email", false) +
+          commandQuickCopyButton("copy-followup", "email-reply", "Copy email reply", true) +
+          commandQuickCopyButton("copy-followup", "call-script", "Copy call script", false);
+        if (restaurant) {
+          buttons +=
+            commandQuickCopyButton("copy-restaurant", "restaurant-first-outreach", "Copy first outreach", true) +
+            commandQuickCopyButton("copy-restaurant", "restaurant-warm-follow-up", "Copy warm follow-up", false) +
+            commandQuickCopyButton("copy-restaurant", "restaurant-proposal-summary", "Copy proposal summary", false) +
+            commandQuickCopyButton("copy-restaurant", "restaurant-full-sales-bundle", "Copy full sales bundle", false);
+        } else {
+          buttons +=
+            commandQuickCopyButton("copy-followup", "sms-followup", "Copy SMS follow-up", false) +
+            commandQuickCopyButton("copy-field", "summary", "Copy lead summary", true);
+        }
+        return (
+          '<section class="owner-dash-command-quick-copy" data-command-view="quick-only">' +
+          '<h3>Highest Priority Copy Buttons</h3>' +
+          '<p>Copy-only shortcuts for the most common manual next steps. Nothing sends automatically.</p>' +
+          '<div class="owner-dash-command-quick-copy-actions">' +
+          buttons +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
+      function restaurantLeadQuickCopyBlock(row) {
+        return (
+          '<section class="owner-dash-command-quick-copy" data-command-view="quick-only">' +
+          '<h3>Highest Priority Copy Buttons</h3>' +
+          '<p>Copy-only shortcuts for first response, text reply, proposal follow-up, and the full restaurant lead kit.</p>' +
+          '<div class="owner-dash-command-quick-copy-actions">' +
+          restaurantLeadKitCopyButton("first-response-email", "Copy first email", true) +
+          restaurantLeadKitCopyButton("first-text-message", "Copy text reply", false) +
+          restaurantLeadKitCopyButton("proposal-follow-up-email", "Copy proposal follow-up", false) +
+          restaurantLeadKitCopyButton("full-restaurant-follow-up-kit", "Copy full lead kit", true) +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
       function collapsibleBlock(label, bodyHtml, extraClass) {
         return (
           '<details class="owner-dash-collapsible' +
@@ -19296,7 +19630,9 @@
 
       function renderRestaurantLeadDetail(row) {
         return (
-          '<div class="owner-dash-detail-sheet" data-detail-table="restaurant_leads" data-detail-id="' +
+          '<div class="' +
+          commandSheetClass("restaurant_leads", row.id, "owner-dash-command-sheet--restaurant-lead") +
+          '" data-detail-table="restaurant_leads" data-detail-id="' +
           esc(row.id) +
           '">' +
           '<div class="owner-dash-detail-badges">' +
@@ -19311,17 +19647,25 @@
           '">' +
           esc(fmtDate(row.created_at)) +
           "</time></div>" +
-          nextActionHtml(restaurantLeadNextAction(row) || (restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review restaurant lead status and notes.")) +
-          restaurantLeadCrmSummaryBlock(row) +
-          restaurantLeadCrmEditorBlock(row) +
-          restaurantLeadResearchFitBlock(row) +
-          restaurantLeadProposalBuilderBlock(row) +
-          restaurantLeadProposalPackageBuilderBlock(row) +
-          restaurantLeadFollowUpKitHtml(row, true) +
-          restaurantLeadDetailsBlock(row) +
-          quickStatusBlock("restaurant_leads", row.status) +
-          workflowBlock("restaurant_leads", row) +
-          activityTimelineBlock("restaurant_leads", row) +
+          commandSheetNavHtml("restaurant_leads", row.id, RESTAURANT_LEAD_COMMAND_NAV_ITEMS) +
+          commandSection(
+            "snapshot",
+            "",
+            nextActionHtml(restaurantLeadNextAction(row) || (restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review restaurant lead status and notes.")) +
+              restaurantLeadCrmSummaryBlock(row)
+          ) +
+          commandSection("sales", "", restaurantLeadCrmEditorBlock(row)) +
+          commandSection("copy-tools", "quick-only", restaurantLeadQuickCopyBlock(row)) +
+          commandSection("research", "full", restaurantLeadResearchFitBlock(row)) +
+          commandSection(
+            "proposal",
+            "full",
+            restaurantLeadProposalBuilderBlock(row) + restaurantLeadProposalPackageBuilderBlock(row)
+          ) +
+          commandSection("follow-up", "full", restaurantLeadFollowUpKitHtml(row, true)) +
+          commandSection("snapshot", "full", restaurantLeadDetailsBlock(row)) +
+          commandSection("close", "", quickStatusBlock("restaurant_leads", row.status) + workflowBlock("restaurant_leads", row)) +
+          commandSection("support", "full", activityTimelineBlock("restaurant_leads", row)) +
           "</div>"
         );
       }
@@ -19329,8 +19673,16 @@
       function renderBusinessDetail(lead) {
         var priority = calcBusinessPriority(lead);
         var nextAction = calcBusinessNextAction(lead, priority);
+        var restaurant = isRestaurantRow(lead);
+        var navItems = restaurant ? RESTAURANT_COMMAND_NAV_ITEMS : BUSINESS_COMMAND_NAV_ITEMS;
         return (
-          '<div class="owner-dash-detail-sheet" data-detail-table="business_leads" data-detail-id="' +
+          '<div class="' +
+          commandSheetClass(
+            "business_leads",
+            lead.id,
+            restaurant ? "owner-dash-command-sheet--restaurant-prospect" : "owner-dash-command-sheet--business-lead"
+          ) +
+          '" data-detail-table="business_leads" data-detail-id="' +
           esc(lead.id) +
           '">' +
           '<div class="owner-dash-detail-badges">' +
@@ -19346,25 +19698,27 @@
           '">' +
           esc(fmtDate(lead.created_at)) +
           "</time></div>" +
-          nextActionHtml(nextAction) +
-          opportunityBuilderBlock(lead) +
-          restaurantSalesCommandBlock(lead) +
-          dealBuilderBlock(lead) +
-          dealStageTrackerBlock(lead) +
-          proposalEstimateBlock(lead) +
-          followUpCommandCenterBlock(lead) +
-          clientProposalSheetBlock(lead) +
-          pricingBuilderBlock(lead) +
-          quoteInvoicePrepBlock(lead) +
-          closeOnboardingCommandBlock(lead) +
-          projectDeliveryCommandBlock(lead) +
-          clientSupportRetentionCommandBlock(lead) +
-          groupedToolsBlock("business_leads") +
-          quickStatusBlock("business_leads", lead.status) +
-          workflowBlock("business_leads", lead) +
-          activityTimelineBlock("business_leads", lead) +
-          businessLeadDetailsBlock(lead) +
-          businessAiTranscriptBlock(lead) +
+          commandSheetNavHtml("business_leads", lead.id, navItems) +
+          commandSection("snapshot", "", nextActionHtml(nextAction)) +
+          commandSection("snapshot", "quick-only", businessCommandSnapshotBlock(lead, priority, nextAction)) +
+          commandSection("copy-tools", "quick-only", businessCommandQuickCopyBlock(lead)) +
+          commandSection("sales", "full", opportunityBuilderBlock(lead)) +
+          (restaurant ? restaurantSalesCommandBlock(lead) : "") +
+          commandSection("sales", "full", dealBuilderBlock(lead) + dealStageTrackerBlock(lead)) +
+          commandSection(
+            "proposal",
+            "full",
+            proposalEstimateBlock(lead) + clientProposalSheetBlock(lead) + pricingBuilderBlock(lead) + quoteInvoicePrepBlock(lead)
+          ) +
+          commandSection("follow-up", "full", followUpCommandCenterBlock(lead)) +
+          commandSection("close", "full", closeOnboardingCommandBlock(lead)) +
+          commandSection("delivery", "full", projectDeliveryCommandBlock(lead)) +
+          commandSection("support", "full", clientSupportRetentionCommandBlock(lead)) +
+          commandSection("copy-tools", "full", groupedToolsBlock("business_leads")) +
+          commandSection("close", "", quickStatusBlock("business_leads", lead.status)) +
+          commandSection("sales", "", workflowBlock("business_leads", lead)) +
+          commandSection("support", "full", activityTimelineBlock("business_leads", lead)) +
+          commandSection("snapshot", "full", businessLeadDetailsBlock(lead) + businessAiTranscriptBlock(lead)) +
           "</div>"
         );
       }
@@ -19472,6 +19826,64 @@
         var hit = findRecord(state.detailOpen.table, state.detailOpen.id);
         if (hit) renderDetailPanel(hit.row);
         else closeDetail();
+      }
+
+      function setCommandSheetMode(sheet, mode) {
+        if (!sheet) return;
+        var nextMode = mode === "full" ? "full" : "quick";
+        var table = sheet.getAttribute("data-detail-table") || "";
+        var id = sheet.getAttribute("data-detail-id") || "";
+        if (table && id) state.commandSheetViewModes[commandSheetKey(table, id)] = nextMode;
+        sheet.classList.toggle("is-quick-actions", nextMode === "quick");
+        sheet.classList.toggle("is-full-training", nextMode === "full");
+        sheet.setAttribute("data-command-mode", nextMode);
+        sheet.querySelectorAll("[data-action='command-view-mode']").forEach(function (btn) {
+          var active = btn.getAttribute("data-command-mode") === nextMode;
+          btn.classList.toggle("is-active", active);
+          btn.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+      }
+
+      function elementIsVisible(el) {
+        return !!(el && (el.offsetWidth || el.offsetHeight || el.getClientRects().length));
+      }
+
+      function findCommandSection(sheet, key) {
+        if (!sheet || !key) return null;
+        var matches = sheet.querySelectorAll('[data-command-section="' + key + '"]');
+        var first = null;
+        for (var i = 0; i < matches.length; i += 1) {
+          if (!first) first = matches[i];
+          if (elementIsVisible(matches[i])) return matches[i];
+        }
+        return first;
+      }
+
+      function scrollToCommandSection(sheet, key) {
+        var target = findCommandSection(sheet, key);
+        if (!target) return;
+        if (!elementIsVisible(target) && sheet.classList.contains("is-quick-actions")) {
+          setCommandSheetMode(sheet, "full");
+          window.requestAnimationFrame(function () {
+            var freshTarget = findCommandSection(sheet, key) || target;
+            freshTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+            if (freshTarget.focus) freshTarget.focus({ preventScroll: true });
+          });
+          return;
+        }
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function handleCommandSheetMode(btn) {
+        var sheet = btn && btn.closest(".owner-dash-command-sheet");
+        if (!sheet) return;
+        setCommandSheetMode(sheet, btn.getAttribute("data-command-mode"));
+      }
+
+      function handleCommandSheetJump(btn) {
+        var sheet = btn && btn.closest(".owner-dash-command-sheet");
+        if (!sheet) return;
+        scrollToCommandSection(sheet, btn.getAttribute("data-command-target"));
       }
 
       function setCopyFeedback(container, message, isError) {
@@ -19657,6 +20069,7 @@
         var container =
           (btn && btn.closest("[data-restaurant-followup-kit]")) ||
           (btn && btn.closest(".owner-dash-restaurant-lead-actions--kit")) ||
+          (btn && btn.closest(".owner-dash-command-quick-copy")) ||
           (btn && btn.closest(".owner-dash-lead-card")) ||
           els.restaurantFollowUpKit;
         if (!text || !String(text).trim()) {
@@ -26664,6 +27077,16 @@
             var table = btn.getAttribute("data-table");
             var id = btn.getAttribute("data-id");
             if (table && id) openDetail(table, id);
+            return;
+          }
+
+          if (action === "command-view-mode") {
+            handleCommandSheetMode(btn);
+            return;
+          }
+
+          if (action === "command-jump") {
+            handleCommandSheetJump(btn);
             return;
           }
 
