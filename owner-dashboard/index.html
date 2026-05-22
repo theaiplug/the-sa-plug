@@ -19889,6 +19889,8 @@
         return (
           '<div class="' +
           commandSheetClass("restaurant_leads", row.id, "owner-dash-command-sheet--restaurant-lead") +
+          '" data-command-mode="' +
+          esc(commandSheetMode("restaurant_leads", row.id)) +
           '" data-detail-table="restaurant_leads" data-detail-id="' +
           esc(row.id) +
           '">' +
@@ -19940,6 +19942,8 @@
             lead.id,
             restaurant ? "owner-dash-command-sheet--restaurant-prospect" : "owner-dash-command-sheet--business-lead"
           ) +
+          '" data-command-mode="' +
+          esc(commandSheetMode("business_leads", lead.id)) +
           '" data-detail-table="business_leads" data-detail-id="' +
           esc(lead.id) +
           '">' +
