@@ -2544,12 +2544,14 @@
     }
 
     .page-owner-dashboard .owner-dash-restaurant-crm,
+    .page-owner-dashboard .owner-dash-restaurant-proposal,
     .page-owner-dashboard .owner-dash-restaurant-crm-summary {
       border-color: rgba(94, 234, 212, 0.24);
       background: rgba(3, 7, 18, 0.54);
     }
 
-    .page-owner-dashboard .owner-dash-restaurant-crm-head {
+    .page-owner-dashboard .owner-dash-restaurant-crm-head,
+    .page-owner-dashboard .owner-dash-restaurant-proposal-head {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -2559,10 +2561,103 @@
       min-width: 0;
     }
 
-    .page-owner-dashboard .owner-dash-restaurant-crm-grid {
+    .page-owner-dashboard .owner-dash-restaurant-crm-grid,
+    .page-owner-dashboard .owner-dash-restaurant-proposal-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal {
+      display: grid;
+      gap: 12px;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-explanation,
+    .page-owner-dashboard .owner-dash-restaurant-proposal-note {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.74);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-explanation {
+      grid-column: 1 / -1;
+      padding: 10px 11px;
+      border: 1px solid rgba(94, 234, 212, 0.2);
+      border-radius: 14px;
+      background: rgba(20, 184, 166, 0.08);
+      color: #c8fff5;
+      font-weight: 760;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-reasons {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-reason-group {
+      display: grid;
+      align-content: start;
+      gap: 7px;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.045);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-reason-group strong {
+      color: rgba(255, 246, 230, 0.92);
+      font-size: 0.84rem;
+      line-height: 1.25;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-check {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+      min-height: 34px;
+      color: rgba(255, 246, 230, 0.78);
+      font-size: 0.8rem;
+      line-height: 1.35;
+      cursor: pointer;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-check input {
+      width: 18px;
+      height: 18px;
+      margin-top: 1px;
+      accent-color: #14b8a6;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-summary {
+      padding: 11px;
+      border: 1px solid rgba(251, 146, 60, 0.28);
+      border-radius: 16px;
+      background: rgba(251, 146, 60, 0.08);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-summary pre {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.9);
+      font: inherit;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
       min-width: 0;
     }
 
@@ -2580,7 +2675,8 @@
       padding: 10px 11px;
     }
 
-    .page-owner-dashboard .owner-dash-restaurant-crm textarea {
+    .page-owner-dashboard .owner-dash-restaurant-crm textarea,
+    .page-owner-dashboard .owner-dash-restaurant-proposal textarea {
       min-height: 126px;
     }
 
@@ -2718,16 +2814,20 @@
       .page-owner-dashboard .owner-dash-restaurant-followup-actions .owner-dash-btn,
       .page-owner-dashboard .owner-dash-restaurant-lead-actions--kit .owner-dash-btn,
       .page-owner-dashboard .owner-dash-restaurant-crm .owner-dash-btn,
+      .page-owner-dashboard .owner-dash-restaurant-proposal .owner-dash-btn,
       .page-owner-dashboard .owner-dash-first50-actions,
       .page-owner-dashboard .owner-dash-first50-actions .owner-dash-btn {
         width: 100%;
       }
 
-      .page-owner-dashboard .owner-dash-restaurant-crm-grid {
+      .page-owner-dashboard .owner-dash-restaurant-crm-grid,
+      .page-owner-dashboard .owner-dash-restaurant-proposal-grid,
+      .page-owner-dashboard .owner-dash-restaurant-proposal-reasons {
         grid-template-columns: 1fr;
       }
 
-      .page-owner-dashboard .owner-dash-restaurant-followup-kit-head {
+      .page-owner-dashboard .owner-dash-restaurant-followup-kit-head,
+      .page-owner-dashboard .owner-dash-restaurant-proposal-head {
         display: grid;
       }
 
@@ -4402,10 +4502,17 @@
         "Send text reply",
         "Schedule discovery call",
         "Send partner program details",
+        "Send Restaurant Partner Program details",
         "Send AI systems details",
+        "Send AI Restaurant Growth Systems details",
         "Prepare proposal",
+        "Prepare combined proposal",
+        "Ask for more information",
         "Follow up",
         "Wait for reply",
+        "Hold / not a fit",
+        "Mark proposal sent",
+        "Mark won",
         "Mark not fit",
         "Closed / won",
       ];
@@ -4842,6 +4949,113 @@
 
       var RESTAURANT_LEAD_FOLLOW_UP_GUARDRAIL =
         "Guardrail: Do not promise guaranteed placement, traffic, reservations, revenue, rankings, or automatic listing. Restaurant opportunities are reviewed for fit. AI systems improve workflows and lead handling, but outcomes depend on the business, offer, execution, and follow-up.";
+
+      var RESTAURANT_PROPOSAL_GUARDRAIL =
+        "No guaranteed placement, traffic, reservations, revenue, rankings, or automatic listing. Visibility opportunities are reviewed for fit. AI systems improve workflow and lead handling, but outcomes depend on execution and follow-up.";
+
+      var RESTAURANT_PROPOSAL_RECOMMENDATIONS = [
+        {
+          value: "Partner Program only",
+          label: "Partner Program only",
+          fitLabel: "Strong fit - Partner Program",
+          explanation:
+            "Best when the restaurant is already operationally strong and mainly needs visitor visibility inside relevant Where To Go SA dining moments.",
+          pitch:
+            "Lead with reviewed-for-fit visitor visibility inside relevant Where To Go SA dining moments, then define the smallest useful Partner Program step.",
+        },
+        {
+          value: "AI Restaurant Growth Systems only",
+          label: "AI Restaurant Growth Systems only",
+          fitLabel: "Strong fit - AI Systems",
+          explanation:
+            "Best when the restaurant needs better intake, private event/catering flow, QR paths, follow-up, or owner-visible lead tracking before visibility makes sense.",
+          pitch:
+            "Lead with the operational bottleneck first: intake, private events/catering, QR paths, follow-up, owner visibility, or lead tracking.",
+        },
+        {
+          value: "Both: Partner Program + AI Systems",
+          label: "Both: Partner Program + AI Systems",
+          fitLabel: "Strong fit - Both",
+          explanation:
+            "Best when the restaurant fits visitor-guide quality and also has a real systems need around inquiries, events, QR, follow-up, or customer flow.",
+          pitch:
+            "Lead with a combined path: reviewed-for-fit visitor visibility plus the AI/system layer needed to handle inquiries, QR actions, follow-up, or customer flow.",
+        },
+        {
+          value: "Not a fit yet",
+          label: "Not a fit yet",
+          fitLabel: "Not a fit",
+          explanation:
+            "Use when the restaurant does not fit the visitor guide, has weak trust signals, unclear positioning, or is not ready for a serious sales conversation.",
+          pitch:
+            "Do not pitch a proposal yet. Document the hold reason, keep the response polite, and revisit only if trust signals, positioning, or readiness improve.",
+        },
+        {
+          value: "Needs more discovery",
+          label: "Needs more discovery",
+          fitLabel: "Needs more info",
+          explanation:
+            "Use when the lead has potential, but more information is needed before recommending a path.",
+          pitch:
+            "Ask discovery questions first, then decide whether visibility, AI systems, both, or a hold path is the cleanest next step.",
+        },
+      ];
+
+      var RESTAURANT_PROPOSAL_FIT_REASON_GROUPS = [
+        {
+          title: "Visitor visibility fit",
+          name: "proposal_fit_reasons",
+          reasons: [
+            "Strong visitor use case",
+            "Good location / area relevance",
+            "Good for resort guests",
+            "Good for downtown / River Walk visitors",
+            "Good for airport timing",
+            "Good for business dinners",
+            "Good for family/group dining",
+            "Strong public reputation or trust signals",
+            "Clear food category visitors ask about",
+          ],
+        },
+        {
+          title: "AI systems fit",
+          name: "proposal_fit_reasons",
+          reasons: [
+            "Missed calls or slow follow-up",
+            "Weak website or unclear next step",
+            "Private event or catering inquiries need structure",
+            "QR/menu/funnel opportunity",
+            "Reviews/social/SEO content need organization",
+            "Owner wants better visibility into leads",
+            "DMs/forms/messages are hard to track",
+            "Needs repeatable follow-up process",
+          ],
+        },
+        {
+          title: "Risk / caution reasons",
+          name: "proposal_caution_reasons",
+          reasons: [
+            "Poor fit for visitor guide",
+            "Weak public trust signals",
+            "Unclear offer or positioning",
+            "Owner expects guaranteed results",
+            "Too early / not ready",
+            "Needs more discovery",
+          ],
+        },
+      ];
+
+      var RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS = [
+        "Send first email",
+        "Schedule discovery call",
+        "Send Restaurant Partner Program details",
+        "Send AI Restaurant Growth Systems details",
+        "Prepare combined proposal",
+        "Ask for more information",
+        "Hold / not a fit",
+        "Mark proposal sent",
+        "Mark won",
+      ];
 
       var RESTAURANT_LEAD_FOLLOW_UP_SECTIONS = [
         {
@@ -8372,7 +8586,13 @@
       function restaurantLeadNeedsFollowUp(row) {
         var status = normStatus(row && row.status);
         var action = restaurantLeadNextAction(row);
-        var terminal = status === "won" || status === "not a fit" || action === "Closed / won" || action === "Mark not fit";
+        var terminal =
+          status === "won" ||
+          status === "not a fit" ||
+          action === "Closed / won" ||
+          action === "Mark won" ||
+          action === "Mark not fit" ||
+          action === "Hold / not a fit";
         if (terminal) return false;
         if (restaurantLeadFollowUpIsDue(row)) return true;
         if (status === "new" || status === "needs follow-up") return true;
@@ -8398,6 +8618,10 @@
           restaurantLeadFitLabel(row),
           restaurantLeadPriority(row),
           restaurantLeadNextAction(row),
+          restaurantLeadProposalValue(row, "Proposal recommendation:", ""),
+          restaurantLeadProposalValue(row, "Proposal fit reasons:", ""),
+          restaurantLeadProposalValue(row, "Proposal caution reasons:", ""),
+          restaurantLeadProposalValue(row, "Proposal next step:", ""),
           restaurantLeadNextFollowUpDate(row),
           row.services_interested,
           row.recommended_system,
@@ -8789,6 +9013,278 @@
           restaurantLeadKitCopyButton("not-fit-hold-email", "Copy hold email", false) +
           "</div>" +
           sections +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
+      function restaurantProposalRecommendationInfo(value) {
+        var wanted = String(value || "").trim();
+        for (var i = 0; i < RESTAURANT_PROPOSAL_RECOMMENDATIONS.length; i++) {
+          if (RESTAURANT_PROPOSAL_RECOMMENDATIONS[i].value === wanted) {
+            return RESTAURANT_PROPOSAL_RECOMMENDATIONS[i];
+          }
+        }
+        return RESTAURANT_PROPOSAL_RECOMMENDATIONS[4];
+      }
+
+      function restaurantProposalDefaultRecommendation(row) {
+        if (row && row.interest_partner_program && row.interest_ai_systems) return "Both: Partner Program + AI Systems";
+        if (row && row.interest_partner_program) return "Partner Program only";
+        if (row && row.interest_ai_systems) return "AI Restaurant Growth Systems only";
+        return "Needs more discovery";
+      }
+
+      function splitRestaurantProposalList(value) {
+        return String(value || "")
+          .split(/\s*;\s*|\s*,\s*/)
+          .map(function (item) {
+            return String(item || "").trim();
+          })
+          .filter(function (item) {
+            return item && item.toLowerCase() !== "none selected";
+          });
+      }
+
+      function restaurantLeadProposalValue(row, marker, fallback) {
+        return ownerNoteMarkerValue(row, marker) || fallback || "";
+      }
+
+      function restaurantLeadProposalValues(row) {
+        var recommendation = restaurantLeadProposalValue(
+          row,
+          "Proposal recommendation:",
+          restaurantProposalDefaultRecommendation(row)
+        );
+        var nextStep = restaurantLeadProposalValue(row, "Proposal next step:", restaurantLeadNextAction(row));
+        if (RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS.indexOf(nextStep) === -1) {
+          nextStep = "Send first email";
+        }
+        return {
+          recommendation: recommendation,
+          fitReasons: splitRestaurantProposalList(restaurantLeadProposalValue(row, "Proposal fit reasons:", "")),
+          cautionReasons: splitRestaurantProposalList(
+            restaurantLeadProposalValue(row, "Proposal caution reasons:", "")
+          ),
+          nextStep: nextStep,
+          updatedAt: restaurantLeadProposalValue(row, "Proposal updated at:", ""),
+          notes: restaurantLeadProposalValue(row, "Proposal notes:", ""),
+        };
+      }
+
+      function restaurantProposalSelectOptions(options, current) {
+        var value = String(current || "").trim();
+        var hasValue = false;
+        var html = options
+          .map(function (opt) {
+            var optionValue = typeof opt === "string" ? opt : opt.value;
+            var label = typeof opt === "string" ? opt : opt.label;
+            if (optionValue === value) hasValue = true;
+            return (
+              '<option value="' +
+              esc(optionValue) +
+              '"' +
+              (optionValue === value ? " selected" : "") +
+              ">" +
+              esc(label) +
+              "</option>"
+            );
+          })
+          .join("");
+        if (value && !hasValue) {
+          html += '<option value="' + esc(value) + '" selected>' + esc(value) + "</option>";
+        }
+        return html;
+      }
+
+      function restaurantProposalReasonGroupHtml(group, selected) {
+        var selectedMap = {};
+        selected.forEach(function (reason) {
+          selectedMap[reason] = true;
+        });
+        return (
+          '<div class="owner-dash-restaurant-proposal-reason-group">' +
+          "<strong>" +
+          esc(group.title) +
+          "</strong>" +
+          group.reasons
+            .map(function (reason) {
+              return (
+                '<label class="owner-dash-restaurant-proposal-check"><input type="checkbox" name="' +
+                esc(group.name) +
+                '" value="' +
+                esc(reason) +
+                '"' +
+                (selectedMap[reason] ? " checked" : "") +
+                " /> <span>" +
+                esc(reason) +
+                "</span></label>"
+              );
+            })
+            .join("") +
+          "</div>"
+        );
+      }
+
+      function restaurantProposalPitchDirection(values) {
+        return restaurantProposalRecommendationInfo(values && values.recommendation).pitch;
+      }
+
+      function restaurantProposalSummaryText(values) {
+        var safeValues = values || {};
+        var reasons = (safeValues.fitReasons || []).filter(Boolean);
+        var lines = [
+          "Recommended path:",
+          safeValues.recommendation || "Needs more discovery",
+          "",
+          "Why this fits:",
+        ];
+        if (reasons.length) {
+          reasons.forEach(function (reason) {
+            lines.push("- " + reason);
+          });
+        } else {
+          lines.push("- More discovery is needed before finalizing the offer path.");
+        }
+        lines.push("");
+        lines.push("What to pitch first:");
+        lines.push(restaurantProposalPitchDirection(safeValues));
+        lines.push("");
+        lines.push("Suggested next step:");
+        lines.push(safeValues.nextStep || "Send first email");
+        lines.push("");
+        lines.push("Guardrail:");
+        lines.push(RESTAURANT_PROPOSAL_GUARDRAIL);
+        return lines.join("\n");
+      }
+
+      function restaurantProposalCompactNotes(values) {
+        var summary = restaurantProposalSummaryText(values).replace(/\s*\n\s*/g, " ").replace(/\s{2,}/g, " ");
+        return summary.slice(0, 1800);
+      }
+
+      function restaurantProposalSummaryHtml(values) {
+        return '<pre>' + esc(restaurantProposalSummaryText(values)) + "</pre>";
+      }
+
+      function restaurantProposalCheckboxValues(section, name) {
+        var values = [];
+        var boxes = section ? section.querySelectorAll('input[name="' + name + '"]:checked') : [];
+        boxes.forEach(function (box) {
+          values.push(String(box.value || "").trim());
+        });
+        return values.filter(Boolean);
+      }
+
+      function readRestaurantProposalValues(section) {
+        var recommendationEl = section && section.querySelector('[name="proposal_recommendation"]');
+        var nextStepEl = section && section.querySelector('[name="proposal_next_step"]');
+        return {
+          recommendation: recommendationEl ? String(recommendationEl.value || "").trim() : "Needs more discovery",
+          fitReasons: restaurantProposalCheckboxValues(section, "proposal_fit_reasons"),
+          cautionReasons: restaurantProposalCheckboxValues(section, "proposal_caution_reasons"),
+          nextStep: nextStepEl ? String(nextStepEl.value || "").trim() : "Send first email",
+        };
+      }
+
+      function updateRestaurantProposalPreview(section) {
+        if (!section) return;
+        var values = readRestaurantProposalValues(section);
+        var info = restaurantProposalRecommendationInfo(values.recommendation);
+        var explanation = section.querySelector("[data-proposal-recommendation-explanation]");
+        var summary = section.querySelector("[data-proposal-summary]");
+        if (explanation) explanation.textContent = info.explanation;
+        if (summary) summary.innerHTML = restaurantProposalSummaryHtml(values);
+      }
+
+      function restaurantProposalCopyText(row, values) {
+        var cautions = (values.cautionReasons || []).filter(Boolean);
+        var lines = [
+          "Internal restaurant proposal notes",
+          "",
+          "Restaurant name: " + (row.restaurant_name || "Restaurant TBD"),
+          "Contact name: " + (row.contact_name || "Contact TBD"),
+          "Area/neighborhood: " + (row.area_neighborhood || "Not specified"),
+          "Interest type: " + restaurantLeadInterestType(row),
+          "Recommended path: " + (values.recommendation || "Needs more discovery"),
+          "",
+          "Fit reasons:",
+        ];
+        if (values.fitReasons && values.fitReasons.length) {
+          values.fitReasons.forEach(function (reason) {
+            lines.push("- " + reason);
+          });
+        } else {
+          lines.push("- More discovery needed before final recommendation.");
+        }
+        if (cautions.length) {
+          lines.push("");
+          lines.push("Caution reasons:");
+          cautions.forEach(function (reason) {
+            lines.push("- " + reason);
+          });
+        }
+        lines.push("");
+        lines.push("What to pitch first:");
+        lines.push(restaurantProposalPitchDirection(values));
+        lines.push("");
+        lines.push("Suggested next step: " + (values.nextStep || "Send first email"));
+        lines.push("");
+        lines.push("Guardrail note:");
+        lines.push(RESTAURANT_PROPOSAL_GUARDRAIL);
+        return lines.join("\n");
+      }
+
+      function restaurantLeadProposalBuilderBlock(row) {
+        var values = restaurantLeadProposalValues(row);
+        var info = restaurantProposalRecommendationInfo(values.recommendation);
+        var updated = values.updatedAt ? '<span>Saved: ' + esc(fmtDate(values.updatedAt)) + "</span>" : "";
+        return (
+          '<section class="owner-dash-detail-section owner-dash-restaurant-proposal" data-restaurant-proposal-builder>' +
+          '<div class="owner-dash-restaurant-proposal-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Restaurant Proposal Builder</h3>' +
+          '<p class="owner-dash-detail-section-note">Internal offer recommendation tool. Nothing here is public, sent, published, invoiced, charged, or promised automatically.</p></div>' +
+          '<span class="owner-dash-restaurant-followup-badge">Internal only</span>' +
+          "</div>" +
+          '<div class="owner-dash-restaurant-proposal-grid">' +
+          '<label class="owner-dash-workflow-field owner-dash-workflow-field--wide"><span class="owner-dash-workflow-label">Offer path recommendation</span>' +
+          '<select class="owner-dash-select" name="proposal_recommendation">' +
+          restaurantProposalSelectOptions(RESTAURANT_PROPOSAL_RECOMMENDATIONS, values.recommendation) +
+          "</select></label>" +
+          '<p class="owner-dash-restaurant-proposal-explanation" data-proposal-recommendation-explanation>' +
+          esc(info.explanation) +
+          "</p>" +
+          '<label class="owner-dash-workflow-field owner-dash-workflow-field--wide"><span class="owner-dash-workflow-label">Recommended next step</span>' +
+          '<select class="owner-dash-select" name="proposal_next_step">' +
+          restaurantProposalSelectOptions(RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS, values.nextStep) +
+          "</select>" +
+          '<span class="owner-dash-restaurant-proposal-note">Saving the proposal intentionally syncs this value to the CRM Next Action marker for this lead.</span></label>' +
+          "</div>" +
+          '<div class="owner-dash-restaurant-proposal-reasons">' +
+          RESTAURANT_PROPOSAL_FIT_REASON_GROUPS.map(function (group) {
+            return restaurantProposalReasonGroupHtml(
+              group,
+              group.name === "proposal_caution_reasons" ? values.cautionReasons : values.fitReasons
+            );
+          }).join("") +
+          "</div>" +
+          '<div class="owner-dash-restaurant-proposal-summary" data-proposal-summary>' +
+          restaurantProposalSummaryHtml(values) +
+          "</div>" +
+          '<p class="owner-dash-restaurant-followup-guardrail">' +
+          esc(RESTAURANT_PROPOSAL_GUARDRAIL) +
+          "</p>" +
+          '<div class="owner-dash-restaurant-proposal-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--primary" data-action="save-restaurant-proposal-recommendation" data-save-mode="proposal">Save recommendation</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-restaurant-proposal-notes">Copy proposal notes</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="save-restaurant-proposal-recommendation" data-save-mode="qualified">Save + mark Qualified</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="save-restaurant-proposal-recommendation" data-save-mode="proposal-sent">Save + mark Proposal Sent</button>' +
+          '<span class="owner-dash-workflow-feedback" data-restaurant-proposal-feedback hidden aria-live="polite"></span>' +
+          updated +
+          "</div>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
           '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
@@ -16758,6 +17254,7 @@
           nextActionHtml(restaurantLeadNextAction(row) || (restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review restaurant lead status and notes.")) +
           restaurantLeadCrmSummaryBlock(row) +
           restaurantLeadCrmEditorBlock(row) +
+          restaurantLeadProposalBuilderBlock(row) +
           restaurantLeadFollowUpKitHtml(row, true) +
           restaurantLeadDetailsBlock(row) +
           quickStatusBlock("restaurant_leads", row.status) +
@@ -17370,6 +17867,73 @@
           });
         }
         return existing;
+      }
+
+      function restaurantProposalFitLabel(recommendation) {
+        return restaurantProposalRecommendationInfo(recommendation).fitLabel || "Needs more info";
+      }
+
+      function buildRestaurantLeadProposalBlock(values) {
+        var updatedAt = values.updatedAt || new Date().toISOString();
+        return [
+          "Restaurant proposal recommendation:",
+          "Proposal recommendation: " + (values.recommendation || "Needs more discovery") + ".",
+          "Proposal fit reasons: " + ((values.fitReasons || []).join("; ") || "None selected") + ".",
+          "Proposal caution reasons: " + ((values.cautionReasons || []).join("; ") || "None selected") + ".",
+          "Proposal next step: " + (values.nextStep || "Send first email") + ".",
+          "Proposal updated at: " + updatedAt + ".",
+          "Proposal notes: " + restaurantProposalCompactNotes(values) + ".",
+        ].join("\n");
+      }
+
+      function isRestaurantLeadProposalLine(line) {
+        var text = String(line || "").trim().toLowerCase();
+        return (
+          text.indexOf("proposal recommendation:") === 0 ||
+          text.indexOf("proposal fit reasons:") === 0 ||
+          text.indexOf("proposal caution reasons:") === 0 ||
+          text.indexOf("proposal next step:") === 0 ||
+          text.indexOf("proposal updated at:") === 0 ||
+          text.indexOf("proposal notes:") === 0
+        );
+      }
+
+      function upsertRestaurantLeadProposalBlock(existing, values) {
+        var block = buildRestaurantLeadProposalBlock(values);
+        var current = String(existing || "").replace(/\r\n/g, "\n").trim();
+        if (!current) return block;
+        var lines = current.split("\n");
+        var blockLines = block.split("\n");
+        var nextLines = [];
+        var inserted = false;
+        for (var i = 0; i < lines.length; i++) {
+          if (/^\s*Restaurant proposal recommendation:\s*$/i.test(lines[i])) {
+            if (!inserted) {
+              nextLines = nextLines.concat(blockLines);
+              inserted = true;
+            }
+            i += 1;
+            while (i < lines.length) {
+              if (!String(lines[i] || "").trim() || isRestaurantLeadProposalLine(lines[i])) {
+                i += 1;
+                continue;
+              }
+              break;
+            }
+            i -= 1;
+            continue;
+          }
+          if (isRestaurantLeadProposalLine(lines[i])) {
+            if (!inserted) {
+              nextLines = nextLines.concat(blockLines);
+              inserted = true;
+            }
+            continue;
+          }
+          nextLines.push(lines[i]);
+        }
+        if (!inserted) nextLines.push(block);
+        return nextLines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
       }
 
       function restaurantResearchFieldValue(form, field) {
@@ -22768,6 +23332,120 @@
         fb.className = "owner-dash-workflow-feedback owner-dash-workflow-feedback--" + type;
       }
 
+      function setRestaurantProposalFeedback(section, type, message) {
+        var fb = section && section.querySelector("[data-restaurant-proposal-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-workflow-feedback owner-dash-workflow-feedback--" + type;
+      }
+
+      function copyRestaurantProposalNotes(btn) {
+        var section = btn && btn.closest("[data-restaurant-proposal-builder]");
+        var row = restaurantLeadRowFromButton(btn);
+        if (!section || !row) return;
+        updateRestaurantProposalPreview(section);
+        var text = restaurantProposalCopyText(row, readRestaurantProposalValues(section)).trim();
+        hideManualCopy(section);
+        function onSuccess() {
+          setCopyFeedback(section, "Copied.");
+          if (row && row.id) recordCopyActivity("restaurant-proposal-notes", "restaurant_leads", row.id);
+        }
+        function onFail() {
+          showManualCopy(section, text);
+          setCopyFeedback(section, "Select text below to copy.", true);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(onSuccess)
+            .catch(function () {
+              if (fallbackExecCopy(text)) onSuccess();
+              else onFail();
+            });
+        } else if (fallbackExecCopy(text)) {
+          onSuccess();
+        } else {
+          onFail();
+        }
+      }
+
+      function handleRestaurantProposalSave(sheet, btn) {
+        if (!sheet) return;
+        var id = sheet.getAttribute("data-detail-id");
+        var section = sheet.querySelector("[data-restaurant-proposal-builder]");
+        if (!id || !section) return;
+        updateRestaurantProposalPreview(section);
+        var before = findRecord("restaurant_leads", id);
+        if (!before) return;
+        var mode = (btn && btn.getAttribute("data-save-mode")) || "proposal";
+        var values = readRestaurantProposalValues(section);
+        var now = new Date().toISOString();
+        values.updatedAt = now;
+        var previousStatus = displayStatus(before.row.status);
+        var previousNotes = String(before.row.owner_notes || "");
+        var nextNotes = upsertRestaurantLeadProposalBlock(previousNotes, values);
+        var proposalSentDate =
+          mode === "proposal-sent" ? todayDateString() : normalizeDateInputValue(restaurantLeadProposalSentDate(before.row));
+        nextNotes = upsertRestaurantLeadCrmBlock(nextNotes, {
+          fitLabel: restaurantProposalFitLabel(values.recommendation),
+          leadPriority: restaurantLeadPriority(before.row) || "Medium",
+          nextAction: values.nextStep || "Send first email",
+          nextFollowUpDate: normalizeDateInputValue(restaurantLeadNextFollowUpDate(before.row)),
+          proposalSentAt: proposalSentDate,
+          wonAt: normalizeDateInputValue(restaurantLeadWonDate(before.row)),
+        });
+
+        var payload = { owner_notes: nextNotes };
+        if (mode === "qualified") payload.status = "Qualified";
+        if (mode === "proposal-sent") payload.status = "Proposal Sent";
+
+        var buttons = section.querySelectorAll("[data-action]");
+        var originalLabel = btn ? btn.textContent : "";
+        buttons.forEach(function (button) {
+          button.disabled = true;
+        });
+        if (btn) btn.textContent = "Saving...";
+        setRestaurantProposalFeedback(section, "success", "Saving proposal recommendation...");
+
+        postUpdate("restaurant_leads", id, payload)
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setRestaurantProposalFeedback(
+                section,
+                "error",
+                (result.data && result.data.error) || "Proposal recommendation save failed. Try again."
+              );
+              return;
+            }
+            applyRecordUpdate("restaurant_leads", id, result.data.record);
+            if (previousStatus !== displayStatus(result.data.record.status)) {
+              addClientActivity(
+                "restaurant_leads",
+                id,
+                "Status changed to " + restaurantLeadStatusLabel({ status: result.data.record.status }),
+                "info"
+              );
+            }
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity("restaurant_leads", id, "Restaurant proposal recommendation saved", "ok");
+            }
+            renderAll();
+            var fresh = els.detailBody && els.detailBody.querySelector("[data-restaurant-proposal-builder]");
+            setRestaurantProposalFeedback(fresh || section, "success", "Proposal recommendation saved.");
+            refreshCounts();
+          })
+          .catch(function () {
+            setRestaurantProposalFeedback(section, "error", "Network error. Try again.");
+          })
+          .finally(function () {
+            buttons.forEach(function (button) {
+              button.disabled = false;
+            });
+            if (btn) btn.textContent = originalLabel || "Save recommendation";
+          });
+      }
+
       function handleRestaurantLeadCrmSave(sheet, btn) {
         if (!sheet) return;
         var id = sheet.getAttribute("data-detail-id");
@@ -23298,6 +23976,11 @@
             return;
           }
 
+          if (action === "copy-restaurant-proposal-notes") {
+            copyRestaurantProposalNotes(btn);
+            return;
+          }
+
           if (action === "close-detail") {
             closeDetail();
             return;
@@ -23423,6 +24106,11 @@
             return;
           }
 
+          if (sheet && action === "save-restaurant-proposal-recommendation") {
+            handleRestaurantProposalSave(sheet, btn);
+            return;
+          }
+
           if (sheet && action === "mark-deal-stage") {
             handleDealStageAction(sheet, btn);
             return;
@@ -23443,6 +24131,11 @@
           if (!workflowEl) return;
           if (action === "save") handleSave(workflowEl);
           if (action === "mark-contacted") handleMarkContacted(workflowEl);
+        });
+
+        document.addEventListener("change", function (ev) {
+          var section = ev.target && ev.target.closest("[data-restaurant-proposal-builder]");
+          if (section) updateRestaurantProposalPreview(section);
         });
 
         document.addEventListener("keydown", function (ev) {
