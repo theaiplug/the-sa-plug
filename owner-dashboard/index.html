@@ -2677,6 +2677,27 @@
       background: rgba(251, 146, 60, 0.08);
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-guardrail-note,
+    .page-owner-dashboard .owner-dash-restaurant-v1-note {
+      margin: 0;
+      padding: 8px 10px;
+      border: 1px solid rgba(251, 146, 60, 0.26);
+      border-radius: 13px;
+      background: rgba(251, 146, 60, 0.09);
+      color: #ffe4c4;
+      font-size: 0.78rem;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-v1-note {
+      margin-top: 10px;
+      border-color: rgba(20, 184, 166, 0.28);
+      background: rgba(20, 184, 166, 0.08);
+      color: #ccfbf1;
+      font-weight: 750;
+    }
+
     .page-owner-dashboard .owner-dash-restaurant-feedback {
       display: inline-block;
       margin-top: 8px;
@@ -3206,6 +3227,8 @@
       .owner-dash-restaurant-rep-command-subtitle,
       .owner-dash-restaurant-rep-note,
       .owner-dash-restaurant-rep-guardrail-note,
+      .owner-dash-restaurant-guardrail-note,
+      .owner-dash-restaurant-v1-note,
       .owner-dash-restaurant-command p:not(.owner-dash-restaurant-card-label),
       .owner-dash-restaurant-command li,
       .owner-dash-restaurant-snapshot-item strong,
@@ -4520,6 +4543,18 @@
 
       var RESTAURANT_REP_GUARDRAIL_NOTE =
         "Internal restaurant sales guidance only. Nothing is sent, published, invoiced, charged, or promised automatically.";
+
+      var RESTAURANT_PROGRAM_V1_NOTE =
+        "Restaurant Program v1: internal sales operating system for prospecting, research, outreach, proposal prep, follow-up, and retention. Public website pages, payment links, listings, and client-facing placement should be created separately after owner approval.";
+
+      var RESTAURANT_COPY_PLACEHOLDER = {
+        contact: "[confirm restaurant contact]",
+        business: "[confirm restaurant name]",
+        lane: "[confirm best visitor lane]",
+        offer: "[confirm offer]",
+        phone: "[confirm restaurant phone]",
+        email: "[confirm restaurant email]",
+      };
 
       var RESTAURANT_MANUAL_OFFER_MAP = {
         "Starter Visibility": {
@@ -12912,9 +12947,40 @@
         return "Where To Go SA helps visitors decide where to eat when they are already in San Antonio and looking for the right move. We can help your restaurant show up in visitor-facing recommendations, QR paths, private dining inquiries, reservation flows, review follow-up, and AI-assisted guest answers — without making fake guarantees or overbuilding before the first useful system is live.";
       }
 
+      function restaurantCopyContact(lead) {
+        return lead && lead.contact_name ? lead.contact_name : RESTAURANT_COPY_PLACEHOLDER.contact;
+      }
+
+      function restaurantCopyBusiness(lead) {
+        return lead && lead.business_name ? lead.business_name : RESTAURANT_COPY_PLACEHOLDER.business;
+      }
+
+      function restaurantCopyLane(lead) {
+        var lane = restaurantLane(lead || {});
+        return lane && lane !== "Unknown" ? lane : RESTAURANT_COPY_PLACEHOLDER.lane;
+      }
+
+      function restaurantCopyOffer(lead) {
+        var snap = restaurantSnapshot(lead || {});
+        var proposal = restaurantProposalDirection(lead || {});
+        var offer = proposal.suggestedFirstOffer || snap.recommendedOffer;
+        if (!offer || offer === "—" || offer === "TBD" || offer === "Not sure yet") {
+          return RESTAURANT_COPY_PLACEHOLDER.offer;
+        }
+        return offer;
+      }
+
+      function restaurantCopyPhone(lead) {
+        return lead && lead.contact_phone ? lead.contact_phone : RESTAURANT_COPY_PLACEHOLDER.phone;
+      }
+
+      function restaurantCopyEmail(lead) {
+        return lead && lead.contact_email ? lead.contact_email : RESTAURANT_COPY_PLACEHOLDER.email;
+      }
+
       function buildRestaurantFirstOutreach(lead) {
-        var contact = lead.contact_name || "[contact_name]";
-        var business = lead.business_name || "[business_name]";
+        var contact = restaurantCopyContact(lead);
+        var business = restaurantCopyBusiness(lead);
         return [
           "Hi " + contact + ", this is Willie with Where To Go SA.",
           "",
@@ -12927,8 +12993,8 @@
       }
 
       function buildRestaurantWarmFollowUp(lead) {
-        var contact = lead.contact_name || "[contact_name]";
-        var business = lead.business_name || "[business_name]";
+        var contact = restaurantCopyContact(lead);
+        var business = restaurantCopyBusiness(lead);
         return [
           "Hi " + contact + ", just following up on Where To Go SA.",
           "",
@@ -13005,7 +13071,7 @@
       function buildRestaurantCloseMessage(lead) {
         var snap = restaurantSnapshot(lead);
         return [
-          "Based on what you shared, I’d recommend starting with " + snap.recommendedOffer + ".",
+          "Based on what you shared, I’d recommend starting with " + restaurantCopyOffer(lead) + ".",
           "",
           "The first step would be:",
           snap.nextAction,
@@ -13017,7 +13083,7 @@
       }
 
       function buildRestaurantIntakeMessage(lead) {
-        var business = lead.business_name || "[business_name]";
+        var business = restaurantCopyBusiness(lead);
         return [
           "To get started, I’ll need a few basics for " + business + ":",
           "",
@@ -13041,7 +13107,7 @@
           snap.business + " is now live in the first phase.",
           "",
           "What is live:",
-          "- " + snap.recommendedOffer,
+          "- " + restaurantCopyOffer(lead),
           "- " + snap.nextAction,
           "- Owner alert or tracking if included",
           "",
@@ -13075,7 +13141,7 @@
       }
 
       function buildRestaurantRenewalMessage(lead) {
-        var contact = lead.contact_name || "[contact_name]";
+        var contact = restaurantCopyContact(lead);
         return [
           "Hi " + contact + ", your current restaurant program period is coming up for renewal.",
           "",
@@ -13091,7 +13157,7 @@
       }
 
       function buildRestaurantTestimonialRequest(lead) {
-        var contact = lead.contact_name || "[contact_name]";
+        var contact = restaurantCopyContact(lead);
         return [
           "Hi " + contact + ", if the first phase has been useful, would you be open to a short testimonial or private case study?",
           "",
@@ -13106,11 +13172,11 @@
       }
 
       function buildRestaurantFullSalesBundle(lead) {
-        var business = lead.business_name || "[business_name]";
+        var business = restaurantCopyBusiness(lead);
         var snap = restaurantSnapshot(lead);
         return [
           "Restaurant Sales Bundle — " + business,
-          "Contact: " + (lead.contact_name || "[contact_name]"),
+          "Contact: " + restaurantCopyContact(lead),
           "Recommended offer: " + snap.recommendedOffer,
           "Next action: " + snap.nextAction,
           "",
@@ -13161,27 +13227,27 @@
       }
 
       function restaurantContactName(lead) {
-        return lead.contact_name || "[contact_name]";
+        return restaurantCopyContact(lead);
       }
 
       function restaurantPhone(lead) {
-        return lead.contact_phone || "[phone]";
+        return restaurantCopyPhone(lead);
       }
 
       function restaurantEmail(lead) {
-        return lead.contact_email || "[email]";
+        return restaurantCopyEmail(lead);
       }
 
       function buildRestaurantScoutingNotesTemplate(lead) {
         var snap = restaurantSnapshot(lead);
         return [
-          "Restaurant scouting notes — " + snap.business,
+          "Restaurant scouting notes — " + restaurantCopyBusiness(lead),
           "",
           "Restaurant type:",
           snap.restaurantType,
           "",
           "Visitor lane:",
-          snap.lane,
+          restaurantCopyLane(lead),
           "",
           "Why it may fit Where To Go SA:",
           "- ",
@@ -13196,7 +13262,7 @@
           "- Review/follow-up opportunity:",
           "",
           "Best first offer:",
-          snap.recommendedOffer,
+          restaurantCopyOffer(lead),
           "",
           "Next action:",
           snap.nextAction,
@@ -13214,7 +13280,7 @@
       }
 
       function buildRestaurantOwnerManagerAsk(lead) {
-        var business = lead.business_name || "[business_name]";
+        var business = restaurantCopyBusiness(lead);
         return [
           "Who would be the best person to talk to about getting " + business + " in front of more San Antonio visitors — especially people looking for business dinners, River Walk plans, resort food, date night, brunch, or group dining?",
           "",
@@ -13223,9 +13289,10 @@
       }
 
       function buildRestaurantAfterVisitFollowUp(lead) {
-        var business = lead.business_name || "[business_name]";
+        var contact = restaurantCopyContact(lead);
+        var business = restaurantCopyBusiness(lead);
         return [
-          "Hi [contact_name], this is Willie with Where To Go SA. Good meeting you.",
+          "Hi " + contact + ", this is Willie with Where To Go SA. Good meeting you.",
           "",
           "I wanted to send a quick recap of what I’m building. Where To Go SA helps visitors decide where to eat and what to do in San Antonio. For restaurants, there are two sides:",
           "",
@@ -13237,7 +13304,7 @@
       }
 
       function buildRestaurantInstagramDmOpener(lead) {
-        var business = lead.business_name || "[business_name]";
+        var business = restaurantCopyBusiness(lead);
         return [
           "Hi — this is Willie with Where To Go SA.",
           "",
@@ -13248,7 +13315,7 @@
       }
 
       function buildRestaurantPhoneCallOpener(lead) {
-        var business = lead.business_name || "[business_name]";
+        var business = restaurantCopyBusiness(lead);
         return [
           "Hi, this is Willie with Where To Go SA. I’m a local San Antonio guide building visitor-facing restaurant recommendations and AI restaurant growth systems.",
           "",
@@ -13259,7 +13326,7 @@
       }
 
       function buildRestaurantResearchChecklist(lead) {
-        var business = lead.business_name || "[business_name]";
+        var business = restaurantCopyBusiness(lead);
         return [
           "Restaurant research checklist — " + business,
           "",
@@ -13282,7 +13349,7 @@
         var snap = restaurantSnapshot(lead);
         var priority = calcBusinessPriority(lead);
         return [
-          "First 50 restaurant prospect — " + snap.business,
+          "First 50 restaurant prospect — " + restaurantCopyBusiness(lead),
           "",
           "Stage:",
           snap.stage,
@@ -13291,13 +13358,13 @@
           priority.label,
           "",
           "Visitor lane:",
-          snap.lane,
+          restaurantCopyLane(lead),
           "",
           "Main opportunity:",
           snap.mainOpportunity,
           "",
           "Recommended offer:",
-          snap.recommendedOffer,
+          restaurantCopyOffer(lead),
           "",
           "Why this restaurant may fit:",
           snap.mainAngle,
@@ -13316,7 +13383,7 @@
         var snap = restaurantSnapshot(lead);
         var research = restaurantResearchProfile(lead);
         return [
-          "Restaurant research summary — " + snap.business,
+          "Restaurant research summary — " + restaurantCopyBusiness(lead),
           "",
           "Score:",
           research.researchScore + " / 100",
@@ -13325,7 +13392,7 @@
           research.salesPriority,
           "",
           "Visitor lane:",
-          snap.lane,
+          restaurantCopyLane(lead),
           "",
           "Restaurant type:",
           snap.restaurantType,
@@ -13352,7 +13419,7 @@
           research.reviewOpportunity,
           "",
           "Best first offer:",
-          snap.recommendedOffer,
+          restaurantCopyOffer(lead),
           "",
           "Recommended first move:",
           research.recommendedFirstMove,
@@ -13380,11 +13447,10 @@
       }
 
       function buildRestaurantBestFirstOfferReason(lead) {
-        var snap = restaurantSnapshot(lead);
         var research = restaurantResearchProfile(lead);
         return [
-          "Best first offer for " + snap.business + ":",
-          snap.recommendedOffer,
+          "Best first offer for " + restaurantCopyBusiness(lead) + ":",
+          restaurantCopyOffer(lead),
           "",
           "Reason:",
           research.recommendedFirstMove,
@@ -13397,7 +13463,7 @@
         var snap = restaurantSnapshot(lead);
         var research = restaurantResearchProfile(lead);
         return [
-          "Pre-contact notes — " + snap.business,
+          "Pre-contact notes — " + restaurantCopyBusiness(lead),
           "",
           "Before outreach, lead with:",
           research.recommendedFirstMove,
@@ -13420,16 +13486,16 @@
         var snap = restaurantSnapshot(lead);
         var research = restaurantResearchProfile(lead);
         return [
-          "Research-to-outreach plan — " + snap.business,
+          "Research-to-outreach plan — " + restaurantCopyBusiness(lead),
           "",
           "1. Confirm the restaurant’s best visitor lane:",
-          snap.lane,
+          restaurantCopyLane(lead),
           "",
           "2. Lead with the first useful opportunity:",
           research.recommendedFirstMove,
           "",
           "3. Recommend:",
-          snap.recommendedOffer,
+          restaurantCopyOffer(lead),
           "",
           "4. First contact message:",
           "Use the walk-in opening, Instagram DM opener, or after-visit follow-up.",
@@ -13443,10 +13509,10 @@
         var snap = restaurantSnapshot(lead || {});
         var proposal = restaurantProposalDirection(lead || {});
         return {
-          business: snap.business || "[business_name]",
-          contact: (lead && lead.contact_name) || "[contact_name]",
-          visitorLane: snap.lane || "[visitor_lane]",
-          bestFirstOffer: proposal.suggestedFirstOffer || snap.recommendedOffer || "[best_first_offer]",
+          business: restaurantCopyBusiness(lead),
+          contact: restaurantCopyContact(lead),
+          visitorLane: restaurantCopyLane(lead),
+          bestFirstOffer: restaurantCopyOffer(lead),
         };
       }
 
@@ -13651,14 +13717,14 @@
         var snap = restaurantSnapshot(lead);
         var proposal = restaurantProposalDirection(lead);
         return {
-          business: snap.business || "[business_name]",
-          contact: lead.contact_name || "[contact_name]",
+          business: restaurantCopyBusiness(lead),
+          contact: restaurantCopyContact(lead),
           researchScore: proposal.researchScore,
           salesPriority: proposal.salesPriority,
-          visitorLane: proposal.visitorLane,
+          visitorLane: restaurantCopyLane(lead),
           mainOpportunity: proposal.mainOpportunity,
           recommendedFirstMove: proposal.recommendedFirstMove,
-          suggestedFirstOffer: proposal.suggestedFirstOffer,
+          suggestedFirstOffer: proposal.suggestedFirstOffer || restaurantCopyOffer(lead),
           suggestedPackageTier: proposal.suggestedPackageTier,
           suggestedStartingRange: proposal.suggestedStartingRange,
           bestFirstDeliverable: proposal.bestFirstDeliverable,
@@ -13930,10 +13996,10 @@
       function restaurantCloseCopyData(lead) {
         var close = restaurantCloseData(lead);
         return {
-          business: close.business || "[business_name]",
-          contact: close.contact || "[contact_name]",
+          business: restaurantCopyBusiness(lead),
+          contact: restaurantCopyContact(lead),
           closeStatus: close.closeStatus || "Not started",
-          suggestedFirstOffer: close.suggestedFirstOffer || close.selectedOffer || "TBD",
+          suggestedFirstOffer: close.suggestedFirstOffer || close.selectedOffer || RESTAURANT_COPY_PLACEHOLDER.offer,
           suggestedStartingRange: close.suggestedStartingRange || "TBD",
           bestFirstDeliverable: close.bestFirstDeliverable || "TBD",
           materialsStatus: close.materialsStatus || "Not requested",
@@ -14107,12 +14173,15 @@
         var success = restaurantClientSuccessData(lead);
         var recap = restaurantMonthlyRecapData(lead);
         return {
-          business: success.business || "[business_name]",
-          contact: success.contact || "[contact_name]",
+          business: restaurantCopyBusiness(lead),
+          contact: restaurantCopyContact(lead),
           supportStatus: success.supportStatus || "Not started",
-          selectedOffer: success.selectedOffer || "TBD",
+          selectedOffer:
+            success.selectedOffer && success.selectedOffer !== "TBD"
+              ? success.selectedOffer
+              : RESTAURANT_COPY_PLACEHOLDER.offer,
           whatChangedThisMonth: recap.whatChangedThisMonth || "Not documented yet",
-          visitorLane: recap.visitorLaneFocus || "Unknown",
+          visitorLane: restaurantCopyLane(lead),
           issuesFound: recap.issuesFound || "None documented",
           recommendedNextImprovement: recap.recommendedNextImprovement || "Custom",
           suggestedNextOffer: recap.suggestedNextOffer || "Custom",
@@ -14693,6 +14762,7 @@
 
       function restaurantGuardrailsCard() {
         return (
+          '<p class="owner-dash-restaurant-guardrail-note">Copy only — nothing sends automatically. No payment, invoice, email, SMS, or public listing automation from this dashboard.</p>' +
           '<div class="owner-dash-restaurant-guardrails">' +
           restaurantCardList("Do not promise", RESTAURANT_GUARDRAILS_DO_NOT_PROMISE) +
           restaurantCardList("Allowed positioning", RESTAURANT_GUARDRAILS_ALLOWED) +
@@ -15230,6 +15300,9 @@
           '<div class="owner-dash-restaurant-command-block"><p class="owner-dash-restaurant-card-label">Restaurant Guardrails</p>' +
           restaurantGuardrailsCard() +
           "</div>" +
+          '<p class="owner-dash-restaurant-v1-note">' +
+          esc(RESTAURANT_PROGRAM_V1_NOTE) +
+          "</p>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<span class="owner-dash-restaurant-feedback" data-restaurant-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
@@ -15752,10 +15825,11 @@
           sheet.querySelector(".owner-dash-detail-section");
         var row = getDetailRecord();
         var text = copyTextForKind(kind, row, state.detailOpen.table);
-        if (!text) {
+        if (!text || !String(text).trim()) {
           setCopyFeedback(section, "Nothing to copy.", true);
           return;
         }
+        text = String(text).trim();
         hideManualCopy(section);
         function onSuccess() {
           setCopyFeedback(section, "Copied.");
