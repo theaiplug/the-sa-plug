@@ -88,7 +88,7 @@
     var restaurantArea = String(fd.get("restaurant_area") || "").trim();
 
     var services = [];
-    if (partnerInterest) services.push("Restaurant Partner Program — visitor visibility / partner placement");
+    if (partnerInterest) services.push("Restaurant Partner Program — visitor visibility / partner consideration");
     if (aiInterest) services.push("AI Restaurant Growth Systems — intake, QR, events, follow-up");
 
     var recommended = partnerInterest && !aiInterest
