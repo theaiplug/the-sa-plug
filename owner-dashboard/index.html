@@ -4950,7 +4950,7 @@
       var RESTAURANT_LEAD_FOLLOW_UP_GUARDRAIL =
         "Guardrail: Do not promise guaranteed placement, traffic, reservations, revenue, rankings, or automatic listing. Restaurant opportunities are reviewed for fit. AI systems improve workflows and lead handling, but outcomes depend on the business, offer, execution, and follow-up.";
 
-      var RESTAURANT_PROPOSAL_GUARDRAIL =
+      var RESTAURANT_LEAD_PROPOSAL_GUARDRAIL =
         "No guaranteed placement, traffic, reservations, revenue, rankings, or automatic listing. Visibility opportunities are reviewed for fit. AI systems improve workflow and lead handling, but outcomes depend on execution and follow-up.";
 
       var RESTAURANT_PROPOSAL_RECOMMENDATIONS = [
@@ -9157,7 +9157,7 @@
         lines.push(safeValues.nextStep || "Send first email");
         lines.push("");
         lines.push("Guardrail:");
-        lines.push(RESTAURANT_PROPOSAL_GUARDRAIL);
+        lines.push(RESTAURANT_LEAD_PROPOSAL_GUARDRAIL);
         return lines.join("\n");
       }
 
@@ -9234,7 +9234,7 @@
         lines.push("Suggested next step: " + (values.nextStep || "Send first email"));
         lines.push("");
         lines.push("Guardrail note:");
-        lines.push(RESTAURANT_PROPOSAL_GUARDRAIL);
+        lines.push(RESTAURANT_LEAD_PROPOSAL_GUARDRAIL);
         return lines.join("\n");
       }
 
@@ -9275,7 +9275,7 @@
           restaurantProposalSummaryHtml(values) +
           "</div>" +
           '<p class="owner-dash-restaurant-followup-guardrail">' +
-          esc(RESTAURANT_PROPOSAL_GUARDRAIL) +
+          esc(RESTAURANT_LEAD_PROPOSAL_GUARDRAIL) +
           "</p>" +
           '<div class="owner-dash-restaurant-proposal-actions">' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--primary" data-action="save-restaurant-proposal-recommendation" data-save-mode="proposal">Save recommendation</button>' +
