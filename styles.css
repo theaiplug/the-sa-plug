@@ -15852,6 +15852,14 @@ body.owner-dash-detail-open {
 .page-restaurants {
   --rest-gold-glow: rgba(242, 178, 26, 0.35);
   --rest-turq-glow: rgba(20, 184, 166, 0.28);
+  overflow-x: clip;
+}
+
+.page-restaurants .restaurants-main,
+.page-restaurants .rest-hero-shell,
+.page-restaurants .routes-band-inner {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .page-restaurants :where(
@@ -15984,6 +15992,13 @@ body.owner-dash-detail-open {
 .page-restaurants .rest-hero-cta {
   margin-top: clamp(10px, 1.6vw, 16px);
   gap: clamp(10px, 1.4vw, 14px);
+}
+
+.page-restaurants .rest-hero-cta .btn {
+  min-height: 48px;
+  white-space: normal;
+  text-align: center;
+  justify-content: center;
 }
 
 .page-restaurants .rest-hero-cta .btn-primary {
@@ -16834,4 +16849,39 @@ body.owner-dash-detail-open {
   font-size: 0.94rem;
   font-weight: 650;
   color: var(--navy);
+}
+
+.restaurant-owner-soft-link,
+.eat-owner-cta {
+  margin: clamp(14px, 2vw, 18px) auto 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.restaurant-owner-soft-link a,
+.eat-owner-cta a {
+  color: inherit;
+  font-weight: 800;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+}
+
+.restaurant-owner-soft-link {
+  max-width: 42rem;
+  color: rgba(255, 246, 230, 0.82);
+}
+
+.restaurant-owner-soft-link a {
+  color: #fff8eb;
+  text-decoration-color: rgba(242, 178, 26, 0.7);
+}
+
+.eat-owner-cta {
+  max-width: 44rem;
+  color: rgba(255, 246, 230, 0.78);
+}
+
+.eat-owner-cta a {
+  color: #fff8eb;
+  text-decoration-color: rgba(20, 184, 166, 0.7);
 }
