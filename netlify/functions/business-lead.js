@@ -98,6 +98,53 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+function isRestaurantInquiry(payload) {
+  const text = [
+    payload.page_path,
+    payload.business_industry,
+    payload.owner_notes,
+    payload.notes,
+    payload.services_interested,
+    payload.recommended_system,
+  ]
+    .filter(Boolean)
+    .join("\n")
+    .toLowerCase();
+  return (
+    text.indexOf("/restaurants/") !== -1 ||
+    text.indexOf("restaurant lead source") !== -1 ||
+    text.indexOf("inbound restaurant inquiry") !== -1
+  );
+}
+
+function restaurantInterestType(payload) {
+  const text = [
+    payload.owner_notes,
+    payload.notes,
+    payload.services_interested,
+    payload.recommended_system,
+    payload.current_problem,
+  ]
+    .filter(Boolean)
+    .join("\n")
+    .toLowerCase();
+  const partner =
+    /partner program interest:\s*yes|restaurant partner program|visitor visibility|partner placement/.test(text);
+  const ai =
+    /ai systems interest:\s*yes|ai restaurant growth|ai systems|growth systems|restaurant growth systems/.test(text);
+  if (partner && ai) return "Both";
+  if (partner) return "Restaurant Partner Program";
+  if (ai) return "AI Restaurant Growth Systems";
+  return "Not specified";
+}
+
+function restaurantOptionalMessage(notes) {
+  const text = String(notes || "").trim();
+  if (!text) return "";
+  const marker = text.search(/inbound restaurant inquiry from\s+\/restaurants\//i);
+  return (marker >= 0 ? text.slice(0, marker) : text).trim();
+}
+
 function classifyLeadQuality(payload) {
   const prob =
     `${payload.current_problem || ""} ${payload.customer_flow_issue || ""} ${payload.notes || ""}`.trim();
@@ -386,7 +433,52 @@ exports.handler = async (event) => {
     (process.env.BUSINESS_RESEND_FROM_EMAIL && String(process.env.BUSINESS_RESEND_FROM_EMAIL).trim()) ||
     "The AI Plug <onboarding@resend.dev>";
 
-  const emailHtml = `<!DOCTYPE html><html><body style="font-family:system-ui,sans-serif;line-height:1.5;color:#0b1d3a">
+  const restaurantInquiry = isRestaurantInquiry({
+    page_path,
+    business_industry,
+    owner_notes,
+    notes,
+    services_interested,
+    recommended_system,
+  });
+  const restaurantInterest = restaurantInterestType({
+    owner_notes,
+    notes,
+    services_interested,
+    recommended_system,
+    current_problem,
+  });
+  const restaurantMessage = restaurantOptionalMessage(notes);
+  const emailSubject = restaurantInquiry
+    ? `New restaurant inquiry — ${business_name || "Restaurant name not provided"}`
+    : `The AI Plug business lead [${lead_quality}] · ${contact_name}`;
+
+  const emailHtml = restaurantInquiry
+    ? `<!DOCTYPE html><html><body style="font-family:system-ui,sans-serif;line-height:1.5;color:#0b1d3a">
+<h2>New restaurant inquiry</h2>
+<p><strong>Supabase lead ID:</strong> ${escapeHtml(requestId)}</p>
+<ul>
+<li><strong>Restaurant name:</strong> ${business_name ? escapeHtml(business_name) : "—"}</li>
+<li><strong>Contact name:</strong> ${escapeHtml(contact_name)}</li>
+<li><strong>Email:</strong> ${emailOk ? escapeHtml(contact_email_raw) : "—"}</li>
+<li><strong>Phone:</strong> ${contact_phone ? escapeHtml(contact_phone) : "—"}</li>
+<li><strong>Preferred contact method:</strong> ${escapeHtml(preferred_contact_method)}</li>
+<li><strong>Website / social:</strong> ${business_website ? escapeHtml(business_website) : "—"}</li>
+<li><strong>Area / neighborhood:</strong> ${business_location ? escapeHtml(business_location) : "—"}</li>
+<li><strong>Interest type:</strong> ${escapeHtml(restaurantInterest)}</li>
+<li><strong>Help needed:</strong> ${current_problem ? escapeHtml(current_problem) : "—"}</li>
+<li><strong>Source:</strong> ${escapeHtml(page_path || "/restaurants/")}</li>
+</ul>
+<h3>Optional message</h3>
+<pre style="white-space:pre-wrap;font-size:14px;background:#f6f8fb;padding:12px;border-radius:8px">${escapeHtml(
+      restaurantMessage || "—"
+    )}</pre>
+<h3>Internal notes</h3>
+<pre style="white-space:pre-wrap;font-size:14px;background:#f6f8fb;padding:12px;border-radius:8px">${escapeHtml(
+      owner_notes || "—"
+    )}</pre>
+</body></html>`
+    : `<!DOCTYPE html><html><body style="font-family:system-ui,sans-serif;line-height:1.5;color:#0b1d3a">
 <h2>New The AI Plug business lead</h2>
 <p><strong>Lead quality:</strong> ${escapeHtml(lead_quality)}</p>
 <p><strong>Supabase lead ID:</strong> ${escapeHtml(requestId)}</p>
@@ -433,7 +525,7 @@ exports.handler = async (event) => {
         body: JSON.stringify({
           from: resendFrom,
           to: [alertEmail],
-          subject: `The AI Plug business lead [${lead_quality}] · ${contact_name}`,
+          subject: emailSubject,
           html: emailHtml,
         }),
       });
@@ -481,7 +573,9 @@ exports.handler = async (event) => {
     (process.env.TRANSPORT_ALERT_PHONE && String(process.env.TRANSPORT_ALERT_PHONE).trim()) ||
     "";
 
-  const smsBody = `AI Plug lead (${lead_quality}): ${business_name || "Business TBD"} · ${contact_name}. Check email for ID ${requestId}.`;
+  const smsBody = restaurantInquiry
+    ? `Restaurant inquiry: ${business_name || "Restaurant TBD"} · ${contact_name}. Check email for ID ${requestId}.`
+    : `AI Plug lead (${lead_quality}): ${business_name || "Business TBD"} · ${contact_name}. Check email for ID ${requestId}.`;
 
   let smsSent = false;
   let smsErrorMessage = null;
