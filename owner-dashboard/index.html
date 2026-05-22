@@ -2545,13 +2545,15 @@
 
     .page-owner-dashboard .owner-dash-restaurant-crm,
     .page-owner-dashboard .owner-dash-restaurant-proposal,
+    .page-owner-dashboard .owner-dash-restaurant-package,
     .page-owner-dashboard .owner-dash-restaurant-crm-summary {
       border-color: rgba(94, 234, 212, 0.24);
       background: rgba(3, 7, 18, 0.54);
     }
 
     .page-owner-dashboard .owner-dash-restaurant-crm-head,
-    .page-owner-dashboard .owner-dash-restaurant-proposal-head {
+    .page-owner-dashboard .owner-dash-restaurant-proposal-head,
+    .page-owner-dashboard .owner-dash-restaurant-package-head {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -2562,14 +2564,17 @@
     }
 
     .page-owner-dashboard .owner-dash-restaurant-crm-grid,
-    .page-owner-dashboard .owner-dash-restaurant-proposal-grid {
+    .page-owner-dashboard .owner-dash-restaurant-proposal-grid,
+    .page-owner-dashboard .owner-dash-restaurant-package-grid,
+    .page-owner-dashboard .owner-dash-restaurant-package-snapshot {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
       min-width: 0;
     }
 
-    .page-owner-dashboard .owner-dash-restaurant-proposal {
+    .page-owner-dashboard .owner-dash-restaurant-proposal,
+    .page-owner-dashboard .owner-dash-restaurant-package {
       display: grid;
       gap: 12px;
     }
@@ -2653,6 +2658,47 @@
       overflow-wrap: anywhere;
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-package-snapshot-card {
+      padding: 9px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.045);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-package-snapshot-card--wide,
+    .page-owner-dashboard .owner-dash-restaurant-package-field--wide {
+      grid-column: 1 / -1;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-package-label {
+      display: block;
+      margin: 0 0 4px;
+      color: rgba(255, 246, 230, 0.58);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-package-value {
+      display: block;
+      color: rgba(255, 246, 230, 0.9);
+      font-size: 0.84rem;
+      font-weight: 780;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-package-helper {
+      margin: 5px 0 0;
+      color: rgba(255, 246, 230, 0.62);
+      font-size: 0.76rem;
+      line-height: 1.35;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-package-actions,
     .page-owner-dashboard .owner-dash-restaurant-proposal-actions {
       display: flex;
       flex-wrap: wrap;
@@ -2676,7 +2722,8 @@
     }
 
     .page-owner-dashboard .owner-dash-restaurant-crm textarea,
-    .page-owner-dashboard .owner-dash-restaurant-proposal textarea {
+    .page-owner-dashboard .owner-dash-restaurant-proposal textarea,
+    .page-owner-dashboard .owner-dash-restaurant-package textarea {
       min-height: 126px;
     }
 
@@ -3653,6 +3700,8 @@
         .owner-dash-restaurant-research-form-grid,
         .owner-dash-restaurant-proposal-grid,
         .owner-dash-restaurant-proposal-form-grid,
+        .owner-dash-restaurant-package-grid,
+        .owner-dash-restaurant-package-snapshot,
         .owner-dash-restaurant-rep-queue-buckets,
         .owner-dash-restaurant-rep-grid,
         .owner-dash-restaurant-rep-form-grid,
@@ -3669,6 +3718,7 @@
         .owner-dash-restaurant-command-copy,
         .owner-dash-restaurant-command-actions,
         .owner-dash-restaurant-proposal-actions,
+        .owner-dash-restaurant-package-actions,
         .owner-dash-restaurant-research-actions,
         .owner-dash-restaurant-create-actions,
         .owner-dash-first50-actions
@@ -3684,6 +3734,7 @@
         .owner-dash-restaurant-command-copy .owner-dash-btn,
         .owner-dash-restaurant-command-actions .owner-dash-btn,
         .owner-dash-restaurant-proposal-actions .owner-dash-btn,
+        .owner-dash-restaurant-package-actions .owner-dash-btn,
         .owner-dash-restaurant-research-actions .owner-dash-btn,
         .owner-dash-restaurant-create-actions .owner-dash-btn,
         .owner-dash-first50-actions .owner-dash-btn,
@@ -4952,6 +5003,99 @@
 
       var RESTAURANT_LEAD_PROPOSAL_GUARDRAIL =
         "No guaranteed placement, traffic, reservations, revenue, rankings, or automatic listing. Visibility opportunities are reviewed for fit. AI systems improve workflow and lead handling, but outcomes depend on execution and follow-up.";
+
+      var RESTAURANT_PROPOSAL_PACKAGE_GUARDRAIL =
+        "Visibility opportunities are reviewed for fit. Where To Go SA does not guarantee placement, traffic, reservations, revenue, rankings, or automatic listing. AI systems are designed to improve workflow, lead capture, and follow-up, but outcomes depend on the business, offer, execution, and response process.";
+
+      var RESTAURANT_PROPOSAL_PACKAGE_TYPES = [
+        "Restaurant Partner Program",
+        "AI Restaurant Growth Systems",
+        "Combined Partner + AI Systems",
+        "Custom / Needs Review",
+      ];
+
+      var RESTAURANT_PROPOSAL_PACKAGE_MAP = {
+        "Restaurant Partner Program": {
+          summary:
+            "Prepare a reviewed-for-fit Restaurant Partner Program proposal focused on visitor visibility opportunities, relevant dining situations, resort/downtown/airport/category relevance, and local guide trust. This is a fit review and positioning path, not a guarantee of placement or results.",
+          scope: [
+            "Review restaurant fit for Where To Go SA visitor contexts",
+            "Identify best visitor moments: resort, downtown, airport, family, business, nightlife, or category-based dining",
+            "Prepare partner visibility recommendation",
+            "Align restaurant description with visitor-first language",
+            "Recommend QR/outreach-friendly next steps",
+            "Review monthly visibility/follow-up opportunities where appropriate",
+          ],
+          next: [
+            "Confirm the restaurant's best-fit path",
+            "Send proposal summary",
+            "Schedule scope call if needed",
+            "Review fit, timing, and implementation needs",
+            "Prepare next steps after owner approval",
+          ],
+          closing: "Willie\nWhere To Go SA",
+        },
+        "AI Restaurant Growth Systems": {
+          summary:
+            "Prepare an AI Restaurant Growth Systems proposal focused on smarter intake, QR/menu/funnel paths, private event or catering inquiry flow, missed-call/form follow-up, owner-visible lead tracking, and practical systems built by The AI Plug. This is workflow infrastructure, not a guaranteed outcome.",
+          scope: [
+            "Review current website/contact flow",
+            "Map current calls, forms, DMs, QR scans, event/catering requests, and follow-up gaps",
+            "Recommend smarter intake structure",
+            "Plan QR/menu/funnel path if useful",
+            "Build or improve request capture flow",
+            "Add owner-visible lead tracking where appropriate",
+            "Create follow-up and response workflow",
+          ],
+          next: [
+            "Confirm the restaurant's best-fit path",
+            "Send proposal summary",
+            "Schedule scope call if needed",
+            "Review fit, timing, and implementation needs",
+            "Prepare next steps after owner approval",
+          ],
+          closing: "Willie\nThe AI Plug / Where To Go SA",
+        },
+        "Combined Partner + AI Systems": {
+          summary:
+            "Prepare a combined proposal focused on visitor visibility plus customer-flow infrastructure. Where To Go SA is the live guide layer; The AI Plug is the systems layer. Scope should stay discovery-first and avoid guaranteed placement or results.",
+          scope: [
+            "Review guide-fit and visitor visibility opportunities",
+            "Map restaurant customer-flow gaps",
+            "Recommend partner visibility path",
+            "Recommend AI intake / QR / event / follow-up system",
+            "Prepare phased rollout: visibility first, systems first, or both together",
+            "Track lead handling and follow-up through Owner Command",
+          ],
+          next: [
+            "Confirm the restaurant's best-fit path",
+            "Send proposal summary",
+            "Schedule scope call if needed",
+            "Review fit, timing, and implementation needs",
+            "Prepare next steps after owner approval",
+          ],
+          closing: "Willie\nWhere To Go SA / The AI Plug",
+        },
+        "Custom / Needs Review": {
+          summary:
+            "Hold the proposal package for custom review until the restaurant's fit, need, scope, and safe first step are clearer. Use discovery notes before sending a firm proposal summary.",
+          scope: [
+            "Review restaurant fit and public trust signals",
+            "Clarify whether visibility, AI systems, both, or no proposal is the right path",
+            "Document open questions and caution areas",
+            "Confirm decision-maker, timing, and implementation needs",
+            "Prepare a custom recommendation only after discovery",
+          ],
+          next: [
+            "Confirm the restaurant's best-fit path",
+            "Send proposal summary only after fit is clear",
+            "Schedule scope call if needed",
+            "Review fit, timing, and implementation needs",
+            "Prepare next steps after owner approval",
+          ],
+          closing: "Willie\nWhere To Go SA / The AI Plug",
+        },
+      };
 
       var RESTAURANT_PROPOSAL_RECOMMENDATIONS = [
         {
@@ -8550,6 +8694,19 @@
         return d.getFullYear() + "-" + month + "-" + day;
       }
 
+      function addBusinessDaysDateString(startDate, businessDays) {
+        var d = startDate instanceof Date ? new Date(startDate.getTime()) : new Date();
+        var remaining = Math.max(0, Number(businessDays) || 0);
+        while (remaining > 0) {
+          d.setDate(d.getDate() + 1);
+          var day = d.getDay();
+          if (day !== 0 && day !== 6) remaining -= 1;
+        }
+        var month = String(d.getMonth() + 1).padStart(2, "0");
+        var date = String(d.getDate()).padStart(2, "0");
+        return d.getFullYear() + "-" + month + "-" + date;
+      }
+
       function normalizeDateInputValue(value) {
         if (!value) return "";
         var s = String(value).trim();
@@ -8597,7 +8754,10 @@
         if (restaurantLeadFollowUpIsDue(row)) return true;
         if (status === "new" || status === "needs follow-up") return true;
         if (status === "contacted" && action && action !== "Wait for reply") return true;
-        return status === "proposal sent" && action === "Follow up";
+        if (status === "proposal sent" && action === "Follow up") {
+          return !normalizeDateInputValue(restaurantLeadNextFollowUpDate(row)) || restaurantLeadFollowUpIsDue(row);
+        }
+        return false;
       }
 
       function restaurantLeadSearchText(row) {
@@ -8622,6 +8782,10 @@
           restaurantLeadProposalValue(row, "Proposal fit reasons:", ""),
           restaurantLeadProposalValue(row, "Proposal caution reasons:", ""),
           restaurantLeadProposalValue(row, "Proposal next step:", ""),
+          ownerNoteMarkerValue(row, "Proposal package type:"),
+          ownerNoteMarkerValue(row, "Proposal package summary:"),
+          ownerNoteMarkerValue(row, "Proposal package scope bullets:"),
+          ownerNoteMarkerValue(row, "Proposal package next steps:"),
           restaurantLeadNextFollowUpDate(row),
           row.services_interested,
           row.recommended_system,
@@ -9293,6 +9457,154 @@
         );
       }
 
+      function restaurantProposalPackageIsValid(type) {
+        return RESTAURANT_PROPOSAL_PACKAGE_TYPES.indexOf(String(type || "").trim()) !== -1;
+      }
+
+      function restaurantProposalPackageInfo(type) {
+        var key = restaurantProposalPackageIsValid(type) ? String(type).trim() : "Custom / Needs Review";
+        return RESTAURANT_PROPOSAL_PACKAGE_MAP[key] || RESTAURANT_PROPOSAL_PACKAGE_MAP["Custom / Needs Review"];
+      }
+
+      function restaurantProposalPackageDefaultType(row) {
+        var recommendation = restaurantLeadProposalValues(row).recommendation;
+        if (recommendation === "Partner Program only") return "Restaurant Partner Program";
+        if (recommendation === "AI Restaurant Growth Systems only") return "AI Restaurant Growth Systems";
+        if (recommendation === "Both: Partner Program + AI Systems") return "Combined Partner + AI Systems";
+        if (row && row.interest_partner_program && row.interest_ai_systems) return "Combined Partner + AI Systems";
+        if (row && row.interest_partner_program) return "Restaurant Partner Program";
+        if (row && row.interest_ai_systems) return "AI Restaurant Growth Systems";
+        return "Custom / Needs Review";
+      }
+
+      function restaurantProposalPackageListFromText(value) {
+        return String(value || "")
+          .split(/\r?\n|\s*;\s*/)
+          .map(function (item) {
+            return String(item || "").replace(/^\s*[-*]\s*/, "").trim();
+          })
+          .filter(Boolean);
+      }
+
+      function restaurantProposalPackageOneLine(value) {
+        return String(value || "").replace(/\s+/g, " ").trim();
+      }
+
+      function restaurantProposalPackageSavedList(row, marker, fallback) {
+        var saved = ownerNoteMarkerValue(row, marker);
+        var parsed = restaurantProposalPackageListFromText(saved);
+        return parsed.length ? parsed : (fallback || []).slice();
+      }
+
+      function restaurantLeadProposalPackageValues(row) {
+        var savedType = ownerNoteMarkerValue(row, "Proposal package type:");
+        var packageType = restaurantProposalPackageIsValid(savedType)
+          ? savedType
+          : restaurantProposalPackageDefaultType(row);
+        var info = restaurantProposalPackageInfo(packageType);
+        return {
+          packageType: packageType,
+          summary: ownerNoteMarkerValue(row, "Proposal package summary:") || info.summary,
+          scopeBullets: restaurantProposalPackageSavedList(row, "Proposal package scope bullets:", info.scope),
+          priceRangeNote:
+            ownerNoteMarkerValue(row, "Proposal package price/range note:") ||
+            ownerNoteMarkerValue(row, "Internal price/range note:") ||
+            "",
+          nextSteps: restaurantProposalPackageSavedList(row, "Proposal package next steps:", info.next),
+          updatedAt: ownerNoteMarkerValue(row, "Proposal package updated at:"),
+          guardrail: RESTAURANT_PROPOSAL_PACKAGE_GUARDRAIL,
+        };
+      }
+
+      function restaurantProposalPackageSelectOptions(current) {
+        return RESTAURANT_PROPOSAL_PACKAGE_TYPES.map(function (type) {
+          return (
+            '<option value="' +
+            esc(type) +
+            '"' +
+            (type === current ? " selected" : "") +
+            ">" +
+            esc(type) +
+            "</option>"
+          );
+        }).join("");
+      }
+
+      function restaurantProposalPackageTextareaValue(items) {
+        return (items || []).map(function (item) { return "- " + item; }).join("\n");
+      }
+
+      function restaurantProposalPackageSnapshotHtml(row, values) {
+        return (
+          '<div class="owner-dash-restaurant-package-snapshot" aria-label="Proposal package snapshot">' +
+          '<div class="owner-dash-restaurant-package-snapshot-card"><span class="owner-dash-restaurant-package-label">Current proposal package</span><strong class="owner-dash-restaurant-package-value" data-package-snapshot-type>' +
+          esc(values.packageType || "Custom / Needs Review") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-package-snapshot-card"><span class="owner-dash-restaurant-package-label">Proposal sent date</span><strong class="owner-dash-restaurant-package-value">' +
+          esc(normalizeDateInputValue(restaurantLeadProposalSentDate(row)) || "Not sent") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-package-snapshot-card"><span class="owner-dash-restaurant-package-label">Next follow-up date</span><strong class="owner-dash-restaurant-package-value">' +
+          esc(normalizeDateInputValue(restaurantLeadNextFollowUpDate(row)) || "Not set") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-package-snapshot-card owner-dash-restaurant-package-snapshot-card--wide"><span class="owner-dash-restaurant-package-label">Last proposal note / summary</span><strong class="owner-dash-restaurant-package-value" data-package-snapshot-summary>' +
+          esc(values.summary || "No package summary saved yet.") +
+          "</strong></div></div>"
+        );
+      }
+
+      function restaurantLeadProposalPackageBuilderBlock(row) {
+        var values = restaurantLeadProposalPackageValues(row);
+        var updated = values.updatedAt ? '<span>Saved: ' + esc(fmtDate(values.updatedAt)) + "</span>" : "";
+        return (
+          '<section class="owner-dash-detail-section owner-dash-restaurant-package" data-restaurant-proposal-package>' +
+          '<div class="owner-dash-restaurant-package-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Restaurant Proposal Package Builder</h3>' +
+          '<p class="owner-dash-detail-section-note">Internal proposal email and scope generator. Copy only - nothing sends, publishes, invoices, charges, or lists a restaurant automatically.</p></div>' +
+          '<span class="owner-dash-restaurant-followup-badge">Internal only</span>' +
+          "</div>" +
+          restaurantProposalPackageSnapshotHtml(row, values) +
+          '<div class="owner-dash-restaurant-package-grid">' +
+          '<label class="owner-dash-workflow-field owner-dash-restaurant-package-field--wide"><span class="owner-dash-workflow-label">Package type</span>' +
+          '<select class="owner-dash-select" name="package_type">' +
+          restaurantProposalPackageSelectOptions(values.packageType) +
+          "</select><p class=\"owner-dash-restaurant-package-helper\">Default follows the Proposal Builder recommendation when one is available.</p></label>" +
+          '<label class="owner-dash-workflow-field owner-dash-restaurant-package-field--wide"><span class="owner-dash-workflow-label">Proposal summary</span>' +
+          '<textarea class="owner-dash-textarea" name="package_summary" rows="5">' +
+          esc(values.summary) +
+          "</textarea></label>" +
+          '<label class="owner-dash-workflow-field owner-dash-restaurant-package-field--wide"><span class="owner-dash-workflow-label">Scope bullets</span>' +
+          '<textarea class="owner-dash-textarea" name="scope_bullets" rows="7">' +
+          esc(restaurantProposalPackageTextareaValue(values.scopeBullets)) +
+          "</textarea></label>" +
+          '<label class="owner-dash-workflow-field owner-dash-restaurant-package-field--wide"><span class="owner-dash-workflow-label">Internal price/range note</span>' +
+          '<input class="owner-dash-input" type="text" name="price_range_note" value="' +
+          esc(values.priceRangeNote) +
+          '" placeholder="Example: Partner intro package, AI systems starter, combined package, custom quote, or hold until discovery." />' +
+          '<p class="owner-dash-restaurant-package-helper">Internal only. Do not show pricing publicly or lock pricing before discovery.</p></label>' +
+          '<label class="owner-dash-workflow-field owner-dash-restaurant-package-field--wide"><span class="owner-dash-workflow-label">What happens next</span>' +
+          '<textarea class="owner-dash-textarea" name="next_steps" rows="5">' +
+          esc(restaurantProposalPackageTextareaValue(values.nextSteps)) +
+          "</textarea></label>" +
+          "</div>" +
+          '<p class="owner-dash-restaurant-followup-guardrail" data-package-guardrail>' +
+          esc(RESTAURANT_PROPOSAL_PACKAGE_GUARDRAIL) +
+          "</p>" +
+          '<div class="owner-dash-restaurant-package-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--primary" data-action="copy-restaurant-package-email">Copy proposal email</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="copy-restaurant-package-scope">Copy scope summary</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="save-restaurant-package">Save package snapshot</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="mark-restaurant-package-sent">Mark Proposal Sent</button>' +
+          '<span class="owner-dash-workflow-feedback" data-restaurant-package-feedback hidden aria-live="polite"></span>' +
+          updated +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
       function renderRestaurantLeadKitOverview() {
         if (!els.restaurantFollowUpKit) return;
         els.restaurantFollowUpKit.innerHTML = restaurantLeadFollowUpKitHtml(null, false);
@@ -9585,6 +9897,8 @@
           "proposal-follow-up-email": "Restaurant proposal follow-up email copied",
           "not-fit-hold-email": "Restaurant not-a-fit / hold email copied",
           "full-restaurant-follow-up-kit": "Full restaurant follow-up kit copied",
+          "restaurant-package-email": "Restaurant proposal package email copied",
+          "restaurant-package-scope": "Restaurant proposal package scope copied",
         };
         return labels[kind] || "Copy action completed";
       }
@@ -17255,6 +17569,7 @@
           restaurantLeadCrmSummaryBlock(row) +
           restaurantLeadCrmEditorBlock(row) +
           restaurantLeadProposalBuilderBlock(row) +
+          restaurantLeadProposalPackageBuilderBlock(row) +
           restaurantLeadFollowUpKitHtml(row, true) +
           restaurantLeadDetailsBlock(row) +
           quickStatusBlock("restaurant_leads", row.status) +
@@ -17841,7 +18156,9 @@
             fitLabel: ownerNoteMarkerValue({ owner_notes: existing }, "Fit label:") || "Needs more info",
             leadPriority: ownerNoteMarkerValue({ owner_notes: existing }, "Lead priority:") || "Medium",
             nextAction: "Follow up",
-            nextFollowUpDate: ownerNoteMarkerValue({ owner_notes: existing }, "Next follow-up date:") || "",
+            nextFollowUpDate:
+              normalizeDateInputValue(ownerNoteMarkerValue({ owner_notes: existing }, "Next follow-up date:")) ||
+              addBusinessDaysDateString(new Date(), 3),
             proposalSentAt: ownerNoteMarkerValue({ owner_notes: existing }, "Proposal sent date:") || today,
             wonAt: ownerNoteMarkerValue({ owner_notes: existing }, "Won date:") || "",
           });
@@ -17924,6 +18241,72 @@
             continue;
           }
           if (isRestaurantLeadProposalLine(lines[i])) {
+            if (!inserted) {
+              nextLines = nextLines.concat(blockLines);
+              inserted = true;
+            }
+            continue;
+          }
+          nextLines.push(lines[i]);
+        }
+        if (!inserted) nextLines.push(block);
+        return nextLines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+      }
+
+      function buildRestaurantLeadProposalPackageBlock(values) {
+        var clean = values || {};
+        return [
+          "Restaurant proposal package:",
+          "Proposal package type: " + (clean.packageType || "Custom / Needs Review") + ".",
+          "Proposal package summary: " + (restaurantProposalPackageOneLine(clean.summary) || "TBD") + ".",
+          "Proposal package scope bullets: " + ((clean.scopeBullets || []).map(restaurantProposalPackageOneLine).filter(Boolean).join("; ") || "None selected") + ".",
+          "Proposal package price/range note: " + (restaurantProposalPackageOneLine(clean.priceRangeNote) || "Not set") + ".",
+          "Proposal package next steps: " + ((clean.nextSteps || []).map(restaurantProposalPackageOneLine).filter(Boolean).join("; ") || "None selected") + ".",
+          "Proposal package guardrail: " + RESTAURANT_PROPOSAL_PACKAGE_GUARDRAIL,
+          "Proposal package updated at: " + (clean.updatedAt || new Date().toISOString()) + ".",
+        ].join("\n");
+      }
+
+      function isRestaurantLeadProposalPackageLine(line) {
+        var text = String(line || "").trim().toLowerCase();
+        return (
+          text.indexOf("proposal package type:") === 0 ||
+          text.indexOf("proposal package summary:") === 0 ||
+          text.indexOf("proposal package scope bullets:") === 0 ||
+          text.indexOf("proposal package price/range note:") === 0 ||
+          text.indexOf("internal price/range note:") === 0 ||
+          text.indexOf("proposal package next steps:") === 0 ||
+          text.indexOf("proposal package guardrail:") === 0 ||
+          text.indexOf("proposal package updated at:") === 0
+        );
+      }
+
+      function upsertRestaurantLeadProposalPackageBlock(existing, values) {
+        var block = buildRestaurantLeadProposalPackageBlock(values);
+        var current = String(existing || "").replace(/\r\n/g, "\n").trim();
+        if (!current) return block;
+        var lines = current.split("\n");
+        var blockLines = block.split("\n");
+        var nextLines = [];
+        var inserted = false;
+        for (var i = 0; i < lines.length; i++) {
+          if (/^\s*Restaurant proposal package:\s*$/i.test(lines[i])) {
+            if (!inserted) {
+              nextLines = nextLines.concat(blockLines);
+              inserted = true;
+            }
+            i += 1;
+            while (i < lines.length) {
+              if (!String(lines[i] || "").trim() || isRestaurantLeadProposalPackageLine(lines[i])) {
+                i += 1;
+                continue;
+              }
+              break;
+            }
+            i -= 1;
+            continue;
+          }
+          if (isRestaurantLeadProposalPackageLine(lines[i])) {
             if (!inserted) {
               nextLines = nextLines.concat(blockLines);
               inserted = true;
@@ -23340,6 +23723,241 @@
         fb.className = "owner-dash-workflow-feedback owner-dash-workflow-feedback--" + type;
       }
 
+      function setRestaurantPackageFeedback(section, type, message) {
+        var fb = section && section.querySelector("[data-restaurant-package-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-workflow-feedback owner-dash-workflow-feedback--" + type;
+      }
+
+      function readRestaurantProposalPackageValues(section) {
+        var packageEl = section && section.querySelector('[name="package_type"]');
+        var summaryEl = section && section.querySelector('[name="package_summary"]');
+        var scopeEl = section && section.querySelector('[name="scope_bullets"]');
+        var priceEl = section && section.querySelector('[name="price_range_note"]');
+        var nextEl = section && section.querySelector('[name="next_steps"]');
+        var packageType = packageEl ? String(packageEl.value || "").trim() : "Custom / Needs Review";
+        if (!restaurantProposalPackageIsValid(packageType)) packageType = "Custom / Needs Review";
+        return {
+          packageType: packageType,
+          summary: summaryEl ? String(summaryEl.value || "").trim() : "",
+          scopeBullets: restaurantProposalPackageListFromText(scopeEl ? scopeEl.value : ""),
+          priceRangeNote: priceEl ? String(priceEl.value || "").trim() : "",
+          nextSteps: restaurantProposalPackageListFromText(nextEl ? nextEl.value : ""),
+          guardrail: RESTAURANT_PROPOSAL_PACKAGE_GUARDRAIL,
+        };
+      }
+
+      function resetRestaurantPackageDefaults(section) {
+        if (!section) return;
+        var packageEl = section.querySelector('[name="package_type"]');
+        var summaryEl = section.querySelector('[name="package_summary"]');
+        var scopeEl = section.querySelector('[name="scope_bullets"]');
+        var nextEl = section.querySelector('[name="next_steps"]');
+        var packageType = packageEl ? String(packageEl.value || "").trim() : "Custom / Needs Review";
+        var info = restaurantProposalPackageInfo(packageType);
+        if (summaryEl) summaryEl.value = info.summary;
+        if (scopeEl) scopeEl.value = restaurantProposalPackageTextareaValue(info.scope);
+        if (nextEl) nextEl.value = restaurantProposalPackageTextareaValue(info.next);
+        var typeSnap = section.querySelector("[data-package-snapshot-type]");
+        var summarySnap = section.querySelector("[data-package-snapshot-summary]");
+        if (typeSnap) typeSnap.textContent = packageType;
+        if (summarySnap) summarySnap.textContent = info.summary;
+      }
+
+      function restaurantLeadPackageRecapNeed(row) {
+        return (
+          (row && (row.help_needed || row.optional_message || row.ai_summary || row.interest_type)) ||
+          "the restaurant's visitor visibility, customer path, inquiry flow, or follow-up needs"
+        );
+      }
+
+      function restaurantPackageBulletText(items) {
+        var list = (items || []).filter(Boolean);
+        return list.length ? bulletText(list) : "- Confirm scope after discovery";
+      }
+
+      function restaurantProposalPackageEmailText(row, values) {
+        var info = restaurantProposalPackageInfo(values.packageType);
+        var restaurant = (row && row.restaurant_name) || "your restaurant";
+        var contact = (row && row.contact_name) || "there";
+        return [
+          "Subject: Proposal summary for " + restaurant,
+          "",
+          "Hi " + contact + ",",
+          "",
+          "Thanks for taking the time to talk through " + restaurant + ". Based on what you shared, the main need appears to be " + restaurantLeadPackageRecapNeed(row) + ".",
+          "",
+          "Recommended package:",
+          values.packageType,
+          "",
+          "Proposal summary:",
+          values.summary || info.summary,
+          "",
+          "Suggested scope:",
+          restaurantPackageBulletText(values.scopeBullets.length ? values.scopeBullets : info.scope),
+          "",
+          "What happens next:",
+          restaurantPackageBulletText(values.nextSteps.length ? values.nextSteps : info.next),
+          "",
+          "Guardrail note:",
+          RESTAURANT_PROPOSAL_PACKAGE_GUARDRAIL,
+          "",
+          "Thanks,",
+          info.closing,
+        ].join("\n");
+      }
+
+      function restaurantProposalPackageScopeText(row, values) {
+        var info = restaurantProposalPackageInfo(values.packageType);
+        var lines = [
+          "Restaurant proposal scope summary",
+          "",
+          "Restaurant name: " + ((row && row.restaurant_name) || "Restaurant TBD"),
+          "Package type: " + values.packageType,
+          "",
+          "Selected scope bullets:",
+          restaurantPackageBulletText(values.scopeBullets.length ? values.scopeBullets : info.scope),
+        ];
+        if (values.priceRangeNote) {
+          lines.push("", "Internal price/range note:", values.priceRangeNote);
+        }
+        lines.push(
+          "",
+          "Next steps:",
+          restaurantPackageBulletText(values.nextSteps.length ? values.nextSteps : info.next),
+          "",
+          "Guardrail note:",
+          RESTAURANT_PROPOSAL_PACKAGE_GUARDRAIL
+        );
+        return lines.join("\n");
+      }
+
+      function copyRestaurantProposalPackage(btn, kind) {
+        var section = btn && btn.closest("[data-restaurant-proposal-package]");
+        var row = restaurantLeadRowFromButton(btn);
+        if (!section || !row) return;
+        var values = readRestaurantProposalPackageValues(section);
+        var text =
+          kind === "scope"
+            ? restaurantProposalPackageScopeText(row, values)
+            : restaurantProposalPackageEmailText(row, values);
+        text = String(text || "").trim();
+        hideManualCopy(section);
+        function onSuccess() {
+          setCopyFeedback(section, "Copied.");
+          if (row && row.id) {
+            recordCopyActivity(
+              kind === "scope" ? "restaurant-package-scope" : "restaurant-package-email",
+              "restaurant_leads",
+              row.id
+            );
+          }
+        }
+        function onFail() {
+          showManualCopy(section, text);
+          setCopyFeedback(section, "Select text below to copy.", true);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(onSuccess)
+            .catch(function () {
+              if (fallbackExecCopy(text)) onSuccess();
+              else onFail();
+            });
+        } else if (fallbackExecCopy(text)) {
+          onSuccess();
+        } else {
+          onFail();
+        }
+      }
+
+      function saveRestaurantProposalPackage(sheet, btn, markSent) {
+        if (!sheet) return;
+        var id = sheet.getAttribute("data-detail-id");
+        var section = sheet.querySelector("[data-restaurant-proposal-package]");
+        if (!id || !section) return;
+        var before = findRecord("restaurant_leads", id);
+        if (!before) return;
+        var values = readRestaurantProposalPackageValues(section);
+        values.updatedAt = new Date().toISOString();
+        var previousStatus = displayStatus(before.row.status);
+        var previousNotes = String(before.row.owner_notes || "");
+        var nextNotes = upsertRestaurantLeadProposalPackageBlock(previousNotes, values);
+        var payload = { owner_notes: nextNotes };
+        if (markSent) {
+          var sentDate = todayDateString();
+          var followUpDate = addBusinessDaysDateString(new Date(), 3);
+          nextNotes = upsertRestaurantLeadCrmBlock(nextNotes, {
+            fitLabel: restaurantLeadFitLabel(before.row) || "Needs more info",
+            leadPriority: restaurantLeadPriority(before.row) || "Medium",
+            nextAction: "Follow up",
+            nextFollowUpDate: followUpDate,
+            proposalSentAt: sentDate,
+            wonAt: normalizeDateInputValue(restaurantLeadWonDate(before.row)),
+          });
+          payload.status = "Proposal Sent";
+          payload.owner_notes = nextNotes;
+        }
+        var buttons = section.querySelectorAll("[data-action]");
+        var originalLabel = btn ? btn.textContent : "";
+        buttons.forEach(function (button) {
+          button.disabled = true;
+        });
+        if (btn) btn.textContent = "Saving...";
+        setRestaurantPackageFeedback(section, "success", markSent ? "Saving and marking proposal sent..." : "Saving package snapshot...");
+
+        postUpdate("restaurant_leads", id, payload)
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setRestaurantPackageFeedback(
+                section,
+                "error",
+                (result.data && result.data.error) || "Proposal package save failed. Try again."
+              );
+              return;
+            }
+            applyRecordUpdate("restaurant_leads", id, result.data.record);
+            if (previousStatus !== displayStatus(result.data.record.status)) {
+              addClientActivity(
+                "restaurant_leads",
+                id,
+                "Status changed to " + restaurantLeadStatusLabel({ status: result.data.record.status }),
+                "info"
+              );
+            }
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(
+                "restaurant_leads",
+                id,
+                markSent ? "Restaurant proposal package sent snapshot saved" : "Restaurant proposal package saved",
+                "ok"
+              );
+            }
+            renderAll();
+            var fresh = els.detailBody && els.detailBody.querySelector("[data-restaurant-proposal-package]");
+            setRestaurantPackageFeedback(
+              fresh || section,
+              "success",
+              markSent
+                ? "Proposal marked sent. Status, sent date, package snapshot, next action, and follow-up date were saved."
+                : "Proposal package snapshot saved."
+            );
+            refreshCounts();
+          })
+          .catch(function () {
+            setRestaurantPackageFeedback(section, "error", "Network error. Try again.");
+          })
+          .finally(function () {
+            buttons.forEach(function (button) {
+              button.disabled = false;
+            });
+            if (btn) btn.textContent = originalLabel || (markSent ? "Mark Proposal Sent" : "Save package snapshot");
+          });
+      }
+
       function copyRestaurantProposalNotes(btn) {
         var section = btn && btn.closest("[data-restaurant-proposal-builder]");
         var row = restaurantLeadRowFromButton(btn);
@@ -23390,8 +24008,11 @@
         nextNotes = upsertRestaurantLeadCrmBlock(nextNotes, {
           fitLabel: restaurantProposalFitLabel(values.recommendation),
           leadPriority: restaurantLeadPriority(before.row) || "Medium",
-          nextAction: values.nextStep || "Send first email",
-          nextFollowUpDate: normalizeDateInputValue(restaurantLeadNextFollowUpDate(before.row)),
+          nextAction: mode === "proposal-sent" ? "Follow up" : values.nextStep || "Send first email",
+          nextFollowUpDate:
+            mode === "proposal-sent"
+              ? addBusinessDaysDateString(new Date(), 3)
+              : normalizeDateInputValue(restaurantLeadNextFollowUpDate(before.row)),
           proposalSentAt: proposalSentDate,
           wonAt: normalizeDateInputValue(restaurantLeadWonDate(before.row)),
         });
@@ -23981,6 +24602,16 @@
             return;
           }
 
+          if (action === "copy-restaurant-package-email") {
+            copyRestaurantProposalPackage(btn, "email");
+            return;
+          }
+
+          if (action === "copy-restaurant-package-scope") {
+            copyRestaurantProposalPackage(btn, "scope");
+            return;
+          }
+
           if (action === "close-detail") {
             closeDetail();
             return;
@@ -24111,6 +24742,16 @@
             return;
           }
 
+          if (sheet && action === "save-restaurant-package") {
+            saveRestaurantProposalPackage(sheet, btn, false);
+            return;
+          }
+
+          if (sheet && action === "mark-restaurant-package-sent") {
+            saveRestaurantProposalPackage(sheet, btn, true);
+            return;
+          }
+
           if (sheet && action === "mark-deal-stage") {
             handleDealStageAction(sheet, btn);
             return;
@@ -24136,6 +24777,10 @@
         document.addEventListener("change", function (ev) {
           var section = ev.target && ev.target.closest("[data-restaurant-proposal-builder]");
           if (section) updateRestaurantProposalPreview(section);
+          var packageSection = ev.target && ev.target.closest("[data-restaurant-proposal-package]");
+          if (packageSection && ev.target && ev.target.name === "package_type") {
+            resetRestaurantPackageDefaults(packageSection);
+          }
         });
 
         document.addEventListener("keydown", function (ev) {
