@@ -52,17 +52,27 @@
   <main id="main-content" class="restaurants-main">
 
     <!-- Hero -->
-    <section class="hero hero-fiesta-dark secondary-hero rest-hero" aria-labelledby="rest-hero-heading">
+    <section class="hero hero-fiesta-dark secondary-hero hero-inner rest-hero" aria-labelledby="rest-hero-heading">
       <div class="hero-fiesta-inner hero-inner-band rest-hero-band">
-        <div class="rest-hero-shell">
-          <div class="rest-hero-body">
+        <div class="hero-shell hero-inner-grid secondary-hero-grid rest-hero-shell">
+          <div class="hero-content secondary-hero-copy rest-hero-body">
             <div class="rest-hero-accent" aria-hidden="true"></div>
             <p class="eyebrow eyebrow-on-dark eyebrow-hero">FOR SAN ANTONIO RESTAURANTS</p>
             <h1 id="rest-hero-heading" class="hero-title">Get in front of visitors before they choose where to eat.</h1>
-            <p class="hero-text hero-text-on-dark rest-hero-lead">Where To Go SA helps travelers decide where to eat by situation &mdash; resort nights, River Walk dinners, business meals, family plans, airport timing, and local food cravings.</p>
+            <p class="hero-text hero-text-on-dark rest-hero-lead">Where To Go SA is where locals send visitors for dining decisions &mdash; by situation, timing, and neighborhood. Request guide visibility, or ask about AI growth systems for intake, QR funnels, events, and follow-up.</p>
+            <div class="hero-cue-grid rest-hero-cues" aria-label="Visitor dining situations">
+              <div class="hero-cue rest-hero-cue"><span aria-hidden="true"></span><strong>Resort &amp; hotel nights</strong></div>
+              <div class="hero-cue rest-hero-cue"><span aria-hidden="true"></span><strong>River Walk &amp; downtown</strong></div>
+              <div class="hero-cue rest-hero-cue"><span aria-hidden="true"></span><strong>Airport &amp; business meals</strong></div>
+            </div>
             <div class="hero-cta-row rest-hero-cta">
               <a class="btn btn-primary" href="#restaurant-inquiry" data-rest-interest="partner">Request restaurant visibility</a>
               <a class="btn btn-secondary hero-secondary-btn" href="#restaurant-inquiry" data-rest-interest="ai">Ask about AI restaurant systems</a>
+            </div>
+          </div>
+          <div class="hero-visual-frame hero-inner-visual secondary-hero-visual rest-hero-visual">
+            <div class="hero-visual-panel hero-inner-panel">
+              <img src="../assets/twilight_riverwalk_dining_at_dusk.png" alt="Twilight dining along the San Antonio River Walk" class="hero-visual-img hero-inner-img img-pos-food" width="800" height="640" decoding="async" fetchpriority="high" />
             </div>
           </div>
         </div>
@@ -77,12 +87,12 @@
           <h2 id="rest-why-heading">Visitors do not search like locals. They ask:</h2>
         </header>
         <ul class="rest-question-list">
-          <li>Where should we eat near the resort?</li>
-          <li>Is downtown worth the drive?</li>
-          <li>What is good for a business dinner?</li>
-          <li>Where can we take kids?</li>
-          <li>What is open before a flight?</li>
-          <li>Where should we go for one special dinner?</li>
+          <li class="rest-question-card rest-question-card--resort">Where should we eat near the resort?</li>
+          <li class="rest-question-card rest-question-card--downtown">Is downtown worth the drive?</li>
+          <li class="rest-question-card rest-question-card--business">What is good for a business dinner?</li>
+          <li class="rest-question-card rest-question-card--family">Where can we take kids?</li>
+          <li class="rest-question-card rest-question-card--airport">What is open before a flight?</li>
+          <li class="rest-question-card rest-question-card--special">Where should we go for one special dinner?</li>
         </ul>
       </div>
     </section>
@@ -96,16 +106,26 @@
         </header>
         <div class="rest-path-grid">
           <article class="rest-path-card rest-path-card--partner">
-            <p class="rest-path-label">Path A</p>
-            <h3 class="rest-path-title">Restaurant Partner Program</h3>
-            <p class="rest-path-copy">Best for restaurants that want visitor visibility, guide placement opportunities, and better local discovery.</p>
-            <a class="btn btn-secondary hero-secondary-btn rest-path-cta" href="#restaurant-inquiry" data-rest-interest="partner">Request visibility</a>
+            <div class="rest-path-card-head">
+              <span class="rest-path-icon rest-path-icon--visibility" aria-hidden="true"></span>
+              <div>
+                <p class="rest-path-label">Path A &middot; Visibility</p>
+                <h3 class="rest-path-title">Restaurant Partner Program</h3>
+              </div>
+            </div>
+            <p class="rest-path-copy">Visitor-first guide placement, local relevance by area and dining situation, and outreach-friendly support &mdash; reviewed for fit, not automatic listing.</p>
+            <a class="btn btn-secondary hero-secondary-btn rest-path-cta rest-path-cta--partner" href="#restaurant-inquiry" data-rest-interest="partner">Request visibility</a>
           </article>
           <article class="rest-path-card rest-path-card--ai">
-            <p class="rest-path-label">Path B</p>
-            <h3 class="rest-path-title">AI Restaurant Growth Systems</h3>
-            <p class="rest-path-copy">Best for restaurants that need better lead capture, private event flow, catering requests, QR funnels, follow-up, and owner-visible systems.</p>
-            <a class="btn btn-secondary hero-secondary-btn rest-path-cta" href="#restaurant-inquiry" data-rest-interest="ai">Ask about AI systems</a>
+            <div class="rest-path-card-head">
+              <span class="rest-path-icon rest-path-icon--systems" aria-hidden="true"></span>
+              <div>
+                <p class="rest-path-label">Path B &middot; Systems</p>
+                <h3 class="rest-path-title">AI Restaurant Growth Systems</h3>
+              </div>
+            </div>
+            <p class="rest-path-copy">Smarter intake, QR funnels, private event and catering flow, missed-call follow-up, and owner-visible lead tracking &mdash; built by The AI Plug.</p>
+            <a class="btn btn-secondary hero-secondary-btn rest-path-cta rest-path-cta--ai" href="#restaurant-inquiry" data-rest-interest="ai">Ask about AI systems</a>
           </article>
         </div>
       </div>
@@ -118,14 +138,17 @@
           <div class="rest-detail-copy">
             <p class="eyebrow">Restaurant Partner Program</p>
             <h2 id="rest-partner-heading">Get your restaurant in front of San Antonio visitors looking for the right place to eat.</h2>
-            <p class="section-text">Where To Go SA helps visitors choose restaurants by situation: resort dinners, River Walk nights, business meals, family-friendly plans, airport timing, and local food picks. Restaurant partners can request visibility opportunities that fit the guide&rsquo;s visitor-first experience.</p>
+            <p class="section-text">Partners can request visibility inside the contexts visitors already use &mdash; food picks, resort guides, downtown plans, and Ask A Local. Every request is reviewed for fit with the guide&rsquo;s visitor-first experience.</p>
             <ul class="rest-benefit-list">
-              <li>Visitor-first recommendation opportunities</li>
-              <li>Resort, downtown, airport, and food-category relevance</li>
-              <li>Local guide positioning &mdash; not a generic ad wall</li>
+              <li>Recommendation opportunities inside relevant guide contexts</li>
+              <li>Local relevance by area, timing, and dining situation</li>
+              <li>Visitor-first positioning &mdash; not a generic ad wall</li>
               <li>QR and outreach-friendly for menus, events, and follow-up</li>
               <li>Reviewed for fit &mdash; no automatic listing or guaranteed placement</li>
             </ul>
+            <p class="rest-soft-cta">
+              <a href="#restaurant-inquiry" class="rest-soft-cta-link rest-soft-cta-link--partner" data-rest-interest="partner">Request visibility</a>
+            </p>
           </div>
           <figure class="rest-detail-visual">
             <img src="../assets/golden_hour_riverside_dining_with_fajitas.png" alt="Golden hour riverside dining in San Antonio" width="800" height="600" loading="lazy" decoding="async" />
@@ -139,12 +162,12 @@
       <div class="routes-band-inner rest-detail-inner">
         <div class="rest-detail-grid rest-detail-grid--reverse">
           <figure class="rest-detail-visual">
-            <img src="../assets/futuristic_command_center_with_glowing_interfaces.png" alt="Restaurant growth systems dashboard concept" width="800" height="600" loading="lazy" decoding="async" />
+            <img src="../assets/ai-business-smart-intake-routing.png" alt="Restaurant intake and lead routing workflow" width="800" height="600" loading="lazy" decoding="async" />
           </figure>
           <div class="rest-detail-copy rest-detail-copy--dark">
             <p class="eyebrow eyebrow-on-dark">AI Restaurant Growth Systems</p>
             <h2 id="rest-ai-heading" class="ai-strategic-title">Turn calls, forms, QR scans, DMs, reviews, menus, private events, and follow-up into a clearer customer flow.</h2>
-            <p class="section-text section-text-light">The AI Plug builds restaurant systems behind the scenes: smarter intake, QR funnels, private event requests, catering inquiries, review-aware customer flows, menu and offer pages, follow-up reminders, and owner-visible lead tracking.</p>
+            <p class="section-text section-text-light">The AI Plug builds practical restaurant infrastructure behind the scenes &mdash; not hype, not promises. Smarter intake paths, QR funnels, event and catering capture, follow-up planning, and owner-visible lead tracking where it helps.</p>
             <ul class="rest-benefit-list rest-benefit-list--dark">
               <li>Smarter website pages and mobile-first paths</li>
               <li>QR menu and funnel strategy</li>
@@ -154,6 +177,9 @@
               <li>AI-assisted content and SEO planning where appropriate</li>
             </ul>
             <p class="rest-ai-plug-note">Built by <strong>The AI Plug</strong> &mdash; the same team behind Where To Go SA&rsquo;s visitor systems.</p>
+            <p class="rest-soft-cta rest-soft-cta--dark">
+              <a href="#restaurant-inquiry" class="rest-soft-cta-link rest-soft-cta-link--ai" data-rest-interest="ai">Ask about systems</a>
+            </p>
           </div>
         </div>
       </div>
@@ -169,18 +195,27 @@
         </header>
         <ul class="rest-proof-grid">
           <li class="rest-proof-card">
+            <span class="rest-proof-accent" aria-hidden="true"></span>
             <h3>Where To Eat</h3>
             <p>Food picks by cuisine, district, appetite, and the kind of night visitors want.</p>
           </li>
           <li class="rest-proof-card">
+            <span class="rest-proof-accent" aria-hidden="true"></span>
             <h3>Resort Guides</h3>
             <p>Resort-zone dining when convenience and timing matter more than another ride.</p>
           </li>
           <li class="rest-proof-card">
+            <span class="rest-proof-accent" aria-hidden="true"></span>
             <h3>Downtown &amp; River Walk</h3>
             <p>Business dinners, date nights, and walkable food-and-stroll plans.</p>
           </li>
           <li class="rest-proof-card">
+            <span class="rest-proof-accent" aria-hidden="true"></span>
+            <h3>Airport &amp; timing</h3>
+            <p>Meal windows before flights and arrival-day food decisions along visitor routes.</p>
+          </li>
+          <li class="rest-proof-card">
+            <span class="rest-proof-accent" aria-hidden="true"></span>
             <h3>Ask A Local</h3>
             <p>Real visitor questions routed through a live local guide experience.</p>
           </li>
@@ -247,7 +282,7 @@
               <div class="transport-intake-grid">
                 <label class="transport-field transport-field--full">
                   <span>What would you like help with?</span>
-                  <textarea name="help_with" id="rest-help-with" rows="3" placeholder="Visitor visibility, private events, catering inquiries, QR funnels, follow-up…"></textarea>
+                  <textarea name="help_with" id="rest-help-with" rows="4" placeholder="Visitor visibility, private events, catering inquiries, QR funnels, follow-up…"></textarea>
                 </label>
                 <fieldset class="rest-interest-fieldset transport-field--full">
                   <legend class="business-operator-check-legend">I am interested in (check any)</legend>
@@ -262,7 +297,7 @@
                 </fieldset>
                 <label class="transport-field transport-field--full">
                   <span>Optional message</span>
-                  <textarea name="message" id="rest-message" rows="3" placeholder="Anything else we should know before we follow up."></textarea>
+                  <textarea name="message" id="rest-message" rows="4" placeholder="Anything else we should know before we follow up."></textarea>
                 </label>
               </div>
             </div>
