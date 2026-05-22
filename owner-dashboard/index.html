@@ -2746,6 +2746,11 @@
       min-width: 0;
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-proposal-sync--warning {
+      border-color: rgba(251, 191, 36, 0.42);
+      background: rgba(251, 191, 36, 0.1);
+    }
+
     .page-owner-dashboard .owner-dash-restaurant-proposal-sync-row {
       display: flex;
       flex-wrap: wrap;
@@ -5652,6 +5657,8 @@
       ];
       var RESTAURANT_PROPOSAL_OFFER_OPTIONS = [
         "Research + simple visibility review",
+        "Do not pitch yet",
+        "Discovery / visibility fit review",
         "Combined visibility + customer-flow review",
         "Restaurant visibility and customer-path review",
         "Starter Visibility",
@@ -5667,7 +5674,20 @@
         "Monthly Growth Management",
         "Custom",
       ];
-      var RESTAURANT_PROPOSAL_TIER_OPTIONS = ["Research", "Starter", "Growth", "Premium", "Combined", "Monthly support", "Custom / Combined", "Custom"];
+      var RESTAURANT_PROPOSAL_TIER_OPTIONS = [
+        "Research / Hold",
+        "Research",
+        "Starter",
+        "Growth",
+        "Premium",
+        "Partner / Visibility",
+        "AI Systems / Growth",
+        "Combined",
+        "Combined / Custom",
+        "Monthly support",
+        "Custom / Combined",
+        "Custom",
+      ];
       var RESTAURANT_PROPOSAL_RANGE_OPTIONS = [
         "No quote yet",
         "$399 / 90 days",
@@ -6751,6 +6771,28 @@
         return ownerNoteMarkerValue(row, marker + ":") || fallback || "Unknown";
       }
 
+      function restaurantResearchBaseProfile(row) {
+        return {
+          websiteStatus: restaurantResearchValue(row, "Website status", "Unknown"),
+          googleStatus: restaurantResearchValue(row, "Google profile status", "Unknown"),
+          menuReservationStatus: restaurantResearchValue(row, "Menu/reservation path", "Unknown"),
+          socialStatus: restaurantResearchValue(row, "Social presence", "Unknown"),
+          privateDiningStatus: restaurantResearchValue(row, "Private dining/group path", "Unknown"),
+          visitorFit: restaurantResearchValue(row, "Visitor fit", "Unknown"),
+          qrOpportunity: restaurantResearchValue(row, "QR/funnel opportunity", "Unknown"),
+          reviewOpportunity: restaurantResearchValue(row, "Review/repeat guest opportunity", "Unknown"),
+          websiteReviewed: restaurantResearchHasMarker(row, "Restaurant research: website reviewed"),
+          googleReviewed: restaurantResearchHasMarker(row, "Restaurant research: Google reviewed"),
+          menuReviewed: restaurantResearchHasMarker(row, "Restaurant research: menu path reviewed"),
+          socialReviewed: restaurantResearchHasMarker(row, "Restaurant research: social reviewed"),
+          privateDiningReviewed: restaurantResearchHasMarker(row, "Restaurant research: private dining reviewed"),
+          highVisitorFitMarked: restaurantResearchHasMarker(row, "Restaurant research: high visitor fit"),
+          qrOpportunityMarked: restaurantResearchHasMarker(row, "Restaurant research: QR opportunity"),
+          reviewOpportunityMarked: restaurantResearchHasMarker(row, "Restaurant research: review opportunity"),
+          researchComplete: restaurantResearchHasMarker(row, "Restaurant stage: researched"),
+        };
+      }
+
       function restaurantResearchHasMarker(row, marker) {
         return ownerNotesInclude(row, [marker]);
       }
@@ -6860,25 +6902,7 @@
       }
 
       function restaurantResearchProfile(row) {
-        var profile = {
-          websiteStatus: restaurantResearchValue(row, "Website status", "Unknown"),
-          googleStatus: restaurantResearchValue(row, "Google profile status", "Unknown"),
-          menuReservationStatus: restaurantResearchValue(row, "Menu/reservation path", "Unknown"),
-          socialStatus: restaurantResearchValue(row, "Social presence", "Unknown"),
-          privateDiningStatus: restaurantResearchValue(row, "Private dining/group path", "Unknown"),
-          visitorFit: restaurantResearchValue(row, "Visitor fit", "Unknown"),
-          qrOpportunity: restaurantResearchValue(row, "QR/funnel opportunity", "Unknown"),
-          reviewOpportunity: restaurantResearchValue(row, "Review/repeat guest opportunity", "Unknown"),
-          websiteReviewed: restaurantResearchHasMarker(row, "Restaurant research: website reviewed"),
-          googleReviewed: restaurantResearchHasMarker(row, "Restaurant research: Google reviewed"),
-          menuReviewed: restaurantResearchHasMarker(row, "Restaurant research: menu path reviewed"),
-          socialReviewed: restaurantResearchHasMarker(row, "Restaurant research: social reviewed"),
-          privateDiningReviewed: restaurantResearchHasMarker(row, "Restaurant research: private dining reviewed"),
-          highVisitorFitMarked: restaurantResearchHasMarker(row, "Restaurant research: high visitor fit"),
-          qrOpportunityMarked: restaurantResearchHasMarker(row, "Restaurant research: QR opportunity"),
-          reviewOpportunityMarked: restaurantResearchHasMarker(row, "Restaurant research: review opportunity"),
-          researchComplete: restaurantResearchHasMarker(row, "Restaurant stage: researched"),
-        };
+        var profile = restaurantResearchBaseProfile(row);
         profile.hasResearchScore = restaurantResearchHasScoredInputs(profile);
         profile.researchScore = restaurantResearchScore(profile);
         profile.researchScoreDisplay = restaurantResearchScoreDisplay(profile);
@@ -6923,9 +6947,11 @@
         var saved = restaurantProposalNormalizeDirection(
           ownerNoteMarkerValue(row, "Proposal direction:") || ownerNoteMarkerValue(row, "Proposal recommendation:")
         );
-        if (saved) return saved;
-        var researchDirection = restaurantLeadResearchProposalDirection(row);
-        if (researchDirection) return researchDirection;
+        if (restaurantLeadProposalHasManualOverride(row) && saved) return saved;
+        if (restaurantLeadResearchHasRecommendationSource(row)) {
+          var researchDirection = restaurantLeadResearchProposalGuidance(row).proposalDirection || restaurantLeadResearchProposalDirection(row);
+          if (researchDirection) return researchDirection;
+        }
         var fitLabel = String(restaurantLeadFitLabel(row) || "").toLowerCase();
         if (fitLabel === "not a fit") return "Not a fit yet";
         if (fitLabel === "needs more info") return "Needs more discovery";
@@ -7197,31 +7223,68 @@
           restaurantType: restaurantType(row),
           mainOpportunity: restaurantOpportunity(row),
         };
+        var hasManualOverride = restaurantLeadProposalHasManualOverride(row);
+        var hasResearchSource = restaurantLeadResearchHasRecommendationSource(row);
+        var researchGuidance = restaurantLeadResearchProposalGuidance(row);
+        var scoreUsed = restaurantLeadResearchScoreSnapshot(row);
+        var visitorFitUsed = restaurantLeadResearchVisitorFitUsed(row);
         var base = restaurantProposalBaseByScore(profile.researchScore || 0, profile.hasResearchScore);
         var direction = restaurantProposalApplyOverride(Object.assign({}, base), profile, snap);
-        direction = restaurantProposalApplyCrmDefaults(direction, row);
+        direction = hasResearchSource && !hasManualOverride
+          ? {
+              suggestedFirstOffer: researchGuidance.suggestedOffer,
+              suggestedPackageTier: researchGuidance.suggestedPackageTier,
+              suggestedStartingRange: researchGuidance.suggestedStartingRange,
+              bestFirstDeliverable: researchGuidance.bestFirstDeliverable,
+              ownerApprovedNextStep: researchGuidance.ownerApprovedNextStep,
+              whatToInclude: researchGuidance.whatToInclude,
+              whatNotToOverbuild: researchGuidance.whatNotToOverbuild,
+            }
+          : restaurantProposalApplyCrmDefaults(direction, row);
         var saved = restaurantProposalSavedDirection(row);
         var nextAction = restaurantLeadNextAction(row);
         var fitLabel = restaurantLeadFitLabel(row);
         var clean = {
-          proposalDirection: restaurantProposalNormalizeDirection(saved.proposalDirection) || restaurantProposalDefaultDirection(row),
-          suggestedFirstOffer: saved.suggestedFirstOffer || direction.suggestedFirstOffer,
-          suggestedPackageTier: saved.suggestedPackageTier || direction.suggestedPackageTier,
-          suggestedStartingRange: saved.suggestedStartingRange || direction.suggestedStartingRange,
-          bestFirstDeliverable: saved.bestFirstDeliverable || direction.bestFirstDeliverable,
-          ownerApprovedNextStep: saved.ownerApprovedNextStep || nextAction || direction.ownerApprovedNextStep,
+          proposalDirection:
+            hasManualOverride && saved.proposalDirection
+              ? restaurantProposalNormalizeDirection(saved.proposalDirection)
+              : hasResearchSource
+                ? researchGuidance.proposalDirection
+                : restaurantProposalDefaultDirection(row),
+          suggestedFirstOffer: hasManualOverride && saved.suggestedFirstOffer ? saved.suggestedFirstOffer : direction.suggestedFirstOffer,
+          suggestedPackageTier: hasManualOverride && saved.suggestedPackageTier ? saved.suggestedPackageTier : direction.suggestedPackageTier,
+          suggestedStartingRange:
+            hasManualOverride && saved.suggestedStartingRange ? saved.suggestedStartingRange : direction.suggestedStartingRange,
+          bestFirstDeliverable:
+            hasManualOverride && saved.bestFirstDeliverable ? saved.bestFirstDeliverable : direction.bestFirstDeliverable,
+          ownerApprovedNextStep:
+            hasManualOverride && saved.ownerApprovedNextStep
+              ? saved.ownerApprovedNextStep
+              : hasResearchSource
+                ? researchGuidance.ownerApprovedNextStep
+                : nextAction || direction.ownerApprovedNextStep,
           proposalNotes: saved.proposalNotes || "",
           whatToInclude: direction.whatToInclude,
           whatNotToOverbuild: direction.whatNotToOverbuild,
-          researchScore: profile.researchScore,
-          researchScoreDisplay: profile.researchScoreDisplay,
-          hasResearchScore: profile.hasResearchScore,
-          salesPriority: restaurantLeadPriority(row) || profile.salesPriority,
-          fitLabel: fitLabel || "Needs more info",
+          researchScore: scoreUsed.hasScore ? scoreUsed.score : profile.researchScore,
+          researchScoreDisplay: scoreUsed.display || profile.researchScoreDisplay,
+          hasResearchScore: scoreUsed.hasScore || profile.hasResearchScore,
+          salesPriority: hasResearchSource && !hasManualOverride ? researchGuidance.salesPriority : restaurantLeadPriority(row) || profile.salesPriority,
+          fitLabel: hasResearchSource && !hasManualOverride ? researchGuidance.fitLabel || restaurantLeadResearchVisitorFitLabel(row) : fitLabel || "Needs more info",
           visitorLane: snap.lane,
           restaurantType: snap.restaurantType,
           mainOpportunity: snap.mainOpportunity,
-          recommendedFirstMove: nextAction || profile.recommendedFirstMove,
+          recommendedFirstMove:
+            hasResearchSource && !hasManualOverride
+              ? researchGuidance.recommendedFirstMove
+              : nextAction || profile.recommendedFirstMove,
+          proposalSource: hasManualOverride ? "Manual override" : hasResearchSource ? "Using research recommendation" : "CRM/default fallback",
+          researchRecommendationLabel: restaurantLeadResearchRecommendationLabel(row),
+          researchUpdatedAt: restaurantLeadResearchUpdatedAt(row),
+          researchScoreUsedDisplay: scoreUsed.display,
+          visitorFitUsedLabel: hasResearchSource ? visitorFitUsed || "Not saved yet" : "Not saved yet",
+          hasManualOverride: hasManualOverride,
+          showApplyResearchRecommendation: hasManualOverride && hasResearchSource,
         };
         clean.proposalDirection = restaurantProposalNormalizeDirection(clean.proposalDirection) || "Needs more discovery";
         clean.suggestedFirstOffer = restaurantProposalOffer(clean.suggestedFirstOffer);
@@ -9116,22 +9179,96 @@
         var value = String(salesPriority || "").trim();
         if (value === "Low") return "Low";
         if (value === "High") return "High";
-        if (value === "Medium-High" || value === "Needs Review") return "Medium";
+        if (value === "Medium-High" || value === "Needs Review" || value === "Medium / Needs Review") return "Medium";
         return "";
+      }
+
+      function restaurantLeadResearchNormalizeVisitorFit(value) {
+        var clean = String(value || "").replace(/\s*\.\s*$/, "").trim();
+        var lower = clean.toLowerCase().replace(/[–—]/g, "-").replace(/\s*-\s*/g, " - ");
+        var aliases = {
+          strong: "Strong",
+          high: "Strong",
+          "high fit": "Strong",
+          "strong fit": "Strong",
+          medium: "Medium",
+          "needs review": "Needs more discovery",
+          "needs more info": "Needs more discovery",
+          "needs more discovery": "Needs more discovery",
+          low: "Low",
+          "low fit": "Low",
+          "not a fit": "Low",
+          "not a fit yet": "Low",
+          "not a fit right now": "Low",
+        };
+        return aliases[lower] || "";
+      }
+
+      function restaurantLeadResearchSavedVisitorFit(row) {
+        return restaurantLeadResearchNormalizeVisitorFit(
+          ownerNoteMarkerValue(row, "Visitor fit:") ||
+            ownerNoteMarkerValue(row, "visitor_fit:") ||
+            (row && row.visitor_fit) ||
+            ""
+        );
+      }
+
+      function restaurantLeadResearchScoreSnapshot(row, researchValues) {
+        var research = researchValues || restaurantLeadResearchValues(row);
+        if (research && research.hasScore && research.score != null) {
+          return {
+            hasScore: true,
+            score: research.score,
+            display: String(research.score) + " / 100",
+          };
+        }
+        var profile = restaurantResearchBaseProfile(row);
+        profile.hasResearchScore = restaurantResearchHasScoredInputs(profile);
+        if (!profile.hasResearchScore) return { hasScore: false, score: null, display: "Not scored yet" };
+        profile.researchScore = restaurantResearchScore(profile);
+        return {
+          hasScore: true,
+          score: profile.researchScore,
+          display: String(profile.researchScore || 0) + " / 100",
+        };
+      }
+
+      function restaurantLeadResearchVisitorFitUsed(row, researchValues) {
+        var savedVisitorFit = restaurantLeadResearchSavedVisitorFit(row);
+        if (savedVisitorFit) return savedVisitorFit;
+        var fit = restaurantLeadResearchNormalizeFitResult((researchValues || restaurantLeadResearchValues(row)).fitResult);
+        if (fit === "Not a fit right now") return "Low";
+        if (fit === "Needs more discovery") return "Needs more discovery";
+        if (fit === "Strong fit - Both" || fit === "Strong fit - Partner Program" || fit === "Strong fit - AI Systems") {
+          return "Strong";
+        }
+        return "";
+      }
+
+      function restaurantLeadResearchHasRecommendationSource(row) {
+        var research = restaurantLeadResearchValues(row);
+        var score = restaurantLeadResearchScoreSnapshot(row, research);
+        return Boolean(
+          (research && (research.updatedAt || research.hasSavedFitResult || research.hasSavedFirstMove || research.checkedLabels.length)) ||
+            score.hasScore ||
+            restaurantLeadResearchSavedVisitorFit(row)
+        );
       }
 
       function restaurantLeadResearchVisitorFitLabel(row) {
         var research = restaurantLeadResearchValues(row);
         var fit = research.fitResult || "Needs more discovery";
-        var poorVisitorFit = restaurantLeadResearchHasLabel(research.checkedLabels, "Poor visitor fit");
-        var score = research.score;
+        var score = restaurantLeadResearchScoreSnapshot(row, research).score;
+        var visitorFit = restaurantLeadResearchVisitorFitUsed(row, research);
+        var poorVisitorFit = restaurantLeadResearchHasLabel(research.checkedLabels, "Poor visitor fit") || visitorFit === "Low";
+        if (poorVisitorFit || (score != null && score < 50)) return "Low / Not a fit yet";
+        if (visitorFit === "Medium" || visitorFit === "Needs more discovery" || (score != null && score < 70)) return "Needs more discovery";
+        if (visitorFit === "Strong" && score != null && score >= 70) return "Strong fit";
         if (fit === "Strong fit - Both") return "Strong fit — Both";
         if (fit === "Strong fit - Partner Program") return "Strong fit — Partner Program";
         if (fit === "Strong fit - AI Systems") return "Strong fit — AI Systems";
-        if (fit === "Not a fit right now") return "Low / Not a fit";
-        if (fit === "Needs more discovery") {
-          return poorVisitorFit || (score != null && score < 35) ? "Low fit" : "Needs more discovery";
-        }
+        if (fit === "Not a fit right now") return "Low / Not a fit yet";
+        if (fit === "Needs more discovery") return "Needs more discovery";
         return "Needs more discovery";
       }
 
@@ -9140,20 +9277,23 @@
         var research = restaurantLeadResearchValues(row);
         var crmValues = restaurantLeadCrmValuesFromRow(row, existingNotes);
         crmValues.fitLabel =
-          restaurantLeadResearchFitResultToFitLabel(research.fitResult) || crmValues.fitLabel || "Needs more info";
+          guidance.crmFitLabel ||
+          restaurantLeadResearchFitResultToFitLabel(research.fitResult) ||
+          crmValues.fitLabel ||
+          "Needs more info";
         crmValues.leadPriority =
           restaurantLeadResearchSalesPriorityToCrm(guidance.salesPriority) || crmValues.leadPriority || "Medium";
         return upsertRestaurantLeadCrmBlock(existingNotes, crmValues);
       }
 
       function restaurantLeadFitLabel(row) {
-        var savedResearchFit = restaurantLeadResearchSavedFitResult(row);
-        var researchUpdated = restaurantLeadResearchUpdatedAt(row);
-        if (savedResearchFit || researchUpdated) {
-          var fromResearch = restaurantLeadResearchFitResultToFitLabel(
-            savedResearchFit || restaurantLeadResearchValues(row).fitResult
-          );
-          if (fromResearch) return fromResearch;
+        if (restaurantLeadProposalHasManualOverride(row)) {
+          var manualValue = restaurantLeadCrmValue(row, "Fit label:", "");
+          if (manualValue) return manualValue;
+        }
+        if (restaurantLeadResearchHasRecommendationSource(row)) {
+          var fromGuidance = restaurantLeadResearchProposalGuidance(row).crmFitLabel;
+          if (fromGuidance) return fromGuidance;
         }
         var value = restaurantLeadCrmValue(row, "Fit label:", "");
         if (value) return value;
@@ -9164,7 +9304,14 @@
       }
 
       function restaurantLeadPriority(row) {
-        if (restaurantLeadResearchUpdatedAt(row) || restaurantLeadResearchSavedFitResult(row)) {
+        if (restaurantLeadProposalHasManualOverride(row)) {
+          var manualValue = restaurantLeadCrmValue(row, "Lead priority:", "");
+          if (/^hot$/i.test(manualValue)) return "High";
+          if (/^warm$/i.test(manualValue)) return "Medium";
+          if (/^low$/i.test(manualValue)) return "Low";
+          if (manualValue) return manualValue;
+        }
+        if (restaurantLeadResearchHasRecommendationSource(row)) {
           var fromResearch = restaurantLeadResearchSalesPriorityToCrm(
             restaurantLeadResearchProposalGuidance(row).salesPriority
           );
@@ -9947,13 +10094,19 @@
       function restaurantLeadResearchRecommendationLabel(row) {
         var research = restaurantLeadResearchValues(row);
         var fit = research.fitResult || "Needs more discovery";
-        var score = research.score;
-        var poorVisitorFit = restaurantLeadResearchHasLabel(research.checkedLabels, "Poor visitor fit");
+        var score = restaurantLeadResearchScoreSnapshot(row, research).score;
+        var visitorFit = restaurantLeadResearchVisitorFitUsed(row, research);
+        var poorVisitorFit = restaurantLeadResearchHasLabel(research.checkedLabels, "Poor visitor fit") || visitorFit === "Low";
+        if (poorVisitorFit || (score != null && score < 50)) return "Low / Not a fit yet";
+        if (visitorFit === "Medium" || visitorFit === "Needs more discovery" || (score != null && score < 70)) {
+          return "Needs more discovery";
+        }
+        if (visitorFit === "Strong" && score != null && score >= 70) return "Strong fit";
         if (fit === "Strong fit - Both") return "Strong fit — Both";
         if (fit === "Strong fit - Partner Program") return "Strong fit — Partner Program";
         if (fit === "Strong fit - AI Systems") return "Strong fit — AI Systems";
-        if (fit === "Not a fit right now") return poorVisitorFit || (score != null && score < 35) ? "Low fit" : "Not a fit yet";
-        if (fit === "Needs more discovery") return poorVisitorFit || (score != null && score < 35) ? "Low fit" : "Needs more discovery";
+        if (fit === "Not a fit right now") return "Low / Not a fit yet";
+        if (fit === "Needs more discovery") return "Needs more discovery";
         return "Needs more discovery";
       }
 
@@ -9999,20 +10152,44 @@
         var research = restaurantLeadResearchValues(row);
         var fit = research.fitResult || "Needs more discovery";
         var firstMove = research.firstMove || "Research more";
-        var score = research.score;
-        var poorVisitorFit = restaurantLeadResearchHasLabel(research.checkedLabels, "Poor visitor fit");
-        var lowFit = fit === "Not a fit right now" || poorVisitorFit || (score != null && score < 35);
+        var scoreInfo = restaurantLeadResearchScoreSnapshot(row, research);
+        var score = scoreInfo.hasScore ? scoreInfo.score : null;
+        var visitorFit = restaurantLeadResearchVisitorFitUsed(row, research);
+        if (
+          visitorFit === "Strong" &&
+          score != null &&
+          score >= 70 &&
+          fit !== "Strong fit - Both" &&
+          fit !== "Strong fit - Partner Program" &&
+          fit !== "Strong fit - AI Systems"
+        ) {
+          if (row && row.interest_ai_systems && !row.interest_partner_program) fit = "Strong fit - AI Systems";
+          else if (row && row.interest_partner_program && !row.interest_ai_systems) fit = "Strong fit - Partner Program";
+          else fit = "Strong fit - Both";
+        }
+        var poorVisitorFit = restaurantLeadResearchHasLabel(research.checkedLabels, "Poor visitor fit") || visitorFit === "Low";
+        var lowFit = fit === "Not a fit right now" || poorVisitorFit || (score != null && score < 50);
+        var needsMoreDiscovery =
+          fit === "Needs more discovery" ||
+          visitorFit === "Medium" ||
+          visitorFit === "Needs more discovery" ||
+          (score != null && score >= 50 && score < 70);
+        var strongAllowed =
+          (fit === "Strong fit - Both" || fit === "Strong fit - Partner Program" || fit === "Strong fit - AI Systems") &&
+          (score == null || score >= 70) &&
+          (!visitorFit || visitorFit === "Strong");
         var nextStep = restaurantLeadResearchProposalNextStep(row) || firstMove || "Research more";
         if (RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS.indexOf(nextStep) === -1) {
           nextStep = fit === "Not a fit right now" ? "Hold / not a fit" : "Research more";
         }
 
-        if (fit === "Not a fit right now" || (lowFit && fit !== "Strong fit - Both" && fit !== "Strong fit - Partner Program" && fit !== "Strong fit - AI Systems")) {
+        if (lowFit) {
+          var lowNextStep = firstMove === "Hold / not a fit" ? "Hold / not a fit" : "Research more";
           return {
             recommendation: "Not a fit yet",
-            nextStep: nextStep === "Hold / not a fit" || nextStep === "Research more" ? nextStep : "Hold / not a fit",
+            nextStep: lowNextStep,
             salesPriority: "Low",
-            recommendedFirstMove: firstMove === "Research more" ? "Research more before contacting" : "Hold / not a fit",
+            recommendedFirstMove: firstMove === "Hold / not a fit" ? "Hold / not a fit" : "Research more before contacting",
             suggestedOffer: "Do not pitch yet",
             suggestedPackageTier: "Research / Hold",
             suggestedStartingRange: "No quote yet",
@@ -10023,15 +10200,23 @@
               "Do not send a proposal, quote pricing, or promise placement before fit is confirmed.",
             ownerApprovedNextStep: firstMove === "Hold / not a fit" ? "Hold / not a fit" : "Research more",
             proposalDirection: "Not a fit yet",
+            fitLabel: "Low / Not a fit yet",
+            crmFitLabel: "Not a fit",
           };
         }
 
-        if (fit === "Needs more discovery") {
+        if (needsMoreDiscovery || !strongAllowed) {
+          var reviewNextStep =
+            nextStep === "Schedule discovery call" || nextStep === "Research more"
+              ? nextStep
+              : score != null && score < 50
+                ? "Research more"
+                : "Schedule discovery call";
           return {
             recommendation: "Needs more discovery",
-            nextStep: nextStep === "Schedule discovery call" || nextStep === "Research more" ? nextStep : score >= 35 ? "Schedule discovery call" : "Research more",
-            salesPriority: "Needs Review",
-            recommendedFirstMove: score >= 35 ? "Schedule discovery call" : "Research more",
+            nextStep: reviewNextStep,
+            salesPriority: "Medium / Needs Review",
+            recommendedFirstMove: reviewNextStep === "Research more" ? "Research more" : "Schedule discovery call",
             suggestedOffer: "Discovery / visibility fit review",
             suggestedPackageTier: "Research",
             suggestedStartingRange: "No quote yet",
@@ -10040,8 +10225,10 @@
               "Guide-fit review, visitor lane positioning, website/contact path review, and notes for the first owner conversation.",
             whatNotToOverbuild:
               "Do not quote final pricing or promise placement, traffic, reservations, revenue, rankings, or automatic listing before discovery.",
-            ownerApprovedNextStep: score >= 35 ? "Schedule discovery call" : "Research more",
+            ownerApprovedNextStep: reviewNextStep,
             proposalDirection: "Needs more discovery",
+            fitLabel: "Needs more discovery",
+            crmFitLabel: "Needs more info",
           };
         }
 
@@ -10061,6 +10248,8 @@
               "Do not promise forced recommendations, traffic, rankings, reservations, or revenue before discovery.",
             ownerApprovedNextStep: score >= 55 ? "Send partner overview" : "Schedule discovery call",
             proposalDirection: "Partner Program only",
+            fitLabel: "Strong fit",
+            crmFitLabel: "Strong fit - Partner Program",
           };
         }
 
@@ -10080,6 +10269,8 @@
               "Do not launch autonomous customer-facing AI, public recommendations, invoices, or promises without owner approval.",
             ownerApprovedNextStep: score >= 55 ? "Send AI systems overview" : "Schedule discovery call",
             proposalDirection: "AI Restaurant Growth Systems only",
+            fitLabel: "Strong fit",
+            crmFitLabel: "Strong fit - AI Systems",
           };
         }
 
@@ -10099,6 +10290,8 @@
               "Do not promise placement, traffic, reservations, revenue, rankings, or automatic listing. Do not quote final pricing before discovery.",
             ownerApprovedNextStep: score >= 70 ? "Prepare combined proposal" : "Send first email",
             proposalDirection: "Combined Partner + AI Systems",
+            fitLabel: "Strong fit",
+            crmFitLabel: "Strong fit - Both",
           };
         }
 
@@ -10117,23 +10310,29 @@
             "Do not quote final pricing or promise placement, traffic, reservations, revenue, rankings, or automatic listing before discovery.",
           ownerApprovedNextStep: "Research more",
           proposalDirection: "Needs more discovery",
+          fitLabel: "Needs more discovery",
+          crmFitLabel: "Needs more info",
         };
       }
 
       function restaurantLeadProposalSource(row) {
+        if (restaurantLeadProposalManualOverrideIsActive(row)) return "Manual override";
         var source = ownerNoteMarkerValue(row, "Proposal source:");
         if (source === "Manual override" || source === "Using research recommendation") return source;
         return "";
       }
 
+      function restaurantLeadProposalManualOverrideIsActive(row) {
+        var direct = row && row.proposal_manual_override;
+        if (direct === true || direct === 1 || direct === "1") return true;
+        var marker =
+          ownerNoteMarkerValue(row, "Proposal manual override:") ||
+          ownerNoteMarkerValue(row, "proposal_manual_override:");
+        return /^(active|yes|true|1|manual override)$/i.test(String(marker || "").trim());
+      }
+
       function restaurantLeadProposalHasManualOverride(row) {
-        if (restaurantLeadProposalSource(row) === "Manual override") return true;
-        if (restaurantLeadProposalSource(row) === "Using research recommendation") return false;
-        var savedRec = restaurantProposalNormalizeDirection(
-          restaurantLeadProposalValue(row, "Proposal recommendation:", "")
-        );
-        var researchRec = restaurantLeadResearchProposalGuidance(row).recommendation;
-        return Boolean(savedRec && researchRec && savedRec !== researchRec);
+        return restaurantLeadProposalSource(row) === "Manual override";
       }
 
       function restaurantLeadProposalFromResearch(row) {
@@ -10154,6 +10353,7 @@
           whatNotToOverbuild: guidance.whatNotToOverbuild,
           ownerApprovedNextStep: guidance.ownerApprovedNextStep,
           proposalDirection: guidance.proposalDirection,
+          fitLabel: guidance.fitLabel,
           proposalSource: "Using research recommendation",
           updatedAt: new Date().toISOString(),
           notes: "",
@@ -10208,19 +10408,25 @@
         var research = restaurantLeadResearchValues(row);
         var researchGuidance = restaurantLeadResearchProposalGuidance(row);
         var hasManualOverride = restaurantLeadProposalHasManualOverride(row);
+        var hasResearchSource = restaurantLeadResearchHasRecommendationSource(row);
+        var scoreUsed = restaurantLeadResearchScoreSnapshot(row, research);
+        var visitorFitUsed = restaurantLeadResearchVisitorFitUsed(row, research);
         var baseMeta = {
           proposalSource:
             restaurantLeadProposalSource(row) ||
-            (hasManualOverride ? "Manual override" : "Using research recommendation"),
+            (hasManualOverride ? "Manual override" : hasResearchSource ? "Using research recommendation" : "CRM/default fallback"),
           researchRecommendationLabel: restaurantLeadResearchRecommendationLabel(row),
           researchUpdatedAt: restaurantLeadResearchUpdatedAt(row),
+          researchScoreUsedDisplay: scoreUsed.display,
+          visitorFitUsedLabel:
+            row && restaurantLeadResearchHasRecommendationSource(row) ? visitorFitUsed || "Not saved yet" : "Not saved yet",
           hasManualOverride: hasManualOverride,
           showApplyResearchRecommendation:
-            hasManualOverride && (research.updatedAt || research.hasScore || research.hasSavedFitResult),
+            hasManualOverride && hasResearchSource,
           visitorFitLabel: restaurantLeadResearchVisitorFitLabel(row),
         };
 
-        if (!hasManualOverride && (research.updatedAt || research.hasSavedFitResult || research.hasScore)) {
+        if (!hasManualOverride && hasResearchSource) {
           var fromResearch = restaurantLeadProposalFromResearch(row);
           return Object.assign({}, fromResearch, baseMeta, {
             updatedAt: restaurantLeadProposalValue(row, "Proposal updated at:", ""),
@@ -10674,17 +10880,25 @@
         var row = record ? record.row : null;
         var guidance = restaurantLeadProposalGuidanceByRecommendation(formValues.recommendation, row);
         var manualDirty = section && section.getAttribute("data-proposal-manual-dirty") === "1";
+        var research = row ? restaurantLeadResearchValues(row) : null;
+        var scoreUsed = row ? restaurantLeadResearchScoreSnapshot(row, research) : { display: "Not scored yet" };
+        var visitorFitUsed = row ? restaurantLeadResearchVisitorFitUsed(row, research) : "";
         return Object.assign({}, guidance, formValues, {
           proposalDirection: guidance.proposalDirection || formValues.recommendation,
           nextStep: formValues.nextStep || guidance.nextStep,
           visitorFitLabel: row ? restaurantLeadResearchVisitorFitLabel(row) : "",
           researchRecommendationLabel: row ? restaurantLeadResearchRecommendationLabel(row) : "Needs more discovery",
           researchUpdatedAt: row ? restaurantLeadResearchUpdatedAt(row) : "",
+          researchScoreUsedDisplay: scoreUsed.display,
+          visitorFitUsedLabel:
+            row && restaurantLeadResearchHasRecommendationSource(row) ? visitorFitUsed || "Not saved yet" : "Not saved yet",
           proposalSource: manualDirty
             ? "Manual override"
             : row && restaurantLeadProposalHasManualOverride(row)
               ? "Manual override"
-              : "Using research recommendation",
+              : row && restaurantLeadResearchHasRecommendationSource(row)
+                ? "Using research recommendation"
+                : "CRM/default fallback",
         });
       }
 
@@ -10736,9 +10950,13 @@
       function updateRestaurantProposalSyncPreview(section, values) {
         if (!section || !values) return;
         var researchLabel = section.querySelector("[data-proposal-sync-research-label]");
+        var researchScore = section.querySelector("[data-proposal-sync-research-score]");
+        var visitorFit = section.querySelector("[data-proposal-sync-visitor-fit]");
         var researchUpdated = section.querySelector("[data-proposal-sync-research-updated]");
         var source = section.querySelector("[data-proposal-sync-source]");
         if (researchLabel) researchLabel.textContent = values.researchRecommendationLabel || "Needs more discovery";
+        if (researchScore) researchScore.textContent = values.researchScoreUsedDisplay || "Not scored yet";
+        if (visitorFit) visitorFit.textContent = values.visitorFitUsedLabel || "Not saved yet";
         if (researchUpdated) {
           researchUpdated.textContent = values.researchUpdatedAt ? fmtDate(values.researchUpdatedAt) : "Not saved yet";
         }
@@ -10852,9 +11070,21 @@
               (research.firstMove || "Research more")
             : "Research connection: not scored yet. Use Research + Fit Score before finalizing a proposal.";
         var applyButton =
-          values.showApplyResearchRecommendation && (research.updatedAt || research.hasScore)
+          values.showApplyResearchRecommendation
             ? '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="apply-restaurant-research-recommendation">Apply research recommendation</button>'
             : "";
+        var manualOverrideWarning = values.hasManualOverride
+          ? '<div class="owner-dash-restaurant-proposal-sync owner-dash-restaurant-proposal-sync--warning">' +
+            '<div class="owner-dash-restaurant-proposal-sync-row"><span>Proposal source:</span><strong>Manual override</strong></div>' +
+            '<div class="owner-dash-restaurant-proposal-sync-row"><span>Research recommendation:</span><strong>' +
+            esc(values.researchRecommendationLabel || "Needs more discovery") +
+            "</strong></div>" +
+            '<div class="owner-dash-restaurant-proposal-sync-row"><span>Research score:</span><strong>' +
+            esc(values.researchScoreUsedDisplay || research.scoreDisplay) +
+            "</strong></div>" +
+            applyButton +
+            "</div>"
+          : "";
         return (
           '<section class="owner-dash-detail-section owner-dash-restaurant-proposal" data-restaurant-proposal-builder>' +
           '<div class="owner-dash-restaurant-proposal-head">' +
@@ -10862,9 +11092,16 @@
           '<p class="owner-dash-detail-section-note">Internal offer recommendation tool. Nothing here is public, sent, published, invoiced, charged, or promised automatically.</p></div>' +
           '<span class="owner-dash-restaurant-followup-badge">Internal only</span>' +
           "</div>" +
+          manualOverrideWarning +
           '<div class="owner-dash-restaurant-proposal-sync" data-proposal-sync-status>' +
           '<div class="owner-dash-restaurant-proposal-sync-row"><span>Research recommendation:</span><strong data-proposal-sync-research-label>' +
           esc(values.researchRecommendationLabel || "Needs more discovery") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-proposal-sync-row"><span>Research score used:</span><strong data-proposal-sync-research-score>' +
+          esc(values.researchScoreUsedDisplay || research.scoreDisplay || "Not scored yet") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-proposal-sync-row"><span>Visitor fit used:</span><strong data-proposal-sync-visitor-fit>' +
+          esc(values.visitorFitUsedLabel || "Not saved yet") +
           "</strong></div>" +
           '<div class="owner-dash-restaurant-proposal-sync-row"><span>Last research update:</span><strong data-proposal-sync-research-updated>' +
           esc(values.researchUpdatedAt ? fmtDate(values.researchUpdatedAt) : "Not saved yet") +
@@ -10872,7 +11109,7 @@
           '<div class="owner-dash-restaurant-proposal-sync-row"><span>Proposal source:</span><strong data-proposal-sync-source>' +
           esc(values.proposalSource || "Using research recommendation") +
           "</strong></div>" +
-          applyButton +
+          (values.hasManualOverride ? "" : applyButton) +
           "</div>" +
           '<p class="owner-dash-restaurant-proposal-explanation">' +
           esc(researchConnection) +
@@ -18270,10 +18507,42 @@
       function restaurantProposalBuilderBlock(lead) {
         var snap = restaurantSnapshot(lead);
         var proposal = restaurantProposalDirection(lead);
+        var applyButton =
+          proposal.showApplyResearchRecommendation
+            ? '<button type="button" class="owner-dash-btn owner-dash-btn--secondary owner-dash-btn--compact" data-action="apply-restaurant-research-recommendation">Apply research recommendation</button>'
+            : "";
+        var manualOverrideWarning = proposal.hasManualOverride
+          ? '<div class="owner-dash-restaurant-proposal-sync owner-dash-restaurant-proposal-sync--warning">' +
+            '<div class="owner-dash-restaurant-proposal-sync-row"><span>Proposal source:</span><strong>Manual override</strong></div>' +
+            '<div class="owner-dash-restaurant-proposal-sync-row"><span>Research recommendation:</span><strong>' +
+            esc(proposal.researchRecommendationLabel || "Needs more discovery") +
+            "</strong></div>" +
+            '<div class="owner-dash-restaurant-proposal-sync-row"><span>Research score:</span><strong>' +
+            esc(proposal.researchScoreUsedDisplay || proposal.researchScoreDisplay) +
+            "</strong></div>" +
+            applyButton +
+            "</div>"
+          : "";
         return (
-          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-proposal-builder">' +
+          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-proposal-builder" data-restaurant-command-proposal-builder>' +
           '<h3 class="owner-dash-detail-section-title">Restaurant Proposal Builder</h3>' +
           '<p class="owner-dash-restaurant-proposal-subtitle">Turn the research score into a practical first offer without overbuilding the pitch.</p>' +
+          manualOverrideWarning +
+          '<div class="owner-dash-restaurant-proposal-sync" data-proposal-sync-status>' +
+          '<div class="owner-dash-restaurant-proposal-sync-row"><span>Research score used:</span><strong>' +
+          esc(proposal.researchScoreUsedDisplay || proposal.researchScoreDisplay || "Not scored yet") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-proposal-sync-row"><span>Visitor fit used:</span><strong>' +
+          esc(proposal.visitorFitUsedLabel || "Not saved yet") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-proposal-sync-row"><span>Proposal source:</span><strong>' +
+          esc(proposal.proposalSource || "CRM/default fallback") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-proposal-sync-row"><span>Last research update:</span><strong>' +
+          esc(proposal.researchUpdatedAt ? fmtDate(proposal.researchUpdatedAt) : "Not saved yet") +
+          "</strong></div>" +
+          (proposal.hasManualOverride ? "" : applyButton) +
+          "</div>" +
           '<div class="owner-dash-restaurant-snapshot owner-dash-restaurant-proposal-grid">' +
           restaurantSnapshotItem("Restaurant name", snap.business, false) +
           restaurantSnapshotItem("Contact name", snap.contact, false) +
@@ -19730,10 +19999,27 @@
         );
       }
 
+      function clearRestaurantProposalManualOverrideMarkers(existing) {
+        return String(existing || "")
+          .replace(/\r\n/g, "\n")
+          .split("\n")
+          .filter(function (line) {
+            var text = String(line || "").trim().toLowerCase();
+            return (
+              text.indexOf("proposal source:") !== 0 &&
+              text.indexOf("proposal manual override:") !== 0 &&
+              text.indexOf("proposal_manual_override:") !== 0
+            );
+          })
+          .join("\n")
+          .replace(/\n{3,}/g, "\n\n")
+          .trim();
+      }
+
       function applyRestaurantLeadResearchToProposalNotes(existingNotes, row, updatedAt) {
         var proposalValues = restaurantLeadProposalFromResearch(row);
         proposalValues.updatedAt = updatedAt || proposalValues.updatedAt;
-        return upsertRestaurantLeadProposalBlock(existingNotes, proposalValues);
+        return upsertRestaurantLeadProposalBlock(clearRestaurantProposalManualOverrideMarkers(existingNotes), proposalValues);
       }
 
       function upsertRestaurantLeadProposalBlock(existing, values) {
@@ -19933,16 +20219,20 @@
           .concat(
             RESTAURANT_RESEARCH_FIELDS.map(function (field) {
               return field.marker + ": " + (values[field.key] || "Unknown") + ".";
-            })
+            }),
+            ["Research updated at: " + (values.updatedAt || new Date().toISOString()) + "."]
           )
           .join("\n");
       }
 
       function isRestaurantResearchFieldLine(line) {
         var text = String(line || "").trim().toLowerCase();
-        return RESTAURANT_RESEARCH_FIELDS.some(function (field) {
-          return text.indexOf(field.marker.toLowerCase() + ":") === 0;
-        });
+        return (
+          text.indexOf("research updated at:") === 0 ||
+          RESTAURANT_RESEARCH_FIELDS.some(function (field) {
+            return text.indexOf(field.marker.toLowerCase() + ":") === 0;
+          })
+        );
       }
 
       function upsertRestaurantResearchBlock(existing, values) {
@@ -20008,6 +20298,8 @@
       function buildRestaurantProposalDirectionBlock(values) {
         return [
           "Restaurant proposal direction:",
+          "Proposal source: " + (values.proposalSource || "Manual override") + ".",
+          "Proposal manual override: " + (values.proposalManualOverride || "active") + ".",
           "Proposal direction: " + (values.proposalDirection || "Needs more discovery") + ".",
           "Suggested first offer: " + (values.suggestedFirstOffer || "Custom") + ".",
           "Suggested package tier: " + (values.suggestedPackageTier || "Custom") + ".",
@@ -20022,6 +20314,8 @@
         var text = String(line || "").trim().toLowerCase();
         return (
           text.indexOf("suggested first offer:") === 0 ||
+          text.indexOf("proposal source:") === 0 ||
+          text.indexOf("proposal manual override:") === 0 ||
           text.indexOf("proposal direction:") === 0 ||
           text.indexOf("suggested package tier:") === 0 ||
           text.indexOf("suggested starting range:") === 0 ||
@@ -21820,6 +22114,7 @@
         var workflowEl = sheet.querySelector(".owner-dash-workflow");
         var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
         var values = readRestaurantResearchFormValues(form);
+        values.updatedAt = new Date().toISOString();
         var previousNotes = String(hit.row.owner_notes || "");
         var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
         var nextNotes = upsertRestaurantResearchBlock(notesBase, values);
@@ -21894,6 +22189,8 @@
         var workflowEl = sheet.querySelector(".owner-dash-workflow");
         var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
         var values = readRestaurantProposalFormValues(form);
+        values.proposalSource = "Manual override";
+        values.proposalManualOverride = "active";
         var previousNotes = String(hit.row.owner_notes || "");
         var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
         var nextNotes = upsertRestaurantProposalDirectionBlock(notesBase, values);
@@ -25653,7 +25950,7 @@
         if (btn) btn.textContent = "Saving...";
         setRestaurantResearchScoreFeedback(section, "success", "Saving research score...");
 
-        postUpdate("restaurant_leads", id, { owner_notes: nextNotes })
+        postUpdate(table, id, { owner_notes: nextNotes })
           .then(function (result) {
             if (!result.ok || !result.data || !result.data.record) {
               setRestaurantResearchScoreFeedback(
@@ -25663,7 +25960,7 @@
               );
               return;
             }
-            applyRecordUpdate("restaurant_leads", id, result.data.record);
+            applyRecordUpdate(table, id, result.data.record);
             if (String(result.data.record.owner_notes || "") !== previousNotes) {
               addClientActivity("restaurant_leads", id, "Restaurant research score saved", "ok");
               if (autoAppliedProposal) {
@@ -25695,15 +25992,40 @@
       function handleApplyRestaurantResearchRecommendation(sheet, btn) {
         if (!sheet) return;
         var id = sheet.getAttribute("data-detail-id");
-        var section = sheet.querySelector("[data-restaurant-proposal-builder]");
+        var section =
+          sheet.querySelector("[data-restaurant-proposal-builder]") ||
+          sheet.querySelector("[data-restaurant-command-proposal-builder]");
         if (!id || !section) return;
-        var before = findRecord("restaurant_leads", id);
+        var table = state.detailOpen && state.detailOpen.table === "business_leads" ? "business_leads" : "restaurant_leads";
+        var before = findRecord(table, id);
         if (!before) return;
         var now = new Date().toISOString();
         var previousNotes = String(before.row.owner_notes || "");
-        var nextNotes = applyRestaurantLeadResearchToProposalNotes(previousNotes, before.row, now);
-        var syncedRow = Object.assign({}, before.row, { owner_notes: nextNotes });
-        nextNotes = restaurantLeadResearchSyncCrmBlock(nextNotes, syncedRow);
+        var nextNotes;
+        if (table === "business_leads") {
+          var guidance = restaurantLeadResearchProposalGuidance(before.row);
+          nextNotes = upsertRestaurantProposalDirectionBlock(clearRestaurantProposalManualOverrideMarkers(previousNotes), {
+            proposalSource: "Using research recommendation",
+            proposalManualOverride: "inactive",
+            proposalDirection: guidance.proposalDirection,
+            suggestedFirstOffer: guidance.suggestedOffer,
+            suggestedPackageTier: guidance.suggestedPackageTier,
+            suggestedStartingRange: guidance.suggestedStartingRange,
+            bestFirstDeliverable: guidance.bestFirstDeliverable,
+            ownerApprovedNextStep: guidance.ownerApprovedNextStep,
+            proposalNotes: restaurantProposalSavedDirection(before.row).proposalNotes || "",
+          });
+          var crmValues = restaurantLeadCrmValuesFromRow(before.row, nextNotes);
+          crmValues.fitLabel = guidance.crmFitLabel || crmValues.fitLabel || "Needs more info";
+          crmValues.leadPriority =
+            restaurantLeadResearchSalesPriorityToCrm(guidance.salesPriority) || crmValues.leadPriority || "Medium";
+          crmValues.nextAction = guidance.ownerApprovedNextStep || guidance.nextStep || crmValues.nextAction;
+          nextNotes = upsertRestaurantLeadCrmBlock(nextNotes, crmValues);
+        } else {
+          nextNotes = applyRestaurantLeadResearchToProposalNotes(previousNotes, before.row, now);
+          var syncedRow = Object.assign({}, before.row, { owner_notes: nextNotes });
+          nextNotes = restaurantLeadResearchSyncCrmBlock(nextNotes, syncedRow);
+        }
         var buttons = section.querySelectorAll("[data-action]");
         var originalLabel = btn ? btn.textContent : "";
         buttons.forEach(function (button) {
@@ -25724,10 +26046,13 @@
             }
             applyRecordUpdate("restaurant_leads", id, result.data.record);
             if (String(result.data.record.owner_notes || "") !== previousNotes) {
-              addClientActivity("restaurant_leads", id, "Restaurant proposal recommendation synced from research", "ok");
+              addClientActivity(table, id, "Restaurant proposal recommendation synced from research", "ok");
             }
             renderAll();
-            var fresh = els.detailBody && els.detailBody.querySelector("[data-restaurant-proposal-builder]");
+            var fresh =
+              els.detailBody &&
+              (els.detailBody.querySelector("[data-restaurant-proposal-builder]") ||
+                els.detailBody.querySelector("[data-restaurant-command-proposal-builder]"));
             setRestaurantProposalFeedback(
               fresh || section,
               "success",
