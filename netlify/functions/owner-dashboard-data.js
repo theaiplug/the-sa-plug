@@ -204,6 +204,16 @@ function extractRestaurantOptionalMessage(row) {
   return message || null;
 }
 
+function ownerNoteMarkerValue(row, marker) {
+  const notes = row && row.owner_notes != null ? String(row.owner_notes).trim() : "";
+  if (!notes) return null;
+  const escaped = String(marker || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = notes.match(new RegExp("^\\s*" + escaped + "\\s*([^\\r\\n]*)", "im"));
+  if (!match) return null;
+  const value = String(match[1] || "").replace(/\s*\.\s*$/, "").trim();
+  return value || null;
+}
+
 function mapBusinessLead(row) {
   return {
     id: row.id,
@@ -239,6 +249,12 @@ function mapRestaurantLead(row) {
   const text = restaurantLeadText(row);
   const interestPartner = /partner program interest:\s*yes|restaurant partner program|visitor visibility|partner placement/.test(text);
   const interestAi = /ai systems interest:\s*yes|ai restaurant growth|ai systems|growth systems|restaurant growth systems/.test(text);
+  const fitLabel = ownerNoteMarkerValue(row, "Fit label:");
+  const leadPriority = ownerNoteMarkerValue(row, "Lead priority:");
+  const nextAction = ownerNoteMarkerValue(row, "Next action:");
+  const nextFollowUpDate = ownerNoteMarkerValue(row, "Next follow-up date:");
+  const proposalSentAt = ownerNoteMarkerValue(row, "Proposal sent date:");
+  const wonAt = ownerNoteMarkerValue(row, "Won date:");
   return {
     id: row.id,
     created_at: row.created_at,
@@ -260,6 +276,12 @@ function mapRestaurantLead(row) {
     optional_message: extractRestaurantOptionalMessage(row),
     source: row.page_path || "/restaurants/",
     notes: row.owner_notes ?? null,
+    fit_label: fitLabel,
+    lead_priority: leadPriority,
+    next_action: nextAction,
+    next_follow_up_date: nextFollowUpDate,
+    proposal_sent_at: proposalSentAt,
+    won_at: wonAt,
     services_interested: row.services_interested ?? null,
     recommended_system: row.recommended_system ?? null,
     ai_summary: row.ai_summary ?? null,
