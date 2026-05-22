@@ -10521,11 +10521,20 @@
 
       function clientSupportRetentionCommandBlock(lead) {
         var r = calcClientRetentionData(lead);
+        var restaurant = isRestaurantRow(lead);
+        var commandTitle = restaurant ? "Restaurant Client Success Command" : "Client Support / Retention Command";
+        var commandSubtitle = restaurant
+          ? "Keep restaurant clients active, improve the system, capture wins, and prepare the next offer."
+          : "Keep launched clients active, supported, and moving into the next phase. Copy only — nothing is sent automatically.";
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--client-retention" data-client-retention-command>' +
           '<div class="owner-dash-retention-head">' +
-          '<div><h3 class="owner-dash-detail-section-title">Client Support / Retention Command</h3>' +
-          '<p class="owner-dash-detail-section-note">Keep launched clients active, supported, and moving into the next phase. Copy only — nothing is sent automatically.</p></div>' +
+          '<div><h3 class="owner-dash-detail-section-title">' +
+          esc(commandTitle) +
+          "</h3>" +
+          '<p class="owner-dash-detail-section-note">' +
+          esc(commandSubtitle) +
+          "</p></div>" +
           '<span class="owner-dash-retention-badge">Internal support guidance</span>' +
           "</div>" +
           '<div class="owner-dash-retention-snapshot-card">' +
@@ -10569,13 +10578,13 @@
           '<div class="owner-dash-retention-copy-actions">' +
           clientRetentionCopyButton("retention-monthly-check-in", "Copy monthly check-in", true) +
           clientRetentionCopyButton("retention-support-review", "Copy support review message", false) +
-          clientRetentionCopyButton("retention-optimization-recommendation", "Copy optimization rec", false) +
+          clientRetentionCopyButton("retention-optimization-recommendation", "Copy optimization recommendation", false) +
           clientRetentionCopyButton("retention-next-phase-offer", "Copy next-phase offer", false) +
           clientRetentionCopyButton("retention-testimonial-request", "Copy testimonial request", false) +
           clientRetentionCopyButton("retention-referral-request", "Copy referral request", false) +
           clientRetentionCopyButton("retention-case-study-questions", "Copy case study questions", false) +
-          clientRetentionCopyButton("retention-support-recap", "Copy support recap", false) +
-          clientRetentionCopyButton("retention-renewal-support-pitch", "Copy renewal/support pitch", false) +
+          clientRetentionCopyButton("retention-support-recap", restaurant ? "Copy restaurant monthly recap" : "Copy support recap", false) +
+          clientRetentionCopyButton("retention-renewal-support-pitch", restaurant ? "Copy renewal message" : "Copy renewal/support pitch", false) +
           clientRetentionCopyButton("retention-full-bundle", "Copy full retention bundle", true) +
           "</div></div>" +
           '<div class="owner-dash-retention-actions">' +
