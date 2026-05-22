@@ -24,6 +24,7 @@ const BUSINESS_STATUSES = new Set([
   "Qualified",
   "Not a fit",
   "Needs follow-up",
+  "Proposal Sent",
   "Won",
   "Lost",
   "Archived",

@@ -2370,6 +2370,30 @@
       gap: 8px;
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-lead-summary {
+      margin-bottom: 14px;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-lead-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-lead-actions .owner-dash-btn {
+      min-height: 40px;
+      white-space: normal;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-lead-source {
+      margin: 8px 0 0;
+      color: rgba(255, 246, 230, 0.6);
+      font-size: 0.74rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
     .page-owner-dashboard .owner-dash-restaurant-create-head {
       display: grid;
       gap: 7px;
@@ -3746,6 +3770,7 @@
 
       <div class="owner-dash-tabs" role="tablist" aria-label="Lead sections">
         <button type="button" class="owner-dash-tab is-active" role="tab" aria-selected="true" aria-controls="panel-business" id="tab-business" data-panel="panel-business">AI Plug Leads</button>
+        <button type="button" class="owner-dash-tab" role="tab" aria-selected="false" aria-controls="panel-restaurant-leads" id="tab-restaurant-leads" data-panel="panel-restaurant-leads">Restaurant Leads</button>
         <button type="button" class="owner-dash-tab" role="tab" aria-selected="false" aria-controls="panel-restaurant-prospects" id="tab-restaurant-prospects" data-panel="panel-restaurant-prospects">Restaurant Prospects</button>
         <button type="button" class="owner-dash-tab" role="tab" aria-selected="false" aria-controls="panel-restaurant-clients" id="tab-restaurant-clients" data-panel="panel-restaurant-clients">Restaurant Clients</button>
         <button type="button" class="owner-dash-tab" role="tab" aria-selected="false" aria-controls="panel-transport" id="tab-transport" data-panel="panel-transport">Transportation</button>
@@ -3762,6 +3787,33 @@
           <p>New business leads and transportation requests will appear here when submitted.</p>
         </div>
         <div id="business-leads-list" class="owner-dash-card-list"></div>
+      </section>
+
+      <section id="panel-restaurant-leads" class="owner-dash-panel" role="tabpanel" aria-labelledby="tab-restaurant-leads" hidden>
+        <header class="owner-dash-panel-head">
+          <h2>Restaurant Leads</h2>
+          <p>Public inquiries submitted from /restaurants/. Internal sales pipeline only; do not publish these as listings.</p>
+        </header>
+        <div id="restaurant-leads-summary" class="owner-dash-first50-summary owner-dash-restaurant-lead-summary"></div>
+        <div class="owner-dash-filters owner-dash-restaurant-lead-filters" role="group" aria-label="Restaurant lead filters">
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter is-active" data-restaurant-lead-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="new" aria-pressed="false">New</button>
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="needs-follow-up" aria-pressed="false">Needs follow-up</button>
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="partner" aria-pressed="false">Partner Program</button>
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="ai" aria-pressed="false">AI Systems</button>
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="both" aria-pressed="false">Both</button>
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="contacted" aria-pressed="false">Contacted</button>
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="qualified" aria-pressed="false">Qualified</button>
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="proposal-sent" aria-pressed="false">Proposal Sent</button>
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="won" aria-pressed="false">Won</button>
+          <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="not-fit" aria-pressed="false">Not Fit</button>
+        </div>
+        <p id="restaurant-leads-result-count" class="owner-dash-result-count" aria-live="polite">Showing 0 of 0 restaurant leads</p>
+        <div id="restaurant-leads-empty" class="owner-dash-empty" hidden>
+          <p>No restaurant inquiries found yet.</p>
+          <p>New /restaurants/ form submissions will appear here when submitted.</p>
+        </div>
+        <div id="restaurant-leads-list" class="owner-dash-card-list"></div>
       </section>
 
       <section id="panel-restaurant-prospects" class="owner-dash-panel" role="tabpanel" aria-labelledby="tab-restaurant-prospects" hidden>
@@ -4118,12 +4170,14 @@
         "Qualified",
         "Not a fit",
         "Needs follow-up",
+        "Proposal Sent",
         "Won",
         "Lost",
         "Archived",
       ];
 
       var TRANSPORT_STATUSES = BUSINESS_STATUSES.concat(["Handled", "Cancelled"]);
+      var RESTAURANT_LEAD_STATUSES = ["New", "Contacted", "Qualified", "Proposal Sent", "Won", "Not a fit"];
 
       var PROPOSAL_TYPES = ["Starter Fix", "Lead Capture System", "Business Command System", "Full AI Growth System"];
       var PROPOSAL_PACKAGE_MAP = {
@@ -4879,10 +4933,12 @@
 
       var state = {
         businessLeads: [],
+        restaurantLeads: [],
         transportRows: [],
         counts: null,
         activeFilter: "all",
         activePriorityFilter: "all",
+        activeRestaurantLeadFilter: "all",
         activeRestaurantFilter: "all",
         activeRestaurantClientFilter: "all",
         activeRestaurantProspectMode: "all",
@@ -4911,6 +4967,10 @@
         content: document.getElementById("owner-dash-content"),
         businessList: document.getElementById("business-leads-list"),
         businessEmpty: document.getElementById("business-leads-empty"),
+        restaurantLeadsSummary: document.getElementById("restaurant-leads-summary"),
+        restaurantLeadsList: document.getElementById("restaurant-leads-list"),
+        restaurantLeadsEmpty: document.getElementById("restaurant-leads-empty"),
+        restaurantLeadsResultCount: document.getElementById("restaurant-leads-result-count"),
         restaurantProspectsList: document.getElementById("restaurant-prospects-list"),
         restaurantProspectsEmpty: document.getElementById("restaurant-prospects-empty"),
         restaurantProspectsResultCount: document.getElementById("restaurant-prospects-result-count"),
@@ -5021,7 +5081,7 @@
       function displayStatus(st) {
         var n = normStatus(st);
         if (n === "new") return "New";
-        var labels = BUSINESS_STATUSES.concat(["Needs follow-up", "Handled", "Cancelled"]);
+        var labels = BUSINESS_STATUSES.concat(["Needs follow-up", "Proposal Sent", "Handled", "Cancelled"]);
         for (var i = 0; i < labels.length; i++) {
           if (normStatus(labels[i]) === n) return labels[i];
         }
@@ -5056,6 +5116,7 @@
 
       function ownerDashboardActiveTable() {
         var activePanel = document.querySelector(".owner-dash-panel.is-active");
+        if (activePanel && activePanel.id === "panel-restaurant-leads") return "restaurant_leads";
         return activePanel && activePanel.id === "panel-transport" ? "transportation_requests" : "business_leads";
       }
 
@@ -5072,6 +5133,7 @@
       }
 
       function ownerDashboardActivePanelLabel() {
+        if (ownerDashboardActivePanelId() === "panel-restaurant-leads") return "Restaurant Leads";
         var mode = ownerDashboardActiveRestaurantMode();
         if (mode === "prospects") return "Restaurant Prospects";
         if (mode === "clients") return "Restaurant Clients";
@@ -7799,7 +7861,7 @@
         if (s === "contacted" || s === "qualified") return "owner-dash-badge--teal";
         if (s === "won" || s === "handled") return "owner-dash-badge--ok";
         if (s === "lost" || s === "cancelled" || s === "archived" || s === "not a fit") return "owner-dash-badge--muted";
-        if (s === "needs follow-up") return "owner-dash-badge--pending";
+        if (s === "needs follow-up" || s === "proposal sent") return "owner-dash-badge--pending";
         return "owner-dash-badge--neutral";
       }
 
@@ -7910,6 +7972,209 @@
         if (phone) parts.push(String(phone));
         if (email) parts.push(String(email));
         return parts.length ? parts.join(" · ") : null;
+      }
+
+      function restaurantLeadStatusLabel(row) {
+        return normStatus(row && row.status) === "not a fit" ? "Not Fit" : displayStatus(row && row.status);
+      }
+
+      function restaurantLeadInterestBadges(row) {
+        var badges = [];
+        if (row && row.interest_partner_program) {
+          badges.push('<span class="owner-dash-badge owner-dash-badge--warm">Partner Program</span>');
+        }
+        if (row && row.interest_ai_systems) {
+          badges.push('<span class="owner-dash-badge owner-dash-badge--teal">AI Systems</span>');
+        }
+        if (!badges.length && row && row.interest_type) {
+          badges.push('<span class="owner-dash-badge owner-dash-badge--neutral">' + esc(row.interest_type) + "</span>");
+        }
+        return badges.join(" ");
+      }
+
+      function restaurantLeadNeedsFollowUp(row) {
+        var status = normStatus(row && row.status);
+        return status === "new" || status === "contacted" || status === "needs follow-up" || status === "proposal sent";
+      }
+
+      function restaurantLeadSearchText(row) {
+        if (!row) return "";
+        return [
+          row.restaurant_name,
+          row.contact_name,
+          row.email,
+          row.phone,
+          row.preferred_contact_method,
+          row.website_or_social,
+          row.area_neighborhood,
+          row.help_needed,
+          row.interest_type,
+          row.optional_message,
+          row.source,
+          row.owner_notes,
+          row.services_interested,
+          row.recommended_system,
+          restaurantLeadStatusLabel(row),
+        ].join(" ");
+      }
+
+      function restaurantLeadMatchesSearch(row) {
+        var q = String(state.searchQuery || "").trim().toLowerCase();
+        if (!q) return true;
+        return restaurantLeadSearchText(row).toLowerCase().indexOf(q) !== -1;
+      }
+
+      function matchesRestaurantLeadFilter(row) {
+        var filter = state.activeRestaurantLeadFilter || "all";
+        var status = normStatus(row && row.status);
+        if (filter === "all") return restaurantLeadMatchesSearch(row);
+        if (filter === "needs-follow-up") return restaurantLeadNeedsFollowUp(row) && restaurantLeadMatchesSearch(row);
+        if (filter === "partner") return Boolean(row && row.interest_partner_program) && restaurantLeadMatchesSearch(row);
+        if (filter === "ai") return Boolean(row && row.interest_ai_systems) && restaurantLeadMatchesSearch(row);
+        if (filter === "both") return Boolean(row && row.interest_partner_program && row.interest_ai_systems) && restaurantLeadMatchesSearch(row);
+        if (filter === "proposal-sent") return status === "proposal sent" && restaurantLeadMatchesSearch(row);
+        if (filter === "not-fit") return status === "not a fit" && restaurantLeadMatchesSearch(row);
+        return status === filter && restaurantLeadMatchesSearch(row);
+      }
+
+      function sortRestaurantLeads(rows) {
+        return rows.slice().sort(function (a, b) {
+          return compareRows(a, b, "restaurant_leads");
+        });
+      }
+
+      function visibleRestaurantLeadRows() {
+        return sortRestaurantLeads(state.restaurantLeads).filter(matchesRestaurantLeadFilter);
+      }
+
+      function restaurantLeadSummaryCounts() {
+        var totalLoaded = state.restaurantLeads.length;
+        var totalExact = state.counts && state.counts.total_restaurant != null ? Number(state.counts.total_restaurant) : totalLoaded;
+        return {
+          total: Number.isNaN(totalExact) ? totalLoaded : totalExact,
+          newLeads: state.restaurantLeads.filter(function (row) { return normStatus(row.status) === "new"; }).length,
+          needsFollowUp: state.restaurantLeads.filter(restaurantLeadNeedsFollowUp).length,
+          partner: state.restaurantLeads.filter(function (row) { return row.interest_partner_program; }).length,
+          ai: state.restaurantLeads.filter(function (row) { return row.interest_ai_systems; }).length,
+        };
+      }
+
+      function renderRestaurantLeadSummary() {
+        if (!els.restaurantLeadsSummary) return;
+        var counts = restaurantLeadSummaryCounts();
+        els.restaurantLeadsSummary.innerHTML =
+          '<div class="owner-dash-first50-counts">' +
+          first50CountHtml("New restaurant leads", counts.newLeads) +
+          first50CountHtml("Total restaurant leads", counts.total) +
+          first50CountHtml("Needs follow-up", counts.needsFollowUp) +
+          first50CountHtml("Partner interest", counts.partner) +
+          first50CountHtml("AI systems interest", counts.ai) +
+          "</div>";
+      }
+
+      function restaurantLeadActionButton(status, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--' +
+          (primary ? "primary" : "secondary") +
+          '" data-action="restaurant-lead-status" data-table="restaurant_leads" data-status="' +
+          esc(status) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function restaurantLeadQuickActionsHtml() {
+        return (
+          '<div class="owner-dash-restaurant-lead-actions">' +
+          restaurantLeadActionButton("Contacted", "Mark contacted", false) +
+          restaurantLeadActionButton("Qualified", "Mark qualified", false) +
+          restaurantLeadActionButton("Proposal Sent", "Mark proposal sent", false) +
+          restaurantLeadActionButton("Won", "Mark won", true) +
+          restaurantLeadActionButton("Not a fit", "Mark not fit", false) +
+          "</div>"
+        );
+      }
+
+      function renderRestaurantLeadCard(row) {
+        var preview = row.optional_message || row.help_needed || row.ai_summary || "";
+        return (
+          '<article class="owner-dash-glass owner-dash-lead-card owner-dash-lead-card--compact" data-record-id="' +
+          esc(row.id) +
+          '" data-table="restaurant_leads" tabindex="-1">' +
+          '<div class="owner-dash-card-top">' +
+          restaurantLeadInterestBadges(row) +
+          ' <span class="owner-dash-badge ' +
+          statusClass(row.status) +
+          '">' +
+          esc(restaurantLeadStatusLabel(row)) +
+          "</span>" +
+          '<time class="owner-dash-time" datetime="' +
+          esc(row.created_at) +
+          '">' +
+          esc(fmtDate(row.created_at)) +
+          "</time></div>" +
+          nextActionHtml(restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review when needed.") +
+          '<h3 class="owner-dash-card-title">' +
+          esc(row.restaurant_name || "Restaurant TBD") +
+          "</h3>" +
+          '<dl class="owner-dash-fields owner-dash-fields--compact">' +
+          block("Area / neighborhood", row.area_neighborhood) +
+          block("Contact", row.contact_name) +
+          block("Phone / email", contactLine(row.phone, row.email)) +
+          block("Preferred contact", row.preferred_contact_method) +
+          block("Interest type", row.interest_type) +
+          blockPreview("Message / help summary", preview) +
+          "</dl>" +
+          lastActivityHint(row, "restaurant_leads") +
+          '<div class="owner-dash-card-actions">' +
+          openDetailsBtn("restaurant_leads", row.id) +
+          restaurantLeadQuickActionsHtml() +
+          "</div>" +
+          workflowBlock("restaurant_leads", row) +
+          cardAlertRow(row) +
+          '<p class="owner-dash-restaurant-lead-source">Source: ' +
+          esc(row.source || row.page_path || "/restaurants/") +
+          "</p>" +
+          "</article>"
+        );
+      }
+
+      function restaurantLeadEmptyStateHtml(visibleCount) {
+        if (!state.restaurantLeads.length) {
+          return (
+            '<p class="owner-dash-empty-title">No restaurant inquiries found yet.</p>' +
+            '<p class="owner-dash-empty-copy">Public /restaurants/ form submissions will appear here without creating public listings.</p>'
+          );
+        }
+        if (String(state.searchQuery || "").trim() && visibleCount === 0) {
+          return (
+            '<p class="owner-dash-empty-title">No restaurant leads match this search.</p>' +
+            '<p class="owner-dash-empty-copy">Try another restaurant name, contact, area, interest, or note.</p>'
+          );
+        }
+        return (
+          '<p class="owner-dash-empty-title">No restaurant leads match this filter.</p>' +
+          '<p class="owner-dash-empty-copy">Clear filters or refresh data.</p>'
+        );
+      }
+
+      function renderRestaurantLeads() {
+        renderRestaurantLeadSummary();
+        var filtered = visibleRestaurantLeadRows();
+        if (els.restaurantLeadsResultCount) {
+          els.restaurantLeadsResultCount.textContent =
+            "Showing " + filtered.length + " of " + state.restaurantLeads.length + " restaurant leads";
+        }
+        if (!els.restaurantLeadsList) return;
+        if (!filtered.length) {
+          show(els.restaurantLeadsEmpty);
+          if (els.restaurantLeadsEmpty) els.restaurantLeadsEmpty.innerHTML = restaurantLeadEmptyStateHtml(filtered.length);
+          els.restaurantLeadsList.innerHTML = "";
+          return;
+        }
+        hide(els.restaurantLeadsEmpty);
+        els.restaurantLeadsList.innerHTML = filtered.map(renderRestaurantLeadCard).join("");
       }
 
       function cardAlertRow(row) {
@@ -15434,14 +15699,19 @@
       }
 
       function pipelineInlineHtml(table, status) {
-        if (table !== "business_leads") return "";
-        var steps = ["New", "Reviewed", "Contacted", "Qualified", "Won/Lost"];
+        if (table !== "business_leads" && table !== "restaurant_leads") return "";
+        var steps =
+          table === "restaurant_leads"
+            ? ["New", "Contacted", "Qualified", "Proposal Sent", "Won/Not Fit"]
+            : ["New", "Reviewed", "Contacted", "Qualified", "Won/Lost"];
         var cur = normStatus(status);
         var html = '<div class="owner-dash-pipeline owner-dash-pipeline--quick" role="list" aria-label="Sales pipeline">';
         steps.forEach(function (step, idx) {
           var isCurrent = false;
           if (step === "Won/Lost") {
             isCurrent = cur === "won" || cur === "lost";
+          } else if (step === "Won/Not Fit") {
+            isCurrent = cur === "won" || cur === "not a fit";
           } else {
             isCurrent = cur === normStatus(step);
           }
@@ -15459,7 +15729,15 @@
 
       function quickStatusBlock(table, status) {
         var buttons =
-          table === "business_leads"
+          table === "restaurant_leads"
+            ? [
+                { status: "Contacted", label: "Mark Contacted", primary: false },
+                { status: "Qualified", label: "Mark Qualified", primary: false },
+                { status: "Proposal Sent", label: "Proposal Sent", primary: false },
+                { status: "Won", label: "Won", primary: true },
+                { status: "Not a fit", label: "Not Fit", primary: false },
+              ]
+            : table === "business_leads"
             ? [
                 { status: "Reviewed", label: "Mark Reviewed", primary: false },
                 { status: "Contacted", label: "Mark Contacted", primary: false },
@@ -15570,6 +15848,67 @@
         return collapsibleBlock("Show AI transcript", html, "owner-dash-collapsible--ai");
       }
 
+      function restaurantLeadDetailsBlock(row) {
+        var website = row.website_or_social;
+        var websiteHref =
+          website && !/^https?:\/\//i.test(String(website))
+            ? "https://" + String(website).trim()
+            : website;
+        return (
+          '<section class="owner-dash-detail-section">' +
+          '<h3 class="owner-dash-detail-section-title">Restaurant Inquiry Details</h3>' +
+          '<p class="owner-dash-detail-section-note">Internal lead record from the public /restaurants/ funnel. Do not publish notes or create public listings without owner approval.</p>' +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Restaurant name", row.restaurant_name) +
+          detailRow("Contact name", row.contact_name) +
+          detailRow("Email", row.email) +
+          detailRow("Phone", row.phone) +
+          detailRow("Preferred contact method", row.preferred_contact_method) +
+          detailRowLink("Website / social", websiteHref, website) +
+          detailRow("Area / neighborhood", row.area_neighborhood) +
+          detailRow("What they want help with", row.help_needed, true) +
+          detailRow("Interest type", row.interest_type) +
+          detailRow("Partner Program interest", row.interest_partner_program ? "Yes" : "No") +
+          detailRow("AI systems interest", row.interest_ai_systems ? "Yes" : "No") +
+          detailRow("Optional message", row.optional_message, true) +
+          detailRow("Source", row.source || row.page_path || "/restaurants/") +
+          detailRow("Created", fmtDate(row.created_at)) +
+          detailRow("Status", restaurantLeadStatusLabel(row)) +
+          detailRow("Owner notes", row.owner_notes, true) +
+          "</div>" +
+          '<div class="owner-dash-detail-alerts">' +
+          alertPill(row.alert_email_sent, "Email") +
+          alertPill(row.alert_sms_sent, "SMS") +
+          "</div></section>"
+        );
+      }
+
+      function renderRestaurantLeadDetail(row) {
+        return (
+          '<div class="owner-dash-detail-sheet" data-detail-table="restaurant_leads" data-detail-id="' +
+          esc(row.id) +
+          '">' +
+          '<div class="owner-dash-detail-badges">' +
+          restaurantLeadInterestBadges(row) +
+          '<span class="owner-dash-badge ' +
+          statusClass(row.status) +
+          '">' +
+          esc(restaurantLeadStatusLabel(row)) +
+          "</span>" +
+          '<time class="owner-dash-time" datetime="' +
+          esc(row.created_at) +
+          '">' +
+          esc(fmtDate(row.created_at)) +
+          "</time></div>" +
+          nextActionHtml(restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review restaurant lead status and notes.") +
+          restaurantLeadDetailsBlock(row) +
+          quickStatusBlock("restaurant_leads", row.status) +
+          workflowBlock("restaurant_leads", row) +
+          activityTimelineBlock("restaurant_leads", row) +
+          "</div>"
+        );
+      }
+
       function renderBusinessDetail(lead) {
         var priority = calcBusinessPriority(lead);
         var nextAction = calcBusinessNextAction(lead, priority);
@@ -15674,10 +16013,18 @@
         if (!els.detailBody || !state.detailOpen) return;
         var table = state.detailOpen.table;
         els.detailBody.innerHTML =
-          table === "business_leads" ? renderBusinessDetail(row) : renderTransportDetail(row);
+          table === "business_leads"
+            ? renderBusinessDetail(row)
+            : table === "restaurant_leads"
+              ? renderRestaurantLeadDetail(row)
+              : renderTransportDetail(row);
         if (els.detailTitle) {
           els.detailTitle.textContent =
-            table === "business_leads" ? leadTitle(row) : row.name || "Transportation request";
+            table === "business_leads"
+              ? leadTitle(row)
+              : table === "restaurant_leads"
+                ? row.restaurant_name || "Restaurant lead"
+                : row.name || "Transportation request";
         }
       }
 
@@ -18530,7 +18877,12 @@
       }
 
       function statusOptions(table, current) {
-        var list = table === "transportation_requests" ? TRANSPORT_STATUSES : BUSINESS_STATUSES;
+        var list =
+          table === "transportation_requests"
+            ? TRANSPORT_STATUSES
+            : table === "restaurant_leads"
+              ? RESTAURANT_LEAD_STATUSES
+              : BUSINESS_STATUSES;
         var cur = displayStatus(current);
         return list
           .map(function (opt) {
@@ -18857,7 +19209,12 @@
       }
 
       function setActivePanelForTable(table) {
-        var panelId = table === "transportation_requests" ? "panel-transport" : "panel-business";
+        var panelId =
+          table === "transportation_requests"
+            ? "panel-transport"
+            : table === "restaurant_leads"
+              ? "panel-restaurant-leads"
+              : "panel-business";
         var tabs = document.querySelectorAll(".owner-dash-tab");
         var panels = document.querySelectorAll(".owner-dash-panel");
         tabs.forEach(function (tab) {
@@ -18911,11 +19268,18 @@
         if (table === "business_leads") {
           return Number(state.counts.total_business || 0) > state.businessLeads.length;
         }
+        if (table === "restaurant_leads") {
+          return Number(state.counts.total_restaurant || 0) > state.restaurantLeads.length;
+        }
         return Number(state.counts.total_transportation || 0) > state.transportRows.length;
       }
 
       function anyTableHasUnloadedRows() {
-        return tableHasUnloadedRows("business_leads") || tableHasUnloadedRows("transportation_requests");
+        return (
+          tableHasUnloadedRows("business_leads") ||
+          tableHasUnloadedRows("restaurant_leads") ||
+          tableHasUnloadedRows("transportation_requests")
+        );
       }
 
       function firstVisibleMatch(matches) {
@@ -18989,6 +19353,11 @@
             (btn.getAttribute("data-restaurant-filter") || "all") === state.activeRestaurantFilter
           );
         });
+        document.querySelectorAll(".owner-dash-restaurant-lead-filter").forEach(function (btn) {
+          var active = (btn.getAttribute("data-restaurant-lead-filter") || "all") === state.activeRestaurantLeadFilter;
+          btn.classList.toggle("is-active", active);
+          btn.setAttribute("aria-pressed", active ? "true" : "false");
+        });
         document.querySelectorAll(".owner-dash-restaurant-client-filter").forEach(function (btn) {
           btn.classList.toggle(
             "is-active",
@@ -19051,11 +19420,14 @@
       }
 
       function rowsForTable(table) {
-        return table === "business_leads" ? state.businessLeads : state.transportRows;
+        if (table === "business_leads") return state.businessLeads;
+        if (table === "restaurant_leads") return state.restaurantLeads;
+        return state.transportRows;
       }
 
       function visibleRowsForTable(table) {
         var rows = rowsForTable(table);
+        if (table === "restaurant_leads") return sortRestaurantLeads(rows).filter(matchesRestaurantLeadFilter);
         var sorter = table === "business_leads" ? sortBusinessLeads : sortTransportRows;
         return sorter(rows).filter(function (row) {
           return matchesFilter(row, table);
@@ -19063,7 +19435,7 @@
       }
 
       function totalRowsLoaded() {
-        return state.businessLeads.length + state.transportRows.length;
+        return state.businessLeads.length + state.restaurantLeads.length + state.transportRows.length;
       }
 
       function activeFiltersLabel(table) {
@@ -19091,6 +19463,8 @@
           if (ownerDashboardActiveRestaurantMode() === "prospects") {
             parts.push("Prospect mode: " + (state.activeRestaurantProspectMode || "all"));
           }
+        } else if (ownerDashboardActivePanelId() === "panel-restaurant-leads") {
+          parts.push("Restaurant leads: " + (state.activeRestaurantLeadFilter || "all"));
         }
         return parts.join("; ");
       }
@@ -19204,6 +19578,24 @@
             " | Problem: " +
             (row.current_problem || row.ai_summary || "—") +
             restaurantExtra
+          );
+        }
+        if (table === "restaurant_leads") {
+          return (
+            "- " +
+            (row.restaurant_name || "Restaurant lead") +
+            " | Contact: " +
+            (row.contact_name || "—") +
+            " | Phone/email: " +
+            ([row.phone, row.email].filter(Boolean).join(" / ") || "—") +
+            " | Area: " +
+            (row.area_neighborhood || "—") +
+            " | Interest: " +
+            (row.interest_type || "—") +
+            " | Status: " +
+            restaurantLeadStatusLabel(row) +
+            " | Help: " +
+            (row.help_needed || row.optional_message || "—")
           );
         }
         var route = [row.pickup_area, row.destination].filter(Boolean).join(" to ");
@@ -21061,6 +21453,7 @@
         renderRestaurantRepDailyQueue();
         renderExportCrmSummary();
         renderBusiness(state.businessLeads);
+        renderRestaurantLeads();
         renderRestaurantPanel("prospects");
         renderRestaurantPanel("clients");
         renderTransport(state.transportRows);
@@ -21088,7 +21481,12 @@
       }
 
       function findRecord(table, id) {
-        var list = table === "business_leads" ? state.businessLeads : state.transportRows;
+        var list =
+          table === "business_leads"
+            ? state.businessLeads
+            : table === "restaurant_leads"
+              ? state.restaurantLeads
+              : state.transportRows;
         for (var i = 0; i < list.length; i++) {
           if (String(list[i].id) === String(id)) return { list: list, index: i, row: list[i] };
         }
@@ -21096,12 +21494,18 @@
       }
 
       function applyRecordUpdate(table, id, record) {
-        var hit = findRecord(table, id);
-        if (!hit) return;
-        hit.row.status = record.status;
-        hit.row.owner_notes = record.owner_notes;
-        hit.row.last_contacted_at = record.last_contacted_at;
-        hit.row.updated_at = record.updated_at;
+        ["business_leads", "restaurant_leads", "transportation_requests"].forEach(function (candidateTable) {
+          if (table !== candidateTable && !(table === "business_leads" && candidateTable === "restaurant_leads") && !(table === "restaurant_leads" && candidateTable === "business_leads")) {
+            return;
+          }
+          var hit = findRecord(candidateTable, id);
+          if (!hit) return;
+          hit.row.status = record.status;
+          hit.row.owner_notes = record.owner_notes;
+          hit.row.last_contacted_at = record.last_contacted_at;
+          hit.row.updated_at = record.updated_at;
+          if (candidateTable === "restaurant_leads") hit.row.notes = record.owner_notes;
+        });
       }
 
       function setWorkflowFeedback(workflowEl, type, message) {
@@ -21154,7 +21558,8 @@
       }
 
       function postUpdate(table, id, payload) {
-        var body = Object.assign({ key: accessKey, table: table, id: id }, payload);
+        var updateTable = table === "restaurant_leads" ? "business_leads" : table;
+        var body = Object.assign({ key: accessKey, table: updateTable, id: id }, payload);
         return fetch(UPDATE_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -21424,6 +21829,44 @@
           });
       }
 
+      function handleRestaurantLeadStatus(btn) {
+        var card = btn.closest(".owner-dash-lead-card");
+        var id = card ? card.getAttribute("data-record-id") : "";
+        var statusLabel = btn.getAttribute("data-status");
+        if (!id || !statusLabel) return;
+        var buttons = card ? card.querySelectorAll('[data-action="restaurant-lead-status"]') : [btn];
+        buttons.forEach(function (b) {
+          b.disabled = true;
+        });
+        var payload = { status: statusLabel };
+        if (normStatus(statusLabel) === "contacted") {
+          payload.last_contacted_at = new Date().toISOString();
+        }
+        postUpdate("restaurant_leads", id, payload)
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) return;
+            applyRecordUpdate("restaurant_leads", id, result.data.record);
+            addClientActivity(
+              "restaurant_leads",
+              id,
+              normStatus(statusLabel) === "contacted"
+                ? "Marked contacted"
+                : "Status changed to " + restaurantLeadStatusLabel({ status: statusLabel }),
+              "info"
+            );
+            renderAll();
+            refreshCounts();
+          })
+          .catch(function () {
+            /* Card-level quick action errors can be retried from the workflow/detail view. */
+          })
+          .finally(function () {
+            buttons.forEach(function (b) {
+              b.disabled = false;
+            });
+          });
+      }
+
       function fetchDashboard() {
         return fetch(DATA_URL + "?key=" + encodeURIComponent(accessKey), {
           method: "GET",
@@ -21553,6 +21996,18 @@
             state.activeRestaurantFilter = btn.getAttribute("data-restaurant-filter") || "all";
             restaurantFilters.forEach(function (b) {
               b.classList.toggle("is-active", b === btn);
+            });
+            renderAll();
+          });
+        });
+        var restaurantLeadFilters = document.querySelectorAll(".owner-dash-restaurant-lead-filter");
+        restaurantLeadFilters.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            state.activeRestaurantLeadFilter = btn.getAttribute("data-restaurant-lead-filter") || "all";
+            restaurantLeadFilters.forEach(function (b) {
+              var active = b === btn;
+              b.classList.toggle("is-active", active);
+              b.setAttribute("aria-pressed", active ? "true" : "false");
             });
             renderAll();
           });
@@ -21708,6 +22163,11 @@
             var table = btn.getAttribute("data-table");
             var id = btn.getAttribute("data-id");
             if (table && id) openDetail(table, id);
+            return;
+          }
+
+          if (action === "restaurant-lead-status") {
+            handleRestaurantLeadStatus(btn);
             return;
           }
 
@@ -21882,6 +22342,7 @@
         hideRefreshError();
         show(els.content);
         state.businessLeads = data.business_leads || [];
+        state.restaurantLeads = data.restaurant_leads || [];
         state.transportRows = data.transportation_requests || [];
         state.counts = data.counts || null;
         state.clientActivity = {};
