@@ -20069,6 +20069,7 @@
         var container =
           (btn && btn.closest("[data-restaurant-followup-kit]")) ||
           (btn && btn.closest(".owner-dash-restaurant-lead-actions--kit")) ||
+          (btn && btn.closest(".owner-dash-command-quick-copy")) ||
           (btn && btn.closest(".owner-dash-lead-card")) ||
           els.restaurantFollowUpKit;
         if (!text || !String(text).trim()) {
