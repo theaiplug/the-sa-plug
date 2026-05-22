@@ -9102,7 +9102,59 @@
         return restaurantLeadCrmValue(row, "Next action:", restaurantLeadDefaultNextAction(row));
       }
 
+      function restaurantLeadResearchFitResultToFitLabel(fitResult) {
+        var fit = restaurantLeadResearchNormalizeFitResult(fitResult);
+        if (fit === "Strong fit - Partner Program") return "Strong fit - Partner Program";
+        if (fit === "Strong fit - AI Systems") return "Strong fit - AI Systems";
+        if (fit === "Strong fit - Both") return "Strong fit - Both";
+        if (fit === "Needs more discovery") return "Needs more info";
+        if (fit === "Not a fit right now") return "Not a fit";
+        return "";
+      }
+
+      function restaurantLeadResearchSalesPriorityToCrm(salesPriority) {
+        var value = String(salesPriority || "").trim();
+        if (value === "Low") return "Low";
+        if (value === "High") return "High";
+        if (value === "Medium-High" || value === "Needs Review") return "Medium";
+        return "";
+      }
+
+      function restaurantLeadResearchVisitorFitLabel(row) {
+        var research = restaurantLeadResearchValues(row);
+        var fit = research.fitResult || "Needs more discovery";
+        var poorVisitorFit = restaurantLeadResearchHasLabel(research.checkedLabels, "Poor visitor fit");
+        var score = research.score;
+        if (fit === "Strong fit - Both") return "Strong fit — Both";
+        if (fit === "Strong fit - Partner Program") return "Strong fit — Partner Program";
+        if (fit === "Strong fit - AI Systems") return "Strong fit — AI Systems";
+        if (fit === "Not a fit right now") return "Low / Not a fit";
+        if (fit === "Needs more discovery") {
+          return poorVisitorFit || (score != null && score < 35) ? "Low fit" : "Needs more discovery";
+        }
+        return "Needs more discovery";
+      }
+
+      function restaurantLeadResearchSyncCrmBlock(existingNotes, row) {
+        var guidance = restaurantLeadResearchProposalGuidance(row);
+        var research = restaurantLeadResearchValues(row);
+        var crmValues = restaurantLeadCrmValuesFromRow(row, existingNotes);
+        crmValues.fitLabel =
+          restaurantLeadResearchFitResultToFitLabel(research.fitResult) || crmValues.fitLabel || "Needs more info";
+        crmValues.leadPriority =
+          restaurantLeadResearchSalesPriorityToCrm(guidance.salesPriority) || crmValues.leadPriority || "Medium";
+        return upsertRestaurantLeadCrmBlock(existingNotes, crmValues);
+      }
+
       function restaurantLeadFitLabel(row) {
+        var savedResearchFit = restaurantLeadResearchSavedFitResult(row);
+        var researchUpdated = restaurantLeadResearchUpdatedAt(row);
+        if (savedResearchFit || researchUpdated) {
+          var fromResearch = restaurantLeadResearchFitResultToFitLabel(
+            savedResearchFit || restaurantLeadResearchValues(row).fitResult
+          );
+          if (fromResearch) return fromResearch;
+        }
         var value = restaurantLeadCrmValue(row, "Fit label:", "");
         if (value) return value;
         if (row && row.interest_partner_program && row.interest_ai_systems) return "Strong fit - Both";
@@ -9112,6 +9164,12 @@
       }
 
       function restaurantLeadPriority(row) {
+        if (restaurantLeadResearchUpdatedAt(row) || restaurantLeadResearchSavedFitResult(row)) {
+          var fromResearch = restaurantLeadResearchSalesPriorityToCrm(
+            restaurantLeadResearchProposalGuidance(row).salesPriority
+          );
+          if (fromResearch) return fromResearch;
+        }
         var value = restaurantLeadCrmValue(row, "Lead priority:", "");
         if (/^hot$/i.test(value)) return "High";
         if (/^warm$/i.test(value)) return "Medium";
@@ -9640,6 +9698,9 @@
       }
 
       function restaurantProposalDefaultRecommendation(row) {
+        if (restaurantLeadResearchUpdatedAt(row) || restaurantLeadResearchSavedFitResult(row)) {
+          return restaurantLeadResearchProposalGuidance(row).recommendation;
+        }
         var fromCrm = restaurantProposalDefaultDirection(row);
         if (fromCrm) return fromCrm;
         if (row && row.interest_partner_program && row.interest_ai_systems) return "Combined Partner + AI Systems";
@@ -10144,7 +10205,29 @@
       }
 
       function restaurantLeadProposalValues(row) {
+        var research = restaurantLeadResearchValues(row);
         var researchGuidance = restaurantLeadResearchProposalGuidance(row);
+        var hasManualOverride = restaurantLeadProposalHasManualOverride(row);
+        var baseMeta = {
+          proposalSource:
+            restaurantLeadProposalSource(row) ||
+            (hasManualOverride ? "Manual override" : "Using research recommendation"),
+          researchRecommendationLabel: restaurantLeadResearchRecommendationLabel(row),
+          researchUpdatedAt: restaurantLeadResearchUpdatedAt(row),
+          hasManualOverride: hasManualOverride,
+          showApplyResearchRecommendation:
+            hasManualOverride && (research.updatedAt || research.hasScore || research.hasSavedFitResult),
+          visitorFitLabel: restaurantLeadResearchVisitorFitLabel(row),
+        };
+
+        if (!hasManualOverride && (research.updatedAt || research.hasSavedFitResult || research.hasScore)) {
+          var fromResearch = restaurantLeadProposalFromResearch(row);
+          return Object.assign({}, fromResearch, baseMeta, {
+            updatedAt: restaurantLeadProposalValue(row, "Proposal updated at:", ""),
+            notes: restaurantLeadProposalValue(row, "Proposal notes:", ""),
+          });
+        }
+
         var recommendation = restaurantProposalNormalizeDirection(
           restaurantLeadProposalValue(row, "Proposal recommendation:", restaurantProposalDefaultRecommendation(row))
         ) || restaurantProposalDefaultRecommendation(row);
@@ -10155,21 +10238,19 @@
         if (RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS.indexOf(nextStep) === -1) {
           nextStep = "Send first email";
         }
-        var base = {
-          recommendation: recommendation,
-          fitReasons: splitRestaurantProposalList(restaurantLeadProposalValue(row, "Proposal fit reasons:", "")),
-          cautionReasons: splitRestaurantProposalList(
-            restaurantLeadProposalValue(row, "Proposal caution reasons:", "")
-          ),
-          nextStep: nextStep,
-          updatedAt: restaurantLeadProposalValue(row, "Proposal updated at:", ""),
-          notes: restaurantLeadProposalValue(row, "Proposal notes:", ""),
-          proposalSource: restaurantLeadProposalSource(row) || (restaurantLeadProposalHasManualOverride(row) ? "Manual override" : "Using research recommendation"),
-          researchRecommendationLabel: restaurantLeadResearchRecommendationLabel(row),
-          researchUpdatedAt: restaurantLeadResearchUpdatedAt(row),
-          hasManualOverride: restaurantLeadProposalHasManualOverride(row),
-          showApplyResearchRecommendation: restaurantLeadProposalHasManualOverride(row),
-        };
+        var base = Object.assign(
+          {
+            recommendation: recommendation,
+            fitReasons: splitRestaurantProposalList(restaurantLeadProposalValue(row, "Proposal fit reasons:", "")),
+            cautionReasons: splitRestaurantProposalList(
+              restaurantLeadProposalValue(row, "Proposal caution reasons:", "")
+            ),
+            nextStep: nextStep,
+            updatedAt: restaurantLeadProposalValue(row, "Proposal updated at:", ""),
+            notes: restaurantLeadProposalValue(row, "Proposal notes:", ""),
+          },
+          baseMeta
+        );
         var guidance = restaurantLeadProposalGuidanceFields(row, Object.assign({}, researchGuidance, base));
         return Object.assign(base, guidance);
       }
@@ -10475,8 +10556,9 @@
         var fitDisplay = section.querySelector("[data-research-suggested-fit]");
         var firstMoveDisplay = section.querySelector("[data-research-suggested-first-move]");
         if (scoreEl) scoreEl.textContent = values.scoreDisplay;
-        if (fitDisplay) fitDisplay.textContent = values.suggestedFitResult;
+        if (fitDisplay) fitDisplay.textContent = values.fitResult || values.suggestedFitResult;
         if (firstMoveDisplay) firstMoveDisplay.textContent = values.firstMove;
+        syncRestaurantProposalPreviewFromResearch(section);
       }
 
       function readRestaurantProposalValues(section) {
@@ -10591,9 +10673,18 @@
         var record = id ? findRecord("restaurant_leads", id) : null;
         var row = record ? record.row : null;
         var guidance = restaurantLeadProposalGuidanceByRecommendation(formValues.recommendation, row);
+        var manualDirty = section && section.getAttribute("data-proposal-manual-dirty") === "1";
         return Object.assign({}, guidance, formValues, {
           proposalDirection: guidance.proposalDirection || formValues.recommendation,
           nextStep: formValues.nextStep || guidance.nextStep,
+          visitorFitLabel: row ? restaurantLeadResearchVisitorFitLabel(row) : "",
+          researchRecommendationLabel: row ? restaurantLeadResearchRecommendationLabel(row) : "Needs more discovery",
+          researchUpdatedAt: row ? restaurantLeadResearchUpdatedAt(row) : "",
+          proposalSource: manualDirty
+            ? "Manual override"
+            : row && restaurantLeadProposalHasManualOverride(row)
+              ? "Manual override"
+              : "Using research recommendation",
         });
       }
 
@@ -10606,6 +10697,7 @@
         if (explanation) explanation.textContent = info.explanation;
         if (summary) summary.innerHTML = restaurantProposalSummaryHtml(values);
         updateRestaurantProposalGuidancePreview(section, values);
+        updateRestaurantProposalSyncPreview(section, values);
       }
 
       function restaurantLeadProposalGuidanceCard(label, value, wide) {
@@ -10626,6 +10718,7 @@
         var safe = values || {};
         return (
           '<div class="owner-dash-restaurant-proposal-guidance" data-proposal-guidance-grid>' +
+          restaurantLeadProposalGuidanceCard("Visitor fit", safe.visitorFitLabel || safe.researchRecommendationLabel) +
           restaurantLeadProposalGuidanceCard("Sales priority", safe.salesPriority) +
           restaurantLeadProposalGuidanceCard("Recommended first move", safe.recommendedFirstMove) +
           restaurantLeadProposalGuidanceCard("Suggested offer", safe.suggestedOffer) +
@@ -10638,6 +10731,55 @@
           restaurantLeadProposalGuidanceCard("What not to overbuild first", safe.whatNotToOverbuild, true) +
           "</div>"
         );
+      }
+
+      function updateRestaurantProposalSyncPreview(section, values) {
+        if (!section || !values) return;
+        var researchLabel = section.querySelector("[data-proposal-sync-research-label]");
+        var researchUpdated = section.querySelector("[data-proposal-sync-research-updated]");
+        var source = section.querySelector("[data-proposal-sync-source]");
+        if (researchLabel) researchLabel.textContent = values.researchRecommendationLabel || "Needs more discovery";
+        if (researchUpdated) {
+          researchUpdated.textContent = values.researchUpdatedAt ? fmtDate(values.researchUpdatedAt) : "Not saved yet";
+        }
+        if (source) source.textContent = values.proposalSource || "Using research recommendation";
+      }
+
+      function syncRestaurantProposalPreviewFromResearch(researchSection) {
+        var sheet = researchSection && researchSection.closest("[data-detail-sheet]");
+        if (!sheet) return;
+        var proposalSection = sheet.querySelector("[data-restaurant-proposal-builder]");
+        if (!proposalSection) return;
+        if (proposalSection.getAttribute("data-proposal-manual-dirty") === "1") return;
+        var id = sheet.getAttribute("data-detail-id");
+        var record = id ? findRecord("restaurant_leads", id) : null;
+        if (!record || restaurantLeadProposalHasManualOverride(record.row)) return;
+
+        var liveResearch = readRestaurantLeadResearchFitValues(researchSection);
+        var tempNotes = upsertRestaurantLeadResearchFitScoreBlock(
+          record.row.owner_notes || "",
+          Object.assign({}, liveResearch, { updatedAt: new Date().toISOString() })
+        );
+        var tempRow = Object.assign({}, record.row, { owner_notes: tempNotes });
+        var values = restaurantLeadProposalValues(tempRow);
+
+        updateRestaurantProposalSyncPreview(proposalSection, values);
+        updateRestaurantProposalGuidancePreview(proposalSection, values);
+
+        var recEl = proposalSection.querySelector('[name="proposal_recommendation"]');
+        if (recEl && values.recommendation && recEl.value !== values.recommendation) {
+          recEl.value = values.recommendation;
+        }
+        var nextEl = proposalSection.querySelector('[name="proposal_next_step"]');
+        if (nextEl && values.nextStep && nextEl.value !== values.nextStep) {
+          nextEl.value = values.nextStep;
+        }
+
+        var info = restaurantProposalRecommendationInfo(values.recommendation);
+        var explanation = proposalSection.querySelector("[data-proposal-recommendation-explanation]");
+        if (explanation) explanation.textContent = info.explanation;
+        var summary = proposalSection.querySelector("[data-proposal-summary]");
+        if (summary) summary.innerHTML = restaurantProposalSummaryHtml(values);
       }
 
       function updateRestaurantProposalGuidancePreview(section, values) {
@@ -25500,6 +25642,7 @@
         if (!hadManualOverride) {
           var tempRow = Object.assign({}, before.row, { owner_notes: nextNotes });
           nextNotes = applyRestaurantLeadResearchToProposalNotes(nextNotes, tempRow, values.updatedAt);
+          nextNotes = restaurantLeadResearchSyncCrmBlock(nextNotes, tempRow);
           autoAppliedProposal = true;
         }
         var buttons = section.querySelectorAll("button, input, select, textarea");
@@ -25533,8 +25676,8 @@
               fresh || section,
               "success",
               autoAppliedProposal
-                ? "Research score saved and Proposal Builder updated from the saved research result. CRM fields were not overwritten."
-                : "Research score saved. Proposal Builder is on manual override — use Apply research recommendation if you want to sync it. CRM fields were not overwritten."
+                ? "Research score saved. Proposal Builder and fit label synced from the saved research result."
+                : "Research score saved. Proposal Builder is on manual override — use Apply research recommendation if you want to sync it."
             );
             refreshCounts();
           })
@@ -25559,6 +25702,8 @@
         var now = new Date().toISOString();
         var previousNotes = String(before.row.owner_notes || "");
         var nextNotes = applyRestaurantLeadResearchToProposalNotes(previousNotes, before.row, now);
+        var syncedRow = Object.assign({}, before.row, { owner_notes: nextNotes });
+        nextNotes = restaurantLeadResearchSyncCrmBlock(nextNotes, syncedRow);
         var buttons = section.querySelectorAll("[data-action]");
         var originalLabel = btn ? btn.textContent : "";
         buttons.forEach(function (button) {
@@ -25586,7 +25731,7 @@
             setRestaurantProposalFeedback(
               fresh || section,
               "success",
-              "Research recommendation applied to Proposal Builder. CRM fields were not overwritten."
+              "Research recommendation applied to Proposal Builder and fit label synced from saved research."
             );
             refreshCounts();
           })
