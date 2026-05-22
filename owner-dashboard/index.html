@@ -10682,57 +10682,142 @@
         );
       }
 
+      function restaurantCloseActionButtonsHtml() {
+        return (
+          restaurantActionButton("close-proposal-sent", "Mark proposal sent", false) +
+          restaurantActionButton("close-pricing-discussed", "Mark pricing discussed", false) +
+          restaurantActionButton("close-verbal-yes", "Mark verbal yes", true) +
+          restaurantActionButton("close-deposit-requested", "Mark deposit requested", false) +
+          restaurantActionButton("close-deposit-received", "Mark deposit received", true) +
+          restaurantActionButton("close-restaurant-client", "Mark restaurant client", true) +
+          restaurantActionButton("close-materials-requested", "Mark materials requested", false) +
+          restaurantActionButton("close-materials-received", "Mark materials received", false) +
+          restaurantActionButton("close-build-ready", "Mark build ready", false) +
+          restaurantActionButton("close-preview-ready", "Mark preview ready", false) +
+          restaurantActionButton("close-approved-launch", "Mark approved for launch", false) +
+          restaurantActionButton("close-restaurant-launched", "Mark restaurant launched", true) +
+          restaurantActionButton("close-not-now", "Mark restaurant not now", false) +
+          restaurantActionButton("close-lost", "Mark restaurant lost", false)
+        );
+      }
+
+      function restaurantCloseChecklistCardsHtml() {
+        return (
+          '<div class="owner-dash-restaurant-two-col">' +
+          restaurantChecklistCard(
+            "Restaurant Materials Checklist",
+            "Needed from restaurant:",
+            RESTAURANT_MATERIALS_CHECKLIST_ITEMS,
+            "restaurant-materials-request",
+            "Copy restaurant materials request"
+          ) +
+          restaurantChecklistCard(
+            "Restaurant Launch Checklist",
+            "Before launch:",
+            RESTAURANT_LAUNCH_CHECKLIST_ITEMS,
+            "restaurant-launch-checklist",
+            "Copy restaurant launch checklist"
+          ) +
+          "</div>"
+        );
+      }
+
       function closeOnboardingCommandBlock(lead) {
         var c = calcCloseOnboardingData(lead);
+        var restaurant = isRestaurantRow(lead);
+        var close = restaurant ? restaurantCloseData(lead) : null;
+        var title = restaurant ? "Restaurant Close Command" : "Close / Onboarding Command";
+        var subtitle = restaurant
+          ? "Move this restaurant from proposal to signed client, materials collection, launch prep, and support without losing the next step."
+          : "Turn a yes into a clean kickoff. Copy only — nothing is sent automatically.";
+        var snapshotHtml = restaurant
+          ? closeOnboardingSnapshotItem("Restaurant", close.business, false) +
+            closeOnboardingSnapshotItem("Restaurant contact", close.contact, false) +
+            closeOnboardingSnapshotItem("Suggested restaurant offer", close.suggestedFirstOffer || close.selectedOffer, false) +
+            closeOnboardingSnapshotItem("Best first restaurant deliverable", close.bestFirstDeliverable, false) +
+            closeOnboardingSnapshotItem("Suggested starting range", close.suggestedStartingRange, false) +
+            closeOnboardingSnapshotItem("Proposal status", close.proposalStatus, false) +
+            closeOnboardingSnapshotItem("Restaurant close status", close.closeStatus, false) +
+            closeOnboardingSnapshotItem("Restaurant materials status", close.materialsStatus, false) +
+            closeOnboardingSnapshotItem("Restaurant launch readiness", close.launchReadiness, false) +
+            closeOnboardingSnapshotItem("Next restaurant close action", close.nextCloseAction, true)
+          : closeOnboardingSnapshotItem("Business", c.business, false) +
+            closeOnboardingSnapshotItem("Contact", c.contact, false) +
+            closeOnboardingSnapshotItem("Recommended package", c.recommendedPackage, false) +
+            closeOnboardingSnapshotItem("First deliverable", c.firstDeliverable, false) +
+            closeOnboardingSnapshotItem("Suggested quote range", c.priceRange, false) +
+            closeOnboardingSnapshotItem("Payment structure", c.paymentTerms, false) +
+            closeOnboardingSnapshotItem("Current stage", c.currentStatus, false) +
+            closeOnboardingSnapshotItem("Next closing action", c.nextAction, true);
+        var copyToolsHtml = restaurant
+          ? restaurantCopyButton("restaurant-close-recap", "Copy close recap", true) +
+            restaurantCopyButton("restaurant-deposit-request-next-step", "Copy deposit/request next step", false) +
+            restaurantCopyButton("restaurant-new-client-kickoff-message", "Copy new client kickoff message", false) +
+            restaurantCopyButton("restaurant-onboarding-checklist", "Copy restaurant onboarding checklist", false) +
+            restaurantCopyButton("restaurant-approval-request", "Copy approval request", false) +
+            restaurantCopyButton("restaurant-launch-preview-message", "Copy launch preview message", false) +
+            restaurantCopyButton("restaurant-post-launch-check-in", "Copy post-launch check-in", false) +
+            restaurantCopyButton("restaurant-monthly-recap-starter", "Copy restaurant monthly recap starter", false)
+          : closeOnboardingCopyButton("close-onboarding-message", "Copy onboarding message", true) +
+            closeOnboardingCopyButton("close-client-kickoff-checklist", "Copy client kickoff checklist", false) +
+            closeOnboardingCopyButton("close-project-intake-questions", "Copy project intake questions", false) +
+            closeOnboardingCopyButton("close-what-i-need", "Copy what I need from you", false) +
+            closeOnboardingCopyButton("close-first-week-build-plan", "Copy first-week build plan", false) +
+            closeOnboardingCopyButton("close-deposit-received-reply", "Copy deposit received reply", false) +
+            closeOnboardingCopyButton("close-project-won-summary", "Copy project won summary", false) +
+            closeOnboardingCopyButton("close-kickoff-call-agenda", "Copy kickoff call agenda", false) +
+            closeOnboardingCopyButton("close-full-onboarding-bundle", "Copy full onboarding bundle", true);
+        var actionButtonsHtml = restaurant
+          ? restaurantCloseActionButtonsHtml()
+          : closeOnboardingActionButton("deposit-received", "Mark deposit received", true) +
+            closeOnboardingActionButton("project-won", "Mark project won", true) +
+            closeOnboardingActionButton("kickoff-scheduled", "Mark kickoff scheduled", false) +
+            closeOnboardingActionButton("materials-needed", "Mark materials needed", false);
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--close-onboarding" data-close-onboarding-command>' +
           '<div class="owner-dash-close-head">' +
-          '<div><h3 class="owner-dash-detail-section-title">Close / Onboarding Command</h3>' +
-          '<p class="owner-dash-detail-section-note">Turn a yes into a clean kickoff. Copy only — nothing is sent automatically.</p></div>' +
+          '<div><h3 class="owner-dash-detail-section-title">' +
+          esc(title) +
+          "</h3>" +
+          '<p class="owner-dash-detail-section-note">' +
+          esc(subtitle) +
+          "</p></div>" +
           '<span class="owner-dash-close-badge">Internal copy-only guidance</span>' +
           "</div>" +
           '<div class="owner-dash-close-snapshot-card">' +
           '<p class="owner-dash-close-card-label">Close Snapshot</p>' +
           '<div class="owner-dash-close-snapshot">' +
-          closeOnboardingSnapshotItem("Business", c.business, false) +
-          closeOnboardingSnapshotItem("Contact", c.contact, false) +
-          closeOnboardingSnapshotItem("Recommended package", c.recommendedPackage, false) +
-          closeOnboardingSnapshotItem("First deliverable", c.firstDeliverable, false) +
-          closeOnboardingSnapshotItem("Suggested quote range", c.priceRange, false) +
-          closeOnboardingSnapshotItem("Payment structure", c.paymentTerms, false) +
-          closeOnboardingSnapshotItem("Current stage", c.currentStatus, false) +
-          closeOnboardingSnapshotItem("Next closing action", c.nextAction, true) +
+          snapshotHtml +
           "</div></div>" +
           '<div class="owner-dash-close-check-grid">' +
           closeOnboardingChecklistCard("Closing Checklist", "Before calling it won", CLOSE_CHECKLIST_ITEMS) +
           closeOnboardingChecklistCard("Onboarding Checklist", "What to collect after yes", ONBOARDING_CHECKLIST_ITEMS) +
           closeOnboardingWeekPlanCard() +
           "</div>" +
+          (restaurant ? restaurantCloseChecklistCardsHtml() : "") +
           '<div class="owner-dash-close-copy">' +
-          '<p class="owner-dash-close-card-label">Copy onboarding assets</p>' +
+          '<p class="owner-dash-close-card-label">' +
+          (restaurant ? "Restaurant close copy tools" : "Copy onboarding assets") +
+          "</p>" +
           '<div class="owner-dash-close-copy-actions">' +
-          closeOnboardingCopyButton("close-onboarding-message", "Copy onboarding message", true) +
-          closeOnboardingCopyButton("close-client-kickoff-checklist", "Copy client kickoff checklist", false) +
-          closeOnboardingCopyButton("close-project-intake-questions", "Copy project intake questions", false) +
-          closeOnboardingCopyButton("close-what-i-need", "Copy what I need from you", false) +
-          closeOnboardingCopyButton("close-first-week-build-plan", "Copy first-week build plan", false) +
-          closeOnboardingCopyButton("close-deposit-received-reply", "Copy deposit received reply", false) +
-          closeOnboardingCopyButton("close-project-won-summary", "Copy project won summary", false) +
-          closeOnboardingCopyButton("close-kickoff-call-agenda", "Copy kickoff call agenda", false) +
-          closeOnboardingCopyButton("close-full-onboarding-bundle", "Copy full onboarding bundle", true) +
+          copyToolsHtml +
           "</div></div>" +
           '<div class="owner-dash-close-actions">' +
-          '<p class="owner-dash-close-card-label">Internal close actions</p>' +
+          '<p class="owner-dash-close-card-label">Internal Close Actions</p>' +
           '<div class="owner-dash-close-action-buttons">' +
-          closeOnboardingActionButton("deposit-received", "Mark deposit received", true) +
-          closeOnboardingActionButton("project-won", "Mark project won", true) +
-          closeOnboardingActionButton("kickoff-scheduled", "Mark kickoff scheduled", false) +
-          closeOnboardingActionButton("materials-needed", "Mark materials needed", false) +
+          actionButtonsHtml +
           "</div>" +
-          '<p class="owner-dash-close-safe-note">Copy-only internal guidance. Nothing sends automatically. No invoices, payments, or payment processors are connected here.</p>' +
+          '<p class="owner-dash-close-safe-note">' +
+          esc(
+            restaurant
+              ? RESTAURANT_CLOSE_GUARDRAIL
+              : "Copy-only internal guidance. Nothing sends automatically. No invoices, payments, or payment processors are connected here."
+          ) +
+          "</p>" +
           "</div>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<span class="owner-dash-close-feedback" data-close-feedback hidden aria-live="polite"></span>' +
+          '<span class="owner-dash-restaurant-feedback" data-restaurant-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
           '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
           '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
@@ -12530,26 +12615,12 @@
       function buildRestaurantMaterialsRequest(lead) {
         var d = restaurantCloseCopyData(lead);
         return [
-          "Hi " + d.contact + ", this is Willie with Where To Go SA.",
+          "Restaurant Materials Checklist — " + d.business,
           "",
-          "To prepare the first restaurant setup for " + d.business + ", here is what I need when you have it:",
+          "Needed from restaurant:",
+          bulletText(RESTAURANT_MATERIALS_CHECKLIST_ITEMS),
           "",
-          "- Logo or brand assets",
-          "- Website link",
-          "- Menu link or menu PDF",
-          "- Reservation link if you use one",
-          "- Google Business Profile link",
-          "- Instagram/Facebook links",
-          "- Best contact person",
-          "- Business phone/email",
-          "- Hours",
-          "- Address/location notes",
-          "- Private dining or catering details if available",
-          "- Any photos you want considered",
-          "- Anything you do not want promoted",
-          "- Who should approve final wording before anything goes live",
-          "",
-          "Nothing gets published without approval.",
+          RESTAURANT_CLOSE_GUARDRAIL,
         ].join("\n");
       }
 
@@ -13128,7 +13199,7 @@
         return (
           '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-proposal-builder owner-dash-restaurant-close-command">' +
           '<h3 class="owner-dash-detail-section-title">Restaurant Close Command</h3>' +
-          '<p class="owner-dash-restaurant-proposal-subtitle">Move a restaurant from proposal to signed client without losing the next step.</p>' +
+          '<p class="owner-dash-restaurant-proposal-subtitle">Move this restaurant from proposal to signed client, materials collection, launch prep, and support without losing the next step.</p>' +
           '<div class="owner-dash-restaurant-snapshot owner-dash-restaurant-proposal-grid">' +
           restaurantSnapshotItem("Restaurant name", close.business, false) +
           restaurantSnapshotItem("Contact name", close.contact, false) +
@@ -13147,37 +13218,9 @@
           "</p>" +
           '<div class="owner-dash-restaurant-copy-grid"><p class="owner-dash-restaurant-card-label">Close action buttons</p>' +
           '<div class="owner-dash-restaurant-command-actions">' +
-          restaurantActionButton("close-proposal-sent", "Mark proposal sent", false) +
-          restaurantActionButton("close-pricing-discussed", "Mark pricing discussed", false) +
-          restaurantActionButton("close-verbal-yes", "Mark verbal yes", true) +
-          restaurantActionButton("close-deposit-requested", "Mark deposit requested", false) +
-          restaurantActionButton("close-deposit-received", "Mark deposit received", true) +
-          restaurantActionButton("close-restaurant-client", "Mark restaurant client", true) +
-          restaurantActionButton("close-materials-requested", "Mark materials requested", false) +
-          restaurantActionButton("close-materials-received", "Mark materials received", false) +
-          restaurantActionButton("close-build-ready", "Mark build ready", false) +
-          restaurantActionButton("close-preview-ready", "Mark preview ready", false) +
-          restaurantActionButton("close-approved-launch", "Mark approved for launch", false) +
-          restaurantActionButton("close-restaurant-launched", "Mark restaurant launched", true) +
-          restaurantActionButton("close-not-now", "Mark restaurant not now", false) +
-          restaurantActionButton("close-lost", "Mark restaurant lost", false) +
+          restaurantCloseActionButtonsHtml() +
           "</div></div>" +
-          '<div class="owner-dash-restaurant-two-col">' +
-          restaurantChecklistCard(
-            "Restaurant Materials Checklist",
-            "Needed from restaurant:",
-            RESTAURANT_MATERIALS_CHECKLIST_ITEMS,
-            "restaurant-materials-request",
-            "Copy restaurant materials request"
-          ) +
-          restaurantChecklistCard(
-            "Restaurant Launch Checklist",
-            "Before launch:",
-            RESTAURANT_LAUNCH_CHECKLIST_ITEMS,
-            "restaurant-launch-checklist",
-            "Copy restaurant launch checklist"
-          ) +
-          "</div>" +
+          restaurantCloseChecklistCardsHtml() +
           '<div class="owner-dash-restaurant-copy-grid"><p class="owner-dash-restaurant-card-label">Client handoff copy tools</p>' +
           '<div class="owner-dash-restaurant-command-copy">' +
           restaurantCopyButton("restaurant-close-recap", "Copy close recap", true) +
@@ -15221,7 +15264,7 @@
           },
           "close-restaurant-client": {
             status: archivedClosed ? null : "Won",
-            note: "Restaurant: client.\nRestaurant stage: won.",
+            note: "Restaurant: client.\nRestaurant stage: won.\nClose status: Won / client",
             activity: "Restaurant close — Client marked",
             label: "Restaurant client",
             tone: "ok",
@@ -15285,7 +15328,7 @@
           },
           "restaurant-won": {
             status: archivedClosed ? null : "Won",
-            note: "Restaurant: client.\nRestaurant stage: won.",
+            note: "Restaurant: client.\nRestaurant stage: won.\nClose status: Won / client",
             activity: "Restaurant — Won/client marked",
             label: "Restaurant won",
             tone: "ok",
@@ -15428,8 +15471,10 @@
         var action = sourceBtn.getAttribute("data-restaurant-action");
         var config = restaurantStageActionConfig(action, hit.row);
         if (!config) return;
+        var inCloseOnboardingSection = Boolean(sourceBtn.closest(".owner-dash-detail-section--close-onboarding"));
         var section =
           sourceBtn.closest(".owner-dash-detail-section--restaurant-command") ||
+          sourceBtn.closest(".owner-dash-detail-section--close-onboarding") ||
           sheet.querySelector(".owner-dash-detail-section--restaurant-command");
         var workflowEl = sheet.querySelector(".owner-dash-workflow");
         var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
@@ -15464,7 +15509,12 @@
             addClientActivity(table, id, config.activity, config.tone, "");
             renderAll();
             var freshSection =
-              els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--restaurant-command");
+              els.detailBody &&
+              els.detailBody.querySelector(
+                inCloseOnboardingSection
+                  ? ".owner-dash-detail-section--close-onboarding"
+                  : ".owner-dash-detail-section--restaurant-command"
+              );
             setRestaurantFeedback(freshSection || section, config.label + " marked. Nothing was sent.", false);
             refreshCounts();
           })
