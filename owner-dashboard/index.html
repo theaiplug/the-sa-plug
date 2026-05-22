@@ -2934,6 +2934,9 @@
       margin-top: 3px;
       color: #fff;
       font-size: 0.9rem;
+      max-width: 100%;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
     }
 
     .page-owner-dashboard .owner-dash-restaurant-head,
@@ -3238,7 +3241,7 @@
       font-size: 16px;
       line-height: 1.35;
       word-break: normal;
-      overflow-wrap: normal;
+      overflow-wrap: anywhere;
       hyphens: none;
     }
 
@@ -4558,6 +4561,8 @@
         "Send AI Restaurant Growth Systems details",
         "Prepare proposal",
         "Prepare combined proposal",
+        "Send starter offer",
+        "Send proposal",
         "Ask for more information",
         "Follow up",
         "Wait for reply",
@@ -5117,8 +5122,8 @@
             "Lead with the operational bottleneck first: intake, private events/catering, QR paths, follow-up, owner visibility, or lead tracking.",
         },
         {
-          value: "Both: Partner Program + AI Systems",
-          label: "Both: Partner Program + AI Systems",
+          value: "Combined Partner + AI Systems",
+          label: "Combined Partner + AI Systems",
           fitLabel: "Strong fit - Both",
           explanation:
             "Best when the restaurant fits visitor-guide quality and also has a real systems need around inquiries, events, QR, follow-up, or customer flow.",
@@ -5403,8 +5408,17 @@
       ];
 
       var RESTAURANT_PROPOSAL_GUARDRAIL = "Internal proposal guidance only. Nothing is sent, published, invoiced, or promised automatically.";
+      var RESTAURANT_PROPOSAL_DIRECTION_OPTIONS = [
+        "Partner Program only",
+        "AI Restaurant Growth Systems only",
+        "Combined Partner + AI Systems",
+        "Needs more discovery",
+        "Not a fit yet",
+      ];
       var RESTAURANT_PROPOSAL_OFFER_OPTIONS = [
         "Research + simple visibility review",
+        "Combined visibility + customer-flow review",
+        "Restaurant visibility and customer-path review",
         "Starter Visibility",
         "Featured Visitor Placement",
         "Route Partner",
@@ -5418,7 +5432,7 @@
         "Monthly Growth Management",
         "Custom",
       ];
-      var RESTAURANT_PROPOSAL_TIER_OPTIONS = ["Research", "Starter", "Growth", "Premium", "Monthly support", "Custom"];
+      var RESTAURANT_PROPOSAL_TIER_OPTIONS = ["Research", "Starter", "Growth", "Premium", "Combined", "Monthly support", "Custom / Combined", "Custom"];
       var RESTAURANT_PROPOSAL_RANGE_OPTIONS = [
         "No quote yet",
         "$399 / 90 days",
@@ -5432,14 +5446,32 @@
         "Custom",
       ];
       var RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS = [
+        "Send first email",
+        "Call restaurant",
+        "Send text reply",
         "Research more",
+        "Research restaurant",
         "Make first contact",
+        "Schedule discovery call",
         "Ask discovery questions",
         "Send partner overview",
+        "Send partner program details",
+        "Send Restaurant Partner Program details",
+        "Send AI systems details",
+        "Send AI Restaurant Growth Systems details",
         "Send starter offer",
+        "Prepare proposal",
+        "Prepare combined proposal",
         "Send proposal",
         "Discuss pricing",
+        "Follow up",
         "Follow up later",
+        "Wait for reply",
+        "Hold / not a fit",
+        "Mark proposal sent",
+        "Mark won",
+        "Closed / won",
+        "Mark not fit",
         "Not ready",
       ];
 
@@ -6193,7 +6225,7 @@
           esc(snap.nextAction) +
           "</strong></div>" +
           '<div class="owner-dash-restaurant-score-card"><span>Research score:</span><strong>' +
-          esc(research.researchScore + " / 100") +
+          esc(research.researchScoreDisplay) +
           "</strong></div>" +
           '<div class="owner-dash-restaurant-score-card"><span>Sales priority:</span><strong>' +
           esc(research.salesPriority) +
@@ -6507,6 +6539,41 @@
         return profile.privateDiningStatus === "Missing" || profile.privateDiningStatus === "Needs improvement";
       }
 
+      function restaurantResearchHasScoredInputs(profile) {
+        if (!profile) return false;
+        var fieldValues = [
+          profile.websiteStatus,
+          profile.googleStatus,
+          profile.menuReservationStatus,
+          profile.socialStatus,
+          profile.privateDiningStatus,
+          profile.visitorFit,
+          profile.qrOpportunity,
+          profile.reviewOpportunity,
+        ];
+        var hasFieldValue = fieldValues.some(function (value) {
+          var clean = String(value || "").trim().toLowerCase();
+          return clean && clean !== "unknown";
+        });
+        return Boolean(
+          hasFieldValue ||
+            profile.websiteReviewed ||
+            profile.googleReviewed ||
+            profile.menuReviewed ||
+            profile.socialReviewed ||
+            profile.privateDiningReviewed ||
+            profile.highVisitorFitMarked ||
+            profile.qrOpportunityMarked ||
+            profile.reviewOpportunityMarked ||
+            profile.researchComplete
+        );
+      }
+
+      function restaurantResearchScoreDisplay(profile) {
+        if (!profile || !profile.hasResearchScore) return "Not scored yet";
+        return String(profile.researchScore || 0) + " / 100";
+      }
+
       function restaurantResearchScoreLabel(score) {
         if (score >= 75) return "High-priority prospect";
         if (score >= 50) return "Good prospect";
@@ -6533,6 +6600,7 @@
       }
 
       function restaurantRecommendedFirstMove(profile) {
+        if (profile && !profile.hasResearchScore) return "Pending research.";
         var score = profile.researchScore || 0;
         var highVisitorFit = profile.visitorFit === "High" || profile.highVisitorFitMarked;
         var weakCustomerPath = restaurantWebsitePathIsWeak(profile);
@@ -6575,14 +6643,17 @@
           reviewOpportunityMarked: restaurantResearchHasMarker(row, "Restaurant research: review opportunity"),
           researchComplete: restaurantResearchHasMarker(row, "Restaurant stage: researched"),
         };
+        profile.hasResearchScore = restaurantResearchHasScoredInputs(profile);
         profile.researchScore = restaurantResearchScore(profile);
-        profile.salesPriority = restaurantResearchScoreLabel(profile.researchScore);
+        profile.researchScoreDisplay = restaurantResearchScoreDisplay(profile);
+        profile.salesPriority = restaurantLeadPriority(row) || (profile.hasResearchScore ? restaurantResearchScoreLabel(profile.researchScore) : "Pending research");
         profile.recommendedFirstMove = restaurantRecommendedFirstMove(profile);
         return profile;
       }
 
       function restaurantProposalSavedDirection(row) {
         return {
+          proposalDirection: ownerNoteMarkerValue(row, "Proposal direction:") || ownerNoteMarkerValue(row, "Proposal recommendation:"),
           suggestedFirstOffer: ownerNoteMarkerValue(row, "Suggested first offer:"),
           suggestedPackageTier: ownerNoteMarkerValue(row, "Suggested package tier:"),
           suggestedStartingRange: ownerNoteMarkerValue(row, "Suggested starting range:"),
@@ -6590,6 +6661,46 @@
           ownerApprovedNextStep: ownerNoteMarkerValue(row, "Owner-approved next step:"),
           proposalNotes: ownerNoteMarkerValue(row, "Proposal notes:"),
         };
+      }
+
+      function restaurantProposalNormalizeDirection(value) {
+        var clean = String(value || "").replace(/\s*\.\s*$/, "").trim();
+        var lower = clean.toLowerCase().replace(/\s*\/\s*/g, "/").replace(/\s*\+\s*/g, " + ");
+        var aliases = {
+          "both: partner program + ai systems": "Combined Partner + AI Systems",
+          "both partner program + ai systems": "Combined Partner + AI Systems",
+          "partner program/ai systems/both": "Combined Partner + AI Systems",
+          "partner program + ai systems": "Combined Partner + AI Systems",
+          "combined partner + ai systems": "Combined Partner + AI Systems",
+          "ai systems only": "AI Restaurant Growth Systems only",
+          "ai restaurant growth systems only": "AI Restaurant Growth Systems only",
+          "partner program only": "Partner Program only",
+          "needs more info": "Needs more discovery",
+          "needs more discovery": "Needs more discovery",
+          "not a fit": "Not a fit yet",
+          "not a fit yet": "Not a fit yet",
+        };
+        return aliases[lower] || (RESTAURANT_PROPOSAL_DIRECTION_OPTIONS.indexOf(clean) !== -1 ? clean : "");
+      }
+
+      function restaurantProposalDefaultDirection(row) {
+        var saved = restaurantProposalNormalizeDirection(
+          ownerNoteMarkerValue(row, "Proposal direction:") || ownerNoteMarkerValue(row, "Proposal recommendation:")
+        );
+        if (saved) return saved;
+        var fitLabel = String(restaurantLeadFitLabel(row) || "").toLowerCase();
+        if (fitLabel === "not a fit") return "Not a fit yet";
+        if (fitLabel === "needs more info") return "Needs more discovery";
+        if (fitLabel === "strong fit - both" || (row && row.interest_partner_program && row.interest_ai_systems)) {
+          return "Combined Partner + AI Systems";
+        }
+        if (fitLabel === "strong fit - partner program" || (row && row.interest_partner_program)) return "Partner Program only";
+        if (fitLabel === "strong fit - ai systems" || (row && row.interest_ai_systems)) return "AI Restaurant Growth Systems only";
+        return "Needs more discovery";
+      }
+
+      function restaurantProposalNextActionIsResearch(value) {
+        return /research|more info|discovery/i.test(String(value || ""));
       }
 
       function restaurantProposalRange(value) {
@@ -6618,13 +6729,24 @@
         return count;
       }
 
-      function restaurantProposalBaseByScore(score) {
+      function restaurantProposalBaseByScore(score, hasResearchScore) {
+        if (!hasResearchScore) {
+          return {
+            suggestedFirstOffer: "Restaurant visibility and customer-path review",
+            suggestedPackageTier: "Custom",
+            suggestedStartingRange: "No quote yet",
+            bestFirstDeliverable: "Visibility + customer-flow review",
+            ownerApprovedNextStep: "Send first email",
+            whatToInclude: "Guide-fit review, visitor lane positioning, website/contact path review, and notes for the first owner conversation.",
+            whatNotToOverbuild: "Do not quote final pricing or promise placement, traffic, reservations, revenue, rankings, or automatic listing before discovery.",
+          };
+        }
         if (score < 25) {
           return {
             suggestedFirstOffer: "Research + simple visibility review",
             suggestedPackageTier: "Research",
             suggestedStartingRange: "No quote yet",
-            bestFirstDeliverable: "Restaurant visibility and customer-path review",
+            bestFirstDeliverable: "Visibility + customer-flow review",
             ownerApprovedNextStep: "Research more",
             whatToInclude: "Website, Google profile, menu/reservation path, visitor lane, and basic customer-path notes.",
             whatNotToOverbuild: "Do not quote a system, promise rankings, or pitch a public recommendation before research is complete.",
@@ -6755,6 +6877,81 @@
         return direction;
       }
 
+      function restaurantProposalApplyCrmDefaults(direction, row) {
+        var nextDirection = Object.assign({}, direction || {});
+        var proposalDirection = restaurantProposalDefaultDirection(row);
+        var fitLabel = restaurantLeadFitLabel(row);
+        var priority = restaurantLeadPriority(row);
+        var nextAction = restaurantLeadNextAction(row);
+        var strongBoth = String(fitLabel || "").toLowerCase() === "strong fit - both";
+        var highPriority = String(priority || "").toLowerCase() === "high";
+        var bothInterest = Boolean(row && row.interest_partner_program && row.interest_ai_systems);
+        var combined = proposalDirection === "Combined Partner + AI Systems";
+
+        if (proposalDirection === "Not a fit yet") {
+          nextDirection.suggestedFirstOffer = "Custom";
+          nextDirection.suggestedPackageTier = "Custom";
+          nextDirection.suggestedStartingRange = "No quote yet";
+          nextDirection.bestFirstDeliverable = "Document hold reason";
+          nextDirection.ownerApprovedNextStep = nextAction || "Hold / not a fit";
+          nextDirection.whatToInclude = "Hold reason, owner notes, and any future revisit condition.";
+          nextDirection.whatNotToOverbuild = "Do not pitch, quote, promise placement, or keep pursuing unless the owner reopens the conversation.";
+          return nextDirection;
+        }
+
+        if (proposalDirection === "Needs more discovery") {
+          nextDirection.suggestedStartingRange = "No quote yet";
+          nextDirection.ownerApprovedNextStep = nextAction || "Ask discovery questions";
+          if (restaurantProposalNextActionIsResearch(nextAction)) {
+            nextDirection.suggestedFirstOffer = "Research + simple visibility review";
+            nextDirection.suggestedPackageTier = "Research";
+          }
+          return nextDirection;
+        }
+
+        if (combined || (strongBoth && bothInterest)) {
+          nextDirection.suggestedFirstOffer = "Combined visibility + customer-flow review";
+          nextDirection.suggestedPackageTier = highPriority ? "Custom / Combined" : "Combined";
+          nextDirection.suggestedStartingRange = "No quote yet";
+          nextDirection.bestFirstDeliverable = "Visibility + customer-flow review";
+          nextDirection.ownerApprovedNextStep = nextAction || "Send first email";
+          nextDirection.whatToInclude = [
+            "- Guide-fit review",
+            "- Visitor lane positioning",
+            "- Website/contact path review",
+            "- QR or inquiry-flow review",
+            "- Private event/catering inquiry check",
+            "- Follow-up workflow notes",
+          ].join("\n");
+          nextDirection.whatNotToOverbuild =
+            "Do not promise placement, traffic, reservations, revenue, rankings, or automatic listing. Do not quote final pricing before discovery.";
+          return nextDirection;
+        }
+
+        if (proposalDirection === "Partner Program only") {
+          nextDirection.suggestedFirstOffer = "Featured Visitor Placement";
+          nextDirection.suggestedPackageTier = "Growth";
+          nextDirection.suggestedStartingRange = "No quote yet";
+          nextDirection.bestFirstDeliverable = "Guide-fit review + visitor lane positioning";
+          nextDirection.ownerApprovedNextStep = nextAction || "Send partner overview";
+          nextDirection.whatNotToOverbuild =
+            "Do not promise placement, traffic, reservations, revenue, rankings, or automatic listing. Do not quote final pricing before discovery.";
+          return nextDirection;
+        }
+
+        if (proposalDirection === "AI Restaurant Growth Systems only") {
+          nextDirection.suggestedFirstOffer = "AI Restaurant Concierge";
+          nextDirection.suggestedPackageTier = "Growth";
+          nextDirection.suggestedStartingRange = "No quote yet";
+          nextDirection.bestFirstDeliverable = "Customer-flow or inquiry-path review";
+          nextDirection.ownerApprovedNextStep = nextAction || "Ask discovery questions";
+          nextDirection.whatNotToOverbuild =
+            "Do not promise traffic, reservations, revenue, rankings, autonomous customer messaging, or final pricing before discovery.";
+        }
+
+        return nextDirection;
+      }
+
       function restaurantProposalDirection(row) {
         var profile = restaurantResearchProfile(row);
         var snap = {
@@ -6762,25 +6959,33 @@
           restaurantType: restaurantType(row),
           mainOpportunity: restaurantOpportunity(row),
         };
-        var base = restaurantProposalBaseByScore(profile.researchScore || 0);
+        var base = restaurantProposalBaseByScore(profile.researchScore || 0, profile.hasResearchScore);
         var direction = restaurantProposalApplyOverride(Object.assign({}, base), profile, snap);
+        direction = restaurantProposalApplyCrmDefaults(direction, row);
         var saved = restaurantProposalSavedDirection(row);
+        var nextAction = restaurantLeadNextAction(row);
+        var fitLabel = restaurantLeadFitLabel(row);
         var clean = {
+          proposalDirection: restaurantProposalNormalizeDirection(saved.proposalDirection) || restaurantProposalDefaultDirection(row),
           suggestedFirstOffer: saved.suggestedFirstOffer || direction.suggestedFirstOffer,
           suggestedPackageTier: saved.suggestedPackageTier || direction.suggestedPackageTier,
           suggestedStartingRange: saved.suggestedStartingRange || direction.suggestedStartingRange,
           bestFirstDeliverable: saved.bestFirstDeliverable || direction.bestFirstDeliverable,
-          ownerApprovedNextStep: saved.ownerApprovedNextStep || direction.ownerApprovedNextStep,
+          ownerApprovedNextStep: saved.ownerApprovedNextStep || nextAction || direction.ownerApprovedNextStep,
           proposalNotes: saved.proposalNotes || "",
           whatToInclude: direction.whatToInclude,
           whatNotToOverbuild: direction.whatNotToOverbuild,
           researchScore: profile.researchScore,
-          salesPriority: profile.salesPriority,
+          researchScoreDisplay: profile.researchScoreDisplay,
+          hasResearchScore: profile.hasResearchScore,
+          salesPriority: restaurantLeadPriority(row) || profile.salesPriority,
+          fitLabel: fitLabel || "Needs more info",
           visitorLane: snap.lane,
           restaurantType: snap.restaurantType,
           mainOpportunity: snap.mainOpportunity,
-          recommendedFirstMove: profile.recommendedFirstMove,
+          recommendedFirstMove: nextAction || profile.recommendedFirstMove,
         };
+        clean.proposalDirection = restaurantProposalNormalizeDirection(clean.proposalDirection) || "Needs more discovery";
         clean.suggestedFirstOffer = restaurantProposalOffer(clean.suggestedFirstOffer);
         clean.suggestedPackageTier = restaurantProposalTier(clean.suggestedPackageTier);
         clean.suggestedStartingRange = restaurantProposalRange(clean.suggestedStartingRange);
@@ -7269,6 +7474,7 @@
           stage: restaurantStage(row),
           nextAction: restaurantNextAction(row),
           researchScore: research.researchScore,
+          researchScoreDisplay: research.researchScoreDisplay,
           salesPriority: research.salesPriority,
           recommendedFirstMove: research.recommendedFirstMove,
         };
@@ -9186,7 +9392,7 @@
       }
 
       function restaurantProposalRecommendationInfo(value) {
-        var wanted = String(value || "").trim();
+        var wanted = restaurantProposalNormalizeDirection(value) || String(value || "").trim();
         for (var i = 0; i < RESTAURANT_PROPOSAL_RECOMMENDATIONS.length; i++) {
           if (RESTAURANT_PROPOSAL_RECOMMENDATIONS[i].value === wanted) {
             return RESTAURANT_PROPOSAL_RECOMMENDATIONS[i];
@@ -9196,7 +9402,9 @@
       }
 
       function restaurantProposalDefaultRecommendation(row) {
-        if (row && row.interest_partner_program && row.interest_ai_systems) return "Both: Partner Program + AI Systems";
+        var fromCrm = restaurantProposalDefaultDirection(row);
+        if (fromCrm) return fromCrm;
+        if (row && row.interest_partner_program && row.interest_ai_systems) return "Combined Partner + AI Systems";
         if (row && row.interest_partner_program) return "Partner Program only";
         if (row && row.interest_ai_systems) return "AI Restaurant Growth Systems only";
         return "Needs more discovery";
@@ -9218,11 +9426,11 @@
       }
 
       function restaurantLeadProposalValues(row) {
-        var recommendation = restaurantLeadProposalValue(
+        var recommendation = restaurantProposalNormalizeDirection(restaurantLeadProposalValue(
           row,
           "Proposal recommendation:",
           restaurantProposalDefaultRecommendation(row)
-        );
+        )) || restaurantProposalDefaultRecommendation(row);
         var nextStep = restaurantLeadProposalValue(row, "Proposal next step:", restaurantLeadNextAction(row));
         if (RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS.indexOf(nextStep) === -1) {
           nextStep = "Send first email";
@@ -9467,10 +9675,10 @@
       }
 
       function restaurantProposalPackageDefaultType(row) {
-        var recommendation = restaurantLeadProposalValues(row).recommendation;
+        var recommendation = restaurantProposalNormalizeDirection(restaurantLeadProposalValues(row).recommendation);
         if (recommendation === "Partner Program only") return "Restaurant Partner Program";
         if (recommendation === "AI Restaurant Growth Systems only") return "AI Restaurant Growth Systems";
-        if (recommendation === "Both: Partner Program + AI Systems") return "Combined Partner + AI Systems";
+        if (recommendation === "Combined Partner + AI Systems") return "Combined Partner + AI Systems";
         if (row && row.interest_partner_program && row.interest_ai_systems) return "Combined Partner + AI Systems";
         if (row && row.interest_partner_program) return "Restaurant Partner Program";
         if (row && row.interest_ai_systems) return "AI Restaurant Growth Systems";
@@ -15233,7 +15441,7 @@
           "Restaurant research summary — " + restaurantCopyBusiness(lead),
           "",
           "Score:",
-          research.researchScore + " / 100",
+          research.researchScoreDisplay,
           "",
           "Sales priority:",
           research.salesPriority,
@@ -15276,7 +15484,7 @@
       function buildRestaurantScoreExplanation(lead) {
         var research = restaurantResearchProfile(lead);
         return [
-          "Why this restaurant scored " + research.researchScore + " / 100:",
+          "Research score: " + research.researchScoreDisplay,
           "",
           "The strongest opportunity appears to be:",
           research.recommendedFirstMove,
@@ -15567,7 +15775,10 @@
           business: restaurantCopyBusiness(lead),
           contact: restaurantCopyContact(lead),
           researchScore: proposal.researchScore,
+          researchScoreDisplay: proposal.researchScoreDisplay,
           salesPriority: proposal.salesPriority,
+          fitLabel: proposal.fitLabel,
+          proposalDirection: proposal.proposalDirection,
           visitorLane: restaurantCopyLane(lead),
           mainOpportunity: proposal.mainOpportunity,
           recommendedFirstMove: proposal.recommendedFirstMove,
@@ -15586,10 +15797,16 @@
           "Restaurant proposal summary — " + d.business,
           "",
           "Research score:",
-          d.researchScore + " / 100",
+          d.researchScoreDisplay,
           "",
           "Sales priority:",
           d.salesPriority,
+          "",
+          "Fit:",
+          d.fitLabel,
+          "",
+          "Proposal direction:",
+          d.proposalDirection,
           "",
           "Visitor lane:",
           d.visitorLane,
@@ -16573,7 +16790,7 @@
           restaurantRepManagerCountCard("Contact name", snap.contact) +
           restaurantRepManagerCountCard("Current restaurant stage", snap.stage) +
           restaurantRepManagerCountCard("Sales priority", research.salesPriority) +
-          restaurantRepManagerCountCard("Research score", research.researchScore + " / 100") +
+          restaurantRepManagerCountCard("Research score", research.researchScoreDisplay) +
           restaurantRepManagerCountCard("Best visitor lane", snap.lane) +
           restaurantRepManagerCountCard("Best first offer", proposal.suggestedFirstOffer || snap.recommendedOffer) +
           restaurantRepManagerCountCard("Recommended next action", restaurantRepRecommendedNextAction(lead)) +
@@ -16667,7 +16884,7 @@
           restaurantActionButton("interested", "Mark restaurant interested", false) +
           restaurantActionButton("not-now", "Mark not now", false) +
           restaurantActionButton("not-a-fit", "Mark restaurant not a fit", false) +
-          restaurantActionButton("proposal-ready", "Mark restaurant proposal ready", true) +
+          restaurantActionButton("proposal-ready", "Mark proposal ready", true) +
           "</div>" +
           '<div class="owner-dash-restaurant-copy-grid"><p class="owner-dash-restaurant-card-label">Restaurant scouting copy tools</p>' +
           '<div class="owner-dash-restaurant-command-copy">' +
@@ -16692,7 +16909,7 @@
           '<h3 class="owner-dash-detail-section-title">Restaurant Research Profile</h3>' +
           '<p class="owner-dash-detail-section-note">Score the restaurant before outreach so the first pitch matches the real opportunity.</p>' +
           '<div class="owner-dash-restaurant-research-score-row">' +
-          restaurantSnapshotItem("Research score:", research.researchScore + " / 100", false) +
+          restaurantSnapshotItem("Research score:", research.researchScoreDisplay, false) +
           restaurantSnapshotItem("Sales priority:", research.salesPriority, false) +
           restaurantSnapshotItem("Recommended first move", research.recommendedFirstMove, true) +
           "</div>" +
@@ -16779,6 +16996,7 @@
         return (
           '<div class="owner-dash-restaurant-proposal-form" data-restaurant-proposal-form>' +
           '<div class="owner-dash-restaurant-proposal-form-grid">' +
+          restaurantProposalSelectField("Proposal direction:", "proposal_direction", RESTAURANT_PROPOSAL_DIRECTION_OPTIONS, proposal.proposalDirection) +
           restaurantProposalSelectField("Suggested first offer:", "suggested_first_offer", RESTAURANT_PROPOSAL_OFFER_OPTIONS, proposal.suggestedFirstOffer) +
           restaurantProposalSelectField("Suggested package tier:", "suggested_package_tier", RESTAURANT_PROPOSAL_TIER_OPTIONS, proposal.suggestedPackageTier) +
           restaurantProposalSelectField("Suggested starting range:", "suggested_starting_range", RESTAURANT_PROPOSAL_RANGE_OPTIONS, proposal.suggestedStartingRange) +
@@ -16802,8 +17020,10 @@
           '<div class="owner-dash-restaurant-snapshot owner-dash-restaurant-proposal-grid">' +
           restaurantSnapshotItem("Restaurant name", snap.business, false) +
           restaurantSnapshotItem("Contact name", snap.contact, false) +
-          restaurantSnapshotItem("Research score", proposal.researchScore + " / 100", false) +
+          restaurantSnapshotItem("Research score", proposal.researchScoreDisplay, false) +
           restaurantSnapshotItem("Sales priority", proposal.salesPriority, false) +
+          restaurantSnapshotItem("Fit", proposal.fitLabel, false) +
+          restaurantSnapshotItem("Proposal direction", proposal.proposalDirection, false) +
           restaurantSnapshotItem("Visitor lane", proposal.visitorLane, false) +
           restaurantSnapshotItem("Restaurant type", proposal.restaurantType, false) +
           restaurantSnapshotItem("Main opportunity", proposal.mainOpportunity, true) +
@@ -16822,7 +17042,7 @@
           "</p>" +
           '<div class="owner-dash-restaurant-copy-grid"><p class="owner-dash-restaurant-card-label">Proposal status actions</p>' +
           '<div class="owner-dash-restaurant-command-actions">' +
-          restaurantActionButton("proposal-ready", "Mark restaurant proposal ready", true) +
+          restaurantActionButton("proposal-ready", "Mark proposal ready", true) +
           restaurantActionButton("partner-overview-sent", "Mark partner overview sent", false) +
           restaurantActionButton("starter-offer-sent", "Mark starter offer sent", false) +
           restaurantActionButton("pricing-discussed", "Mark pricing discussed", false) +
@@ -18086,6 +18306,20 @@
         };
       }
 
+      function restaurantLeadCrmValuesFromRow(row, ownerNotesOverride) {
+        var source = Object.assign({}, row || {});
+        if (ownerNotesOverride != null) source.owner_notes = ownerNotesOverride;
+        return {
+          fitLabel: restaurantLeadFitLabel(source) || "Needs more info",
+          leadPriority: restaurantLeadPriority(source) || "Medium",
+          nextAction: restaurantLeadNextAction(source) || "Follow up",
+          nextFollowUpDate: restaurantLeadNextFollowUpDate(source),
+          proposalSentAt: restaurantLeadProposalSentDate(source),
+          wonAt: restaurantLeadWonDate(source),
+          internalNotes: "",
+        };
+      }
+
       function buildRestaurantLeadCrmBlock(values) {
         return [
           "Restaurant lead CRM:",
@@ -18400,6 +18634,7 @@
 
       function readRestaurantProposalFormValues(form) {
         return {
+          proposalDirection: restaurantProposalFormSelectValue(form, "proposal_direction", RESTAURANT_PROPOSAL_DIRECTION_OPTIONS, "Needs more discovery"),
           suggestedFirstOffer: restaurantProposalFormSelectValue(form, "suggested_first_offer", RESTAURANT_PROPOSAL_OFFER_OPTIONS, "Custom"),
           suggestedPackageTier: restaurantProposalFormSelectValue(form, "suggested_package_tier", RESTAURANT_PROPOSAL_TIER_OPTIONS, "Custom"),
           suggestedStartingRange: restaurantProposalFormSelectValue(form, "suggested_starting_range", RESTAURANT_PROPOSAL_RANGE_OPTIONS, "Custom"),
@@ -18412,6 +18647,7 @@
       function buildRestaurantProposalDirectionBlock(values) {
         return [
           "Restaurant proposal direction:",
+          "Proposal direction: " + (values.proposalDirection || "Needs more discovery") + ".",
           "Suggested first offer: " + (values.suggestedFirstOffer || "Custom") + ".",
           "Suggested package tier: " + (values.suggestedPackageTier || "Custom") + ".",
           "Suggested starting range: " + (values.suggestedStartingRange || "Custom") + ".",
@@ -18425,6 +18661,7 @@
         var text = String(line || "").trim().toLowerCase();
         return (
           text.indexOf("suggested first offer:") === 0 ||
+          text.indexOf("proposal direction:") === 0 ||
           text.indexOf("suggested package tier:") === 0 ||
           text.indexOf("suggested starting range:") === 0 ||
           text.indexOf("best first deliverable:") === 0 ||
@@ -19722,30 +19959,37 @@
             activity: "Restaurant — Proposal ready",
             label: "Restaurant proposal ready",
             tone: "ok",
+            nextAction: "Send proposal",
           },
           "partner-overview-sent": {
             note: "Restaurant proposal: partner overview sent.",
             activity: "Restaurant proposal — Partner overview sent",
             label: "Partner overview sent",
             tone: "ok",
+            nextAction: "Send starter offer",
           },
           "starter-offer-sent": {
             note: "Restaurant proposal: starter offer sent.",
             activity: "Restaurant proposal — Starter offer sent",
             label: "Starter offer sent",
             tone: "ok",
+            nextAction: "Follow up",
           },
           "pricing-discussed": {
+            status: closed ? null : "Qualified",
             note: "Restaurant proposal: pricing discussed.",
             activity: "Restaurant proposal — Pricing discussed",
             label: "Pricing discussed",
             tone: "ok",
+            nextAction: "Send proposal",
           },
           "proposal-sent": {
+            status: closed ? null : "Proposal Sent",
             note: "Restaurant proposal: proposal sent.",
             activity: "Restaurant proposal — Proposal sent",
             label: "Proposal sent",
             tone: "ok",
+            nextAction: "Follow up",
           },
           "close-proposal-sent": {
             note: "Restaurant close: proposal sent.",
@@ -19840,6 +20084,7 @@
             activity: "Restaurant proposal — Follow-up due",
             label: "Follow-up due",
             tone: "pending",
+            nextAction: "Follow up",
           },
           "restaurant-won": {
             status: archivedClosed ? null : "Won",
@@ -19847,12 +20092,14 @@
             activity: "Restaurant — Won/client marked",
             label: "Restaurant won",
             tone: "ok",
+            nextAction: "Closed / won",
           },
           "restaurant-not-now": {
             note: "Restaurant stage: not now.",
             activity: "Restaurant — Not now marked",
             label: "Restaurant not now",
             tone: "pending",
+            nextAction: "Hold / not a fit",
           },
           "restaurant-lost": {
             status: "Lost",
@@ -19860,6 +20107,7 @@
             activity: "Restaurant — Lost marked",
             label: "Restaurant lost",
             tone: "pending",
+            nextAction: "Hold / not a fit",
           },
           "not-now": {
             note: "Restaurant stage: not now.",
@@ -19996,6 +20244,23 @@
         var previousNotes = String(hit.row.owner_notes || "");
         var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
         var nextNotes = appendRestaurantNote(notesBase, config.note);
+        if (config.nextAction) {
+          var crmValues = restaurantLeadCrmValuesFromRow(hit.row, nextNotes);
+          crmValues.nextAction = config.nextAction;
+          if (normStatus(config.status) === "proposal sent" && !crmValues.proposalSentAt) {
+            crmValues.proposalSentAt = todayDateString();
+          }
+          if (normStatus(config.status) === "won") {
+            crmValues.fitLabel = crmValues.fitLabel || "Strong fit - Both";
+            crmValues.leadPriority = crmValues.leadPriority || "High";
+            crmValues.wonAt = crmValues.wonAt || todayDateString();
+          }
+          if (normStatus(config.status) === "not a fit") {
+            crmValues.fitLabel = "Not a fit";
+            crmValues.leadPriority = crmValues.leadPriority || "Low";
+          }
+          nextNotes = upsertRestaurantLeadCrmBlock(nextNotes, crmValues);
+        }
         var payload = { owner_notes: nextNotes };
         if (config.status) payload.status = config.status;
         if (config.lastContacted) payload.last_contacted_at = new Date().toISOString();
@@ -20271,6 +20536,9 @@
         var previousNotes = String(hit.row.owner_notes || "");
         var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
         var nextNotes = upsertRestaurantProposalDirectionBlock(notesBase, values);
+        var crmValues = restaurantLeadCrmValuesFromRow(hit.row, nextNotes);
+        crmValues.nextAction = values.ownerApprovedNextStep || crmValues.nextAction;
+        nextNotes = upsertRestaurantLeadCrmBlock(nextNotes, crmValues);
         var controls = form.querySelectorAll("button, select, input, textarea");
         controls.forEach(function (control) {
           control.disabled = true;
@@ -21841,7 +22109,7 @@
           exportValue(row.contact_email),
           exportValue(snap.restaurantType),
           exportValue(snap.lane),
-          exportValue(research.researchScore + " / 100"),
+          exportValue(research.researchScoreDisplay),
           exportValue(research.salesPriority),
           exportValue(snap.recommendedOffer),
           exportValue(research.recommendedFirstMove),
@@ -21896,7 +22164,7 @@
           exportValue(row.contact_name),
           exportValue(row.contact_phone),
           exportValue(row.contact_email),
-          exportValue(research.researchScore + " / 100"),
+          exportValue(research.researchScoreDisplay),
           exportValue(proposal.suggestedFirstOffer),
           exportValue(proposal.suggestedPackageTier),
           exportValue(proposal.suggestedStartingRange),
@@ -22821,7 +23089,7 @@
           exportValue(restaurantRepStage(row)),
           exportValue(snap.lane),
           exportValue(restaurantProposalDirection(row).suggestedFirstOffer || snap.recommendedOffer),
-          exportValue(research.researchScore + " / 100"),
+          exportValue(research.researchScoreDisplay),
           exportValue(research.salesPriority),
           exportValue(restaurantRepRecommendedNextAction(row)),
           exportValue(activity && activity.iso ? activity.label + " " + fmtDate(activity.iso) : "—"),
