@@ -2394,6 +2394,155 @@
       overflow-wrap: anywhere;
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-followup-kit {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 14px;
+      padding: clamp(14px, 2vw, 18px);
+      border: 1px solid rgba(94, 234, 212, 0.28);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 34%),
+        linear-gradient(145deg, rgba(255, 139, 31, 0.1), transparent 48%),
+        rgba(4, 10, 22, 0.66);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-kit,
+    .page-owner-dashboard .owner-dash-restaurant-followup-kit * {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-kit-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-kit h3 {
+      margin: 0;
+      color: #c8fff5;
+      font-size: clamp(1.08rem, 2.3vw, 1.32rem);
+      line-height: 1.15;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-kit-subtitle,
+    .page-owner-dashboard .owner-dash-restaurant-followup-purpose,
+    .page-owner-dashboard .owner-dash-restaurant-followup-note {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.74);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(94, 234, 212, 0.34);
+      background: rgba(20, 184, 166, 0.14);
+      color: #a7f3d0;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-guardrail {
+      margin: 0;
+      padding: 10px 11px;
+      border: 1px solid rgba(251, 146, 60, 0.3);
+      border-radius: 15px;
+      background: rgba(251, 146, 60, 0.1);
+      color: #ffe4c4;
+      font-size: 0.8rem;
+      font-weight: 820;
+      line-height: 1.45;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-actions,
+    .page-owner-dashboard .owner-dash-restaurant-followup-grid {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-actions {
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-grid {
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-card {
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-card strong {
+      display: block;
+      color: rgba(255, 246, 230, 0.92);
+      font-size: 0.86rem;
+      line-height: 1.25;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-card p {
+      margin: 5px 0 0;
+      color: rgba(255, 246, 230, 0.7);
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-followup-template {
+      margin: 8px 0 0;
+      padding: 10px;
+      max-height: 320px;
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 13px;
+      background: rgba(3, 7, 18, 0.66);
+      color: rgba(255, 246, 230, 0.88);
+      font: inherit;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-lead-actions--kit {
+      flex: 1 1 100%;
+      padding: 8px;
+      border: 1px solid rgba(94, 234, 212, 0.18);
+      border-radius: 14px;
+      background: rgba(20, 184, 166, 0.06);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-lead-actions--kit-label {
+      flex: 1 1 100%;
+      margin: 0 0 2px;
+      color: rgba(255, 246, 230, 0.66);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-lead-actions--kit .owner-dash-detail-copy-feedback {
+      flex: 1 1 100%;
+      margin-top: 2px;
+    }
+
     .page-owner-dashboard .owner-dash-restaurant-create-head {
       display: grid;
       gap: 7px;
@@ -2524,9 +2673,21 @@
       .page-owner-dashboard .owner-dash-restaurant-create-actions,
       .page-owner-dashboard .owner-dash-restaurant-create-actions .owner-dash-btn,
       .page-owner-dashboard .owner-dash-restaurant-prospect-mode,
+      .page-owner-dashboard .owner-dash-restaurant-followup-actions,
+      .page-owner-dashboard .owner-dash-restaurant-followup-actions .owner-dash-btn,
+      .page-owner-dashboard .owner-dash-restaurant-lead-actions--kit .owner-dash-btn,
       .page-owner-dashboard .owner-dash-first50-actions,
       .page-owner-dashboard .owner-dash-first50-actions .owner-dash-btn {
         width: 100%;
+      }
+
+      .page-owner-dashboard .owner-dash-restaurant-followup-kit-head {
+        display: grid;
+      }
+
+      .page-owner-dashboard .owner-dash-restaurant-followup-grid,
+      .page-owner-dashboard .owner-dash-restaurant-followup-actions {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -3199,6 +3360,7 @@
       .owner-dash-restaurant-first50,
       .owner-dash-restaurant-create,
       .owner-dash-restaurant-command,
+      .owner-dash-restaurant-followup-kit,
       .owner-dash-restaurant-rep-queue
     ),
     .page-owner-dashboard :is(
@@ -3207,6 +3369,7 @@
       .owner-dash-restaurant-first50,
       .owner-dash-restaurant-create,
       .owner-dash-restaurant-command,
+      .owner-dash-restaurant-followup-kit,
       .owner-dash-restaurant-rep-queue
     ) * {
       word-break: normal;
@@ -3248,6 +3411,10 @@
       .owner-dash-restaurant-proposal-guardrail,
       .owner-dash-restaurant-workflow-guardrail,
       .owner-dash-restaurant-rep-queue-subtitle,
+      .owner-dash-restaurant-followup-kit-subtitle,
+      .owner-dash-restaurant-followup-purpose,
+      .owner-dash-restaurant-followup-note,
+      .owner-dash-restaurant-followup-guardrail,
       .owner-dash-restaurant-rep-command-subtitle,
       .owner-dash-restaurant-rep-note,
       .owner-dash-restaurant-rep-guardrail-note,
@@ -3261,6 +3428,8 @@
       .owner-dash-restaurant-workflow-status p,
       .owner-dash-restaurant-rep-card p,
       .owner-dash-restaurant-rep-card strong,
+      .owner-dash-restaurant-followup-card p,
+      .owner-dash-restaurant-followup-card strong,
       .owner-dash-restaurant-rep-script-part p
     ) {
       letter-spacing: normal;
@@ -3292,6 +3461,8 @@
         .owner-dash-restaurant-rep-card span,
         .owner-dash-restaurant-rep-script-part span,
         .owner-dash-restaurant-mode-badge,
+        .owner-dash-restaurant-followup-badge,
+        .owner-dash-restaurant-lead-actions--kit-label,
         .owner-dash-daily-brief-safe,
         .owner-dash-followup-safe-badge,
         .owner-dash-client-proposal-badge,
@@ -3795,6 +3966,7 @@
           <p>Public inquiries submitted from /restaurants/. Internal sales pipeline only; do not publish these as listings.</p>
         </header>
         <div id="restaurant-leads-summary" class="owner-dash-first50-summary owner-dash-restaurant-lead-summary"></div>
+        <div id="restaurant-follow-up-kit"></div>
         <div class="owner-dash-filters owner-dash-restaurant-lead-filters" role="group" aria-label="Restaurant lead filters">
           <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter is-active" data-restaurant-lead-filter="all" aria-pressed="true">All</button>
           <button type="button" class="owner-dash-filter owner-dash-restaurant-lead-filter" data-restaurant-lead-filter="new" aria-pressed="false">New</button>
@@ -4601,6 +4773,60 @@
       var RESTAURANT_PROGRAM_V1_NOTE =
         "Restaurant Program v1: internal sales operating system for prospecting, research, outreach, proposal prep, follow-up, and retention. Public website pages, payment links, listings, and client-facing placement should be created separately after owner approval.";
 
+      var RESTAURANT_LEAD_FOLLOW_UP_GUARDRAIL =
+        "Guardrail: Do not promise guaranteed placement, traffic, reservations, revenue, rankings, or automatic listing. Restaurant opportunities are reviewed for fit. AI systems improve workflows and lead handling, but outcomes depend on the business, offer, execution, and follow-up.";
+
+      var RESTAURANT_LEAD_FOLLOW_UP_SECTIONS = [
+        {
+          key: "first-response-email",
+          title: "First Response Email",
+          purpose: "Reply to a new restaurant inquiry with both paths and a safe next step.",
+          copyLabel: "Copy first email",
+        },
+        {
+          key: "first-text-message",
+          title: "First Text Message",
+          purpose: "Short request-related SMS reply after an inquiry, when phone follow-up is appropriate.",
+          copyLabel: "Copy text reply",
+        },
+        {
+          key: "first-call-script",
+          title: "First Call Script",
+          purpose: "Guide the opening discovery call and set a reviewed-for-fit next step.",
+          copyLabel: "Copy call script",
+        },
+        {
+          key: "discovery-questions",
+          title: "Discovery Questions Checklist",
+          purpose: "Qualify visitor fit, customer path, inquiry handling, and system needs.",
+          copyLabel: "Copy discovery questions",
+        },
+        {
+          key: "qualification-checklist",
+          title: "Qualification Checklist",
+          purpose: "Score whether the lead fits visibility, AI systems, both, more info, or not a fit.",
+          copyLabel: "Copy qualification checklist",
+        },
+        {
+          key: "objection-responses",
+          title: "Objection Responses",
+          purpose: "Internal-safe answers to common restaurant owner questions.",
+          copyLabel: "Copy objection responses",
+        },
+        {
+          key: "proposal-follow-up-email",
+          title: "Proposal Follow-Up Email",
+          purpose: "Send after a fit-confirming call to recap the need and recommend the next step.",
+          copyLabel: "Copy proposal follow-up",
+        },
+        {
+          key: "not-fit-hold-email",
+          title: "Not-a-Fit / Hold Email",
+          purpose: "Respectfully pause or decline while leaving the door open.",
+          copyLabel: "Copy hold email",
+        },
+      ];
+
       var RESTAURANT_COPY_PLACEHOLDER = {
         contact: "[confirm restaurant contact]",
         business: "[confirm restaurant name]",
@@ -4968,6 +5194,7 @@
         businessList: document.getElementById("business-leads-list"),
         businessEmpty: document.getElementById("business-leads-empty"),
         restaurantLeadsSummary: document.getElementById("restaurant-leads-summary"),
+        restaurantFollowUpKit: document.getElementById("restaurant-follow-up-kit"),
         restaurantLeadsList: document.getElementById("restaurant-leads-list"),
         restaurantLeadsEmpty: document.getElementById("restaurant-leads-empty"),
         restaurantLeadsResultCount: document.getElementById("restaurant-leads-result-count"),
@@ -8059,6 +8286,359 @@
         };
       }
 
+      function restaurantLeadInterestType(row) {
+        if (row && row.interest_type) return row.interest_type;
+        if (row && row.interest_partner_program && row.interest_ai_systems) return "Partner Program / AI Systems / Both";
+        if (row && row.interest_partner_program) return "Partner Program";
+        if (row && row.interest_ai_systems) return "AI Systems";
+        return "[Interest Type]";
+      }
+
+      function restaurantLeadContext(row) {
+        return {
+          restaurant: (row && row.restaurant_name) || "[Restaurant Name]",
+          contact: (row && row.contact_name) || "[Contact Name]",
+          interest: restaurantLeadInterestType(row),
+          area: (row && row.area_neighborhood) || "[Area]",
+          nextStep: "[Next Step]",
+          signature: "Willie\nWhere To Go SA",
+        };
+      }
+
+      function restaurantLeadFirstResponseEmail(row) {
+        var c = restaurantLeadContext(row);
+        return [
+          "Subject: Restaurant inquiry - " + c.restaurant,
+          "",
+          "Hi " + c.contact + ",",
+          "",
+          "Thanks for reaching out about " + c.restaurant + ". I saw your interest in " + c.interest + ", and I appreciate you sharing the details.",
+          "",
+          "There are two possible paths we can review:",
+          "1. Restaurant Partner Program - potential visibility inside Where To Go SA when there is a good visitor-guide fit.",
+          "2. AI Restaurant Growth Systems - practical systems for inquiry handling, QR/customer paths, private events, catering, reviews, and follow-up.",
+          "",
+          "Where To Go SA is already live as a San Antonio visitor guide for people deciding where to eat, what to do, and how to move around the city. Visibility opportunities are reviewed for fit; placement, traffic, reservations, revenue, rankings, and results are not guaranteed.",
+          "",
+          "Would you like to set up a short call, or should I send details for the path that fits best?",
+          "",
+          c.signature,
+        ].join("\n");
+      }
+
+      function restaurantLeadFirstTextMessage(row) {
+        var c = restaurantLeadContext(row);
+        return (
+          "Hi " +
+          c.contact +
+          ", this is Willie with Where To Go SA. Thanks for reaching out about " +
+          c.restaurant +
+          ". I saw your interest in " +
+          c.interest +
+          ". I can send details or set up a quick call to see what fits best."
+        );
+      }
+
+      function restaurantLeadFirstCallScript(row) {
+        var c = restaurantLeadContext(row);
+        return [
+          "First Call Script - " + c.restaurant,
+          "",
+          "Opening:",
+          "Hi " + c.contact + ", this is Willie with Where To Go SA. Thanks again for reaching out about " + c.restaurant + ". I wanted to learn a little more so I can point you toward the right next step.",
+          "",
+          "Confirm what they submitted:",
+          "- I saw the inquiry came from /restaurants/.",
+          "- I saw interest in: " + c.interest + ".",
+          "- I have the area as: " + c.area + ".",
+          "",
+          "Ask what they want most:",
+          "- If we could improve one thing first, would it be visitor visibility, more inquiry capture, private events/catering, reviews/repeat visits, the website/menu/QR path, or the overall follow-up process?",
+          "",
+          "Explain the two paths briefly:",
+          "- Restaurant Partner Program: reviewed-for-fit visibility inside Where To Go SA's live visitor guide where the restaurant helps a real visitor situation.",
+          "- AI Restaurant Growth Systems: practical workflow systems for calls, forms, QR paths, event/catering inquiries, reviews, local SEO, and owner-visible follow-up.",
+          "",
+          "Qualifying questions:",
+          "- What is the restaurant concept and best-fit customer?",
+          "- Which neighborhood or visitor area matters most?",
+          "- Are weekdays, weekends, private events, catering, or tourist/resort traffic the bigger opportunity?",
+          "- How are phone, form, reservation, and DM inquiries handled today?",
+          "- Is the current website, menu, QR path, social, reviews, or local SEO causing friction?",
+          "- Are you mainly looking for visibility, systems, or both?",
+          "- If appropriate: is there a budget range or timeline you already have in mind?",
+          "",
+          "Reviewed-for-fit guardrail:",
+          "I want to be clear: visibility is reviewed for fit and nothing is automatically listed. I do not guarantee traffic, reservations, revenue, rankings, or placement. For AI systems, the goal is to improve the workflow, but outcomes still depend on the business, offer, execution, and follow-up.",
+          "",
+          "Define next step:",
+          "- If fit is clear: I can send a simple partner program or AI systems next-step summary.",
+          "- If more info is needed: I will review the visitor fit/customer path and follow up with the most useful first step.",
+          "- Next step: " + c.nextStep,
+        ].join("\n");
+      }
+
+      function restaurantLeadDiscoveryQuestions(row) {
+        var c = restaurantLeadContext(row);
+        return [
+          "Discovery Questions Checklist - " + c.restaurant,
+          "",
+          "[ ] Restaurant concept: What type of restaurant is it, and what is the best-fit guest experience?",
+          "[ ] Area/neighborhood: Which part of San Antonio matters most? " + c.area,
+          "[ ] Visitor/customer type: Tourists, resort guests, locals, business dinners, families, date nights, groups, convention visitors, airport timing, or another lane?",
+          "[ ] Current biggest problem: Visibility, reservations, private events, catering, menu/website path, reviews, staffing, follow-up, or something else?",
+          "[ ] Weekdays vs weekends: Which days need the most help?",
+          "[ ] Private events/catering: Do they want more groups, catering, private dining, or event inquiries?",
+          "[ ] Phone/form/DM handling: Who answers calls, forms, reservations, and DMs? What gets missed when staff are busy?",
+          "[ ] Website/menu/QR needs: Is the mobile site clear? Are menus, reservations, QR codes, private dining, and contact paths easy?",
+          "[ ] Social/reviews/local SEO: Are social, Google Business Profile, reviews, and local search helping or creating friction?",
+          "[ ] Visibility, systems, or both: Are they asking for Where To Go SA visibility, AI Restaurant Growth Systems, or both?",
+          "[ ] Budget/timeline if appropriate: Is there a realistic first-phase budget, decision owner, and timeline?",
+          "",
+          RESTAURANT_LEAD_FOLLOW_UP_GUARDRAIL,
+        ].join("\n");
+      }
+
+      function restaurantLeadQualificationChecklist(row) {
+        var c = restaurantLeadContext(row);
+        return [
+          "Qualification Checklist - " + c.restaurant,
+          "",
+          "Simple internal scoring:",
+          "[ ] Good fit for Partner Program",
+          "[ ] Good fit for AI Restaurant Growth Systems",
+          "[ ] Good fit for both",
+          "[ ] Needs more info",
+          "[ ] Not a fit",
+          "",
+          "Internal notes:",
+          "[ ] Does the restaurant fit visitor guide quality?",
+          "[ ] Does it solve a real visitor situation?",
+          "[ ] Is there enough public trust/reputation?",
+          "[ ] Does the owner/manager understand no guarantees?",
+          "[ ] Is the AI systems need real?",
+          "[ ] Is the first useful next step clear?",
+          "",
+          "Recommended path:",
+          "- Partner Program if the visitor fit is strong and the restaurant helps a clear dining situation.",
+          "- AI Systems if the main bottleneck is missed calls, weak forms, QR friction, private event/catering flow, review/repeat process, website/menu path, or owner visibility.",
+          "- Both if visitor fit is strong and the operational path needs improvement.",
+        ].join("\n");
+      }
+
+      function restaurantLeadObjectionResponses(row) {
+        var c = restaurantLeadContext(row);
+        return [
+          "Objection Responses - " + c.restaurant,
+          "",
+          "Can you guarantee traffic?",
+          "No. I would not promise guaranteed traffic, reservations, revenue, rankings, or results. The goal is to improve fit-based visibility, the customer path, inquiry capture, and follow-up.",
+          "",
+          "Do we automatically get listed?",
+          "No. Restaurant opportunities are reviewed for fit with the visitor guide. Nothing is listed publicly without owner approval and a clear visitor-first reason.",
+          "",
+          "Is this just advertising?",
+          "Not exactly. Advertising is usually placement-first. This is visitor-situation fit plus customer-flow support. If the restaurant is not a fit for a visitor guide opportunity, we should not force it.",
+          "",
+          "What do we get for the money?",
+          "That depends on the recommended path. It may be a visibility package, a clearer website/menu/QR path, an inquiry system, an AI-assisted workflow, or a phased combination. I would define the scope before anything starts.",
+          "",
+          "Why would visitors use your site?",
+          "Where To Go SA is built around real visitor decisions: where to eat, what area they are in, timing, resorts, downtown, airport, transportation, and local recommendations. It is not positioned as a pay-to-play directory.",
+          "",
+          "Can you build us an AI system too?",
+          "Yes, if there is a real workflow need. AI systems can support intake, routing, follow-up, QR paths, private events/catering, reviews, reporting, and owner-approved customer paths. They do not replace staff or guarantee outcomes.",
+          "",
+          "Can we just try visibility first?",
+          "Yes, if the restaurant is a good visitor-guide fit. Starting with the smallest useful visibility step can make sense before adding systems.",
+          "",
+          "Do you manage social media?",
+          "Not as a default social media management service. We can review social, reviews, and local SEO as part of the customer path, and recommend support if it connects to the restaurant's larger growth system.",
+        ].join("\n");
+      }
+
+      function restaurantLeadProposalFollowUpEmail(row) {
+        var c = restaurantLeadContext(row);
+        return [
+          "Subject: Next step for " + c.restaurant,
+          "",
+          "Hi " + c.contact + ",",
+          "",
+          "Thanks for taking the time to talk through " + c.restaurant + ". Based on what you shared, the main need appears to be [recap of what they need].",
+          "",
+          "My recommended path is [recommended path]:",
+          "- Restaurant Partner Program if the priority is reviewed-for-fit visitor visibility inside Where To Go SA.",
+          "- AI Restaurant Growth Systems if the priority is improving inquiry handling, QR/customer paths, private events/catering, reviews, local SEO, or follow-up.",
+          "- Both if visibility and the behind-the-scenes customer flow should work together.",
+          "",
+          "As a reminder, placement, traffic, reservations, revenue, rankings, and results are not guaranteed. Visibility opportunities are reviewed for fit, and AI systems are designed to improve workflow and lead handling with owner approval.",
+          "",
+          "Next step: " + c.nextStep + ". I can send the partner program details, the AI systems details, or a simple side-by-side recommendation.",
+          "",
+          c.signature,
+        ].join("\n");
+      }
+
+      function restaurantLeadNotFitHoldEmail(row) {
+        var c = restaurantLeadContext(row);
+        return [
+          "Subject: Thanks for reaching out about " + c.restaurant,
+          "",
+          "Hi " + c.contact + ",",
+          "",
+          "Thank you for reaching out about " + c.restaurant + ". I reviewed the request, and I do not think the next step is a fit for the current Where To Go SA restaurant program yet.",
+          "",
+          "That does not mean the door is closed. It may make sense to revisit after there is a clearer visitor-guide fit, stronger public information, a more specific customer path need, or a better-timed AI systems opportunity.",
+          "",
+          "I appreciate you reaching out, and I am happy to keep " + c.restaurant + " in mind for a future fit-based review.",
+          "",
+          c.signature,
+        ].join("\n");
+      }
+
+      function restaurantLeadKitTextForKind(kind, row) {
+        if (kind === "first-response-email") return restaurantLeadFirstResponseEmail(row);
+        if (kind === "first-text-message") return restaurantLeadFirstTextMessage(row);
+        if (kind === "first-call-script") return restaurantLeadFirstCallScript(row);
+        if (kind === "discovery-questions") return restaurantLeadDiscoveryQuestions(row);
+        if (kind === "qualification-checklist") return restaurantLeadQualificationChecklist(row);
+        if (kind === "objection-responses") return restaurantLeadObjectionResponses(row);
+        if (kind === "proposal-follow-up-email") return restaurantLeadProposalFollowUpEmail(row);
+        if (kind === "not-fit-hold-email") return restaurantLeadNotFitHoldEmail(row);
+        if (kind === "full-restaurant-follow-up-kit") {
+          return RESTAURANT_LEAD_FOLLOW_UP_SECTIONS.map(function (section) {
+            return section.title + "\n\n" + restaurantLeadKitTextForKind(section.key, row);
+          }).join("\n\n---\n\n");
+        }
+        return "";
+      }
+
+      function restaurantLeadKitSection(key) {
+        for (var i = 0; i < RESTAURANT_LEAD_FOLLOW_UP_SECTIONS.length; i++) {
+          if (RESTAURANT_LEAD_FOLLOW_UP_SECTIONS[i].key === key) return RESTAURANT_LEAD_FOLLOW_UP_SECTIONS[i];
+        }
+        return null;
+      }
+
+      function restaurantLeadKitCopyButton(kind, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="copy-restaurant-lead-kit" data-copy-kind="' +
+          esc(kind) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function restaurantLeadKitViewButton(row, kind, label) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="open-restaurant-lead-kit" data-id="' +
+          esc(row.id) +
+          '" data-kit-section="' +
+          esc(kind) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function restaurantLeadKitAccordion(section, row, open) {
+        var text = restaurantLeadKitTextForKind(section.key, row);
+        var smsNote =
+          section.key === "first-text-message"
+            ? '<p class="owner-dash-restaurant-followup-note">SMS note: use only as a direct reply to their inquiry. If they reply STOP, do not text again; HELP should route to a real contact/help response.</p>'
+            : "";
+        return (
+          '<details class="owner-dash-collapsible owner-dash-collapsible--restaurant-kit" data-kit-section="' +
+          esc(section.key) +
+          '"' +
+          (open ? " open" : "") +
+          ">" +
+          '<summary class="owner-dash-collapsible-summary">' +
+          esc(section.title) +
+          "</summary>" +
+          '<div class="owner-dash-collapsible-body">' +
+          '<p class="owner-dash-restaurant-followup-purpose">' +
+          esc(section.purpose) +
+          "</p>" +
+          smsNote +
+          '<pre class="owner-dash-restaurant-followup-template">' +
+          esc(text) +
+          "</pre>" +
+          '<div class="owner-dash-restaurant-followup-actions">' +
+          restaurantLeadKitCopyButton(section.key, section.copyLabel, section.key === "first-response-email") +
+          "</div></div></details>"
+        );
+      }
+
+      function restaurantLeadKitSnapshotHtml(row) {
+        if (!row) {
+          return (
+            '<div class="owner-dash-restaurant-followup-grid">' +
+            '<div class="owner-dash-restaurant-followup-card"><strong>Dynamic placeholders</strong><p>[Restaurant Name], [Contact Name], [Interest Type], [Area], [Next Step], [Willie / Where To Go SA]</p></div>' +
+            '<div class="owner-dash-restaurant-followup-card"><strong>Use after inquiry</strong><p>Copy tools are manual. Nothing sends, publishes, invoices, charges, or lists a restaurant automatically.</p></div>' +
+            "</div>"
+          );
+        }
+        return (
+          '<div class="owner-dash-restaurant-followup-grid">' +
+          '<div class="owner-dash-restaurant-followup-card"><strong>Lead</strong><p>' +
+          esc(row.restaurant_name || "Restaurant TBD") +
+          " / " +
+          esc(row.contact_name || "Contact TBD") +
+          "</p></div>" +
+          '<div class="owner-dash-restaurant-followup-card"><strong>Interest</strong><p>' +
+          esc(restaurantLeadInterestType(row)) +
+          "</p></div>" +
+          '<div class="owner-dash-restaurant-followup-card"><strong>Area</strong><p>' +
+          esc(row.area_neighborhood || "[Area]") +
+          "</p></div></div>"
+        );
+      }
+
+      function restaurantLeadFollowUpKitHtml(row, isDetail) {
+        var sections = RESTAURANT_LEAD_FOLLOW_UP_SECTIONS.map(function (section, idx) {
+          return restaurantLeadKitAccordion(section, row, isDetail && idx < 2);
+        }).join("");
+        return (
+          '<section class="owner-dash-restaurant-followup-kit' +
+          (isDetail ? " owner-dash-detail-section owner-dash-detail-section--restaurant-followup-kit" : "") +
+          '" data-restaurant-followup-kit>' +
+          '<div class="owner-dash-restaurant-followup-kit-head">' +
+          '<div><p class="eyebrow eyebrow-on-dark">Restaurant Follow-Up Kit</p>' +
+          "<h3>Restaurant Lead Follow-Up Kit</h3>" +
+          '<p class="owner-dash-restaurant-followup-kit-subtitle">Internal response scripts and checklists for /restaurants/ inquiries. Use as copy-and-workflow support only.</p></div>' +
+          '<span class="owner-dash-restaurant-followup-badge">Internal only</span>' +
+          "</div>" +
+          '<p class="owner-dash-restaurant-followup-guardrail">' +
+          esc(RESTAURANT_LEAD_FOLLOW_UP_GUARDRAIL) +
+          "</p>" +
+          restaurantLeadKitSnapshotHtml(row) +
+          '<div class="owner-dash-restaurant-followup-actions">' +
+          restaurantLeadKitCopyButton("first-response-email", "Copy first email", true) +
+          restaurantLeadKitCopyButton("first-text-message", "Copy text reply", false) +
+          restaurantLeadKitCopyButton("first-call-script", "Copy call script", false) +
+          restaurantLeadKitCopyButton("discovery-questions", "Copy discovery questions", false) +
+          restaurantLeadKitCopyButton("objection-responses", "Copy objection responses", false) +
+          restaurantLeadKitCopyButton("proposal-follow-up-email", "Copy proposal follow-up", false) +
+          restaurantLeadKitCopyButton("not-fit-hold-email", "Copy hold email", false) +
+          "</div>" +
+          sections +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
+      function renderRestaurantLeadKitOverview() {
+        if (!els.restaurantFollowUpKit) return;
+        els.restaurantFollowUpKit.innerHTML = restaurantLeadFollowUpKitHtml(null, false);
+      }
+
       function renderRestaurantLeadSummary() {
         if (!els.restaurantLeadsSummary) return;
         var counts = restaurantLeadSummaryCounts();
@@ -8096,6 +8676,20 @@
         );
       }
 
+      function restaurantLeadFollowUpActionsHtml(row) {
+        return (
+          '<div class="owner-dash-restaurant-lead-actions owner-dash-restaurant-lead-actions--kit">' +
+          '<p class="owner-dash-restaurant-lead-actions--kit-label">Follow-Up Kit</p>' +
+          restaurantLeadKitCopyButton("first-response-email", "Copy first email", true) +
+          restaurantLeadKitCopyButton("first-text-message", "Copy text reply", false) +
+          restaurantLeadKitViewButton(row, "first-call-script", "View call script") +
+          restaurantLeadKitViewButton(row, "discovery-questions", "View discovery questions") +
+          restaurantLeadKitViewButton(row, "objection-responses", "View objection responses") +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          "</div>"
+        );
+      }
+
       function renderRestaurantLeadCard(row) {
         var preview = row.optional_message || row.help_needed || row.ai_summary || "";
         return (
@@ -8129,6 +8723,7 @@
           lastActivityHint(row, "restaurant_leads") +
           '<div class="owner-dash-card-actions">' +
           openDetailsBtn("restaurant_leads", row.id) +
+          restaurantLeadFollowUpActionsHtml(row) +
           restaurantLeadQuickActionsHtml() +
           "</div>" +
           workflowBlock("restaurant_leads", row) +
@@ -8317,6 +8912,15 @@
           "restaurant-case-study-questions": "Restaurant case study questions copied",
           "restaurant-support-review-agenda": "Restaurant support review agenda copied",
           "restaurant-full-client-success-bundle": "Full restaurant client success bundle copied",
+          "first-response-email": "Restaurant first response email copied",
+          "first-text-message": "Restaurant first text reply copied",
+          "first-call-script": "Restaurant first call script copied",
+          "discovery-questions": "Restaurant discovery questions copied",
+          "qualification-checklist": "Restaurant qualification checklist copied",
+          "objection-responses": "Restaurant objection responses copied",
+          "proposal-follow-up-email": "Restaurant proposal follow-up email copied",
+          "not-fit-hold-email": "Restaurant not-a-fit / hold email copied",
+          "full-restaurant-follow-up-kit": "Full restaurant follow-up kit copied",
         };
         return labels[kind] || "Copy action completed";
       }
@@ -15901,6 +16505,7 @@
           esc(fmtDate(row.created_at)) +
           "</time></div>" +
           nextActionHtml(restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review restaurant lead status and notes.") +
+          restaurantLeadFollowUpKitHtml(row, true) +
           restaurantLeadDetailsBlock(row) +
           quickStatusBlock("restaurant_leads", row.status) +
           workflowBlock("restaurant_leads", row) +
@@ -16218,6 +16823,85 @@
         } catch {
           return false;
         }
+      }
+
+      function restaurantLeadRowFromButton(btn) {
+        var card = btn && btn.closest(".owner-dash-lead-card[data-table='restaurant_leads']");
+        var sheet = btn && btn.closest(".owner-dash-detail-sheet[data-detail-table='restaurant_leads']");
+        var id =
+          (btn && btn.getAttribute("data-id")) ||
+          (card && card.getAttribute("data-record-id")) ||
+          (sheet && sheet.getAttribute("data-detail-id")) ||
+          "";
+        if (!id) return null;
+        var hit = findRecord("restaurant_leads", id);
+        return hit ? hit.row : null;
+      }
+
+      function copyRestaurantLeadKit(btn) {
+        var kind = btn && btn.getAttribute("data-copy-kind");
+        var row = restaurantLeadRowFromButton(btn);
+        var text = restaurantLeadKitTextForKind(kind, row);
+        var container =
+          (btn && btn.closest("[data-restaurant-followup-kit]")) ||
+          (btn && btn.closest(".owner-dash-restaurant-lead-actions--kit")) ||
+          (btn && btn.closest(".owner-dash-lead-card")) ||
+          els.restaurantFollowUpKit;
+        if (!text || !String(text).trim()) {
+          setCopyFeedback(container, "Nothing to copy.", true);
+          return;
+        }
+        text = String(text).trim();
+        hideManualCopy(container);
+        function onSuccess() {
+          setCopyFeedback(container, "Copied.");
+          if (row && row.id) recordCopyActivity(kind, "restaurant_leads", row.id);
+        }
+        function onFail() {
+          if (container && container.querySelector("[data-manual-copy]")) {
+            showManualCopy(container, text);
+            setCopyFeedback(container, "Select text below to copy.", true);
+          } else {
+            setCopyFeedback(container, "Copy failed. Open details and copy manually.", true);
+          }
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(onSuccess)
+            .catch(function () {
+              if (fallbackExecCopy(text)) onSuccess();
+              else onFail();
+            });
+        } else if (fallbackExecCopy(text)) {
+          onSuccess();
+        } else {
+          onFail();
+        }
+      }
+
+      function openRestaurantLeadKitSection(btn) {
+        var id = btn && btn.getAttribute("data-id");
+        if (!id) {
+          var row = restaurantLeadRowFromButton(btn);
+          id = row && row.id;
+        }
+        if (!id) return;
+        var sectionKey = btn.getAttribute("data-kit-section") || "first-response-email";
+        openDetail("restaurant_leads", id);
+        window.requestAnimationFrame(function () {
+          if (!els.detailBody) return;
+          var targets = els.detailBody.querySelectorAll("[data-kit-section]");
+          for (var i = 0; i < targets.length; i++) {
+            if (targets[i].getAttribute("data-kit-section") === sectionKey) {
+              targets[i].open = true;
+              targets[i].scrollIntoView({ behavior: "smooth", block: "start" });
+              var summary = targets[i].querySelector("summary");
+              if (summary) summary.focus({ preventScroll: true });
+              break;
+            }
+          }
+        });
       }
 
       function setQuickFeedback(sheet, message, isError) {
@@ -21453,6 +22137,7 @@
         renderRestaurantRepDailyQueue();
         renderExportCrmSummary();
         renderBusiness(state.businessLeads);
+        renderRestaurantLeadKitOverview();
         renderRestaurantLeads();
         renderRestaurantPanel("prospects");
         renderRestaurantPanel("clients");
@@ -22168,6 +22853,16 @@
 
           if (action === "restaurant-lead-status") {
             handleRestaurantLeadStatus(btn);
+            return;
+          }
+
+          if (action === "copy-restaurant-lead-kit") {
+            copyRestaurantLeadKit(btn);
+            return;
+          }
+
+          if (action === "open-restaurant-lead-kit") {
+            openRestaurantLeadKitSection(btn);
             return;
           }
 
