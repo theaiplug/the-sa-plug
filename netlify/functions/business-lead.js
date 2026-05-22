@@ -234,6 +234,7 @@ exports.handler = async (event) => {
   let ai_summary = trimStr(body.ai_summary, 6000) || null;
   const conversation_excerpt = trimStr(body.conversation_excerpt, 12000) || null;
   const notes = trimStr(body.notes, 4000) || null;
+  const owner_notes = trimStr(body.owner_notes, 8000) || null;
 
   const user_agent = trimStr(body.user_agent, 512) || null;
   const page_path = trimStr(body.page_path, 512) || null;
@@ -304,6 +305,7 @@ exports.handler = async (event) => {
     lead_quality,
     conversation_excerpt,
     notes,
+    owner_notes,
     user_agent,
     page_path,
     alert_email_sent: false,
