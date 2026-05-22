@@ -16681,7 +16681,26 @@ body.owner-dash-detail-open {
   }
 }
 
+@media (min-width: 360px) and (max-width: 439px) {
+  .page-restaurants .rest-hero-cues {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .page-restaurants .rest-hero-cues .hero-cue:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 390px) {
+  .page-restaurants .rest-hero-cues {
+    gap: 8px;
+  }
+
+  .page-restaurants .rest-hero-cues .hero-cue {
+    padding: 10px 12px;
+  }
+
   .page-restaurants .rest-intake-form .rest-consent-note {
     font-size: 0.875rem;
   }
@@ -16689,6 +16708,10 @@ body.owner-dash-detail-open {
   .page-restaurants .rest-question-list li::after {
     right: 12px;
     font-size: 1rem;
+  }
+
+  .page-restaurants .rest-path-card {
+    padding: 18px 16px;
   }
 }
 
