@@ -2736,6 +2736,76 @@
       overflow-wrap: anywhere;
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-proposal-sync {
+      display: grid;
+      gap: 8px;
+      padding: 11px 12px;
+      border: 1px solid rgba(45, 212, 191, 0.24);
+      border-radius: 14px;
+      background: rgba(45, 212, 191, 0.07);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-sync-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      align-items: baseline;
+      min-width: 0;
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-sync-row span {
+      color: rgba(255, 246, 230, 0.58);
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-sync-row strong {
+      color: rgba(255, 246, 230, 0.92);
+      font-weight: 700;
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-guidance {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-guidance-card {
+      padding: 9px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-guidance-card span {
+      display: block;
+      margin: 0 0 4px;
+      color: rgba(255, 246, 230, 0.56);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-guidance-card strong {
+      display: block;
+      color: rgba(255, 246, 230, 0.92);
+      font-size: 0.84rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-proposal-guidance-card--wide {
+      grid-column: 1 / -1;
+    }
+
     .page-owner-dashboard .owner-dash-restaurant-package-snapshot-card {
       padding: 9px 10px;
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -2953,6 +3023,12 @@
       .page-owner-dashboard .owner-dash-restaurant-research-groups,
       .page-owner-dashboard .owner-dash-restaurant-proposal-grid,
       .page-owner-dashboard .owner-dash-restaurant-proposal-reasons {
+        grid-template-columns: 1fr;
+      }
+
+      .page-owner-dashboard .owner-dash-restaurant-proposal-sync .owner-dash-btn,
+      .page-owner-dashboard .owner-dash-restaurant-proposal-guidance {
+        width: 100%;
         grid-template-columns: 1fr;
       }
 
@@ -9807,7 +9883,268 @@
         return "";
       }
 
+      function restaurantLeadResearchRecommendationLabel(row) {
+        var research = restaurantLeadResearchValues(row);
+        var fit = research.fitResult || "Needs more discovery";
+        var score = research.score;
+        var poorVisitorFit = restaurantLeadResearchHasLabel(research.checkedLabels, "Poor visitor fit");
+        if (fit === "Strong fit - Both") return "Strong fit — Both";
+        if (fit === "Strong fit - Partner Program") return "Strong fit — Partner Program";
+        if (fit === "Strong fit - AI Systems") return "Strong fit — AI Systems";
+        if (fit === "Not a fit right now") return poorVisitorFit || (score != null && score < 35) ? "Low fit" : "Not a fit yet";
+        if (fit === "Needs more discovery") return poorVisitorFit || (score != null && score < 35) ? "Low fit" : "Needs more discovery";
+        return "Needs more discovery";
+      }
+
+      function restaurantLeadResearchDerivedProposalReasons(row) {
+        var checked = restaurantLeadResearchValues(row).checkedLabels || [];
+        var fitReasons = [];
+        var cautionReasons = [];
+        var fitMap = {
+          "Clear visitor use case": "Strong visitor use case",
+          "Good location / area relevance": "Good location / area relevance",
+          "Useful for resort guests": "Good for resort guests",
+          "Useful for downtown / River Walk visitors": "Good for downtown / River Walk visitors",
+          "Useful for airport timing": "Good for airport timing",
+          "Useful for business dinners": "Good for business dinners",
+          "Useful for family/group dining": "Good for family/group dining",
+          "Strong food category visitors ask about": "Clear food category visitors ask about",
+          "Strong public reputation or trust signals": "Strong public reputation or trust signals",
+          "Missed calls or slow follow-up": "Missed calls or slow follow-up",
+          "Weak website or unclear next step": "Weak website or unclear next step",
+          "Private event or catering inquiries need structure": "Private event or catering inquiries need structure",
+          "QR/menu/funnel opportunity": "QR/menu/funnel opportunity",
+          "Reviews/social/SEO content need organization": "Reviews/social/SEO content need organization",
+          "Owner wants better visibility into leads": "Owner wants better visibility into leads",
+          "DMs/forms/messages are hard to track": "DMs/forms/messages are hard to track",
+          "Needs repeatable follow-up process": "Needs repeatable follow-up process",
+        };
+        var cautionMap = {
+          "Poor visitor fit": "Poor fit for visitor guide",
+          "Weak public trust signals": "Weak public trust signals",
+          "Unclear offer or positioning": "Unclear offer or positioning",
+          "Owner expects guaranteed results": "Owner expects guaranteed results",
+          "Too early / needs more discovery": "Too early / not ready",
+          "Not enough information yet": "Needs more discovery",
+        };
+        checked.forEach(function (label) {
+          if (fitMap[label] && fitReasons.indexOf(fitMap[label]) === -1) fitReasons.push(fitMap[label]);
+          if (cautionMap[label] && cautionReasons.indexOf(cautionMap[label]) === -1) cautionReasons.push(cautionMap[label]);
+        });
+        return { fitReasons: fitReasons, cautionReasons: cautionReasons };
+      }
+
+      function restaurantLeadResearchProposalGuidance(row) {
+        var research = restaurantLeadResearchValues(row);
+        var fit = research.fitResult || "Needs more discovery";
+        var firstMove = research.firstMove || "Research more";
+        var score = research.score;
+        var poorVisitorFit = restaurantLeadResearchHasLabel(research.checkedLabels, "Poor visitor fit");
+        var lowFit = fit === "Not a fit right now" || poorVisitorFit || (score != null && score < 35);
+        var nextStep = restaurantLeadResearchProposalNextStep(row) || firstMove || "Research more";
+        if (RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS.indexOf(nextStep) === -1) {
+          nextStep = fit === "Not a fit right now" ? "Hold / not a fit" : "Research more";
+        }
+
+        if (fit === "Not a fit right now" || (lowFit && fit !== "Strong fit - Both" && fit !== "Strong fit - Partner Program" && fit !== "Strong fit - AI Systems")) {
+          return {
+            recommendation: "Not a fit yet",
+            nextStep: nextStep === "Hold / not a fit" || nextStep === "Research more" ? nextStep : "Hold / not a fit",
+            salesPriority: "Low",
+            recommendedFirstMove: firstMove === "Research more" ? "Research more before contacting" : "Hold / not a fit",
+            suggestedOffer: "Do not pitch yet",
+            suggestedPackageTier: "Research / Hold",
+            suggestedStartingRange: "No quote yet",
+            bestFirstDeliverable: "Research + fit review",
+            whatToInclude:
+              "Review public trust signals, website/social, visitor fit, menu/offer, location relevance, and owner expectations before pitching.",
+            whatNotToOverbuild:
+              "Do not send a proposal, quote pricing, or promise placement before fit is confirmed.",
+            ownerApprovedNextStep: firstMove === "Hold / not a fit" ? "Hold / not a fit" : "Research more",
+            proposalDirection: "Not a fit yet",
+          };
+        }
+
+        if (fit === "Needs more discovery") {
+          return {
+            recommendation: "Needs more discovery",
+            nextStep: nextStep === "Schedule discovery call" || nextStep === "Research more" ? nextStep : score >= 35 ? "Schedule discovery call" : "Research more",
+            salesPriority: "Needs Review",
+            recommendedFirstMove: score >= 35 ? "Schedule discovery call" : "Research more",
+            suggestedOffer: "Discovery / visibility fit review",
+            suggestedPackageTier: "Research",
+            suggestedStartingRange: "No quote yet",
+            bestFirstDeliverable: "Restaurant visibility and customer-path review",
+            whatToInclude:
+              "Guide-fit review, visitor lane positioning, website/contact path review, and notes for the first owner conversation.",
+            whatNotToOverbuild:
+              "Do not quote final pricing or promise placement, traffic, reservations, revenue, rankings, or automatic listing before discovery.",
+            ownerApprovedNextStep: score >= 35 ? "Schedule discovery call" : "Research more",
+            proposalDirection: "Needs more discovery",
+          };
+        }
+
+        if (fit === "Strong fit - Partner Program") {
+          return {
+            recommendation: "Partner Program only",
+            nextStep: nextStep === "Send partner overview" || nextStep === "Schedule discovery call" ? nextStep : score >= 55 ? "Send partner overview" : "Schedule discovery call",
+            salesPriority: score >= 70 ? "High" : "Medium-High",
+            recommendedFirstMove: score >= 55 ? "Send partner overview" : "Schedule discovery call",
+            suggestedOffer: "Restaurant Partner Program",
+            suggestedPackageTier: "Partner / Visibility",
+            suggestedStartingRange: "No quote yet",
+            bestFirstDeliverable: "Visitor visibility review",
+            whatToInclude:
+              "Guide-fit review, visitor lane positioning, website/contact path review, and the smallest useful Partner Program step.",
+            whatNotToOverbuild:
+              "Do not promise forced recommendations, traffic, rankings, reservations, or revenue before discovery.",
+            ownerApprovedNextStep: score >= 55 ? "Send partner overview" : "Schedule discovery call",
+            proposalDirection: "Partner Program only",
+          };
+        }
+
+        if (fit === "Strong fit - AI Systems") {
+          return {
+            recommendation: "AI Restaurant Growth Systems only",
+            nextStep: nextStep === "Send AI systems overview" || nextStep === "Schedule discovery call" ? nextStep : score >= 55 ? "Send AI systems overview" : "Schedule discovery call",
+            salesPriority: score >= 70 ? "High" : "Medium-High",
+            recommendedFirstMove: score >= 55 ? "Send AI systems overview" : "Schedule discovery call",
+            suggestedOffer: "AI Restaurant Growth Systems",
+            suggestedPackageTier: "AI Systems / Growth",
+            suggestedStartingRange: "No quote yet",
+            bestFirstDeliverable: "Customer-flow and intake review",
+            whatToInclude:
+              "Intake, private event/catering flow, QR paths, follow-up, and owner-visible lead tracking review.",
+            whatNotToOverbuild:
+              "Do not launch autonomous customer-facing AI, public recommendations, invoices, or promises without owner approval.",
+            ownerApprovedNextStep: score >= 55 ? "Send AI systems overview" : "Schedule discovery call",
+            proposalDirection: "AI Restaurant Growth Systems only",
+          };
+        }
+
+        if (fit === "Strong fit - Both") {
+          return {
+            recommendation: "Combined Partner + AI Systems",
+            nextStep: nextStep === "Send first email" || nextStep === "Prepare combined proposal" ? nextStep : score >= 70 ? "Prepare combined proposal" : "Send first email",
+            salesPriority: "High",
+            recommendedFirstMove: score >= 70 ? "Prepare combined proposal" : "Send first email",
+            suggestedOffer: "Combined visibility + customer-flow review",
+            suggestedPackageTier: "Combined / Custom",
+            suggestedStartingRange: "No quote yet",
+            bestFirstDeliverable: "Visibility + customer-flow review",
+            whatToInclude:
+              "Guide-fit review, visitor lane positioning, website/contact path review, QR or inquiry-flow review, and follow-up workflow notes.",
+            whatNotToOverbuild:
+              "Do not promise placement, traffic, reservations, revenue, rankings, or automatic listing. Do not quote final pricing before discovery.",
+            ownerApprovedNextStep: score >= 70 ? "Prepare combined proposal" : "Send first email",
+            proposalDirection: "Combined Partner + AI Systems",
+          };
+        }
+
+        return {
+          recommendation: "Needs more discovery",
+          nextStep: "Research more",
+          salesPriority: "Needs Review",
+          recommendedFirstMove: "Research more",
+          suggestedOffer: "Discovery / visibility fit review",
+          suggestedPackageTier: "Research",
+          suggestedStartingRange: "No quote yet",
+          bestFirstDeliverable: "Restaurant visibility and customer-path review",
+          whatToInclude:
+            "Guide-fit review, visitor lane positioning, website/contact path review, and notes for the first owner conversation.",
+          whatNotToOverbuild:
+            "Do not quote final pricing or promise placement, traffic, reservations, revenue, rankings, or automatic listing before discovery.",
+          ownerApprovedNextStep: "Research more",
+          proposalDirection: "Needs more discovery",
+        };
+      }
+
+      function restaurantLeadProposalSource(row) {
+        var source = ownerNoteMarkerValue(row, "Proposal source:");
+        if (source === "Manual override" || source === "Using research recommendation") return source;
+        return "";
+      }
+
+      function restaurantLeadProposalHasManualOverride(row) {
+        if (restaurantLeadProposalSource(row) === "Manual override") return true;
+        if (restaurantLeadProposalSource(row) === "Using research recommendation") return false;
+        var savedRec = restaurantProposalNormalizeDirection(
+          restaurantLeadProposalValue(row, "Proposal recommendation:", "")
+        );
+        var researchRec = restaurantLeadResearchProposalGuidance(row).recommendation;
+        return Boolean(savedRec && researchRec && savedRec !== researchRec);
+      }
+
+      function restaurantLeadProposalFromResearch(row) {
+        var guidance = restaurantLeadResearchProposalGuidance(row);
+        var derived = restaurantLeadResearchDerivedProposalReasons(row);
+        return {
+          recommendation: guidance.recommendation,
+          nextStep: guidance.nextStep,
+          fitReasons: derived.fitReasons,
+          cautionReasons: derived.cautionReasons,
+          salesPriority: guidance.salesPriority,
+          recommendedFirstMove: guidance.recommendedFirstMove,
+          suggestedOffer: guidance.suggestedOffer,
+          suggestedPackageTier: guidance.suggestedPackageTier,
+          suggestedStartingRange: guidance.suggestedStartingRange,
+          bestFirstDeliverable: guidance.bestFirstDeliverable,
+          whatToInclude: guidance.whatToInclude,
+          whatNotToOverbuild: guidance.whatNotToOverbuild,
+          ownerApprovedNextStep: guidance.ownerApprovedNextStep,
+          proposalDirection: guidance.proposalDirection,
+          proposalSource: "Using research recommendation",
+          updatedAt: new Date().toISOString(),
+          notes: "",
+        };
+      }
+
+      function restaurantLeadProposalGuidanceFields(row, values) {
+        var safe = values || {};
+        return {
+          salesPriority:
+            restaurantLeadProposalValue(row, "Proposal sales priority:", "") || safe.salesPriority || "Needs Review",
+          recommendedFirstMove:
+            restaurantLeadProposalValue(row, "Proposal recommended first move:", "") ||
+            safe.recommendedFirstMove ||
+            safe.nextStep ||
+            "Research more",
+          suggestedOffer:
+            restaurantLeadProposalValue(row, "Proposal suggested offer:", "") || safe.suggestedOffer || "Custom",
+          suggestedPackageTier:
+            restaurantLeadProposalValue(row, "Proposal suggested package tier:", "") ||
+            safe.suggestedPackageTier ||
+            "Custom",
+          suggestedStartingRange:
+            restaurantLeadProposalValue(row, "Proposal suggested starting range:", "") ||
+            safe.suggestedStartingRange ||
+            "No quote yet",
+          bestFirstDeliverable:
+            restaurantLeadProposalValue(row, "Proposal best first deliverable:", "") ||
+            safe.bestFirstDeliverable ||
+            "Research + fit review",
+          whatToInclude:
+            restaurantLeadProposalValue(row, "Proposal what to include:", "") ||
+            safe.whatToInclude ||
+            "More discovery is needed before finalizing the offer path.",
+          whatNotToOverbuild:
+            restaurantLeadProposalValue(row, "Proposal what not to overbuild:", "") ||
+            safe.whatNotToOverbuild ||
+            RESTAURANT_LEAD_PROPOSAL_GUARDRAIL,
+          ownerApprovedNextStep:
+            restaurantLeadProposalValue(row, "Proposal owner-approved next step:", "") ||
+            safe.ownerApprovedNextStep ||
+            safe.nextStep ||
+            "Research more",
+          proposalDirection:
+            restaurantProposalNormalizeDirection(
+              restaurantLeadProposalValue(row, "Proposal direction:", "") || safe.proposalDirection || safe.recommendation
+            ) || "Needs more discovery",
+        };
+      }
+
       function restaurantLeadProposalValues(row) {
+        var researchGuidance = restaurantLeadResearchProposalGuidance(row);
         var recommendation = restaurantProposalNormalizeDirection(
           restaurantLeadProposalValue(row, "Proposal recommendation:", restaurantProposalDefaultRecommendation(row))
         ) || restaurantProposalDefaultRecommendation(row);
@@ -9818,7 +10155,7 @@
         if (RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS.indexOf(nextStep) === -1) {
           nextStep = "Send first email";
         }
-        return {
+        var base = {
           recommendation: recommendation,
           fitReasons: splitRestaurantProposalList(restaurantLeadProposalValue(row, "Proposal fit reasons:", "")),
           cautionReasons: splitRestaurantProposalList(
@@ -9827,7 +10164,14 @@
           nextStep: nextStep,
           updatedAt: restaurantLeadProposalValue(row, "Proposal updated at:", ""),
           notes: restaurantLeadProposalValue(row, "Proposal notes:", ""),
+          proposalSource: restaurantLeadProposalSource(row) || (restaurantLeadProposalHasManualOverride(row) ? "Manual override" : "Using research recommendation"),
+          researchRecommendationLabel: restaurantLeadResearchRecommendationLabel(row),
+          researchUpdatedAt: restaurantLeadResearchUpdatedAt(row),
+          hasManualOverride: restaurantLeadProposalHasManualOverride(row),
+          showApplyResearchRecommendation: restaurantLeadProposalHasManualOverride(row),
         };
+        var guidance = restaurantLeadProposalGuidanceFields(row, Object.assign({}, researchGuidance, base));
+        return Object.assign(base, guidance);
       }
 
       function restaurantProposalSelectOptions(options, current) {
@@ -9891,7 +10235,29 @@
       function restaurantProposalSummaryText(values) {
         var safeValues = values || {};
         var reasons = (safeValues.fitReasons || []).filter(Boolean);
+        var cautions = (safeValues.cautionReasons || []).filter(Boolean);
         var lines = [
+          "Sales priority:",
+          safeValues.salesPriority || "Needs Review",
+          "",
+          "Recommended first move:",
+          safeValues.recommendedFirstMove || safeValues.nextStep || "Research more",
+          "",
+          "Suggested offer:",
+          safeValues.suggestedOffer || "Custom",
+          "",
+          "Suggested package tier:",
+          safeValues.suggestedPackageTier || "Custom",
+          "",
+          "Suggested starting range:",
+          safeValues.suggestedStartingRange || "No quote yet",
+          "",
+          "Best first deliverable:",
+          safeValues.bestFirstDeliverable || "Research + fit review",
+          "",
+          "Proposal direction:",
+          safeValues.proposalDirection || safeValues.recommendation || "Needs more discovery",
+          "",
           "Recommended path:",
           safeValues.recommendation || "Needs more discovery",
           "",
@@ -9904,6 +10270,22 @@
         } else {
           lines.push("- More discovery is needed before finalizing the offer path.");
         }
+        if (cautions.length) {
+          lines.push("");
+          lines.push("Caution reasons:");
+          cautions.forEach(function (reason) {
+            lines.push("- " + reason);
+          });
+        }
+        lines.push("");
+        lines.push("What to include:");
+        lines.push(safeValues.whatToInclude || "More discovery is needed before finalizing the offer path.");
+        lines.push("");
+        lines.push("What not to overbuild first:");
+        lines.push(safeValues.whatNotToOverbuild || RESTAURANT_LEAD_PROPOSAL_GUARDRAIL);
+        lines.push("");
+        lines.push("Owner-approved next step:");
+        lines.push(safeValues.ownerApprovedNextStep || safeValues.nextStep || "Research more");
         lines.push("");
         lines.push("What to pitch first:");
         lines.push(restaurantProposalPitchDirection(safeValues));
@@ -10108,14 +10490,168 @@
         };
       }
 
+      function restaurantLeadProposalGuidanceByRecommendation(recommendation, row) {
+        var normalized = restaurantProposalNormalizeDirection(recommendation) || "Needs more discovery";
+        var researchGuidance = row ? restaurantLeadResearchProposalGuidance(row) : null;
+        if (researchGuidance && researchGuidance.recommendation === normalized) return researchGuidance;
+        if (normalized === "Not a fit yet") {
+          return {
+            recommendation: normalized,
+            salesPriority: "Low",
+            recommendedFirstMove: "Hold / not a fit",
+            suggestedOffer: "Do not pitch yet",
+            suggestedPackageTier: "Research / Hold",
+            suggestedStartingRange: "No quote yet",
+            bestFirstDeliverable: "Research + fit review",
+            whatToInclude:
+              "Review public trust signals, website/social, visitor fit, menu/offer, location relevance, and owner expectations before pitching.",
+            whatNotToOverbuild:
+              "Do not send a proposal, quote pricing, or promise placement before fit is confirmed.",
+            ownerApprovedNextStep: "Hold / not a fit",
+            proposalDirection: "Not a fit yet",
+            nextStep: "Hold / not a fit",
+          };
+        }
+        if (normalized === "Needs more discovery") {
+          return {
+            recommendation: normalized,
+            salesPriority: "Needs Review",
+            recommendedFirstMove: "Schedule discovery call",
+            suggestedOffer: "Discovery / visibility fit review",
+            suggestedPackageTier: "Research",
+            suggestedStartingRange: "No quote yet",
+            bestFirstDeliverable: "Restaurant visibility and customer-path review",
+            whatToInclude:
+              "Guide-fit review, visitor lane positioning, website/contact path review, and notes for the first owner conversation.",
+            whatNotToOverbuild:
+              "Do not quote final pricing or promise placement, traffic, reservations, revenue, rankings, or automatic listing before discovery.",
+            ownerApprovedNextStep: "Schedule discovery call",
+            proposalDirection: "Needs more discovery",
+            nextStep: "Schedule discovery call",
+          };
+        }
+        if (normalized === "Partner Program only") {
+          return {
+            recommendation: normalized,
+            salesPriority: "Medium-High",
+            recommendedFirstMove: "Send partner overview",
+            suggestedOffer: "Restaurant Partner Program",
+            suggestedPackageTier: "Partner / Visibility",
+            suggestedStartingRange: "No quote yet",
+            bestFirstDeliverable: "Visitor visibility review",
+            whatToInclude:
+              "Guide-fit review, visitor lane positioning, website/contact path review, and the smallest useful Partner Program step.",
+            whatNotToOverbuild:
+              "Do not promise forced recommendations, traffic, rankings, reservations, or revenue before discovery.",
+            ownerApprovedNextStep: "Send partner overview",
+            proposalDirection: "Partner Program only",
+            nextStep: "Send partner overview",
+          };
+        }
+        if (normalized === "AI Restaurant Growth Systems only") {
+          return {
+            recommendation: normalized,
+            salesPriority: "Medium-High",
+            recommendedFirstMove: "Send AI systems overview",
+            suggestedOffer: "AI Restaurant Growth Systems",
+            suggestedPackageTier: "AI Systems / Growth",
+            suggestedStartingRange: "No quote yet",
+            bestFirstDeliverable: "Customer-flow and intake review",
+            whatToInclude:
+              "Intake, private event/catering flow, QR paths, follow-up, and owner-visible lead tracking review.",
+            whatNotToOverbuild:
+              "Do not launch autonomous customer-facing AI, public recommendations, invoices, or promises without owner approval.",
+            ownerApprovedNextStep: "Send AI systems overview",
+            proposalDirection: "AI Restaurant Growth Systems only",
+            nextStep: "Send AI systems overview",
+          };
+        }
+        return {
+          recommendation: "Combined Partner + AI Systems",
+          salesPriority: "High",
+          recommendedFirstMove: "Send first email",
+          suggestedOffer: "Combined visibility + customer-flow review",
+          suggestedPackageTier: "Combined / Custom",
+          suggestedStartingRange: "No quote yet",
+          bestFirstDeliverable: "Visibility + customer-flow review",
+          whatToInclude:
+            "Guide-fit review, visitor lane positioning, website/contact path review, QR or inquiry-flow review, and follow-up workflow notes.",
+          whatNotToOverbuild:
+            "Do not promise placement, traffic, reservations, revenue, rankings, or automatic listing. Do not quote final pricing before discovery.",
+          ownerApprovedNextStep: "Send first email",
+          proposalDirection: "Combined Partner + AI Systems",
+          nextStep: "Send first email",
+        };
+      }
+
+      function restaurantLeadProposalPreviewValues(section) {
+        var formValues = readRestaurantProposalValues(section);
+        var sheet = section && section.closest("[data-detail-sheet]");
+        var id = sheet && sheet.getAttribute("data-detail-id");
+        var record = id ? findRecord("restaurant_leads", id) : null;
+        var row = record ? record.row : null;
+        var guidance = restaurantLeadProposalGuidanceByRecommendation(formValues.recommendation, row);
+        return Object.assign({}, guidance, formValues, {
+          proposalDirection: guidance.proposalDirection || formValues.recommendation,
+          nextStep: formValues.nextStep || guidance.nextStep,
+        });
+      }
+
       function updateRestaurantProposalPreview(section) {
         if (!section) return;
-        var values = readRestaurantProposalValues(section);
+        var values = restaurantLeadProposalPreviewValues(section);
         var info = restaurantProposalRecommendationInfo(values.recommendation);
         var explanation = section.querySelector("[data-proposal-recommendation-explanation]");
         var summary = section.querySelector("[data-proposal-summary]");
         if (explanation) explanation.textContent = info.explanation;
         if (summary) summary.innerHTML = restaurantProposalSummaryHtml(values);
+        updateRestaurantProposalGuidancePreview(section, values);
+      }
+
+      function restaurantLeadProposalGuidanceCard(label, value, wide) {
+        return (
+          '<div class="owner-dash-restaurant-proposal-guidance-card' +
+          (wide ? " owner-dash-restaurant-proposal-guidance-card--wide" : "") +
+          '"><span>' +
+          esc(label) +
+          "</span><strong data-proposal-guidance-" +
+          esc(label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")) +
+          ">" +
+          esc(value || "") +
+          "</strong></div>"
+        );
+      }
+
+      function restaurantLeadProposalGuidanceGridHtml(values) {
+        var safe = values || {};
+        return (
+          '<div class="owner-dash-restaurant-proposal-guidance" data-proposal-guidance-grid>' +
+          restaurantLeadProposalGuidanceCard("Sales priority", safe.salesPriority) +
+          restaurantLeadProposalGuidanceCard("Recommended first move", safe.recommendedFirstMove) +
+          restaurantLeadProposalGuidanceCard("Suggested offer", safe.suggestedOffer) +
+          restaurantLeadProposalGuidanceCard("Suggested package tier", safe.suggestedPackageTier) +
+          restaurantLeadProposalGuidanceCard("Suggested starting range", safe.suggestedStartingRange) +
+          restaurantLeadProposalGuidanceCard("Best first deliverable", safe.bestFirstDeliverable) +
+          restaurantLeadProposalGuidanceCard("Owner-approved next step", safe.ownerApprovedNextStep) +
+          restaurantLeadProposalGuidanceCard("Proposal direction", safe.proposalDirection || safe.recommendation) +
+          restaurantLeadProposalGuidanceCard("What to include", safe.whatToInclude, true) +
+          restaurantLeadProposalGuidanceCard("What not to overbuild first", safe.whatNotToOverbuild, true) +
+          "</div>"
+        );
+      }
+
+      function updateRestaurantProposalGuidancePreview(section, values) {
+        if (!section || !values) return;
+        var guidance = section.querySelector("[data-proposal-guidance-grid]");
+        if (!guidance) return;
+        var next = document.createElement("div");
+        next.innerHTML = restaurantLeadProposalGuidanceGridHtml(values);
+        var fresh = next.firstElementChild;
+        if (fresh) guidance.replaceWith(fresh);
+      }
+
+      function markRestaurantLeadProposalManualOverride(section) {
+        if (section) section.setAttribute("data-proposal-manual-dirty", "1");
       }
 
       function restaurantProposalCopyText(row, values) {
@@ -10173,6 +10709,10 @@
               " | first move: " +
               (research.firstMove || "Research more")
             : "Research connection: not scored yet. Use Research + Fit Score before finalizing a proposal.";
+        var applyButton =
+          values.showApplyResearchRecommendation && (research.updatedAt || research.hasScore)
+            ? '<button type="button" class="owner-dash-btn owner-dash-btn--secondary" data-action="apply-restaurant-research-recommendation">Apply research recommendation</button>'
+            : "";
         return (
           '<section class="owner-dash-detail-section owner-dash-restaurant-proposal" data-restaurant-proposal-builder>' +
           '<div class="owner-dash-restaurant-proposal-head">' +
@@ -10180,23 +10720,36 @@
           '<p class="owner-dash-detail-section-note">Internal offer recommendation tool. Nothing here is public, sent, published, invoiced, charged, or promised automatically.</p></div>' +
           '<span class="owner-dash-restaurant-followup-badge">Internal only</span>' +
           "</div>" +
+          '<div class="owner-dash-restaurant-proposal-sync" data-proposal-sync-status>' +
+          '<div class="owner-dash-restaurant-proposal-sync-row"><span>Research recommendation:</span><strong data-proposal-sync-research-label>' +
+          esc(values.researchRecommendationLabel || "Needs more discovery") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-proposal-sync-row"><span>Last research update:</span><strong data-proposal-sync-research-updated>' +
+          esc(values.researchUpdatedAt ? fmtDate(values.researchUpdatedAt) : "Not saved yet") +
+          "</strong></div>" +
+          '<div class="owner-dash-restaurant-proposal-sync-row"><span>Proposal source:</span><strong data-proposal-sync-source>' +
+          esc(values.proposalSource || "Using research recommendation") +
+          "</strong></div>" +
+          applyButton +
+          "</div>" +
           '<p class="owner-dash-restaurant-proposal-explanation">' +
           esc(researchConnection) +
           "</p>" +
           '<div class="owner-dash-restaurant-proposal-grid">' +
           '<label class="owner-dash-workflow-field owner-dash-workflow-field--wide"><span class="owner-dash-workflow-label">Offer path recommendation</span>' +
-          '<select class="owner-dash-select" name="proposal_recommendation">' +
+          '<select class="owner-dash-select" name="proposal_recommendation" data-proposal-recommendation-select>' +
           restaurantProposalSelectOptions(RESTAURANT_PROPOSAL_RECOMMENDATIONS, values.recommendation) +
           "</select></label>" +
           '<p class="owner-dash-restaurant-proposal-explanation" data-proposal-recommendation-explanation>' +
           esc(info.explanation) +
           "</p>" +
           '<label class="owner-dash-workflow-field owner-dash-workflow-field--wide"><span class="owner-dash-workflow-label">Recommended next step</span>' +
-          '<select class="owner-dash-select" name="proposal_next_step">' +
+          '<select class="owner-dash-select" name="proposal_next_step" data-proposal-next-step-select>' +
           restaurantProposalSelectOptions(RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS, values.nextStep) +
           "</select>" +
           '<span class="owner-dash-restaurant-proposal-note">Saving the proposal intentionally syncs this value to the CRM Next Action marker for this lead.</span></label>' +
           "</div>" +
+          restaurantLeadProposalGuidanceGridHtml(values) +
           '<div class="owner-dash-restaurant-proposal-reasons">' +
           RESTAURANT_PROPOSAL_FIT_REASON_GROUPS.map(function (group) {
             return restaurantProposalReasonGroupHtml(
@@ -18989,14 +19542,26 @@
 
       function buildRestaurantLeadProposalBlock(values) {
         var updatedAt = values.updatedAt || new Date().toISOString();
+        var clean = values || {};
         return [
           "Restaurant proposal recommendation:",
-          "Proposal recommendation: " + (values.recommendation || "Needs more discovery") + ".",
-          "Proposal fit reasons: " + ((values.fitReasons || []).join("; ") || "None selected") + ".",
-          "Proposal caution reasons: " + ((values.cautionReasons || []).join("; ") || "None selected") + ".",
-          "Proposal next step: " + (values.nextStep || "Send first email") + ".",
+          "Proposal recommendation: " + (clean.recommendation || "Needs more discovery") + ".",
+          "Proposal source: " + (clean.proposalSource || "Using research recommendation") + ".",
+          "Proposal sales priority: " + (clean.salesPriority || "Needs Review") + ".",
+          "Proposal recommended first move: " + (clean.recommendedFirstMove || clean.nextStep || "Research more") + ".",
+          "Proposal suggested offer: " + (clean.suggestedOffer || "Custom") + ".",
+          "Proposal suggested package tier: " + (clean.suggestedPackageTier || "Custom") + ".",
+          "Proposal suggested starting range: " + (clean.suggestedStartingRange || "No quote yet") + ".",
+          "Proposal best first deliverable: " + (clean.bestFirstDeliverable || "Research + fit review") + ".",
+          "Proposal what to include: " + restaurantLeadResearchOneLine(clean.whatToInclude || "") + ".",
+          "Proposal what not to overbuild: " + restaurantLeadResearchOneLine(clean.whatNotToOverbuild || "") + ".",
+          "Proposal owner-approved next step: " + (clean.ownerApprovedNextStep || clean.nextStep || "Research more") + ".",
+          "Proposal direction: " + (clean.proposalDirection || clean.recommendation || "Needs more discovery") + ".",
+          "Proposal fit reasons: " + ((clean.fitReasons || []).join("; ") || "None selected") + ".",
+          "Proposal caution reasons: " + ((clean.cautionReasons || []).join("; ") || "None selected") + ".",
+          "Proposal next step: " + (clean.nextStep || "Send first email") + ".",
           "Proposal updated at: " + updatedAt + ".",
-          "Proposal notes: " + restaurantProposalCompactNotes(values) + ".",
+          "Proposal notes: " + restaurantProposalCompactNotes(clean) + ".",
         ].join("\n");
       }
 
@@ -19004,12 +19569,29 @@
         var text = String(line || "").trim().toLowerCase();
         return (
           text.indexOf("proposal recommendation:") === 0 ||
+          text.indexOf("proposal source:") === 0 ||
+          text.indexOf("proposal sales priority:") === 0 ||
+          text.indexOf("proposal recommended first move:") === 0 ||
+          text.indexOf("proposal suggested offer:") === 0 ||
+          text.indexOf("proposal suggested package tier:") === 0 ||
+          text.indexOf("proposal suggested starting range:") === 0 ||
+          text.indexOf("proposal best first deliverable:") === 0 ||
+          text.indexOf("proposal what to include:") === 0 ||
+          text.indexOf("proposal what not to overbuild:") === 0 ||
+          text.indexOf("proposal owner-approved next step:") === 0 ||
+          text.indexOf("proposal direction:") === 0 ||
           text.indexOf("proposal fit reasons:") === 0 ||
           text.indexOf("proposal caution reasons:") === 0 ||
           text.indexOf("proposal next step:") === 0 ||
           text.indexOf("proposal updated at:") === 0 ||
           text.indexOf("proposal notes:") === 0
         );
+      }
+
+      function applyRestaurantLeadResearchToProposalNotes(existingNotes, row, updatedAt) {
+        var proposalValues = restaurantLeadProposalFromResearch(row);
+        proposalValues.updatedAt = updatedAt || proposalValues.updatedAt;
+        return upsertRestaurantLeadProposalBlock(existingNotes, proposalValues);
       }
 
       function upsertRestaurantLeadProposalBlock(existing, values) {
@@ -24913,6 +25495,13 @@
         values.updatedAt = new Date().toISOString();
         var previousNotes = String(before.row.owner_notes || "");
         var nextNotes = upsertRestaurantLeadResearchFitScoreBlock(previousNotes, values);
+        var hadManualOverride = restaurantLeadProposalHasManualOverride(before.row);
+        var autoAppliedProposal = false;
+        if (!hadManualOverride) {
+          var tempRow = Object.assign({}, before.row, { owner_notes: nextNotes });
+          nextNotes = applyRestaurantLeadResearchToProposalNotes(nextNotes, tempRow, values.updatedAt);
+          autoAppliedProposal = true;
+        }
         var buttons = section.querySelectorAll("button, input, select, textarea");
         var originalLabel = btn ? btn.textContent : "";
         buttons.forEach(function (button) {
@@ -24934,13 +25523,18 @@
             applyRecordUpdate("restaurant_leads", id, result.data.record);
             if (String(result.data.record.owner_notes || "") !== previousNotes) {
               addClientActivity("restaurant_leads", id, "Restaurant research score saved", "ok");
+              if (autoAppliedProposal) {
+                addClientActivity("restaurant_leads", id, "Restaurant proposal recommendation synced from research", "ok");
+              }
             }
             renderAll();
             var fresh = els.detailBody && els.detailBody.querySelector("[data-restaurant-research-fit]");
             setRestaurantResearchScoreFeedback(
               fresh || section,
               "success",
-              "Research score saved. Proposal Builder defaults can now use this result; CRM fields were not overwritten."
+              autoAppliedProposal
+                ? "Research score saved and Proposal Builder updated from the saved research result. CRM fields were not overwritten."
+                : "Research score saved. Proposal Builder is on manual override — use Apply research recommendation if you want to sync it. CRM fields were not overwritten."
             );
             refreshCounts();
           })
@@ -24955,6 +25549,58 @@
           });
       }
 
+      function handleApplyRestaurantResearchRecommendation(sheet, btn) {
+        if (!sheet) return;
+        var id = sheet.getAttribute("data-detail-id");
+        var section = sheet.querySelector("[data-restaurant-proposal-builder]");
+        if (!id || !section) return;
+        var before = findRecord("restaurant_leads", id);
+        if (!before) return;
+        var now = new Date().toISOString();
+        var previousNotes = String(before.row.owner_notes || "");
+        var nextNotes = applyRestaurantLeadResearchToProposalNotes(previousNotes, before.row, now);
+        var buttons = section.querySelectorAll("[data-action]");
+        var originalLabel = btn ? btn.textContent : "";
+        buttons.forEach(function (button) {
+          button.disabled = true;
+        });
+        if (btn) btn.textContent = "Applying...";
+        setRestaurantProposalFeedback(section, "success", "Applying research recommendation...");
+
+        postUpdate("restaurant_leads", id, { owner_notes: nextNotes })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setRestaurantProposalFeedback(
+                section,
+                "error",
+                (result.data && result.data.error) || "Could not apply research recommendation. Try again."
+              );
+              return;
+            }
+            applyRecordUpdate("restaurant_leads", id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity("restaurant_leads", id, "Restaurant proposal recommendation synced from research", "ok");
+            }
+            renderAll();
+            var fresh = els.detailBody && els.detailBody.querySelector("[data-restaurant-proposal-builder]");
+            setRestaurantProposalFeedback(
+              fresh || section,
+              "success",
+              "Research recommendation applied to Proposal Builder. CRM fields were not overwritten."
+            );
+            refreshCounts();
+          })
+          .catch(function () {
+            setRestaurantProposalFeedback(section, "error", "Network error. Try again.");
+          })
+          .finally(function () {
+            buttons.forEach(function (button) {
+              button.disabled = false;
+            });
+            if (btn) btn.textContent = originalLabel || "Apply research recommendation";
+          });
+      }
+
       function handleRestaurantProposalSave(sheet, btn) {
         if (!sheet) return;
         var id = sheet.getAttribute("data-detail-id");
@@ -24964,9 +25610,11 @@
         var before = findRecord("restaurant_leads", id);
         if (!before) return;
         var mode = (btn && btn.getAttribute("data-save-mode")) || "proposal";
-        var values = readRestaurantProposalValues(section);
+        var values = restaurantLeadProposalPreviewValues(section);
         var now = new Date().toISOString();
         values.updatedAt = now;
+        values.proposalSource = "Manual override";
+        values.notes = restaurantLeadProposalValue(before.row, "Proposal notes:", "");
         var previousStatus = displayStatus(before.row.status);
         var previousNotes = String(before.row.owner_notes || "");
         var nextNotes = upsertRestaurantLeadProposalBlock(previousNotes, values);
@@ -25709,6 +26357,11 @@
             return;
           }
 
+          if (sheet && action === "apply-restaurant-research-recommendation") {
+            handleApplyRestaurantResearchRecommendation(sheet, btn);
+            return;
+          }
+
           if (sheet && action === "save-restaurant-proposal-recommendation") {
             handleRestaurantProposalSave(sheet, btn);
             return;
@@ -25750,7 +26403,18 @@
           var researchSection = ev.target && ev.target.closest("[data-restaurant-research-fit]");
           if (researchSection) updateRestaurantLeadResearchPreview(researchSection, ev.target);
           var section = ev.target && ev.target.closest("[data-restaurant-proposal-builder]");
-          if (section) updateRestaurantProposalPreview(section);
+          if (section) {
+            if (
+              ev.target &&
+              (ev.target.name === "proposal_recommendation" ||
+                ev.target.name === "proposal_next_step" ||
+                ev.target.name === "proposal_fit_reasons" ||
+                ev.target.name === "proposal_caution_reasons")
+            ) {
+              markRestaurantLeadProposalManualOverride(section);
+            }
+            updateRestaurantProposalPreview(section);
+          }
           var packageSection = ev.target && ev.target.closest("[data-restaurant-proposal-package]");
           if (packageSection && ev.target && ev.target.name === "package_type") {
             resetRestaurantPackageDefaults(packageSection);
