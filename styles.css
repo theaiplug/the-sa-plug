@@ -15854,6 +15854,61 @@ body.owner-dash-detail-open {
   --rest-turq-glow: rgba(20, 184, 166, 0.28);
 }
 
+.page-restaurants :where(
+  h1,
+  h2,
+  h3,
+  p,
+  li,
+  a,
+  button,
+  label,
+  legend,
+  span,
+  strong,
+  .btn,
+  .hero-cue,
+  .section-text,
+  .rest-path-copy,
+  .rest-benefit-list li,
+  .rest-proof-card p,
+  .rest-interest-check,
+  .rest-consent-note
+) {
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
+
+.page-restaurants :where(
+  p,
+  li,
+  .hero-text,
+  .section-text,
+  .rest-path-copy,
+  .rest-benefit-list li,
+  .rest-proof-card p,
+  .rest-question-list li,
+  .rest-interest-check,
+  .rest-consent-note
+) {
+  letter-spacing: normal;
+}
+
+.page-restaurants :where(
+  .eyebrow,
+  .eyebrow-hero,
+  .rest-path-label,
+  .transport-intake-section__heading,
+  .business-operator-check-legend,
+  .rest-guardrail-title
+) {
+  overflow-wrap: normal;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
+
 .page-restaurants .restaurants-main > .section {
   padding-top: clamp(34px, 4vw, 48px);
   padding-bottom: clamp(34px, 4vw, 48px);
@@ -15901,11 +15956,25 @@ body.owner-dash-detail-open {
 }
 
 .page-restaurants .rest-hero-lead {
-  max-width: 38rem;
+  max-width: 36rem;
 }
 
 .page-restaurants .rest-hero-cues {
   margin-top: clamp(4px, 0.8vw, 8px);
+  align-items: stretch;
+}
+
+.page-restaurants .rest-hero-cues .hero-cue {
+  align-items: center;
+  min-width: 0;
+  min-height: 3.25rem;
+  padding: 12px 14px;
+}
+
+.page-restaurants .rest-hero-cues .hero-cue strong {
+  min-width: 0;
+  line-height: 1.25;
+  letter-spacing: normal;
 }
 
 .page-restaurants .rest-hero-cue span {
@@ -15974,13 +16043,13 @@ body.owner-dash-detail-open {
 .page-restaurants .rest-question-list li {
   position: relative;
   margin: 0;
-  padding: 16px 38px 16px 22px;
-  min-height: 4.25rem;
+  padding: 14px 38px 14px 20px;
+  min-height: 3.9rem;
+  min-width: 0;
   border-radius: calc(var(--radius) - 4px);
   font-size: clamp(0.9rem, 0.2vw + 0.86rem, 0.96rem);
   font-weight: 650;
   line-height: 1.45;
-  letter-spacing: -0.01em;
   color: var(--navy);
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(11, 29, 58, 0.09);
@@ -15988,6 +16057,7 @@ body.owner-dash-detail-open {
   overflow: hidden;
   display: flex;
   align-items: center;
+  cursor: default;
 }
 
 .page-restaurants .rest-question-list li::before {
@@ -16027,6 +16097,8 @@ body.owner-dash-detail-open {
   position: absolute;
   right: 14px;
   top: 50%;
+  width: 1.35rem;
+  text-align: center;
   transform: translateY(-50%);
   font-size: 1.15rem;
   font-weight: 800;
@@ -16058,7 +16130,8 @@ body.owner-dash-detail-open {
   display: flex;
   flex-direction: column;
   gap: clamp(8px, 1.2vw, 12px);
-  padding: clamp(20px, 2.4vw, 26px);
+  min-width: 0;
+  padding: clamp(18px, 2.2vw, 24px);
   border-radius: calc(var(--radius) - 2px);
   background: rgba(255, 246, 230, 0.07);
   border: 1px solid rgba(255, 246, 230, 0.16);
@@ -16068,8 +16141,9 @@ body.owner-dash-detail-open {
 
 .page-restaurants .rest-path-card-head {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
+  min-width: 0;
 }
 
 .page-restaurants .rest-path-icon {
@@ -16134,6 +16208,7 @@ body.owner-dash-detail-open {
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.12em;
+  line-height: 1.25;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -16161,9 +16236,12 @@ body.owner-dash-detail-open {
 .page-restaurants .rest-path-cta {
   align-self: stretch;
   margin-top: auto;
-  padding-top: clamp(10px, 1.4vw, 14px);
+  min-height: 48px;
+  padding: 12px 16px;
   text-align: center;
   white-space: normal;
+  align-items: center;
+  justify-content: center;
 }
 
 .page-restaurants .rest-path-cta--partner {
@@ -16228,6 +16306,7 @@ body.owner-dash-detail-open {
   position: relative;
   margin: 0;
   padding-left: 1.35rem;
+  min-width: 0;
   font-size: 0.92rem;
   line-height: 1.5;
   color: rgba(11, 29, 58, 0.88);
@@ -16353,6 +16432,7 @@ body.owner-dash-detail-open {
 
 .page-restaurants .rest-proof-card {
   position: relative;
+  min-width: 0;
   padding: clamp(16px, 2vw, 20px) clamp(16px, 2vw, 20px) clamp(16px, 2vw, 20px) clamp(18px, 2.2vw, 22px);
   border-radius: calc(var(--radius) - 4px);
   background: rgba(255, 255, 255, 0.88);
@@ -16402,6 +16482,7 @@ body.owner-dash-detail-open {
 
 .page-restaurants .rest-form-inner {
   max-width: 44rem;
+  gap: clamp(12px, 1.8vw, 18px);
 }
 
 .page-restaurants .rest-form-lead {
@@ -16409,7 +16490,8 @@ body.owner-dash-detail-open {
 }
 
 .page-restaurants .rest-form-shell {
-  margin-top: clamp(18px, 2.6vw, 24px);
+  width: 100%;
+  margin-top: 0;
   padding: clamp(18px, 2.4vw, 24px) clamp(18px, 2.4vw, 24px) clamp(20px, 2.8vw, 26px);
   border-radius: calc(var(--radius) + 2px);
   background: rgba(255, 253, 248, 0.96);
@@ -16422,6 +16504,7 @@ body.owner-dash-detail-open {
   display: flex;
   flex-direction: column;
   gap: 7px;
+  min-width: 0;
 }
 
 .page-restaurants .rest-intake-form .transport-field span {
@@ -16436,8 +16519,11 @@ body.owner-dash-detail-open {
 .page-restaurants .rest-intake-form select,
 .page-restaurants .rest-intake-form textarea {
   font: inherit;
-  padding: 12px 14px;
-  min-height: 48px;
+  width: 100%;
+  max-width: 100%;
+  padding: 11px 13px;
+  min-height: 46px;
+  line-height: 1.35;
   border-radius: 10px;
   border: 1px solid rgba(11, 29, 58, 0.18);
   background: #fffefb;
@@ -16446,7 +16532,7 @@ body.owner-dash-detail-open {
 
 .page-restaurants .rest-intake-form textarea {
   resize: vertical;
-  min-height: 5.25rem;
+  min-height: 4.9rem;
   line-height: 1.5;
 }
 
@@ -16454,6 +16540,7 @@ body.owner-dash-detail-open {
   display: grid;
   gap: clamp(14px, 1.8vw, 16px) clamp(14px, 2vw, 18px);
   grid-template-columns: 1fr 1fr;
+  min-width: 0;
 }
 
 .page-restaurants .rest-intake-form .transport-intake-section {
@@ -16535,7 +16622,8 @@ body.owner-dash-detail-open {
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 12px;
-  padding: 4px 0;
+  padding: 5px 0;
+  min-width: 0;
   font-size: 0.92rem;
   line-height: 1.48;
   color: rgba(11, 29, 58, 0.9);
@@ -16555,18 +16643,19 @@ body.owner-dash-detail-open {
 }
 
 .page-restaurants .rest-intake-form .rest-consent-note {
-  margin: clamp(18px, 2.4vw, 22px) 0 clamp(14px, 1.8vw, 16px);
-  padding: 12px 14px;
+  margin: clamp(14px, 2vw, 18px) 0 clamp(12px, 1.6vw, 14px);
+  padding: 11px 13px;
   max-width: 100%;
-  font-size: clamp(0.85rem, 2.5vw, 0.93rem);
+  font-size: clamp(0.84rem, 2.35vw, 0.9rem);
   line-height: 1.45;
   font-weight: 600;
   color: #0b1d3a;
   opacity: 1;
-  background: #ffffff;
+  background: rgba(11, 29, 58, 0.04);
   border-radius: 10px;
   border: 1px solid rgba(11, 29, 58, 0.16);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-left: 3px solid rgba(20, 184, 166, 0.58);
+  box-shadow: none;
 }
 
 .page-restaurants .rest-form-submit {
@@ -16600,11 +16689,18 @@ body.owner-dash-detail-open {
 
 @media (max-width: 640px) {
   .page-restaurants .rest-form-shell {
-    padding: 18px 16px 24px;
+    padding: 16px 14px 24px;
   }
 
   .page-restaurants .rest-intake-form .transport-intake-section {
-    padding: 16px 14px 18px;
+    padding: 15px 13px 17px;
+  }
+
+  .page-restaurants .rest-intake-form input,
+  .page-restaurants .rest-intake-form select,
+  .page-restaurants .rest-intake-form textarea {
+    min-height: 44px;
+    padding: 10px 12px;
   }
 
   .page-restaurants .rest-intake-form .transport-field span,
@@ -16614,17 +16710,17 @@ body.owner-dash-detail-open {
 
   .page-restaurants .rest-interest-check {
     font-size: 0.93rem;
-    padding: 6px 0;
+    padding: 5px 0;
     gap: 12px;
   }
 
   .page-restaurants .rest-intake-form .rest-consent-note {
-    font-size: 0.9rem;
+    font-size: 0.86rem;
     font-weight: 600;
     line-height: 1.45;
     color: #0b1d3a;
-    background: #ffffff;
-    padding: 12px 14px;
+    background: rgba(11, 29, 58, 0.04);
+    padding: 10px 12px;
     border-color: rgba(11, 29, 58, 0.16);
   }
 
@@ -16668,7 +16764,8 @@ body.owner-dash-detail-open {
   }
 
   .page-restaurants .rest-hero-cues .hero-cue {
-    font-size: 0.88rem;
+    min-height: 3rem;
+    font-size: 0.9rem;
   }
 
   .page-restaurants .rest-path-cta {
@@ -16681,14 +16778,14 @@ body.owner-dash-detail-open {
   }
 }
 
-@media (min-width: 360px) and (max-width: 439px) {
+@media (max-width: 520px) {
   .page-restaurants .rest-hero-cues {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 9px;
   }
 
   .page-restaurants .rest-hero-cues .hero-cue:last-child {
-    grid-column: 1 / -1;
+    grid-column: auto;
   }
 }
 
@@ -16702,7 +16799,7 @@ body.owner-dash-detail-open {
   }
 
   .page-restaurants .rest-intake-form .rest-consent-note {
-    font-size: 0.875rem;
+    font-size: 0.84rem;
   }
 
   .page-restaurants .rest-question-list li::after {
