@@ -3937,6 +3937,214 @@
       }
     }
 
+    /* Owner Dashboard v33 - mobile-first command navigation and section collapse layer */
+    .page-owner-dashboard #owner-dash-content:not([hidden]) {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-mobile-command {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: grid;
+      gap: 10px;
+      margin: 0 0 14px;
+      padding: 12px;
+      border: 1px solid rgba(94, 234, 212, 0.32);
+      border-radius: 18px;
+      background:
+        linear-gradient(145deg, rgba(4, 10, 22, 0.98), rgba(7, 18, 38, 0.94)),
+        rgba(4, 10, 22, 0.96);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.25);
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-mobile-command-head {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-mobile-command h2 {
+      margin: 0;
+      color: #c8fff5;
+      font-size: clamp(1.02rem, 3vw, 1.24rem);
+      line-height: 1.15;
+    }
+
+    .page-owner-dashboard .owner-dash-mobile-command p {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.7);
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-mode,
+    .page-owner-dashboard .owner-dash-dashboard-jumps,
+    .page-owner-dashboard .owner-dash-dashboard-filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-mode-label,
+    .page-owner-dashboard .owner-dash-dashboard-filter-label {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.78);
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.025em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-mode-btn,
+    .page-owner-dashboard .owner-dash-dashboard-jump,
+    .page-owner-dashboard .owner-dash-dashboard-filter-chip,
+    .page-owner-dashboard .owner-dash-mobile-collapse-toggle {
+      appearance: none;
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 246, 230, 0.9);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 850;
+      line-height: 1.25;
+      padding: 8px 11px;
+      text-align: center;
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-mode-btn {
+      min-height: 40px;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-mode-btn.is-active {
+      border-color: rgba(94, 234, 212, 0.58);
+      background: rgba(20, 184, 166, 0.18);
+      color: #c8fff5;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-jump,
+    .page-owner-dashboard .owner-dash-dashboard-filter-chip {
+      border-color: rgba(255, 139, 31, 0.26);
+      background: rgba(255, 139, 31, 0.1);
+      color: #ffe4c4;
+    }
+
+    .page-owner-dashboard .owner-dash-search-filter-quick {
+      display: grid;
+      gap: 8px;
+      padding-top: 2px;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-mode-btn:focus-visible,
+    .page-owner-dashboard .owner-dash-dashboard-jump:focus-visible,
+    .page-owner-dashboard .owner-dash-dashboard-filter-chip:focus-visible,
+    .page-owner-dashboard .owner-dash-mobile-collapse-toggle:focus-visible {
+      outline: 2px solid rgba(255, 139, 31, 0.66);
+      outline-offset: 2px;
+    }
+
+    .page-owner-dashboard .owner-dash-mobile-collapse-toggle {
+      display: none;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 0 9px;
+      border-radius: 14px;
+      border-color: rgba(94, 234, 212, 0.28);
+      background: rgba(20, 184, 166, 0.1);
+      color: #c8fff5;
+      text-align: left;
+    }
+
+    .page-owner-dashboard .owner-dash-mobile-collapse-toggle-count {
+      color: #ffe4c4;
+      white-space: nowrap;
+    }
+
+    .page-owner-dashboard .owner-dash-view-command :is(.owner-dash-restaurant-create-subtitle, .owner-dash-restaurant-create-guardrail, .owner-dash-export-subtitle, .owner-dash-restaurant-rep-guardrail-note) {
+      display: none;
+    }
+
+    .page-owner-dashboard .owner-dash-mobile-command { order: 0; }
+    .page-owner-dashboard .owner-dash-dashboard-controls { scroll-margin-top: 132px; }
+    .page-owner-dashboard .owner-dash-tabs { scroll-margin-top: 132px; }
+    .page-owner-dashboard .owner-dash-panel { scroll-margin-top: 132px; }
+    .page-owner-dashboard #owner-dash-export-crm { scroll-margin-top: 132px; }
+    .page-owner-dashboard .owner-dash-view-command #owner-dash-daily-brief { order: 1; }
+    .page-owner-dashboard .owner-dash-view-command #owner-dash-today-actions { order: 2; }
+    .page-owner-dashboard .owner-dash-view-command .owner-dash-filters { order: 3; }
+    .page-owner-dashboard .owner-dash-view-command .owner-dash-dashboard-controls { order: 3; }
+    .page-owner-dashboard .owner-dash-view-command .owner-dash-tabs { order: 4; }
+    .page-owner-dashboard .owner-dash-view-command .owner-dash-panel { order: 5; }
+    .page-owner-dashboard .owner-dash-view-command .owner-dash-summary { order: 7; }
+    .page-owner-dashboard .owner-dash-view-command #owner-dash-restaurant-rep-daily-queue { order: 8; }
+    .page-owner-dashboard .owner-dash-view-command #owner-dash-export-crm { order: 9; }
+
+    @media (max-width: 640px) {
+      .page-owner-dashboard .owner-dash-mobile-command {
+        margin-left: -2px;
+        margin-right: -2px;
+      }
+
+      .page-owner-dashboard .owner-dash-dashboard-mode,
+      .page-owner-dashboard .owner-dash-dashboard-jumps,
+      .page-owner-dashboard .owner-dash-dashboard-filter-chips {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .page-owner-dashboard :is(.owner-dash-dashboard-mode-btn, .owner-dash-dashboard-jump, .owner-dash-dashboard-filter-chip) {
+        width: 100%;
+        min-height: 44px;
+        letter-spacing: 0.01em;
+      }
+
+      .page-owner-dashboard .owner-dash-mobile-collapse-toggle {
+        display: flex;
+        min-height: 44px;
+      }
+
+      .page-owner-dashboard .owner-dash-mobile-collapsible {
+        scroll-margin-top: 132px;
+      }
+
+      .page-owner-dashboard .owner-dash-mobile-collapsible.is-collapsed > :not(.owner-dash-mobile-collapse-toggle) {
+        display: none !important;
+      }
+
+      .page-owner-dashboard :is(
+        .owner-dash-pill,
+        .owner-dash-badge,
+        .owner-dash-stat-label,
+        .owner-dash-detail-label,
+        .owner-dash-field dt,
+        .owner-dash-control-label,
+        .owner-dash-dashboard-mode-label,
+        .owner-dash-dashboard-filter-label,
+        .owner-dash-command-nav-label
+      ) {
+        letter-spacing: 0.015em;
+      }
+
+      .page-owner-dashboard :is(.owner-dash-stat, .owner-dash-brief-card, .owner-dash-restaurant-card-meta, .owner-dash-detail-grid) {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* Owner Dashboard v32 - mobile command sheet navigation */
     .page-owner-dashboard .owner-dash-command-sheet,
     .page-owner-dashboard .owner-dash-command-sheet * {
@@ -4109,6 +4317,42 @@
     </div>
 
     <div id="owner-dash-content" hidden>
+      <section id="owner-dash-mobile-command" class="owner-dash-mobile-command owner-dash-glass" aria-labelledby="owner-dash-mobile-command-heading">
+        <div class="owner-dash-mobile-command-head">
+          <p class="eyebrow eyebrow-on-dark">MOBILE COMMAND</p>
+          <h2 id="owner-dash-mobile-command-heading">Dashboard Jump Menu</h2>
+          <p>Jump to the operating section you need, or switch back to the full training/reference dashboard.</p>
+        </div>
+        <p class="owner-dash-dashboard-mode-label">Dashboard View</p>
+        <div class="owner-dash-dashboard-mode" role="group" aria-label="Dashboard View">
+          <button type="button" class="owner-dash-dashboard-mode-btn" data-action="dashboard-view-mode" data-dashboard-mode="command" aria-pressed="false">Command View</button>
+          <button type="button" class="owner-dash-dashboard-mode-btn" data-action="dashboard-view-mode" data-dashboard-mode="full" aria-pressed="false">Full System View</button>
+        </div>
+        <div class="owner-dash-dashboard-jumps" aria-label="Dashboard jump menu">
+          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="brief">Brief</button>
+          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="today">Today</button>
+          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="ai-leads">AI Leads</button>
+          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="restaurants">Restaurants</button>
+          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="clients">Clients</button>
+          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="transportation">Transportation</button>
+          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="export">Export</button>
+          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="search">Search</button>
+          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="tools">Tools</button>
+        </div>
+        <div class="owner-dash-search-filter-quick" aria-label="Search and filter leads shortcuts">
+          <p class="owner-dash-dashboard-filter-label">Search / Filter Leads</p>
+          <div class="owner-dash-dashboard-filter-chips">
+            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="focus-search">Search field</button>
+            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="new">New</button>
+            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="follow-up">Follow-up</button>
+            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="proposal-ready">Proposal ready</button>
+            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="restaurant">Restaurant</button>
+            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="client">Client</button>
+            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="transportation">Transportation</button>
+            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="hot">Hot / High priority</button>
+          </div>
+        </div>
+      </section>
       <section id="owner-dash-daily-brief" class="owner-dash-daily-brief owner-dash-glass" aria-labelledby="owner-dash-daily-brief-heading">
         <div class="owner-dash-daily-brief-head">
           <div>
@@ -4329,7 +4573,7 @@
         <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: lost">Rep: lost</button>
       </div>
 
-      <section class="owner-dash-dashboard-controls owner-dash-glass" aria-label="Dashboard search and sort controls">
+      <section id="owner-dash-dashboard-controls" class="owner-dash-dashboard-controls owner-dash-glass" aria-label="Dashboard search and sort controls">
         <div class="owner-dash-search-row">
           <label class="owner-dash-search-field" for="owner-dash-search">
             <span class="owner-dash-control-label">Search dashboard</span>
@@ -6029,6 +6273,10 @@
         proposalSelections: {},
         clientProposalTones: {},
         commandSheetViewModes: {},
+        dashboardViewMode: null,
+        dashboardCollapseReady: false,
+        dashboardCollapsedSections: {},
+        dashboardCollapseTouched: {},
         lastLoadedAt: null,
         exportMode: "visible",
       };
@@ -6077,6 +6325,8 @@
         searchInput: document.getElementById("owner-dash-search"),
         clearSearchBtn: document.getElementById("owner-dash-clear-search"),
         sortSelect: document.getElementById("owner-dash-sort"),
+        dashboardCommand: document.getElementById("owner-dash-mobile-command"),
+        dashboardControls: document.getElementById("owner-dash-dashboard-controls"),
         priorityNote: document.getElementById("owner-dash-priority-note"),
         loadedRowNote: document.getElementById("owner-dash-loaded-row-note"),
         copyVisibleBtn: document.getElementById("owner-dash-copy-visible"),
@@ -19250,17 +19500,20 @@
 
       var BUSINESS_COMMAND_NAV_ITEMS = [
         { key: "snapshot", label: "Snapshot" },
-        { key: "sales", label: "Sales" },
+        { key: "notes", label: "Notes" },
+        { key: "opportunity", label: "Opportunity" },
+        { key: "deal", label: "Deal" },
         { key: "proposal", label: "Proposal" },
         { key: "follow-up", label: "Follow-Up" },
         { key: "close", label: "Close" },
         { key: "delivery", label: "Delivery" },
         { key: "support", label: "Support" },
-        { key: "copy-tools", label: "Copy Tools" },
+        { key: "copy-tools", label: "Copy" },
       ];
 
       var RESTAURANT_COMMAND_NAV_ITEMS = [
         { key: "snapshot", label: "Snapshot" },
+        { key: "notes", label: "Notes" },
         { key: "research", label: "Research" },
         { key: "sales", label: "Sales" },
         { key: "proposal", label: "Proposal" },
@@ -19268,17 +19521,19 @@
         { key: "close", label: "Close" },
         { key: "delivery", label: "Delivery" },
         { key: "support", label: "Support" },
-        { key: "copy-tools", label: "Copy Tools" },
+        { key: "copy-tools", label: "Copy" },
       ];
 
       var RESTAURANT_LEAD_COMMAND_NAV_ITEMS = [
         { key: "snapshot", label: "Snapshot" },
+        { key: "notes", label: "Notes" },
         { key: "research", label: "Research" },
         { key: "sales", label: "Sales" },
         { key: "proposal", label: "Proposal" },
         { key: "follow-up", label: "Follow-Up" },
         { key: "close", label: "Close" },
-        { key: "copy-tools", label: "Copy Tools" },
+        { key: "support", label: "Support" },
+        { key: "copy-tools", label: "Copy" },
       ];
 
       function commandSheetKey(table, id) {
@@ -19348,7 +19603,7 @@
         }).join("");
         return (
           '<nav class="owner-dash-command-nav" aria-label="Command sheet quick navigation">' +
-          '<p class="owner-dash-command-nav-label">Mobile command sheet view</p>' +
+          '<p class="owner-dash-command-nav-label">Detail View</p>' +
           '<div class="owner-dash-command-mode" role="group" aria-label="View mode">' +
           modeButtons +
           "</div>" +
@@ -19402,8 +19657,10 @@
           buttons +=
             commandQuickCopyButton("copy-restaurant", "restaurant-first-outreach", "Copy first outreach", true) +
             commandQuickCopyButton("copy-restaurant", "restaurant-warm-follow-up", "Copy warm follow-up", false) +
-            commandQuickCopyButton("copy-restaurant", "restaurant-proposal-summary", "Copy proposal summary", false) +
-            commandQuickCopyButton("copy-restaurant", "restaurant-full-sales-bundle", "Copy full sales bundle", false);
+            commandQuickCopyButton("copy-restaurant", "restaurant-discovery-questions", "Copy discovery questions", false) +
+            commandQuickCopyButton("copy-restaurant", "restaurant-short-text-proposal", "Copy short proposal", false) +
+            commandQuickCopyButton("copy-restaurant", "restaurant-objection-response", "Copy objection response", false) +
+            commandQuickCopyButton("copy-restaurant", "restaurant-close-message", "Copy close message", false);
         } else {
           buttons +=
             commandQuickCopyButton("copy-followup", "sms-followup", "Copy SMS follow-up", false) +
@@ -19654,7 +19911,8 @@
             nextActionHtml(restaurantLeadNextAction(row) || (restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review restaurant lead status and notes.")) +
               restaurantLeadCrmSummaryBlock(row)
           ) +
-          commandSection("sales", "", restaurantLeadCrmEditorBlock(row)) +
+          commandSection("notes", "", restaurantLeadCrmEditorBlock(row)) +
+          commandSection("sales", "full", restaurantLeadCrmSummaryBlock(row)) +
           commandSection("copy-tools", "quick-only", restaurantLeadQuickCopyBlock(row)) +
           commandSection("research", "full", restaurantLeadResearchFitBlock(row)) +
           commandSection(
@@ -19702,9 +19960,9 @@
           commandSection("snapshot", "", nextActionHtml(nextAction)) +
           commandSection("snapshot", "quick-only", businessCommandSnapshotBlock(lead, priority, nextAction)) +
           commandSection("copy-tools", "quick-only", businessCommandQuickCopyBlock(lead)) +
-          commandSection("sales", "full", opportunityBuilderBlock(lead)) +
+          commandSection("opportunity", "full", opportunityBuilderBlock(lead)) +
           (restaurant ? restaurantSalesCommandBlock(lead) : "") +
-          commandSection("sales", "full", dealBuilderBlock(lead) + dealStageTrackerBlock(lead)) +
+          commandSection("deal", "full", dealBuilderBlock(lead) + dealStageTrackerBlock(lead)) +
           commandSection(
             "proposal",
             "full",
@@ -19716,7 +19974,7 @@
           commandSection("support", "full", clientSupportRetentionCommandBlock(lead)) +
           commandSection("copy-tools", "full", groupedToolsBlock("business_leads")) +
           commandSection("close", "", quickStatusBlock("business_leads", lead.status)) +
-          commandSection("sales", "", workflowBlock("business_leads", lead)) +
+          commandSection("notes", "", workflowBlock("business_leads", lead)) +
           commandSection("support", "full", activityTimelineBlock("business_leads", lead)) +
           commandSection("snapshot", "full", businessLeadDetailsBlock(lead) + businessAiTranscriptBlock(lead)) +
           "</div>"
@@ -23569,6 +23827,217 @@
           panel.hidden = !showPanel;
         });
         updatePriorityNote();
+        syncDashboardSectionCollapses();
+      }
+
+      function setActiveDashboardPanel(panelId) {
+        if (!panelId) return;
+        var tabs = document.querySelectorAll(".owner-dash-tab");
+        var panels = document.querySelectorAll(".owner-dash-panel");
+        tabs.forEach(function (tab) {
+          var active = tab.getAttribute("data-panel") === panelId;
+          tab.classList.toggle("is-active", active);
+          tab.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        panels.forEach(function (panel) {
+          var showPanel = panel.id === panelId;
+          panel.classList.toggle("is-active", showPanel);
+          panel.hidden = !showPanel;
+        });
+        updatePriorityNote();
+      }
+
+      function isMobileDashboardDefault() {
+        return typeof window !== "undefined" &&
+          window.matchMedia &&
+          window.matchMedia("(max-width: 640px)").matches;
+      }
+
+      function currentDashboardViewMode() {
+        return state.dashboardViewMode || (isMobileDashboardDefault() ? "command" : "full");
+      }
+
+      function setDashboardViewMode(mode) {
+        var nextMode = mode === "full" ? "full" : "command";
+        state.dashboardViewMode = nextMode;
+        if (els.content) {
+          els.content.classList.toggle("owner-dash-view-command", nextMode === "command");
+          els.content.classList.toggle("owner-dash-view-full", nextMode === "full");
+          els.content.setAttribute("data-dashboard-view", nextMode);
+        }
+        document.querySelectorAll("[data-action='dashboard-view-mode']").forEach(function (btn) {
+          var active = btn.getAttribute("data-dashboard-mode") === nextMode;
+          btn.classList.toggle("is-active", active);
+          btn.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+        syncDashboardSectionCollapses();
+      }
+
+      function dashboardSectionConfigs() {
+        return [
+          { key: "brief", selector: "#owner-dash-daily-brief", label: "Owner Daily Brief", defaultOpen: true },
+          { key: "today", selector: "#owner-dash-today-actions", label: "Today’s Actions", count: function () {
+            var counts = todayActionCounts();
+            return Object.keys(counts).reduce(function (sum, key) { return sum + (counts[key] || 0); }, 0);
+          }, defaultOpen: true },
+          { key: "search", selector: "#owner-dash-dashboard-controls", label: "Search / Filters", defaultOpen: true },
+          { key: "ai-leads", selector: "#panel-business", label: "AI Plug Leads", count: function () { return state.businessLeads.length; }, defaultOpen: true },
+          { key: "restaurant-leads", selector: "#panel-restaurant-leads", label: "Restaurant Leads", count: function () { return state.restaurantLeads.length; }, defaultOpen: false },
+          { key: "restaurants", selector: "#panel-restaurant-prospects", label: "Restaurant Prospects", count: function () { return restaurantProspectRows().length; }, defaultOpen: false },
+          { key: "clients", selector: "#panel-restaurant-clients", label: "Restaurant Clients", count: function () { return restaurantClientRows().length; }, defaultOpen: false },
+          { key: "transportation", selector: "#panel-transport", label: "Transportation Requests", count: function () { return state.transportRows.length; }, defaultOpen: false },
+          { key: "summary", selector: ".owner-dash-summary", label: "Summary Counts", defaultOpen: false },
+          { key: "restaurant-rep", selector: "#owner-dash-restaurant-rep-daily-queue", label: "Restaurant Rep Daily Queue", count: function () { return restaurantProspectRows().length; }, defaultOpen: false },
+          { key: "restaurant-create", selector: ".owner-dash-restaurant-create", label: "Add Restaurant Prospect", defaultOpen: false },
+          { key: "first50", selector: ".owner-dash-restaurant-first50", label: "First 50 Restaurant List", count: function () { return first50RestaurantRows().length; }, defaultOpen: false },
+          { key: "export", selector: "#owner-dash-export-crm", label: "Export / CRM Summary", defaultOpen: false },
+        ];
+      }
+
+      function dashboardCollapseLabel(config) {
+        var count = typeof config.count === "function" ? config.count() : null;
+        return {
+          label: config.label,
+          countLabel: Number.isFinite(count) ? String(count) : "",
+        };
+      }
+
+      function setupDashboardSectionCollapses() {
+        dashboardSectionConfigs().forEach(function (config) {
+          var el = document.querySelector(config.selector);
+          if (!el || el.getAttribute("data-dashboard-collapse-key")) return;
+          el.classList.add("owner-dash-mobile-collapsible");
+          el.setAttribute("data-dashboard-collapse-key", config.key);
+          var button = document.createElement("button");
+          button.type = "button";
+          button.className = "owner-dash-mobile-collapse-toggle";
+          button.setAttribute("data-action", "dashboard-section-toggle");
+          button.setAttribute("data-dashboard-section", config.key);
+          button.setAttribute("aria-expanded", "true");
+          button.innerHTML =
+            '<span class="owner-dash-mobile-collapse-toggle-label"></span>' +
+            '<span class="owner-dash-mobile-collapse-toggle-count"></span>';
+          el.insertBefore(button, el.firstChild);
+        });
+        state.dashboardCollapseReady = true;
+      }
+
+      function syncDashboardSectionCollapses() {
+        if (!state.dashboardCollapseReady) setupDashboardSectionCollapses();
+        var commandMode = currentDashboardViewMode() === "command";
+        dashboardSectionConfigs().forEach(function (config) {
+          var el = document.querySelector(config.selector);
+          if (!el) return;
+          var touched = !!state.dashboardCollapseTouched[config.key];
+          var selectedPanelOpen = el.classList.contains("owner-dash-panel") && el.classList.contains("is-active");
+          var defaultOpen = config.defaultOpen === true || selectedPanelOpen;
+          var collapsed = touched
+            ? !!state.dashboardCollapsedSections[config.key]
+            : commandMode && !defaultOpen;
+          if (!commandMode) collapsed = false;
+          el.classList.toggle("is-collapsed", collapsed);
+          var button = el.querySelector(".owner-dash-mobile-collapse-toggle");
+          if (!button) return;
+          var labels = dashboardCollapseLabel(config);
+          button.setAttribute("aria-expanded", collapsed ? "false" : "true");
+          var labelEl = button.querySelector(".owner-dash-mobile-collapse-toggle-label");
+          var countEl = button.querySelector(".owner-dash-mobile-collapse-toggle-count");
+          if (labelEl) labelEl.textContent = labels.label;
+          if (countEl) countEl.textContent = labels.countLabel ? labels.countLabel : (collapsed ? "Open" : "Collapse");
+        });
+      }
+
+      function expandDashboardSection(el) {
+        if (!el) return;
+        var key = el.getAttribute("data-dashboard-collapse-key");
+        if (!key) return;
+        state.dashboardCollapsedSections[key] = false;
+        state.dashboardCollapseTouched[key] = true;
+        el.classList.remove("is-collapsed");
+        syncDashboardSectionCollapses();
+      }
+
+      function scrollDashboardTarget(target) {
+        if (!target) return;
+        expandDashboardSection(target);
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function handleDashboardJump(btn) {
+        var key = btn && btn.getAttribute("data-dashboard-target");
+        var target = null;
+        if (key === "ai-leads") {
+          setActiveDashboardPanel("panel-business");
+          target = document.getElementById("panel-business");
+        } else if (key === "restaurants") {
+          setActiveDashboardPanel("panel-restaurant-prospects");
+          target = document.getElementById("panel-restaurant-prospects");
+        } else if (key === "clients") {
+          setActiveDashboardPanel("panel-restaurant-clients");
+          target = document.getElementById("panel-restaurant-clients");
+        } else if (key === "transportation") {
+          setActiveDashboardPanel("panel-transport");
+          target = document.getElementById("panel-transport");
+        } else if (key === "brief") {
+          target = document.getElementById("owner-dash-daily-brief");
+        } else if (key === "today") {
+          target = document.getElementById("owner-dash-today-actions");
+        } else if (key === "search") {
+          target = els.dashboardControls;
+          if (els.searchInput) {
+            window.setTimeout(function () { els.searchInput.focus(); }, 250);
+          }
+        } else if (key === "export" || key === "tools") {
+          target = els.exportSection;
+        }
+        window.requestAnimationFrame(function () {
+          scrollDashboardTarget(target);
+        });
+      }
+
+      function setStatusFilter(value) {
+        state.activeFilter = value || "all";
+        state.needsActionOnly = false;
+        state.activeQueueKey = null;
+      }
+
+      function handleDashboardFilterChip(btn) {
+        var key = btn && btn.getAttribute("data-dashboard-filter");
+        if (key === "focus-search") {
+          scrollDashboardTarget(els.dashboardControls);
+          if (els.searchInput) els.searchInput.focus();
+          return;
+        }
+        if (key === "new") {
+          setActiveDashboardPanel("panel-business");
+          setStatusFilter("new");
+        } else if (key === "follow-up") {
+          setActiveDashboardPanel("panel-business");
+          setStatusFilter("needs follow-up");
+        } else if (key === "proposal-ready") {
+          setStatusFilter("all");
+          state.activeQueueKey = "ready-proposal";
+          setActiveDashboardPanel("panel-business");
+        } else if (key === "restaurant") {
+          setActiveDashboardPanel("panel-restaurant-prospects");
+          state.activeRestaurantFilter = "all";
+          state.activeRestaurantProspectMode = "all";
+        } else if (key === "client") {
+          setActiveDashboardPanel("panel-restaurant-clients");
+          state.activeRestaurantClientFilter = "all";
+        } else if (key === "transportation") {
+          setActiveDashboardPanel("panel-transport");
+        } else if (key === "hot") {
+          setActiveDashboardPanel("panel-business");
+          setStatusFilter("all");
+          state.activePriorityFilter = "hot";
+          state.activeQueueKey = null;
+        }
+        renderAll();
+        var activePanel = document.querySelector(".owner-dash-panel.is-active");
+        window.requestAnimationFrame(function () {
+          scrollDashboardTarget(activePanel || els.dashboardControls);
+        });
       }
 
       function setDefaultPanelForQueue(key) {
@@ -25804,6 +26273,7 @@
           els.countHotLeads.textContent = String(countHotLeadsFromState());
         }
         updateDealMetricCounts();
+        syncDashboardSectionCollapses();
         refreshDetailIfOpen();
       }
 
@@ -26880,6 +27350,7 @@
               panel.hidden = !showPanel;
             });
             updatePriorityNote();
+            syncDashboardSectionCollapses();
           });
         });
       }
@@ -27034,6 +27505,33 @@
 
           if (action === "copy-daily-brief") {
             copyDailyBrief(btn.getAttribute("data-copy-kind"));
+            return;
+          }
+
+          if (action === "dashboard-view-mode") {
+            setDashboardViewMode(btn.getAttribute("data-dashboard-mode"));
+            return;
+          }
+
+          if (action === "dashboard-jump") {
+            handleDashboardJump(btn);
+            return;
+          }
+
+          if (action === "dashboard-filter-chip") {
+            handleDashboardFilterChip(btn);
+            return;
+          }
+
+          if (action === "dashboard-section-toggle") {
+            var sectionKey = btn.getAttribute("data-dashboard-section");
+            var section = btn.closest("[data-dashboard-collapse-key]");
+            var collapsed = !(section && section.classList.contains("is-collapsed"));
+            if (sectionKey) {
+              state.dashboardCollapsedSections[sectionKey] = collapsed;
+              state.dashboardCollapseTouched[sectionKey] = true;
+            }
+            syncDashboardSectionCollapses();
             return;
           }
 
@@ -27349,6 +27847,7 @@
         state.clientActivity = {};
         setCounts(state.counts);
         updateLastLoaded();
+        setDashboardViewMode(currentDashboardViewMode());
         renderAll();
         initTabs();
         initFilters();
