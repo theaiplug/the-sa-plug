@@ -3945,8 +3945,7 @@
     }
 
     .page-owner-dashboard .owner-dash-mobile-command {
-      position: sticky;
-      top: 0;
+      position: relative;
       z-index: 5;
       display: grid;
       gap: 10px;
@@ -3961,6 +3960,18 @@
       word-break: normal;
       overflow-wrap: normal;
       hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-compact-bar {
+      display: none;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-menu-panel {
+      display: grid;
+      gap: 10px;
+      min-width: 0;
     }
 
     .page-owner-dashboard .owner-dash-mobile-command-head {
@@ -4006,6 +4017,8 @@
     .page-owner-dashboard .owner-dash-dashboard-mode-btn,
     .page-owner-dashboard .owner-dash-dashboard-jump,
     .page-owner-dashboard .owner-dash-dashboard-filter-chip,
+    .page-owner-dashboard .owner-dash-dashboard-menu-toggle,
+    .page-owner-dashboard .owner-dash-dashboard-menu-close,
     .page-owner-dashboard .owner-dash-mobile-collapse-toggle {
       appearance: none;
       min-width: 0;
@@ -4030,6 +4043,20 @@
       min-height: 40px;
     }
 
+    .page-owner-dashboard .owner-dash-dashboard-menu-toggle,
+    .page-owner-dashboard .owner-dash-dashboard-menu-close {
+      min-height: 40px;
+      border-color: rgba(94, 234, 212, 0.34);
+      background: rgba(20, 184, 166, 0.12);
+      color: #c8fff5;
+    }
+
+    .page-owner-dashboard .owner-dash-dashboard-menu-close {
+      display: none;
+      justify-self: start;
+      margin-top: 2px;
+    }
+
     .page-owner-dashboard .owner-dash-dashboard-mode-btn.is-active {
       border-color: rgba(94, 234, 212, 0.58);
       background: rgba(20, 184, 166, 0.18);
@@ -4052,6 +4079,8 @@
     .page-owner-dashboard .owner-dash-dashboard-mode-btn:focus-visible,
     .page-owner-dashboard .owner-dash-dashboard-jump:focus-visible,
     .page-owner-dashboard .owner-dash-dashboard-filter-chip:focus-visible,
+    .page-owner-dashboard .owner-dash-dashboard-menu-toggle:focus-visible,
+    .page-owner-dashboard .owner-dash-dashboard-menu-close:focus-visible,
     .page-owner-dashboard .owner-dash-mobile-collapse-toggle:focus-visible {
       outline: 2px solid rgba(255, 139, 31, 0.66);
       outline-offset: 2px;
@@ -4096,21 +4125,73 @@
 
     @media (max-width: 640px) {
       .page-owner-dashboard .owner-dash-mobile-command {
+        position: sticky;
+        top: 0;
         margin-left: -2px;
         margin-right: -2px;
+        padding: 9px;
+      }
+
+      .page-owner-dashboard .owner-dash-mobile-command[data-dashboard-menu-open="true"] {
+        position: static;
+      }
+
+      .page-owner-dashboard .owner-dash-dashboard-compact-bar {
+        display: flex;
+        align-items: stretch;
+        overflow-x: auto;
+        padding-bottom: 1px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .page-owner-dashboard .owner-dash-dashboard-compact-bar > button {
+        flex: 0 0 auto;
+      }
+
+      .page-owner-dashboard .owner-dash-dashboard-compact-bar .owner-dash-dashboard-menu-toggle {
+        flex: 1 0 auto;
+      }
+
+      .page-owner-dashboard .owner-dash-mobile-command[data-dashboard-menu-open="false"] .owner-dash-dashboard-menu-panel {
+        display: none;
+      }
+
+      .page-owner-dashboard .owner-dash-mobile-command[data-dashboard-menu-open="true"] .owner-dash-dashboard-menu-panel {
+        display: grid;
+      }
+
+      .page-owner-dashboard .owner-dash-dashboard-menu-panel > .owner-dash-dashboard-mode-label,
+      .page-owner-dashboard .owner-dash-dashboard-menu-panel > .owner-dash-dashboard-mode {
+        display: none;
       }
 
       .page-owner-dashboard .owner-dash-dashboard-mode,
       .page-owner-dashboard .owner-dash-dashboard-jumps,
       .page-owner-dashboard .owner-dash-dashboard-filter-chips {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        -webkit-overflow-scrolling: touch;
       }
 
-      .page-owner-dashboard :is(.owner-dash-dashboard-mode-btn, .owner-dash-dashboard-jump, .owner-dash-dashboard-filter-chip) {
-        width: 100%;
-        min-height: 44px;
+      .page-owner-dashboard :is(.owner-dash-dashboard-mode-btn, .owner-dash-dashboard-jump, .owner-dash-dashboard-filter-chip, .owner-dash-dashboard-menu-toggle, .owner-dash-dashboard-menu-close) {
+        flex: 0 0 auto;
+        width: auto;
+        min-height: 38px;
+        padding: 7px 10px;
+        font-size: 0.74rem;
         letter-spacing: 0.01em;
+        white-space: nowrap;
+      }
+
+      .page-owner-dashboard .owner-dash-dashboard-menu-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        justify-self: stretch;
+        width: 100%;
       }
 
       .page-owner-dashboard .owner-dash-mobile-collapse-toggle {
@@ -4169,6 +4250,14 @@
       box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
     }
 
+    .page-owner-dashboard .owner-dash-command-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 7px;
+      min-width: 0;
+    }
+
     .page-owner-dashboard .owner-dash-command-nav-label {
       margin: 0;
       color: rgba(255, 246, 230, 0.72);
@@ -4188,8 +4277,16 @@
       min-width: 0;
     }
 
+    .page-owner-dashboard .owner-dash-command-jump-panel {
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+    }
+
     .page-owner-dashboard .owner-dash-command-mode-btn,
-    .page-owner-dashboard .owner-dash-command-jump {
+    .page-owner-dashboard .owner-dash-command-jump,
+    .page-owner-dashboard .owner-dash-command-section-toggle,
+    .page-owner-dashboard .owner-dash-command-section-close {
       appearance: none;
       min-height: 40px;
       min-width: 0;
@@ -4207,9 +4304,26 @@
       white-space: normal;
     }
 
+    .page-owner-dashboard .owner-dash-command-section-toggle {
+      display: none;
+      border-color: rgba(94, 234, 212, 0.34);
+      background: rgba(20, 184, 166, 0.12);
+      color: #c8fff5;
+    }
+
+    .page-owner-dashboard .owner-dash-command-section-close {
+      display: none;
+      justify-self: start;
+      border-color: rgba(94, 234, 212, 0.28);
+      background: rgba(20, 184, 166, 0.1);
+      color: #c8fff5;
+    }
+
     .page-owner-dashboard .owner-dash-command-mode-btn.is-active,
     .page-owner-dashboard .owner-dash-command-jump:focus-visible,
-    .page-owner-dashboard .owner-dash-command-mode-btn:focus-visible {
+    .page-owner-dashboard .owner-dash-command-mode-btn:focus-visible,
+    .page-owner-dashboard .owner-dash-command-section-toggle:focus-visible,
+    .page-owner-dashboard .owner-dash-command-section-close:focus-visible {
       outline: 2px solid rgba(255, 139, 31, 0.66);
       outline-offset: 2px;
     }
@@ -4259,22 +4373,82 @@
 
     @media (max-width: 640px) {
       .page-owner-dashboard .owner-dash-command-nav {
+        position: sticky;
+        top: 0;
         margin-left: -2px;
         margin-right: -2px;
+        padding: 9px;
+      }
+
+      .page-owner-dashboard .owner-dash-command-nav[data-section-menu-open="true"] {
+        position: static;
+      }
+
+      .page-owner-dashboard .owner-dash-command-bar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 1px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .page-owner-dashboard .owner-dash-command-section-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1 0 auto;
+      }
+
+      .page-owner-dashboard .owner-dash-command-nav[data-section-menu-open="false"] .owner-dash-command-jump-panel {
+        display: none;
+      }
+
+      .page-owner-dashboard .owner-dash-command-nav[data-section-menu-open="true"] .owner-dash-command-jump-panel {
+        display: grid;
       }
 
       .page-owner-dashboard .owner-dash-command-mode,
       .page-owner-dashboard .owner-dash-command-jumps,
       .page-owner-dashboard .owner-dash-command-quick-copy-actions {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        -webkit-overflow-scrolling: touch;
       }
 
       .page-owner-dashboard .owner-dash-command-jump,
       .page-owner-dashboard .owner-dash-command-mode-btn,
+      .page-owner-dashboard .owner-dash-command-section-toggle,
+      .page-owner-dashboard .owner-dash-command-section-close,
       .page-owner-dashboard .owner-dash-command-quick-copy-actions .owner-dash-btn {
+        flex: 0 0 auto;
+        width: auto;
+        min-height: 38px;
+        padding: 7px 10px;
+        font-size: 0.74rem;
+        white-space: nowrap;
+      }
+
+      .page-owner-dashboard .owner-dash-command-section-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        justify-self: stretch;
         width: 100%;
-        min-height: 44px;
+      }
+
+      .page-owner-dashboard .owner-dash-command-quick-copy-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        overflow: visible;
+        padding-bottom: 0;
+      }
+
+      .page-owner-dashboard .owner-dash-command-quick-copy-actions .owner-dash-btn {
+        flex: initial;
+        width: 100%;
+        min-height: 40px;
       }
     }
   </style>
@@ -4317,40 +4491,48 @@
     </div>
 
     <div id="owner-dash-content" hidden>
-      <section id="owner-dash-mobile-command" class="owner-dash-mobile-command owner-dash-glass" aria-labelledby="owner-dash-mobile-command-heading">
-        <div class="owner-dash-mobile-command-head">
-          <p class="eyebrow eyebrow-on-dark">MOBILE COMMAND</p>
-          <h2 id="owner-dash-mobile-command-heading">Dashboard Jump Menu</h2>
-          <p>Jump to the operating section you need, or switch back to the full training/reference dashboard.</p>
+      <section id="owner-dash-mobile-command" class="owner-dash-mobile-command owner-dash-glass" data-dashboard-menu-open="false" aria-labelledby="owner-dash-mobile-command-heading">
+        <div class="owner-dash-dashboard-compact-bar" aria-label="Dashboard command bar">
+          <button type="button" class="owner-dash-dashboard-menu-toggle" data-action="dashboard-menu-toggle" aria-expanded="false" aria-controls="owner-dash-dashboard-menu-panel">Dashboard Menu</button>
+          <button type="button" class="owner-dash-dashboard-mode-btn owner-dash-dashboard-mode-btn--compact" data-action="dashboard-view-mode" data-dashboard-mode="command" aria-pressed="false">Command View</button>
+          <button type="button" class="owner-dash-dashboard-mode-btn owner-dash-dashboard-mode-btn--compact" data-action="dashboard-view-mode" data-dashboard-mode="full" aria-pressed="false">Full System View</button>
         </div>
-        <p class="owner-dash-dashboard-mode-label">Dashboard View</p>
-        <div class="owner-dash-dashboard-mode" role="group" aria-label="Dashboard View">
-          <button type="button" class="owner-dash-dashboard-mode-btn" data-action="dashboard-view-mode" data-dashboard-mode="command" aria-pressed="false">Command View</button>
-          <button type="button" class="owner-dash-dashboard-mode-btn" data-action="dashboard-view-mode" data-dashboard-mode="full" aria-pressed="false">Full System View</button>
-        </div>
-        <div class="owner-dash-dashboard-jumps" aria-label="Dashboard jump menu">
-          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="brief">Brief</button>
-          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="today">Today</button>
-          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="ai-leads">AI Leads</button>
-          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="restaurants">Restaurants</button>
-          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="clients">Clients</button>
-          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="transportation">Transportation</button>
-          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="export">Export</button>
-          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="search">Search</button>
-          <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="tools">Tools</button>
-        </div>
-        <div class="owner-dash-search-filter-quick" aria-label="Search and filter leads shortcuts">
-          <p class="owner-dash-dashboard-filter-label">Search / Filter Leads</p>
-          <div class="owner-dash-dashboard-filter-chips">
-            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="focus-search">Search field</button>
-            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="new">New</button>
-            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="follow-up">Follow-up</button>
-            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="proposal-ready">Proposal ready</button>
-            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="restaurant">Restaurant</button>
-            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="client">Client</button>
-            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="transportation">Transportation</button>
-            <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="hot">Hot / High priority</button>
+        <div id="owner-dash-dashboard-menu-panel" class="owner-dash-dashboard-menu-panel" aria-hidden="false">
+          <div class="owner-dash-mobile-command-head">
+            <p class="eyebrow eyebrow-on-dark">MOBILE COMMAND</p>
+            <h2 id="owner-dash-mobile-command-heading">Dashboard Jump Menu</h2>
+            <p>Jump to the operating section you need, or switch back to the full training/reference dashboard.</p>
           </div>
+          <p class="owner-dash-dashboard-mode-label">Dashboard View</p>
+          <div class="owner-dash-dashboard-mode" role="group" aria-label="Dashboard View">
+            <button type="button" class="owner-dash-dashboard-mode-btn" data-action="dashboard-view-mode" data-dashboard-mode="command" aria-pressed="false">Command View</button>
+            <button type="button" class="owner-dash-dashboard-mode-btn" data-action="dashboard-view-mode" data-dashboard-mode="full" aria-pressed="false">Full System View</button>
+          </div>
+          <div class="owner-dash-dashboard-jumps" aria-label="Dashboard jump menu">
+            <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="brief">Brief</button>
+            <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="today">Today</button>
+            <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="ai-leads">AI Leads</button>
+            <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="restaurants">Restaurants</button>
+            <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="clients">Clients</button>
+            <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="transportation">Transportation</button>
+            <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="export">Export</button>
+            <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="search">Search</button>
+            <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="tools">Tools</button>
+          </div>
+          <div class="owner-dash-search-filter-quick" aria-label="Search and filter leads shortcuts">
+            <p class="owner-dash-dashboard-filter-label">Search / Filter Leads</p>
+            <div class="owner-dash-dashboard-filter-chips">
+              <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="focus-search">Search field</button>
+              <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="new">New</button>
+              <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="follow-up">Follow-up</button>
+              <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="proposal-ready">Proposal ready</button>
+              <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="restaurant">Restaurant</button>
+              <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="client">Client</button>
+              <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="transportation">Transportation</button>
+              <button type="button" class="owner-dash-dashboard-filter-chip" data-action="dashboard-filter-chip" data-dashboard-filter="hot">Hot / High priority</button>
+            </div>
+          </div>
+          <button type="button" class="owner-dash-dashboard-menu-close" data-action="dashboard-menu-close">Close Menu</button>
         </div>
       </section>
       <section id="owner-dash-daily-brief" class="owner-dash-daily-brief owner-dash-glass" aria-labelledby="owner-dash-daily-brief-heading">
@@ -6274,6 +6456,7 @@
         clientProposalTones: {},
         commandSheetViewModes: {},
         dashboardViewMode: null,
+        dashboardMenuOpen: false,
         dashboardCollapseReady: false,
         dashboardCollapsedSections: {},
         dashboardCollapseTouched: {},
@@ -19501,8 +19684,8 @@
       var BUSINESS_COMMAND_NAV_ITEMS = [
         { key: "snapshot", label: "Snapshot" },
         { key: "notes", label: "Notes" },
-        { key: "opportunity", label: "Opportunity" },
-        { key: "deal", label: "Deal" },
+        { key: "opportunity", label: "Research" },
+        { key: "deal", label: "Sales" },
         { key: "proposal", label: "Proposal" },
         { key: "follow-up", label: "Follow-Up" },
         { key: "close", label: "Close" },
@@ -19575,6 +19758,11 @@
 
       function commandSheetNavHtml(table, id, items) {
         var mode = commandSheetMode(table, id);
+        var jumpPanelId = [
+          "owner-dash-command-jumps",
+          String(table || "detail").replace(/[^a-z0-9_-]+/gi, "-"),
+          String(id || "current").replace(/[^a-z0-9_-]+/gi, "-"),
+        ].join("-");
         var modeButtons = [
           { mode: "quick", label: "Quick Actions" },
           { mode: "full", label: "Full Training View" },
@@ -19602,14 +19790,23 @@
           );
         }).join("");
         return (
-          '<nav class="owner-dash-command-nav" aria-label="Command sheet quick navigation">' +
-          '<p class="owner-dash-command-nav-label">Detail View</p>' +
+          '<nav class="owner-dash-command-nav" data-section-menu-open="false" aria-label="Command sheet quick navigation">' +
+          '<div class="owner-dash-command-bar" aria-label="Detail command bar">' +
+          '<button type="button" class="owner-dash-command-section-toggle" data-action="command-section-menu-toggle" aria-expanded="false" aria-controls="' +
+          esc(jumpPanelId) +
+          '">Jump to Section</button>' +
           '<div class="owner-dash-command-mode" role="group" aria-label="View mode">' +
           modeButtons +
           "</div>" +
+          "</div>" +
+          '<div id="' +
+          esc(jumpPanelId) +
+          '" class="owner-dash-command-jump-panel" aria-hidden="false">' +
           '<p class="owner-dash-command-nav-label">Jump to section</p>' +
           '<div class="owner-dash-command-jumps">' +
           jumps +
+          "</div>" +
+          '<button type="button" class="owner-dash-command-section-close" data-action="command-section-menu-close">Close Section Menu</button>' +
           "</div></nav>"
         );
       }
@@ -20059,6 +20256,8 @@
                 ? row.restaurant_name || "Restaurant lead"
                 : row.name || "Transportation request";
         }
+        var commandNav = els.detailBody.querySelector(".owner-dash-command-nav");
+        if (commandNav) setCommandSectionMenuOpen(commandNav, false);
       }
 
       function openDetail(table, id) {
@@ -20106,6 +20305,20 @@
         });
       }
 
+      function setCommandSectionMenuOpen(nav, open) {
+        if (!nav) return;
+        var expanded = isMobileCommandSheetDefault() ? !!open : true;
+        nav.setAttribute("data-section-menu-open", expanded ? "true" : "false");
+        var panel = nav.querySelector(".owner-dash-command-jump-panel");
+        if (panel) panel.setAttribute("aria-hidden", expanded ? "false" : "true");
+        var toggle = nav.querySelector("[data-action='command-section-menu-toggle']");
+        if (toggle) toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+      }
+
+      function collapseCommandSectionMenu(nav) {
+        if (isMobileCommandSheetDefault()) setCommandSectionMenuOpen(nav, false);
+      }
+
       function elementIsVisible(el) {
         return !!(el && (el.offsetWidth || el.offsetHeight || el.getClientRects().length));
       }
@@ -20124,15 +20337,6 @@
       function scrollToCommandSection(sheet, key) {
         var target = findCommandSection(sheet, key);
         if (!target) return;
-        if (!elementIsVisible(target) && sheet.classList.contains("is-quick-actions")) {
-          setCommandSheetMode(sheet, "full");
-          window.requestAnimationFrame(function () {
-            var freshTarget = findCommandSection(sheet, key) || target;
-            freshTarget.scrollIntoView({ behavior: "smooth", block: "start" });
-            if (freshTarget.focus) freshTarget.focus({ preventScroll: true });
-          });
-          return;
-        }
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
@@ -20145,6 +20349,7 @@
       function handleCommandSheetJump(btn) {
         var sheet = btn && btn.closest(".owner-dash-command-sheet");
         if (!sheet) return;
+        collapseCommandSectionMenu(btn.closest(".owner-dash-command-nav"));
         scrollToCommandSection(sheet, btn.getAttribute("data-command-target"));
       }
 
@@ -23857,6 +24062,22 @@
           window.matchMedia("(max-width: 640px)").matches;
       }
 
+      function setDashboardMenuOpen(open) {
+        if (!els.dashboardCommand) return;
+        var expanded = isMobileDashboardDefault() ? !!open : true;
+        state.dashboardMenuOpen = !!open;
+        els.dashboardCommand.setAttribute("data-dashboard-menu-open", expanded ? "true" : "false");
+        var panel = document.getElementById("owner-dash-dashboard-menu-panel");
+        if (panel) panel.setAttribute("aria-hidden", expanded ? "false" : "true");
+        els.dashboardCommand.querySelectorAll("[data-action='dashboard-menu-toggle']").forEach(function (btn) {
+          btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+        });
+      }
+
+      function collapseDashboardMenu() {
+        if (isMobileDashboardDefault()) setDashboardMenuOpen(false);
+      }
+
       function currentDashboardViewMode() {
         return state.dashboardViewMode || (isMobileDashboardDefault() ? "command" : "full");
       }
@@ -23874,6 +24095,7 @@
           btn.classList.toggle("is-active", active);
           btn.setAttribute("aria-pressed", active ? "true" : "false");
         });
+        setDashboardMenuOpen(state.dashboardMenuOpen);
         syncDashboardSectionCollapses();
       }
 
@@ -23994,6 +24216,7 @@
         } else if (key === "export" || key === "tools") {
           target = els.exportSection;
         }
+        collapseDashboardMenu();
         window.requestAnimationFrame(function () {
           scrollDashboardTarget(target);
         });
@@ -24008,6 +24231,7 @@
       function handleDashboardFilterChip(btn) {
         var key = btn && btn.getAttribute("data-dashboard-filter");
         if (key === "focus-search") {
+          collapseDashboardMenu();
           scrollDashboardTarget(els.dashboardControls);
           if (els.searchInput) els.searchInput.focus();
           return;
@@ -24039,6 +24263,7 @@
         }
         renderAll();
         var activePanel = document.querySelector(".owner-dash-panel.is-active");
+        collapseDashboardMenu();
         window.requestAnimationFrame(function () {
           scrollDashboardTarget(activePanel || els.dashboardControls);
         });
@@ -27517,6 +27742,16 @@
             return;
           }
 
+          if (action === "dashboard-menu-toggle") {
+            setDashboardMenuOpen(els.dashboardCommand && els.dashboardCommand.getAttribute("data-dashboard-menu-open") !== "true");
+            return;
+          }
+
+          if (action === "dashboard-menu-close") {
+            setDashboardMenuOpen(false);
+            return;
+          }
+
           if (action === "dashboard-jump") {
             handleDashboardJump(btn);
             return;
@@ -27584,6 +27819,17 @@
 
           if (action === "command-view-mode") {
             handleCommandSheetMode(btn);
+            return;
+          }
+
+          if (action === "command-section-menu-toggle") {
+            var commandNav = btn.closest(".owner-dash-command-nav");
+            setCommandSectionMenuOpen(commandNav, commandNav && commandNav.getAttribute("data-section-menu-open") !== "true");
+            return;
+          }
+
+          if (action === "command-section-menu-close") {
+            setCommandSectionMenuOpen(btn.closest(".owner-dash-command-nav"), false);
             return;
           }
 
@@ -27878,9 +28124,26 @@
         }
       }
 
+      function initCommandMenuResponsive() {
+        if (!window.matchMedia) return;
+        var mobileCommandMedia = window.matchMedia("(max-width: 640px)");
+        var handleCommandMenuChange = function () {
+          setDashboardMenuOpen(state.dashboardMenuOpen);
+          document.querySelectorAll(".owner-dash-command-nav").forEach(function (nav) {
+            setCommandSectionMenuOpen(nav, nav.getAttribute("data-section-menu-open") === "true");
+          });
+        };
+        if (mobileCommandMedia.addEventListener) {
+          mobileCommandMedia.addEventListener("change", handleCommandMenuChange);
+        } else if (mobileCommandMedia.addListener) {
+          mobileCommandMedia.addListener(handleCommandMenuChange);
+        }
+      }
+
       initWorkflowDelegation();
       initRefresh();
       initDailyBriefResponsive();
+      initCommandMenuResponsive();
 
       if (!accessKey || !String(accessKey).trim()) {
         finishUnauthorized();
