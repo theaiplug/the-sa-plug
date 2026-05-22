@@ -2894,6 +2894,221 @@
       overflow-wrap: anywhere;
     }
 
+    /* Owner Dashboard v30 - Restaurant Sales Rep Operating Mode */
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue,
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue *,
+    .page-owner-dashboard .owner-dash-restaurant-rep-command,
+    .page-owner-dashboard .owner-dash-restaurant-rep-command * {
+      min-width: 0;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 14px;
+      padding: clamp(14px, 2vw, 18px);
+      border: 1px solid rgba(94, 234, 212, 0.28);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(94, 234, 212, 0.15), transparent 34%),
+        linear-gradient(145deg, rgba(255, 139, 31, 0.08), transparent 48%),
+        rgba(4, 10, 22, 0.64);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue-head,
+    .page-owner-dashboard .owner-dash-restaurant-rep-command-head {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue h3,
+    .page-owner-dashboard .owner-dash-restaurant-rep-command h3,
+    .page-owner-dashboard .owner-dash-restaurant-rep-command h4 {
+      margin: 0;
+      color: #c8fff5;
+      line-height: 1.18;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue-subtitle,
+    .page-owner-dashboard .owner-dash-restaurant-rep-command-subtitle,
+    .page-owner-dashboard .owner-dash-restaurant-rep-note {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.74);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue-order {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: rgba(255, 246, 230, 0.74);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue-buckets,
+    .page-owner-dashboard .owner-dash-restaurant-rep-grid,
+    .page-owner-dashboard .owner-dash-restaurant-rep-copy-actions,
+    .page-owner-dashboard .owner-dash-restaurant-rep-action-buttons,
+    .page-owner-dashboard .owner-dash-restaurant-rep-form-grid,
+    .page-owner-dashboard .owner-dash-restaurant-rep-two-col {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue-buckets {
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-grid,
+    .page-owner-dashboard .owner-dash-restaurant-rep-form-grid {
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-two-col {
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue-bucket,
+    .page-owner-dashboard .owner-dash-restaurant-rep-card,
+    .page-owner-dashboard .owner-dash-restaurant-rep-script-part {
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.2rem;
+      min-height: 2rem;
+      margin-bottom: 7px;
+      border-radius: 12px;
+      border: 1px solid rgba(94, 234, 212, 0.34);
+      background: rgba(20, 184, 166, 0.14);
+      color: #5eead4;
+      font-weight: 950;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue-bucket strong,
+    .page-owner-dashboard .owner-dash-restaurant-rep-card span,
+    .page-owner-dashboard .owner-dash-restaurant-rep-script-part span {
+      display: block;
+      color: rgba(255, 246, 230, 0.68);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-card p,
+    .page-owner-dashboard .owner-dash-restaurant-rep-card strong,
+    .page-owner-dashboard .owner-dash-restaurant-rep-script-part p {
+      margin: 4px 0 0;
+      color: #fff;
+      font-size: 0.88rem;
+      line-height: 1.35;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-queue-open {
+      appearance: none;
+      width: 100%;
+      min-height: 38px;
+      margin-top: 8px;
+      border: 1px solid rgba(255, 139, 31, 0.36);
+      border-radius: 12px;
+      background: rgba(255, 139, 31, 0.12);
+      color: #ffe4c4;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-form {
+      display: grid;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid rgba(20, 184, 166, 0.22);
+      border-radius: 16px;
+      background: rgba(4, 10, 22, 0.42);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-field {
+      display: grid;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-field--wide {
+      grid-column: 1 / -1;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-label {
+      color: rgba(255, 246, 230, 0.74);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard :is(.owner-dash-restaurant-rep-select, .owner-dash-restaurant-rep-textarea) {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      background: rgba(3, 7, 18, 0.72);
+      color: #fff;
+      font: inherit;
+      font-size: 16px;
+      line-height: 1.35;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-select {
+      min-height: 46px;
+      padding: 10px 11px;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-textarea {
+      min-height: 96px;
+      padding: 11px;
+      resize: vertical;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-copy-actions,
+    .page-owner-dashboard .owner-dash-restaurant-rep-action-buttons {
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-guardrail-note {
+      margin: 0;
+      padding: 8px 10px;
+      border: 1px solid rgba(251, 146, 60, 0.26);
+      border-radius: 13px;
+      background: rgba(251, 146, 60, 0.09);
+      color: #ffe4c4;
+      font-size: 0.78rem;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-rep-field :is(.owner-dash-field--long-value, a),
+    .page-owner-dashboard .owner-dash-restaurant-rep-card :is(.owner-dash-field--long-value, a) {
+      overflow-wrap: anywhere;
+    }
+
     @media (max-width: 640px) {
       .page-owner-dashboard .owner-dash-restaurant-command-copy,
       .page-owner-dashboard .owner-dash-restaurant-command-actions,
@@ -2915,8 +3130,20 @@
 
       .page-owner-dashboard .owner-dash-restaurant-proposal-actions,
       .page-owner-dashboard .owner-dash-restaurant-proposal-actions .owner-dash-btn,
-      .page-owner-dashboard .owner-dash-restaurant-client-filters .owner-dash-filter {
+      .page-owner-dashboard .owner-dash-restaurant-client-filters .owner-dash-filter,
+      .page-owner-dashboard .owner-dash-restaurant-rep-copy-actions .owner-dash-btn,
+      .page-owner-dashboard .owner-dash-restaurant-rep-action-buttons .owner-dash-btn,
+      .page-owner-dashboard .owner-dash-restaurant-rep-queue .owner-dash-btn {
         width: 100%;
+      }
+
+      .page-owner-dashboard .owner-dash-restaurant-rep-queue-buckets,
+      .page-owner-dashboard .owner-dash-restaurant-rep-grid,
+      .page-owner-dashboard .owner-dash-restaurant-rep-form-grid,
+      .page-owner-dashboard .owner-dash-restaurant-rep-two-col,
+      .page-owner-dashboard .owner-dash-restaurant-rep-copy-actions,
+      .page-owner-dashboard .owner-dash-restaurant-rep-action-buttons {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -3043,6 +3270,37 @@
         </div>
       </section>
 
+      <section id="owner-dash-restaurant-rep-daily-queue" class="owner-dash-restaurant-rep-queue owner-dash-glass" aria-labelledby="owner-dash-restaurant-rep-daily-queue-heading">
+        <div class="owner-dash-restaurant-rep-queue-head">
+          <p class="eyebrow eyebrow-on-dark">RESTAURANT REP MODE</p>
+          <h3 id="owner-dash-restaurant-rep-daily-queue-heading">Restaurant Rep Daily Queue</h3>
+          <p class="owner-dash-restaurant-rep-queue-subtitle">Shows what a sales rep should do first today.</p>
+          <p class="owner-dash-restaurant-rep-guardrail-note">Internal restaurant sales guidance only. Nothing is sent, published, invoiced, charged, or promised automatically.</p>
+        </div>
+        <div id="owner-dash-restaurant-rep-daily-buckets" class="owner-dash-restaurant-rep-queue-buckets" aria-label="Restaurant rep daily queue buckets"></div>
+        <div class="owner-dash-restaurant-rep-queue-actions">
+          <button type="button" class="owner-dash-btn owner-dash-btn--primary owner-dash-btn--compact" data-action="copy-restaurant-rep-daily-call-list">Copy restaurant rep daily call list</button>
+          <span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>
+        </div>
+        <div>
+          <p class="owner-dash-restaurant-rep-note">Recommended order:</p>
+          <ol class="owner-dash-restaurant-rep-queue-order">
+            <li>Research before contact</li>
+            <li>Ready to contact</li>
+            <li>Discovery needed</li>
+            <li>Proposal ready</li>
+            <li>Proposal follow-up</li>
+            <li>Verbal yes / deposit next</li>
+            <li>Won clients needing onboarding</li>
+            <li>Not now / future follow-up</li>
+          </ol>
+        </div>
+        <div class="owner-dash-detail-manual-copy" data-manual-copy hidden>
+          <p class="owner-dash-detail-manual-copy-label">Select and copy:</p>
+          <textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea>
+        </div>
+      </section>
+
       <section class="owner-dash-summary" aria-label="Summary counts">
         <div class="owner-dash-summary-grid owner-dash-summary-grid--v5">
           <article class="owner-dash-glass owner-dash-stat owner-dash-stat--compact">
@@ -3132,6 +3390,20 @@
         <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="monthly recap due">Recap due</button>
         <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="renewal due">Renewal due</button>
         <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="case study needed">Case study needed</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: research needed">Rep: research needed</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: research complete">Rep: research complete</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: ready to contact">Rep: ready to contact</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: contacted">Rep: contacted</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: discovery needed">Rep: discovery needed</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: qualified">Rep: qualified</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: proposal ready">Rep: proposal ready</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: proposal sent">Rep: proposal sent</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: follow-up due">Rep: follow-up due</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: verbal yes">Rep: verbal yes</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: deposit requested">Rep: deposit requested</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: won/client">Rep: won/client</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: not now">Rep: not now</button>
+        <button type="button" class="owner-dash-filter owner-dash-restaurant-filter" data-restaurant-filter="rep: lost">Rep: lost</button>
       </div>
 
       <section class="owner-dash-dashboard-controls owner-dash-glass" aria-label="Dashboard search and sort controls">
@@ -3201,6 +3473,7 @@
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-close-report" aria-pressed="false">Restaurant close report</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-client-success-report" aria-pressed="false">Restaurant client success report</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-clients" aria-pressed="false">Restaurant clients</button>
+            <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-sales-rep-report" aria-pressed="false">Restaurant sales rep report</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-proposal-ready" aria-pressed="false">Restaurant proposal-ready</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="restaurant-recap-renewal" aria-pressed="false">Restaurant recap/renewal</button>
             <button type="button" class="owner-dash-export-chip" data-action="select-export-mode" data-export-mode="transportation" aria-pressed="false">Transportation requests</button>
@@ -3225,6 +3498,7 @@
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-proposal-report">Copy restaurant proposal report</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-close-report">Copy restaurant close report</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-client-success-report">Copy restaurant client success report</button>
+            <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="restaurant-sales-rep-report">Copy restaurant sales rep report</button>
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="transportation">Copy transportation report</button>
             <button type="button" class="owner-dash-export-btn" data-action="copy-export-report" data-export-kind="weekly-recap">Copy weekly recap</button>
             <button type="button" class="owner-dash-export-btn owner-dash-export-btn--primary" data-action="copy-export-report" data-export-kind="full-pipeline">Copy full pipeline report</button>
@@ -3837,6 +4111,7 @@
         { key: "restaurant-close-report", label: "Restaurant close report" },
         { key: "restaurant-client-success-report", label: "Restaurant client success report" },
         { key: "restaurant-clients", label: "Restaurant clients" },
+        { key: "restaurant-sales-rep-report", label: "Restaurant sales rep report" },
         { key: "restaurant-proposal-ready", label: "Restaurant proposal-ready" },
         { key: "restaurant-recap-renewal", label: "Restaurant recap/renewal" },
         { key: "transportation", label: "Transportation requests" },
@@ -3905,6 +4180,8 @@
         "Fake reviews",
         "AI replacing staff",
         "Unapproved customer-facing messages",
+        "Public listing before approval",
+        "Payment/invoice automation from the dashboard",
       ];
 
       var RESTAURANT_GUARDRAILS_ALLOWED = [
@@ -3915,7 +4192,127 @@
         "Better owner visibility",
         "Better follow-up process",
         "Practical AI assistance with owner approval",
+        "Start small, improve after proof",
       ];
+
+      var RESTAURANT_REP_STAGE_OPTIONS = [
+        "Not started",
+        "Research needed",
+        "Research complete",
+        "Ready to contact",
+        "Contacted",
+        "Discovery needed",
+        "Qualified",
+        "Proposal ready",
+        "Proposal sent",
+        "Follow-up due",
+        "Verbal yes",
+        "Deposit requested",
+        "Won / client",
+        "Not now",
+        "Lost",
+      ];
+
+      var RESTAURANT_REP_ACTIONS = [
+        { key: "research-needed", label: "Mark research needed", stage: "Research needed", marker: "Restaurant rep: research needed.", activity: "Restaurant rep — Research needed", tone: "pending" },
+        { key: "research-complete", label: "Mark research complete", stage: "Research complete", marker: "Restaurant rep: research complete.", activity: "Restaurant rep — Research complete", tone: "ok" },
+        { key: "ready-to-contact", label: "Mark ready to contact", stage: "Ready to contact", marker: "Restaurant rep: ready to contact.", activity: "Restaurant rep — Ready to contact", tone: "ok" },
+        { key: "contacted", label: "Mark contacted", stage: "Contacted", marker: "Restaurant rep: contacted.", activity: "Restaurant rep — Contacted", tone: "ok", lastContacted: true },
+        { key: "discovery-needed", label: "Mark discovery needed", stage: "Discovery needed", marker: "Restaurant rep: discovery needed.", activity: "Restaurant rep — Discovery needed", tone: "pending" },
+        { key: "qualified", label: "Mark qualified", stage: "Qualified", marker: "Restaurant rep: qualified.", activity: "Restaurant rep — Qualified", tone: "ok" },
+        { key: "proposal-ready", label: "Mark proposal ready", stage: "Proposal ready", marker: "Restaurant rep: proposal ready.", activity: "Restaurant rep — Proposal ready", tone: "ok" },
+        { key: "proposal-sent", label: "Mark proposal sent", stage: "Proposal sent", marker: "Restaurant rep: proposal sent.", activity: "Restaurant rep — Proposal sent", tone: "ok" },
+        { key: "follow-up-due", label: "Mark follow-up due", stage: "Follow-up due", marker: "Restaurant rep: follow-up due.", activity: "Restaurant rep — Follow-up due", tone: "pending" },
+        { key: "verbal-yes", label: "Mark verbal yes", stage: "Verbal yes", marker: "Restaurant rep: verbal yes.", activity: "Restaurant rep — Verbal yes", tone: "ok" },
+        { key: "deposit-requested", label: "Mark deposit requested", stage: "Deposit requested", marker: "Restaurant rep: deposit requested.", activity: "Restaurant rep — Deposit requested", tone: "pending" },
+        { key: "won-client", label: "Mark won/client", stage: "Won / client", marker: "Restaurant rep: won/client.", activity: "Restaurant rep — Won/client", tone: "ok" },
+        { key: "not-now", label: "Mark not now", stage: "Not now", marker: "Restaurant rep: not now.", activity: "Restaurant rep — Not now", tone: "pending" },
+        { key: "lost", label: "Mark lost", stage: "Lost", marker: "Restaurant rep: lost.", activity: "Restaurant rep — Lost", tone: "pending" },
+      ];
+
+      var RESTAURANT_REP_DAILY_QUEUE_BUCKETS = [
+        { key: "research-before-contact", label: "Research before contact", explanation: "Restaurants that need research before outreach." },
+        { key: "ready-to-contact", label: "Ready to contact", explanation: "Research is complete enough to make the first touch." },
+        { key: "discovery-needed", label: "Discovery needed", explanation: "Contact or interest exists; ask the qualifying questions next." },
+        { key: "proposal-ready", label: "Proposal ready", explanation: "Qualified restaurants needing a proposal or first offer." },
+        { key: "proposal-follow-up", label: "Proposal follow-up", explanation: "Proposal was sent or follow-up is due." },
+        { key: "verbal-yes-deposit-next", label: "Verbal yes / deposit next", explanation: "Restaurants that said yes and need deposit or approval next." },
+        { key: "won-clients-onboarding", label: "Won clients needing onboarding", explanation: "Won restaurant clients that still need materials or onboarding." },
+        { key: "not-now-future-follow-up", label: "Not now / future follow-up", explanation: "Restaurants marked not now and worth revisiting later." },
+      ];
+
+      var RESTAURANT_DISCOVERY_QUESTION_GROUPS = {
+        visibility: [
+          "How do most new customers find you now?",
+          "Do visitors find you online, through hotel/resort referrals, social, Google, or word of mouth?",
+          "Which customer type do you want more of: business dinners, tourists, date nights, groups, brunch, private events, resort guests?",
+        ],
+        reservationPath: [
+          "How do guests usually book or contact you?",
+          "Is your reservation path easy on mobile?",
+          "Do you lose private dining or group inquiries?",
+          "Who handles inquiries when staff are busy?",
+        ],
+        qrFunnel: [
+          "Are you using QR codes for menus, offers, reviews, private dining, or follow-up?",
+          "Would a QR landing page help capture actions better than a static menu link?",
+        ],
+        reviewsRepeat: [
+          "Do you have a follow-up process after guests visit?",
+          "Do you ask for reviews in a consistent way?",
+          "Do you have a way to bring guests back?",
+        ],
+        ownerApproval: [
+          "Who approves public wording?",
+          "What should never be promoted?",
+          "What claims or offers should we avoid?",
+        ],
+      };
+
+      var RESTAURANT_OBJECTION_RESPONSES = [
+        {
+          key: "website",
+          title: "We already have a website.",
+          response: "That helps, but the question is whether visitors are finding the right path at the moment they are deciding. This can work alongside your website by improving discovery, routing, QR actions, inquiries, and follow-up.",
+        },
+        {
+          key: "social-media",
+          title: "We already use social media.",
+          response: "Social helps with awareness. This is more focused on visitor intent and customer flow: where people decide, what action they take, and whether the restaurant captures that interest.",
+        },
+        {
+          key: "ai",
+          title: "We do not need AI.",
+          response: "The AI part does not replace your team. It supports practical tasks like intake, routing, follow-up copy, customer questions, reporting, and owner-approved workflows.",
+        },
+        {
+          key: "guarantee",
+          title: "We cannot guarantee reservations.",
+          response: "Exactly. I would not promise guaranteed reservations. The goal is better visibility, cleaner customer path, better inquiry capture, and better follow-up.",
+        },
+        {
+          key: "price",
+          title: "It sounds expensive.",
+          response: "That is why I recommend starting with the smallest useful system. We can begin with the first bottleneck and expand only if it proves useful.",
+        },
+        {
+          key: "think-about-it",
+          title: "We need to think about it.",
+          response: "That makes sense. The easiest next step is not a commitment; it is confirming the visitor lane, customer path, and whether there is a real opportunity.",
+        },
+      ];
+
+      var RESTAURANT_FOLLOW_UP_CADENCE = [
+        { key: "day-0", label: "Day 0: First contact", message: "Hi [contact_name], this is Willie with Where To Go SA. I wanted to share the restaurant visibility / guest-flow idea and see who handles visitor visibility, reservations, QR actions, or private dining inquiries for [business_name]." },
+        { key: "day-2", label: "Day 1-2: Gentle follow-up", message: "Hi [contact_name], just following up on the restaurant visitor visibility idea for [business_name]. The first move I would recommend is [best_first_offer]. No pressure - I wanted to see if it is worth a quick conversation." },
+        { key: "day-5", label: "Day 3-5: Value follow-up with specific opportunity", message: "Hi [contact_name], one specific opportunity I noticed for [business_name] is the [visitor_lane] lane. That could connect visitor attention to a cleaner reservation, inquiry, QR, or follow-up path." },
+        { key: "day-7", label: "Day 7: Proposal/next-step reminder", message: "Hi [contact_name], wanted to check whether the next-step idea for [business_name] is something you want to review now, later, or not at all. I would keep the first phase focused on [best_first_offer]." },
+        { key: "day-14", label: "Day 14: Soft close or not-now check", message: "Hi [contact_name], I do not want to keep bugging you. Should I mark this as not now for [business_name], or is there still interest in a quick workflow mapping call?" },
+        { key: "day-30", label: "Day 30: Revisit if still relevant", message: "Hi [contact_name], circling back in case visitor visibility, reservations, private dining, QR actions, reviews, or follow-up are still relevant for [business_name]. Happy to start with the smallest useful step." },
+      ];
+
+      var RESTAURANT_REP_GUARDRAIL_NOTE =
+        "Internal restaurant sales guidance only. Nothing is sent, published, invoiced, charged, or promised automatically.";
 
       var RESTAURANT_MANUAL_OFFER_MAP = {
         "Starter Visibility": {
@@ -4316,6 +4713,8 @@
         todayActions: document.getElementById("owner-dash-today-actions"),
         todayBuckets: document.getElementById("owner-dash-today-buckets"),
         activeQueue: document.getElementById("owner-dash-active-queue"),
+        restaurantRepDailyQueue: document.getElementById("owner-dash-restaurant-rep-daily-queue"),
+        restaurantRepDailyBuckets: document.getElementById("owner-dash-restaurant-rep-daily-buckets"),
         exportSection: document.getElementById("owner-dash-export-crm"),
         exportSnapshot: document.getElementById("owner-dash-export-snapshot"),
         exportStatus: document.getElementById("owner-dash-export-status"),
@@ -4784,6 +5183,7 @@
         var snap = restaurantSnapshot(row);
         var research = restaurantResearchProfile(row);
         var close = restaurantCloseData(row);
+        var repStage = restaurantRepStage(row);
         if (isRestaurantClient(row)) {
           var success = restaurantClientSuccessData(row);
           return (
@@ -4812,6 +5212,9 @@
             "<div><span>Next client success action</span><strong>" +
             esc(success.nextClientSuccessAction) +
             "</strong></div>" +
+            "<div><span>Rep stage</span><strong>" +
+            esc(repStage) +
+            "</strong></div>" +
             "</div>"
           );
         }
@@ -4838,6 +5241,9 @@
           "</strong></div>" +
           '<div class="owner-dash-restaurant-score-card"><span>Sales priority:</span><strong>' +
           esc(research.salesPriority) +
+          "</strong></div>" +
+          '<div><span>Rep stage</span><strong>' +
+          esc(repStage) +
           "</strong></div>" +
           restaurantProposalCardRows(row) +
           "</div>"
@@ -5912,6 +6318,128 @@
         };
       }
 
+      function normalizeRestaurantRepStage(value) {
+        var clean = String(value || "").replace(/\s*\.\s*$/, "").trim();
+        if (!clean) return "";
+        var lower = clean.toLowerCase().replace(/\s*\/\s*/g, "/");
+        var aliases = {
+          "not started": "Not started",
+          "research needed": "Research needed",
+          "research complete": "Research complete",
+          "ready to contact": "Ready to contact",
+          contacted: "Contacted",
+          "discovery needed": "Discovery needed",
+          qualified: "Qualified",
+          "proposal ready": "Proposal ready",
+          "proposal sent": "Proposal sent",
+          "follow-up due": "Follow-up due",
+          "follow up due": "Follow-up due",
+          "verbal yes": "Verbal yes",
+          "deposit requested": "Deposit requested",
+          "won/client": "Won / client",
+          "won / client": "Won / client",
+          "won client": "Won / client",
+          "not now": "Not now",
+          lost: "Lost",
+        };
+        return aliases[lower] || clean;
+      }
+
+      function restaurantRepStageMarkerValue(row) {
+        var notes = ownerNotesText(row);
+        if (!notes) return "";
+        var blockMatch = notes.match(/Restaurant sales rep:\s*[\s\S]*?Rep stage:\s*([^\r\n.]*)/i);
+        if (blockMatch) return normalizeRestaurantRepStage(blockMatch[1]);
+        var markerMatch = notes.match(/Restaurant rep:\s*(research needed|research complete|ready to contact|contacted|discovery needed|qualified|proposal ready|proposal sent|follow-up due|verbal yes|deposit requested|won\/client|not now|lost)\s*\./i);
+        if (markerMatch) return normalizeRestaurantRepStage(markerMatch[1]);
+        return "";
+      }
+
+      function restaurantRepNotes(row) {
+        var notes = ownerNotesText(row);
+        if (!notes) return "";
+        var match = notes.match(/Restaurant sales rep:\s*[\s\S]*?Rep notes:\s*([^\r\n]*)/i);
+        return match ? String(match[1] || "").replace(/\s*\.\s*$/, "").trim() : "";
+      }
+
+      function restaurantRepStage(row) {
+        var saved = restaurantRepStageMarkerValue(row);
+        if (saved) return saved;
+        var stage = restaurantStage(row);
+        var map = {
+          Prospect: "Research needed",
+          "Needs research": "Research needed",
+          Researched: "Research complete",
+          "Ready for contact": "Ready to contact",
+          Contacted: "Contacted",
+          Interested: "Discovery needed",
+          "Discovery needed": "Discovery needed",
+          "Proposal ready": "Proposal ready",
+          "Proposal sent": "Proposal sent",
+          "Follow-up due": "Follow-up due",
+          "Verbal yes": "Verbal yes",
+          "Deposit requested": "Deposit requested",
+          "Won / client": "Won / client",
+          Won: "Won / client",
+          Live: "Won / client",
+          "Not now": "Not now",
+          Lost: "Lost",
+          "Not a fit": "Lost",
+        };
+        return map[stage] || "Not started";
+      }
+
+      function restaurantRepFollowUpStatus(row) {
+        var stage = restaurantRepStage(row);
+        if (stage === "Contacted" || stage === "Proposal sent" || stage === "Follow-up due") return "Follow-up due";
+        if (stage === "Not now") return "Future follow-up";
+        if (stage === "Lost") return "Closed lost";
+        if (stage === "Won / client") return "Onboarding next";
+        if (stage === "Verbal yes" || stage === "Deposit requested") return "Deposit / approval next";
+        if (row && row.last_contacted_at) return "Last contacted " + fmtShortDate(row.last_contacted_at);
+        return "No follow-up logged";
+      }
+
+      function restaurantRepSuggestedCallAngle(row) {
+        var snap = restaurantSnapshot(row);
+        var research = restaurantResearchProfile(row);
+        if (research.recommendedFirstMove && !/^research more/i.test(research.recommendedFirstMove)) {
+          return research.recommendedFirstMove;
+        }
+        if (snap.lane && snap.lane !== "Unknown") {
+          return "Lead with the " + snap.lane + " visitor lane and a simple customer-path conversation.";
+        }
+        return "Lead with better visitor visibility and ask how guests currently discover, reserve, inquire, or follow up.";
+      }
+
+      function restaurantRepSuggestedObjection(row) {
+        var text = restaurantAllText(row).toLowerCase();
+        if (/website|seo|google|reservation|menu/.test(text)) return "We already have a website.";
+        if (/instagram|facebook|social/.test(text)) return "We already use social media.";
+        if (/\bai\b|automation|concierge/.test(text)) return "We do not need AI.";
+        if (/price|cost|expensive|budget/.test(text)) return "It sounds expensive.";
+        return "We need to think about it.";
+      }
+
+      function restaurantRepRecommendedNextAction(row) {
+        var stage = restaurantRepStage(row);
+        var snap = restaurantSnapshot(row);
+        if (stage === "Not started" || stage === "Research needed") return "Research website, Google, menu/reservation path, social, visitor lane, and likely offer.";
+        if (stage === "Research complete") return "Mark ready to contact and prepare the opener.";
+        if (stage === "Ready to contact") return "Make first contact manually.";
+        if (stage === "Contacted") return "Send warm follow-up or move to discovery.";
+        if (stage === "Discovery needed") return "Ask discovery questions and qualify the first useful system.";
+        if (stage === "Qualified") return "Build the proposal direction around " + snap.recommendedOffer + ".";
+        if (stage === "Proposal ready") return "Send proposal manually and mark proposal sent.";
+        if (stage === "Proposal sent" || stage === "Follow-up due") return "Follow up on proposal and ask for next step.";
+        if (stage === "Verbal yes") return "Confirm first phase and request deposit or approval step.";
+        if (stage === "Deposit requested") return "Follow up on deposit/approval and prepare onboarding.";
+        if (stage === "Won / client") return "Collect materials and move into onboarding.";
+        if (stage === "Not now") return "Set future follow-up and keep the relationship warm.";
+        if (stage === "Lost") return "Leave closed unless owner reopens.";
+        return restaurantNextAction(row);
+      }
+
       function restaurantStageKey(row) {
         return restaurantStage(row).toLowerCase();
       }
@@ -5919,6 +6447,11 @@
       function matchesRestaurantFilter(row) {
         var filter = state.activeRestaurantFilter || "all";
         if (filter === "all") return true;
+        if (filter.indexOf("rep: ") === 0) {
+          var wantedRepStage = normalizeRestaurantRepStage(filter.slice(5));
+          return restaurantRepStage(row) === wantedRepStage ||
+            ownerNotesInclude(row, ["Restaurant rep: " + filter.slice(5) + "."]);
+        }
         var stage = restaurantStageKey(row);
         if (filter === "prospect") return stage === "prospect";
         if (filter === "recap due") return stage === "monthly recap due";
@@ -12699,6 +13232,214 @@
         ].join("\n");
       }
 
+      function restaurantRepTemplateData(lead) {
+        var snap = restaurantSnapshot(lead || {});
+        var proposal = restaurantProposalDirection(lead || {});
+        return {
+          business: snap.business || "[business_name]",
+          contact: (lead && lead.contact_name) || "[contact_name]",
+          visitorLane: snap.lane || "[visitor_lane]",
+          bestFirstOffer: proposal.suggestedFirstOffer || snap.recommendedOffer || "[best_first_offer]",
+        };
+      }
+
+      function restaurantRepFill(text, lead) {
+        var d = restaurantRepTemplateData(lead);
+        return String(text || "")
+          .replace(/\[business_name\]/g, d.business)
+          .replace(/\[contact_name\]/g, d.contact)
+          .replace(/\[visitor_lane\]/g, d.visitorLane)
+          .replace(/\[best_first_offer\]/g, d.bestFirstOffer);
+      }
+
+      function buildRestaurantColdCallOpener(lead) {
+        return restaurantRepFill(
+          [
+            "Hi, this is Willie with Where To Go SA. I’m building a local visitor guide for San Antonio and a restaurant growth system for places that want more visibility with visitors, business dinners, date nights, resort guests, and groups.",
+            "",
+            "I’m reaching out because [business_name] looks like it could fit the [visitor_lane] lane.",
+            "",
+            "I’m not calling with a big agency pitch. I’m seeing if it makes sense to put your restaurant in front of visitors at the moment they’re deciding where to eat, and if useful, connect that attention to a simple reservation, inquiry, QR, or follow-up path.",
+          ].join("\n"),
+          lead
+        );
+      }
+
+      function buildRestaurantWarmRepFollowUpOpener(lead) {
+        return restaurantRepFill(
+          [
+            "Hi [contact_name], this is Willie with Where To Go SA. I wanted to follow up on [business_name] and the restaurant visibility / guest-flow idea we discussed.",
+            "",
+            "The first move I’d recommend is still:",
+            "[best_first_offer]",
+            "",
+            "The goal is simple: better visitor visibility, a cleaner customer path, and a practical next step without overbuilding.",
+          ].join("\n"),
+          lead
+        );
+      }
+
+      function buildRestaurantDmOpener(lead) {
+        return restaurantRepFill(
+          [
+            "Hi [contact_name], this is Willie with Where To Go SA. I’m building a San Antonio visitor guide and restaurant growth system focused on where visitors eat for business dinners, River Walk nights, resort stays, date nights, group dining, and brunch.",
+            "",
+            "I thought [business_name] may fit the [visitor_lane] lane.",
+            "",
+            "Would you be open to a quick conversation about getting in front of more visitors and improving the path from discovery to reservation or inquiry?",
+          ].join("\n"),
+          lead
+        );
+      }
+
+      function buildRestaurantEmailOpener(lead) {
+        return restaurantRepFill(
+          [
+            "Subject: Quick idea for [business_name]",
+            "",
+            "Hi [contact_name],",
+            "",
+            "This is Willie with Where To Go SA. I’m building a local visitor guide and restaurant growth system for San Antonio restaurants.",
+            "",
+            "I thought [business_name] may fit the [visitor_lane] lane, especially for visitors deciding where to eat.",
+            "",
+            "The first useful move may be:",
+            "[best_first_offer]",
+            "",
+            "This is not a promise of guaranteed traffic or reservations. It is a practical visibility and customer-path system built around visitor intent, better placement, QR/funnel options, inquiry capture, and owner-approved follow-up.",
+            "",
+            "Would you be open to a quick 10-15 minute conversation?",
+          ].join("\n"),
+          lead
+        );
+      }
+
+      function buildRestaurantDiscoveryBridge() {
+        return "Before I recommend anything, I’d want to understand how customers currently find you, how reservations or inquiries come in, what kind of guests you want more of, and whether the bigger opportunity is visibility, booking flow, private dining, QR actions, reviews, or repeat guests.";
+      }
+
+      function buildRestaurantNextStepClose() {
+        return "The best next step is a short workflow mapping call. We would confirm the visitor lane, current customer path, first offer, approval steps, and whether this should start as a simple placement, QR/funnel, lead system, or fuller restaurant growth system.";
+      }
+
+      function buildRestaurantFullPitchScript(lead) {
+        return [
+          "Restaurant Pitch Script Builder",
+          "",
+          "Opening line:",
+          buildRestaurantColdCallOpener(lead),
+          "",
+          "Reason for outreach:",
+          "I thought this restaurant may fit the visitor lane and could benefit from a cleaner path from visitor discovery to action.",
+          "",
+          "Visitor visibility angle:",
+          "Visitors, business dinners, date nights, resort guests, groups, and brunch customers are often deciding quickly. The goal is to be visible in the right moment without fake guarantees.",
+          "",
+          "AI systems angle:",
+          "AI can support intake, routing, approved answers, follow-up copy, reporting, and owner-approved workflows without replacing staff.",
+          "",
+          "First offer angle:",
+          restaurantRepTemplateData(lead).bestFirstOffer,
+          "",
+          "Discovery bridge:",
+          buildRestaurantDiscoveryBridge(),
+          "",
+          "Close for next step:",
+          buildRestaurantNextStepClose(),
+        ].join("\n");
+      }
+
+      function restaurantDiscoveryQuestionsByKind(kind) {
+        if (kind === "restaurant-visibility-questions") return RESTAURANT_DISCOVERY_QUESTION_GROUPS.visibility;
+        if (kind === "restaurant-reservation-path-questions") return RESTAURANT_DISCOVERY_QUESTION_GROUPS.reservationPath;
+        if (kind === "restaurant-qr-funnel-questions") return RESTAURANT_DISCOVERY_QUESTION_GROUPS.qrFunnel;
+        if (kind === "restaurant-review-repeat-guest-questions") return RESTAURANT_DISCOVERY_QUESTION_GROUPS.reviewsRepeat;
+        if (kind === "restaurant-owner-approval-questions") return RESTAURANT_DISCOVERY_QUESTION_GROUPS.ownerApproval;
+        return RESTAURANT_DISCOVERY_QUESTION_GROUPS.visibility
+          .concat(RESTAURANT_DISCOVERY_QUESTION_GROUPS.reservationPath)
+          .concat(RESTAURANT_DISCOVERY_QUESTION_GROUPS.qrFunnel)
+          .concat(RESTAURANT_DISCOVERY_QUESTION_GROUPS.reviewsRepeat)
+          .concat(RESTAURANT_DISCOVERY_QUESTION_GROUPS.ownerApproval);
+      }
+
+      function buildRestaurantDiscoveryQuestionBankText(kind) {
+        return bulletText(restaurantDiscoveryQuestionsByKind(kind));
+      }
+
+      function restaurantObjectionByKey(key) {
+        for (var i = 0; i < RESTAURANT_OBJECTION_RESPONSES.length; i++) {
+          if (RESTAURANT_OBJECTION_RESPONSES[i].key === key) return RESTAURANT_OBJECTION_RESPONSES[i];
+        }
+        return null;
+      }
+
+      function buildRestaurantObjectionText(kind) {
+        var map = {
+          "restaurant-website-objection": "website",
+          "restaurant-social-media-objection": "social-media",
+          "restaurant-ai-objection": "ai",
+          "restaurant-guarantee-objection": "guarantee",
+          "restaurant-price-objection": "price",
+          "restaurant-think-about-it-objection": "think-about-it",
+        };
+        if (kind === "restaurant-full-objection-sheet") {
+          return RESTAURANT_OBJECTION_RESPONSES.map(function (item, idx) {
+            return (idx + 1) + ". " + item.title + "\nResponse:\n" + item.response;
+          }).join("\n\n");
+        }
+        var item = restaurantObjectionByKey(map[kind]);
+        return item ? item.response : "";
+      }
+
+      function restaurantFollowUpByKey(key) {
+        for (var i = 0; i < RESTAURANT_FOLLOW_UP_CADENCE.length; i++) {
+          if (RESTAURANT_FOLLOW_UP_CADENCE[i].key === key) return RESTAURANT_FOLLOW_UP_CADENCE[i];
+        }
+        return null;
+      }
+
+      function buildRestaurantFollowUpCadenceText(kind, lead) {
+        var keyMap = {
+          "restaurant-day-0-follow-up": "day-0",
+          "restaurant-day-2-follow-up": "day-2",
+          "restaurant-day-5-follow-up": "day-5",
+          "restaurant-day-7-proposal-reminder": "day-7",
+          "restaurant-day-14-not-now-check": "day-14",
+          "restaurant-day-30-revisit-message": "day-30",
+        };
+        if (kind === "restaurant-full-follow-up-cadence") {
+          return RESTAURANT_FOLLOW_UP_CADENCE.map(function (item) {
+            return item.label + "\n" + restaurantRepFill(item.message, lead);
+          }).join("\n\n");
+        }
+        var item = restaurantFollowUpByKey(keyMap[kind]);
+        return item ? restaurantRepFill(item.message, lead) : "";
+      }
+
+      function restaurantRepTextForKind(kind, lead) {
+        if (kind === "restaurant-cold-call-opener") return buildRestaurantColdCallOpener(lead);
+        if (kind === "restaurant-warm-rep-follow-up-opener") return buildRestaurantWarmRepFollowUpOpener(lead);
+        if (kind === "restaurant-dm-opener") return buildRestaurantDmOpener(lead);
+        if (kind === "restaurant-email-opener") return buildRestaurantEmailOpener(lead);
+        if (kind === "restaurant-discovery-bridge") return buildRestaurantDiscoveryBridge();
+        if (kind === "restaurant-next-step-close") return buildRestaurantNextStepClose();
+        if (kind === "restaurant-full-pitch-script") return buildRestaurantFullPitchScript(lead);
+        if (/^restaurant-(visibility|reservation-path|qr-funnel|review-repeat-guest|owner-approval)-questions$/.test(kind) || kind === "restaurant-discovery-question-bank") {
+          return buildRestaurantDiscoveryQuestionBankText(kind);
+        }
+        if (/^restaurant-(website|social-media|ai|guarantee|price|think-about-it)-objection$/.test(kind) || kind === "restaurant-full-objection-sheet") {
+          return buildRestaurantObjectionText(kind);
+        }
+        if (/^restaurant-day-(0|2|5|7|14|30)/.test(kind) || kind === "restaurant-full-follow-up-cadence") {
+          return buildRestaurantFollowUpCadenceText(kind, lead);
+        }
+        if (kind === "restaurant-rep-daily-recap") return buildRestaurantRepDailyRecap();
+        if (kind === "restaurant-rep-weekly-recap") return buildRestaurantRepWeeklyRecap();
+        if (kind === "restaurant-pipeline-summary") return buildRestaurantRepPipelineSummary();
+        if (kind === "restaurant-manager-ready-report") return buildRestaurantManagerReadyReport();
+        return "";
+      }
+
       function restaurantProposalCopyData(lead) {
         var snap = restaurantSnapshot(lead);
         var proposal = restaurantProposalDirection(lead);
@@ -13352,6 +14093,8 @@
 
       function restaurantTextForKind(kind, lead) {
         if (!lead || !isRestaurantRow(lead)) return "";
+        var repText = restaurantRepTextForKind(kind, lead);
+        if (repText) return repText;
         if (kind === "restaurant-scouting-notes-template") return buildRestaurantScoutingNotesTemplate(lead);
         if (kind === "restaurant-walk-in-opening") return buildRestaurantWalkInOpening(lead);
         if (kind === "restaurant-owner-manager-ask") return buildRestaurantOwnerManagerAsk(lead);
@@ -13496,6 +14239,238 @@
           '">' +
           esc(label) +
           "</button>"
+        );
+      }
+
+      function restaurantRepActionButton(action) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="mark-restaurant-rep-stage" data-restaurant-rep-action="' +
+          esc(action.key) +
+          '">' +
+          esc(action.label) +
+          "</button>"
+        );
+      }
+
+      function restaurantRepStageOptionsHtml(current) {
+        return RESTAURANT_REP_STAGE_OPTIONS.map(function (stage) {
+          return (
+            '<option value="' +
+            esc(stage) +
+            '"' +
+            (stage === current ? " selected" : "") +
+            ">" +
+            esc(stage) +
+            "</option>"
+          );
+        }).join("");
+      }
+
+      function restaurantRepFormHtml(lead) {
+        var stage = restaurantRepStage(lead);
+        return (
+          '<div class="owner-dash-restaurant-rep-form" data-restaurant-rep-form>' +
+          '<div class="owner-dash-restaurant-rep-form-grid">' +
+          '<label class="owner-dash-restaurant-rep-field">' +
+          '<span class="owner-dash-restaurant-rep-label">Restaurant rep stage</span>' +
+          '<select class="owner-dash-restaurant-rep-select" name="restaurant_rep_stage">' +
+          restaurantRepStageOptionsHtml(stage) +
+          "</select></label>" +
+          '<label class="owner-dash-restaurant-rep-field owner-dash-restaurant-rep-field--wide">' +
+          '<span class="owner-dash-restaurant-rep-label">Rep notes</span>' +
+          '<textarea class="owner-dash-restaurant-rep-textarea" name="restaurant_rep_notes" rows="4">' +
+          esc(restaurantRepNotes(lead)) +
+          "</textarea></label>" +
+          "</div>" +
+          '<div class="owner-dash-restaurant-rep-action-buttons">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--primary owner-dash-btn--compact" data-action="save-restaurant-rep-status">Save restaurant rep status</button>' +
+          "</div></div>"
+        );
+      }
+
+      function restaurantRepScriptBuilderHtml(lead) {
+        var snap = restaurantSnapshot(lead);
+        var proposal = restaurantProposalDirection(lead);
+        return (
+          '<div class="owner-dash-restaurant-rep-card">' +
+          '<h4>Restaurant Pitch Script Builder</h4>' +
+          '<div class="owner-dash-restaurant-rep-grid">' +
+          restaurantRepScriptPart("Opening line", "Willie with Where To Go SA, building a local visitor guide and restaurant growth system.") +
+          restaurantRepScriptPart("Reason for outreach", snap.business + " looks like it may fit the " + snap.lane + " lane.") +
+          restaurantRepScriptPart("Visitor visibility angle", "Put the restaurant in front of visitors when they are deciding where to eat.") +
+          restaurantRepScriptPart("AI systems angle", "Use practical AI support for intake, routing, follow-up copy, questions, reporting, and owner-approved workflows.") +
+          restaurantRepScriptPart("First offer angle", proposal.suggestedFirstOffer || snap.recommendedOffer) +
+          restaurantRepScriptPart("Discovery bridge", buildRestaurantDiscoveryBridge()) +
+          restaurantRepScriptPart("Close for next step", buildRestaurantNextStepClose()) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-rep-copy-actions">' +
+          restaurantCopyButton("restaurant-cold-call-opener", "Copy cold call opener", true) +
+          restaurantCopyButton("restaurant-warm-rep-follow-up-opener", "Copy warm follow-up opener", false) +
+          restaurantCopyButton("restaurant-dm-opener", "Copy restaurant DM opener", false) +
+          restaurantCopyButton("restaurant-email-opener", "Copy restaurant email opener", false) +
+          restaurantCopyButton("restaurant-discovery-bridge", "Copy discovery bridge", false) +
+          restaurantCopyButton("restaurant-next-step-close", "Copy next-step close", false) +
+          restaurantCopyButton("restaurant-full-pitch-script", "Copy full restaurant pitch script", true) +
+          "</div></div>"
+        );
+      }
+
+      function restaurantRepScriptPart(label, value) {
+        return '<div class="owner-dash-restaurant-rep-script-part"><span>' + esc(label) + "</span><p>" + esc(value || "—") + "</p></div>";
+      }
+
+      function restaurantQuestionGroupCard(title, items) {
+        return (
+          '<article class="owner-dash-restaurant-rep-card"><h4>' +
+          esc(title) +
+          "</h4>" +
+          bulletListHtml(items, "owner-dash-deal-list") +
+          "</article>"
+        );
+      }
+
+      function restaurantDiscoveryQuestionsHtml() {
+        return (
+          '<div class="owner-dash-restaurant-rep-card">' +
+          '<h4>Restaurant Discovery Questions</h4>' +
+          '<div class="owner-dash-restaurant-rep-two-col">' +
+          restaurantQuestionGroupCard("Visibility", RESTAURANT_DISCOVERY_QUESTION_GROUPS.visibility) +
+          restaurantQuestionGroupCard("Reservation / inquiry path", RESTAURANT_DISCOVERY_QUESTION_GROUPS.reservationPath) +
+          restaurantQuestionGroupCard("QR / funnel", RESTAURANT_DISCOVERY_QUESTION_GROUPS.qrFunnel) +
+          restaurantQuestionGroupCard("Reviews / repeat guests", RESTAURANT_DISCOVERY_QUESTION_GROUPS.reviewsRepeat) +
+          restaurantQuestionGroupCard("Owner approval", RESTAURANT_DISCOVERY_QUESTION_GROUPS.ownerApproval) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-rep-copy-actions">' +
+          restaurantCopyButton("restaurant-discovery-question-bank", "Copy restaurant discovery questions", true) +
+          restaurantCopyButton("restaurant-visibility-questions", "Copy visibility questions", false) +
+          restaurantCopyButton("restaurant-reservation-path-questions", "Copy reservation path questions", false) +
+          restaurantCopyButton("restaurant-qr-funnel-questions", "Copy QR/funnel questions", false) +
+          restaurantCopyButton("restaurant-review-repeat-guest-questions", "Copy review/repeat guest questions", false) +
+          restaurantCopyButton("restaurant-owner-approval-questions", "Copy owner approval questions", false) +
+          "</div></div>"
+        );
+      }
+
+      function restaurantObjectionHandlerHtml() {
+        return (
+          '<div class="owner-dash-restaurant-rep-card">' +
+          '<h4>Restaurant Objection Handler</h4>' +
+          '<div class="owner-dash-restaurant-rep-two-col">' +
+          RESTAURANT_OBJECTION_RESPONSES.map(function (item, idx) {
+            return restaurantQuestionGroupCard(String(idx + 1) + ". " + item.title, [item.response]);
+          }).join("") +
+          "</div>" +
+          '<div class="owner-dash-restaurant-rep-copy-actions">' +
+          restaurantCopyButton("restaurant-website-objection", "Copy website objection response", false) +
+          restaurantCopyButton("restaurant-social-media-objection", "Copy social media objection response", false) +
+          restaurantCopyButton("restaurant-ai-objection", "Copy AI objection response", false) +
+          restaurantCopyButton("restaurant-guarantee-objection", "Copy guarantee objection response", false) +
+          restaurantCopyButton("restaurant-price-objection", "Copy price objection response", false) +
+          restaurantCopyButton("restaurant-think-about-it-objection", "Copy think-about-it response", false) +
+          restaurantCopyButton("restaurant-full-objection-sheet", "Copy full objection sheet", true) +
+          "</div></div>"
+        );
+      }
+
+      function restaurantFollowUpCadenceHtml() {
+        return (
+          '<div class="owner-dash-restaurant-rep-card">' +
+          '<h4>Restaurant Follow-Up Cadence</h4>' +
+          bulletListHtml(RESTAURANT_FOLLOW_UP_CADENCE.map(function (item) { return item.label; }), "owner-dash-deal-list") +
+          '<div class="owner-dash-restaurant-rep-copy-actions">' +
+          restaurantCopyButton("restaurant-day-0-follow-up", "Copy day 0 follow-up", false) +
+          restaurantCopyButton("restaurant-day-2-follow-up", "Copy day 2 follow-up", false) +
+          restaurantCopyButton("restaurant-day-5-follow-up", "Copy day 5 follow-up", false) +
+          restaurantCopyButton("restaurant-day-7-proposal-reminder", "Copy day 7 proposal reminder", false) +
+          restaurantCopyButton("restaurant-day-14-not-now-check", "Copy day 14 not-now check", false) +
+          restaurantCopyButton("restaurant-day-30-revisit-message", "Copy day 30 revisit message", false) +
+          restaurantCopyButton("restaurant-full-follow-up-cadence", "Copy full follow-up cadence", true) +
+          "</div></div>"
+        );
+      }
+
+      function restaurantRepManagerRecapHtml() {
+        return (
+          '<div class="owner-dash-restaurant-rep-card">' +
+          '<h4>Restaurant Rep Manager Recap</h4>' +
+          '<div class="owner-dash-restaurant-rep-grid">' +
+          restaurantRepManagerCountCard("New restaurant prospects", restaurantProspectRows().length) +
+          restaurantRepManagerCountCard("Research needed", restaurantRowsByRepStage("Research needed").length) +
+          restaurantRepManagerCountCard("Ready to contact", restaurantRowsByRepStage("Ready to contact").length) +
+          restaurantRepManagerCountCard("Contacted", restaurantRowsByRepStage("Contacted").length) +
+          restaurantRepManagerCountCard("Discovery needed", restaurantRowsByRepStage("Discovery needed").length) +
+          restaurantRepManagerCountCard("Qualified", restaurantRowsByRepStage("Qualified").length) +
+          restaurantRepManagerCountCard("Proposal ready", restaurantRowsByRepStage("Proposal ready").length) +
+          restaurantRepManagerCountCard("Proposal sent", restaurantRowsByRepStage("Proposal sent").length) +
+          restaurantRepManagerCountCard("Follow-up due", restaurantRowsByRepStage("Follow-up due").length) +
+          restaurantRepManagerCountCard("Verbal yes", restaurantRowsByRepStage("Verbal yes").length) +
+          restaurantRepManagerCountCard("Deposit requested", restaurantRowsByRepStage("Deposit requested").length) +
+          restaurantRepManagerCountCard("Won/client", restaurantRowsByRepStage("Won / client").length) +
+          restaurantRepManagerCountCard("Not now", restaurantRowsByRepStage("Not now").length) +
+          restaurantRepManagerCountCard("Lost", restaurantRowsByRepStage("Lost").length) +
+          restaurantRepManagerCountCard("Best next actions", restaurantRepBestNextActions().join(" | ")) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-rep-copy-actions">' +
+          restaurantCopyButton("restaurant-rep-daily-recap", "Copy restaurant rep daily recap", true) +
+          restaurantCopyButton("restaurant-rep-weekly-recap", "Copy restaurant rep weekly recap", false) +
+          restaurantCopyButton("restaurant-pipeline-summary", "Copy restaurant pipeline summary", false) +
+          restaurantCopyButton("restaurant-manager-ready-report", "Copy manager-ready report", true) +
+          "</div></div>"
+        );
+      }
+
+      function restaurantRepManagerCountCard(label, value) {
+        return '<div class="owner-dash-restaurant-rep-card"><span>' + esc(label) + "</span><strong>" + esc(value) + "</strong></div>";
+      }
+
+      function restaurantRepGuardrailsHtml() {
+        return (
+          '<div class="owner-dash-restaurant-rep-card">' +
+          '<h4>Restaurant Rep Guardrails</h4>' +
+          restaurantGuardrailsCard() +
+          '<p class="owner-dash-restaurant-rep-guardrail-note">' +
+          esc(RESTAURANT_REP_GUARDRAIL_NOTE) +
+          "</p></div>"
+        );
+      }
+
+      function restaurantSalesRepCommandBlock(lead) {
+        var snap = restaurantSnapshot(lead);
+        var research = restaurantResearchProfile(lead);
+        var proposal = restaurantProposalDirection(lead);
+        var repStage = restaurantRepStage(lead);
+        return (
+          '<div class="owner-dash-restaurant-command-block owner-dash-restaurant-rep-command">' +
+          '<div class="owner-dash-restaurant-rep-command-head">' +
+          '<h3 class="owner-dash-detail-section-title">Restaurant Sales Rep Command</h3>' +
+          '<p class="owner-dash-restaurant-rep-command-subtitle">Run the restaurant program like a rep: research, contact, qualify, propose, close, and report without losing the next move.</p>' +
+          "</div>" +
+          '<div class="owner-dash-restaurant-rep-grid">' +
+          restaurantRepManagerCountCard("Restaurant name", snap.business) +
+          restaurantRepManagerCountCard("Contact name", snap.contact) +
+          restaurantRepManagerCountCard("Current restaurant stage", snap.stage) +
+          restaurantRepManagerCountCard("Sales priority", research.salesPriority) +
+          restaurantRepManagerCountCard("Research score", research.researchScore + " / 100") +
+          restaurantRepManagerCountCard("Best visitor lane", snap.lane) +
+          restaurantRepManagerCountCard("Best first offer", proposal.suggestedFirstOffer || snap.recommendedOffer) +
+          restaurantRepManagerCountCard("Recommended next action", restaurantRepRecommendedNextAction(lead)) +
+          restaurantRepManagerCountCard("Suggested call angle", restaurantRepSuggestedCallAngle(lead)) +
+          restaurantRepManagerCountCard("Suggested objection to prepare for", restaurantRepSuggestedObjection(lead)) +
+          restaurantRepManagerCountCard("Follow-up status", restaurantRepFollowUpStatus(lead)) +
+          restaurantRepManagerCountCard("Rep notes", restaurantRepNotes(lead) || "—") +
+          "</div>" +
+          restaurantRepFormHtml(lead) +
+          '<div class="owner-dash-restaurant-rep-action-buttons">' +
+          RESTAURANT_REP_ACTIONS.map(restaurantRepActionButton).join("") +
+          "</div>" +
+          restaurantRepScriptBuilderHtml(lead) +
+          restaurantDiscoveryQuestionsHtml() +
+          restaurantObjectionHandlerHtml() +
+          restaurantFollowUpCadenceHtml() +
+          restaurantRepManagerRecapHtml() +
+          restaurantRepGuardrailsHtml() +
+          '<span class="owner-dash-restaurant-feedback" data-restaurant-feedback hidden aria-live="polite"></span>' +
+          "</div>"
         );
       }
 
@@ -14000,6 +14975,7 @@
           restaurantSnapshotItem("Suggested price position", snap.suggestedPrice, false) +
           restaurantSnapshotItem("Next restaurant action", snap.nextAction, true) +
           "</div></div>" +
+          restaurantSalesRepCommandBlock(lead) +
           '<div class="owner-dash-restaurant-two-col">' +
           '<article class="owner-dash-restaurant-command-block"><p class="owner-dash-restaurant-card-label">Rep Quick Pitch</p><p>' +
           esc(buildRestaurantPitch()) +
@@ -15168,6 +16144,42 @@
 
       function appendRestaurantClientSuccessMarker(existing, marker) {
         return appendRestaurantNote(existing, marker);
+      }
+
+      function restaurantRepFormValue(form, name) {
+        var field = form && form.elements ? form.elements[name] : null;
+        return field ? String(field.value || "").trim() : "";
+      }
+
+      function readRestaurantRepFormValues(form) {
+        return {
+          repStage: normalizeRestaurantRepStage(restaurantRepFormValue(form, "restaurant_rep_stage")) || "Not started",
+          repNotes: restaurantRepFormValue(form, "restaurant_rep_notes"),
+        };
+      }
+
+      function buildRestaurantRepStatusBlock(values) {
+        return [
+          "Restaurant sales rep:",
+          "Rep stage: " + (values.repStage || "Not started") + ".",
+          "Rep notes: " + (values.repNotes || "—") + ".",
+        ].join("\n");
+      }
+
+      function upsertRestaurantRepStatusBlock(existing, values) {
+        var block = buildRestaurantRepStatusBlock(values);
+        var current = String(existing || "").replace(/\r\n/g, "\n").trim();
+        if (!current) return block;
+        var re = /Restaurant sales rep:\s*[\s\S]*?Rep notes:\s*[^\n\r]*(?:\r?\n)?/i;
+        if (re.test(current)) return current.replace(re, block + "\n").trim();
+        return current + "\n\n" + block;
+      }
+
+      function restaurantRepActionConfig(action) {
+        for (var i = 0; i < RESTAURANT_REP_ACTIONS.length; i++) {
+          if (RESTAURANT_REP_ACTIONS[i].key === action) return RESTAURANT_REP_ACTIONS[i];
+        }
+        return null;
       }
 
 
@@ -16406,6 +17418,141 @@
           });
       }
 
+      function restaurantRepStatusForAction(config, currentStatus) {
+        var currentKey = normStatus(currentStatus);
+        if (!config) return null;
+        if (config.stage === "Contacted") return currentKey === "new" || currentKey === "reviewed" ? "Contacted" : null;
+        if (config.stage === "Discovery needed" || config.stage === "Follow-up due") return "Needs follow-up";
+        if (config.stage === "Qualified" || config.stage === "Proposal ready" || config.stage === "Proposal sent" || config.stage === "Verbal yes" || config.stage === "Deposit requested") {
+          return currentKey === "won" || currentKey === "lost" || currentKey === "archived" || currentKey === "not a fit" ? null : "Qualified";
+        }
+        if (config.stage === "Won / client") return "Won";
+        if (config.stage === "Lost") return "Lost";
+        return null;
+      }
+
+      function handleRestaurantRepStatusSave(sheet, sourceBtn) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        var form = sourceBtn.closest("[data-restaurant-rep-form]");
+        if (!form) return;
+        var section =
+          sourceBtn.closest(".owner-dash-restaurant-rep-command") ||
+          sourceBtn.closest(".owner-dash-detail-section--restaurant-command") ||
+          sheet.querySelector(".owner-dash-detail-section--restaurant-command");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var values = readRestaurantRepFormValues(form);
+        var previousNotes = String(hit.row.owner_notes || "");
+        var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
+        var nextNotes = upsertRestaurantRepStatusBlock(notesBase, values);
+        var controls = form.querySelectorAll("button, select, textarea");
+        controls.forEach(function (control) {
+          control.disabled = true;
+        });
+        sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+        sourceBtn.textContent = "Saving...";
+        setRestaurantFeedback(section, "Saving restaurant rep status...", false);
+
+        postUpdate(table, id, { owner_notes: nextNotes })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setRestaurantFeedback(section, (result.data && result.data.error) || "Could not save restaurant rep status. Try saving manually.", true);
+              return null;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(table, id, "Restaurant rep status updated", "ok", "");
+            return fetchDashboard()
+              .then(function (fresh) {
+                if (fresh.ok && fresh.data && fresh.data.ok) finishSuccess(fresh.data);
+                else renderAll();
+              })
+              .catch(function () {
+                renderAll();
+              })
+              .then(function () {
+                var freshSection = els.detailBody && els.detailBody.querySelector(".owner-dash-restaurant-rep-command");
+                setRestaurantFeedback(freshSection || section, "Restaurant rep status saved. Nothing was sent.", false);
+                refreshCounts();
+              });
+          })
+          .catch(function () {
+            setRestaurantFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            controls.forEach(function (control) {
+              control.disabled = false;
+            });
+            sourceBtn.textContent =
+              sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
+          });
+      }
+
+      function handleRestaurantRepStageAction(sheet, sourceBtn) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit) return;
+        var action = sourceBtn.getAttribute("data-restaurant-rep-action");
+        var config = restaurantRepActionConfig(action);
+        if (!config) return;
+        var section =
+          sourceBtn.closest(".owner-dash-restaurant-rep-command") ||
+          sourceBtn.closest(".owner-dash-detail-section--restaurant-command") ||
+          sheet.querySelector(".owner-dash-detail-section--restaurant-command");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var previousNotes = String(hit.row.owner_notes || "");
+        var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
+        var repValues = { repStage: config.stage, repNotes: restaurantRepNotes(hit.row) };
+        var nextNotes = appendRestaurantNote(upsertRestaurantRepStatusBlock(notesBase, repValues), config.marker);
+        var payload = { owner_notes: nextNotes };
+        var nextStatus = restaurantRepStatusForAction(config, displayStatus(hit.row.status));
+        if (nextStatus) payload.status = nextStatus;
+        if (config.lastContacted) payload.last_contacted_at = new Date().toISOString();
+        var buttons = section ? section.querySelectorAll('[data-action="mark-restaurant-rep-stage"]') : [];
+        buttons.forEach(function (b) {
+          b.disabled = true;
+        });
+        sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+        sourceBtn.textContent = "Saving...";
+        setRestaurantFeedback(section, "Saving restaurant rep marker...", false);
+
+        postUpdate(table, id, payload)
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setRestaurantFeedback(section, (result.data && result.data.error) || "Could not update restaurant rep marker. Try saving manually.", true);
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(table, id, config.activity, config.tone, "");
+            renderAll();
+            var freshSection = els.detailBody && els.detailBody.querySelector(".owner-dash-restaurant-rep-command");
+            setRestaurantFeedback(freshSection || section, config.stage + " marked. Nothing was sent.", false);
+            refreshCounts();
+          })
+          .catch(function () {
+            setRestaurantFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            buttons.forEach(function (b) {
+              b.disabled = false;
+            });
+            sourceBtn.textContent =
+              sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
+          });
+      }
+
       function handleRestaurantResearchSave(sheet, sourceBtn) {
         if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
         var table = state.detailOpen.table;
@@ -17164,6 +18311,221 @@
         );
       }
 
+      function restaurantRowsByRepStage(stage) {
+        var wanted = normalizeRestaurantRepStage(stage);
+        return restaurantAllRows().filter(function (row) {
+          return restaurantRepStage(row) === wanted;
+        });
+      }
+
+      function restaurantRepBestNextActions() {
+        var actions = [];
+        RESTAURANT_REP_DAILY_QUEUE_BUCKETS.forEach(function (bucket) {
+          var rows = restaurantRepQueueRows(bucket.key);
+          if (rows.length && actions.length < 4) actions.push(bucket.label + ": " + rows.length);
+        });
+        if (!actions.length) actions.push("No restaurant rep action queued");
+        return actions;
+      }
+
+      function restaurantRepQueueRows(key) {
+        var rows = restaurantAllRows();
+        return rows.filter(function (row) {
+          var stage = restaurantRepStage(row);
+          var close = restaurantCloseData(row);
+          if (key === "research-before-contact") {
+            return stage === "Not started" || stage === "Research needed";
+          }
+          if (key === "ready-to-contact") {
+            return stage === "Research complete" || stage === "Ready to contact";
+          }
+          if (key === "discovery-needed") {
+            return stage === "Contacted" || stage === "Discovery needed";
+          }
+          if (key === "proposal-ready") {
+            return stage === "Qualified" || stage === "Proposal ready";
+          }
+          if (key === "proposal-follow-up") {
+            return stage === "Proposal sent" || stage === "Follow-up due";
+          }
+          if (key === "verbal-yes-deposit-next") {
+            return stage === "Verbal yes" || stage === "Deposit requested";
+          }
+          if (key === "won-clients-onboarding") {
+            return (stage === "Won / client" || isRestaurantClient(row)) && close.launchReadiness !== "Launched";
+          }
+          if (key === "not-now-future-follow-up") {
+            return stage === "Not now";
+          }
+          return false;
+        });
+      }
+
+      function restaurantRepQueueBucketForKey(key) {
+        for (var i = 0; i < RESTAURANT_REP_DAILY_QUEUE_BUCKETS.length; i++) {
+          if (RESTAURANT_REP_DAILY_QUEUE_BUCKETS[i].key === key) return RESTAURANT_REP_DAILY_QUEUE_BUCKETS[i];
+        }
+        return null;
+      }
+
+      function restaurantRepQueueLine(row) {
+        var snap = restaurantSnapshot(row);
+        var research = restaurantResearchProfile(row);
+        return [
+          "- " + snap.business,
+          "Contact: " + exportValue([row.contact_name, row.contact_phone, row.contact_email].filter(Boolean).join(" / ")),
+          "Rep stage: " + restaurantRepStage(row),
+          "Lane: " + snap.lane,
+          "Offer: " + snap.recommendedOffer,
+          "Priority: " + research.salesPriority,
+          "Next action: " + restaurantRepRecommendedNextAction(row),
+        ].join(" | ");
+      }
+
+      function buildRestaurantRepDailyCallList() {
+        var lines = [
+          "Restaurant Rep Daily Queue",
+          "",
+          "Purpose:",
+          "Shows what a sales rep should do first today.",
+          "",
+        ];
+        RESTAURANT_REP_DAILY_QUEUE_BUCKETS.forEach(function (bucket, idx) {
+          var rows = restaurantRepQueueRows(bucket.key);
+          lines.push(String(idx + 1) + ". " + bucket.label + " (" + rows.length + ")");
+          lines.push(bucket.explanation);
+          if (rows.length) {
+            rows.slice(0, 10).forEach(function (row) {
+              lines.push(restaurantRepQueueLine(row));
+            });
+          } else {
+            lines.push("- None");
+          }
+          lines.push("");
+        });
+        lines.push(RESTAURANT_REP_GUARDRAIL_NOTE);
+        return lines.join("\n");
+      }
+
+      function copyRestaurantRepDailyCallList() {
+        if (!els.restaurantRepDailyQueue) return;
+        var text = buildRestaurantRepDailyCallList();
+        hideManualCopy(els.restaurantRepDailyQueue);
+        function onSuccess() {
+          setCopyFeedback(els.restaurantRepDailyQueue, "Copied.");
+        }
+        function onFail() {
+          showManualCopy(els.restaurantRepDailyQueue, text);
+          setCopyFeedback(els.restaurantRepDailyQueue, "Select text below to copy.", true);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(onSuccess)
+            .catch(function () {
+              if (fallbackExecCopy(text)) onSuccess();
+              else onFail();
+            });
+        } else if (fallbackExecCopy(text)) {
+          onSuccess();
+        } else {
+          onFail();
+        }
+      }
+
+      function openFirstRestaurantRepQueueMatch(key) {
+        var bucket = restaurantRepQueueBucketForKey(key);
+        if (!bucket) return;
+        var rows = restaurantRepQueueRows(key);
+        if (!rows.length) {
+          updateLoadedRowNote(anyTableHasUnloadedRows());
+          return;
+        }
+        openDetail("business_leads", rows[0].id);
+      }
+
+      function renderRestaurantRepDailyQueue() {
+        if (!els.restaurantRepDailyBuckets) return;
+        els.restaurantRepDailyBuckets.innerHTML = RESTAURANT_REP_DAILY_QUEUE_BUCKETS.map(function (bucket) {
+          var rows = restaurantRepQueueRows(bucket.key);
+          return (
+            '<article class="owner-dash-restaurant-rep-queue-bucket">' +
+            '<span class="owner-dash-restaurant-rep-queue-count">' +
+            esc(rows.length) +
+            "</span>" +
+            "<strong>" +
+            esc(bucket.label) +
+            "</strong>" +
+            "<p>" +
+            esc(bucket.explanation) +
+            "</p>" +
+            (rows.length
+              ? '<button type="button" class="owner-dash-restaurant-rep-queue-open" data-action="open-restaurant-rep-queue-first" data-restaurant-rep-queue="' +
+                esc(bucket.key) +
+                '">Open first</button>'
+              : "") +
+            "</article>"
+          );
+        }).join("");
+      }
+
+      function buildRestaurantRepStageCountLines() {
+        return [
+          "New restaurant prospects: " + restaurantProspectRows().length,
+          "Research needed: " + restaurantRowsByRepStage("Research needed").length,
+          "Ready to contact: " + restaurantRowsByRepStage("Ready to contact").length,
+          "Contacted: " + restaurantRowsByRepStage("Contacted").length,
+          "Discovery needed: " + restaurantRowsByRepStage("Discovery needed").length,
+          "Qualified: " + restaurantRowsByRepStage("Qualified").length,
+          "Proposal ready: " + restaurantRowsByRepStage("Proposal ready").length,
+          "Proposal sent: " + restaurantRowsByRepStage("Proposal sent").length,
+          "Follow-up due: " + restaurantRowsByRepStage("Follow-up due").length,
+          "Verbal yes: " + restaurantRowsByRepStage("Verbal yes").length,
+          "Deposit requested: " + restaurantRowsByRepStage("Deposit requested").length,
+          "Won/client: " + restaurantRowsByRepStage("Won / client").length,
+          "Not now: " + restaurantRowsByRepStage("Not now").length,
+          "Lost: " + restaurantRowsByRepStage("Lost").length,
+          "Best next actions: " + restaurantRepBestNextActions().join("; "),
+        ];
+      }
+
+      function buildRestaurantRepDailyRecap() {
+        return ["Restaurant Rep Manager Recap", "", "Daily recap:", buildRestaurantRepStageCountLines().join("\n"), "", RESTAURANT_REP_GUARDRAIL_NOTE].join("\n");
+      }
+
+      function buildRestaurantRepWeeklyRecap() {
+        return ["Restaurant Rep Manager Recap", "", "Weekly recap:", buildRestaurantRepStageCountLines().join("\n"), "", "Pipeline movement should be reported from saved stages and owner notes only.", RESTAURANT_REP_GUARDRAIL_NOTE].join("\n");
+      }
+
+      function buildRestaurantRepPipelineSummary() {
+        var rows = restaurantAllRows();
+        if (!rows.length) return buildNoRowsExportReport("Restaurant pipeline summary");
+        return [
+          "Restaurant pipeline summary",
+          "",
+          "Restaurant | Contact | Phone | Email | Rep stage | Visitor lane | Best first offer | Research score | Sales priority | Next action | Last activity | Notes",
+          "",
+          rows.map(restaurantSalesRepReportLine).join("\n"),
+          "",
+          RESTAURANT_REP_GUARDRAIL_NOTE,
+        ].join("\n");
+      }
+
+      function buildRestaurantManagerReadyReport() {
+        return [
+          "Manager-ready restaurant report",
+          "",
+          "Counts:",
+          buildRestaurantRepStageCountLines().join("\n"),
+          "",
+          "Daily call list:",
+          buildRestaurantRepDailyCallList(),
+          "",
+          "Pipeline summary:",
+          buildRestaurantRepPipelineSummary(),
+        ].join("\n");
+      }
+
       function renderTodayActions() {
         if (!els.todayBuckets) return;
         var counts = todayActionCounts();
@@ -17542,6 +18904,8 @@
               restaurantOfferRecommendation(row).offer +
               " | Restaurant stage: " +
               restaurantStage(row) +
+              " | Restaurant rep stage: " +
+              restaurantRepStage(row) +
               " | Next restaurant action: " +
               restaurantNextAction(row)
             : "";
@@ -18073,6 +19437,9 @@
         if (mode === "restaurant-clients") {
           return { business: restaurantClientRows(), transport: [] };
         }
+        if (mode === "restaurant-sales-rep-report") {
+          return { business: restaurantAllRows(), transport: [] };
+        }
         if (mode === "restaurant-proposal-ready") {
           return {
             business: restaurantAllRows().filter(function (row) {
@@ -18150,6 +19517,9 @@
               "Restaurant client success:",
             ]);
           }).length,
+          restaurantRepFollowUp: business.filter(function (row) {
+            return isRestaurantRow(row) && restaurantRepStage(row) === "Follow-up due";
+          }).length,
           transportOpen: transport.filter(isOpenTransportationRequest).length,
         };
       }
@@ -18218,6 +19588,12 @@
                 "Restaurant referral:",
                 "Restaurant client success:",
               ]);
+            }).length,
+          ],
+          [
+            "Restaurant rep follow-up due",
+            restaurantAllRows().filter(function (row) {
+              return restaurantRepStage(row) === "Follow-up due";
             }).length,
           ],
           ["Transportation open requests", visibleTransport.filter(isOpenTransportationRequest).length],
@@ -18758,6 +20134,89 @@
         ].join("\n");
       }
 
+      function restaurantSalesRepReportLine(row) {
+        var snap = restaurantSnapshot(row);
+        var research = restaurantResearchProfile(row);
+        var activity = lastActivityMeta(row, "business_leads");
+        return [
+          exportValue(snap.business),
+          exportValue(row.contact_name),
+          exportValue(row.contact_phone),
+          exportValue(row.contact_email),
+          exportValue(restaurantRepStage(row)),
+          exportValue(snap.lane),
+          exportValue(restaurantProposalDirection(row).suggestedFirstOffer || snap.recommendedOffer),
+          exportValue(research.researchScore + " / 100"),
+          exportValue(research.salesPriority),
+          exportValue(restaurantRepRecommendedNextAction(row)),
+          exportValue(activity && activity.iso ? activity.label + " " + fmtDate(activity.iso) : "—"),
+          exportMultilineValue(restaurantRepNotes(row) || row.owner_notes).replace(/\r?\n/g, " "),
+        ].join(" | ");
+      }
+
+      function restaurantSalesRepReportGroup(title, rows, predicate) {
+        var matches = rows.filter(predicate);
+        return [title, matches.length ? matches.map(restaurantSalesRepReportLine).join("\n") : "- None"].join("\n");
+      }
+
+      function buildRestaurantSalesRepReport(rows) {
+        var matches = (rows.business || restaurantAllRows()).filter(isRestaurantRow);
+        if (!matches.length) return buildNoRowsExportReport("Restaurant sales rep report");
+        return [
+          "Restaurant sales rep report",
+          "",
+          "Generated:",
+          exportGeneratedAt(),
+          "",
+          "Columns:",
+          "Restaurant | Contact | Phone | Email | Rep stage | Visitor lane | Best first offer | Research score | Sales priority | Next action | Last activity | Notes",
+          "",
+          restaurantSalesRepReportGroup("Research before contact", matches, function (row) {
+            var stage = restaurantRepStage(row);
+            return stage === "Not started" || stage === "Research needed";
+          }),
+          "",
+          restaurantSalesRepReportGroup("Ready to contact", matches, function (row) {
+            var stage = restaurantRepStage(row);
+            return stage === "Research complete" || stage === "Ready to contact";
+          }),
+          "",
+          restaurantSalesRepReportGroup("Discovery needed", matches, function (row) {
+            var stage = restaurantRepStage(row);
+            return stage === "Contacted" || stage === "Discovery needed";
+          }),
+          "",
+          restaurantSalesRepReportGroup("Proposal ready", matches, function (row) {
+            var stage = restaurantRepStage(row);
+            return stage === "Qualified" || stage === "Proposal ready";
+          }),
+          "",
+          restaurantSalesRepReportGroup("Proposal follow-up", matches, function (row) {
+            var stage = restaurantRepStage(row);
+            return stage === "Proposal sent" || stage === "Follow-up due";
+          }),
+          "",
+          restaurantSalesRepReportGroup("Verbal yes / deposit next", matches, function (row) {
+            var stage = restaurantRepStage(row);
+            return stage === "Verbal yes" || stage === "Deposit requested";
+          }),
+          "",
+          restaurantSalesRepReportGroup("Won clients needing onboarding", matches, function (row) {
+            return restaurantRepStage(row) === "Won / client" || isRestaurantClient(row);
+          }),
+          "",
+          restaurantSalesRepReportGroup("Not now / future follow-up", matches, function (row) {
+            return restaurantRepStage(row) === "Not now";
+          }),
+          "",
+          restaurantSalesRepReportGroup("Lost", matches, function (row) {
+            return restaurantRepStage(row) === "Lost";
+          }),
+          "",
+          RESTAURANT_REP_GUARDRAIL_NOTE,
+        ].join("\n");
+      }
+
       function buildTransportationReport(rows) {
         var transport = rows.transport || [];
         if (!transport.length) return buildNoRowsExportReport("Transportation Request Report");
@@ -18940,6 +20399,9 @@
           "Restaurant client success report:",
           buildRestaurantClientSuccessReport({ business: restaurantClientRows(), transport: [] }),
           "",
+          "Restaurant sales rep report:",
+          buildRestaurantSalesRepReport({ business: restaurantAllRows(), transport: [] }),
+          "",
           "Weekly recap:",
           buildWeeklyRecap(rows),
           "",
@@ -18962,6 +20424,7 @@
         if (kind === "restaurant-proposal-report") return buildRestaurantProposalReport(restaurantAllRows());
         if (kind === "restaurant-close-report") return buildRestaurantCloseReport({ business: restaurantAllRows(), transport: [] });
         if (kind === "restaurant-client-success-report") return buildRestaurantClientSuccessReport({ business: restaurantClientRows(), transport: [] });
+        if (kind === "restaurant-sales-rep-report") return buildRestaurantSalesRepReport({ business: restaurantAllRows(), transport: [] });
         if (kind === "transportation") return buildTransportationReport(rows);
         if (kind === "weekly-recap") return buildWeeklyRecap(rows);
         if (kind === "full-pipeline") return buildFullPipelineReport(rows);
@@ -19314,6 +20777,7 @@
         syncFilterButtonStates();
         renderDailyBrief();
         renderTodayActions();
+        renderRestaurantRepDailyQueue();
         renderExportCrmSummary();
         renderBusiness(state.businessLeads);
         renderRestaurantPanel("prospects");
@@ -19939,6 +21403,16 @@
             return;
           }
 
+          if (action === "copy-restaurant-rep-daily-call-list") {
+            copyRestaurantRepDailyCallList();
+            return;
+          }
+
+          if (action === "open-restaurant-rep-queue-first") {
+            openFirstRestaurantRepQueueMatch(btn.getAttribute("data-restaurant-rep-queue"));
+            return;
+          }
+
           if (action === "download-visible-csv") {
             downloadVisibleCsv();
             return;
@@ -20033,6 +21507,16 @@
 
           if (sheet && action === "mark-restaurant-stage") {
             handleRestaurantStageAction(sheet, btn);
+            return;
+          }
+
+          if (sheet && action === "save-restaurant-rep-status") {
+            handleRestaurantRepStatusSave(sheet, btn);
+            return;
+          }
+
+          if (sheet && action === "mark-restaurant-rep-stage") {
+            handleRestaurantRepStageAction(sheet, btn);
             return;
           }
 
