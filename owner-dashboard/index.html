@@ -2543,6 +2543,47 @@
       margin-top: 2px;
     }
 
+    .page-owner-dashboard .owner-dash-restaurant-crm,
+    .page-owner-dashboard .owner-dash-restaurant-crm-summary {
+      border-color: rgba(94, 234, 212, 0.24);
+      background: rgba(3, 7, 18, 0.54);
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-crm-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-crm-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-input {
+      width: 100%;
+      min-width: 0;
+      min-height: 46px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      background: rgba(3, 7, 18, 0.72);
+      color: #fff;
+      font: inherit;
+      font-size: 16px;
+      line-height: 1.35;
+      padding: 10px 11px;
+    }
+
+    .page-owner-dashboard .owner-dash-restaurant-crm textarea {
+      min-height: 126px;
+    }
+
     .page-owner-dashboard .owner-dash-restaurant-create-head {
       display: grid;
       gap: 7px;
@@ -2676,9 +2717,14 @@
       .page-owner-dashboard .owner-dash-restaurant-followup-actions,
       .page-owner-dashboard .owner-dash-restaurant-followup-actions .owner-dash-btn,
       .page-owner-dashboard .owner-dash-restaurant-lead-actions--kit .owner-dash-btn,
+      .page-owner-dashboard .owner-dash-restaurant-crm .owner-dash-btn,
       .page-owner-dashboard .owner-dash-first50-actions,
       .page-owner-dashboard .owner-dash-first50-actions .owner-dash-btn {
         width: 100%;
+      }
+
+      .page-owner-dashboard .owner-dash-restaurant-crm-grid {
+        grid-template-columns: 1fr;
       }
 
       .page-owner-dashboard .owner-dash-restaurant-followup-kit-head {
@@ -4350,6 +4396,27 @@
 
       var TRANSPORT_STATUSES = BUSINESS_STATUSES.concat(["Handled", "Cancelled"]);
       var RESTAURANT_LEAD_STATUSES = ["New", "Contacted", "Qualified", "Proposal Sent", "Won", "Not a fit"];
+      var RESTAURANT_LEAD_NEXT_ACTION_OPTIONS = [
+        "Call restaurant",
+        "Send first email",
+        "Send text reply",
+        "Schedule discovery call",
+        "Send partner program details",
+        "Send AI systems details",
+        "Prepare proposal",
+        "Follow up",
+        "Wait for reply",
+        "Mark not fit",
+        "Closed / won",
+      ];
+      var RESTAURANT_LEAD_FIT_OPTIONS = [
+        "Strong fit - Partner Program",
+        "Strong fit - AI Systems",
+        "Strong fit - Both",
+        "Needs more info",
+        "Not a fit",
+      ];
+      var RESTAURANT_LEAD_PRIORITY_OPTIONS = ["High", "Medium", "Low"];
 
       var PROPOSAL_TYPES = ["Starter Fix", "Lead Capture System", "Business Command System", "Full AI Growth System"];
       var PROPOSAL_PACKAGE_MAP = {
@@ -8205,6 +8272,89 @@
         return normStatus(row && row.status) === "not a fit" ? "Not Fit" : displayStatus(row && row.status);
       }
 
+      function restaurantLeadCrmValue(row, marker, fallback) {
+        var directKey = {
+          "Fit label:": "fit_label",
+          "Lead priority:": "lead_priority",
+          "Next action:": "next_action",
+          "Next follow-up date:": "next_follow_up_date",
+          "Proposal sent date:": "proposal_sent_at",
+          "Won date:": "won_at",
+        }[marker];
+        var direct = directKey && row ? row[directKey] : "";
+        return ownerNoteMarkerValue(row, marker) || direct || fallback || "";
+      }
+
+      function restaurantLeadDefaultNextAction(row) {
+        var status = normStatus(row && row.status);
+        if (status === "new") return "Send first email";
+        if (status === "contacted") return "Follow up";
+        if (status === "qualified") return "Prepare proposal";
+        if (status === "proposal sent") return "Follow up";
+        if (status === "won") return "Closed / won";
+        if (status === "not a fit") return "Mark not fit";
+        return "";
+      }
+
+      function restaurantLeadNextAction(row) {
+        return restaurantLeadCrmValue(row, "Next action:", restaurantLeadDefaultNextAction(row));
+      }
+
+      function restaurantLeadFitLabel(row) {
+        var value = restaurantLeadCrmValue(row, "Fit label:", "");
+        if (value) return value;
+        if (row && row.interest_partner_program && row.interest_ai_systems) return "Strong fit - Both";
+        if (row && row.interest_partner_program) return "Strong fit - Partner Program";
+        if (row && row.interest_ai_systems) return "Strong fit - AI Systems";
+        return "";
+      }
+
+      function restaurantLeadPriority(row) {
+        var value = restaurantLeadCrmValue(row, "Lead priority:", "");
+        if (/^hot$/i.test(value)) return "High";
+        if (/^warm$/i.test(value)) return "Medium";
+        if (/^low$/i.test(value)) return "Low";
+        return value;
+      }
+
+      function restaurantLeadNextFollowUpDate(row) {
+        return restaurantLeadCrmValue(row, "Next follow-up date:", "");
+      }
+
+      function restaurantLeadProposalSentDate(row) {
+        return restaurantLeadCrmValue(row, "Proposal sent date:", "");
+      }
+
+      function restaurantLeadWonDate(row) {
+        return restaurantLeadCrmValue(row, "Won date:", "");
+      }
+
+      function todayDateString() {
+        var d = new Date();
+        var month = String(d.getMonth() + 1).padStart(2, "0");
+        var day = String(d.getDate()).padStart(2, "0");
+        return d.getFullYear() + "-" + month + "-" + day;
+      }
+
+      function normalizeDateInputValue(value) {
+        if (!value) return "";
+        var s = String(value).trim();
+        if (/^(not set|none|n\/a|—|-)$/.test(s.toLowerCase())) return "";
+        var isoMatch = s.match(/^(\d{4}-\d{2}-\d{2})/);
+        if (isoMatch) return isoMatch[1];
+        var d = new Date(s);
+        if (Number.isNaN(d.getTime())) return s;
+        var month = String(d.getMonth() + 1).padStart(2, "0");
+        var day = String(d.getDate()).padStart(2, "0");
+        return d.getFullYear() + "-" + month + "-" + day;
+      }
+
+      function restaurantLeadFollowUpIsDue(row) {
+        var value = normalizeDateInputValue(restaurantLeadNextFollowUpDate(row));
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+        return value <= todayDateString();
+      }
+
       function restaurantLeadInterestBadges(row) {
         var badges = [];
         if (row && row.interest_partner_program) {
@@ -8221,7 +8371,13 @@
 
       function restaurantLeadNeedsFollowUp(row) {
         var status = normStatus(row && row.status);
-        return status === "new" || status === "contacted" || status === "needs follow-up" || status === "proposal sent";
+        var action = restaurantLeadNextAction(row);
+        var terminal = status === "won" || status === "not a fit" || action === "Closed / won" || action === "Mark not fit";
+        if (terminal) return false;
+        if (restaurantLeadFollowUpIsDue(row)) return true;
+        if (status === "new" || status === "needs follow-up") return true;
+        if (status === "contacted" && action && action !== "Wait for reply") return true;
+        return status === "proposal sent" && action === "Follow up";
       }
 
       function restaurantLeadSearchText(row) {
@@ -8239,6 +8395,10 @@
           row.optional_message,
           row.source,
           row.owner_notes,
+          restaurantLeadFitLabel(row),
+          restaurantLeadPriority(row),
+          restaurantLeadNextAction(row),
+          restaurantLeadNextFollowUpDate(row),
           row.services_interested,
           row.recommended_system,
           restaurantLeadStatusLabel(row),
@@ -8281,6 +8441,9 @@
           total: Number.isNaN(totalExact) ? totalLoaded : totalExact,
           newLeads: state.restaurantLeads.filter(function (row) { return normStatus(row.status) === "new"; }).length,
           needsFollowUp: state.restaurantLeads.filter(restaurantLeadNeedsFollowUp).length,
+          proposalSent: state.restaurantLeads.filter(function (row) { return normStatus(row.status) === "proposal sent"; }).length,
+          won: state.restaurantLeads.filter(function (row) { return normStatus(row.status) === "won"; }).length,
+          notFit: state.restaurantLeads.filter(function (row) { return normStatus(row.status) === "not a fit"; }).length,
           partner: state.restaurantLeads.filter(function (row) { return row.interest_partner_program; }).length,
           ai: state.restaurantLeads.filter(function (row) { return row.interest_ai_systems; }).length,
         };
@@ -8300,7 +8463,7 @@
           contact: (row && row.contact_name) || "[Contact Name]",
           interest: restaurantLeadInterestType(row),
           area: (row && row.area_neighborhood) || "[Area]",
-          nextStep: "[Next Step]",
+          nextStep: restaurantLeadNextAction(row) || "[Next Step]",
           signature: "Willie\nWhere To Go SA",
         };
       }
@@ -8645,10 +8808,11 @@
         els.restaurantLeadsSummary.innerHTML =
           '<div class="owner-dash-first50-counts">' +
           first50CountHtml("New restaurant leads", counts.newLeads) +
-          first50CountHtml("Total restaurant leads", counts.total) +
           first50CountHtml("Needs follow-up", counts.needsFollowUp) +
-          first50CountHtml("Partner interest", counts.partner) +
-          first50CountHtml("AI systems interest", counts.ai) +
+          first50CountHtml("Proposal sent", counts.proposalSent) +
+          first50CountHtml("Won", counts.won) +
+          first50CountHtml("Not fit", counts.notFit) +
+          first50CountHtml("Total restaurant leads", counts.total) +
           "</div>";
       }
 
@@ -8692,6 +8856,8 @@
 
       function renderRestaurantLeadCard(row) {
         var preview = row.optional_message || row.help_needed || row.ai_summary || "";
+        var nextAction = restaurantLeadNextAction(row) || (restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review when needed.");
+        var followUpDate = normalizeDateInputValue(restaurantLeadNextFollowUpDate(row));
         return (
           '<article class="owner-dash-glass owner-dash-lead-card owner-dash-lead-card--compact" data-record-id="' +
           esc(row.id) +
@@ -8708,7 +8874,7 @@
           '">' +
           esc(fmtDate(row.created_at)) +
           "</time></div>" +
-          nextActionHtml(restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review when needed.") +
+          nextActionHtml(nextAction) +
           '<h3 class="owner-dash-card-title">' +
           esc(row.restaurant_name || "Restaurant TBD") +
           "</h3>" +
@@ -8718,6 +8884,8 @@
           block("Phone / email", contactLine(row.phone, row.email)) +
           block("Preferred contact", row.preferred_contact_method) +
           block("Interest type", row.interest_type) +
+          block("Fit / priority", [restaurantLeadFitLabel(row), restaurantLeadPriority(row)].filter(Boolean).join(" / ") || null) +
+          block("Next follow-up", followUpDate || null) +
           blockPreview("Message / help summary", preview) +
           "</dl>" +
           lastActivityHint(row, "restaurant_leads") +
@@ -16452,6 +16620,89 @@
         return collapsibleBlock("Show AI transcript", html, "owner-dash-collapsible--ai");
       }
 
+      function restaurantLeadSelectOptions(options, current, placeholder) {
+        var value = String(current || "").trim();
+        var html = placeholder ? '<option value="">' + esc(placeholder) + "</option>" : "";
+        options.forEach(function (opt) {
+          html +=
+            '<option value="' +
+            esc(opt) +
+            '"' +
+            (opt === value ? " selected" : "") +
+            ">" +
+            esc(opt) +
+            "</option>";
+        });
+        if (value && options.indexOf(value) === -1) {
+          html += '<option value="' + esc(value) + '" selected>' + esc(value) + "</option>";
+        }
+        return html;
+      }
+
+      function restaurantLeadCrmSummaryBlock(row) {
+        return (
+          '<section class="owner-dash-detail-section owner-dash-restaurant-crm-summary">' +
+          '<h3 class="owner-dash-detail-section-title">Internal CRM Snapshot</h3>' +
+          '<p class="owner-dash-detail-section-note">Private owner-only fields saved with this lead record. Nothing here is public or sent automatically.</p>' +
+          '<div class="owner-dash-detail-grid owner-dash-restaurant-crm-summary-grid">' +
+          detailRow("Fit label", restaurantLeadFitLabel(row)) +
+          detailRow("Lead priority", restaurantLeadPriority(row)) +
+          detailRow("Last contacted", fmtDate(row.last_contacted_at)) +
+          detailRow("Next action", restaurantLeadNextAction(row)) +
+          detailRow("Next follow-up date", normalizeDateInputValue(restaurantLeadNextFollowUpDate(row))) +
+          detailRow("Proposal sent date", normalizeDateInputValue(restaurantLeadProposalSentDate(row))) +
+          detailRow("Close / won date", normalizeDateInputValue(restaurantLeadWonDate(row))) +
+          detailRow("Internal notes", row.owner_notes, true) +
+          "</div></section>"
+        );
+      }
+
+      function restaurantLeadCrmEditorBlock(row) {
+        return (
+          '<section class="owner-dash-detail-section owner-dash-restaurant-crm" data-restaurant-lead-crm>' +
+          '<div class="owner-dash-restaurant-crm-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Lead Notes + Next Action</h3>' +
+          '<p class="owner-dash-detail-section-note">Lightweight CRM memory for this restaurant opportunity. Saved internally in owner notes.</p></div>' +
+          '<span class="owner-dash-restaurant-followup-badge">Internal only</span>' +
+          "</div>" +
+          '<div class="owner-dash-restaurant-crm-grid">' +
+          '<label class="owner-dash-workflow-field"><span class="owner-dash-workflow-label">Fit label</span>' +
+          '<select class="owner-dash-select" name="fit_label">' +
+          restaurantLeadSelectOptions(RESTAURANT_LEAD_FIT_OPTIONS, restaurantLeadFitLabel(row), "Select fit") +
+          "</select></label>" +
+          '<label class="owner-dash-workflow-field"><span class="owner-dash-workflow-label">Lead priority</span>' +
+          '<select class="owner-dash-select" name="lead_priority">' +
+          restaurantLeadSelectOptions(RESTAURANT_LEAD_PRIORITY_OPTIONS, restaurantLeadPriority(row), "Select priority") +
+          "</select></label>" +
+          '<label class="owner-dash-workflow-field owner-dash-workflow-field--wide"><span class="owner-dash-workflow-label">Next action</span>' +
+          '<select class="owner-dash-select" name="next_action">' +
+          restaurantLeadSelectOptions(RESTAURANT_LEAD_NEXT_ACTION_OPTIONS, restaurantLeadNextAction(row), "Select next action") +
+          "</select></label>" +
+          '<label class="owner-dash-workflow-field"><span class="owner-dash-workflow-label">Next follow-up date</span>' +
+          '<input class="owner-dash-input" type="date" name="next_follow_up_date" value="' +
+          esc(normalizeDateInputValue(restaurantLeadNextFollowUpDate(row))) +
+          '" /></label>' +
+          '<label class="owner-dash-workflow-field"><span class="owner-dash-workflow-label">Proposal sent date</span>' +
+          '<input class="owner-dash-input" type="date" name="proposal_sent_at" value="' +
+          esc(normalizeDateInputValue(restaurantLeadProposalSentDate(row))) +
+          '" /></label>' +
+          '<label class="owner-dash-workflow-field"><span class="owner-dash-workflow-label">Close / won date</span>' +
+          '<input class="owner-dash-input" type="date" name="won_at" value="' +
+          esc(normalizeDateInputValue(restaurantLeadWonDate(row))) +
+          '" /></label>' +
+          '<label class="owner-dash-workflow-field owner-dash-workflow-field--wide">' +
+          '<span class="owner-dash-workflow-label">Internal notes</span>' +
+          '<textarea class="owner-dash-textarea" name="internal_notes" rows="6" placeholder="What was discussed, objections, promised follow-up, proposal context...">' +
+          esc(row.owner_notes || "") +
+          "</textarea></label>" +
+          "</div>" +
+          '<div class="owner-dash-workflow-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--primary" data-action="save-restaurant-lead-crm">Save CRM fields</button>' +
+          '<span class="owner-dash-workflow-feedback" data-restaurant-crm-feedback hidden aria-live="polite"></span>' +
+          "</div></section>"
+        );
+      }
+
       function restaurantLeadDetailsBlock(row) {
         var website = row.website_or_social;
         var websiteHref =
@@ -16504,7 +16755,9 @@
           '">' +
           esc(fmtDate(row.created_at)) +
           "</time></div>" +
-          nextActionHtml(restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review restaurant lead status and notes.") +
+          nextActionHtml(restaurantLeadNextAction(row) || (restaurantLeadNeedsFollowUp(row) ? "Follow up with this restaurant inquiry." : "Review restaurant lead status and notes.")) +
+          restaurantLeadCrmSummaryBlock(row) +
+          restaurantLeadCrmEditorBlock(row) +
           restaurantLeadFollowUpKitHtml(row, true) +
           restaurantLeadDetailsBlock(row) +
           quickStatusBlock("restaurant_leads", row.status) +
@@ -17002,6 +17255,121 @@
         if (!cleanNote) return current;
         if (current.toLowerCase().indexOf(cleanNote.toLowerCase()) !== -1) return current;
         return current ? current + "\n" + cleanNote : cleanNote;
+      }
+
+      function restaurantLeadCrmFormValue(form, name) {
+        var input = form && form.querySelector('[name="' + name + '"]');
+        return input ? String(input.value || "").trim() : "";
+      }
+
+      function readRestaurantLeadCrmValues(form) {
+        return {
+          fitLabel: restaurantLeadCrmFormValue(form, "fit_label"),
+          leadPriority: restaurantLeadCrmFormValue(form, "lead_priority"),
+          nextAction: restaurantLeadCrmFormValue(form, "next_action"),
+          nextFollowUpDate: restaurantLeadCrmFormValue(form, "next_follow_up_date"),
+          proposalSentAt: restaurantLeadCrmFormValue(form, "proposal_sent_at"),
+          wonAt: restaurantLeadCrmFormValue(form, "won_at"),
+          internalNotes: restaurantLeadCrmFormValue(form, "internal_notes"),
+        };
+      }
+
+      function buildRestaurantLeadCrmBlock(values) {
+        return [
+          "Restaurant lead CRM:",
+          "Fit label: " + (values.fitLabel || "Needs more info") + ".",
+          "Lead priority: " + (values.leadPriority || "Medium") + ".",
+          "Next action: " + (values.nextAction || "Follow up") + ".",
+          "Next follow-up date: " + (values.nextFollowUpDate || "Not set") + ".",
+          "Proposal sent date: " + (values.proposalSentAt || "Not set") + ".",
+          "Won date: " + (values.wonAt || "Not set") + ".",
+        ].join("\n");
+      }
+
+      function isRestaurantLeadCrmLine(line) {
+        var text = String(line || "").trim().toLowerCase();
+        return (
+          text.indexOf("fit label:") === 0 ||
+          text.indexOf("lead priority:") === 0 ||
+          text.indexOf("next action:") === 0 ||
+          text.indexOf("next follow-up date:") === 0 ||
+          text.indexOf("proposal sent date:") === 0 ||
+          text.indexOf("won date:") === 0
+        );
+      }
+
+      function upsertRestaurantLeadCrmBlock(existing, values) {
+        var block = buildRestaurantLeadCrmBlock(values);
+        var current = String(existing || "").replace(/\r\n/g, "\n").trim();
+        if (!current) return block;
+        var lines = current.split("\n");
+        var blockLines = block.split("\n");
+        var nextLines = [];
+        var inserted = false;
+        for (var i = 0; i < lines.length; i++) {
+          if (/^\s*Restaurant lead CRM:\s*$/i.test(lines[i])) {
+            if (!inserted) {
+              nextLines = nextLines.concat(blockLines);
+              inserted = true;
+            }
+            i += 1;
+            while (i < lines.length) {
+              if (!String(lines[i] || "").trim() || isRestaurantLeadCrmLine(lines[i])) {
+                i += 1;
+                continue;
+              }
+              break;
+            }
+            i -= 1;
+            continue;
+          }
+          if (isRestaurantLeadCrmLine(lines[i])) {
+            if (!inserted) {
+              nextLines = nextLines.concat(blockLines);
+              inserted = true;
+            }
+            continue;
+          }
+          nextLines.push(lines[i]);
+        }
+        if (!inserted) nextLines.push(block);
+        return nextLines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+      }
+
+      function appendRestaurantLeadStatusNote(existing, statusLabel) {
+        var today = todayDateString();
+        var status = normStatus(statusLabel);
+        if (status === "proposal sent") {
+          return upsertRestaurantLeadCrmBlock(existing, {
+            fitLabel: ownerNoteMarkerValue({ owner_notes: existing }, "Fit label:") || "Needs more info",
+            leadPriority: ownerNoteMarkerValue({ owner_notes: existing }, "Lead priority:") || "Medium",
+            nextAction: "Follow up",
+            nextFollowUpDate: ownerNoteMarkerValue({ owner_notes: existing }, "Next follow-up date:") || "",
+            proposalSentAt: ownerNoteMarkerValue({ owner_notes: existing }, "Proposal sent date:") || today,
+            wonAt: ownerNoteMarkerValue({ owner_notes: existing }, "Won date:") || "",
+          });
+        }
+        if (status === "won") {
+          return upsertRestaurantLeadCrmBlock(existing, {
+            fitLabel: ownerNoteMarkerValue({ owner_notes: existing }, "Fit label:") || "Strong fit - Both",
+            leadPriority: ownerNoteMarkerValue({ owner_notes: existing }, "Lead priority:") || "High",
+            nextAction: "Closed / won",
+            nextFollowUpDate: ownerNoteMarkerValue({ owner_notes: existing }, "Next follow-up date:") || "",
+            proposalSentAt: ownerNoteMarkerValue({ owner_notes: existing }, "Proposal sent date:") || "",
+            wonAt: ownerNoteMarkerValue({ owner_notes: existing }, "Won date:") || today,
+          });
+        }
+        if (status === "not a fit") {
+          return upsertRestaurantLeadCrmBlock(existing, {
+            fitLabel: "Not a fit",
+            leadPriority: ownerNoteMarkerValue({ owner_notes: existing }, "Lead priority:") || "Low",
+            nextAction: "Mark not fit",
+            nextFollowUpDate: ownerNoteMarkerValue({ owner_notes: existing }, "Next follow-up date:") || "",
+            proposalSentAt: ownerNoteMarkerValue({ owner_notes: existing }, "Proposal sent date:") || "",
+            wonAt: ownerNoteMarkerValue({ owner_notes: existing }, "Won date:") || "",
+          });
+        }
+        return existing;
       }
 
       function restaurantResearchFieldValue(form, field) {
@@ -19513,6 +19881,9 @@
         var id = state.detailOpen.id;
         var workflowEl = sheet.querySelector(".owner-dash-workflow");
         var notes = workflowEl ? readWorkflowValues(workflowEl).owner_notes : null;
+        if (table === "restaurant_leads") {
+          notes = appendRestaurantLeadStatusNote(notes, statusLabel);
+        }
         var before = findRecord(table, id);
         var previousStatus = before ? displayStatus(before.row.status) : null;
         var previousNotes = before ? String(before.row.owner_notes || "") : "";
@@ -22389,10 +22760,66 @@
           });
       }
 
+      function setRestaurantLeadCrmFeedback(section, type, message) {
+        var fb = section && section.querySelector("[data-restaurant-crm-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-workflow-feedback owner-dash-workflow-feedback--" + type;
+      }
+
+      function handleRestaurantLeadCrmSave(sheet, btn) {
+        if (!sheet) return;
+        var id = sheet.getAttribute("data-detail-id");
+        var section = sheet.querySelector("[data-restaurant-lead-crm]");
+        if (!id || !section) return;
+        var values = readRestaurantLeadCrmValues(section);
+        var before = findRecord("restaurant_leads", id);
+        var previousNotes = before ? String(before.row.owner_notes || "") : "";
+        var nextNotes = upsertRestaurantLeadCrmBlock(values.internalNotes, values);
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = "Saving...";
+        }
+        setRestaurantLeadCrmFeedback(section, "success", "Saving CRM fields...");
+        postUpdate("restaurant_leads", id, { owner_notes: nextNotes })
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setRestaurantLeadCrmFeedback(
+                section,
+                "error",
+                (result.data && result.data.error) || "CRM save failed. Try again."
+              );
+              return;
+            }
+            applyRecordUpdate("restaurant_leads", id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity("restaurant_leads", id, "Restaurant CRM note updated", "ok");
+            }
+            renderAll();
+            var fresh = els.detailBody && els.detailBody.querySelector("[data-restaurant-lead-crm]");
+            setRestaurantLeadCrmFeedback(fresh || section, "success", "CRM fields saved.");
+            refreshCounts();
+          })
+          .catch(function () {
+            setRestaurantLeadCrmFeedback(section, "error", "Network error. Try again.");
+          })
+          .finally(function () {
+            if (btn) {
+              btn.disabled = false;
+              btn.textContent = "Save CRM fields";
+            }
+          });
+      }
+
       function handleSave(workflowEl) {
         var table = workflowEl.getAttribute("data-table");
         var id = workflowEl.getAttribute("data-id");
         var values = readWorkflowValues(workflowEl);
+        var nextOwnerNotes =
+          table === "restaurant_leads"
+            ? appendRestaurantLeadStatusNote(values.owner_notes, values.status)
+            : values.owner_notes;
         var before = findRecord(table, id);
         var previousStatus = before ? displayStatus(before.row.status) : null;
         var previousNotes = before ? String(before.row.owner_notes || "") : "";
@@ -22407,7 +22834,7 @@
 
         postUpdate(table, id, {
           status: values.status,
-          owner_notes: values.owner_notes,
+          owner_notes: nextOwnerNotes,
         })
           .then(function (result) {
             if (!result.ok || !result.data || !result.data.record) {
@@ -22524,6 +22951,11 @@
           b.disabled = true;
         });
         var payload = { status: statusLabel };
+        var hit = findRecord("restaurant_leads", id);
+        var notesWithStatusMarker = hit ? appendRestaurantLeadStatusNote(hit.row.owner_notes, statusLabel) : "";
+        if (notesWithStatusMarker && hit && notesWithStatusMarker !== String(hit.row.owner_notes || "")) {
+          payload.owner_notes = notesWithStatusMarker;
+        }
         if (normStatus(statusLabel) === "contacted") {
           payload.last_contacted_at = new Date().toISOString();
         }
@@ -22983,6 +23415,11 @@
 
           if (sheet && action === "save-restaurant-recap-notes") {
             handleRestaurantRecapSave(sheet, btn);
+            return;
+          }
+
+          if (sheet && action === "save-restaurant-lead-crm") {
+            handleRestaurantLeadCrmSave(sheet, btn);
             return;
           }
 
