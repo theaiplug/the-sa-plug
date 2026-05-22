@@ -3146,6 +3146,213 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Owner Dashboard v31 - mobile restaurant typography cleanup */
+    .page-owner-dashboard :is(
+      .owner-dash-daily-brief,
+      .owner-dash-export,
+      .owner-dash-restaurant-first50,
+      .owner-dash-restaurant-create,
+      .owner-dash-restaurant-command,
+      .owner-dash-restaurant-rep-queue
+    ),
+    .page-owner-dashboard :is(
+      .owner-dash-daily-brief,
+      .owner-dash-export,
+      .owner-dash-restaurant-first50,
+      .owner-dash-restaurant-create,
+      .owner-dash-restaurant-command,
+      .owner-dash-restaurant-rep-queue
+    ) * {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+      word-spacing: normal;
+    }
+
+    .page-owner-dashboard :is(
+      .owner-dash-btn,
+      .owner-dash-filter,
+      .owner-dash-tab,
+      .owner-dash-export-chip,
+      .owner-dash-export-btn,
+      .owner-dash-brief-jump,
+      .owner-dash-restaurant-prospect-mode,
+      .owner-dash-restaurant-rep-queue-open
+    ) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      min-width: 0;
+      text-align: center;
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard :is(
+      .owner-dash-detail-section-note,
+      .owner-dash-export-subtitle,
+      .owner-dash-export-note,
+      .owner-dash-restaurant-create-subtitle,
+      .owner-dash-restaurant-create-helper,
+      .owner-dash-restaurant-create-guardrail,
+      .owner-dash-restaurant-proposal-subtitle,
+      .owner-dash-restaurant-proposal-guardrail,
+      .owner-dash-restaurant-workflow-guardrail,
+      .owner-dash-restaurant-rep-queue-subtitle,
+      .owner-dash-restaurant-rep-command-subtitle,
+      .owner-dash-restaurant-rep-note,
+      .owner-dash-restaurant-rep-guardrail-note,
+      .owner-dash-restaurant-command p:not(.owner-dash-restaurant-card-label),
+      .owner-dash-restaurant-command li,
+      .owner-dash-restaurant-snapshot-item strong,
+      .owner-dash-restaurant-card-meta strong,
+      .owner-dash-restaurant-workflow-status strong,
+      .owner-dash-restaurant-workflow-status p,
+      .owner-dash-restaurant-rep-card p,
+      .owner-dash-restaurant-rep-card strong,
+      .owner-dash-restaurant-rep-script-part p
+    ) {
+      letter-spacing: normal;
+      word-spacing: normal;
+      line-height: 1.42;
+    }
+
+    @media (max-width: 520px) {
+      .page-owner-dashboard :is(
+        .eyebrow,
+        .owner-dash-brief-block-title,
+        .owner-dash-control-label,
+        .owner-dash-export-count span,
+        .owner-dash-export-label,
+        .owner-dash-stat-label,
+        .owner-dash-detail-section-title,
+        .owner-dash-detail-label,
+        .owner-dash-field dt,
+        .owner-dash-restaurant-create-label,
+        .owner-dash-restaurant-first50-line,
+        .owner-dash-restaurant-card-label,
+        .owner-dash-restaurant-card-meta span,
+        .owner-dash-restaurant-snapshot-item span,
+        .owner-dash-restaurant-workflow-status span,
+        .owner-dash-restaurant-research-label,
+        .owner-dash-restaurant-proposal-label,
+        .owner-dash-restaurant-rep-label,
+        .owner-dash-restaurant-rep-queue-bucket strong,
+        .owner-dash-restaurant-rep-card span,
+        .owner-dash-restaurant-rep-script-part span,
+        .owner-dash-restaurant-mode-badge,
+        .owner-dash-daily-brief-safe,
+        .owner-dash-followup-safe-badge,
+        .owner-dash-client-proposal-badge,
+        .owner-dash-quote-badge
+      ) {
+        letter-spacing: 0.018em;
+        line-height: 1.28;
+        word-spacing: normal;
+      }
+
+      .page-owner-dashboard :is(
+        .owner-dash-btn,
+        .owner-dash-filter,
+        .owner-dash-tab,
+        .owner-dash-export-chip,
+        .owner-dash-export-btn,
+        .owner-dash-clear-search,
+        .owner-dash-copy-visible,
+        .owner-dash-brief-jump,
+        .owner-dash-restaurant-prospect-mode,
+        .owner-dash-restaurant-rep-queue-open
+      ) {
+        letter-spacing: normal;
+        line-height: 1.28;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .page-owner-dashboard :is(
+        .owner-dash-first50-counts,
+        .owner-dash-export-snapshot,
+        .owner-dash-restaurant-card-meta,
+        .owner-dash-restaurant-card-meta--workflow,
+        .owner-dash-restaurant-card-meta--research,
+        .owner-dash-restaurant-card-meta--proposal,
+        .owner-dash-restaurant-snapshot,
+        .owner-dash-restaurant-workflow-status,
+        .owner-dash-restaurant-two-col,
+        .owner-dash-restaurant-guardrails,
+        .owner-dash-restaurant-research-score-row,
+        .owner-dash-restaurant-research-grid,
+        .owner-dash-restaurant-research-form-grid,
+        .owner-dash-restaurant-proposal-grid,
+        .owner-dash-restaurant-proposal-form-grid,
+        .owner-dash-restaurant-rep-queue-buckets,
+        .owner-dash-restaurant-rep-grid,
+        .owner-dash-restaurant-rep-form-grid,
+        .owner-dash-restaurant-rep-two-col,
+        .owner-dash-restaurant-rep-copy-actions,
+        .owner-dash-restaurant-rep-action-buttons
+      ) {
+        grid-template-columns: 1fr;
+      }
+
+      .page-owner-dashboard :is(
+        .owner-dash-brief-copy-actions,
+        .owner-dash-export-actions,
+        .owner-dash-restaurant-command-copy,
+        .owner-dash-restaurant-command-actions,
+        .owner-dash-restaurant-proposal-actions,
+        .owner-dash-restaurant-research-actions,
+        .owner-dash-restaurant-create-actions,
+        .owner-dash-first50-actions
+      ) {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: stretch;
+      }
+
+      .page-owner-dashboard :is(
+        .owner-dash-brief-copy-actions .owner-dash-btn,
+        .owner-dash-export-actions .owner-dash-export-btn,
+        .owner-dash-restaurant-command-copy .owner-dash-btn,
+        .owner-dash-restaurant-command-actions .owner-dash-btn,
+        .owner-dash-restaurant-proposal-actions .owner-dash-btn,
+        .owner-dash-restaurant-research-actions .owner-dash-btn,
+        .owner-dash-restaurant-create-actions .owner-dash-btn,
+        .owner-dash-first50-actions .owner-dash-btn,
+        .owner-dash-restaurant-rep-copy-actions .owner-dash-btn,
+        .owner-dash-restaurant-rep-action-buttons .owner-dash-btn,
+        .owner-dash-restaurant-rep-queue .owner-dash-btn
+      ) {
+        width: 100%;
+      }
+
+      .page-owner-dashboard :is(
+        .owner-dash-restaurant-first50-line,
+        .owner-dash-restaurant-mode-badge,
+        .owner-dash-daily-brief-safe,
+        .owner-dash-followup-safe-badge,
+        .owner-dash-client-proposal-badge,
+        .owner-dash-quote-badge
+      ) {
+        white-space: normal;
+      }
+
+      .page-owner-dashboard :is(
+        .owner-dash-restaurant-create-textarea,
+        .owner-dash-restaurant-proposal-textarea,
+        .owner-dash-restaurant-rep-textarea,
+        .owner-dash-textarea
+      ) {
+        white-space: pre-wrap;
+        word-break: normal;
+        overflow-wrap: normal;
+        hyphens: none;
+      }
+    }
   </style>
 </head>
 <body class="page-owner-dashboard">
