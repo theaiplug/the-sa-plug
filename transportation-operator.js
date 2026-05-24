@@ -63,7 +63,7 @@
   }
 
   var SECTION_LABELS =
-    /^(Quick read|Route read|Best for|Timing|Timing \/ buffer|Stay near vs downtown|Cost(?:\s*\/\s*parking)?|Parking|Willie Approved|Local Pick|Research Pick|Needs Visit|Next move|Human help|Transportation)\s*:\s*(.*)$/i;
+    /^(Quick read|Route read|Best for|Timing|Timing \/ buffer|Stay near vs downtown|Cost(?:\s*\/\s*parking)?|Parking|Strong Pick|Local Pick|Research Pick|Needs Visit|Next move|Human help|Request type|Transportation need|Transportation)\s*:\s*(.*)$/i;
 
   function inlineFormat(text) {
     return escapeHtml(text).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
@@ -369,27 +369,62 @@
       showIntakeMessage("", false);
       if (intakeSubmit) intakeSubmit.disabled = true;
 
-      var permEl = document.getElementById("transport-pickup-permission");
       var fd = new FormData(intakeForm);
+      var transportNeeds = fd
+        .getAll("transportation_need")
+        .map(function (v) {
+          return String(v || "").trim();
+        })
+        .filter(Boolean);
+      var requestedDate = String(fd.get("requested_date") || "").trim();
+      var timeWindow = String(fd.get("time_window") || "").trim();
+      var requestedTime = [requestedDate, timeWindow].filter(Boolean).join(" ");
+      var visitorEmail = String(fd.get("visitor_email") || "").trim();
+      var visitorPhone = String(fd.get("visitor_phone") || "").trim();
+
+      if (!visitorEmail && !visitorPhone) {
+        showIntakeMessage("Please include an email or phone so Where To Go SA can follow up about your request.", true);
+        if (intakeSubmit) intakeSubmit.disabled = false;
+        return;
+      }
+
+      if (!transportNeeds.length) {
+        showIntakeMessage("Please choose at least one transportation need.", true);
+        if (intakeSubmit) intakeSubmit.disabled = false;
+        return;
+      }
+
       var body = {
         visitor_name: String(fd.get("visitor_name") || "").trim(),
-        visitor_phone: String(fd.get("visitor_phone") || "").trim(),
-        visitor_email: String(fd.get("visitor_email") || "").trim() || null,
+        visitor_phone: visitorPhone,
+        visitor_email: visitorEmail || null,
+        preferred_contact_method: String(fd.get("preferred_contact_method") || "").trim() || null,
         pickup_area: String(fd.get("pickup_area") || "").trim(),
         pickup_lat: null,
         pickup_lng: null,
-        pickup_permission_given: !!(permEl && permEl.checked),
+        pickup_permission_given: true,
         destination: String(fd.get("destination") || "").trim(),
-        requested_time: String(fd.get("requested_time") || "").trim(),
+        requested_date: requestedDate,
+        time_window: timeWindow,
+        requested_time: requestedTime,
         party_size: String(fd.get("party_size") || "").trim(),
         luggage: String(fd.get("luggage") || "").trim() || null,
-        request_type: String(fd.get("request_type") || "").trim(),
+        trip_type: String(fd.get("trip_type") || "").trim(),
+        request_type: String(fd.get("trip_type") || "").trim(),
+        transportation_need: transportNeeds,
+        flight_number: String(fd.get("flight_number") || "").trim() || null,
+        hotel_or_resort: String(fd.get("hotel_or_resort") || "").trim() || null,
+        accessibility_needs: String(fd.get("accessibility_needs") || "").trim() || null,
+        child_seats_needed: String(fd.get("child_seats_needed") || "").trim() || null,
         notes: String(fd.get("notes") || "").trim() || null,
         ai_summary: String(fd.get("ai_summary") || "").trim() || null,
         conversation_excerpt: buildConversationExcerpt(),
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : "",
         page_path: typeof location !== "undefined" ? location.pathname + location.search : "",
-        source: "web_route_operator",
+        source: "transportation_page",
+        lead_type: "transportation_request",
+        status: "New",
+        next_action: "review route request",
       };
 
       fetch(REQ_URL, {
@@ -412,32 +447,13 @@
           intakeForm.reset();
           if (intakeWrap) intakeWrap.hidden = true;
           if (showIntakeBtn) showIntakeBtn.setAttribute("aria-expanded", "false");
-          var d = result.data;
-          var anyAlert = d.sms_sent || d.email_sent;
-          var smsAttempted = d.sms_sent || (d.sms_error != null && d.sms_error !== "");
-          var emailAttempted = d.email_sent || (d.email_error != null && d.email_error !== "");
-          var partial = smsAttempted && emailAttempted && d.sms_sent !== d.email_sent;
           if (confirmEl) {
             confirmEl.hidden = false;
-            var sub = "";
-            if (partial) {
-              sub =
-                " Your alert went through one channel; the backup channel may be off. ";
-            }
             confirmEl.textContent =
-              (anyAlert ? "Request sent." : "Request saved.") +
-              sub +
-              " If I'm available, I'll respond as quickly as possible. If this is urgent or I'm unavailable, use Uber, Lyft, hotel transportation, taxi, or another licensed option.";
+              "Request received. Where To Go SA will review your route details and best next step. Availability, pricing, and provider fit are not guaranteed.";
             confirmEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
           }
-          showIntakeMessage(
-            partial
-              ? "Request saved. One alert channel had an issue; check your email or SMS settings if needed."
-              : !anyAlert && (smsAttempted || emailAttempted)
-                ? "Request saved. We could not deliver owner alerts. If urgent, call or use another option."
-                : "",
-            false
-          );
+          showIntakeMessage("", false);
         })
         .catch(function () {
           showIntakeMessage("We could not send your request. Check your connection and try again.", true);
