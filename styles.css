@@ -4601,6 +4601,36 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   color: var(--slate);
 }
 
+.page-business-services .ai-bs-path-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.page-business-services .ai-bs-path-card .ai-bs-path-cta {
+  margin-top: auto;
+  align-self: flex-start;
+  width: 100%;
+  text-align: center;
+}
+
+.page-business-services .business-operator-diagnostic-note {
+  margin: 0;
+  padding: 0;
+  font-size: clamp(0.72rem, 2.15vw, 0.82rem);
+  line-height: 1.45;
+  font-weight: 600;
+  color: rgba(255, 246, 230, 0.78);
+}
+
+.page-business-services .business-operator-request-helper {
+  margin: 0;
+  font-size: clamp(0.82rem, 0.2vw + 0.78rem, 0.92rem);
+  line-height: 1.5;
+  color: rgba(255, 246, 230, 0.82);
+  max-width: 42rem;
+}
+
 .page-business-services .ai-bs-pillar-lede {
   max-width: 48rem;
 }
@@ -6636,8 +6666,14 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 @media (min-width: 720px) {
   .page-business-services .ai-bs-proof-cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: stretch;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-business-services .ai-bs-proof-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -6681,6 +6717,10 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 .page-business-services .ai-bs-proof-card--alert::before {
   background: linear-gradient(90deg, var(--pink), rgba(255, 92, 168, 0.45));
+}
+
+.page-business-services .ai-bs-proof-card--restaurant::before {
+  background: linear-gradient(90deg, var(--orange), var(--gold));
 }
 
 .page-business-services .ai-bs-proof-card-num {
@@ -8940,6 +8980,27 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   .page-home .transport-story-card:hover .transport-story-card-media {
     transform: scale(1.02);
   }
+}
+
+/* AI Plug section — three-up capability grid on homepage */
+.page-home .ai-systems-grid--three {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .page-home .ai-systems-grid--three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .page-home .ai-systems-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-home .ai-systems-grid--immersive.ai-systems-grid--three {
+  gap: clamp(18px, 2.6vw, 26px);
 }
 
 /* AI Plug section — six-up capability grid + magazine hero on homepage */
@@ -16884,4 +16945,74 @@ body.owner-dash-detail-open {
 .eat-owner-cta a {
   color: #fff8eb;
   text-decoration-color: rgba(20, 184, 166, 0.7);
+}
+
+/* ==========================================================================
+   Website strategy polish — mobile word-break QA (homepage + business services)
+   ========================================================================== */
+
+.page-home .ai-proof-section,
+.page-business-services {
+  overflow-x: clip;
+}
+
+.page-home .ai-proof-section :where(
+  h1, h2, h3, p, li, a, button, span, strong, .btn, .section-text, .ai-proof-lead,
+  .ai-systems-chip, .ai-systems-card h3, .ai-systems-card p, .restaurant-owner-soft-link,
+  .ai-systems-hero-caption, .consent-note, .footer-links a
+),
+.page-business-services :where(
+  h1, h2, h3, h4, p, li, a, button, label, legend, span, strong, .btn, .hero-text,
+  .section-text, .ai-bs-leak-p, .ai-bs-leak-h, .ai-bs-proof-card-p, .ai-bs-proof-card-h,
+  .ai-bs-pillar-card, .ai-bs-pillar-card p, .ai-bs-flagship-copy, .ai-bs-flagship-title,
+  .ai-offer-list li, .ai-offer-best, .ai-bs-owner-card p, .ai-bs-attconv-card-copy,
+  .live-concierge__chip, .live-concierge__preview-text, .live-concierge__panel-support,
+  .business-operator-diagnostic-note, .business-operator-request-helper, .consent-note,
+  .footer-links a, .ai-bs-lead-flow-text, .ai-bs-lead-flow-foot
+) {
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
+
+.page-home .ai-proof-section :where(
+  p, li, .section-text, .ai-proof-lead, .ai-systems-card p, .ai-systems-hero-caption,
+  .restaurant-owner-soft-link, .consent-note
+),
+.page-business-services :where(
+  p, li, .hero-text, .section-text, .ai-bs-leak-p, .ai-bs-proof-card-p, .ai-bs-pillar-card p,
+  .ai-bs-flagship-copy, .ai-offer-list li, .ai-offer-best, .ai-bs-owner-card p,
+  .ai-bs-attconv-card-copy, .live-concierge__preview-text, .live-concierge__panel-support,
+  .business-operator-diagnostic-note, .business-operator-request-helper, .consent-note
+) {
+  letter-spacing: normal;
+}
+
+.page-home .ai-proof-section :where(.eyebrow, .ai-proof-eyebrow, .ai-systems-tag),
+.page-business-services :where(
+  .eyebrow, .eyebrow-on-dark, .ai-bs-lead-flow-label, .ai-bs-includes-label,
+  .ai-offer-best-label, .ai-offer-outcome-label, .ai-bs-proof-card-num
+) {
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 420px) {
+  .page-home .ai-proof-section .ai-proof-headline,
+  .page-business-services .ai-strategic-title,
+  .page-business-services .hero-title {
+    font-size: clamp(1.45rem, 6.2vw, 1.85rem);
+    line-height: 1.18;
+  }
+
+  .page-home .ai-proof-section .ai-systems-chip-row,
+  .page-business-services .live-concierge__chips--lane {
+    gap: 8px;
+  }
+
+  .page-home .ai-proof-section .ai-systems-chip,
+  .page-business-services .live-concierge__chip {
+    font-size: 0.82rem;
+    letter-spacing: normal;
+  }
 }
