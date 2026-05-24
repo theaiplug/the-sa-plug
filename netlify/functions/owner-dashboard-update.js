@@ -50,7 +50,19 @@ const BUSINESS_STATUSES = new Set([
   "Archived",
 ]);
 
-const TRANSPORT_EXTRA_STATUSES = new Set(["Needs follow-up", "Handled", "Cancelled"]);
+const TRANSPORT_EXTRA_STATUSES = new Set([
+  "Review route request",
+  "Send route advice",
+  "Request missing details",
+  "Check provider fit",
+  "Route to provider if appropriate",
+  "Follow up with visitor",
+  "Not available / not a fit",
+  "Completed",
+  "Needs follow-up",
+  "Handled",
+  "Cancelled",
+]);
 
 const RETURN_SELECT = "id,status,owner_notes,last_contacted_at,updated_at";
 

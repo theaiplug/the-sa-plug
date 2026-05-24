@@ -5476,7 +5476,7 @@
       <section id="panel-transport" class="owner-dash-panel" role="tabpanel" aria-labelledby="tab-transport" hidden>
         <header class="owner-dash-panel-head">
           <h2>Transportation Requests</h2>
-          <p>Route operator and human-help handoffs. Update status and owner notes below.</p>
+          <p>Transportation page and operator route requests. Review route details, decide the next action, and update owner notes below.</p>
         </header>
         <p id="transport-result-count" class="owner-dash-result-count" aria-live="polite">Showing 0 of 0 transportation requests</p>
         <div id="transport-empty" class="owner-dash-empty" hidden>
@@ -5551,7 +5551,17 @@
         "Archived",
       ];
 
-      var TRANSPORT_STATUSES = BUSINESS_STATUSES.concat(["Handled", "Cancelled"]);
+      var TRANSPORT_STATUSES = [
+        "New",
+        "Review route request",
+        "Send route advice",
+        "Request missing details",
+        "Check provider fit",
+        "Route to provider if appropriate",
+        "Follow up with visitor",
+        "Not available / not a fit",
+        "Completed",
+      ];
       var RESTAURANT_LEAD_STATUSES = ["New", "Contacted", "Qualified", "Proposal Sent", "Won", "Not a fit"];
       var RESTAURANT_LEAD_NEXT_ACTION_OPTIONS = [
         "Call restaurant",
@@ -5849,7 +5859,7 @@
         {
           key: "new-transportation-requests",
           label: "New transportation requests",
-          explanation: "Transportation requests still New or Reviewed.",
+          explanation: "Transportation requests still New or awaiting route review.",
           mobileLabel: "Transportation requests",
         },
       ];
@@ -6996,7 +7006,7 @@
       function displayStatus(st) {
         var n = normStatus(st);
         if (n === "new") return "New";
-        var labels = BUSINESS_STATUSES.concat(["Needs follow-up", "Proposal Sent", "Handled", "Cancelled"]);
+        var labels = BUSINESS_STATUSES.concat(TRANSPORT_STATUSES, ["Needs follow-up", "Proposal Sent", "Handled", "Cancelled"]);
         for (var i = 0; i < labels.length; i++) {
           if (normStatus(labels[i]) === n) return labels[i];
         }
@@ -7100,10 +7110,17 @@
           row.name,
           row.phone,
           row.email,
+          row.preferred_contact_method,
           firstValue(row, ["pickup_area", "pickup"]),
           firstValue(row, ["destination", "dropoff", "dropoff_area"]),
           route,
+          row.trip_type,
           row.request_type,
+          row.transportation_need,
+          row.luggage,
+          row.hotel_or_resort,
+          row.flight_number,
+          row.time_window,
           row.route,
           row.request_text,
           row.conversation_excerpt,
@@ -7294,17 +7311,17 @@
 
       function calcTransportPriority(row) {
         var status = normStatus(row.status);
-        if (status === "handled") {
+        if (status === "completed" || status === "handled") {
           return {
-            label: "Handled",
-            key: "handled",
+            label: "Completed",
+            key: "completed",
             className: "owner-dash-badge--ok",
           };
         }
-        if (status === "cancelled" || status === "lost" || status === "archived") {
+        if (status === "not available / not a fit" || status === "cancelled" || status === "lost" || status === "archived") {
           return {
-            label: "Cancelled",
-            key: "cancelled",
+            label: "Not available / not a fit",
+            key: "not-a-fit",
             className: "owner-dash-badge--muted",
           };
         }
@@ -7323,11 +7340,13 @@
       }
 
       function calcTransportNextAction(row, priority) {
-        if (priority.key === "time-sensitive") return "Review now";
-        if (priority.key === "handled" || priority.key === "cancelled") {
+        var status = normStatus(row && row.status);
+        if (priority.key === "completed" || priority.key === "not-a-fit") {
           return "No active follow-up";
         }
-        return "Review when available";
+        if (row && row.next_action) return String(row.next_action).replace(/^review route request$/i, "Review route request");
+        if (status && status !== "new") return displayStatus(row.status);
+        return "Review route request";
       }
 
       function priorityBadgeHtml(priority) {
@@ -9545,7 +9564,7 @@
           var transportPriority = table === "transportation_requests" ? calcTransportPriority(row).key : "";
           return (
             table === "transportation_requests" &&
-            (status === "new" || status === "reviewed") &&
+            (status === "new" || status === "review route request") &&
             (transportPriority === "time-sensitive" || transportPriority === "standard")
           );
         }
@@ -9728,7 +9747,7 @@
         }
 
         if (key === "new-transportation-requests") {
-          return table === "transportation_requests" && (status === "new" || status === "reviewed");
+          return table === "transportation_requests" && (status === "new" || status === "review route request");
         }
 
         return false;
@@ -10499,7 +10518,7 @@
       }
 
       function transportPreviewText(row) {
-        var text = row.conversation_excerpt || row.notes || "";
+        var text = row.owner_notes || row.conversation_excerpt || row.notes || "";
         if (!text) return null;
         return String(text).trim() || null;
       }
@@ -13187,16 +13206,25 @@
 
       function buildTransportSummary(row) {
         var route = [row.pickup_area, row.destination].filter(Boolean).join(" to ");
-        var notes = row.conversation_excerpt || row.notes || "—";
+        var notes = row.owner_notes || row.conversation_excerpt || row.notes || "—";
         return [
           "Where To Go SA Transportation Request",
+          "Lead type: " + (row.lead_type || "transportation_request"),
+          "Source: " + (row.source || "transportation_page"),
+          "Next action: Review route request",
           "Name: " + (row.name || "—"),
           "Phone: " + (row.phone || "—"),
           "Email: " + (row.email || "—"),
+          "Preferred contact: " + (row.preferred_contact_method || "—"),
+          "Trip type: " + (row.trip_type || row.request_type || "—"),
+          "Transportation need: " + (row.transportation_need || "—"),
           "Route: " + (route || "—"),
-          "When: " + (row.date_time || "—"),
-          "Group: " + (row.group_size || "—"),
-          "Request type: " + (row.request_type || "—"),
+          "Date: " + (row.requested_date || "—"),
+          "Time window: " + (row.time_window || row.date_time || "—"),
+          "Party size: " + (row.party_size || row.group_size || "—"),
+          "Luggage: " + (row.luggage || "—"),
+          "Hotel / resort: " + (row.hotel_or_resort || "—"),
+          "Flight number: " + (row.flight_number || "—"),
           "Notes: " + notes,
           "Status: " + (displayStatus(row.status) || "—"),
           "Owner notes: " + (row.owner_notes || "—"),
@@ -20869,9 +20897,9 @@
         return (
           "Hi " +
           name +
-          ", this is Willie with Where To Go SA. I saw your transportation/visitor help request for " +
+          ", this is Where To Go SA. We saw your transportation route request for " +
           transportRouteSummary(row) +
-          ". I’m reviewing the details now. Availability is not guaranteed, but I’ll follow up if I can help or point you in the right direction."
+          ". We are reviewing the route details and best next step. Availability, pricing, and provider fit are not guaranteed."
         );
       }
 
@@ -20883,7 +20911,7 @@
           name +
           ",\n\nThanks for submitting a Where To Go SA transportation/visitor help request.\n\nI saw your request for " +
           route +
-          ". I’m reviewing the details now. Availability is not guaranteed, but I’ll follow up if I can help, recommend the best option, or point you toward Uber, Lyft, hotel transportation, taxi, or another licensed option if needed.\n\nWillie\nWhere To Go SA"
+          ". We are reviewing the route details and best next step. Availability, pricing, provider fit, and timing are not guaranteed. If timing is urgent, please use Uber, Lyft, hotel transportation, taxi, or another licensed option.\n\nWhere To Go SA"
         );
       }
 
@@ -20892,7 +20920,7 @@
         return (
           "Hi " +
           name +
-          ", this is Willie with Where To Go SA. I saw your transportation or visitor help request. I’m checking the details so I can understand pickup, timing, group size, and what kind of help you need.\n\nQuestions:\n- What time do you need help?\n- How many people are in your group?\n- Are you looking for transportation only or recommendations too?\n- Is this airport, resort, downtown, dinner, nightlife, or event-related?\n- Do you need a confirmed ride, or are you looking for the best option?"
+          ", this is Where To Go SA. We saw your transportation route request and are checking details so we can understand pickup, timing, group size, and what kind of help you need.\n\nQuestions:\n- What time or timing window matters?\n- How many people are in your group?\n- Do you need route advice, rideshare guidance, provider options, or concierge routing?\n- Is this airport, resort, downtown, convention, dinner, nightlife, family, group, day trip, or custom-route related?\n- Is this now, later today, or scheduled for another date?"
         );
       }
 
@@ -21028,13 +21056,14 @@
                 { status: "Archived", label: "Archived", primary: false },
               ]
             : [
-                { status: "Reviewed", label: "Mark Reviewed", primary: false },
-                { status: "Contacted", label: "Mark Contacted", primary: false },
-                { status: "Needs follow-up", label: "Needs follow-up", primary: false },
-                { status: "Handled", label: "Handled", primary: true },
-                { status: "Cancelled", label: "Cancelled", primary: false },
-                { status: "Lost", label: "Lost", primary: false },
-                { status: "Archived", label: "Archived", primary: false },
+                { status: "Review route request", label: "Review request", primary: true },
+                { status: "Send route advice", label: "Send route advice", primary: false },
+                { status: "Request missing details", label: "Request missing details", primary: false },
+                { status: "Check provider fit", label: "Check provider fit", primary: false },
+                { status: "Route to provider if appropriate", label: "Route to provider", primary: false },
+                { status: "Follow up with visitor", label: "Follow up", primary: false },
+                { status: "Not available / not a fit", label: "Not available / not fit", primary: false },
+                { status: "Completed", label: "Completed", primary: false },
               ];
         var btnHtml = buttons
           .map(function (b) {
@@ -21845,6 +21874,7 @@
           '">' +
           esc(displayStatus(row.status)) +
           "</span>" +
+          '<span class="owner-dash-badge owner-dash-badge--teal">Transportation Request</span>' +
           (row.request_type
             ? '<span class="owner-dash-badge owner-dash-badge--neutral">' + esc(row.request_type) + "</span>"
             : "") +
@@ -21855,15 +21885,27 @@
           "</time></div>" +
           nextActionHtml(nextAction) +
           '<div class="owner-dash-detail-grid">' +
-          detailRow("Request type", row.request_type) +
+          detailRow("Lead type", row.lead_type || "transportation_request") +
+          detailRow("Source", row.source || "transportation_page") +
+          detailRow("Next action", nextAction) +
+          detailRow("Trip type", row.trip_type || row.request_type) +
+          detailRow("Transportation need", row.transportation_need, true) +
           detailRow("Name", row.name) +
           detailRow("Email", row.email) +
           detailRow("Phone", row.phone) +
+          detailRow("Preferred contact method", row.preferred_contact_method) +
           detailRow("Pickup area", row.pickup_area) +
           detailRow("Destination", row.destination) +
           detailRow("Route", route || null) +
+          detailRow("Date", row.requested_date) +
+          detailRow("Time window", row.time_window) +
           detailRow("Date / time", row.date_time) +
-          detailRow("Group size", row.group_size) +
+          detailRow("Party size", row.party_size || row.group_size) +
+          detailRow("Luggage", row.luggage) +
+          detailRow("Hotel / resort", row.hotel_or_resort) +
+          detailRow("Flight number", row.flight_number) +
+          detailRow("Accessibility needs", row.accessibility_needs, true) +
+          detailRow("Child seats needed", row.child_seats_needed, true) +
           detailRow("Conversation excerpt", row.conversation_excerpt, true) +
           detailRow("Notes", row.notes, true) +
           detailRow("Page path", row.page_path) +
@@ -21902,7 +21944,7 @@
               ? leadTitle(row)
               : table === "restaurant_leads"
                 ? row.restaurant_name || "Restaurant lead"
-                : row.name || "Transportation request";
+                : "Transportation Request";
         }
         var commandNav = els.detailBody.querySelector(".owner-dash-command-nav");
         if (commandNav) setCommandSectionMenuOpen(commandNav, false);
@@ -26707,12 +26749,20 @@
 
       function isOpenTransportationRequest(row) {
         var status = normStatus(row && row.status);
-        return status !== "handled" && status !== "cancelled" && status !== "lost" && status !== "archived";
+        return (
+          status !== "completed" &&
+          status !== "handled" &&
+          status !== "not available / not a fit" &&
+          status !== "cancelled" &&
+          status !== "lost" &&
+          status !== "archived"
+        );
       }
 
       function exportNeedsActionReason(row, table) {
         var status = normStatus(row && row.status);
         if (status === "new") return "Status is New";
+        if (status === "review route request") return "Status is Review route request";
         if (status === "reviewed") return "Status is Reviewed";
         if (status === "needs follow-up") return "Status is Needs follow-up";
         if (
@@ -27064,13 +27114,18 @@
 
       function transportationSimpleLeadBlock(row) {
         return [
-          "- Name: " + transportDisplayName(row),
+          "- Transportation Request: " + transportDisplayName(row),
           "  Phone: " + exportValue(row.phone),
           "  Email: " + exportValue(row.email),
+          "  Preferred contact: " + exportValue(row.preferred_contact_method),
           "  Status: " + displayStatus(row.status),
-          "  Request type: " + exportValue(row.request_type),
+          "  Next action: " + exportValue(calcTransportNextAction(row, calcTransportPriority(row))),
+          "  Trip type: " + exportValue(row.trip_type || row.request_type),
+          "  Need: " + exportValue(row.transportation_need),
           "  Route/request: " + transportRouteText(row),
-          "  Notes: " + exportMultilineValue(row.conversation_excerpt || row.notes),
+          "  Timing: " + exportValue(row.time_window || row.date_time),
+          "  Party / luggage: " + exportValue([row.party_size || row.group_size, row.luggage].filter(Boolean).join(" / ")),
+          "  Notes: " + exportMultilineValue(row.owner_notes || row.conversation_excerpt || row.notes),
           "  Owner notes: " + exportMultilineValue(row.owner_notes),
         ].join("\n");
       }
@@ -27163,10 +27218,19 @@
           row.name,
           row.phone,
           row.email,
+          row.preferred_contact_method,
           displayStatus(row.status),
-          row.request_type,
+          calcTransportNextAction(row, calcTransportPriority(row)),
+          row.trip_type || row.request_type,
+          row.transportation_need,
           firstValue(row, ["pickup_area", "pickup"]),
           firstValue(row, ["destination", "dropoff", "dropoff_area"]),
+          row.requested_date,
+          row.time_window || row.date_time,
+          row.party_size || row.group_size,
+          row.luggage,
+          row.hotel_or_resort,
+          row.flight_number,
           row.conversation_excerpt || row.notes,
           row.owner_notes,
           row.page_path,
@@ -27178,7 +27242,7 @@
         var businessHeader =
           "created_at,business_name,contact_name,phone,email,status,priority,recommended_package,next_action,current_problem,owner_notes,page_path";
         var transportHeader =
-          "created_at,name,phone,email,status,request_type,pickup,destination,notes,owner_notes,page_path";
+          "created_at,name,phone,email,preferred_contact,status,next_action,trip_type,transportation_need,pickup,destination,date,time_window,party_size,luggage,hotel_or_resort,flight_number,notes,owner_notes,page_path";
         return [
           "CSV-style list",
           "",
@@ -27622,15 +27686,22 @@
                 "Name: " + transportDisplayName(row),
                 "Phone: " + exportValue(row.phone),
                 "Email: " + exportValue(row.email),
+                "Preferred contact: " + exportValue(row.preferred_contact_method),
                 "Status: " + displayStatus(row.status),
-                "Request type: " + exportValue(row.request_type),
+                "Next action: " + exportValue(calcTransportNextAction(row, calcTransportPriority(row))),
+                "Trip type: " + exportValue(row.trip_type || row.request_type),
+                "Need: " + exportValue(row.transportation_need),
                 "Pickup: " + transportPickup(row),
                 "Destination: " + transportDestination(row),
-                "Requested time: " + exportValue(row.date_time),
-                "Group size: " + exportValue(row.group_size),
+                "Date: " + exportValue(row.requested_date),
+                "Time window: " + exportValue(row.time_window || row.date_time),
+                "Party size: " + exportValue(row.party_size || row.group_size),
+                "Luggage: " + exportValue(row.luggage),
+                "Hotel / resort: " + exportValue(row.hotel_or_resort),
+                "Flight number: " + exportValue(row.flight_number),
                 "Email alert: " + (row.alert_email_sent ? "Sent" : "Pending"),
                 "SMS alert: " + (row.alert_sms_sent ? "Sent" : "Pending"),
-                "Notes: " + exportMultilineValue(row.conversation_excerpt || row.notes),
+                "Notes: " + exportMultilineValue(row.owner_notes || row.conversation_excerpt || row.notes),
                 "Owner notes: " + exportMultilineValue(row.owner_notes),
               ].join("\n");
             })
@@ -28121,9 +28192,8 @@
             var nextAction = calcTransportNextAction(row, priority);
             var route = [row.pickup_area, row.destination].filter(Boolean).join(" → ");
             var preview = transportPreviewText(row);
-            var title = row.request_type
-              ? (row.request_type + ": " + (row.name || "Guest"))
-              : (row.name || "Guest");
+            var title = "Transportation Request";
+            var titleMeta = [row.request_type, row.name || "Guest"].filter(Boolean).join(": ");
             return (
               '<article class="owner-dash-glass owner-dash-lead-card owner-dash-lead-card--compact" data-record-id="' +
               esc(row.id) +
@@ -28145,10 +28215,15 @@
               "<h3 class=\"owner-dash-card-title\">" +
               esc(title) +
               "</h3>" +
+              (titleMeta ? '<p class="owner-dash-card-subtitle">' + esc(titleMeta) + "</p>" : "") +
               '<dl class="owner-dash-fields owner-dash-fields--compact">' +
               block("Phone / email", contactLine(row.phone, row.email)) +
+              block("Preferred contact", row.preferred_contact_method) +
+              block("Trip type", row.trip_type || row.request_type) +
+              block("Need", row.transportation_need) +
               block("Route", route || null) +
               block("Date / time", row.date_time) +
+              block("Party / luggage", [row.party_size || row.group_size, row.luggage].filter(Boolean).join(" · ")) +
               blockPreview("Notes preview", preview) +
               "</dl>" +
               lastActivityHint(row, "transportation_requests") +

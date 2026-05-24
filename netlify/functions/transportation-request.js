@@ -1,5 +1,5 @@
 /**
- * Transportation / human-help request intake — stores in Supabase, alerts via Twilio + Resend.
+ * Transportation request intake — stores in Supabase, alerts via Twilio + Resend.
  *
  * Environment variables (Netlify → Site configuration → Environment variables):
  *   SUPABASE_URL                  — Supabase project URL (used for REST API base URL)
@@ -38,6 +38,23 @@ function trimStr(v, max = 8000) {
   const s = String(v).trim();
   if (s.length <= max) return s;
   return s.slice(0, max) + "…";
+}
+
+function listFromBody(v, maxItems = 20, maxLen = 200) {
+  const raw = Array.isArray(v) ? v : v == null || v === "" ? [] : [v];
+  return raw
+    .map((item) => trimStr(item, maxLen))
+    .filter(Boolean)
+    .slice(0, maxItems);
+}
+
+function joinList(values) {
+  return values && values.length ? values.join(", ") : "";
+}
+
+function line(label, value) {
+  const s = Array.isArray(value) ? joinList(value) : trimStr(value, 1200);
+  return `${label}: ${s || "—"}`;
 }
 
 /** Max length for safe error strings returned to clients and logs (no secrets). */
@@ -133,6 +150,7 @@ exports.handler = async (event) => {
   const visitor_name = trimStr(body.visitor_name, 200);
   const visitor_phone = trimStr(body.visitor_phone, 80);
   const visitor_email = trimStr(body.visitor_email, 200) || null;
+  const preferred_contact_method = trimStr(body.preferred_contact_method, 120) || null;
   const pickup_area = trimStr(body.pickup_area, 500);
   const pickup_lat =
     body.pickup_lat != null && body.pickup_lat !== "" ? Number(body.pickup_lat) : null;
@@ -140,48 +158,82 @@ exports.handler = async (event) => {
     body.pickup_lng != null && body.pickup_lng !== "" ? Number(body.pickup_lng) : null;
   const pickup_permission_given = body.pickup_permission_given === true || body.pickup_permission_given === "true";
   const destination = trimStr(body.destination, 500);
-  const requested_time = trimStr(body.requested_time, 200);
+  const requested_date = trimStr(body.requested_date, 120) || null;
+  const time_window = trimStr(body.time_window, 200) || null;
+  const requested_time = trimStr(body.requested_time, 200) || [requested_date, time_window].filter(Boolean).join(" ");
   const party_size = trimStr(body.party_size, 80);
   const luggage = trimStr(body.luggage, 500) || null;
-  const request_type = trimStr(body.request_type, 200);
+  const trip_type = trimStr(body.trip_type || body.request_type, 200);
+  const request_type = trip_type;
+  const transportation_need = listFromBody(body.transportation_need, 20, 200);
+  const transportation_need_text = joinList(transportation_need);
+  const flight_number = trimStr(body.flight_number, 120) || null;
+  const hotel_or_resort = trimStr(body.hotel_or_resort, 240) || null;
+  const accessibility_needs = trimStr(body.accessibility_needs, 500) || null;
+  const child_seats_needed = trimStr(body.child_seats_needed, 500) || null;
   const notes = trimStr(body.notes, 4000) || null;
   const ai_summary = trimStr(body.ai_summary, 4000) || null;
   const conversation_excerpt = trimStr(body.conversation_excerpt, 12000) || null;
   const user_agent = trimStr(body.user_agent, 512) || null;
   const page_path = trimStr(body.page_path, 512) || null;
-  const source = trimStr(body.source, 120) || "web_route_operator";
+  const source = trimStr(body.source, 120) || "transportation_page";
+  const lead_type = trimStr(body.lead_type, 120) || "transportation_request";
+  const next_action = trimStr(body.next_action, 160) || "review route request";
 
-  if (!visitor_name || !visitor_phone || !pickup_area || !destination || !requested_time || !party_size || !request_type) {
+  if (
+    !visitor_name ||
+    (!visitor_phone && !visitor_email) ||
+    !pickup_area ||
+    !destination ||
+    !requested_time ||
+    !party_size ||
+    !request_type ||
+    !transportation_need_text
+  ) {
     return json(400, {
       error: "validation_error",
       message: "Missing required fields.",
       fields: [
         "visitor_name",
-        "visitor_phone",
+        "visitor_phone_or_email",
         "pickup_area",
         "destination",
         "requested_time",
         "party_size",
         "request_type",
+        "transportation_need",
       ],
     });
   }
 
-  if (!pickup_permission_given) {
-    return json(400, {
-      error: "validation_error",
-      message: "Pickup context permission is required to send a request.",
-    });
-  }
-
-  const phoneOk = /^\+?[\d\s().-]{10,}$/.test(visitor_phone);
+  const phoneOk = !visitor_phone || /^\+?[\d\s().-]{10,}$/.test(visitor_phone);
   if (!phoneOk) {
     return json(400, { error: "validation_error", message: "Please enter a valid phone number." });
   }
 
-  const row = {
+  const timingText = [requested_date, time_window].filter(Boolean).join(" ") || requested_time;
+  const owner_notes = [
+    line("Trip type", trip_type),
+    line("Pickup area", pickup_area),
+    line("Destination", destination),
+    line("Timing", timingText),
+    line("Party size", party_size),
+    line("Luggage", luggage),
+    line("What help they need", transportation_need),
+    line("Preferred contact method", preferred_contact_method),
+    line("Hotel / resort", hotel_or_resort),
+    line("Flight number", flight_number),
+    line("Accessibility needs", accessibility_needs),
+    line("Child seats needed", child_seats_needed),
+    line("Notes", notes),
+    "Source: Transportation page",
+    "Lead type: transportation_request",
+    "Next action: Review route request",
+  ].join("\n");
+
+  const legacyRow = {
     brand: "Where To Go SA",
-    status: "new",
+    status: "New",
     source,
     visitor_name,
     visitor_phone,
@@ -196,12 +248,28 @@ exports.handler = async (event) => {
     luggage,
     request_type,
     notes,
+    owner_notes,
     ai_summary,
     conversation_excerpt,
     alert_sms_sent: false,
     alert_email_sent: false,
     user_agent,
     page_path,
+  };
+
+  const fullRow = {
+    ...legacyRow,
+    lead_type,
+    next_action,
+    preferred_contact_method,
+    requested_date,
+    time_window,
+    trip_type,
+    transportation_need: transportation_need_text,
+    flight_number,
+    hotel_or_resort,
+    accessibility_needs,
+    child_seats_needed,
   };
 
   const restHeaders = {
@@ -213,23 +281,33 @@ exports.handler = async (event) => {
 
   let inserted;
   try {
-    const ins = await fetch(`${supabaseUrl}/rest/v1/transportation_requests`, {
+    let ins = await fetch(`${supabaseUrl}/rest/v1/transportation_requests`, {
       method: "POST",
       headers: restHeaders,
-      body: JSON.stringify(row),
+      body: JSON.stringify(fullRow),
     });
     const data = await ins.json().catch(() => null);
     if (!ins.ok) {
-      const msg =
-        data && (data.message || data.error_description || data.hint)
-          ? JSON.stringify(data)
-          : ins.statusText;
-      return json(502, {
-        error: "supabase_insert_failed",
-        message: "Could not save your request. Please try again.",
+      console.warn("transportation full insert failed; retrying legacy shape", {
+        status: ins.status,
+        message: data && (data.message || data.error_description || data.hint),
       });
+      ins = await fetch(`${supabaseUrl}/rest/v1/transportation_requests`, {
+        method: "POST",
+        headers: restHeaders,
+        body: JSON.stringify(legacyRow),
+      });
+      const fallbackData = await ins.json().catch(() => null);
+      if (!ins.ok) {
+        return json(502, {
+          error: "supabase_insert_failed",
+          message: "Could not save your request. Please try again.",
+        });
+      }
+      inserted = Array.isArray(fallbackData) ? fallbackData[0] : fallbackData;
+    } else {
+      inserted = Array.isArray(data) ? data[0] : data;
     }
-    inserted = Array.isArray(data) ? data[0] : data;
   } catch (err) {
     return json(502, {
       error: "supabase_network",
@@ -260,7 +338,7 @@ exports.handler = async (event) => {
     (process.env.RESEND_FROM_EMAIL && String(process.env.RESEND_FROM_EMAIL).trim()) ||
     "Where To Go SA <onboarding@resend.dev>";
 
-  const smsBody = `New Where To Go SA transportation request: ${pickup_area} → ${destination}, ${requested_time}, ${party_size}. Phone: ${visitor_phone}.`;
+  const smsBody = `New Where To Go SA transportation request: ${trip_type}: ${pickup_area} → ${destination}, ${timingText}, ${party_size}. Need: ${transportation_need_text}. Phone: ${visitor_phone || "—"}.`;
 
   let smsSent = false;
   let smsErrorCode = null;
@@ -388,14 +466,28 @@ exports.handler = async (event) => {
 <li><strong>Name:</strong> ${escapeHtml(visitor_name)}</li>
 <li><strong>Phone:</strong> ${escapeHtml(visitor_phone)}</li>
 <li><strong>Email:</strong> ${visitor_email ? escapeHtml(visitor_email) : "—"}</li>
+<li><strong>Preferred contact:</strong> ${preferred_contact_method ? escapeHtml(preferred_contact_method) : "—"}</li>
+<li><strong>Trip type:</strong> ${escapeHtml(trip_type)}</li>
 <li><strong>Pickup:</strong> ${escapeHtml(pickup_area)}</li>
 <li><strong>Destination:</strong> ${escapeHtml(destination)}</li>
-<li><strong>Requested time:</strong> ${escapeHtml(requested_time)}</li>
+<li><strong>Date:</strong> ${requested_date ? escapeHtml(requested_date) : "—"}</li>
+<li><strong>Time window:</strong> ${time_window ? escapeHtml(time_window) : "—"}</li>
+<li><strong>Requested time:</strong> ${escapeHtml(timingText)}</li>
 <li><strong>Party size:</strong> ${escapeHtml(party_size)}</li>
 <li><strong>Luggage / gear:</strong> ${luggage ? escapeHtml(luggage) : "—"}</li>
-<li><strong>Request type:</strong> ${escapeHtml(request_type)}</li>
+<li><strong>What they need:</strong> ${escapeHtml(transportation_need_text)}</li>
+<li><strong>Hotel / resort:</strong> ${hotel_or_resort ? escapeHtml(hotel_or_resort) : "—"}</li>
+<li><strong>Flight number:</strong> ${flight_number ? escapeHtml(flight_number) : "—"}</li>
+<li><strong>Accessibility needs:</strong> ${accessibility_needs ? escapeHtml(accessibility_needs) : "—"}</li>
+<li><strong>Child seats:</strong> ${child_seats_needed ? escapeHtml(child_seats_needed) : "—"}</li>
 <li><strong>Source:</strong> ${escapeHtml(source)}</li>
+<li><strong>Lead type:</strong> ${escapeHtml(lead_type)}</li>
+<li><strong>Next action:</strong> Review route request</li>
 </ul>
+<h3>Owner notes</h3>
+<pre style="white-space:pre-wrap;font-size:14px;background:#f6f8fb;padding:12px;border-radius:8px">${escapeHtml(
+    owner_notes
+  )}</pre>
 <h3>Notes</h3>
 <pre style="white-space:pre-wrap;font-size:14px;background:#f6f8fb;padding:12px;border-radius:8px">${escapeHtml(
     notes || "—"

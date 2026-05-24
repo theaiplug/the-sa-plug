@@ -30,7 +30,7 @@ const BUSINESS_SELECT_CORE =
   "id,created_at,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,page_path";
 
 const TRANSPORT_SELECT_FULL =
-  "id,created_at,status,owner_notes,last_contacted_at,updated_at,visitor_name,visitor_phone,visitor_email,pickup_area,destination,requested_time,party_size,request_type,conversation_excerpt,notes,alert_email_sent,alert_sms_sent,page_path";
+  "id,created_at,status,owner_notes,last_contacted_at,updated_at,source,lead_type,next_action,visitor_name,visitor_phone,visitor_email,preferred_contact_method,pickup_area,destination,requested_date,time_window,requested_time,party_size,luggage,request_type,trip_type,transportation_need,flight_number,hotel_or_resort,accessibility_needs,child_seats_needed,conversation_excerpt,notes,alert_email_sent,alert_sms_sent,page_path";
 
 const TRANSPORT_SELECT_CORE =
   "id,created_at,status,visitor_name,visitor_phone,visitor_email,pickup_area,destination,requested_time,party_size,request_type,conversation_excerpt,notes,alert_email_sent,alert_sms_sent,page_path";
@@ -293,6 +293,7 @@ function mapRestaurantLead(row) {
 }
 
 function mapTransportRequest(row) {
+  const tripType = row.trip_type ?? row.request_type ?? null;
   return {
     id: row.id,
     created_at: row.created_at,
@@ -300,14 +301,28 @@ function mapTransportRequest(row) {
     owner_notes: row.owner_notes ?? null,
     last_contacted_at: row.last_contacted_at ?? null,
     updated_at: row.updated_at ?? null,
+    source: row.source ?? null,
+    lead_type: row.lead_type ?? null,
+    next_action: row.next_action ?? null,
     name: row.visitor_name ?? null,
     phone: row.visitor_phone ?? null,
     email: row.visitor_email ?? null,
+    preferred_contact_method: row.preferred_contact_method ?? null,
     pickup_area: row.pickup_area ?? null,
     destination: row.destination ?? null,
+    requested_date: row.requested_date ?? null,
+    time_window: row.time_window ?? null,
     date_time: row.requested_time ?? null,
     group_size: row.party_size ?? null,
-    request_type: row.request_type ?? null,
+    party_size: row.party_size ?? null,
+    luggage: row.luggage ?? null,
+    request_type: tripType,
+    trip_type: tripType,
+    transportation_need: row.transportation_need ?? null,
+    flight_number: row.flight_number ?? null,
+    hotel_or_resort: row.hotel_or_resort ?? null,
+    accessibility_needs: row.accessibility_needs ?? null,
+    child_seats_needed: row.child_seats_needed ?? null,
     conversation_excerpt: row.conversation_excerpt ?? null,
     notes: row.notes ?? null,
     alert_email_sent: Boolean(row.alert_email_sent),
