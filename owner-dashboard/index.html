@@ -3712,12 +3712,227 @@
       .page-owner-dashboard .owner-dash-restaurant-rep-action-buttons {
         grid-template-columns: 1fr;
       }
+
+      .page-owner-dashboard .owner-dash-biz-command-verticals,
+      .page-owner-dashboard .owner-dash-biz-command-buckets {
+        grid-template-columns: 1fr;
+      }
+
+      .page-owner-dashboard .owner-dash-biz-command-open,
+      .page-owner-dashboard .owner-dash-biz-command-verticals .owner-dash-filter {
+        width: 100%;
+      }
+    }
+
+    /* Owner Dashboard v32 - AI Plug Business Command */
+    .page-owner-dashboard .owner-dash-biz-command,
+    .page-owner-dashboard .owner-dash-biz-command * {
+      min-width: 0;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 14px;
+      padding: clamp(14px, 2vw, 18px);
+      border: 1px solid rgba(56, 189, 248, 0.32);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 34%),
+        linear-gradient(145deg, rgba(20, 184, 166, 0.1), transparent 48%),
+        rgba(4, 10, 22, 0.64);
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-head {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command h2,
+    .page-owner-dashboard .owner-dash-biz-command h3 {
+      margin: 0;
+      color: #bae6fd;
+      line-height: 1.18;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-subtitle,
+    .page-owner-dashboard .owner-dash-biz-command-guardrail,
+    .page-owner-dashboard .owner-dash-biz-command-note,
+    .page-owner-dashboard .owner-dash-biz-command-order {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.74);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-guardrail {
+      padding: 8px 10px;
+      border: 1px solid rgba(251, 146, 60, 0.26);
+      border-radius: 13px;
+      background: rgba(251, 146, 60, 0.09);
+      color: #ffe4c4;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-verticals {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-vertical-link {
+      display: grid;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid rgba(94, 234, 212, 0.28);
+      border-radius: 14px;
+      background: rgba(20, 184, 166, 0.08);
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-vertical-link p {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.82);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-buckets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-bucket {
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.2rem;
+      min-height: 2rem;
+      margin-bottom: 7px;
+      border-radius: 12px;
+      border: 1px solid rgba(56, 189, 248, 0.34);
+      background: rgba(56, 189, 248, 0.14);
+      color: #7dd3fc;
+      font-weight: 950;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-bucket strong {
+      display: block;
+      color: #fff;
+      font-size: 0.9rem;
+      line-height: 1.25;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-bucket p {
+      margin: 6px 0 0;
+      color: rgba(255, 246, 230, 0.68);
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-previews {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-preview {
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(3, 7, 18, 0.42);
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-preview-name {
+      display: block;
+      color: #fff;
+      font-size: 0.86rem;
+      line-height: 1.3;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-preview-contact {
+      display: block;
+      margin-top: 2px;
+      color: rgba(255, 246, 230, 0.66);
+      font-size: 0.74rem;
+      line-height: 1.3;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-preview-meta {
+      display: grid;
+      gap: 4px;
+      margin: 6px 0 0;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-preview-meta div {
+      display: grid;
+      grid-template-columns: minmax(3.2rem, auto) 1fr;
+      gap: 6px;
+      font-size: 0.72rem;
+      line-height: 1.35;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-preview-meta dt {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.58);
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-preview-meta dd {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.9);
+      overflow-wrap: anywhere;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-open {
+      appearance: none;
+      width: 100%;
+      min-height: 38px;
+      margin-top: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.36);
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.12);
+      color: #e0f2fe;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-order {
+      padding-left: 1.2rem;
+    }
+
+    .page-owner-dashboard .owner-dash-panel-helper {
+      margin: 0 0 12px;
+      max-width: 42rem;
+      color: rgba(255, 246, 230, 0.74);
+      font-size: 0.86rem;
+      line-height: 1.45;
     }
 
     /* Owner Dashboard v31 - mobile restaurant typography cleanup */
     .page-owner-dashboard :is(
       .owner-dash-daily-brief,
       .owner-dash-export,
+      .owner-dash-biz-command,
       .owner-dash-restaurant-first50,
       .owner-dash-restaurant-create,
       .owner-dash-restaurant-command,
@@ -3727,6 +3942,7 @@
     .page-owner-dashboard :is(
       .owner-dash-daily-brief,
       .owner-dash-export,
+      .owner-dash-biz-command,
       .owner-dash-restaurant-first50,
       .owner-dash-restaurant-create,
       .owner-dash-restaurant-command,
@@ -3747,7 +3963,8 @@
       .owner-dash-export-btn,
       .owner-dash-brief-jump,
       .owner-dash-restaurant-prospect-mode,
-      .owner-dash-restaurant-rep-queue-open
+      .owner-dash-restaurant-rep-queue-open,
+      .owner-dash-biz-command-open
     ) {
       display: inline-flex;
       align-items: center;
@@ -4510,6 +4727,7 @@
           </div>
           <div class="owner-dash-dashboard-jumps" aria-label="Dashboard jump menu">
             <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="brief">Brief</button>
+            <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="ai-plug-command">AI Plug Command</button>
             <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="today">Today</button>
             <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="ai-leads">AI Leads</button>
             <button type="button" class="owner-dash-dashboard-jump" data-action="dashboard-jump" data-dashboard-target="restaurants">Restaurants</button>
@@ -4581,6 +4799,46 @@
             <p class="owner-dash-detail-manual-copy-label">Select and copy:</p>
             <textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea>
           </div>
+        </div>
+      </section>
+
+      <section id="owner-dash-ai-plug-business-command" class="owner-dash-biz-command owner-dash-glass" aria-labelledby="owner-dash-ai-plug-business-command-heading">
+        <div class="owner-dash-biz-command-head">
+          <p class="eyebrow eyebrow-on-dark">AI PLUG BUSINESS SYSTEMS</p>
+          <h2 id="owner-dash-ai-plug-business-command-heading">AI Plug Business Command</h2>
+          <p class="owner-dash-biz-command-subtitle">The AI Plug Business Command organizes business leads by diagnosis, offer fit, vertical, proposal status, delivery stage, and follow-up priority.</p>
+          <p class="owner-dash-biz-command-guardrail">Internal business command only. Copy-only tools — nothing sends, publishes, invoices, charges, or promises automatically.</p>
+        </div>
+        <div class="owner-dash-biz-command-verticals" role="group" aria-label="Business pipeline vertical filters">
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical is-active" data-action="business-vertical-filter" data-business-vertical="all" aria-pressed="true">All Business Leads</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="general" aria-pressed="false">General AI Plug</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="restaurants" aria-pressed="false">Restaurants</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="transportation" aria-pressed="false">Transportation / Concierge</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="future-verticals" aria-pressed="false">Future Verticals</button>
+        </div>
+        <div id="owner-dash-biz-command-restaurant-link" class="owner-dash-biz-command-vertical-link" hidden>
+          <p>Restaurant opportunities are part of the AI Plug business system and also have a dedicated Restaurant Program workflow below.</p>
+          <button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="dashboard-jump" data-dashboard-target="restaurants">Open Restaurant Program</button>
+        </div>
+        <div>
+          <h3 id="owner-dash-biz-command-queue-heading">AI Plug Rep Daily Queue</h3>
+          <p class="owner-dash-biz-command-note">Page-level queue for the broader AI Plug business pipeline. Restaurant rows still open the restaurant command sheet.</p>
+        </div>
+        <div id="owner-dash-biz-command-buckets" class="owner-dash-biz-command-buckets" aria-labelledby="owner-dash-biz-command-queue-heading"></div>
+        <div>
+          <p class="owner-dash-biz-command-note">Recommended order:</p>
+          <ol class="owner-dash-biz-command-order">
+            <li>Needs diagnosis</li>
+            <li>Ready to contact</li>
+            <li>Discovery needed</li>
+            <li>Proposal ready</li>
+            <li>Proposal follow-up</li>
+            <li>Verbal yes / deposit</li>
+            <li>Won — intake / build</li>
+            <li>Live — recap / renewal</li>
+            <li>Vertical opportunity / needs classification</li>
+            <li>Not now / revisit</li>
+          </ol>
         </div>
       </section>
 
@@ -4864,7 +5122,7 @@
       </section>
 
       <div class="owner-dash-tabs" role="tablist" aria-label="Lead sections">
-        <button type="button" class="owner-dash-tab is-active" role="tab" aria-selected="true" aria-controls="panel-business" id="tab-business" data-panel="panel-business">AI Plug Leads</button>
+        <button type="button" class="owner-dash-tab is-active" role="tab" aria-selected="true" aria-controls="panel-business" id="tab-business" data-panel="panel-business">Business Leads</button>
         <button type="button" class="owner-dash-tab" role="tab" aria-selected="false" aria-controls="panel-restaurant-leads" id="tab-restaurant-leads" data-panel="panel-restaurant-leads">Restaurant Leads</button>
         <button type="button" class="owner-dash-tab" role="tab" aria-selected="false" aria-controls="panel-restaurant-prospects" id="tab-restaurant-prospects" data-panel="panel-restaurant-prospects">Restaurant Prospects</button>
         <button type="button" class="owner-dash-tab" role="tab" aria-selected="false" aria-controls="panel-restaurant-clients" id="tab-restaurant-clients" data-panel="panel-restaurant-clients">Restaurant Clients</button>
@@ -4873,8 +5131,9 @@
 
       <section id="panel-business" class="owner-dash-panel is-active" role="tabpanel" aria-labelledby="tab-business">
         <header class="owner-dash-panel-head">
-          <h2>AI Plug Leads</h2>
+          <h2>Business Leads</h2>
           <p>Latest operator and intake submissions. Update status and owner notes below.</p>
+          <p class="owner-dash-panel-helper">This is the main business pipeline for The AI Plug. Restaurant leads are part of the business system, but they also have a dedicated Restaurant Program workflow because that vertical is already built out.</p>
         </header>
         <p id="business-leads-result-count" class="owner-dash-result-count" aria-live="polite">Showing 0 of 0 business leads</p>
         <div id="business-leads-empty" class="owner-dash-empty" hidden>
@@ -5855,6 +6114,19 @@
         { key: "not-now-future-follow-up", label: "Not now / future follow-up", explanation: "Restaurants marked not now and worth revisiting later." },
       ];
 
+      var AI_PLUG_BUSINESS_COMMAND_QUEUE_BUCKETS = [
+        { key: "needs-diagnosis", label: "Needs Diagnosis", explanation: "New or early leads that need a customer-path diagnosis before outreach." },
+        { key: "ready-to-contact", label: "Ready to Contact", explanation: "Reviewed or researched leads ready for first owner/rep contact." },
+        { key: "discovery-needed", label: "Discovery Needed", explanation: "Contact exists but qualifying discovery questions still need answers." },
+        { key: "proposal-ready", label: "Proposal Ready", explanation: "Qualified leads with enough diagnosis to prepare a first offer or proposal." },
+        { key: "proposal-follow-up", label: "Proposal Follow-Up", explanation: "Proposal, quote, or next-step follow-up should happen next." },
+        { key: "verbal-yes-deposit", label: "Verbal Yes / Deposit", explanation: "Verbal yes or deposit request stage — manual approval only." },
+        { key: "won-intake-build", label: "Won — Intake / Build", explanation: "Won clients needing intake, materials, build, or launch QA." },
+        { key: "live-recap-renewal", label: "Live — Recap / Renewal", explanation: "Live clients needing monthly recap, support review, or renewal planning." },
+        { key: "vertical-opportunity", label: "Vertical Opportunity / Needs Classification", explanation: "Leads that need niche/vertical classification before the right workflow is chosen." },
+        { key: "not-now-revisit", label: "Not Now / Revisit", explanation: "Leads marked not now or parked for a later revisit." },
+      ];
+
       var RESTAURANT_DISCOVERY_QUESTION_GROUPS = {
         visibility: [
           "How do most new customers find you now?",
@@ -6572,6 +6844,7 @@
         activeRestaurantFilter: "all",
         activeRestaurantClientFilter: "all",
         activeRestaurantProspectMode: "all",
+        activeBusinessVertical: "all",
         searchQuery: "",
         sortKey: "needs-action",
         needsActionOnly: false,
@@ -6656,6 +6929,9 @@
         activeQueue: document.getElementById("owner-dash-active-queue"),
         restaurantRepDailyQueue: document.getElementById("owner-dash-restaurant-rep-daily-queue"),
         restaurantRepDailyBuckets: document.getElementById("owner-dash-restaurant-rep-daily-buckets"),
+        businessCommandSection: document.getElementById("owner-dash-ai-plug-business-command"),
+        businessCommandBuckets: document.getElementById("owner-dash-biz-command-buckets"),
+        businessCommandRestaurantLink: document.getElementById("owner-dash-biz-command-restaurant-link"),
         exportSection: document.getElementById("owner-dash-export-crm"),
         exportSnapshot: document.getElementById("owner-dash-export-snapshot"),
         exportStatus: document.getElementById("owner-dash-export-status"),
@@ -6776,7 +7052,7 @@
         var mode = ownerDashboardActiveRestaurantMode();
         if (mode === "prospects") return "Restaurant Prospects";
         if (mode === "clients") return "Restaurant Clients";
-        return ownerDashboardActiveTable() === "business_leads" ? "AI Plug Leads" : "Transportation";
+        return ownerDashboardActiveTable() === "business_leads" ? "Business Leads" : "Transportation";
       }
 
       function rowPriorityText(row, table) {
@@ -7212,6 +7488,9 @@
       }
 
       function matchesFilter(row, table) {
+        if (table === "business_leads" && state.activeBusinessVertical && state.activeBusinessVertical !== "all") {
+          if (!matchesBusinessVerticalFilter(row)) return false;
+        }
         if (state.activeQueueKey) {
           return (
             matchesTodayActionQueue(state.activeQueueKey, table, row) &&
@@ -8831,6 +9110,282 @@
         return dealStageInfo(row).label;
       }
 
+      function isTransportationBusinessRow(row) {
+        if (!row || isRestaurantRow(row)) return false;
+        var text = aiPlugLeadSourceText(row);
+        return /transport|transportation|concierge|shuttle|ride service|car service|limo|airport transfer|private ride|where to go sa transport/.test(
+          text
+        );
+      }
+
+      function isFutureVerticalBusinessRow(row) {
+        if (!row || isRestaurantRow(row) || isTransportationBusinessRow(row)) return false;
+        var niche = aiPlugNicheKey(row);
+        if (niche !== "other" && niche !== "restaurant") return true;
+        return /roof|roofer|floor|flooring|home improvement|remodel|contractor|hvac|plumb|landscap|med spa|nightlife|venue|salon|clinic|dental|chiro|cleaning service|pest control|garage door|solar|pool service/.test(
+          aiPlugLeadSourceText(row)
+        );
+      }
+
+      function matchesBusinessVerticalFilter(row) {
+        var vertical = state.activeBusinessVertical || "all";
+        if (vertical === "all") return true;
+        if (vertical === "general") {
+          return !isRestaurantRow(row) && !isTransportationBusinessRow(row) && !isFutureVerticalBusinessRow(row);
+        }
+        if (vertical === "restaurants") return isRestaurantRow(row);
+        if (vertical === "transportation") return isTransportationBusinessRow(row);
+        if (vertical === "future-verticals") return isFutureVerticalBusinessRow(row);
+        return true;
+      }
+
+      function businessVerticalLabel(row) {
+        if (isRestaurantRow(row)) return "Restaurants";
+        if (isTransportationBusinessRow(row)) return "Transportation / Concierge";
+        var niche = aiPlugNicheKey(row);
+        if (niche && niche !== "other") {
+          return niche.replace(/\b\w/g, function (c) {
+            return c.toUpperCase();
+          });
+        }
+        return "General AI Plug";
+      }
+
+      function businessCommandBaseRows() {
+        return sortBusinessLeads(state.businessLeads).filter(matchesBusinessVerticalFilter);
+      }
+
+      function businessCommandStageKey(row) {
+        return dealStageInfo(row).key;
+      }
+
+      function businessCommandHasDeliveryNotes(row) {
+        return ownerNotesInclude(row, [
+          "materials needed",
+          "materials requested",
+          "intake needed",
+          "in build",
+          "launch qa",
+          "first preview ready",
+          "approved for launch",
+        ]);
+      }
+
+      function businessCommandHasLiveNotes(row) {
+        return ownerNotesInclude(row, [
+          "launched",
+          "live",
+          "support review due",
+          "support active",
+          "monthly recap",
+          "renewal",
+          "recap due",
+        ]);
+      }
+
+      function matchesBusinessCommandBucket(row, key) {
+        if (!row) return false;
+        var stageKey = businessCommandStageKey(row);
+        var status = normStatus(row.status);
+        if (key === "not-now-revisit") {
+          return stageKey === "not-now" || status === "not a fit";
+        }
+        if (status === "lost" || status === "archived" || stageKey === "lost" || stageKey === "not-a-fit") {
+          return false;
+        }
+        if (key === "needs-diagnosis") {
+          return (
+            stageKey === "needs-diagnosis" ||
+            stageKey === "new-lead" ||
+            stageKey === "research-needed" ||
+            (status === "new" && !aiPlugExplicitStage(row))
+          );
+        }
+        if (key === "ready-to-contact") {
+          return stageKey === "ready-to-contact" || stageKey === "research-complete" || stageKey === "reviewed";
+        }
+        if (key === "discovery-needed") {
+          return (
+            stageKey === "discovery-needed" ||
+            stageKey === "discovery-scheduled" ||
+            (stageKey === "contacted" && status !== "qualified" && !hasProposalReadyNote(row))
+          );
+        }
+        if (key === "proposal-ready") {
+          return stageKey === "proposal-ready" || stageKey === "qualified" || stageKey === "discovery-complete";
+        }
+        if (key === "proposal-follow-up") {
+          return (
+            stageKey === "follow-up-due" ||
+            stageKey === "proposal-sent" ||
+            stageKey === "negotiating" ||
+            hasProposalSentNote(row) ||
+            (status === "needs follow-up" && (hasProposalSentNote(row) || hasProposalReadyNote(row)))
+          );
+        }
+        if (key === "verbal-yes-deposit") {
+          return stageKey === "verbal-yes" || stageKey === "deposit-requested";
+        }
+        if (key === "won-intake-build") {
+          return (
+            stageKey === "won-client" ||
+            stageKey === "intake-needed" ||
+            stageKey === "in-build" ||
+            stageKey === "launch-qa" ||
+            (status === "won" && (businessCommandHasDeliveryNotes(row) || !businessCommandHasLiveNotes(row)))
+          );
+        }
+        if (key === "live-recap-renewal") {
+          return (
+            stageKey === "live" ||
+            stageKey === "monthly-recap-due" ||
+            stageKey === "renewal-upsell" ||
+            businessCommandHasLiveNotes(row)
+          );
+        }
+        if (key === "vertical-opportunity") {
+          if (isRestaurantRow(row) || isTransportationBusinessRow(row)) return false;
+          if (isFutureVerticalBusinessRow(row)) return false;
+          if (ownerNoteMarkerValue(row, "Business vertical:")) return false;
+          var industry = firstValue(row, ["business_industry", "industry"]);
+          return !industry || String(industry).trim().length < 3 || aiPlugNicheKey(row) === "other";
+        }
+        return false;
+      }
+
+      function businessCommandQueueRows(key) {
+        return businessCommandBaseRows().filter(function (row) {
+          return matchesBusinessCommandBucket(row, key);
+        });
+      }
+
+      function businessCommandBucketForKey(key) {
+        for (var i = 0; i < AI_PLUG_BUSINESS_COMMAND_QUEUE_BUCKETS.length; i += 1) {
+          if (AI_PLUG_BUSINESS_COMMAND_QUEUE_BUCKETS[i].key === key) {
+            return AI_PLUG_BUSINESS_COMMAND_QUEUE_BUCKETS[i];
+          }
+        }
+        return null;
+      }
+
+      function businessCommandLeadPreviewHtml(row) {
+        var diagnosis = aiPlugDiagnosis(row);
+        var offer = aiPlugRecommendOffer(row);
+        var nextAction = calcBusinessNextAction(row, calcBusinessPriority(row));
+        return (
+          '<li class="owner-dash-biz-command-preview">' +
+          '<strong class="owner-dash-biz-command-preview-name">' +
+          esc(row.business_name || row.contact_name || "Business TBD") +
+          "</strong>" +
+          '<span class="owner-dash-biz-command-preview-contact">' +
+          esc(row.contact_name || "Contact TBD") +
+          "</span>" +
+          '<dl class="owner-dash-biz-command-preview-meta">' +
+          "<div><dt>Vertical</dt><dd>" +
+          esc(businessVerticalLabel(row)) +
+          "</dd></div>" +
+          "<div><dt>Leak</dt><dd>" +
+          esc(diagnosis.leak) +
+          "</dd></div>" +
+          "<div><dt>Offer</dt><dd>" +
+          esc(offer.offer) +
+          "</dd></div>" +
+          "<div><dt>Next</dt><dd>" +
+          esc(nextAction) +
+          "</dd></div>" +
+          "</dl>" +
+          '<button type="button" class="owner-dash-biz-command-open" data-action="open-details" data-table="business_leads" data-id="' +
+          esc(row.id) +
+          '">Open details</button>' +
+          "</li>"
+        );
+      }
+
+      function businessCommandBriefMetrics() {
+        var rows = sortBusinessLeads(state.businessLeads);
+        var needsDiagnosis = 0;
+        var readyToContact = 0;
+        var proposalReady = 0;
+        var followUpDue = 0;
+        var wonIntakeBuild = 0;
+        var liveRecapRenewal = 0;
+        var verticalOpportunity = 0;
+        rows.forEach(function (row) {
+          if (matchesBusinessCommandBucket(row, "needs-diagnosis")) needsDiagnosis += 1;
+          if (matchesBusinessCommandBucket(row, "ready-to-contact")) readyToContact += 1;
+          if (matchesBusinessCommandBucket(row, "proposal-ready")) proposalReady += 1;
+          if (matchesBusinessCommandBucket(row, "proposal-follow-up")) followUpDue += 1;
+          if (matchesBusinessCommandBucket(row, "won-intake-build")) wonIntakeBuild += 1;
+          if (matchesBusinessCommandBucket(row, "live-recap-renewal")) liveRecapRenewal += 1;
+          if (matchesBusinessCommandBucket(row, "vertical-opportunity")) verticalOpportunity += 1;
+        });
+        return {
+          total: rows.length,
+          needsDiagnosis: needsDiagnosis,
+          readyToContact: readyToContact,
+          proposalReady: proposalReady,
+          followUpDue: followUpDue,
+          wonIntakeBuild: wonIntakeBuild,
+          liveRecapRenewal: liveRecapRenewal,
+          verticalOpportunity: verticalOpportunity,
+          restaurantSubset: rows.filter(isRestaurantRow).length,
+        };
+      }
+
+      function syncBusinessVerticalFilterUi() {
+        var vertical = state.activeBusinessVertical || "all";
+        document.querySelectorAll("[data-action='business-vertical-filter']").forEach(function (btn) {
+          var active = (btn.getAttribute("data-business-vertical") || "all") === vertical;
+          btn.classList.toggle("is-active", active);
+          btn.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+        if (els.businessCommandRestaurantLink) {
+          els.businessCommandRestaurantLink.hidden = vertical !== "restaurants";
+        }
+      }
+
+      function openFirstBusinessCommandMatch(key) {
+        var rows = businessCommandQueueRows(key);
+        if (!rows.length) {
+          updateLoadedRowNote(anyTableHasUnloadedRows());
+          return;
+        }
+        openDetail("business_leads", rows[0].id);
+      }
+
+      function renderAiPlugBusinessCommand() {
+        if (!els.businessCommandBuckets) return;
+        syncBusinessVerticalFilterUi();
+        els.businessCommandBuckets.innerHTML = AI_PLUG_BUSINESS_COMMAND_QUEUE_BUCKETS.map(function (bucket) {
+          var rows = businessCommandQueueRows(bucket.key);
+          var previews = rows
+            .slice(0, 3)
+            .map(function (row) {
+              return businessCommandLeadPreviewHtml(row);
+            })
+            .join("");
+          return (
+            '<article class="owner-dash-biz-command-bucket">' +
+            '<span class="owner-dash-biz-command-count">' +
+            esc(rows.length) +
+            "</span>" +
+            "<strong>" +
+            esc(bucket.label) +
+            "</strong>" +
+            "<p>" +
+            esc(bucket.explanation) +
+            "</p>" +
+            (previews ? '<ul class="owner-dash-biz-command-previews">' + previews + "</ul>" : "") +
+            (rows.length
+              ? '<button type="button" class="owner-dash-biz-command-open" data-action="open-business-command-first" data-business-command-bucket="' +
+                esc(bucket.key) +
+                '">Open first</button>'
+              : "") +
+            "</article>"
+          );
+        }).join("");
+      }
+
       function ownerNotesAreShort(row) {
         return ownerNotesText(row).length < 12;
       }
@@ -9249,10 +9804,12 @@
           (counts["materials-needed"] || 0) +
           (counts["launch-support-tasks"] || 0) +
           testimonialReferralOpportunity;
+        var businessCommand = businessCommandBriefMetrics();
 
         return {
           counts: counts,
           priorityToday: priorityToday,
+          businessCommand: businessCommand,
           newBusinessLeads: newBusinessLeads,
           newTransportationRequests: newTransportationRequests,
           readyForProposal: businessRowsMatching(function (row) {
@@ -9346,6 +9903,7 @@
         if (!els.dailyBriefSnapshot || !els.dailyBriefOrder) return;
         var metrics = dailyBriefMetrics();
         var counts = metrics.counts;
+        var businessCommand = metrics.businessCommand || businessCommandBriefMetrics();
 
         els.dailyBriefSnapshot.innerHTML = [
           briefSnapshotCardHtml(
@@ -9380,6 +9938,21 @@
               ["Quote/invoice prep", metrics.quoteInvoicePrep, "Quote prep"],
               ["Qualified leads", metrics.qualifiedLeads],
               ["Won projects", metrics.wonProjects],
+            ],
+            "teal"
+          ),
+          briefSnapshotCardHtml(
+            "AI Plug Business Command",
+            businessCommand.total,
+            [
+              ["Business systems", businessCommand.total],
+              ["Needs diagnosis", businessCommand.needsDiagnosis, "Diagnosis"],
+              ["Ready to contact", businessCommand.readyToContact],
+              ["Proposal-ready", businessCommand.proposalReady, "Proposal-ready"],
+              ["Follow-up due", businessCommand.followUpDue, "Follow-up due"],
+              ["Delivery / recap", businessCommand.wonIntakeBuild + businessCommand.liveRecapRenewal, "Delivery/recap"],
+              ["Vertical opportunity", businessCommand.verticalOpportunity, "Vertical opp"],
+              ["Restaurant vertical subset", businessCommand.restaurantSubset, "Restaurants"],
             ],
             "teal"
           ),
@@ -25133,12 +25706,13 @@
       function dashboardSectionConfigs() {
         return [
           { key: "brief", selector: "#owner-dash-daily-brief", label: "Owner Daily Brief", defaultOpen: true },
+          { key: "ai-plug-command", selector: "#owner-dash-ai-plug-business-command", label: "AI Plug Business Command", count: function () { return state.businessLeads.length; }, defaultOpen: true },
           { key: "today", selector: "#owner-dash-today-actions", label: "Today’s Actions", count: function () {
             var counts = todayActionCounts();
             return Object.keys(counts).reduce(function (sum, key) { return sum + (counts[key] || 0); }, 0);
           }, defaultOpen: true },
           { key: "search", selector: "#owner-dash-dashboard-controls", label: "Search / Filters", defaultOpen: true },
-          { key: "ai-leads", selector: "#panel-business", label: "AI Plug Leads", count: function () { return state.businessLeads.length; }, defaultOpen: true },
+          { key: "ai-leads", selector: "#panel-business", label: "Business Leads", count: function () { return state.businessLeads.length; }, defaultOpen: true },
           { key: "restaurant-leads", selector: "#panel-restaurant-leads", label: "Restaurant Leads", count: function () { return state.restaurantLeads.length; }, defaultOpen: false },
           { key: "restaurants", selector: "#panel-restaurant-prospects", label: "Restaurant Prospects", count: function () { return restaurantProspectRows().length; }, defaultOpen: false },
           { key: "clients", selector: "#panel-restaurant-clients", label: "Restaurant Clients", count: function () { return restaurantClientRows().length; }, defaultOpen: false },
@@ -25237,6 +25811,8 @@
           target = document.getElementById("panel-transport");
         } else if (key === "brief") {
           target = document.getElementById("owner-dash-daily-brief");
+        } else if (key === "ai-plug-command") {
+          target = document.getElementById("owner-dash-ai-plug-business-command");
         } else if (key === "today") {
           target = document.getElementById("owner-dash-today-actions");
         } else if (key === "search") {
@@ -25533,8 +26109,10 @@
           if (ownerDashboardActiveRestaurantMode() === "prospects") {
             parts.push("Prospect mode: " + (state.activeRestaurantProspectMode || "all"));
           }
-        } else if (ownerDashboardActivePanelId() === "panel-restaurant-leads") {
+        } else         if (ownerDashboardActivePanelId() === "panel-restaurant-leads") {
           parts.push("Restaurant leads: " + (state.activeRestaurantLeadFilter || "all"));
+        } else if (ownerDashboardActivePanelId() === "panel-business" && state.activeBusinessVertical && state.activeBusinessVertical !== "all") {
+          parts.push("Business vertical: " + state.activeBusinessVertical.replace(/-/g, " "));
         }
         return parts.join("; ");
       }
@@ -27519,6 +28097,7 @@
         syncSearchControls();
         syncFilterButtonStates();
         renderDailyBrief();
+        renderAiPlugBusinessCommand();
         renderTodayActions();
         renderRestaurantRepDailyQueue();
         renderExportCrmSummary();
@@ -28828,6 +29407,18 @@
 
           if (action === "open-restaurant-rep-queue-first") {
             openFirstRestaurantRepQueueMatch(btn.getAttribute("data-restaurant-rep-queue"));
+            return;
+          }
+
+          if (action === "open-business-command-first") {
+            openFirstBusinessCommandMatch(btn.getAttribute("data-business-command-bucket"));
+            return;
+          }
+
+          if (action === "business-vertical-filter") {
+            state.activeBusinessVertical = btn.getAttribute("data-business-vertical") || "all";
+            syncBusinessVerticalFilterUi();
+            renderAll();
             return;
           }
 
