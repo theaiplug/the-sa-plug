@@ -106,15 +106,23 @@ function isBusinessServicesLead(page_path, source) {
 
 function buildBusinessServicesOwnerNotes(existing, meta) {
   const lines = [
+    "AI Plug Business Request",
+    `Business type: ${meta.business_type || "—"}`,
+    `What customers ask most: ${meta.customers_ask_most || "—"}`,
+    `Where requests get messy: ${meta.request_messy || meta.leak_category || "—"}`,
+    `System interest: ${meta.interest_tags || "—"}`,
+    meta.operator_summary ? `Operator summary: ${meta.operator_summary}` : null,
+    meta.operator_leak_category ? `Operator problem category: ${meta.operator_leak_category}` : null,
+    `Source: Business Services page`,
     `Lead source: ${meta.source}`,
     `Lead type: ${meta.lead_type}`,
-    `Next action: ${meta.next_action}`,
-  ];
+    `Next action: Review request`,
+  ].filter(Boolean);
   const block = lines.join("\n");
   const base = trimStr(existing, 8000);
   if (!base) return block;
-  if (/lead source:\s*business_services_page/i.test(base)) return base;
-  return `${base}\n${block}`;
+  if (/ai plug business request/i.test(base) || /lead source:\s*business_services_page/i.test(base)) return base;
+  return `${base}\n\n${block}`;
 }
 
 function isRestaurantInquiry(payload) {
@@ -285,7 +293,9 @@ exports.handler = async (event) => {
   const decision_maker_role = trimStr(body.decision_maker_role, 200) || null;
 
   const current_problem = trimStr(body.current_problem, 4000) || null;
-  const customer_flow_issue = trimStr(body.customer_flow_issue, 4000) || null;
+  const leak_category = trimStr(body.leak_category, 500) || null;
+  const operator_leak_category = trimStr(body.operator_leak_category, 200) || null;
+  const customer_flow_issue = trimStr(body.customer_flow_issue, 4000) || leak_category || null;
   const missed_calls_issue = trimStr(body.missed_calls_issue, 500) || null;
   const lead_capture_issue = trimStr(body.lead_capture_issue, 500) || null;
   const booking_issue = trimStr(body.booking_issue, 500) || null;
@@ -358,6 +368,13 @@ exports.handler = async (event) => {
       source: lead_source || "business_services_page",
       lead_type: lead_type || "ai_plug_business_request",
       next_action: next_action || "review request",
+      business_type: business_industry,
+      customers_ask_most: current_problem,
+      request_messy: leak_category || customer_flow_issue,
+      leak_category: leak_category || customer_flow_issue,
+      interest_tags: services_interested,
+      operator_summary: ai_summary ? ai_summary.slice(0, 1200) : null,
+      operator_leak_category,
     });
   }
 
@@ -489,7 +506,9 @@ exports.handler = async (event) => {
   const restaurantMessage = restaurantOptionalMessage(notes);
   const emailSubject = restaurantInquiry
     ? `New restaurant inquiry — ${business_name || "Restaurant name not provided"}`
-    : `The AI Plug business lead [${lead_quality}] · ${contact_name}`;
+    : fromBusinessServices
+      ? `AI Plug Business Request — ${business_name || business_industry || contact_name}`
+      : `The AI Plug business lead [${lead_quality}] · ${contact_name}`;
 
   const emailHtml = restaurantInquiry
     ? `<!DOCTYPE html><html><body style="font-family:system-ui,sans-serif;line-height:1.5;color:#0b1d3a">
@@ -528,9 +547,9 @@ exports.handler = async (event) => {
 <li><strong>Business:</strong> ${business_name ? escapeHtml(business_name) : "—"}</li>
 <li><strong>Website:</strong> ${business_website ? escapeHtml(business_website) : "—"}</li>
 <li><strong>Industry:</strong> ${business_industry ? escapeHtml(business_industry) : "—"}</li>
-<li><strong>Location:</strong> ${business_location ? escapeHtml(business_location) : "—"}</li>
-<li><strong>Role:</strong> ${decision_maker_role ? escapeHtml(decision_maker_role) : "—"}</li>
-<li><strong>Main problem:</strong> ${current_problem ? escapeHtml(current_problem) : "—"}</li>
+<li><strong>What customers ask most:</strong> ${current_problem ? escapeHtml(current_problem) : "—"}</li>
+<li><strong>Where requests get messy:</strong> ${leak_category || customer_flow_issue ? escapeHtml(leak_category || customer_flow_issue) : "—"}</li>
+<li><strong>System interest:</strong> ${services_interested ? escapeHtml(services_interested) : "—"}</li>
 <li><strong>Recommended system:</strong> ${recommended_system ? escapeHtml(recommended_system) : "—"}</li>
 <li><strong>Urgency:</strong> ${urgency ? escapeHtml(urgency) : "—"}</li>
 <li><strong>Timeline:</strong> ${timeline ? escapeHtml(timeline) : "—"}</li>
@@ -547,6 +566,10 @@ exports.handler = async (event) => {
 <h3>Notes</h3>
 <pre style="white-space:pre-wrap;font-size:14px;background:#f6f8fb;padding:12px;border-radius:8px">${escapeHtml(
     notes || "—"
+  )}</pre>
+<h3>Owner notes</h3>
+<pre style="white-space:pre-wrap;font-size:14px;background:#f6f8fb;padding:12px;border-radius:8px">${escapeHtml(
+    owner_notes_final || "—"
   )}</pre>
 </body></html>`;
 

@@ -7238,6 +7238,9 @@
         if (status === "won" || status === "lost" || status === "archived") {
           return "No active follow-up";
         }
+        if (isBusinessServicesLead(lead) && (status === "new" || !status)) {
+          return "Review business problem";
+        }
         var stageKey = dealStageInfo(lead).key;
         if (stageKey === "proposal-ready") return "Send proposal manually";
         if (stageKey === "proposal-sent") return "Follow up on proposal";
@@ -7379,6 +7382,59 @@
             ? ' <span class="owner-dash-badge owner-dash-badge--warm">First 50</span>'
             : "")
         );
+      }
+
+      function isBusinessServicesLead(row) {
+        if (!row) return false;
+        var path = String(row.page_path || "").toLowerCase();
+        var notes = ownerNotesText(row).toLowerCase();
+        return (
+          path.indexOf("business-services") !== -1 ||
+          notes.indexOf("ai plug business request") !== -1 ||
+          notes.indexOf("lead source: business_services_page") !== -1 ||
+          notes.indexOf("source: business services page") !== -1
+        );
+      }
+
+      function businessServicesLeadBadgeHtml(row) {
+        if (!isBusinessServicesLead(row)) return "";
+        return ' <span class="owner-dash-badge owner-dash-badge--teal">AI Plug Business Request</span>';
+      }
+
+      function businessServicesLeakFromRow(row) {
+        if (!row) return "";
+        var marker =
+          ownerNoteMarkerValue(row, "Where requests get messy:") ||
+          ownerNoteMarkerValue(row, "Where the opportunity gets lost:");
+        if (marker) return marker;
+        if (row.customer_flow_issue && String(row.customer_flow_issue).trim()) {
+          return String(row.customer_flow_issue).trim();
+        }
+        return "";
+      }
+
+      function businessServicesFixFirstFromRow(row) {
+        if (!row) return "";
+        var marker =
+          ownerNoteMarkerValue(row, "What customers ask most:") ||
+          ownerNoteMarkerValue(row, "What they want fixed first:");
+        if (marker) return marker;
+        if (row.current_problem && String(row.current_problem).trim()) {
+          return String(row.current_problem).trim();
+        }
+        return "";
+      }
+
+      function businessServicesInterestFromRow(row) {
+        if (!row) return "";
+        var marker =
+          ownerNoteMarkerValue(row, "System interest:") ||
+          ownerNoteMarkerValue(row, "Interest tags:");
+        if (marker) return marker;
+        if (row.services_interested && String(row.services_interested).trim()) {
+          return String(row.services_interested).trim();
+        }
+        return "";
       }
 
       function restaurantProposalCardRows(row) {
@@ -10427,8 +10483,19 @@
       }
 
       function businessPreviewText(lead) {
-        if (!lead.ai_summary) return null;
-        return String(lead.ai_summary).trim() || null;
+        if (lead.ai_summary) return String(lead.ai_summary).trim() || null;
+        if (isBusinessServicesLead(lead)) {
+          var leak = businessServicesLeakFromRow(lead);
+          var fix = businessServicesFixFirstFromRow(lead);
+          var parts = [];
+          if (leak) parts.push("Messy at: " + leak);
+          if (fix) parts.push("Customers ask: " + fix);
+          var interest = businessServicesInterestFromRow(lead);
+          if (interest) parts.push("Interest: " + interest);
+          else if (lead.services_interested) parts.push("Interest: " + lead.services_interested);
+          return parts.length ? parts.join(" · ") : null;
+        }
+        return null;
       }
 
       function transportPreviewText(row) {
@@ -13749,6 +13816,7 @@
           lead.business_name,
           lead.business_industry,
           lead.current_problem,
+          lead.customer_flow_issue,
           lead.services_interested,
           lead.recommended_system,
           lead.ai_summary,
@@ -13763,17 +13831,16 @@
         var question = "What details do you need before you can respond confidently?";
         var nextAction = "Ask discovery questions and map the first customer path.";
         var checks = [
-          ["attention leak", /visibility|awareness|traffic|attention|not being seen|seo|google|social|content|ads/],
-          ["action leak", /cta|next step|book|schedule|call now|button|landing page|conversion|confusing/],
-          ["intake leak", /form|intake|quote|request|details|lead capture|incomplete/],
-          ["routing leak", /routing|route|send to|wrong person|handoff|department|assign/],
-          ["response leak", /missed call|voicemail|slow response|after hours|unanswered|call back|respond/],
-          ["follow-up leak", /follow[- ]?up|no follow|forgot|no response|callback|pipeline/],
-          ["owner visibility leak", /dashboard|owner visibility|tracking|status|reporting|command center/],
-          ["staff knowledge leak", /faq|questions|answers|training|staff|script|knowledge/],
-          ["trust leak", /reviews|reputation|testimonials|trust|proof|credibility/],
-          ["operational leak", /operations|workflow|process|manual|busy|overwhelmed|system|crm/],
-          ["measurement/reporting leak", /analytics|tracking|report|measurement|recap|source|kpi/],
+          ["visibility leak", /visibility leak|visibility problem|not being seen|local seo|discovery|visibility/],
+          ["message leak", /message leak|scattered dm|scattered text|instagram|facebook dm|dms\/texts/],
+          ["action leak", /action leak|unclear next step|cta|booking path|confusing offer|no booking/],
+          ["intake leak", /intake leak|form|collect enough|quote request|details|weak form/],
+          ["response leak", /response leak|missed call|voicemail|after hours|slow response|calls get missed/],
+          ["follow-up leak", /follow-up leak|follow up leak|go cold|no follow|follow-up is too slow/],
+          ["owner visibility leak", /owner visibility leak|cannot see|dashboard|status view|owner cannot see/],
+          ["staff knowledge leak", /staff knowledge|same questions|faq|repeat answers|repeated questions/],
+          ["trust leak", /trust leak|reviews|credibility|proof|reputation/],
+          ["operations leak", /operations leak|workflow|scattered tools|operating|full system/],
         ];
         for (var i = 0; i < checks.length; i += 1) {
           if (checks[i][1].test(text)) {
@@ -13782,17 +13849,16 @@
           }
         }
         var map = {
-          "attention leak": ["People may not be finding or noticing the business at the right decision moment.", "Where should the right customer first discover you?", "Review website/local SEO or campaign page path."],
-          "action leak": ["The business may have attention, but the next step is unclear or hard on mobile.", "What should a good visitor do first from their phone?", "Tighten the landing page, CTA, and action path."],
-          "intake leak": ["The business is not capturing enough useful details to respond well.", "What information do you need before you can help or quote someone?", "Build or improve the smart intake path."],
-          "routing leak": ["Inquiries may be going to the wrong place or lacking clear handoff rules.", "Who should receive each inquiry type?", "Map routing and owner alert rules."],
-          "response leak": ["Calls or messages may be getting missed, delayed, or handled inconsistently.", "What happens when a call or message arrives after hours?", "Plan response workflow before automation."],
-          "follow-up leak": ["Interested leads may be going cold because follow-up is not tracked.", "How do you know a lead has been followed up?", "Add stage tracking and safe follow-up copy."],
-          "owner visibility leak": ["The owner likely cannot see lead status, next actions, or bottlenecks clearly.", "What do you need to see every morning to know nothing got lost?", "Start with an owner visibility dashboard."],
-          "staff knowledge leak": ["Staff may be answering repeat questions without a shared approved knowledge base.", "Which questions are safe to answer and which need approval?", "Plan approved AI chat/operator answers."],
-          "trust leak": ["The business may need better proof, review flow, or credibility signals before people act.", "What proof do customers need before they trust the next step?", "Improve trust path and review/repeat flow."],
-          "operational leak": ["The issue spans workflow, staff load, handoffs, and scattered tools.", "Where does the work get stuck internally?", "Map the first business operating system phase."],
-          "measurement/reporting leak": ["The business may not know what is working or what needs attention monthly.", "What should be reviewed each month?", "Add reporting checks and monthly recap workflow."],
+          "visibility leak": ["People may not be finding or noticing the business at the right decision moment.", "Where should the right customer first discover you?", "Review customer path / Fix my customer path."],
+          "message leak": ["Requests may be scattered across DMs, texts, email, and staff phones.", "Where do messages arrive today, and who owns the reply?", "Fix my lead handling — routing and intake first."],
+          "action leak": ["The business may have attention, but the next step is unclear or hard on mobile.", "What should a good visitor do first from their phone?", "Fix my customer path — clarify CTA and mobile flow."],
+          "intake leak": ["The business is not capturing enough useful details to respond well.", "What information do you need before you can help or quote someone?", "Fix my lead handling — smart intake first."],
+          "response leak": ["Calls or messages may be getting missed, delayed, or handled inconsistently.", "What happens when a call or message arrives after hours?", "Fix my lead handling — response workflow before automation."],
+          "follow-up leak": ["Interested leads may be going cold because follow-up is not tracked.", "How do you know a lead has been followed up?", "Fix my lead handling — follow-up workflow and status."],
+          "owner visibility leak": ["The owner likely cannot see lead status, next actions, or bottlenecks clearly.", "What do you need to see every morning to know nothing got lost?", "Owner dashboard / Fix my lead handling visibility."],
+          "staff knowledge leak": ["Staff may be answering repeat questions without a shared approved knowledge base.", "Which questions are safe to answer and which need approval?", "AI chat operator planning or approved guides."],
+          "trust leak": ["The business may need better proof, review flow, or credibility signals before people act.", "What proof do customers need before they trust the next step?", "Fix my customer path — trust and proof signals."],
+          "operations leak": ["The issue spans workflow, staff load, handoffs, and scattered tools.", "Where does the work get stuck internally?", "Build my full AI business system or start with diagnostic/audit."],
         };
         if (map[leak]) {
           diagnosis = map[leak][0];
@@ -21247,9 +21313,10 @@
           detailRow("Phone", lead.contact_phone) +
           detailRow("Preferred contact", lead.preferred_contact_method) +
           detailRow("Industry / location", industryLoc || null) +
+          detailRow("Where requests get messy", businessServicesLeakFromRow(lead) || lead.customer_flow_issue) +
+          detailRow("What customers ask most", businessServicesFixFirstFromRow(lead), true) +
           detailRowLink("Website", websiteHref, website) +
-          detailRow("Current problem", lead.current_problem, true) +
-          detailRow("Services interested", lead.services_interested, true) +
+          detailRow("System interest", businessServicesInterestFromRow(lead) || lead.services_interested, true) +
           detailRow("Urgency", lead.urgency) +
           detailRow("Timeline", lead.timeline) +
           detailRow("Page path", lead.page_path) +
@@ -21720,6 +21787,7 @@
           '">' +
           '<div class="owner-dash-detail-badges">' +
           priorityBadgeHtml(priority) +
+          businessServicesLeadBadgeHtml(lead) +
           restaurantBadgeHtml(lead) +
           '<span class="owner-dash-badge ' +
           statusClass(lead.status) +
@@ -27831,6 +27899,7 @@
             var nextAction = calcBusinessNextAction(lead, priority);
             var badge =
               priorityBadgeHtml(priority) +
+              businessServicesLeadBadgeHtml(lead) +
               restaurantBadgeHtml(lead) +
               ' <span class="owner-dash-badge ' +
               statusClass(lead.status) +
@@ -27858,7 +27927,9 @@
               block("Contact", lead.contact_name) +
               block("Phone", lead.contact_phone) +
               block("Email", lead.contact_email) +
-              block("Current problem", lead.current_problem) +
+              block("Messy at", businessServicesLeakFromRow(lead) || lead.customer_flow_issue) +
+              block("Customers ask", businessServicesFixFirstFromRow(lead) || lead.current_problem) +
+              block("Interest", businessServicesInterestFromRow(lead) || lead.services_interested) +
               blockPreview("AI summary preview", preview) +
               "</dl>" +
               restaurantCardMetaHtml(lead) +

@@ -18,13 +18,13 @@ const CORS_HEADERS = {
 const ROW_LIMIT = 25;
 
 const BUSINESS_SELECT_ENHANCED =
-  "id,created_at,status,owner_notes,last_contacted_at,updated_at,priority,lead_temperature,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,alert_sms_sent,page_path";
+  "id,created_at,status,owner_notes,last_contacted_at,updated_at,priority,lead_temperature,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,customer_flow_issue,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,alert_sms_sent,page_path";
 
 const BUSINESS_SELECT_FULL =
-  "id,created_at,status,owner_notes,last_contacted_at,updated_at,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,alert_sms_sent,page_path";
+  "id,created_at,status,owner_notes,last_contacted_at,updated_at,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,customer_flow_issue,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,alert_sms_sent,page_path";
 
 const BUSINESS_SELECT_STATUS =
-  "id,created_at,status,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,alert_sms_sent,page_path";
+  "id,created_at,status,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,customer_flow_issue,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,alert_sms_sent,page_path";
 
 const BUSINESS_SELECT_CORE =
   "id,created_at,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,page_path";
@@ -234,6 +234,7 @@ function mapBusinessLead(row) {
     business_industry: row.business_industry ?? null,
     business_location: row.business_location ?? null,
     current_problem: row.current_problem ?? null,
+    customer_flow_issue: row.customer_flow_issue ?? null,
     services_interested: row.services_interested ?? null,
     recommended_system: row.recommended_system ?? null,
     urgency: row.urgency ?? null,

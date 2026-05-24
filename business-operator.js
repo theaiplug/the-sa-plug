@@ -60,7 +60,7 @@
   }
 
   var SECTION_LABELS =
-    /^(Quick read|What I'd tighten next|Best system fit|Tradeoffs|Business|Industry|Main bottleneck|Main problem|Priority|Timeline|Recommended next step|Customer flow|Lead capture|Booking|Follow-up|Services fit)\s*:\s*(.*)$/i;
+    /^(Quick read|Problem category|Leak category|What I'd tighten next|Best path fit|Best system fit|Tradeoffs|Business|Industry|Main bottleneck|Main problem|Priority|Timeline|Recommended next step|Customer flow|Lead capture|Booking|Follow-up|Services fit)\s*:\s*(.*)$/i;
 
   function inlineFormat(text) {
     return escapeHtml(text).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
@@ -307,6 +307,7 @@
         appendBubble("assistant", rep);
         pushTranscript("assistant", rep);
         lastAssistantReply = rep;
+        syncOperatorLeakCategory(rep);
         setStatus("Live · ready", true);
       })
       .catch(function () {
@@ -360,6 +361,102 @@
     return tags.length ? tags.join(", ") : null;
   }
 
+  var LEAK_CHIP_MAP = {
+    "Calls get missed": "Calls get missed",
+    "Forms do not collect enough": "Forms do not collect enough",
+    "DMs and texts are scattered": "DMs/texts are scattered",
+    "Follow-up is too slow": "Follow-up is too slow",
+    "Customers ask the same questions": "Customers ask repeated questions",
+    "I cannot see what happened": "Owner cannot see what happened",
+    "I need consistent content": "Need consistent content",
+  };
+
+  var PATH_INTEREST_MAP = {
+    "customer-path": "Fix customer path",
+    "ai-operator": "Add AI website operator",
+    "lead-handling": "Fix lead handling",
+    "full-system": "Full AI business system",
+  };
+
+  var PATH_LEAK_HINTS = {
+    "customer-path": "No booking/request path",
+    "ai-operator": "Customers ask repeated questions",
+    "lead-handling": "DMs/texts are scattered",
+    "full-system": "Need full system",
+  };
+
+  function setSelectValue(id, value) {
+    var el = document.getElementById(id);
+    if (!el || !value) return;
+    el.value = value;
+  }
+
+  function checkInterestTag(value) {
+    if (!value) return;
+    var boxes = intakeForm ? intakeForm.querySelectorAll('input[name="interest_tag"]') : [];
+    boxes.forEach(function (box) {
+      if (box.value === value) box.checked = true;
+    });
+  }
+
+  function preselectIntake(opts) {
+    if (!intakeForm) return;
+    opts = opts || {};
+    if (opts.businessType) setSelectValue("business-industry", opts.businessType);
+    if (opts.leakCategory) setSelectValue("business-leak-category", opts.leakCategory);
+    if (opts.interest) checkInterestTag(opts.interest);
+    if (opts.scrollTarget) {
+      var target = document.getElementById(opts.scrollTarget.replace(/^#/, ""));
+      if (target && target.scrollIntoView) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }
+
+  function inferLeakFromOperatorReply(text) {
+    var t = String(text || "").toLowerCase();
+    var checks = [
+      ["Calls get missed", /missed call|voicemail|after hours|callback path|response leak/],
+      ["Forms do not collect enough", /weak form|form|collect enough|intake leak|quote request|details/],
+      ["DMs/texts are scattered", /scattered dm|scattered text|instagram|facebook dm|message leak/],
+      ["Follow-up is too slow", /follow-up leak|follow up leak|go cold|slow follow/],
+      ["Customers ask repeated questions", /same questions|repeat answers|staff knowledge|faq/],
+      ["No booking/request path", /no booking|booking path|action leak|unclear next step|cta/],
+      ["Need consistent content", /content|publishing|media engine|social rhythm/],
+      ["Owner cannot see what happened", /owner visibility|cannot see|dashboard|status view/],
+      ["Need full system", /full system|operations leak|multiple leak|command center/],
+    ];
+    for (var i = 0; i < checks.length; i += 1) {
+      if (checks[i][1].test(t)) return checks[i][0];
+    }
+    return "";
+  }
+
+  function syncOperatorLeakCategory(reply) {
+    var hid = document.getElementById("business-operator-leak-category");
+    if (!hid) return;
+    var leak = inferLeakFromOperatorReply(reply);
+    if (leak) hid.value = leak;
+  }
+
+  document.querySelectorAll("[data-bs-path], [data-bs-business-type]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      var path = el.getAttribute("data-bs-path");
+      var businessType = el.getAttribute("data-bs-business-type");
+      var interest = el.getAttribute("data-bs-interest") || (path && PATH_INTEREST_MAP[path]);
+      var leak = path && PATH_LEAK_HINTS[path];
+      var hash = (el.getAttribute("href") || "").replace(/^#/, "") || "project-request";
+      window.setTimeout(function () {
+        preselectIntake({
+          businessType: businessType,
+          leakCategory: leak,
+          interest: interest,
+          scrollTarget: hash,
+        });
+      }, 120);
+    });
+  });
+
   function syncRecommendedSystemFromOperator() {
     var hid = document.getElementById("business-recommended-system");
     if (!hid) return;
@@ -394,6 +491,19 @@
       var phone = String(fd.get("contact_phone") || "").trim();
       syncRecommendedSystemFromOperator();
       var interestTags = collectInterestTags(fd);
+      var leakCategory = String(fd.get("leak_category") || "").trim() || null;
+      var operatorLeak = String(fd.get("operator_leak_category") || "").trim() || null;
+      var fixFirst = String(fd.get("current_problem") || "").trim();
+      if (!fixFirst) {
+        showIntakeMessage("Tell us what customers ask most.", true);
+        intakeSubmit.disabled = false;
+        return;
+      }
+      if (!leakCategory) {
+        showIntakeMessage("Choose where the request gets messy.", true);
+        intakeSubmit.disabled = false;
+        return;
+      }
       var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       var phoneDigits = phone.replace(/\D/g, "");
       var phoneOk = phoneDigits.length >= 10;
@@ -411,12 +521,15 @@
         business_name: String(fd.get("business_name") || "").trim() || null,
         business_website: String(fd.get("business_website") || "").trim() || null,
         business_industry: String(fd.get("business_industry") || "").trim() || null,
-        current_problem: String(fd.get("current_problem") || "").trim() || null,
+        leak_category: leakCategory,
+        customer_flow_issue: leakCategory,
+        current_problem: fixFirst,
         services_interested: interestTags,
         recommended_system: String(fd.get("recommended_system") || "").trim() || null,
         ai_summary: String(fd.get("ai_summary") || "").trim() || null,
         notes: String(fd.get("notes") || "").trim() || null,
         conversation_excerpt: String(fd.get("conversation_excerpt") || "").trim() || null,
+        operator_leak_category: operatorLeak,
         source: "business_services_page",
         lead_type: "ai_plug_business_request",
         status: "New",
