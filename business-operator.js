@@ -20,10 +20,9 @@
   var composerStackEl = document.getElementById("business-op-composer");
   var previewEl = document.getElementById("business-op-preview");
   var showIntakeBtn = document.getElementById("business-operator-show-intake");
-  var intakeWrap = document.getElementById("business-operator-intake");
   var intakeForm = document.getElementById("business-lead-form");
   var intakeSubmit = document.getElementById("business-lead-submit");
-  var confirmEl = document.getElementById("business-op-confirmation");
+  var confirmEl = document.getElementById("business-lead-confirm");
   var intakeError = document.getElementById("business-lead-intake-error");
 
   var previousResponseId = null;
@@ -343,14 +342,29 @@
     });
   });
 
-  if (showIntakeBtn && intakeWrap) {
-    showIntakeBtn.addEventListener("click", function () {
-      intakeWrap.hidden = !intakeWrap.hidden;
-      showIntakeBtn.setAttribute("aria-expanded", intakeWrap.hidden ? "false" : "true");
-      if (!intakeWrap.hidden) {
-        intakeWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }
-    });
+  if (showIntakeBtn && showIntakeBtn.tagName === "BUTTON" && showIntakeBtn.getAttribute("aria-controls")) {
+    var intakeWrap = document.getElementById(showIntakeBtn.getAttribute("aria-controls"));
+    if (intakeWrap) {
+      showIntakeBtn.addEventListener("click", function () {
+        intakeWrap.hidden = !intakeWrap.hidden;
+        showIntakeBtn.setAttribute("aria-expanded", intakeWrap.hidden ? "false" : "true");
+        if (!intakeWrap.hidden) {
+          intakeWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      });
+    }
+  }
+
+  function collectInterestTags(fd) {
+    var tags = fd.getAll("interest_tag").filter(Boolean);
+    return tags.length ? tags.join(", ") : null;
+  }
+
+  function syncRecommendedSystemFromOperator() {
+    var hid = document.getElementById("business-recommended-system");
+    if (!hid) return;
+    var recap = getLatestRecapSummary();
+    if (recap && !hid.value) hid.value = recap.slice(0, 2000);
   }
 
   function showIntakeMessage(text, isErr) {
@@ -378,19 +392,8 @@
       var fd = new FormData(intakeForm);
       var email = String(fd.get("contact_email") || "").trim();
       var phone = String(fd.get("contact_phone") || "").trim();
-      var flags = [];
-      if (fd.get("issue_content_visibility") === "yes") {
-        flags.push("Flagged bottleneck: attention / content rhythm");
-      }
-      if (fd.get("issue_chat_phone") === "yes") {
-        flags.push("Flagged bottleneck: chat or phone operator planning");
-      }
-      if (fd.get("issue_operations") === "yes") {
-        flags.push("Flagged bottleneck: operations / automation layer");
-      }
-      var notesBase = String(fd.get("notes") || "").trim();
-      var notesMerged =
-        [notesBase, flags.length ? flags.join("\n") : ""].filter(Boolean).join("\n\n").trim() || null;
+      syncRecommendedSystemFromOperator();
+      var interestTags = collectInterestTags(fd);
       var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       var phoneDigits = phone.replace(/\D/g, "");
       var phoneOk = phoneDigits.length >= 10;
@@ -408,24 +411,18 @@
         business_name: String(fd.get("business_name") || "").trim() || null,
         business_website: String(fd.get("business_website") || "").trim() || null,
         business_industry: String(fd.get("business_industry") || "").trim() || null,
-        business_location: String(fd.get("business_location") || "").trim() || null,
-        decision_maker_role: String(fd.get("decision_maker_role") || "").trim() || null,
         current_problem: String(fd.get("current_problem") || "").trim() || null,
-        customer_flow_issue: String(fd.get("customer_flow_issue") || "").trim() || null,
-        missed_calls_issue: checkboxYes("missed_calls_issue", fd),
-        lead_capture_issue: checkboxYes("lead_capture_issue", fd),
-        booking_issue: checkboxYes("booking_issue", fd),
-        follow_up_issue: checkboxYes("follow_up_issue", fd),
-        services_interested: String(fd.get("services_interested") || "").trim() || null,
+        services_interested: interestTags,
         recommended_system: String(fd.get("recommended_system") || "").trim() || null,
-        urgency: String(fd.get("urgency") || "").trim() || null,
-        budget_readiness: String(fd.get("budget_readiness") || "").trim() || null,
-        timeline: String(fd.get("timeline") || "").trim() || null,
         ai_summary: String(fd.get("ai_summary") || "").trim() || null,
-        notes: notesMerged,
+        notes: String(fd.get("notes") || "").trim() || null,
         conversation_excerpt: String(fd.get("conversation_excerpt") || "").trim() || null,
+        source: "business_services_page",
+        lead_type: "ai_plug_business_request",
+        status: "New",
+        next_action: "review request",
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : "",
-        page_path: typeof location !== "undefined" ? location.pathname + location.search : "",
+        page_path: "/business-services.html",
       };
 
       fetch(LEAD_URL, {
@@ -451,9 +448,8 @@
           intakeForm.reset();
           if (confirmEl) {
             confirmEl.hidden = false;
-            confirmEl.textContent = d.email_sent
-              ? "Request sent. The AI Plug received your project summary."
-              : "Lead saved, but email alert did not send.";
+            confirmEl.textContent =
+              "Request received. The AI Plug will review your business type, bottleneck, and best starting point.";
             confirmEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
           }
           showIntakeMessage("", false);

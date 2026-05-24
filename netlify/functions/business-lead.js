@@ -98,6 +98,25 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+function isBusinessServicesLead(page_path, source) {
+  const p = String(page_path || "").toLowerCase();
+  const s = String(source || "").toLowerCase();
+  return s === "business_services_page" || p.includes("business-services");
+}
+
+function buildBusinessServicesOwnerNotes(existing, meta) {
+  const lines = [
+    `Lead source: ${meta.source}`,
+    `Lead type: ${meta.lead_type}`,
+    `Next action: ${meta.next_action}`,
+  ];
+  const block = lines.join("\n");
+  const base = trimStr(existing, 8000);
+  if (!base) return block;
+  if (/lead source:\s*business_services_page/i.test(base)) return base;
+  return `${base}\n${block}`;
+}
+
 function isRestaurantInquiry(payload) {
   const text = [
     payload.page_path,
@@ -285,6 +304,10 @@ exports.handler = async (event) => {
 
   const user_agent = trimStr(body.user_agent, 512) || null;
   const page_path = trimStr(body.page_path, 512) || null;
+  const lead_source = trimStr(body.source, 120) || null;
+  const lead_type = trimStr(body.lead_type, 120) || null;
+  const next_action = trimStr(body.next_action, 200) || null;
+  let lead_status = trimStr(body.status, 80) || null;
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact_email_raw);
   const phoneDigits = digitsOnly(contact_phone);
@@ -327,6 +350,17 @@ exports.handler = async (event) => {
     ai_summary = conversation_excerpt.slice(0, 3000);
   }
 
+  let owner_notes_final = owner_notes;
+  const fromBusinessServices = isBusinessServicesLead(page_path, lead_source);
+  if (fromBusinessServices) {
+    if (!lead_status) lead_status = "New";
+    owner_notes_final = buildBusinessServicesOwnerNotes(owner_notes_final, {
+      source: lead_source || "business_services_page",
+      lead_type: lead_type || "ai_plug_business_request",
+      next_action: next_action || "review request",
+    });
+  }
+
   const row = {
     contact_name,
     contact_email: emailOk ? contact_email_raw : null,
@@ -352,11 +386,15 @@ exports.handler = async (event) => {
     lead_quality,
     conversation_excerpt,
     notes,
-    owner_notes,
+    owner_notes: owner_notes_final,
     user_agent,
     page_path,
     alert_email_sent: false,
   };
+
+  if (lead_status) {
+    row.status = lead_status;
+  }
 
   const restHeaders = {
     apikey: serviceKey,

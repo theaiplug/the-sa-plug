@@ -16947,6 +16947,29 @@ body.owner-dash-detail-open {
   text-decoration-color: rgba(20, 184, 166, 0.7);
 }
 
+.page-business-services .ai-bs-leak-wrap--solo {
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+.page-business-services .ai-bs-project-request-inner {
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+.page-business-services .ai-bs-project-request-shell {
+  margin-top: 1.25rem;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem);
+  border-radius: 16px;
+  background: rgba(255, 252, 245, 0.92);
+  border: 1px solid rgba(11, 29, 58, 0.08);
+  box-shadow: 0 12px 40px rgba(11, 29, 58, 0.06);
+}
+
+.page-business-services .ai-bs-project-request-lede {
+  max-width: 38rem;
+}
+
 /* ==========================================================================
    Website strategy polish — mobile word-break QA (homepage + business services)
    ========================================================================== */
@@ -16968,6 +16991,7 @@ body.owner-dash-detail-open {
   .ai-offer-list li, .ai-offer-best, .ai-bs-owner-card, .ai-bs-owner-card p, .ai-bs-attconv-card-copy,
   .live-concierge__chip, .live-concierge__preview-text, .live-concierge__panel-support,
   .business-operator-diagnostic-note, .business-operator-request-helper, .consent-note,
+  .ai-bs-project-request-lede, .business-operator-check, .business-operator-check-legend,
   .footer-links a, .ai-bs-lead-flow-text, .ai-bs-lead-flow-foot, .ai-offer-card, .ai-offer-title
 ) {
   word-break: normal;
@@ -16984,7 +17008,8 @@ body.owner-dash-detail-open {
   p, li, .hero-text, .section-text, .ai-bs-leak-p, .ai-bs-proof-card-p, .ai-bs-pillar-card p,
   .ai-bs-flagship-copy, .ai-offer-list li, .ai-offer-best, .ai-bs-owner-card p,
   .ai-bs-attconv-card-copy, .live-concierge__preview-text, .live-concierge__panel-support,
-  .business-operator-diagnostic-note, .business-operator-request-helper, .consent-note
+  .business-operator-diagnostic-note, .business-operator-request-helper, .consent-note,
+  .ai-bs-project-request-lede
 ) {
   letter-spacing: normal;
 }
