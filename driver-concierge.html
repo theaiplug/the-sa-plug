@@ -1733,6 +1733,24 @@
       max-width: 44rem;
     }
 
+    .transport-concierge-main #plan-before-ride,
+    .transport-concierge-main #request-review {
+      background:
+        radial-gradient(ellipse 70% 55% at 88% 12%, rgba(20, 184, 166, 0.16), transparent 52%),
+        linear-gradient(155deg, #071426 0%, #0b1d3a 54%, #122f50 100%);
+      color: rgba(255, 246, 230, 0.9);
+    }
+
+    .transport-concierge-main #plan-before-ride .tc-rebuild-head h2,
+    .transport-concierge-main #request-review .tc-rebuild-head h2 {
+      color: #fff8eb;
+    }
+
+    .transport-concierge-main #plan-before-ride .tc-rebuild-head .section-text,
+    .transport-concierge-main #request-review .tc-rebuild-head .section-text {
+      color: rgba(255, 246, 230, 0.86);
+    }
+
     .transport-concierge-main .tc-rebuild-dark {
       background: linear-gradient(155deg, #071426 0%, #0b1d3a 52%, #122f50 100%);
       color: rgba(255, 246, 230, 0.9);
@@ -1813,32 +1831,37 @@
 
     .transport-concierge-main .tc-flow-card {
       position: relative;
-      padding-top: clamp(42px, 4vw, 52px);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 5px 12px;
+      align-items: start;
+      padding-top: clamp(16px, 2vw, 22px);
     }
 
     .transport-concierge-main .tc-flow-card::before {
       content: attr(data-step);
-      position: absolute;
-      top: 14px;
-      left: 16px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 0.7rem;
+      width: 1.85rem;
+      height: 1.85rem;
+      border-radius: 0.62rem;
       color: var(--navy);
       background: linear-gradient(145deg, var(--gold), var(--orange));
       font-weight: 900;
       box-shadow: 0 8px 18px rgba(11, 29, 58, 0.12);
     }
 
+    .transport-concierge-main .tc-flow-card h3 {
+      margin-top: 0.14rem;
+    }
+
+    .transport-concierge-main .tc-flow-card p {
+      grid-column: 2;
+    }
+
     .transport-concierge-main .tc-flow-arrow {
-      align-self: center;
-      justify-self: center;
-      font-size: 1.4rem;
-      color: rgba(11, 29, 58, 0.28);
-      font-weight: 900;
+      display: none;
     }
 
     .transport-concierge-main .tc-operator-labels {
@@ -1956,11 +1979,24 @@
       max-width: 860px;
     }
 
+    .transport-concierge-main .tc-partner-card h2,
+    .transport-concierge-main .tc-guardrail-card h2 {
+      color: var(--navy);
+    }
+
+    .transport-concierge-main .tc-partner-card .eyebrow {
+      color: #bf2a76;
+    }
+
     .transport-concierge-main .tc-guardrail-card {
       max-width: 920px;
       margin: 0 auto;
       border-color: rgba(255, 139, 31, 0.28);
       background: rgba(255, 248, 235, 0.95);
+    }
+
+    .transport-concierge-main .tc-guardrail-card p {
+      color: var(--slate);
     }
 
     @media (max-width: 520px) {
@@ -2178,7 +2214,7 @@
             <p class="section-text">Share the route details and we&rsquo;ll review the best next step. Availability, pricing, provider fit, and timing are not guaranteed.</p>
           </header>
           <div class="tc-request-note">
-            <p>Best requests answer: where are you, where are you going, when, how many people, airport/resort/downtown/convention/night-out context, and whether you need advice only, provider options, or concierge routing.</p>
+            <p>Best requests answer: where are you, where are you going, when, how many people, and which situation applies: airport, resort, downtown, convention, night out, family, event, or day trip. Then tell us whether you need advice only, provider options, or concierge routing.</p>
           </div>
         </div>
         <div class="transport-request-card">
