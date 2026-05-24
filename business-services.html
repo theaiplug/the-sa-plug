@@ -72,8 +72,8 @@
             <p class="hero-text hero-text-on-dark ai-hero-lead">The AI Plug builds the customer path behind your business &mdash; AI-assisted answers, smart intake, lead routing, follow-up, automations, content systems, and owner-visible workflows.</p>
             <p class="ai-bs-hero-proof-line">Where To Go SA is the live example: visitors ask questions, submit requests, and those requests move through real intake and lead workflows.</p>
             <div class="hero-cta-row ai-bs-hero-cta">
-              <a class="btn btn-primary" href="#leak-diagnosis">Find where my business is losing opportunities</a>
-              <a class="btn btn-secondary hero-secondary-btn" href="#proof-band">See the live example</a>
+              <a class="btn btn-primary" href="#business-operator">Find where my business is losing opportunities</a>
+              <a class="btn btn-secondary hero-secondary-btn" href="#project-request">Send a project request</a>
             </div>
           </div>
         </div>
@@ -135,6 +135,15 @@
             </li>
           </ol>
         </div>
+
+        <aside class="ai-bs-early-cta" aria-labelledby="ai-bs-early-cta-heading">
+          <p class="ai-bs-early-cta__eyebrow" id="ai-bs-early-cta-heading">Need help now?</p>
+          <p class="ai-bs-early-cta__copy">Talk to the operator or send your project request.</p>
+          <div class="ai-bs-early-cta__actions hero-cta-row">
+            <a class="btn btn-primary" href="#business-operator">Talk to the operator</a>
+            <a class="btn btn-secondary hero-secondary-btn" href="#project-request">Send project request</a>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -369,9 +378,9 @@
         <div class="routes-band-inner live-concierge-inner" id="business-operator-module">
           <header class="live-concierge__head">
             <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">BUSINESS OPERATOR</p>
-            <h2 id="business-operator-heading" class="live-concierge__title">Not sure what to fix first?</h2>
+            <h2 id="business-operator-heading" class="live-concierge__title">Talk to the Business Operator</h2>
             <p class="section-text section-text-light live-concierge__lead">
-              Tell us what breaks first. The operator helps narrow the right starting point before you send a project request.
+              Tell us what breaks first, and we&rsquo;ll help narrow the starting point before you send a project request.
             </p>
             <p class="live-concierge__status" id="business-op-status" aria-live="polite">Business operator · ready</p>
           </header>
@@ -498,17 +507,18 @@
     <section class="section section-cream ai-bs-project-request ai-bs-sec-major" id="project-request" aria-labelledby="project-request-heading">
       <div class="routes-band-inner ai-bs-project-request-inner">
         <header class="ai-band-head">
+          <p class="eyebrow">PROJECT REQUEST</p>
           <h2 id="project-request-heading" class="ai-strategic-title">Send your business problem for review.</h2>
           <p class="section-text ai-bs-project-request-lede">Tell us what type of business you run, what customers ask, and where requests get messy. The AI Plug will review the best starting point.</p>
         </header>
 
         <div class="ai-bs-project-request-shell">
-          <p id="business-lead-intake-error" class="transport-intake-error" hidden role="alert"></p>
-          <p id="business-lead-confirm" class="transport-route-confirmation" hidden role="status"></p>
+          <form class="transport-intake-form ai-bs-intake-form" id="business-lead-form" novalidate aria-label="Business project request">
+            <p id="business-lead-intake-error" class="transport-intake-error" hidden role="alert"></p>
+            <p id="business-lead-confirm" class="transport-intake-error transport-intake-error--ok" hidden role="status"></p>
 
-          <form class="transport-intake-form" id="business-lead-form" novalidate aria-label="Business project request">
             <div class="transport-intake-section">
-              <h4 class="transport-intake-section__heading">Contact</h4>
+              <h3 class="transport-intake-section__heading">Contact</h3>
               <div class="transport-intake-grid">
                 <label class="transport-field transport-field--full">
                   <span>Business name</span>
@@ -536,11 +546,11 @@
                   </select>
                 </label>
               </div>
-              <p class="business-operator-form-note">Provide a valid email or phone (or both).</p>
+              <p class="ai-bs-form-note">Provide a valid email or phone (or both).</p>
             </div>
 
             <div class="transport-intake-section">
-              <h4 class="transport-intake-section__heading">Business</h4>
+              <h3 class="transport-intake-section__heading">Business</h3>
               <div class="transport-intake-grid">
                 <label class="transport-field transport-field--full">
                   <span>Website or social link</span>
@@ -583,44 +593,47 @@
             </div>
 
             <div class="transport-intake-section">
-              <fieldset class="business-operator-check-fieldset transport-field--full">
-                <legend class="business-operator-check-legend">What kind of system are you interested in? (check any)</legend>
-                <label class="business-operator-check"><input type="checkbox" name="interest_tag" value="Fix customer path" /> Fix customer path</label>
-                <label class="business-operator-check"><input type="checkbox" name="interest_tag" value="Add AI website operator" /> Add AI website operator</label>
-                <label class="business-operator-check"><input type="checkbox" name="interest_tag" value="Fix lead handling" /> Fix lead handling</label>
-                <label class="business-operator-check"><input type="checkbox" name="interest_tag" value="AI Media Engine / content system" /> AI Media Engine / content system</label>
-                <label class="business-operator-check"><input type="checkbox" name="interest_tag" value="Chat or phone planning" /> Chat or phone planning</label>
-                <label class="business-operator-check"><input type="checkbox" name="interest_tag" value="Automations / operating layer" /> Automations / operating layer</label>
-                <label class="business-operator-check"><input type="checkbox" name="interest_tag" value="Full AI business system" /> Full AI business system</label>
-                <label class="business-operator-check"><input type="checkbox" name="interest_tag" value="Something like Where To Go SA" /> Something like Where To Go SA</label>
-                <label class="business-operator-check"><input type="checkbox" name="interest_tag" value="Restaurant visibility + AI systems" /> Restaurant visibility + AI systems</label>
+              <h3 class="transport-intake-section__heading">System interest</h3>
+              <fieldset class="ai-bs-interest-fieldset transport-field--full">
+                <legend class="business-operator-check-legend visually-hidden">System interest options</legend>
+                <label class="business-operator-check ai-bs-interest-check"><input type="checkbox" name="interest_tag" value="Fix customer path" /> Fix customer path</label>
+                <label class="business-operator-check ai-bs-interest-check"><input type="checkbox" name="interest_tag" value="Add AI website operator" /> Add AI website operator</label>
+                <label class="business-operator-check ai-bs-interest-check"><input type="checkbox" name="interest_tag" value="Fix lead handling" /> Fix lead handling</label>
+                <label class="business-operator-check ai-bs-interest-check"><input type="checkbox" name="interest_tag" value="AI Media Engine / content system" /> AI Media Engine / content system</label>
+                <label class="business-operator-check ai-bs-interest-check"><input type="checkbox" name="interest_tag" value="Chat or phone planning" /> Chat or phone planning</label>
+                <label class="business-operator-check ai-bs-interest-check"><input type="checkbox" name="interest_tag" value="Automations / operating layer" /> Automations / operating layer</label>
+                <label class="business-operator-check ai-bs-interest-check"><input type="checkbox" name="interest_tag" value="Full AI business system" /> Full AI business system</label>
+                <label class="business-operator-check ai-bs-interest-check"><input type="checkbox" name="interest_tag" value="Something like Where To Go SA" /> Something like Where To Go SA</label>
+                <label class="business-operator-check ai-bs-interest-check"><input type="checkbox" name="interest_tag" value="Restaurant visibility + AI systems" /> Restaurant visibility + AI systems</label>
               </fieldset>
             </div>
 
             <div class="transport-intake-section">
-              <div class="business-operator-context-block transport-field--full">
-                <p class="business-operator-context-title">Operator context</p>
-                <label class="business-operator-context-row">
-                  <input type="checkbox" id="business-include-operator-context" />
-                  <span class="business-operator-context-row__text">
-                    <span class="business-operator-context-row__label">Include my operator summary with this project request</span>
-                    <span class="business-operator-context-row__helper">Sends your conversation context automatically when available.</span>
-                  </span>
+              <h3 class="transport-intake-section__heading">Optional context</h3>
+              <div class="transport-intake-grid">
+                <div class="business-operator-context-block transport-field--full">
+                  <label class="business-operator-context-row">
+                    <input type="checkbox" id="business-include-operator-context" />
+                    <span class="business-operator-context-row__text">
+                      <span class="business-operator-context-row__label">Include my operator summary with this project request</span>
+                      <span class="business-operator-context-row__helper">Sends your conversation context automatically when available.</span>
+                    </span>
+                  </label>
+                  <input type="hidden" name="ai_summary" id="business-ai-summary" value="" autocomplete="off" />
+                  <input type="hidden" name="conversation_excerpt" id="business-conversation-excerpt" value="" autocomplete="off" />
+                  <input type="hidden" name="include_operator_context" id="business-include-operator-context-sent" value="" autocomplete="off" />
+                  <input type="hidden" name="recommended_system" id="business-recommended-system" value="" autocomplete="off" />
+                  <input type="hidden" name="operator_leak_category" id="business-operator-leak-category" value="" autocomplete="off" />
+                </div>
+                <label class="transport-field transport-field--full">
+                  <span>Optional message</span>
+                  <textarea name="notes" id="business-notes" rows="3" placeholder="Anything else that helps us understand your workflow"></textarea>
                 </label>
-                <input type="hidden" name="ai_summary" id="business-ai-summary" value="" autocomplete="off" />
-                <input type="hidden" name="conversation_excerpt" id="business-conversation-excerpt" value="" autocomplete="off" />
-                <input type="hidden" name="include_operator_context" id="business-include-operator-context-sent" value="" autocomplete="off" />
-                <input type="hidden" name="recommended_system" id="business-recommended-system" value="" autocomplete="off" />
-                <input type="hidden" name="operator_leak_category" id="business-operator-leak-category" value="" autocomplete="off" />
               </div>
-              <label class="transport-field transport-field--full">
-                <span>Optional message</span>
-                <textarea name="notes" id="business-notes" rows="3" placeholder="Anything else that helps us understand your workflow"></textarea>
-              </label>
             </div>
 
-            <p class="consent-note" role="note">By submitting, you agree that Where To Go SA / The AI Plug may contact you by email or SMS about your request. Message and data rates may apply. Reply STOP to opt out or HELP for help.</p>
-            <button type="submit" class="btn btn-primary transport-intake-submit" id="business-lead-submit">
+            <p class="ai-bs-consent-note" role="note">By submitting, you agree that Where To Go SA / The AI Plug may contact you by email or SMS about your request. Message and data rates may apply. Reply STOP to opt out or HELP for help.</p>
+            <button type="submit" class="btn btn-primary transport-intake-submit ai-bs-form-submit" id="business-lead-submit">
               Send my project request
             </button>
           </form>

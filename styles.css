@@ -4829,7 +4829,8 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 /* --- Business Operator v1 (live module; reuses transport concierge chrome) --- */
 .page-business-services #business-operator,
 .page-business-services #proof-band,
-.page-business-services #offers-heading {
+.page-business-services #offers-heading,
+.page-business-services #project-request {
   scroll-margin-top: 96px;
 }
 
@@ -17097,16 +17098,295 @@ body.owner-dash-detail-open {
 }
 
 .page-business-services .ai-bs-project-request-shell {
-  margin-top: 1.25rem;
-  padding: clamp(1.1rem, 2.5vw, 1.6rem);
-  border-radius: 16px;
-  background: rgba(255, 252, 245, 0.92);
-  border: 1px solid rgba(11, 29, 58, 0.08);
-  box-shadow: 0 12px 40px rgba(11, 29, 58, 0.06);
+  width: 100%;
+  margin-top: clamp(14px, 2vw, 18px);
+  padding: clamp(18px, 2.4vw, 24px) clamp(18px, 2.4vw, 24px) clamp(20px, 2.8vw, 26px);
+  border-radius: calc(var(--radius) + 2px);
+  background: rgba(255, 253, 248, 0.96);
+  border: 1px solid rgba(11, 29, 58, 0.11);
+  box-shadow: 0 20px 44px rgba(11, 29, 58, 0.08);
+  overflow-x: hidden;
 }
 
 .page-business-services .ai-bs-project-request-lede {
   max-width: 38rem;
+}
+
+/* Early anchor CTA — after leak diagnosis */
+.page-business-services .ai-bs-early-cta {
+  margin-top: clamp(22px, 3vw, 32px);
+  padding: clamp(18px, 2.4vw, 22px) clamp(18px, 2.4vw, 24px);
+  border-radius: calc(var(--radius) + 2px);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  text-align: center;
+}
+
+.page-business-services .ai-bs-early-cta__eyebrow {
+  margin: 0 0 6px;
+  font-size: clamp(0.98rem, 0.3vw + 0.9rem, 1.06rem);
+  font-weight: 780;
+  color: #fff8eb;
+}
+
+.page-business-services .ai-bs-early-cta__copy {
+  margin: 0 0 clamp(14px, 2vw, 18px);
+  font-size: clamp(0.9rem, 0.25vw + 0.84rem, 0.96rem);
+  line-height: 1.5;
+  color: rgba(255, 246, 230, 0.82);
+}
+
+.page-business-services .ai-bs-early-cta__actions {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.page-business-services .ai-bs-early-cta__actions .btn {
+  min-width: min(100%, 14rem);
+}
+
+/* Business Services project request form — mirrors restaurant inquiry layout */
+.page-business-services .ai-bs-intake-form .transport-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.page-business-services .ai-bs-intake-form .transport-field span {
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-business-services .ai-bs-intake-form input,
+.page-business-services .ai-bs-intake-form select,
+.page-business-services .ai-bs-intake-form textarea {
+  font: inherit;
+  width: 100%;
+  max-width: 100%;
+  padding: 11px 13px;
+  min-height: 46px;
+  line-height: 1.35;
+  border-radius: 10px;
+  border: 1px solid rgba(11, 29, 58, 0.18);
+  background: #fffefb;
+  color: var(--navy);
+  box-sizing: border-box;
+}
+
+.page-business-services .ai-bs-intake-form textarea {
+  resize: vertical;
+  min-height: 4.9rem;
+  line-height: 1.5;
+}
+
+.page-business-services .ai-bs-intake-form .transport-intake-grid {
+  display: grid;
+  gap: clamp(14px, 1.8vw, 16px) clamp(14px, 2vw, 18px);
+  grid-template-columns: 1fr 1fr;
+  min-width: 0;
+}
+
+.page-business-services .ai-bs-intake-form .transport-intake-section {
+  margin-top: clamp(18px, 2.4vw, 22px);
+  padding: clamp(16px, 2vw, 20px) clamp(16px, 2vw, 18px) clamp(18px, 2.2vw, 20px);
+  border-radius: calc(var(--radius) + 2px);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(11, 29, 58, 0.09);
+  box-shadow: 0 10px 26px rgba(11, 29, 58, 0.05);
+}
+
+.page-business-services .ai-bs-intake-form .transport-intake-section:first-child {
+  margin-top: 0;
+}
+
+.page-business-services .ai-bs-intake-form .transport-field--full {
+  grid-column: 1 / -1;
+}
+
+.page-business-services .ai-bs-intake-form .transport-intake-section__heading {
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(11, 29, 58, 0.1);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(11, 29, 58, 0.78);
+}
+
+.page-business-services .ai-bs-form-note {
+  margin: 12px 0 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(11, 29, 58, 0.74);
+}
+
+.page-business-services .ai-bs-intake-form .transport-intake-error {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  background: rgba(255, 106, 77, 0.12);
+  border: 1px solid rgba(255, 106, 77, 0.28);
+  color: var(--navy);
+}
+
+.page-business-services .ai-bs-intake-form .transport-intake-error--ok {
+  background: rgba(20, 184, 166, 0.12);
+  border-color: rgba(20, 184, 166, 0.32);
+}
+
+.page-business-services .ai-bs-interest-fieldset {
+  margin: 0;
+  padding: clamp(14px, 1.8vw, 16px) clamp(14px, 1.8vw, 16px) clamp(12px, 1.6vw, 14px);
+  border: 1px solid rgba(11, 29, 58, 0.08);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  min-width: 0;
+}
+
+.page-business-services .ai-bs-intake-form .business-operator-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 6px 0;
+  min-width: 0;
+  font-size: 0.92rem;
+  line-height: 1.48;
+  font-weight: 650;
+  color: rgba(11, 29, 58, 0.9);
+  cursor: pointer;
+}
+
+.page-business-services .ai-bs-intake-form .business-operator-check:last-child {
+  margin-bottom: 0;
+}
+
+.page-business-services .ai-bs-intake-form .business-operator-check input {
+  margin-top: 0.2em;
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  min-width: 1.125rem;
+  min-height: 1.125rem;
+  accent-color: #14b8a6;
+}
+
+.page-business-services .ai-bs-intake-form .business-operator-context-block {
+  padding: clamp(14px, 2.5vw, 18px) clamp(16px, 3vw, 20px);
+  border-radius: 14px;
+  border: 1px solid rgba(11, 29, 58, 0.12);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.94), rgba(248, 252, 251, 0.98));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65) inset;
+}
+
+.page-business-services .ai-bs-intake-form .business-operator-context-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.page-business-services .ai-bs-intake-form .business-operator-context-row input[type="checkbox"] {
+  width: 1.12rem;
+  height: 1.12rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+  accent-color: #14b8a6;
+}
+
+.page-business-services .ai-bs-intake-form .business-operator-context-row__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.page-business-services .ai-bs-intake-form .business-operator-context-row__label {
+  font-size: 0.94rem;
+  font-weight: 680;
+  line-height: 1.35;
+  color: rgba(11, 29, 58, 0.94);
+}
+
+.page-business-services .ai-bs-intake-form .business-operator-context-row__helper {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  font-weight: 520;
+  color: rgba(11, 29, 58, 0.58);
+}
+
+.page-business-services .ai-bs-consent-note {
+  margin: clamp(14px, 2vw, 18px) 0 clamp(12px, 1.6vw, 14px);
+  padding: 11px 13px;
+  max-width: 100%;
+  font-size: clamp(0.84rem, 2.35vw, 0.9rem);
+  line-height: 1.45;
+  font-weight: 600;
+  color: #0b1d3a;
+  background: rgba(11, 29, 58, 0.04);
+  border-radius: 10px;
+  border: 1px solid rgba(11, 29, 58, 0.16);
+  border-left: 3px solid rgba(20, 184, 166, 0.58);
+}
+
+.page-business-services .ai-bs-form-submit {
+  width: 100%;
+  margin-top: 2px;
+  margin-bottom: max(6px, env(safe-area-inset-bottom, 0px));
+  min-height: 50px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  justify-content: center;
+  font-weight: 800;
+}
+
+@media (max-width: 640px) {
+  .page-business-services .ai-bs-intake-form .transport-intake-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-business-services .ai-bs-project-request-shell {
+    padding: 16px 14px 24px;
+  }
+
+  .page-business-services .ai-bs-intake-form .transport-intake-section {
+    padding: 15px 13px 17px;
+  }
+
+  .page-business-services .ai-bs-intake-form input,
+  .page-business-services .ai-bs-intake-form select,
+  .page-business-services .ai-bs-intake-form textarea {
+    min-height: 44px;
+    padding: 10px 12px;
+  }
+
+  .page-business-services .ai-bs-intake-form .transport-field span {
+    font-size: 0.8rem;
+  }
+
+  .page-business-services .ai-bs-intake-form .business-operator-check {
+    font-size: 0.93rem;
+    padding: 6px 0;
+    gap: 12px;
+  }
+
+  .page-business-services .ai-bs-consent-note {
+    font-size: 0.86rem;
+    padding: 10px 12px;
+  }
+
+  .page-business-services .ai-bs-early-cta__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ==========================================================================
