@@ -17733,6 +17733,40 @@ body.owner-dash-detail-open {
   opacity: 0.92;
 }
 
+.page-professional-services .ps-hero-hook {
+  margin: clamp(10px, 1.6vw, 14px) 0 0;
+  max-width: 34rem;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border-left: 3px solid var(--gold);
+  background: rgba(242, 178, 26, 0.12);
+  font-size: clamp(0.9rem, 0.2vw + 0.86rem, 0.98rem);
+  font-weight: 650;
+  line-height: 1.45;
+  color: #fff8eb;
+}
+
+.page-professional-services .ps-compare-lede {
+  margin-top: 10px;
+  max-width: 40rem;
+}
+
+.page-professional-services .ps-offers-lede {
+  margin-top: 10px;
+  max-width: 44rem;
+}
+
+@media (max-width: 640px) {
+  .page-professional-services .hs-hero-lead--sub {
+    display: none;
+  }
+
+  .page-professional-services .ps-hero-hook {
+    padding: 9px 11px;
+    font-size: 0.88rem;
+  }
+}
+
 .page-professional-services .ps-compare-grid {
   display: grid;
   gap: clamp(14px, 2vw, 18px);
