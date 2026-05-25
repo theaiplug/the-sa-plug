@@ -17723,6 +17723,245 @@ body.owner-dash-detail-open {
   }
 }
 
+/* ==========================================================================
+   Professional Services vertical — /business-services/professional-services/
+   ========================================================================== */
+
+.page-professional-services .hs-hero-lead--sub {
+  margin-top: 10px;
+  font-size: clamp(0.92rem, 0.2vw + 0.88rem, 1rem);
+  opacity: 0.92;
+}
+
+.page-professional-services .ps-compare-grid {
+  display: grid;
+  gap: clamp(14px, 2vw, 18px);
+  margin-top: clamp(12px, 2vw, 18px);
+}
+
+@media (min-width: 768px) {
+  .page-professional-services .ps-compare-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-professional-services .ps-compare-card {
+  padding: clamp(16px, 2vw, 22px);
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid rgba(255, 246, 230, 0.16);
+}
+
+.page-professional-services .ps-compare-card--basic {
+  background: rgba(255, 246, 230, 0.05);
+  border-left: 3px solid rgba(255, 106, 77, 0.65);
+}
+
+.page-professional-services .ps-compare-card--clean {
+  background: rgba(20, 184, 166, 0.1);
+  border-left: 3px solid var(--turquoise);
+  box-shadow: 0 0 28px rgba(20, 184, 166, 0.12);
+}
+
+.page-professional-services .ps-compare-title {
+  margin: 0 0 12px;
+  font-size: clamp(1rem, 0.25vw + 0.94rem, 1.08rem);
+  font-weight: 780;
+  color: #fff8eb;
+}
+
+.page-professional-services .ps-compare-list {
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(255, 246, 230, 0.84);
+}
+
+.page-professional-services .ps-compare-list li + li {
+  margin-top: 6px;
+}
+
+.page-professional-services .hs-build-grid--cream {
+  margin-top: clamp(8px, 1.2vw, 12px);
+}
+
+.page-professional-services .hs-build-card--cream {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(11, 29, 58, 0.09);
+  box-shadow: 0 12px 28px rgba(11, 29, 58, 0.06);
+  border-top: 3px solid var(--gold);
+}
+
+.page-professional-services .hs-build-card--cream h3 {
+  margin: 0 0 8px;
+  font-size: clamp(1rem, 0.25vw + 0.94rem, 1.06rem);
+  font-weight: 780;
+  color: var(--navy);
+}
+
+.page-professional-services .hs-build-card--cream p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.52;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-professional-services .ps-thumb-placeholder {
+  background:
+    linear-gradient(135deg, rgba(11, 29, 58, 0.06) 0%, rgba(20, 184, 166, 0.14) 48%, rgba(242, 178, 26, 0.12) 100%);
+  min-height: clamp(168px, 40vw, 200px);
+}
+
+.page-professional-services .ps-vertical-pains {
+  margin: 0;
+  padding: 0 0 0 1rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(11, 29, 58, 0.78);
+}
+
+.page-professional-services .ps-vertical-pains li + li {
+  margin-top: 4px;
+}
+
+.page-professional-services .ps-secondary-block {
+  margin-top: clamp(22px, 3vw, 32px);
+  padding-top: clamp(18px, 2.4vw, 24px);
+  border-top: 1px solid rgba(255, 246, 230, 0.14);
+}
+
+.page-professional-services .ps-secondary-title {
+  margin: 0 0 clamp(14px, 2vw, 18px);
+  font-size: clamp(1.02rem, 0.3vw + 0.96rem, 1.12rem);
+  font-weight: 780;
+  color: #fff8eb;
+  text-align: center;
+}
+
+.page-professional-services .ps-secondary-grid {
+  display: grid;
+  gap: clamp(12px, 2vw, 16px);
+}
+
+@media (min-width: 640px) {
+  .page-professional-services .ps-secondary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-professional-services .ps-secondary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(14px, 2vw, 18px);
+  border-radius: calc(var(--radius) - 4px);
+  background: rgba(255, 246, 230, 0.07);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+}
+
+.page-professional-services .ps-secondary-card h4 {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 780;
+  color: #fff8eb;
+}
+
+.page-professional-services .ps-secondary-card p {
+  margin: 0;
+  flex: 1;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(255, 246, 230, 0.82);
+}
+
+.page-professional-services .ps-secondary-cta {
+  margin-top: auto;
+  align-self: flex-start;
+  width: 100%;
+  min-height: 42px;
+  white-space: normal;
+  text-align: center;
+  justify-content: center;
+}
+
+.page-professional-services .ps-trust-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .page-professional-services .ps-trust-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-professional-services .ps-trust-list li {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: calc(var(--radius) - 4px);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: rgba(11, 29, 58, 0.86);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(11, 29, 58, 0.08);
+  border-left: 3px solid var(--turquoise);
+}
+
+.page-professional-services .ps-offer-detail-grid {
+  display: grid;
+  gap: clamp(12px, 2vw, 16px);
+}
+
+@media (min-width: 640px) {
+  .page-professional-services .ps-offer-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .page-professional-services .ps-offer-detail-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-professional-services .ps-offer-detail-card {
+  padding: clamp(16px, 2vw, 20px);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 246, 230, 0.07);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+}
+
+.page-professional-services .ps-offer-detail-card h3 {
+  margin: 0 0 8px;
+  font-size: clamp(0.98rem, 0.2vw + 0.92rem, 1.04rem);
+  font-weight: 780;
+  color: #fff8eb;
+}
+
+.page-professional-services .ps-offer-detail-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.52;
+  color: rgba(255, 246, 230, 0.82);
+}
+
+.page-professional-services .ps-offer-detail-card p + p {
+  margin-top: 10px;
+}
+
+.page-professional-services .ps-offer-best {
+  font-size: 0.84rem;
+  color: rgba(255, 246, 230, 0.74);
+}
+
+.page-professional-services .ps-offer-best strong {
+  color: var(--gold);
+  font-weight: 750;
+}
+
 .page-business-services .ai-bs-restaurant-bridge {
   padding-top: clamp(22px, 2.8vw, 30px);
   padding-bottom: clamp(22px, 2.8vw, 30px);
