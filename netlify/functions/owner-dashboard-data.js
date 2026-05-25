@@ -32,6 +32,9 @@ const BUSINESS_SELECT_CORE =
 const BUSINESS_SELECT_MINIMAL =
   "id,created_at,contact_name,contact_email,contact_phone,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary";
 
+const BUSINESS_SELECT_BARE =
+  "id,created_at,status,contact_name,contact_email,contact_phone,business_name,business_industry,current_problem,owner_notes,services_interested,recommended_system,ai_summary";
+
 const TRANSPORT_SELECT_FULL =
   "id,created_at,status,owner_notes,last_contacted_at,updated_at,source,lead_type,next_action,visitor_name,visitor_phone,visitor_email,preferred_contact_method,pickup_area,destination,requested_date,time_window,requested_time,party_size,luggage,request_type,trip_type,transportation_need,flight_number,hotel_or_resort,accessibility_needs,child_seats_needed,conversation_excerpt,notes,alert_email_sent,alert_sms_sent,page_path";
 
@@ -41,11 +44,17 @@ const TRANSPORT_SELECT_CORE =
 const TRANSPORT_SELECT_MINIMAL =
   "id,created_at,visitor_name,visitor_phone,visitor_email,pickup_area,destination,requested_time,party_size,request_type,conversation_excerpt,notes";
 
+const TRANSPORT_SELECT_BARE =
+  "id,created_at,status,visitor_name,visitor_phone,visitor_email,pickup_area,destination,requested_time,party_size,notes";
+
 const RESTAURANT_SELECT_FULL =
   "id,created_at,status,owner_notes,last_contacted_at,updated_at,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,ai_summary,alert_email_sent,alert_sms_sent,page_path";
 
 const RESTAURANT_SELECT_CORE =
   "id,created_at,status,owner_notes,last_contacted_at,updated_at,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,ai_summary,alert_email_sent,alert_sms_sent,page_path";
+
+const RESTAURANT_SELECT_MINIMAL =
+  "id,created_at,status,owner_notes,contact_name,contact_email,contact_phone,business_name,business_industry,business_location,current_problem,services_interested,recommended_system,ai_summary,page_path";
 
 function json(statusCode, body) {
   return {
@@ -169,15 +178,21 @@ const BUSINESS_SELECT_CHAIN = [
   BUSINESS_SELECT_STATUS,
   BUSINESS_SELECT_CORE,
   BUSINESS_SELECT_MINIMAL,
+  BUSINESS_SELECT_BARE,
 ];
 
 const TRANSPORT_SELECT_CHAIN = [
   TRANSPORT_SELECT_FULL,
   TRANSPORT_SELECT_CORE,
   TRANSPORT_SELECT_MINIMAL,
+  TRANSPORT_SELECT_BARE,
 ];
 
-const RESTAURANT_SELECT_CHAIN = [RESTAURANT_SELECT_FULL, RESTAURANT_SELECT_CORE];
+const RESTAURANT_SELECT_CHAIN = [
+  RESTAURANT_SELECT_FULL,
+  RESTAURANT_SELECT_CORE,
+  RESTAURANT_SELECT_MINIMAL,
+];
 
 async function fetchBusinessLeads(url, serviceKey) {
   return fetchWithSelectFallbacks(url, serviceKey, "business_leads", BUSINESS_SELECT_CHAIN);
@@ -209,7 +224,12 @@ async function fetchRestaurantLeads(url, serviceKey) {
       const rows = await fetchWithSelectFallbacks(url, serviceKey, "business_leads", RESTAURANT_SELECT_CHAIN, "");
       return rows.filter(isRestaurantLeadRow);
     } catch {
-      throw filteredErr;
+      try {
+        const rows = await fetchWithSelectFallbacks(url, serviceKey, "business_leads", BUSINESS_SELECT_CHAIN, "");
+        return rows.filter(isRestaurantLeadRow);
+      } catch {
+        throw filteredErr;
+      }
     }
   }
 }
@@ -389,6 +409,23 @@ function mapTransportRequest(row) {
 }
 
 exports.handler = async (event) => {
+  try {
+    return await handleOwnerDashboardData(event);
+  } catch (err) {
+    const message = sanitizeErrorMessage(err);
+    console.error("owner-dashboard-data unhandled", { message, status: 500 });
+    return json(500, {
+      ok: false,
+      error: "internal_error",
+      message,
+      business_leads: [],
+      restaurant_leads: [],
+      transportation_requests: [],
+    });
+  }
+};
+
+async function handleOwnerDashboardData(event) {
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 204, headers: { ...CORS_HEADERS }, body: "" };
   }
@@ -559,18 +596,9 @@ exports.handler = async (event) => {
 
   if (allSectionsFailed) {
     console.error("owner-dashboard-data all sections failed", {
-      status: 502,
+      status: 200,
+      degraded: true,
       sectionErrors,
-    });
-    return json(502, {
-      ok: false,
-      error: "fetch_failed",
-      message: errors[0] || "Could not load dashboard data.",
-      sectionErrors,
-      errors,
-      business_leads: [],
-      restaurant_leads: [],
-      transportation_requests: [],
     });
   }
 
@@ -580,6 +608,7 @@ exports.handler = async (event) => {
     restaurant_leads: restaurantLeads.length,
     transportation_requests: transportRows.length,
     sectionErrors: Object.keys(sectionErrors),
+    allSectionsFailed,
   });
 
   return json(200, {
@@ -607,5 +636,6 @@ exports.handler = async (event) => {
     },
     sectionErrors: hasSectionErrors ? sectionErrors : undefined,
     errors: errors.length ? errors : undefined,
+    degraded: allSectionsFailed || undefined,
   });
 };

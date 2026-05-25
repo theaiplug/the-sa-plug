@@ -9560,35 +9560,40 @@
 
       function renderAiPlugBusinessCommand() {
         if (!els.businessCommandBuckets) return;
-        syncBusinessVerticalFilterUi();
-        els.businessCommandBuckets.innerHTML = AI_PLUG_BUSINESS_COMMAND_QUEUE_BUCKETS.map(function (bucket) {
-          var rows = businessCommandQueueRows(bucket.key);
-          var previews = rows
-            .slice(0, 3)
-            .map(function (row) {
-              return businessCommandLeadPreviewHtml(row);
-            })
-            .join("");
-          return (
-            '<article class="owner-dash-biz-command-bucket">' +
-            '<span class="owner-dash-biz-command-count">' +
-            esc(rows.length) +
-            "</span>" +
-            "<strong>" +
-            esc(bucket.label) +
-            "</strong>" +
-            "<p>" +
-            esc(bucket.explanation) +
-            "</p>" +
-            (previews ? '<ul class="owner-dash-biz-command-previews">' + previews + "</ul>" : "") +
-            (rows.length
-              ? '<button type="button" class="owner-dash-biz-command-open" data-action="open-business-command-first" data-business-command-bucket="' +
-                esc(bucket.key) +
-                '">Open first</button>'
-              : "") +
-            "</article>"
-          );
-        }).join("");
+        try {
+          syncBusinessVerticalFilterUi();
+          els.businessCommandBuckets.innerHTML = AI_PLUG_BUSINESS_COMMAND_QUEUE_BUCKETS.map(function (bucket) {
+            var rows = businessCommandQueueRows(bucket.key);
+            var previews = rows
+              .slice(0, 3)
+              .map(function (row) {
+                return businessCommandLeadPreviewHtml(row);
+              })
+              .join("");
+            return (
+              '<article class="owner-dash-biz-command-bucket">' +
+              '<span class="owner-dash-biz-command-count">' +
+              esc(rows.length) +
+              "</span>" +
+              "<strong>" +
+              esc(bucket.label) +
+              "</strong>" +
+              "<p>" +
+              esc(bucket.explanation) +
+              "</p>" +
+              (previews ? '<ul class="owner-dash-biz-command-previews">' + previews + "</ul>" : "") +
+              (rows.length
+                ? '<button type="button" class="owner-dash-biz-command-open" data-action="open-business-command-first" data-business-command-bucket="' +
+                  esc(bucket.key) +
+                  '">Open first</button>'
+                : "") +
+              "</article>"
+            );
+          }).join("");
+        } catch (renderErr) {
+          els.businessCommandBuckets.innerHTML =
+            '<p class="owner-dash-panel-helper">AI Plug Business Command is temporarily unavailable. Business leads and transportation sections below should still work.</p>';
+        }
       }
 
       function ownerNotesAreShort(row) {
@@ -30296,7 +30301,11 @@
       function renderAll() {
         syncSearchControls();
         syncFilterButtonStates();
-        renderDailyBrief();
+        try {
+          renderDailyBrief();
+        } catch (briefErr) {
+          /* Daily brief uses AI Plug metrics — keep core panels loading if it fails */
+        }
         renderAiPlugBusinessCommand();
         renderTodayActions();
         renderRestaurantRepDailyQueue();
@@ -30318,17 +30327,17 @@
 
       function setCounts(counts) {
         if (!counts) return;
-        els.countBusinessNew.textContent = String(counts.business_new ?? 0);
-        els.countTransportNew.textContent = String(counts.transportation_new ?? 0);
-        els.countNeedsFollowUp.textContent = String(counts.needs_follow_up ?? 0);
-        els.countContacted.textContent = String(counts.contacted ?? 0);
-        els.countWon.textContent = String(counts.won ?? 0);
+        if (els.countBusinessNew) els.countBusinessNew.textContent = String(counts.business_new ?? 0);
+        if (els.countTransportNew) els.countTransportNew.textContent = String(counts.transportation_new ?? 0);
+        if (els.countNeedsFollowUp) els.countNeedsFollowUp.textContent = String(counts.needs_follow_up ?? 0);
+        if (els.countContacted) els.countContacted.textContent = String(counts.contacted ?? 0);
+        if (els.countWon) els.countWon.textContent = String(counts.won ?? 0);
         if (els.countHotLeads) {
           els.countHotLeads.textContent = String(countHotLeadsFromState());
         }
         updateDealMetricCounts();
-        els.countTotalBusiness.textContent = String(counts.total_business ?? 0);
-        els.countTotalTransport.textContent = String(counts.total_transportation ?? 0);
+        if (els.countTotalBusiness) els.countTotalBusiness.textContent = String(counts.total_business ?? 0);
+        if (els.countTotalTransport) els.countTotalTransport.textContent = String(counts.total_transportation ?? 0);
       }
 
       function findRecord(table, id) {
@@ -31295,7 +31304,15 @@
           method: "GET",
           headers: { Accept: "application/json" },
         }).then(function (res) {
-          return res.json().then(function (data) {
+          return res.text().then(function (text) {
+            var data = null;
+            if (text) {
+              try {
+                data = JSON.parse(text);
+              } catch (parseErr) {
+                return { ok: false, status: res.status, data: null, parseError: true };
+              }
+            }
             return { ok: res.ok, status: res.status, data: data };
           });
         });
@@ -31310,10 +31327,34 @@
         );
       }
 
+      function dashboardPayloadHasStructure(data) {
+        if (!data || typeof data !== "object") return false;
+        return (
+          Array.isArray(data.business_leads) ||
+          Array.isArray(data.restaurant_leads) ||
+          Array.isArray(data.transportation_requests) ||
+          (data.counts && typeof data.counts === "object") ||
+          (data.sectionErrors && typeof data.sectionErrors === "object")
+        );
+      }
+
       function isDashboardLoadOk(result) {
-        if (!result || !result.data) return false;
-        if (result.data.ok) return true;
-        return Boolean(result.ok && dashboardPayloadHasRecords(result.data));
+        if (!result || result.parseError || !result.data) return false;
+        if (result.data.ok === true) return true;
+        if (dashboardPayloadHasRecords(result.data)) return true;
+        if (dashboardPayloadHasStructure(result.data) && result.status !== 401) return true;
+        return false;
+      }
+
+      function dashboardLoadFailureMessage(result) {
+        if (!result) return "Network error while loading dashboard data.";
+        if (result.parseError) return "Dashboard returned an invalid response. Check Netlify function logs.";
+        if (result.status === 503 || (result.data && result.data.error === "Service misconfigured")) {
+          return "Dashboard backend is misconfigured (Supabase env vars). Check Netlify environment variables.";
+        }
+        if (result.data && result.data.message) return String(result.data.message);
+        if (result.data && result.data.error) return String(result.data.error);
+        return "Dashboard data is temporarily unavailable. Check Netlify function logs.";
       }
 
       function showSectionErrors(data) {
@@ -31328,6 +31369,9 @@
           });
         } else if (Array.isArray(data.errors) && data.errors.length) {
           parts = data.errors.slice(0, 3);
+        }
+        if (data.degraded && !parts.length) {
+          parts.push("All data sections failed to load — showing empty dashboard shell");
         }
         if (!parts.length) {
           hideRefreshError();
@@ -31956,13 +32000,19 @@
         state.clientActivity = {};
         setCounts(state.counts);
         updateLastLoaded();
-        setDashboardViewMode(currentDashboardViewMode());
-        renderAll();
-        initTabs();
-        initFilters();
-        initPriorityFilters();
-        initDashboardControls();
-        initRestaurantProspectCreate();
+        try {
+          setDashboardViewMode(currentDashboardViewMode());
+          renderAll();
+          initTabs();
+          initFilters();
+          initPriorityFilters();
+          initDashboardControls();
+          initRestaurantProspectCreate();
+        } catch (renderErr) {
+          showRefreshError(
+            "Dashboard data loaded, but part of the UI failed to render. Core lead lists may still be available below."
+          );
+        }
       }
 
       function initRefresh() {
@@ -32025,9 +32075,15 @@
             showSectionErrors(result.data);
             return;
           }
+          if (els.error && els.error.querySelector("p")) {
+            els.error.querySelector("p").textContent = dashboardLoadFailureMessage(result);
+          }
           finishError();
         })
         .catch(function () {
+          if (els.error && els.error.querySelector("p")) {
+            els.error.querySelector("p").textContent = dashboardLoadFailureMessage(null);
+          }
           finishError();
         });
     })();
