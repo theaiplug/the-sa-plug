@@ -17354,14 +17354,28 @@ body.owner-dash-detail-open {
   margin: calc(clamp(16px, 2vw, 20px) * -1) calc(clamp(16px, 2vw, 20px) * -1) 0;
   border-radius: calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0;
   overflow: hidden;
+  height: clamp(128px, 32vw, 156px);
 }
 
 .page-home-services .hs-vertical-thumb img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center 42%;
+}
+
+@media (min-width: 640px) {
+  .page-home-services .hs-vertical-thumb {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .page-home-services .hs-vertical-thumb img {
+    aspect-ratio: 4 / 3;
+    height: auto;
+    object-position: center center;
+  }
 }
 
 .page-home-services .hs-problem-grid {
