@@ -476,6 +476,13 @@
     return v === "yes" ? "Yes" : null;
   }
 
+  function smsConsentNote(fd) {
+    return (
+      "SMS consent (optional): " +
+      (fd.get("sms_consent") === "yes" ? "Yes — opted in" : "No — not opted in")
+    );
+  }
+
   if (intakeForm && intakeSubmit) {
     intakeForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -527,7 +534,11 @@
         services_interested: interestTags,
         recommended_system: String(fd.get("recommended_system") || "").trim() || null,
         ai_summary: String(fd.get("ai_summary") || "").trim() || null,
-        notes: String(fd.get("notes") || "").trim() || null,
+        notes: (function () {
+          var n = String(fd.get("notes") || "").trim();
+          var consent = smsConsentNote(fd);
+          return n ? n + "\n\n" + consent : consent;
+        })(),
         conversation_excerpt: String(fd.get("conversation_excerpt") || "").trim() || null,
         operator_leak_category: operatorLeak,
         source: "business_services_page",
