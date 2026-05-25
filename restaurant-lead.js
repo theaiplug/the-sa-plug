@@ -11,6 +11,13 @@
 
   if (!form || !submitBtn) return;
 
+  function smsConsentNote(fd) {
+    return (
+      "SMS consent (optional): " +
+      (fd.get("sms_consent") === "yes" ? "Yes — opted in" : "No — not opted in")
+    );
+  }
+
   function showError(text) {
     if (!errorEl) return;
     errorEl.hidden = !text;
@@ -104,9 +111,11 @@
       "AI systems interest: " + (aiInterest ? "yes" : "no"),
     ];
     if (restaurantArea) ownerNotesLines.push("Restaurant area: " + restaurantArea);
+    ownerNotesLines.push(smsConsentNote(fd));
 
     var notesParts = [];
     if (message) notesParts.push(message);
+    notesParts.push(smsConsentNote(fd));
     notesParts.push(
       "Inbound restaurant inquiry from /restaurants/",
       "Partner program: " + (partnerInterest ? "yes" : "no"),

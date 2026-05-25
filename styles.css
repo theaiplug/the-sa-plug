@@ -16212,7 +16212,9 @@ body.owner-dash-detail-open {
   .rest-benefit-list li,
   .rest-proof-card p,
   .rest-interest-check,
-  .rest-consent-note
+  .sms-consent-block,
+  .sms-consent-checkbox,
+  .sms-consent-help
 ) {
   word-break: normal;
   overflow-wrap: normal;
@@ -16988,19 +16990,7 @@ body.owner-dash-detail-open {
   min-height: 1.125rem;
 }
 
-.page-restaurants .rest-intake-form .rest-consent-note {
-  margin: clamp(14px, 2vw, 18px) 0 clamp(12px, 1.6vw, 14px);
-  padding: 11px 13px;
-  max-width: 100%;
-  font-size: clamp(0.84rem, 2.35vw, 0.9rem);
-  line-height: 1.45;
-  font-weight: 600;
-  color: #0b1d3a;
-  opacity: 1;
-  background: rgba(11, 29, 58, 0.04);
-  border-radius: 10px;
-  border: 1px solid rgba(11, 29, 58, 0.16);
-  border-left: 3px solid rgba(20, 184, 166, 0.58);
+.page-restaurants .rest-intake-form .sms-consent-block {
   box-shadow: none;
 }
 
@@ -17060,14 +17050,17 @@ body.owner-dash-detail-open {
     gap: 12px;
   }
 
-  .page-restaurants .rest-intake-form .rest-consent-note {
-    font-size: 0.86rem;
-    font-weight: 600;
-    line-height: 1.45;
-    color: #0b1d3a;
-    background: rgba(11, 29, 58, 0.04);
+  .page-restaurants .rest-intake-form .sms-consent-block {
     padding: 10px 12px;
-    border-color: rgba(11, 29, 58, 0.16);
+  }
+
+  .page-restaurants .rest-intake-form .sms-consent-checkbox {
+    font-size: 0.86rem;
+    gap: 12px;
+  }
+
+  .page-restaurants .rest-intake-form .sms-consent-help {
+    font-size: 0.84rem;
   }
 
   .page-restaurants .rest-question-list li {
@@ -17144,7 +17137,7 @@ body.owner-dash-detail-open {
     padding: 10px 12px;
   }
 
-  .page-restaurants .rest-intake-form .rest-consent-note {
+  .page-restaurants .rest-intake-form .sms-consent-block {
     font-size: 0.84rem;
   }
 
@@ -17453,18 +17446,54 @@ body.owner-dash-detail-open {
   color: rgba(11, 29, 58, 0.58);
 }
 
-.page-business-services .ai-bs-consent-note {
+/* Optional SMS consent (A2P 10DLC) — public intake forms */
+.sms-consent-block {
   margin: clamp(14px, 2vw, 18px) 0 clamp(12px, 1.6vw, 14px);
-  padding: 11px 13px;
+  padding: 12px 14px;
   max-width: 100%;
   font-size: clamp(0.84rem, 2.35vw, 0.9rem);
   line-height: 1.45;
-  font-weight: 600;
   color: #0b1d3a;
   background: rgba(11, 29, 58, 0.04);
   border-radius: 10px;
   border: 1px solid rgba(11, 29, 58, 0.16);
   border-left: 3px solid rgba(20, 184, 166, 0.58);
+}
+
+.sms-consent-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.sms-consent-checkbox input[type="checkbox"] {
+  margin-top: 0.2em;
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  min-width: 1.125rem;
+  min-height: 1.125rem;
+  accent-color: #14b8a6;
+}
+
+.sms-consent-help {
+  margin: 10px 0 0;
+  padding: 0;
+  font-size: clamp(0.8rem, 2.2vw, 0.86rem);
+  line-height: 1.5;
+  font-weight: 520;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.sms-consent-help a {
+  color: #0b1d3a;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .page-business-services .ai-bs-form-submit {
@@ -17508,9 +17537,16 @@ body.owner-dash-detail-open {
     gap: 12px;
   }
 
-  .page-business-services .ai-bs-consent-note {
-    font-size: 0.86rem;
+  .page-business-services .ai-bs-intake-form .sms-consent-block {
     padding: 10px 12px;
+  }
+
+  .page-business-services .ai-bs-intake-form .sms-consent-checkbox {
+    font-size: 0.86rem;
+  }
+
+  .page-business-services .ai-bs-intake-form .sms-consent-help {
+    font-size: 0.84rem;
   }
 
   .page-business-services .ai-bs-early-cta__actions .btn {

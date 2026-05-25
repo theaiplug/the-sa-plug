@@ -363,6 +363,13 @@
     intakeError.classList.toggle("transport-intake-error--ok", !!text && !isErr);
   }
 
+  function smsConsentNote(fd) {
+    return (
+      "SMS consent (optional): " +
+      (fd.get("sms_consent") === "yes" ? "Yes — opted in" : "No — not opted in")
+    );
+  }
+
   if (intakeForm && intakeSubmit) {
     intakeForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -416,7 +423,11 @@
         hotel_or_resort: String(fd.get("hotel_or_resort") || "").trim() || null,
         accessibility_needs: String(fd.get("accessibility_needs") || "").trim() || null,
         child_seats_needed: String(fd.get("child_seats_needed") || "").trim() || null,
-        notes: String(fd.get("notes") || "").trim() || null,
+        notes: (function () {
+          var n = String(fd.get("notes") || "").trim();
+          var consent = smsConsentNote(fd);
+          return n ? n + "\n\n" + consent : consent;
+        })(),
         ai_summary: String(fd.get("ai_summary") || "").trim() || null,
         conversation_excerpt: buildConversationExcerpt(),
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : "",
