@@ -6728,6 +6728,49 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   .page-business-services .ai-bs-category-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .page-business-services .ai-bs-category-grid--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-business-services .ai-bs-category-includes {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(255, 235, 210, 0.72);
+}
+
+.page-business-services .ai-bs-category-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+  width: 100%;
+}
+
+.page-business-services .ai-bs-category-actions .btn {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+  min-height: 46px;
+}
+
+.page-business-services .ai-bs-category-cta--soft {
+  border-color: rgba(255, 246, 230, 0.28);
+}
+
+@media (min-width: 520px) {
+  .page-business-services .ai-bs-category-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .page-business-services .ai-bs-category-actions .btn {
+    width: auto;
+    flex: 1 1 12rem;
+  }
 }
 
 .page-business-services .ai-bs-category-card {
@@ -17385,17 +17428,27 @@ body.owner-dash-detail-open {
 
 .page-home-services .hs-vertical-cta {
   margin-top: auto;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--navy);
-  text-decoration: underline;
-  text-decoration-color: rgba(20, 184, 166, 0.55);
-  text-underline-offset: 3px;
+  align-self: flex-start;
+  width: 100%;
+  min-height: 44px;
+  white-space: normal;
+  text-align: center;
+  justify-content: center;
 }
 
-.page-home-services .hs-vertical-cta:hover {
-  color: #0a4a44;
-  text-decoration-color: var(--turquoise);
+.page-home-services .hs-final-inner {
+  max-width: 40rem;
+  text-align: center;
+}
+
+.page-home-services .hs-final-cta {
+  justify-content: center;
+  margin-top: clamp(14px, 2vw, 18px);
+}
+
+.page-home-services .hs-final-cta .btn {
+  min-height: 48px;
+  white-space: normal;
 }
 
 .page-home-services .hs-offer-grid {

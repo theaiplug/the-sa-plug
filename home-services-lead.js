@@ -105,6 +105,7 @@
     var contactName = String(fd.get("contact_name") || "").trim();
     var vertical = String(fd.get("business_vertical") || "").trim();
     var serviceArea = String(fd.get("service_area") || "").trim();
+    var messyWhere = String(fd.get("messy_where") || "").trim();
     var needHelp = String(fd.get("need_help") || "").trim();
     var message = String(fd.get("message") || "").trim();
     var website = String(fd.get("business_website") || "").trim();
@@ -114,12 +115,14 @@
       (emailOk ? "email" : "phone");
 
     var problemParts = [];
-    if (needHelp) problemParts.push("Primary need: " + needHelp);
+    if (messyWhere) problemParts.push("Where requests get messy: " + messyWhere);
+    if (needHelp) problemParts.push("Help wanted: " + needHelp);
     if (message) problemParts.push(message);
 
     var ownerNotesLines = [
       "AI Plug vertical: Home Services",
       "Home services niche: " + (vertical || "Not specified"),
+      "Where requests get messy: " + (messyWhere || "Not specified"),
       "Home services need: " + (needHelp || "Not specified"),
       "Source page: " + PAGE_PATH,
       "Lead source: home_services_page",
@@ -131,6 +134,7 @@
       "Inbound home services inquiry from " + PAGE_PATH,
       "Vertical category: Home Services",
       "Business vertical: " + (vertical || "Not specified"),
+      "Messy area: " + (messyWhere || "Not specified"),
       "Help needed: " + (needHelp || "Not specified"),
     ];
     if (message) notesParts.push(message);
@@ -158,7 +162,8 @@
         "Home services inbound: " +
         (businessName || "Unnamed business") +
         (vertical ? " · " + vertical : "") +
-        (needHelp ? " · Need: " + needHelp : ""),
+        (messyWhere ? " · Messy: " + messyWhere : "") +
+        (needHelp ? " · Help: " + needHelp : ""),
       user_agent: typeof navigator !== "undefined" ? navigator.userAgent : "",
       page_path: PAGE_PATH,
       source: "home_services_page",
