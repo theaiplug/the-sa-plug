@@ -3802,6 +3802,22 @@
       line-height: 1.4;
     }
 
+    .page-owner-dashboard .owner-dash-biz-command-vertical-help {
+      margin: 0;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.06);
+      color: rgba(255, 246, 230, 0.78);
+      font-size: 0.78rem;
+      line-height: 1.45;
+      min-height: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-biz-command-vertical-help:empty {
+      display: none;
+    }
+
     .page-owner-dashboard .owner-dash-biz-command-buckets {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -4804,40 +4820,42 @@
 
       <section id="owner-dash-ai-plug-business-command" class="owner-dash-biz-command owner-dash-glass" aria-labelledby="owner-dash-ai-plug-business-command-heading">
         <div class="owner-dash-biz-command-head">
-          <p class="eyebrow eyebrow-on-dark">AI PLUG BUSINESS SYSTEMS</p>
+          <p class="eyebrow eyebrow-on-dark">AI PLUG BUSINESS COMMAND · PARENT OS</p>
           <h2 id="owner-dash-ai-plug-business-command-heading">AI Plug Business Command</h2>
-          <p class="owner-dash-biz-command-subtitle">The AI Plug Business Command helps reps diagnose where a business is losing opportunities between calls, forms, messages, questions, follow-up, and owner visibility, then choose the smallest useful system.</p>
-          <p class="owner-dash-biz-command-guardrail">Internal business command only. Copy-only tools — nothing sends, publishes, invoices, charges, or promises automatically.</p>
+          <p class="owner-dash-biz-command-subtitle">Parent business operating system for The AI Plug. Diagnose where any business is losing opportunities between calls, forms, messages, questions, follow-up, and owner visibility — then choose the smallest useful system. Vertical lanes (Restaurants, Home Services, Transportation / Concierge, future niches) live inside this command.</p>
+          <p class="owner-dash-biz-command-guardrail">Internal command center only. Copy / status / owner workflow tools — nothing sends, publishes, invoices, charges, or promises automatically.</p>
         </div>
-        <div class="owner-dash-biz-command-verticals" role="group" aria-label="Business pipeline vertical filters">
+        <div class="owner-dash-biz-command-verticals" role="group" aria-label="Business pipeline vertical lanes">
           <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical is-active" data-action="business-vertical-filter" data-business-vertical="all" aria-pressed="true">All Business Leads</button>
-          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="general" aria-pressed="false">New business leads</button>
-          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="restaurants" aria-pressed="false">Restaurant vertical subset</button>
-          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="transportation" aria-pressed="false">Transportation vertical subset</button>
-          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="future-verticals" aria-pressed="false">Future verticals</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="general" aria-pressed="false">General</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="restaurants" aria-pressed="false">Restaurants</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="home-services" aria-pressed="false">Home Services</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="transportation" aria-pressed="false">Transportation / Concierge</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="future-verticals" aria-pressed="false">Future Verticals</button>
         </div>
+        <div id="owner-dash-biz-command-vertical-help" class="owner-dash-biz-command-vertical-help" aria-live="polite"></div>
         <div id="owner-dash-biz-command-restaurant-link" class="owner-dash-biz-command-vertical-link" hidden>
-          <p>Restaurant opportunities are part of the AI Plug business system and also have a dedicated Restaurant Program workflow below.</p>
+          <p>Restaurants are a fully built vertical lane inside the AI Plug Business Command. The dedicated Restaurant Program workflow is below.</p>
           <button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="dashboard-jump" data-dashboard-target="restaurants">Open Restaurant Program</button>
         </div>
         <div>
           <h3 id="owner-dash-biz-command-queue-heading">AI Plug Rep Daily Queue</h3>
-          <p class="owner-dash-biz-command-note">Page-level queue for AI Plug Business Requests, customer-path leaks, suggested systems, next actions, follow-up, proposal status, and delivery/recap work. Restaurant rows still open the restaurant command sheet.</p>
+          <p class="owner-dash-biz-command-note">One queue across every vertical lane: business / contact, vertical or niche if known, diagnosed leak, suggested first offer, and next action. Restaurant rows still open the Restaurant command sheet.</p>
         </div>
         <div id="owner-dash-biz-command-buckets" class="owner-dash-biz-command-buckets" aria-labelledby="owner-dash-biz-command-queue-heading"></div>
         <div>
           <p class="owner-dash-biz-command-note">Recommended order:</p>
           <ol class="owner-dash-biz-command-order">
-            <li>New business leads</li>
-            <li>Needs diagnosis</li>
-            <li>Ready to contact</li>
-            <li>Follow-up due</li>
-            <li>Proposal-ready</li>
-            <li>Delivery / recap</li>
-            <li>Vertical opportunity</li>
-            <li>Restaurant vertical subset</li>
-            <li>Transportation vertical subset</li>
-            <li>Future verticals</li>
+            <li>Needs Diagnosis</li>
+            <li>Ready to Contact</li>
+            <li>Discovery Needed</li>
+            <li>Proposal Ready</li>
+            <li>Proposal Follow-Up</li>
+            <li>Verbal Yes / Deposit</li>
+            <li>Won — Intake / Build</li>
+            <li>Live — Recap / Renewal</li>
+            <li>Vertical Opportunity / Needs Classification</li>
+            <li>Not Now / Revisit</li>
           </ol>
         </div>
       </section>
@@ -6154,17 +6172,26 @@
       ];
 
       var AI_PLUG_BUSINESS_COMMAND_QUEUE_BUCKETS = [
-        { key: "new-business-leads", label: "New business leads", explanation: "Fresh AI Plug Business Requests that need review request handling and a first diagnosis." },
-        { key: "needs-diagnosis", label: "Needs diagnosis", explanation: "Leads that need a customer-path leak diagnosis before outreach or proposal language." },
-        { key: "ready-to-contact", label: "Ready to contact", explanation: "Reviewed or researched leads ready for a manual first response, text, call opener, or discovery invite." },
-        { key: "follow-up-due", label: "Follow-up due", explanation: "Leads waiting on a manual follow-up, no-response check, post-discovery recap, or next-step close." },
-        { key: "proposal-ready", label: "Proposal-ready", explanation: "Qualified leads with a diagnosed leak, suggested system, and proposal direction." },
-        { key: "delivery-recap", label: "Delivery / recap", explanation: "Won, intake, build, launch QA, live, recap, support, or renewal items." },
-        { key: "vertical-opportunity", label: "Vertical opportunity", explanation: "Leads that need niche classification so the pitch and first offer match the business type." },
-        { key: "restaurant-subset", label: "Restaurant vertical subset", explanation: "Restaurant business rows that should stay connected to Restaurant Sales Mode." },
-        { key: "transportation-subset", label: "Transportation vertical subset", explanation: "Transportation or concierge opportunities that should preserve transportation-specific handling." },
-        { key: "future-verticals", label: "Future verticals", explanation: "Home services, nightlife, event vendors, professional services, local brands, resort-area businesses, and other vertical opportunities." },
+        { key: "needs-diagnosis", label: "Needs Diagnosis", explanation: "Fresh AI Plug Business Requests waiting on a customer-path leak diagnosis before outreach or proposal language." },
+        { key: "ready-to-contact", label: "Ready to Contact", explanation: "Reviewed or researched leads ready for a manual first response, text reply, call opener, or discovery invite." },
+        { key: "discovery-needed", label: "Discovery Needed", explanation: "Contacted leads that still need a discovery call or workflow mapping before a proposal is recommended." },
+        { key: "proposal-ready", label: "Proposal Ready", explanation: "Qualified leads with a diagnosed leak, suggested system, and proposal direction ready to send." },
+        { key: "proposal-follow-up", label: "Proposal Follow-Up", explanation: "Proposals that have been sent or are waiting on a follow-up, no-response check, or post-discovery recap." },
+        { key: "verbal-yes-deposit", label: "Verbal Yes / Deposit", explanation: "Leads that said yes verbally and need deposit, scope confirmation, or approval to begin build." },
+        { key: "won-intake-build", label: "Won — Intake / Build", explanation: "Won clients in intake, materials, in-build, or launch QA — needing assets, access, or build progress." },
+        { key: "live-recap-renewal", label: "Live — Recap / Renewal", explanation: "Live clients with monthly recap, renewal, upsell, support review, or testimonial workflow due." },
+        { key: "vertical-opportunity", label: "Vertical Opportunity / Needs Classification", explanation: "Leads that need vertical or niche classification so the pitch and first offer match the business type." },
+        { key: "not-now-revisit", label: "Not Now / Revisit", explanation: "Leads marked not now, hold, or not a fit that may be worth a future revisit." },
       ];
+
+      var AI_PLUG_BUSINESS_VERTICAL_HELP = {
+        "all": "All Business Leads = the full AI Plug business pipeline across every vertical lane.",
+        "general": "General = AI Plug business leads that are not assigned to a vertical yet, or that need broad AI Plug systems (websites, smart forms, lead routing, AI chat/phone planning, automations, dashboards, QR funnels, or follow-up workflows).",
+        "restaurants": "Restaurants = the restaurant vertical lane (first fully built vertical). Restaurant rows still open the dedicated Restaurant command sheet below.",
+        "home-services": "Home Services = the home services / home improvement vertical lane (roofing, flooring, restoration, remodeling, HVAC, plumbing, electrical, windows/siding/exterior, handyman, and general home improvement).",
+        "transportation": "Transportation / Concierge = transportation or concierge-related business opportunities.",
+        "future-verticals": "Future Verticals = leads that look like a future niche (nightlife, event vendors, professional services, local brands, resort-area businesses) without a built-out vertical lane yet.",
+      };
 
       var RESTAURANT_DISCOVERY_QUESTION_GROUPS = {
         visibility: [
@@ -9222,11 +9249,46 @@
         );
       }
 
-      function isFutureVerticalBusinessRow(row) {
+      var HOME_SERVICES_DETECTION_PATTERN = /\b(roof(?:er|ing)?|shingle|gutter|leak repair|storm restoration|floor(?:ing)?|carpet|hardwood|laminate|tile install|vinyl plank|remodel(?:ing|er)?|kitchen and bath|kitchen & bath|design[-\s]?build|hvac|heating and (?:air|cooling)|heating & (?:air|cooling)|air condition(?:ing|er)?|furnace|heat pump|mini[-\s]?split|plumb(?:er|ing)|drain|sewer line|water heater|tankless|leak detection|electric(?:ian|al)?|panel upgrade|wiring|ev charger|generator install|window(?:s)?\b|siding|exterior(?:s)?|stucco|james hardie|patio cover|sunroom|deck builder|fence install|restoration|water damage|fire damage|mold remediation|smoke damage|biohazard|insurance estimat|xactimate|mitigation|handyman|home repair(?:s)?|honey[-\s]?do|home improvement|home services?|home renovation|contractor(?:s)?\b|general contractor|residential service|service[-\s]?area|service area|landscape|hardscape|lawn care|tree service|pest control|cleaning service|maid service|garage door|solar (?:install|panel)|pool service|chimney|pressure wash(?:ing)?|painter|painting service|drywall|insulation|epoxy floor|countertop install)\b/i;
+
+      var HOME_SERVICES_NICHE_PATTERNS = [
+        { key: "Roofing", pattern: /\b(roof(?:er|ing)?|shingle|gutter|leak repair|storm restoration|wind damage|hail damage)\b/i },
+        { key: "Restoration / Insurance Estimating", pattern: /\b(restoration|water damage|fire damage|mold remediation|smoke damage|biohazard|insurance estimat|xactimate|mitigation|loss intake|adjuster)\b/i },
+        { key: "Flooring", pattern: /\b(floor(?:ing)?|carpet|hardwood|laminate|tile install|vinyl plank|epoxy floor|countertop install)\b/i },
+        { key: "Remodeling", pattern: /\b(remodel(?:ing|er)?|kitchen and bath|kitchen & bath|design[-\s]?build|home renovation|whole[-\s]?home renovation|addition build)\b/i },
+        { key: "HVAC", pattern: /\b(hvac|heating and (?:air|cooling)|heating & (?:air|cooling)|air condition(?:ing|er)?|furnace|heat pump|mini[-\s]?split)\b/i },
+        { key: "Plumbing", pattern: /\b(plumb(?:er|ing)|drain|sewer line|water heater|tankless|leak detection)\b/i },
+        { key: "Electrical", pattern: /\b(electric(?:ian|al)?|panel upgrade|wiring|ev charger|generator install)\b/i },
+        { key: "Windows / Siding / Exterior", pattern: /\b(window(?:s)?\b|siding|exterior(?:s)?|stucco|james hardie|patio cover|sunroom|deck builder|fence install)\b/i },
+        { key: "Handyman / General Local Service", pattern: /\b(handyman|home repair(?:s)?|honey[-\s]?do|general contractor|residential service)\b/i },
+      ];
+
+      function isHomeServicesRow(row) {
         if (!row || isRestaurantRow(row) || isTransportationBusinessRow(row)) return false;
+        var manual = ownerNoteMarkerValue(row, "AI Plug vertical:");
+        if (manual && /home services/i.test(manual)) return true;
+        var text = aiPlugLeadSourceText(row);
+        return HOME_SERVICES_DETECTION_PATTERN.test(text);
+      }
+
+      function homeServicesNicheKey(row) {
+        if (!row) return "Home Services General";
+        var manual = ownerNoteMarkerValue(row, "Home services niche:");
+        if (manual) return manual;
+        var text = aiPlugLeadSourceText(row);
+        for (var i = 0; i < HOME_SERVICES_NICHE_PATTERNS.length; i += 1) {
+          if (HOME_SERVICES_NICHE_PATTERNS[i].pattern.test(text)) {
+            return HOME_SERVICES_NICHE_PATTERNS[i].key;
+          }
+        }
+        return "Home Services General";
+      }
+
+      function isFutureVerticalBusinessRow(row) {
+        if (!row || isRestaurantRow(row) || isTransportationBusinessRow(row) || isHomeServicesRow(row)) return false;
         var niche = aiPlugNicheKey(row);
-        if (niche !== "other" && niche !== "restaurant") return true;
-        return /roof|roofer|floor|flooring|home improvement|remodel|contractor|hvac|plumb|landscap|med spa|nightlife|venue|salon|clinic|dental|chiro|cleaning service|pest control|garage door|solar|pool service/.test(
+        if (niche !== "other" && niche !== "restaurant" && niche !== "home services") return true;
+        return /med spa|nightlife|venue|salon|clinic|dental|chiro|barbershop|tattoo|gym|fitness studio|boutique|retail brand/.test(
           aiPlugLeadSourceText(row)
         );
       }
@@ -9235,9 +9297,10 @@
         var vertical = state.activeBusinessVertical || "all";
         if (vertical === "all") return true;
         if (vertical === "general") {
-          return !isRestaurantRow(row) && !isTransportationBusinessRow(row) && !isFutureVerticalBusinessRow(row);
+          return !isRestaurantRow(row) && !isHomeServicesRow(row) && !isTransportationBusinessRow(row) && !isFutureVerticalBusinessRow(row);
         }
         if (vertical === "restaurants") return isRestaurantRow(row);
+        if (vertical === "home-services") return isHomeServicesRow(row);
         if (vertical === "transportation") return isTransportationBusinessRow(row);
         if (vertical === "future-verticals") return isFutureVerticalBusinessRow(row);
         return true;
@@ -9245,14 +9308,16 @@
 
       function businessVerticalLabel(row) {
         if (isRestaurantRow(row)) return "Restaurants";
+        if (isHomeServicesRow(row)) return "Home Services · " + homeServicesNicheKey(row);
         if (isTransportationBusinessRow(row)) return "Transportation / Concierge";
+        if (isFutureVerticalBusinessRow(row)) return "Future Vertical";
         var niche = aiPlugNicheKey(row);
         if (niche && niche !== "other") {
-          return niche.replace(/\b\w/g, function (c) {
+          return "General · " + niche.replace(/\b\w/g, function (c) {
             return c.toUpperCase();
           });
         }
-        return "General AI Plug";
+        return "General";
       }
 
       function businessCommandBaseRows() {
@@ -9291,11 +9356,8 @@
         if (!row) return false;
         var stageKey = businessCommandStageKey(row);
         var status = normStatus(row.status);
-        if (key === "new-business-leads") {
-          return status === "new" || stageKey === "new-lead";
-        }
         if (key === "not-now-revisit") {
-          return stageKey === "not-now" || status === "not a fit";
+          return stageKey === "not-now" || status === "not a fit" || status === "lost" || stageKey === "lost" || stageKey === "not-a-fit";
         }
         if (status === "lost" || status === "archived" || stageKey === "lost" || stageKey === "not-a-fit") {
           return false;
@@ -9321,7 +9383,7 @@
         if (key === "proposal-ready") {
           return stageKey === "proposal-ready" || stageKey === "qualified" || stageKey === "discovery-complete";
         }
-        if (key === "follow-up-due" || key === "proposal-follow-up") {
+        if (key === "proposal-follow-up" || key === "follow-up-due") {
           return (
             stageKey === "follow-up-due" ||
             stageKey === "proposal-sent" ||
@@ -9355,14 +9417,18 @@
         }
         if (key === "vertical-opportunity") {
           if (isRestaurantRow(row) || isTransportationBusinessRow(row)) return false;
+          if (isHomeServicesRow(row)) return false;
           if (isFutureVerticalBusinessRow(row)) return false;
           if (ownerNoteMarkerValue(row, "Business vertical:")) return false;
+          if (ownerNoteMarkerValue(row, "AI Plug vertical:")) return false;
           var industry = firstValue(row, ["business_industry", "industry"]);
           return !industry || String(industry).trim().length < 3 || aiPlugNicheKey(row) === "other";
         }
         if (key === "restaurant-subset") return isRestaurantRow(row);
+        if (key === "home-services-subset") return isHomeServicesRow(row);
         if (key === "transportation-subset") return isTransportationBusinessRow(row);
         if (key === "future-verticals") return isFutureVerticalBusinessRow(row);
+        if (key === "future-verticals-subset") return isFutureVerticalBusinessRow(row);
         return false;
       }
 
@@ -9383,7 +9449,9 @@
 
       function businessCommandLeadPreviewHtml(row) {
         var diagnosis = aiPlugDiagnosis(row);
-        var offer = aiPlugRecommendOffer(row);
+        var hs = !isRestaurantRow(row) && isHomeServicesRow(row);
+        var leakLabel = hs ? homeServicesDiagnosis(row).leak : diagnosis.leak;
+        var offerLabel = isRestaurantRow(row) ? aiPlugRecommendOffer(row).offer : (hs ? homeServicesDiagnosis(row).firstOffer : aiPlugOfferPath(row));
         var nextAction = calcBusinessNextAction(row, calcBusinessPriority(row));
         return (
           '<li class="owner-dash-biz-command-preview">' +
@@ -9398,10 +9466,10 @@
           esc(businessVerticalLabel(row)) +
           "</dd></div>" +
           "<div><dt>Leak</dt><dd>" +
-          esc(diagnosis.leak) +
+          esc(leakLabel) +
           "</dd></div>" +
           "<div><dt>Offer</dt><dd>" +
-          esc(offer.offer) +
+          esc(offerLabel) +
           "</dd></div>" +
           "<div><dt>Next</dt><dd>" +
           esc(nextAction) +
@@ -9416,38 +9484,50 @@
 
       function businessCommandBriefMetrics() {
         var rows = sortBusinessLeads(state.businessLeads);
-        var newBusinessLeads = 0;
         var needsDiagnosis = 0;
         var readyToContact = 0;
+        var discoveryNeeded = 0;
         var proposalReady = 0;
-        var followUpDue = 0;
-        var deliveryRecap = 0;
+        var proposalFollowUp = 0;
+        var verbalYes = 0;
+        var wonIntakeBuild = 0;
+        var liveRecapRenewal = 0;
         var verticalOpportunity = 0;
+        var notNowRevisit = 0;
+        var homeServicesSubset = 0;
         var transportationSubset = 0;
         var futureVerticals = 0;
         rows.forEach(function (row) {
-          if (matchesBusinessCommandBucket(row, "new-business-leads")) newBusinessLeads += 1;
           if (matchesBusinessCommandBucket(row, "needs-diagnosis")) needsDiagnosis += 1;
           if (matchesBusinessCommandBucket(row, "ready-to-contact")) readyToContact += 1;
+          if (matchesBusinessCommandBucket(row, "discovery-needed")) discoveryNeeded += 1;
           if (matchesBusinessCommandBucket(row, "proposal-ready")) proposalReady += 1;
-          if (matchesBusinessCommandBucket(row, "follow-up-due")) followUpDue += 1;
-          if (matchesBusinessCommandBucket(row, "delivery-recap")) deliveryRecap += 1;
+          if (matchesBusinessCommandBucket(row, "proposal-follow-up")) proposalFollowUp += 1;
+          if (matchesBusinessCommandBucket(row, "verbal-yes-deposit")) verbalYes += 1;
+          if (matchesBusinessCommandBucket(row, "won-intake-build")) wonIntakeBuild += 1;
+          if (matchesBusinessCommandBucket(row, "live-recap-renewal")) liveRecapRenewal += 1;
           if (matchesBusinessCommandBucket(row, "vertical-opportunity")) verticalOpportunity += 1;
-          if (matchesBusinessCommandBucket(row, "transportation-subset")) transportationSubset += 1;
-          if (matchesBusinessCommandBucket(row, "future-verticals")) futureVerticals += 1;
+          if (matchesBusinessCommandBucket(row, "not-now-revisit")) notNowRevisit += 1;
+          if (isHomeServicesRow(row)) homeServicesSubset += 1;
+          if (isTransportationBusinessRow(row)) transportationSubset += 1;
+          if (isFutureVerticalBusinessRow(row)) futureVerticals += 1;
         });
         return {
           total: rows.length,
-          newBusinessLeads: newBusinessLeads,
           needsDiagnosis: needsDiagnosis,
           readyToContact: readyToContact,
+          discoveryNeeded: discoveryNeeded,
           proposalReady: proposalReady,
-          followUpDue: followUpDue,
-          deliveryRecap: deliveryRecap,
-          wonIntakeBuild: deliveryRecap,
-          liveRecapRenewal: 0,
+          proposalFollowUp: proposalFollowUp,
+          followUpDue: proposalFollowUp,
+          verbalYesDeposit: verbalYes,
+          wonIntakeBuild: wonIntakeBuild,
+          liveRecapRenewal: liveRecapRenewal,
+          deliveryRecap: wonIntakeBuild + liveRecapRenewal,
           verticalOpportunity: verticalOpportunity,
+          notNowRevisit: notNowRevisit,
           restaurantSubset: rows.filter(isRestaurantRow).length,
+          homeServicesSubset: homeServicesSubset,
           transportationSubset: transportationSubset,
           futureVerticals: futureVerticals,
         };
@@ -9462,6 +9542,10 @@
         });
         if (els.businessCommandRestaurantLink) {
           els.businessCommandRestaurantLink.hidden = vertical !== "restaurants";
+        }
+        var help = document.getElementById("owner-dash-biz-command-vertical-help");
+        if (help) {
+          help.textContent = AI_PLUG_BUSINESS_VERTICAL_HELP[vertical] || AI_PLUG_BUSINESS_VERTICAL_HELP.all;
         }
       }
 
@@ -10066,17 +10150,21 @@
             "AI Plug Business Command",
             businessCommand.total,
             [
-              ["Business systems", businessCommand.total],
-              ["New business leads", businessCommand.newBusinessLeads || 0],
+              ["All business leads", businessCommand.total],
               ["Needs diagnosis", businessCommand.needsDiagnosis, "Diagnosis"],
               ["Ready to contact", businessCommand.readyToContact],
-              ["Proposal-ready", businessCommand.proposalReady, "Proposal-ready"],
-              ["Follow-up due", businessCommand.followUpDue, "Follow-up due"],
-              ["Delivery / recap", businessCommand.deliveryRecap || businessCommand.wonIntakeBuild + businessCommand.liveRecapRenewal, "Delivery/recap"],
+              ["Discovery needed", businessCommand.discoveryNeeded || 0, "Discovery"],
+              ["Proposal ready", businessCommand.proposalReady],
+              ["Proposal follow-up", businessCommand.proposalFollowUp || businessCommand.followUpDue],
+              ["Verbal yes / deposit", businessCommand.verbalYesDeposit || 0, "Verbal yes"],
+              ["Won — intake / build", businessCommand.wonIntakeBuild, "Won intake/build"],
+              ["Live — recap / renewal", businessCommand.liveRecapRenewal, "Live recap/renewal"],
               ["Vertical opportunity", businessCommand.verticalOpportunity, "Vertical opp"],
-              ["Restaurant vertical subset", businessCommand.restaurantSubset, "Restaurants"],
-              ["Transportation vertical subset", businessCommand.transportationSubset || 0, "Transport"],
+              ["Restaurants", businessCommand.restaurantSubset],
+              ["Home Services", businessCommand.homeServicesSubset || 0],
+              ["Transportation / Concierge", businessCommand.transportationSubset || 0, "Transportation"],
               ["Future verticals", businessCommand.futureVerticals || 0],
+              ["Not now / revisit", businessCommand.notNowRevisit || 0, "Not now"],
             ],
             "teal"
           ),
@@ -13685,6 +13773,109 @@
         return opp;
       }
 
+      var AI_PLUG_OFFER_LADDER = [
+        {
+          offer: "Starter Website Path Audit",
+          keywords: ["audit", "review", "starter", "where to start", "not sure", "diagnostic", "figure out", "review my", "look at our"],
+          bestFor: "A cautious owner who already has a website but the request path may be leaking. Safe first step before any build.",
+          solves: "Maps where calls, forms, photos, quote requests, or follow-up may be slipping through before recommending a build.",
+          firstDeliverable: "Written customer-path audit with the smallest useful first step.",
+          complexity: "Low",
+          safeSales: "Start by diagnosing the path before selling a system.",
+          askFirst: "Where does a good customer get lost between interest and follow-up today?",
+        },
+        {
+          offer: "Smart Intake / Form Starter",
+          keywords: ["form", "intake", "quote request", "booking request", "details", "lead capture", "smart form", "photo intake", "measurement", "guest count"],
+          bestFor: "A business getting incomplete requests, missing photos, missing job details, or messy quote inquiries.",
+          solves: "Captures the right details (job, photos, timing, contact, service area) so staff respond with less back-and-forth.",
+          firstDeliverable: "Smart intake questions, owner alert summary, and routing rules.",
+          complexity: "Medium",
+          safeSales: "The goal is better inquiry capture, not guaranteed volume.",
+          askFirst: "What information do you need before you can help, quote, route, or schedule someone?",
+        },
+        {
+          offer: "Website + Local SEO System",
+          keywords: ["website", "seo", "google", "local search", "online presence", "homepage", "redesign", "service area page", "service-area", "local visibility"],
+          bestFor: "A business where the website or service-area presence does not guide a customer to the next step.",
+          solves: "Connects customer attention to a clear action, intake, routing, and follow-up path with local visibility support.",
+          firstDeliverable: "Customer-path audit and first improved request/booking path with service-area support.",
+          complexity: "Medium",
+          safeSales: "This gives customers a clearer next step and gives the owner a stronger foundation — without ranking guarantees.",
+          askFirst: "What action should a good visitor take first from the website, and where should service-area visibility live?",
+        },
+        {
+          offer: "Lead Routing + Follow-Up System",
+          keywords: ["routing", "follow-up", "follow up", "missed lead", "slow response", "callback", "owner alert", "recovery", "lead handling"],
+          bestFor: "A business where calls, forms, DMs, or emails get scattered or where follow-up does not happen consistently.",
+          solves: "Routes inquiries to the right person, gives the owner a manual follow-up workflow, and recovers missed leads.",
+          firstDeliverable: "Routing map, owner alerts, missed-lead recovery list, and approved follow-up copy.",
+          complexity: "Medium",
+          safeSales: "Supports a faster response workflow while keeping messages manually reviewed.",
+          askFirst: "Who should receive each type of inquiry, and what happens if they miss it?",
+        },
+        {
+          offer: "QR Funnel System",
+          keywords: ["qr", "scan", "flyer", "event", "menu", "table tent", "yard sign", "truck", "invoice qr", "business card"],
+          bestFor: "A physical-to-digital path where scans (truck, yard sign, flyer, invoice, business card) need a clearer next step.",
+          solves: "Turns QR traffic into a clearer intake, offer, review, or information path.",
+          firstDeliverable: "QR landing path, tracking checklist, and approved next-step copy.",
+          complexity: "Low-Medium",
+          safeSales: "We can make the QR path clearer without promising scan volume.",
+          askFirst: "Where will the QR code be seen, and what should the scan do?",
+        },
+        {
+          offer: "AI Chat Operator Planning",
+          keywords: ["chat", "chatbot", "questions", "answers", "faq", "ai operator", "website chat"],
+          bestFor: "A business getting repeated questions online and needing approved answer planning before any AI chat goes live.",
+          solves: "Plans safe AI-assisted answers, escalation rules, and a testing checklist before launch.",
+          firstDeliverable: "Approved answer map, fallback rules, and testing checklist.",
+          complexity: "Medium-High",
+          safeSales: "AI assists with approved answers; it does not replace staff or owner judgment.",
+          askFirst: "Which customer questions can be answered safely, and which need a human?",
+        },
+        {
+          offer: "AI Phone Agent Planning",
+          keywords: ["phone", "missed call", "voicemail", "answering", "after hours", "phone agent", "voice ai"],
+          bestFor: "A business losing calls or needing after-hours call triage planning before any voice AI is considered.",
+          solves: "Maps call handling, intake, handoff, and approval rules before any voice AI is deployed.",
+          firstDeliverable: "Phone flow map, approved call-handling rules, and safe AI phone agent requirements.",
+          complexity: "High",
+          safeSales: "We plan the call workflow first; AI does not replace staff or make unapproved decisions.",
+          askFirst: "What should happen when a call is missed or comes in after hours?",
+        },
+        {
+          offer: "Owner Visibility Dashboard",
+          keywords: ["dashboard", "owner visibility", "reporting", "status", "command center", "pipeline view", "scorecard"],
+          bestFor: "An owner who needs one place to see leads, notes, stages, next actions, and bottlenecks.",
+          solves: "Makes follow-up and status visible before requests get lost.",
+          firstDeliverable: "Private owner dashboard / pipeline view with lead statuses and copy-only workflow tools.",
+          complexity: "Medium-High",
+          safeSales: "Improves visibility and workflow clarity without automating customer messages.",
+          askFirst: "What does the owner need to see every morning?",
+        },
+        {
+          offer: "Full Business Operating System",
+          keywords: ["full system", "operating system", "multiple", "automation", "everything", "all in one", "operating layer", "business command"],
+          bestFor: "A business with several leaks across customer path, intake, routing, follow-up, owner visibility, and content.",
+          solves: "Connects the customer path, intake, routing, dashboard, content, and launch workflow in phases.",
+          firstDeliverable: "Workflow map plus phase-one build plan with safe rollout order.",
+          complexity: "High",
+          safeSales: "Start with the first useful system, prove the workflow, then expand.",
+          askFirst: "Which leak is costing the most attention or staff time right now?",
+        },
+        {
+          offer: "Ongoing Growth Management",
+          keywords: ["ongoing", "monthly", "management", "optimization", "content", "support", "media", "social", "campaign", "posts", "recap"],
+          bestFor: "A business already live with a system that needs monthly recap, content rhythm, optimization, and workflow support.",
+          solves: "Reviews real usage, recommends the next improvement, and supports follow-up / review / referral workflows.",
+          firstDeliverable: "Monthly recap framework, optimization plan, and content/campaign workflow.",
+          complexity: "Medium",
+          safeSales: "Ongoing support, not guaranteed traffic, leads, or revenue.",
+          askFirst: "What should we review every month, and what would 'better next month' look like?",
+        },
+      ];
+
       var AI_PLUG_OFFER_ENGINE = [
         {
           offer: "Fix customer path",
@@ -13830,20 +14021,20 @@
 
       var AI_PLUG_NICHE_HELPER = {
         "home services": {
-          pain: "Missed calls, quote details, photo intake, scheduling, estimate follow-up, and owner visibility.",
+          pain: "Missed calls, quote details, photo intake, scheduling, estimate follow-up, owner visibility, and staff handoff between office / owner / estimator / crew.",
           question: "What happens from first call, form, or photo request to quote or scheduled estimate?",
-          system: "Smart intake form plus Fix lead handling.",
-          language: "Cleaner quote intake, better routing, and manual estimate follow-up.",
+          system: "Smart Intake / Form Starter plus Lead Routing + Follow-Up System (see Home Services command block for niche-specific systems).",
+          language: "Cleaner quote intake, better routing, manual estimate follow-up, and owner-visible status — no job, claim, financing, or ranking guarantees.",
           quickPitch: "The first move is usually not a bigger website. It is a cleaner path for calls, photos, quote details, scheduling, and estimate follow-up so good requests do not disappear.",
           discoveryQuestions: [
             "Which job details do you need before quoting?",
             "Do customers send photos, addresses, measurements, timing, or service type?",
             "Who gets the request and how is estimate follow-up tracked?",
           ],
-          likelyFirstOffer: "Smart intake form plus lead routing/alerts.",
+          likelyFirstOffer: "Smart Intake / Form Starter plus Lead Routing + Follow-Up System.",
           commonObjection: "We already get calls. The issue is not replacing calls; it is making sure missed calls, photo details, quote requests, and follow-up are visible and easy to work.",
           followUpMessage: "Hi [contact name], for [business name] I would start with the quote path: calls, photos, details, scheduling, routing, and estimate follow-up. No big rebuild needed until the first leak is clear.",
-          caution: "Do not promise booked jobs, claim volume, revenue, rankings, or estimate close rates.",
+          caution: "Do not promise booked jobs, claim approval, insurance coverage, financing approval, energy savings, rankings, or estimate close rates.",
         },
         restaurant: {
           pain: "Visitor visibility, private events, group dining, QR paths, catering inquiries, and repeat guest follow-up.",
@@ -13988,51 +14179,104 @@
         ].filter(Boolean).join(" ").toLowerCase();
       }
 
+      var AI_PLUG_LEAK_CATEGORIES = [
+        { key: "visibility leak", label: "Visibility leak", pattern: /\b(visibility|local seo|google business|local search|nobody finds|cannot be found|not showing up|search rank|service area page|map listing)\b/i },
+        { key: "message leak", label: "Message leak", pattern: /\b(messaging|message leak|website (?:copy|message)|brand voice|wording|positioning|customers do not understand|home page (?:copy|message))\b/i },
+        { key: "action leak", label: "Action leak", pattern: /\b(no call to action|no cta|unclear next step|action path|cta|button|request path|booking path|appointment path|no path|mobile path|hard on mobile)\b/i },
+        { key: "intake leak", label: "Intake leak", pattern: /\b(intake|weak form|form|quote request|incomplete request|missing details|smart intake|qualif(?:y|ier|ication)|photo intake|measurement|guest count|pickup|route detail|job details)\b/i },
+        { key: "response leak", label: "Response leak", pattern: /\b(missed call|voicemail|after hours|unanswered call|calls? get missed|response time|slow response|phone leak|no answer)\b/i },
+        { key: "follow-up leak", label: "Follow-up leak", pattern: /\b(follow[-\s]?up|go(?:ing)? cold|callback|no follow|not following up|estimate follow|quote follow|after the quote|after the estimate)\b/i },
+        { key: "owner visibility leak", label: "Owner visibility leak", pattern: /\b(owner visibility|owner cannot see|cannot see leads|dashboard|status view|reporting|pipeline view|no idea what happened)\b/i },
+        { key: "staff knowledge leak", label: "Staff knowledge leak", pattern: /\b(staff (?:knowledge|do not know|cannot answer)|repeat (?:answers|questions)|faq|same questions|customer questions|staff handoff|crew handoff|no script|no approved answer)\b/i },
+        { key: "trust leak", label: "Trust leak", pattern: /\b(trust|review|reviews|reputation|case study|proof|testimonial|before and after|portfolio|credibility)\b/i },
+        { key: "operational leak", label: "Operational leak", pattern: /\b(scattered tools|operating|full system|multiple systems|business command|workflow|automation|scheduling|routing|provider handoff|crm|content rhythm)\b/i },
+      ];
+
+      var AI_PLUG_LEAK_DETAIL_MAP = {
+        "visibility leak": {
+          diagnosis: "The business may be doing the work, but the right customers cannot find them when they decide. Local SEO, service-area pages, or basic discovery signals are not connected.",
+          firstQuestion: "When a customer decides they need this service, where do they look first and what should they see?",
+          nextAction: "Run a visibility audit and recommend the smallest useful local SEO / service-area improvement.",
+        },
+        "message leak": {
+          diagnosis: "The wording or positioning is not landing. Visitors are not clear on who this is for, what is offered, or what to do next.",
+          firstQuestion: "Who is this business actually for, and what is the one thing a good customer should understand first?",
+          nextAction: "Tighten the headline, offer, and primary action path before scaling traffic.",
+        },
+        "action leak": {
+          diagnosis: "Attention is arriving, but there is no clear next step. Mobile path, button, request flow, or booking path is missing or confusing.",
+          firstQuestion: "What should a good customer do first from their phone — and is it actually obvious in three seconds?",
+          nextAction: "Fix the customer path: one clear action, owner-approved.",
+        },
+        "intake leak": {
+          diagnosis: "Forms or request paths are not capturing enough useful information for the team to respond well or qualify quickly.",
+          firstQuestion: "What information do you wish customers gave you upfront before you have to chase details?",
+          nextAction: "Build a smart intake / quote request path that collects the right details before routing.",
+        },
+        "response leak": {
+          diagnosis: "Calls, voicemails, or after-hours requests are getting missed or handled inconsistently before the owner can see them.",
+          firstQuestion: "What should happen when a call is missed or arrives after hours?",
+          nextAction: "Map missed-call recovery and approved manual response workflow.",
+        },
+        "follow-up leak": {
+          diagnosis: "Interested leads or sent quotes go cold because follow-up is not tracked, assigned, or visible.",
+          firstQuestion: "How do you know today whether a quote, estimate, or interested lead has been followed up?",
+          nextAction: "Build follow-up workflow with owner-approved copy and a manual status path.",
+        },
+        "owner visibility leak": {
+          diagnosis: "The owner cannot see lead status, next actions, or bottlenecks in one place, so opportunities slip without being noticed.",
+          firstQuestion: "What do you need to see every morning to know nothing got lost yesterday?",
+          nextAction: "Plan owner visibility dashboard / pipeline view (internal, copy-only).",
+        },
+        "staff knowledge leak": {
+          diagnosis: "Staff are answering repeat questions inconsistently or without an approved answer path, which creates risk and slows replies.",
+          firstQuestion: "Which customer questions can be answered safely from an approved guide, and which need a human?",
+          nextAction: "Plan approved-answer map + escalation rules before any AI chat is considered.",
+        },
+        "trust leak": {
+          diagnosis: "Customers may show interest, but trust signals (reviews, proof, portfolio, testimonials) are not visible at the moment they decide.",
+          firstQuestion: "What proof or trust signals would help a hesitant customer take the next step?",
+          nextAction: "Plan review / referral / proof workflow without promising review volume.",
+        },
+        "operational leak": {
+          diagnosis: "The issue spans multiple paths — customer path, intake, routing, follow-up, automations, content, owner visibility — and tools are scattered.",
+          firstQuestion: "Which leak is costing the most attention or staff time right now?",
+          nextAction: "Run a full diagnostic / audit before recommending a phased operating system.",
+        },
+      };
+
       function aiPlugDiagnosis(lead) {
         var text = aiPlugLeadSourceText(lead);
-        var leak = "Weak forms";
-        var diagnosis = "The lead likely needs clearer inquiry capture before deeper automation is recommended.";
-        var question = "What details do you need before you can respond confidently?";
-        var nextAction = "Ask discovery questions and map the first customer path.";
-        var checks = [
-          ["Missed calls", /missed call|voicemail|after hours|unanswered call|calls get missed|phone/],
-          ["Weak forms", /weak form|form|intake|collect enough|quote request|details|photo|guest count|pickup|route/],
-          ["Scattered DMs/texts", /scattered dm|scattered text|instagram|facebook dm|dms\/texts|social messages|text message/],
-          ["Slow follow-up", /slow response|follow-up leak|follow up leak|go cold|no follow|follow-up is too slow|callback/],
-          ["Repeated questions", /same questions|faq|repeat answers|repeated questions|customer questions|guest questions/],
-          ["No booking/request path", /booking path|request path|appointment|schedule|reservation|no booking|unclear next step|cta/],
-          ["Need consistent content", /content|media|social|campaign|posts|seo|local search|visibility|qr funnel/],
-          ["No owner visibility", /owner visibility|cannot see|dashboard|status view|owner cannot see|reporting/],
-          ["Need full system", /workflow|scattered tools|operating|full system|multiple systems|business command|automation/],
-        ];
-        for (var i = 0; i < checks.length; i += 1) {
-          if (checks[i][1].test(text)) {
-            leak = checks[i][0];
-            break;
+        var manualLeak = ownerNoteMarkerValue(lead, "AI Plug leak:") ||
+          ownerNoteMarkerValue(lead, "Home services leak:") ||
+          ownerNoteMarkerValue(lead, "Business leak:");
+        var leak = "intake leak";
+        if (manualLeak) {
+          var normalized = String(manualLeak).toLowerCase();
+          for (var k = 0; k < AI_PLUG_LEAK_CATEGORIES.length; k += 1) {
+            if (normalized.indexOf(AI_PLUG_LEAK_CATEGORIES[k].key) !== -1) {
+              leak = AI_PLUG_LEAK_CATEGORIES[k].key;
+              break;
+            }
+          }
+        } else {
+          for (var i = 0; i < AI_PLUG_LEAK_CATEGORIES.length; i += 1) {
+            if (AI_PLUG_LEAK_CATEGORIES[i].pattern.test(text)) {
+              leak = AI_PLUG_LEAK_CATEGORIES[i].key;
+              break;
+            }
           }
         }
-        var map = {
-          "Missed calls": ["Calls may be getting missed, delayed, or handled inconsistently before the owner can see what happened.", "What should happen when a call is missed or arrives after hours?", "Fix lead handling - missed-call path and manual response workflow."],
-          "Weak forms": ["The business is not capturing enough useful details to respond well.", "What information do you need before you can help, quote, route, or book someone?", "Smart intake form - intake questions and owner alert first."],
-          "Scattered DMs/texts": ["Requests may be scattered across DMs, texts, email, and staff phones.", "Where do messages arrive today, and who owns the reply?", "Fix lead handling - routing and intake first."],
-          "Slow follow-up": ["Interested leads may go cold because follow-up is not tracked or assigned.", "How do you know a lead has been followed up?", "Follow-up workflows - status and manual copy tools first."],
-          "Repeated questions": ["Staff may be answering repeat questions without an approved answer path.", "Which questions are safe to answer and which need staff review?", "Add AI website operator - approved answers and escalation rules."],
-          "No booking/request path": ["The business may have attention, but the next step is unclear or hard on mobile.", "What should a good customer do first from their phone?", "Fix customer path - request or booking path first."],
-          "Need consistent content": ["The business likely needs a repeatable content, campaign, QR, or proof system.", "What questions, offers, and proof should customers see every month?", "AI Media Engine / content system."],
-          "No owner visibility": ["The owner likely cannot see lead status, next actions, or bottlenecks clearly.", "What do you need to see every morning to know nothing got lost?", "Owner dashboard / owner-visible workflow."],
-          "Need full system": ["The issue spans customer path, intake, routing, follow-up, automations, content, and owner visibility.", "Which leak is costing the most attention or staff time right now?", "Full AI business system or diagnostic/audit first."],
-        };
-        if (map[leak]) {
-          diagnosis = map[leak][0];
-          question = map[leak][1];
-          nextAction = map[leak][2];
-        }
+        var detail = AI_PLUG_LEAK_DETAIL_MAP[leak] || AI_PLUG_LEAK_DETAIL_MAP["intake leak"];
+        var suggested = lead && !isRestaurantRow(lead)
+          ? aiPlugRecommendLadderOffer(lead).offer
+          : aiPlugRecommendOffer(lead).offer;
         return {
           leak: leak,
-          diagnosis: diagnosis,
-          firstQuestion: question,
-          suggestedFirstOffer: aiPlugRecommendOffer(lead).offer,
-          nextAction: nextAction,
+          diagnosis: detail.diagnosis,
+          firstQuestion: detail.firstQuestion,
+          suggestedFirstOffer: suggested,
+          nextAction: detail.nextAction,
         };
       }
 
@@ -14052,6 +14296,58 @@
           }
         });
         return best || AI_PLUG_OFFER_ENGINE[2];
+      }
+
+      function aiPlugRecommendLadderOffer(lead) {
+        var manual = ownerNoteMarkerValue(lead, "Home services first offer:") ||
+          ownerNoteMarkerValue(lead, "AI Plug first offer:") ||
+          ownerNoteMarkerValue(lead, "Business first offer:");
+        if (manual) {
+          for (var m = 0; m < AI_PLUG_OFFER_LADDER.length; m += 1) {
+            if (AI_PLUG_OFFER_LADDER[m].offer.toLowerCase() === String(manual).toLowerCase()) {
+              return AI_PLUG_OFFER_LADDER[m];
+            }
+          }
+        }
+        var text = aiPlugLeadSourceText(lead || {});
+        var diagnosis = aiPlugDiagnosis(lead || {});
+        var leak = diagnosis.leak;
+        var preferredByLeak = {
+          "visibility leak": "Website + Local SEO System",
+          "message leak": "Website + Local SEO System",
+          "action leak": "Website + Local SEO System",
+          "intake leak": "Smart Intake / Form Starter",
+          "response leak": "Lead Routing + Follow-Up System",
+          "follow-up leak": "Lead Routing + Follow-Up System",
+          "owner visibility leak": "Owner Visibility Dashboard",
+          "staff knowledge leak": "AI Chat Operator Planning",
+          "trust leak": "Ongoing Growth Management",
+          "operational leak": "Full Business Operating System",
+        };
+        var preferred = preferredByLeak[leak];
+        var best = null;
+        var bestScore = -1;
+        AI_PLUG_OFFER_LADDER.forEach(function (item) {
+          var score = 0;
+          item.keywords.forEach(function (word) {
+            if (text.indexOf(word) !== -1) score += 1;
+          });
+          if (preferred && item.offer === preferred) score += 3;
+          if (item.offer === "Full Business Operating System" && countLeadPainPoints(leadSignals(lead || {})) >= 4) score += 2;
+          if (score > bestScore) {
+            best = item;
+            bestScore = score;
+          }
+        });
+        if (!best || bestScore <= 0) {
+          if (preferred) {
+            for (var p = 0; p < AI_PLUG_OFFER_LADDER.length; p += 1) {
+              if (AI_PLUG_OFFER_LADDER[p].offer === preferred) return AI_PLUG_OFFER_LADDER[p];
+            }
+          }
+          return AI_PLUG_OFFER_LADDER[0];
+        }
+        return best;
       }
 
       function aiPlugNicheKey(lead) {
@@ -14151,7 +14447,11 @@
       }
 
       function aiPlugOfferPath(lead) {
-        return aiPlugRecommendOffer(lead || {}).offer || "Diagnostic / audit first";
+        if (lead && !isRestaurantRow(lead)) {
+          var ladder = aiPlugRecommendLadderOffer(lead);
+          if (ladder && ladder.offer) return ladder.offer;
+        }
+        return aiPlugRecommendOffer(lead || {}).offer || "Starter Website Path Audit";
       }
 
       function estimateDealValueTier(lead, sig, priority) {
@@ -18407,7 +18707,8 @@
 
       function aiPlugCopyData(lead) {
         var diagnosis = aiPlugDiagnosis(lead || {});
-        var offer = aiPlugRecommendOffer(lead || {});
+        var ladder = aiPlugRecommendLadderOffer(lead || {});
+        var offer = (lead && !isRestaurantRow(lead)) ? ladder : aiPlugRecommendOffer(lead || {});
         var nicheKey = aiPlugNicheKey(lead || {});
         var niche = AI_PLUG_NICHE_HELPER[nicheKey] || AI_PLUG_NICHE_HELPER.other;
         return {
@@ -18420,6 +18721,7 @@
           timeline: (lead && lead.timeline) || "[timeline TBD]",
           diagnosis: diagnosis,
           offer: offer,
+          ladderOffer: ladder,
           nicheKey: nicheKey,
           niche: niche,
         };
@@ -18454,9 +18756,9 @@
         return [
           "AI Plug offer recommendation - " + d.business,
           "",
-          "Recommended offer: " + d.offer.offer,
-          "Best for: " + d.offer.bestFor,
-          "Problem it solves: " + d.offer.solves,
+          "Best first offer: " + d.offer.offer,
+          "Why it fits: " + d.offer.bestFor,
+          "What it improves: " + d.offer.solves,
           "First deliverable: " + d.offer.firstDeliverable,
           "Delivery complexity: " + d.offer.complexity,
           "Safe sales language: " + d.offer.safeSales,
@@ -18765,6 +19067,1016 @@
         ].join("\n");
       }
 
+      function buildAiPlug30SecondPitch(lead) {
+        var d = aiPlugCopyData(lead);
+        return [
+          "30-second pitch for " + d.business + ":",
+          "",
+          "The AI Plug helps businesses stop losing opportunities because calls, forms, messages, questions, and follow-up are not connected.",
+          "",
+          "For " + d.business + ", I would not start by selling random AI tools. I would look at the " + d.diagnosis.leak + " first, then decide whether " + d.offer.offer + " is the smallest useful first system to make requests easier to capture, route, follow up, and review.",
+          "",
+          "No promises on leads, revenue, traffic, rankings, bookings, reviews, or appointments. The goal is a clearer customer path and a better follow-up process.",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildAiPlugFirstOutreachStandalone(lead) {
+        return buildAiPlugSalesCopy("ai-plug-first-outreach", lead);
+      }
+
+      function buildAiPlugWarmFollowUpStandalone(lead) {
+        return buildAiPlugSalesCopy("ai-plug-warm-follow-up", lead);
+      }
+
+      function buildAiPlugIntakeRequest(lead) {
+        var d = aiPlugCopyData(lead);
+        return [
+          "Materials / intake request - " + d.business,
+          "",
+          "Hi " + d.contact + ", to map the first version for " + d.business + ", I would need a few basics:",
+          "",
+          "- Business name, contact, phone, email",
+          "- Current website link",
+          "- Logo / brand assets if available",
+          "- Approved wording, offers, and anything we should NOT say",
+          "- Current forms, CRM, calendar, phone, chat, email, or reporting tools in use",
+          "- Routing contacts (who should receive each type of inquiry)",
+          "- Service areas, ideal jobs, jobs to avoid",
+          "- Approval rules: who signs off on customer-facing wording",
+          "",
+          "I will use this to plan the first owner-approved version. Nothing gets published, sent, or made customer-facing without approval.",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildAiPlugRenewalUpsellText(lead) {
+        var d = aiPlugCopyData(lead);
+        return [
+          "Renewal / upsell - " + d.business,
+          "",
+          "Hi " + d.contact + ", before the next phase, I would review what the first system actually proved for " + d.business + ":",
+          "",
+          "- What stayed live and stable",
+          "- What requests, follow-ups, or owner visibility improved",
+          "- What still slips or feels manual",
+          "- Whether the highest-friction step is now intake, routing, follow-up, owner visibility, AI answer planning, content, or local SEO",
+          "",
+          "Recommended next phase: " + d.offer.offer + " or the next ladder step depending on what review reveals.",
+          "",
+          "No renewal pressure. The next phase should only happen if the first one earned it.",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildAiPlugOwnerNotesMarkers(lead) {
+        var d = aiPlugCopyData(lead);
+        var existingVertical = ownerNoteMarkerValue(lead, "AI Plug vertical:") || "General";
+        var existingLeak = ownerNoteMarkerValue(lead, "AI Plug leak:") || d.diagnosis.leak;
+        var existingOffer = ownerNoteMarkerValue(lead, "AI Plug first offer:") || d.offer.offer;
+        var existingNextAction = ownerNoteMarkerValue(lead, "AI Plug next action:") || d.diagnosis.nextAction;
+        return [
+          "Paste these lines into Owner Notes for " + d.business + " to save the AI Plug classification:",
+          "",
+          "AI Plug vertical: " + existingVertical,
+          "AI Plug leak: " + existingLeak,
+          "AI Plug first offer: " + existingOffer,
+          "AI Plug next action: " + existingNextAction,
+          "",
+          "(The dashboard reads these markers back so the diagnosed leak, first offer, and next action stay sticky for this lead.)",
+        ].join("\n");
+      }
+
+      function buildAiPlugFullSalesBundle(lead) {
+        var d = aiPlugCopyData(lead);
+        return [
+          "AI Plug Sales Bundle — " + d.business,
+          "Contact: " + d.contact,
+          "Phone / email: " + d.phone + " / " + d.email,
+          "Diagnosed leak: " + d.diagnosis.leak,
+          "Best first offer: " + d.offer.offer,
+          "Next action: " + d.diagnosis.nextAction,
+          "",
+          "--- First outreach ---",
+          buildAiPlugFirstOutreachStandalone(lead),
+          "",
+          "--- Warm follow-up ---",
+          buildAiPlugWarmFollowUpStandalone(lead),
+          "",
+          "--- 30-second pitch ---",
+          buildAiPlug30SecondPitch(lead),
+          "",
+          "--- Discovery questions ---",
+          buildAiPlugDiscoveryQuestionsText(lead),
+          "",
+          "--- Diagnosis recap ---",
+          buildAiPlugDiagnosisSummary(lead),
+          "",
+          "--- Objection responses ---",
+          buildAiPlugObjectionResponsesText(lead),
+          "",
+          "--- Proposal summary ---",
+          buildAiPlugProposalDirectionText(lead),
+          "",
+          "--- Close / next step ---",
+          buildAiPlugCloseOnboardingText(lead),
+          "",
+          "--- Materials / intake request ---",
+          buildAiPlugIntakeRequest(lead),
+          "",
+          "--- Launch QA checklist ---",
+          buildAiPlugLaunchQaText(lead),
+          "",
+          "--- Monthly recap ---",
+          buildAiPlugSalesCopy("ai-plug-monthly-recap", lead),
+          "",
+          "--- Renewal / upsell ---",
+          buildAiPlugRenewalUpsellText(lead),
+          "",
+          "Copy-only sales bundle. Nothing sends automatically. " + aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      var HOME_SERVICES_NICHE_PACKS = {
+        "Roofing": {
+          niche: "Roofing",
+          niche_lower: "roofing",
+          objectives: "inspection requests, leak calls, storm calls, roof photos, estimate follow-up, claim-aware (not claim-outcome) language.",
+          opportunitiesLeak: "Storm calls come in fast, homeowners send roof photos by text that get buried, inspection requests miss roof age/leak location/insurance status/urgency, estimates go out but follow-up is loose, and tire-kicker requests mix with real jobs.",
+          bestSystems: "Roof Inspection Request System, Storm Inquiry + Photo Intake Funnel, Estimate Follow-Up Workflow, Service Area / Storm Area Local SEO Upgrade, Review + Referral Request System.",
+          discovery: [
+            "How do roof inspection requests come in today?",
+            "What happens when someone calls about a leak while you are on a roof or in the field?",
+            "Do homeowners text roof photos to different people?",
+            "How do you track inspection requests after a storm?",
+            "Who follows up after an estimate is sent?",
+            "Do you separate repairs, replacements, storm claims, and low-fit requests?",
+            "Which service areas or storm areas matter most?",
+          ],
+          tenSecondPitch: "We help roofers keep inspection requests, leak calls, roof photos, and estimate follow-up from getting lost.",
+          fifteenSecondPitch: "We build a cleaner path for roofing leads so leak calls, storm inquiries, photos, inspection requests, and follow-up route to the right person instead of getting buried in texts.",
+          thirtySecondPitch: "Most roofing companies do not lose jobs because they are bad roofers. They lose opportunities when inspection requests, storm calls, roof photos, estimate notes, and follow-up are scattered. We help build the path behind the website so the owner or sales team can see what came in, what needs inspection, what needs follow-up, and what is worth chasing.",
+          textReply: "Got it. Based on what you said, I would not start with anything complicated. I would look at the [LEAK] first and see if a simple request path or follow-up workflow would make roofing requests easier to manage. No promises on jobs or claims.",
+          emailSubject: "Follow-up on your roofing request path",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on making the roofing request path clearer before we talk about a larger system. This does not guarantee jobs, claims, or results; it is meant to help your team capture better details, route requests, and follow up more consistently.",
+          callOpener: "Hey [CONTACT], I will keep it quick. I work with roofing businesses on cleaning up the request path behind calls, photos, estimates, and follow-up. Before I recommend anything, can I ask how those requests usually come in today?",
+          proposalSummary: "We recommend starting with [OFFER] for your roofing workflow because the main leak appears to be [LEAK]. The system will focus on capturing better job details, routing requests clearly, and making estimate follow-up easier to see. This is not a guarantee of jobs, claims, or revenue. It is a practical improvement to the customer path.",
+          objections: [
+            ["I already have a website.", "That is good. I would look past whether the website exists and ask whether the roofing request path captures the details your team actually needs."],
+            ["I do not need AI.", "That is fine. This does not have to start with AI. It can start with intake, routing, roof photos, and follow-up."],
+            ["Can you guarantee leads?", "No. What we can do is improve how requests are captured and followed up once interest exists. No claim promises either."],
+            ["This sounds expensive.", "We can start with one practical piece — usually photo intake or estimate follow-up — instead of a full system."],
+          ],
+          deliveryChecklist: [
+            "Confirm services and storm/service areas",
+            "Confirm what roof job details must be captured (age, leak location, insurance status, urgency)",
+            "Confirm photo/document needs",
+            "Confirm urgency handling for leaks vs storm vs scheduled inspections",
+            "Confirm who receives alerts (owner, estimator, office, crew)",
+            "Confirm follow-up rules for estimates and inspections",
+            "Confirm approval rules for any customer-facing wording",
+            "Use claim-aware language, not claim-outcome language",
+            "Test the full request path on mobile before launch",
+          ],
+          monthlyRecap: [
+            "Roofing requests captured",
+            "Requests missing details (age, location, insurance status, urgency)",
+            "Estimate follow-ups due",
+            "Common homeowner questions (repair vs replace, claim, financing)",
+            "Storm-area / service-area observations",
+            "Review and referral opportunities",
+            "Recommended next improvement",
+          ],
+          safeClaims: "Do not promise claim approval, insurance coverage, storm leads, or job volume. Do not give legal or adjuster advice. Use claim-aware language only.",
+        },
+        "Flooring": {
+          niche: "Flooring",
+          niche_lower: "flooring",
+          objectives: "measurement requests, room photos, material selection, installation scheduling, quote follow-up, showroom visits.",
+          opportunitiesLeak: "Customers ask product questions but do not book a measurement, room photos and measurements are missing, showroom conversations are not followed up, installation estimates are sent but not tracked, and leads come from Google / Facebook / referrals / walk-ins / forms with no central view.",
+          bestSystems: "Measurement Request System, Room Photo + Project Detail Funnel, Showroom Follow-Up Workflow, Flooring Website + Local SEO Upgrade, Before-and-After Proof Workflow.",
+          discovery: [
+            "How do customers request measurements today?",
+            "Do they send room photos before you quote?",
+            "How are showroom visits followed up?",
+            "Who answers product questions online?",
+            "How do you track installation estimate follow-up?",
+            "Which flooring categories are most profitable?",
+            "Do you work from showroom, in-home, or both?",
+          ],
+          tenSecondPitch: "We help flooring companies organize measurement requests, room photos, product questions, and quote follow-up.",
+          fifteenSecondPitch: "We build a cleaner path for flooring leads so showroom questions, room photos, measurements, installation details, and follow-up do not get scattered.",
+          thirtySecondPitch: "Flooring leads often stall because the customer asks about materials, sends a few room photos, maybe needs a measurement, and then follow-up gets loose. We help build the path that captures the right project details, routes the request, and keeps the estimate or showroom follow-up visible.",
+          textReply: "Got it. Based on what you said, I would start with [LEAK]. A cleaner measurement / photo / showroom follow-up path usually makes flooring leads easier to manage.",
+          emailSubject: "Follow-up on your flooring request path",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on the flooring request path — measurements, room photos, product questions, and showroom follow-up — before we talk about a larger system.",
+          callOpener: "Hey [CONTACT], I work with flooring businesses on cleaning up the request path behind measurement requests, room photos, product questions, and follow-up. Can I ask how those requests usually come in today?",
+          proposalSummary: "We recommend starting with [OFFER] for your flooring workflow because the main leak appears to be [LEAK]. The system will focus on capturing better project details, routing requests clearly, and making showroom / installation follow-up easier to see.",
+          objections: [
+            ["I already have a website.", "Good. The question is whether the request path captures room photos, measurements, material questions, and timing."],
+            ["I do not need AI.", "Fine. The first step can be intake, photos, and follow-up — no AI required."],
+            ["Can you guarantee installs?", "No. We improve how requests are captured and followed up, not market demand."],
+            ["This sounds expensive.", "We can start with one piece — measurement intake or showroom follow-up — instead of a full system."],
+          ],
+          deliveryChecklist: [
+            "Confirm flooring categories and service areas",
+            "Confirm what details must be captured (rooms, square footage, material, timing)",
+            "Confirm photo needs",
+            "Confirm who receives alerts (showroom, estimator, installer)",
+            "Confirm follow-up rules for showroom visits and estimates",
+            "Confirm approval rules for customer-facing wording",
+            "Test the full request path on mobile before launch",
+          ],
+          monthlyRecap: [
+            "Flooring requests captured",
+            "Requests missing details (rooms, material, photos)",
+            "Showroom / estimate follow-ups due",
+            "Common product questions",
+            "Service-area observations",
+            "Before-and-after / referral opportunities",
+            "Recommended next improvement",
+          ],
+          safeClaims: "Do not guarantee installed job volume, misstate product warranties, or promise financing approval. Do not publish customer project photos without permission.",
+        },
+        "Restoration / Insurance Estimating": {
+          niche: "Restoration / Insurance Estimating",
+          niche_lower: "restoration",
+          objectives: "emergency intake, loss details, photos and documents, claim-aware (not claim-outcome) communication, estimate status, job documentation.",
+          opportunitiesLeak: "Emergency details are incomplete, photos and documents are scattered, homeowners are stressed and confused, claim-related language can create risk, estimate follow-up is inconsistent, and adjuster / homeowner communication is not organized.",
+          bestSystems: "Loss Intake + Photo / Document Checklist, Emergency Request Routing Workflow, Claim-Safe Communication Support, Estimate Status Follow-Up System, Restoration Pipeline Visibility System.",
+          discovery: [
+            "What types of losses do you handle?",
+            "How do emergency requests come in?",
+            "What photos or documents do you need early?",
+            "How do you track estimate status?",
+            "Who communicates with homeowners?",
+            "Who communicates with adjusters?",
+            "Where do claim-related details get scattered?",
+          ],
+          tenSecondPitch: "We help restoration companies organize loss details, photos, documents, estimate status, and follow-up.",
+          fifteenSecondPitch: "We build a cleaner intake and follow-up path for restoration jobs so emergency details, claim documents, photos, and homeowner communication do not get scattered.",
+          thirtySecondPitch: "Restoration work is stressful for the homeowner and detail-heavy for the company. The first request needs the right information, photos, documents, and communication path. We help organize that workflow without making claim promises or replacing professional judgment.",
+          textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] — claim-safe, documentation-focused, and no promises on claim outcomes.",
+          emailSubject: "Follow-up on your restoration / insurance estimating request path",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on cleaner loss intake, photos, documents, and estimate follow-up. This is documentation and workflow support — not insurance, legal, or claim advice.",
+          callOpener: "Hey [CONTACT], I work with restoration businesses on the request path behind emergency intake, photos, documents, and estimate follow-up. Can I ask how those requests usually come in today?",
+          proposalSummary: "We recommend starting with [OFFER] for your restoration / insurance estimating workflow because the main leak appears to be [LEAK]. The system focuses on cleaner loss intake, photo and document organization, estimate status visibility, and claim-aware (not claim-outcome) communication.",
+          objections: [
+            ["I already have a website.", "Good. The website is the front door; the workflow behind it is what matters for loss intake, photos, and documents."],
+            ["I do not need AI.", "Fine. We can start with intake, routing, photos, and estimate status — no AI required."],
+            ["Can you guarantee claim approvals?", "No, and we would not want to. We help organize workflow and documentation, not claim outcomes."],
+            ["This sounds expensive.", "We can start with one piece — loss intake or estimate status — instead of a full system."],
+          ],
+          deliveryChecklist: [
+            "Confirm loss types and service areas",
+            "Confirm what loss details must be captured (type, severity, photos, documents, urgency)",
+            "Confirm photo and document needs",
+            "Confirm emergency routing rules",
+            "Confirm follow-up rules for estimate status",
+            "Confirm approval rules for any customer-facing or claim-adjacent wording",
+            "Keep language documentation-focused and claim-safe",
+            "Test the full request path on mobile before launch",
+          ],
+          monthlyRecap: [
+            "Restoration requests captured",
+            "Requests missing loss details / photos / documents",
+            "Estimate status follow-ups due",
+            "Common homeowner questions",
+            "Service-area / loss-type observations",
+            "Documentation gaps to tighten",
+            "Recommended next improvement",
+          ],
+          safeClaims: "Do not promise claim approval, insurance coverage, emergency response guarantees, or legal / public-adjusting advice. Keep language documentation-focused and claim-safe.",
+        },
+        "Remodeling": {
+          niche: "Remodeling",
+          niche_lower: "remodeling",
+          objectives: "consultation quality, budget qualification, scope clarity, timeline expectations, photo intake, proposal follow-up, change-order control.",
+          opportunitiesLeak: "Unqualified homeowners eat up consultation time, budget and timeline are unclear, scope is vague, project photos are not collected early, consultations are booked without enough context, proposal follow-up is inconsistent, and change-order expectations are not explained early.",
+          bestSystems: "Remodel Consultation Qualifier, Project Photo + Scope Intake Funnel, Budget / Timeline Discovery System, Proposal Follow-Up Workflow, Portfolio + Local SEO Upgrade.",
+          discovery: [
+            "What types of remodels do you want more of?",
+            "What project types do you want to avoid?",
+            "How do you qualify budget before a consultation?",
+            "Do you collect photos before booking?",
+            "How do you handle timeline expectations?",
+            "What causes scope creep for you?",
+            "Who follows up after a proposal?",
+          ],
+          tenSecondPitch: "We help remodelers qualify project requests before they eat up time.",
+          fifteenSecondPitch: "We help remodelers capture budget, timeline, scope, photos, and homeowner expectations before a consultation turns into a time sink.",
+          thirtySecondPitch: "For remodelers, the problem is usually not getting a name and phone number. It is knowing whether the project is real, whether the budget is realistic, what the homeowner expects, what photos are available, and whether the timeline makes sense. We build the intake and follow-up path around that.",
+          textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so consultations come in already qualified.",
+          emailSubject: "Follow-up on your remodeling request path",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on consultation qualification, scope, budget, photos, and follow-up — before any larger build is considered.",
+          callOpener: "Hey [CONTACT], I work with remodelers on the request path behind consultations, photos, scope, budget, and follow-up. Can I ask how those requests usually come in today?",
+          proposalSummary: "We recommend starting with [OFFER] for your remodeling workflow because the main leak appears to be [LEAK]. The system focuses on qualifying consultation requests, capturing photos and scope, and making proposal follow-up easier to see.",
+          objections: [
+            ["I already have a website.", "Good. The question is whether the website filters and qualifies before a consultation."],
+            ["I do not need AI.", "Fine. The first step can be intake, qualification, and photo collection — no AI required."],
+            ["Can you guarantee remodels?", "No. We improve how requests are qualified, routed, and followed up — not market demand."],
+            ["This sounds expensive.", "We can start with one piece — qualifier or proposal follow-up — instead of a full system."],
+          ],
+          deliveryChecklist: [
+            "Confirm remodel categories and budget ranges",
+            "Confirm scope, photo, and timeline questions",
+            "Confirm who reviews and books consultations",
+            "Confirm follow-up rules for proposals",
+            "Confirm approval rules for change-order and pricing wording",
+            "Test the full request path on mobile before launch",
+          ],
+          monthlyRecap: [
+            "Consultation requests captured",
+            "Requests missing budget / scope / timeline",
+            "Proposal follow-ups due",
+            "Common homeowner questions",
+            "Portfolio / referral opportunities",
+            "Recommended next improvement",
+          ],
+          safeClaims: "Do not promise project timelines, fixed pricing without scope, or guaranteed financing approval. Do not give legal advice on change orders or contracts.",
+        },
+        "HVAC": {
+          niche: "HVAC",
+          niche_lower: "HVAC",
+          objectives: "service calls, emergency intake, maintenance plans, install quotes, financing questions, seasonal demand.",
+          opportunitiesLeak: "Service calls and emergencies overlap, intake misses unit type / age / urgency / address, install quotes are not followed up, maintenance plan opportunities slip, and seasonal demand creates scattered text-based requests.",
+          bestSystems: "HVAC Service Intake System, Emergency / After-Hours Routing Workflow, Install Quote Follow-Up Workflow, Maintenance Plan Reminder Workflow, Service Area Local SEO Upgrade.",
+          discovery: [
+            "How do service calls and emergencies come in today?",
+            "What unit / system details do you need before dispatching?",
+            "How do you follow up on install quotes?",
+            "How do you offer maintenance plans?",
+            "Which service areas matter most?",
+            "Who handles after-hours calls?",
+          ],
+          tenSecondPitch: "We help HVAC companies organize service calls, emergencies, install quotes, and maintenance plans.",
+          fifteenSecondPitch: "We build a cleaner path for HVAC requests so service calls, emergencies, install quotes, and maintenance plans do not get scattered.",
+          thirtySecondPitch: "HVAC companies juggle service calls, emergencies, install quotes, financing questions, and maintenance reminders. When those go into different inboxes and phones, good jobs slip. We help build a smarter intake, routing, and follow-up path so requests come in with the right details and the team can see what is next.",
+          textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so HVAC requests come in with the right system details.",
+          emailSubject: "Follow-up on your HVAC request path",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on service intake, emergency routing, and quote follow-up.",
+          callOpener: "Hey [CONTACT], I work with HVAC businesses on the request path behind service calls, emergencies, install quotes, and maintenance plans. Can I ask how those requests usually come in today?",
+          proposalSummary: "We recommend starting with [OFFER] for your HVAC workflow because the main leak appears to be [LEAK]. The system focuses on cleaner service intake, emergency routing, install-quote follow-up, and maintenance plan reminders.",
+          objections: [
+            ["I already have a website.", "Good. The question is whether service calls, emergencies, and install quotes are actually routed and followed up behind it."],
+            ["I do not need AI.", "Fine. The first step can be intake, routing, and reminders — no AI required."],
+            ["Can you guarantee installs?", "No. We improve how requests are captured and followed up, not market demand."],
+            ["This sounds expensive.", "We can start with one piece — emergency routing or quote follow-up — instead of a full system."],
+          ],
+          deliveryChecklist: [
+            "Confirm services, service areas, and unit types",
+            "Confirm what details must be captured (unit type, age, address, urgency)",
+            "Confirm emergency / after-hours routing",
+            "Confirm install-quote follow-up rules",
+            "Confirm maintenance plan reminder rules",
+            "Test the full request path on mobile before launch",
+          ],
+          monthlyRecap: [
+            "Service / emergency requests captured",
+            "Install quotes follow-ups due",
+            "Maintenance plan reminders due",
+            "Common homeowner questions",
+            "Service-area observations",
+            "Recommended next improvement",
+          ],
+          safeClaims: "Do not promise install volume, financing approvals, energy savings, or guaranteed emergency response.",
+        },
+        "Plumbing": {
+          niche: "Plumbing",
+          niche_lower: "plumbing",
+          objectives: "service calls, emergency leaks, water heater replacements, drain / sewer jobs, follow-up.",
+          opportunitiesLeak: "Emergency calls overlap with scheduled work, intake misses location / severity / water-off status, water heater and sewer jobs are not followed up, and reviews / referrals are inconsistent.",
+          bestSystems: "Plumbing Service Intake System, Emergency Routing Workflow, Water Heater / Sewer Job Follow-Up Workflow, Review + Referral Request System, Service Area Local SEO Upgrade.",
+          discovery: [
+            "How do plumbing calls and emergencies come in today?",
+            "What details do you need before dispatching?",
+            "How do you handle after-hours calls?",
+            "How do you follow up on larger jobs?",
+            "Which service areas matter most?",
+          ],
+          tenSecondPitch: "We help plumbers organize service calls, emergencies, water heater and sewer jobs, and follow-up.",
+          fifteenSecondPitch: "We build a cleaner path for plumbing requests so emergencies, scheduled service, larger jobs, and follow-up do not get scattered.",
+          thirtySecondPitch: "Plumbing companies handle a mix of emergencies, scheduled service, water heater replacements, and sewer or drain jobs. If intake and routing are loose, good jobs slip. We help build a smarter intake, routing, and follow-up path so the team can see what is next.",
+          textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so plumbing requests come in with the right details and route correctly.",
+          emailSubject: "Follow-up on your plumbing request path",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on emergency intake, routing, and larger-job follow-up.",
+          callOpener: "Hey [CONTACT], I work with plumbing businesses on the request path behind service calls, emergencies, and larger jobs. Can I ask how those requests usually come in today?",
+          proposalSummary: "We recommend starting with [OFFER] for your plumbing workflow because the main leak appears to be [LEAK]. The system focuses on cleaner service intake, emergency routing, and follow-up on larger jobs.",
+          objections: [
+            ["I already have a website.", "Good. The question is whether emergencies and larger jobs route and follow up behind it."],
+            ["I do not need AI.", "Fine. The first step can be intake and routing — no AI required."],
+            ["Can you guarantee jobs?", "No. We improve how requests are captured and followed up, not market demand."],
+            ["This sounds expensive.", "We can start with one piece — emergency routing or job follow-up — instead of a full system."],
+          ],
+          deliveryChecklist: [
+            "Confirm services, service areas, and after-hours coverage",
+            "Confirm what details must be captured (location, severity, water-off status)",
+            "Confirm emergency routing rules",
+            "Confirm follow-up rules for larger jobs",
+            "Test the full request path on mobile before launch",
+          ],
+          monthlyRecap: [
+            "Plumbing service / emergency requests captured",
+            "Larger-job follow-ups due",
+            "Review / referral opportunities",
+            "Common homeowner questions",
+            "Service-area observations",
+            "Recommended next improvement",
+          ],
+          safeClaims: "Do not promise job volume, financing approvals, or guaranteed emergency response.",
+        },
+        "Electrical": {
+          niche: "Electrical",
+          niche_lower: "electrical",
+          objectives: "service calls, safety calls, panel upgrades, EV chargers, generator installs, follow-up.",
+          opportunitiesLeak: "Safety calls overlap with scheduled work, intake misses panel / electrical details, EV charger and generator installs are not followed up consistently, and permitting / approval questions are scattered.",
+          bestSystems: "Electrical Service Intake System, Safety Call Routing Workflow, Panel / EV / Generator Install Follow-Up Workflow, Service Area Local SEO Upgrade, Review + Referral Request System.",
+          discovery: [
+            "How do electrical service and safety calls come in today?",
+            "What details do you need before dispatching?",
+            "How do you handle larger installs (panel, EV, generator)?",
+            "How do you follow up after a quote?",
+            "Which service areas matter most?",
+          ],
+          tenSecondPitch: "We help electricians organize service calls, safety calls, and larger install quotes.",
+          fifteenSecondPitch: "We build a cleaner path for electrical requests so safety calls, service calls, and panel / EV / generator installs do not get scattered.",
+          thirtySecondPitch: "Electrical companies handle safety calls, service work, and larger install jobs like panel upgrades, EV chargers, and generators. When intake and follow-up are loose, good install jobs slip. We help build a smarter intake, routing, and follow-up path.",
+          textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so electrical requests come in with the right details.",
+          emailSubject: "Follow-up on your electrical request path",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on safety call routing, install-quote intake, and follow-up.",
+          callOpener: "Hey [CONTACT], I work with electrical businesses on the request path behind service calls, safety calls, and larger installs. Can I ask how those requests usually come in today?",
+          proposalSummary: "We recommend starting with [OFFER] for your electrical workflow because the main leak appears to be [LEAK]. The system focuses on cleaner safety-call routing, install-quote intake, and follow-up.",
+          objections: [
+            ["I already have a website.", "Good. The question is whether safety calls and install quotes route and follow up behind it."],
+            ["I do not need AI.", "Fine. The first step can be intake and routing — no AI required."],
+            ["Can you guarantee jobs?", "No. We improve how requests are captured and followed up, not market demand."],
+            ["This sounds expensive.", "We can start with one piece — install follow-up or safety routing — instead of a full system."],
+          ],
+          deliveryChecklist: [
+            "Confirm services, service areas, and after-hours coverage",
+            "Confirm what details must be captured (panel age, system type, install scope)",
+            "Confirm safety-call routing rules",
+            "Confirm follow-up rules for install quotes",
+            "Test the full request path on mobile before launch",
+          ],
+          monthlyRecap: [
+            "Electrical service / safety requests captured",
+            "Install-quote follow-ups due",
+            "Review / referral opportunities",
+            "Common homeowner questions",
+            "Service-area observations",
+            "Recommended next improvement",
+          ],
+          safeClaims: "Do not promise job volume, financing approvals, energy savings, or guaranteed install timing.",
+        },
+        "Windows / Siding / Exterior": {
+          niche: "Windows / Siding / Exterior",
+          niche_lower: "windows / siding / exterior",
+          objectives: "in-home consultations, exterior photos, measurement requests, material questions, financing follow-up.",
+          opportunitiesLeak: "Exterior leads need in-home consultations that get scheduled without enough scope, photos and measurements are missing, financing questions are unanswered, and follow-up after a quote is inconsistent.",
+          bestSystems: "Exterior Consultation Qualifier, Photo + Measurement Intake Funnel, Quote Follow-Up Workflow, Service Area Local SEO Upgrade, Before-and-After Proof Workflow.",
+          discovery: [
+            "How do exterior leads come in today?",
+            "What details do you need before booking an in-home consultation?",
+            "Do customers send photos and measurements?",
+            "How do you follow up after a quote?",
+            "Which service areas matter most?",
+          ],
+          tenSecondPitch: "We help exterior companies organize consultation requests, photos, measurements, and quote follow-up.",
+          fifteenSecondPitch: "We build a cleaner path for window, siding, and exterior leads so consultation requests, photos, measurements, and follow-up do not get scattered.",
+          thirtySecondPitch: "Window, siding, and exterior leads usually need an in-home consultation. If photos, measurements, scope, and financing questions are not captured early, the team wastes time on consultations that go nowhere. We help build the intake and follow-up path so consultations come in already qualified.",
+          textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so consultation requests come in with the right details.",
+          emailSubject: "Follow-up on your exterior request path",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on consultation qualification, photos, measurements, and quote follow-up.",
+          callOpener: "Hey [CONTACT], I work with window, siding, and exterior companies on the request path behind consultations, photos, and follow-up. Can I ask how those requests usually come in today?",
+          proposalSummary: "We recommend starting with [OFFER] for your window / siding / exterior workflow because the main leak appears to be [LEAK]. The system focuses on consultation qualification, photo and measurement intake, and quote follow-up.",
+          objections: [
+            ["I already have a website.", "Good. The question is whether consultations come in already qualified."],
+            ["I do not need AI.", "Fine. The first step can be intake and qualification — no AI required."],
+            ["Can you guarantee jobs?", "No. We improve how requests are captured and followed up, not market demand."],
+            ["This sounds expensive.", "We can start with one piece — qualifier or follow-up — instead of a full system."],
+          ],
+          deliveryChecklist: [
+            "Confirm products, service areas, and consultation rules",
+            "Confirm what details must be captured (photos, measurements, scope, financing)",
+            "Confirm follow-up rules for in-home quotes",
+            "Confirm approval rules for any financing-adjacent wording",
+            "Test the full request path on mobile before launch",
+          ],
+          monthlyRecap: [
+            "Consultation requests captured",
+            "Requests missing photos / measurements / scope",
+            "Quote follow-ups due",
+            "Common homeowner questions",
+            "Service-area / referral observations",
+            "Recommended next improvement",
+          ],
+          safeClaims: "Do not promise financing approvals, energy savings, job volume, or installation timelines.",
+        },
+        "Handyman / General Local Service": {
+          niche: "Handyman / General Local Service",
+          niche_lower: "handyman / general local service",
+          objectives: "small job intake, qualification, photos, scheduling, follow-up, reviews.",
+          opportunitiesLeak: "Small job requests overlap, intake misses scope / photos / address, scheduling gets confusing, and follow-up / review process is inconsistent.",
+          bestSystems: "Small Job Intake System, Photo + Scope Funnel, Scheduling Workflow, Follow-Up + Review Request System, Service Area Local SEO Upgrade.",
+          discovery: [
+            "What types of jobs do you want more of?",
+            "What jobs do you want to avoid?",
+            "How do customers send photos / details today?",
+            "How do you schedule small jobs?",
+            "How do you follow up and ask for reviews?",
+            "Which service areas matter most?",
+          ],
+          tenSecondPitch: "We help handyman and general local service companies organize small-job intake, photos, scheduling, and follow-up.",
+          fifteenSecondPitch: "We build a cleaner path for small-job requests so scope, photos, scheduling, and follow-up do not get scattered.",
+          thirtySecondPitch: "Small-job businesses lose time chasing scope and photos. We help build a smarter intake and scheduling path so requests come in with the right details, route to the right person, and get followed up consistently.",
+          textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so small-job requests come in with the right scope and photos.",
+          emailSubject: "Follow-up on your handyman / local service request path",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on small-job intake, scope, photos, scheduling, and follow-up.",
+          callOpener: "Hey [CONTACT], I work with handyman and local service businesses on the request path behind small jobs, photos, and scheduling. Can I ask how those requests usually come in today?",
+          proposalSummary: "We recommend starting with [OFFER] for your handyman / local service workflow because the main leak appears to be [LEAK]. The system focuses on cleaner intake, photos, scope, scheduling, and follow-up.",
+          objections: [
+            ["I already have a website.", "Good. The question is whether small-job requests come in with the right scope and photos."],
+            ["I do not need AI.", "Fine. The first step can be intake and scheduling — no AI required."],
+            ["Can you guarantee jobs?", "No. We improve how requests are captured and followed up, not market demand."],
+            ["This sounds expensive.", "We can start with one piece — intake or scheduling — instead of a full system."],
+          ],
+          deliveryChecklist: [
+            "Confirm services and service areas",
+            "Confirm what details must be captured (scope, photos, address, timing)",
+            "Confirm scheduling rules",
+            "Confirm follow-up and review-request rules",
+            "Test the full request path on mobile before launch",
+          ],
+          monthlyRecap: [
+            "Small-job requests captured",
+            "Requests missing scope / photos",
+            "Follow-ups due",
+            "Review / referral opportunities",
+            "Common customer questions",
+            "Service-area observations",
+            "Recommended next improvement",
+          ],
+          safeClaims: "Do not promise job volume, fixed pricing without scope, or guaranteed scheduling.",
+        },
+        "Home Services General": {
+          niche: "Home Services General",
+          niche_lower: "home services",
+          objectives: "missed calls, quote requests, photo intake, scheduling, estimate follow-up, owner visibility.",
+          opportunitiesLeak: "Calls, photos, forms, and follow-up are scattered, intake misses job details, estimates are not followed up consistently, and owner visibility is unclear.",
+          bestSystems: "Smart Quote Request System, Missed Lead Recovery System, Photo Intake + Job Details Funnel, Follow-Up + Review Request System, Owner Visibility Dashboard.",
+          discovery: [
+            "How do most new requests come in today?",
+            "What happens when someone calls while you are on a job?",
+            "Do customers text photos to different people?",
+            "Who checks website forms?",
+            "How do you track estimates and follow-up?",
+            "Which service areas matter most?",
+          ],
+          tenSecondPitch: "We help home service companies stop losing quote requests when calls, photos, forms, and follow-up are scattered.",
+          fifteenSecondPitch: "We build the customer path behind your home service business so quote requests, job photos, scheduling details, and follow-up get captured and routed.",
+          thirtySecondPitch: "Most home service companies do not lose jobs because they are bad at the work. They lose opportunities because the customer path is scattered. Calls come in while you are on a job. Photos come by text. Forms miss key details. Estimates go out and follow-up is hard to track. We help build the system behind the website so the right details are captured, routed, followed up, and visible to the owner.",
+          textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so home service requests come in with the right details and follow-up is easier to see.",
+          emailSubject: "Follow-up on your home services request path",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on the home services request path — intake, photos, scheduling, routing, and follow-up.",
+          callOpener: "Hey [CONTACT], I work with home service businesses on the request path behind calls, photos, quote requests, and follow-up. Can I ask how those requests usually come in today?",
+          proposalSummary: "We recommend starting with [OFFER] for your home services workflow because the main leak appears to be [LEAK]. The system focuses on capturing better job details, routing requests clearly, and making estimate / job follow-up easier to see.",
+          objections: [
+            ["I already have a website.", "Good. The question is whether the request path captures the job details your team actually needs."],
+            ["I do not need AI.", "Fine. The first step can be intake, routing, photos, and follow-up — no AI required."],
+            ["Can you guarantee jobs?", "No. What we can do is improve how requests are captured, routed, and followed up once interest exists."],
+            ["This sounds expensive.", "We can start with one piece instead of a full system."],
+          ],
+          deliveryChecklist: [
+            "Confirm services and service areas",
+            "Confirm what details must be captured (job type, urgency, address, photos)",
+            "Confirm photo / document needs",
+            "Confirm urgency / after-hours handling",
+            "Confirm who receives alerts",
+            "Confirm follow-up rules for estimates",
+            "Confirm approval rules for customer-facing wording",
+            "Test the full request path on mobile before launch",
+          ],
+          monthlyRecap: [
+            "Home services requests captured",
+            "Requests missing details",
+            "Estimate / job follow-ups due",
+            "Common customer questions",
+            "Service-area observations",
+            "Review / referral opportunities",
+            "Recommended next improvement",
+          ],
+          safeClaims: "Do not promise jobs, revenue, rankings, reviews, appointments, bookings, insurance outcomes, financing approvals, energy savings, or results.",
+        },
+      };
+
+      function homeServicesPack(row) {
+        var niche = homeServicesNicheKey(row);
+        return HOME_SERVICES_NICHE_PACKS[niche] || HOME_SERVICES_NICHE_PACKS["Home Services General"];
+      }
+
+      var HOME_SERVICES_LEAK_CATEGORIES = [
+        { key: "missed-call leak", label: "Missed-call leak", pattern: /\b(missed call|voicemail|after hours|unanswered|on a job|calls? get missed|phone leak)\b/i },
+        { key: "quote-form leak", label: "Quote-form leak", pattern: /\b(quote (?:form|request)|weak form|intake form|website form|smart form|missing details|incomplete request)\b/i },
+        { key: "photo-intake leak", label: "Photo-intake leak", pattern: /\b(photo|picture|image|text(?:s|ed)? photos|send (?:photos|pics))\b/i },
+        { key: "scheduling leak", label: "Scheduling leak", pattern: /\b(schedul(?:e|ing)|book|booking|calendar|appointment|estimator time)\b/i },
+        { key: "follow-up leak", label: "Follow-up leak", pattern: /\b(follow[-\s]?up|after the quote|after the estimate|callback|no follow|go(?:ing)? cold)\b/i },
+        { key: "proposal leak", label: "Proposal leak", pattern: /\b(proposal|estimate (?:lost|missing|sent but)|quote sent|estimate follow)\b/i },
+        { key: "review/referral leak", label: "Review / referral leak", pattern: /\b(review|reviews|referral|testimonial|before and after|word of mouth)\b/i },
+        { key: "local visibility leak", label: "Local visibility leak", pattern: /\b(google business|local seo|local search|service area page|cannot be found|map listing|search rank)\b/i },
+        { key: "service-area clarity leak", label: "Service-area clarity leak", pattern: /\b(service area|coverage area|out of area|wrong zip|too far|driving)\b/i },
+        { key: "owner visibility leak", label: "Owner visibility leak", pattern: /\b(owner visibility|owner cannot see|pipeline|dashboard|no idea what happened|status view)\b/i },
+        { key: "staff handoff leak", label: "Staff handoff leak", pattern: /\b(staff handoff|crew handoff|office to (?:owner|estimator)|estimator to crew|hand[-\s]?off)\b/i },
+      ];
+
+      function homeServicesLeakKey(row) {
+        var manual = ownerNoteMarkerValue(row, "Home services leak:");
+        if (manual) {
+          var lower = String(manual).toLowerCase();
+          for (var k = 0; k < HOME_SERVICES_LEAK_CATEGORIES.length; k += 1) {
+            if (lower.indexOf(HOME_SERVICES_LEAK_CATEGORIES[k].key) !== -1) {
+              return HOME_SERVICES_LEAK_CATEGORIES[k].key;
+            }
+          }
+        }
+        var text = aiPlugLeadSourceText(row);
+        for (var i = 0; i < HOME_SERVICES_LEAK_CATEGORIES.length; i += 1) {
+          if (HOME_SERVICES_LEAK_CATEGORIES[i].pattern.test(text)) {
+            return HOME_SERVICES_LEAK_CATEGORIES[i].key;
+          }
+        }
+        return "quote-form leak";
+      }
+
+      var HOME_SERVICES_LEAK_DETAIL = {
+        "missed-call leak": {
+          diagnosis: "Calls are coming in while the team is on a job and getting missed before anyone can see them.",
+          firstQuestion: "What happens when someone calls about a job while you are on a roof, under a sink, or out in the field?",
+          firstOffer: "Missed Lead Recovery System",
+        },
+        "quote-form leak": {
+          diagnosis: "Quote requests are arriving with missing job details, so the team has to chase photos, address, scope, and timing.",
+          firstQuestion: "What information do you wish customers gave you upfront before you have to call them back?",
+          firstOffer: "Smart Quote Request System",
+        },
+        "photo-intake leak": {
+          diagnosis: "Customers text photos to different people and the images get buried before the right team member sees them.",
+          firstQuestion: "Where do roof / room / damage photos arrive today, and who sees them first?",
+          firstOffer: "Photo Intake + Job Details Funnel",
+        },
+        "scheduling leak": {
+          diagnosis: "Scheduling estimates, consultations, or service visits is happening across calls, texts, and inboxes — not a single owner-visible path.",
+          firstQuestion: "How do estimates and service visits actually get on the calendar today?",
+          firstOffer: "Lead Routing + Follow-Up System",
+        },
+        "follow-up leak": {
+          diagnosis: "Sent estimates and interested homeowners go cold because follow-up is not tracked or assigned.",
+          firstQuestion: "How do you know today whether a sent estimate has been followed up?",
+          firstOffer: "Follow-Up + Review Request System",
+        },
+        "proposal leak": {
+          diagnosis: "Proposals and estimates go out but get lost between sent and decided — no owner-visible status path.",
+          firstQuestion: "Once an estimate is sent, who is responsible for the next move and when?",
+          firstOffer: "Lead Routing + Follow-Up System",
+        },
+        "review/referral leak": {
+          diagnosis: "After-job review and referral opportunities are inconsistent or never asked for.",
+          firstQuestion: "What should happen after a job is completed and the homeowner is happy?",
+          firstOffer: "Follow-Up + Review Request System",
+        },
+        "local visibility leak": {
+          diagnosis: "The business is not showing up well in local search for the service areas that matter most.",
+          firstQuestion: "When a homeowner in your top service area searches, what do you want them to see first?",
+          firstOffer: "Service Area Local SEO Upgrade",
+        },
+        "service-area clarity leak": {
+          diagnosis: "Service-area clarity is weak — requests come in from outside coverage, or right-area homeowners cannot tell if you cover them.",
+          firstQuestion: "Which service areas or zip codes are worth saying yes to, and which should be filtered out at intake?",
+          firstOffer: "Service Area Local SEO Upgrade",
+        },
+        "owner visibility leak": {
+          diagnosis: "The owner cannot see new requests, scheduled estimates, sent quotes, and follow-up status in one place.",
+          firstQuestion: "What do you need to see every morning to know nothing slipped yesterday?",
+          firstOffer: "Owner Visibility Dashboard",
+        },
+        "staff handoff leak": {
+          diagnosis: "Handoffs between office, owner, estimator, and crew are losing details, photos, or follow-up commitments.",
+          firstQuestion: "Where in the office → estimator → crew handoff do details usually get lost?",
+          firstOffer: "Lead Routing + Follow-Up System",
+        },
+      };
+
+      function homeServicesDiagnosis(row) {
+        var leak = homeServicesLeakKey(row);
+        var detail = HOME_SERVICES_LEAK_DETAIL[leak] || HOME_SERVICES_LEAK_DETAIL["quote-form leak"];
+        var firstOffer = ownerNoteMarkerValue(row, "Home services first offer:") || detail.firstOffer;
+        var nextAction = ownerNoteMarkerValue(row, "Home services next action:") ||
+          "Confirm the " + leak + ", then recommend " + firstOffer + " as the smallest useful first system.";
+        return {
+          niche: homeServicesNicheKey(row),
+          leak: leak,
+          diagnosis: detail.diagnosis,
+          firstQuestion: detail.firstQuestion,
+          firstOffer: firstOffer,
+          nextAction: nextAction,
+        };
+      }
+
+      function homeServicesCopyContext(row) {
+        var pack = homeServicesPack(row);
+        var diag = homeServicesDiagnosis(row);
+        return {
+          contact: (row && row.contact_name) || "[contact name]",
+          business: (row && row.business_name) || "[business name]",
+          niche: pack.niche,
+          niche_lower: pack.niche_lower,
+          leak: diag.leak,
+          offer: diag.firstOffer,
+          pack: pack,
+          diag: diag,
+        };
+      }
+
+      function applyHomeServicesTokens(text, ctx) {
+        return String(text || "")
+          .replace(/\[CONTACT\]/g, ctx.contact)
+          .replace(/\[BUSINESS\]/g, ctx.business)
+          .replace(/\[NICHE\]/g, ctx.niche)
+          .replace(/\[LEAK\]/g, ctx.leak)
+          .replace(/\[OFFER\]/g, ctx.offer);
+      }
+
+      function buildHomeServicesFirstOutreach(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          "Hi " + ctx.contact + ", this is Willie with The AI Plug.",
+          "",
+          "For " + ctx.business + ", I help " + ctx.niche_lower + " businesses clean up the path behind " + ctx.pack.objectives,
+          "",
+          "Right now, the main thing I would look at is the " + ctx.leak + ". I would not start with a big system — I would start with " + ctx.offer + " as the smallest useful first step.",
+          "",
+          "No promises on jobs, claims, financing approvals, or rankings. Just a cleaner request path for the work you already do well.",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesTextReply(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          "Hi " + ctx.contact + ", thanks for the note about " + ctx.business + ". " + applyHomeServicesTokens(ctx.pack.textReply, ctx),
+          "",
+          "No pressure — happy to keep it to a quick conversation if it is useful.",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesEmailReply(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          "Subject: " + ctx.pack.emailSubject + " — " + ctx.business,
+          "",
+          "Hi " + ctx.contact + ",",
+          "",
+          applyHomeServicesTokens(ctx.pack.emailBody, ctx),
+          "",
+          "Happy to walk through it if it is useful, or to send a short written summary first.",
+          "",
+          "Willie",
+          "The AI Plug",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesCallOpener(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          applyHomeServicesTokens(ctx.pack.callOpener, ctx),
+          "",
+          "If you have a minute, my first question is: " + ctx.diag.firstQuestion,
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesDiscoveryQuestions(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          ctx.niche + " discovery questions — " + ctx.business,
+          "",
+          "Start with: " + ctx.diag.firstQuestion,
+          "",
+          bulletText(ctx.pack.discovery),
+          "",
+          "General home services questions:",
+          bulletText([
+            "How do most new requests come in?",
+            "What information do you wish customers gave you upfront?",
+            "Who follows up after a quote or estimate?",
+            "What service areas matter most?",
+            "Which jobs are worth chasing, and which waste your time?",
+          ]),
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesObjectionResponse(row) {
+        var ctx = homeServicesCopyContext(row);
+        var lines = [ctx.niche + " objection responses — " + ctx.business, ""];
+        ctx.pack.objections.forEach(function (item) {
+          lines.push(item[0]);
+          lines.push(item[1]);
+          lines.push("");
+        });
+        lines.push(aiPlugSafeCopyFooter());
+        return lines.join("\n").trim();
+      }
+
+      function buildHomeServicesProposalSummary(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          ctx.niche + " proposal summary — " + ctx.business,
+          "",
+          applyHomeServicesTokens(ctx.pack.proposalSummary, ctx),
+          "",
+          "Diagnosed leak: " + ctx.leak,
+          "Best first offer: " + ctx.offer,
+          "First deliverable: " + (HOME_SERVICES_LEAK_DETAIL[ctx.leak] ? "Smallest useful first step focused on " + ctx.leak + "." : "Smallest useful first step focused on the diagnosed leak."),
+          "",
+          "What is NOT guaranteed: jobs, claims, financing approvals, energy savings, rankings, reviews, appointments, or revenue.",
+          "",
+          "Next step: " + ctx.diag.nextAction,
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesCloseNextStep(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          ctx.niche + " close / next step — " + ctx.business,
+          "",
+          "Hi " + ctx.contact + ", if this feels reasonable, the next step is simple:",
+          "",
+          "1. Confirm the " + ctx.leak + " is the right place to start.",
+          "2. Map the current " + ctx.niche_lower + " request path and the details your team needs.",
+          "3. Build the first version of " + ctx.offer + " for owner approval before anything is customer-facing.",
+          "",
+          "No commitments to a bigger system. We start with the smallest useful piece.",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesFollowUp(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          ctx.niche + " follow-up — " + ctx.business,
+          "",
+          "Hi " + ctx.contact + ", quick check-in on the " + ctx.niche_lower + " request-path idea for " + ctx.business + ".",
+          "",
+          "The first step would still be " + ctx.offer + ", focused on the " + ctx.leak + ". Not a rebuild — just the smallest useful piece.",
+          "",
+          "Should I keep this open, or would it be better to circle back later? Either is fine.",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesDeliveryChecklist(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          ctx.niche + " delivery checklist — " + ctx.business,
+          "",
+          bulletText(ctx.pack.deliveryChecklist),
+          "",
+          "Approval points:",
+          bulletText([
+            "Intake questions and qualifying rules",
+            "Customer-facing wording",
+            "Routing and alert destinations",
+            "Follow-up cadence and copy",
+            "Any AI-assisted answers (if planned)",
+            "Launch preview",
+          ]),
+          "",
+          "Guardrail: " + ctx.pack.safeClaims,
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesMonthlyRecap(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          ctx.niche + " monthly recap — " + ctx.business,
+          "",
+          bulletText(ctx.pack.monthlyRecap),
+          "",
+          "Diagnosed leak this month: " + ctx.leak,
+          "Current first system: " + ctx.offer,
+          "Recommended next move: " + ctx.diag.nextAction,
+          "",
+          "No guaranteed results. Recap is for owner-visible workflow review.",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesFullSalesBundle(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          ctx.niche + " Sales Bundle — " + ctx.business,
+          "Contact: " + ctx.contact,
+          "Detected niche: " + ctx.niche,
+          "Diagnosed leak: " + ctx.leak,
+          "Best first offer: " + ctx.offer,
+          "",
+          "--- First outreach ---",
+          buildHomeServicesFirstOutreach(row),
+          "",
+          "--- Text reply ---",
+          buildHomeServicesTextReply(row),
+          "",
+          "--- Email reply ---",
+          buildHomeServicesEmailReply(row),
+          "",
+          "--- Call opener ---",
+          buildHomeServicesCallOpener(row),
+          "",
+          "--- Discovery questions ---",
+          buildHomeServicesDiscoveryQuestions(row),
+          "",
+          "--- Objection responses ---",
+          buildHomeServicesObjectionResponse(row),
+          "",
+          "--- Proposal summary ---",
+          buildHomeServicesProposalSummary(row),
+          "",
+          "--- Close / next step ---",
+          buildHomeServicesCloseNextStep(row),
+          "",
+          "--- Follow-up ---",
+          buildHomeServicesFollowUp(row),
+          "",
+          "--- Delivery checklist ---",
+          buildHomeServicesDeliveryChecklist(row),
+          "",
+          "--- Monthly recap ---",
+          buildHomeServicesMonthlyRecap(row),
+          "",
+          "Safe claims: " + ctx.pack.safeClaims,
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesOwnerNotesMarkers(row) {
+        var diag = homeServicesDiagnosis(row);
+        var existingVertical = ownerNoteMarkerValue(row, "AI Plug vertical:") || "Home Services";
+        var existingNiche = ownerNoteMarkerValue(row, "Home services niche:") || diag.niche;
+        var existingLeak = ownerNoteMarkerValue(row, "Home services leak:") || diag.leak;
+        var existingFirstOffer = ownerNoteMarkerValue(row, "Home services first offer:") || diag.firstOffer;
+        var existingNextAction = ownerNoteMarkerValue(row, "Home services next action:") || diag.nextAction;
+        return [
+          "Paste these lines into Owner Notes for " + (row.business_name || "this lead") + " to save the Home Services classification:",
+          "",
+          "AI Plug vertical: " + existingVertical,
+          "Home services niche: " + existingNiche,
+          "Home services leak: " + existingLeak,
+          "Home services first offer: " + existingFirstOffer,
+          "Home services next action: " + existingNextAction,
+          "",
+          "(These markers are read back by the dashboard so the diagnosed leak, niche, first offer, and next action stay sticky for this lead.)",
+        ].join("\n");
+      }
+
+      function homeServicesTextForKind(kind, row) {
+        if (!row) return "";
+        switch (kind) {
+          case "home-services-first-outreach": return buildHomeServicesFirstOutreach(row);
+          case "home-services-text-reply": return buildHomeServicesTextReply(row);
+          case "home-services-email-reply": return buildHomeServicesEmailReply(row);
+          case "home-services-call-opener": return buildHomeServicesCallOpener(row);
+          case "home-services-discovery-questions": return buildHomeServicesDiscoveryQuestions(row);
+          case "home-services-objection-response": return buildHomeServicesObjectionResponse(row);
+          case "home-services-proposal-summary": return buildHomeServicesProposalSummary(row);
+          case "home-services-close-next-step": return buildHomeServicesCloseNextStep(row);
+          case "home-services-follow-up": return buildHomeServicesFollowUp(row);
+          case "home-services-delivery-checklist": return buildHomeServicesDeliveryChecklist(row);
+          case "home-services-monthly-recap": return buildHomeServicesMonthlyRecap(row);
+          case "home-services-full-sales-bundle": return buildHomeServicesFullSalesBundle(row);
+          case "home-services-owner-notes-markers": return buildHomeServicesOwnerNotesMarkers(row);
+          default: return "";
+        }
+      }
+
       function buildAiPlugSalesCopy(kind, lead) {
         var d = aiPlugCopyData(lead);
         var lines = {
@@ -18899,14 +20211,27 @@
         if (kind === "ai-plug-niche-translation") return buildAiPlugNicheTranslation(lead);
         if (kind === "ai-plug-niche-pitch") return buildAiPlugNicheTranslation(lead);
         if (kind === "ai-plug-pitch-builder") return buildAiPlugPitchScriptText(lead);
+        if (kind === "ai-plug-30-second-pitch") return buildAiPlug30SecondPitch(lead);
         if (kind === "ai-plug-objection-responses") return buildAiPlugObjectionResponsesText(lead);
+        if (kind === "ai-plug-objection-response") return buildAiPlugObjectionResponsesText(lead);
         if (kind === "ai-plug-follow-up-center") return buildAiPlugFollowUpCenterText(lead);
+        if (kind === "ai-plug-warm-follow-up-message") return buildAiPlugWarmFollowUpStandalone(lead);
+        if (kind === "ai-plug-first-outreach-message") return buildAiPlugFirstOutreachStandalone(lead);
         if (kind === "ai-plug-proposal-direction") return buildAiPlugProposalDirectionText(lead);
+        if (kind === "ai-plug-proposal-summary") return buildAiPlugProposalDirectionText(lead);
         if (kind === "ai-plug-close-onboarding") return buildAiPlugCloseOnboardingText(lead);
+        if (kind === "ai-plug-close-next-step") return buildAiPlugCloseOnboardingText(lead);
         if (kind === "ai-plug-project-delivery") return buildAiPlugProjectDeliveryText(lead);
         if (kind === "ai-plug-client-retention") return buildAiPlugRetentionText(lead);
         if (kind === "ai-plug-delivery-handoff") return buildAiPlugDeliveryHandoffText(lead);
         if (kind === "ai-plug-launch-qa") return buildAiPlugLaunchQaText(lead);
+        if (kind === "ai-plug-launch-checklist") return buildAiPlugLaunchQaText(lead);
+        if (kind === "ai-plug-intake-request") return buildAiPlugIntakeRequest(lead);
+        if (kind === "ai-plug-diagnosis-recap") return buildAiPlugDiagnosisSummary(lead);
+        if (kind === "ai-plug-renewal-upsell-message") return buildAiPlugRenewalUpsellText(lead);
+        if (kind === "ai-plug-full-sales-bundle") return buildAiPlugFullSalesBundle(lead);
+        if (kind === "ai-plug-owner-notes-markers") return buildAiPlugOwnerNotesMarkers(lead);
+        if (String(kind || "").indexOf("home-services-") === 0) return homeServicesTextForKind(kind, lead);
         if (String(kind || "").indexOf("ai-plug-") === 0) return buildAiPlugSalesCopy(kind, lead);
         return "";
       }
@@ -21566,12 +22891,31 @@
         { key: "offers", label: "Offers" },
         { key: "discovery", label: "Discovery" },
         { key: "opportunity", label: "Research" },
-        { key: "deal", label: "Sales" },
+        { key: "deal", label: "Pitch / Outreach" },
         { key: "proposal", label: "Proposal" },
         { key: "follow-up", label: "Follow-Up" },
         { key: "close", label: "Close" },
         { key: "delivery", label: "Delivery" },
-        { key: "support", label: "Support" },
+        { key: "support", label: "Recap" },
+        { key: "rep", label: "Rep" },
+        { key: "guardrails", label: "Guardrails" },
+        { key: "copy-tools", label: "Copy" },
+      ];
+
+      var BUSINESS_COMMAND_NAV_ITEMS_WITH_HOME_SERVICES = [
+        { key: "snapshot", label: "Snapshot" },
+        { key: "home-services", label: "Home Services" },
+        { key: "notes", label: "Notes" },
+        { key: "diagnosis", label: "Diagnosis" },
+        { key: "offers", label: "Offers" },
+        { key: "discovery", label: "Discovery" },
+        { key: "opportunity", label: "Research" },
+        { key: "deal", label: "Pitch / Outreach" },
+        { key: "proposal", label: "Proposal" },
+        { key: "follow-up", label: "Follow-Up" },
+        { key: "close", label: "Close" },
+        { key: "delivery", label: "Delivery" },
+        { key: "support", label: "Recap" },
         { key: "rep", label: "Rep" },
         { key: "guardrails", label: "Guardrails" },
         { key: "copy-tools", label: "Copy" },
@@ -21695,19 +23039,24 @@
       }
 
       function businessCommandSnapshotBlock(lead, priority, nextAction) {
+        var hs = !isRestaurantRow(lead) && isHomeServicesRow(lead);
+        var hsDiag = hs ? homeServicesDiagnosis(lead) : null;
         return (
           '<section class="owner-dash-detail-section owner-dash-command-snapshot">' +
-          '<h3 class="owner-dash-detail-section-title">Lead Snapshot</h3>' +
+          '<h3 class="owner-dash-detail-section-title">Business Snapshot</h3>' +
           '<p class="owner-dash-detail-section-note">Fast operating view for mobile. Full training and tool sections stay available in Full Training View.</p>' +
           '<div class="owner-dash-detail-grid">' +
           detailRow("Business / restaurant", lead.business_name) +
           detailRow("Contact", lead.contact_name) +
           detailRow("Phone / email", [lead.contact_phone, lead.contact_email].filter(Boolean).join(" / ")) +
+          detailRow("Vertical lane", businessVerticalLabel(lead)) +
+          (hs ? detailRow("Home services niche", hsDiag.niche) : "") +
           detailRow("Business problem", lead.current_problem || businessServicesFixFirstFromRow(lead), true) +
           detailRow("Customer-path leak", aiPlugDiagnosis(lead).leak, true) +
+          (hs ? detailRow("Home services leak", hsDiag.leak, true) : "") +
           detailRow("Priority", priority && priority.label) +
           detailRow("Status", displayStatus(lead.status)) +
-          detailRow("Suggested system", lead.recommended_system || (isRestaurantRow(lead) ? restaurantSnapshot(lead).recommendedOffer : aiPlugOfferPath(lead)), true) +
+          detailRow("Suggested system", lead.recommended_system || (isRestaurantRow(lead) ? restaurantSnapshot(lead).recommendedOffer : (hs ? hsDiag.firstOffer : aiPlugOfferPath(lead))), true) +
           detailRow("Recommended first move", isRestaurantRow(lead) ? nextAction : aiPlugRecommendedFirstMove(lead), true) +
           detailRow("Next recommended action", nextAction, true) +
           detailRow("Owner notes", lead.owner_notes, true) +
@@ -21731,6 +23080,7 @@
 
       function businessCommandQuickCopyBlock(lead) {
         var restaurant = isRestaurantRow(lead);
+        var homeServices = !restaurant && isHomeServicesRow(lead);
         var buttons =
           commandQuickCopyButton("copy-field", "phone", "Copy phone", false) +
           commandQuickCopyButton("copy-field", "email", "Copy email", false) +
@@ -21744,20 +23094,34 @@
             commandQuickCopyButton("copy-restaurant", "restaurant-short-text-proposal", "Copy short proposal", false) +
             commandQuickCopyButton("copy-restaurant", "restaurant-objection-response", "Copy objection response", false) +
             commandQuickCopyButton("copy-restaurant", "restaurant-close-message", "Copy close message", false);
+        } else if (homeServices) {
+          var niche = homeServicesNicheKey(lead);
+          buttons +=
+            commandQuickCopyButton("copy-home-services", "home-services-first-outreach", "Copy " + niche + " first outreach", true) +
+            commandQuickCopyButton("copy-home-services", "home-services-text-reply", "Copy " + niche + " text reply", false) +
+            commandQuickCopyButton("copy-home-services", "home-services-call-opener", "Copy " + niche + " call opener", false) +
+            commandQuickCopyButton("copy-home-services", "home-services-discovery-questions", "Copy " + niche + " discovery questions", false) +
+            commandQuickCopyButton("copy-home-services", "home-services-objection-response", "Copy " + niche + " objection response", false) +
+            commandQuickCopyButton("copy-home-services", "home-services-proposal-summary", "Copy " + niche + " proposal summary", true) +
+            commandQuickCopyButton("copy-home-services", "home-services-close-next-step", "Copy " + niche + " close / next step", false) +
+            commandQuickCopyButton("copy-home-services", "home-services-follow-up", "Copy " + niche + " follow-up", false) +
+            commandQuickCopyButton("copy-home-services", "home-services-full-sales-bundle", "Copy full " + niche + " sales bundle", true) +
+            commandQuickCopyButton("copy-deal", "ai-plug-diagnosis-recap", "Copy diagnosis recap", false);
         } else {
           buttons +=
-            commandQuickCopyButton("copy-deal", "ai-plug-first-outreach", "Copy first response", true) +
-            commandQuickCopyButton("copy-deal", "ai-plug-text-reply", "Copy text reply", false) +
-            commandQuickCopyButton("copy-deal", "ai-plug-call-opener", "Copy call opener", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-first-outreach-message", "Copy AI Plug first outreach", true) +
+            commandQuickCopyButton("copy-deal", "ai-plug-warm-follow-up-message", "Copy AI Plug warm follow-up", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-30-second-pitch", "Copy 30-second pitch", false) +
             commandQuickCopyButton("copy-deal", "ai-plug-discovery-questions", "Copy discovery questions", false) +
-            commandQuickCopyButton("copy-deal", "ai-plug-objection-responses", "Copy objection responses", false) +
-            commandQuickCopyButton("copy-deal", "ai-plug-diagnosis", "Copy diagnostic recap", true) +
-            commandQuickCopyButton("copy-deal", "ai-plug-niche-pitch", "Copy niche-specific pitch", false) +
-            commandQuickCopyButton("copy-deal", "ai-plug-proposal-ready", "Copy proposal summary", false) +
-            commandQuickCopyButton("copy-deal", "ai-plug-next-step-close", "Copy next-step close", false) +
-            commandQuickCopyButton("copy-deal", "ai-plug-hold-message", "Copy hold/not-a-fit message", false) +
-            commandQuickCopyButton("copy-deal", "ai-plug-command-summary", "Copy business command summary", false) +
-            commandQuickCopyButton("copy-deal", "ai-plug-crm-summary", "Copy owner-ready CRM summary", true);
+            commandQuickCopyButton("copy-deal", "ai-plug-diagnosis-recap", "Copy diagnosis recap", true) +
+            commandQuickCopyButton("copy-deal", "ai-plug-objection-response", "Copy objection response", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-proposal-summary", "Copy proposal summary", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-close-next-step", "Copy close / next step", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-intake-request", "Copy intake / materials request", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-launch-checklist", "Copy launch checklist", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-monthly-recap", "Copy monthly recap", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-renewal-upsell-message", "Copy renewal / upsell", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-full-sales-bundle", "Copy full AI Plug sales bundle", true);
         }
         return (
           '<section class="owner-dash-command-quick-copy" data-command-view="quick-only">' +
@@ -21863,19 +23227,28 @@
 
       function aiPlugDiagnosisBlock(lead) {
         var diagnosis = aiPlugDiagnosis(lead);
+        var leakCategoriesHtml = AI_PLUG_LEAK_CATEGORIES.map(function (item) {
+          return "<li><strong>" + esc(item.label) + "</strong> — " +
+            esc((AI_PLUG_LEAK_DETAIL_MAP[item.key] || {}).diagnosis || "") + "</li>";
+        }).join("");
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--ai-plug-diagnosis">' +
-          '<h3 class="owner-dash-detail-section-title">AI Plug Business Lead Diagnosis</h3>' +
-          '<p class="owner-dash-detail-section-note">Internal diagnosis only. Use this to prepare the first call and owner notes.</p>' +
+          '<h3 class="owner-dash-detail-section-title">Diagnosis Command</h3>' +
+          '<p class="owner-dash-detail-section-note">Internal diagnosis only. Match the leak category, ask the first question, and choose the smallest useful first offer.</p>' +
           '<div class="owner-dash-detail-grid">' +
-          detailRow("Likely leak type", diagnosis.leak) +
+          detailRow("Likely leak", diagnosis.leak) +
           detailRow("Plain-English diagnosis", diagnosis.diagnosis, true) +
-          detailRow("Recommended first question", diagnosis.firstQuestion, true) +
+          detailRow("First question to ask", diagnosis.firstQuestion, true) +
           detailRow("Suggested first offer", diagnosis.suggestedFirstOffer, true) +
           detailRow("Next action", diagnosis.nextAction, true) +
           "</div>" +
+          collapsibleBlock(
+            "Leak categories reference",
+            '<ul class="owner-dash-deal-list">' + leakCategoriesHtml + "</ul>",
+            "owner-dash-collapsible--ai-plug-leak-categories"
+          ) +
           '<div class="owner-dash-proposal-actions">' +
-          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="ai-plug-diagnosis">Copy diagnosis summary</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="ai-plug-diagnosis-recap">Copy diagnosis recap</button>' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="ai-plug-discovery-opener">Copy discovery opener</button>' +
           "</div>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
@@ -21885,8 +23258,8 @@
       }
 
       function aiPlugOfferEngineBlock(lead) {
-        var offer = aiPlugRecommendOffer(lead);
-        var allOffers = AI_PLUG_OFFER_ENGINE.map(function (item) {
+        var ladderOffer = aiPlugRecommendLadderOffer(lead);
+        var allOffers = AI_PLUG_OFFER_LADDER.map(function (item) {
           return (
             '<details class="owner-dash-collapsible">' +
             '<summary class="owner-dash-collapsible-summary">' +
@@ -21904,16 +23277,16 @@
         }).join("");
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--ai-plug-offers">' +
-          '<h3 class="owner-dash-detail-section-title">AI Plug Offer Recommendation Engine</h3>' +
-          '<p class="owner-dash-detail-section-note">Recommended starting point from lead text, current problem, services interested, AI summary, and owner notes.</p>' +
+          '<h3 class="owner-dash-detail-section-title">Offer Recommendation</h3>' +
+          '<p class="owner-dash-detail-section-note">Best first offer from the AI Plug offer ladder, matched to the diagnosed leak, lead text, current problem, services interested, and owner notes.</p>' +
           '<div class="owner-dash-detail-grid">' +
-          detailRow("Recommended offer", offer.offer, true) +
-          detailRow("Best for", offer.bestFor, true) +
-          detailRow("Problem it solves", offer.solves, true) +
-          detailRow("First deliverable", offer.firstDeliverable, true) +
-          detailRow("Delivery complexity", offer.complexity) +
-          detailRow("Safe sales language", offer.safeSales, true) +
-          detailRow("Ask before recommending", offer.askFirst, true) +
+          detailRow("Best first offer", ladderOffer.offer, true) +
+          detailRow("Why it fits", ladderOffer.bestFor, true) +
+          detailRow("What it improves", ladderOffer.solves, true) +
+          detailRow("First deliverable", ladderOffer.firstDeliverable, true) +
+          detailRow("Delivery complexity", ladderOffer.complexity) +
+          detailRow("Ask before recommending", ladderOffer.askFirst, true) +
+          detailRow("Safe sales language", ladderOffer.safeSales, true) +
           "</div>" +
           collapsibleBlock("Show full AI Plug offer ladder", allOffers, "owner-dash-collapsible--ai-plug-offers") +
           '<div class="owner-dash-proposal-actions">' +
@@ -22171,6 +23544,96 @@
         );
       }
 
+      function homeServicesCommandBlock(lead) {
+        if (!lead || !isHomeServicesRow(lead)) return "";
+        var diag = homeServicesDiagnosis(lead);
+        var pack = homeServicesPack(lead);
+        var copyButton = function (kind, label, primary) {
+          return commandQuickCopyButton("copy-home-services", kind, label, !!primary);
+        };
+        var copyButtons =
+          copyButton("home-services-first-outreach", "Copy " + diag.niche + " first outreach", true) +
+          copyButton("home-services-text-reply", "Copy " + diag.niche + " text reply", false) +
+          copyButton("home-services-email-reply", "Copy " + diag.niche + " email reply", false) +
+          copyButton("home-services-call-opener", "Copy " + diag.niche + " call opener", false) +
+          copyButton("home-services-discovery-questions", "Copy " + diag.niche + " discovery questions", false) +
+          copyButton("home-services-objection-response", "Copy " + diag.niche + " objection response", false) +
+          copyButton("home-services-proposal-summary", "Copy " + diag.niche + " proposal summary", true) +
+          copyButton("home-services-close-next-step", "Copy " + diag.niche + " close / next step", false) +
+          copyButton("home-services-follow-up", "Copy " + diag.niche + " follow-up", false) +
+          copyButton("home-services-delivery-checklist", "Copy " + diag.niche + " delivery checklist", false) +
+          copyButton("home-services-monthly-recap", "Copy " + diag.niche + " monthly recap", false) +
+          copyButton("home-services-full-sales-bundle", "Copy full " + diag.niche + " sales bundle", true) +
+          copyButton("home-services-owner-notes-markers", "Copy owner-notes marker block", false);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--home-services">' +
+          '<h3 class="owner-dash-detail-section-title">Home Services / Home Improvement Command</h3>' +
+          '<p class="owner-dash-detail-section-note">Detected vertical lane: <strong>Home Services</strong>. Compact command block for the diagnosed niche. Restaurant rows are not handled here.</p>' +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Detected niche", diag.niche) +
+          detailRow("Likely home services leak", diag.leak) +
+          detailRow("Plain-English diagnosis", diag.diagnosis, true) +
+          detailRow("First question to ask", diag.firstQuestion, true) +
+          detailRow("Best first offer", diag.firstOffer, true) +
+          detailRow("Next action", diag.nextAction, true) +
+          "</div>" +
+          collapsibleBlock(diag.niche + " discovery questions", bulletListHtml(pack.discovery), "owner-dash-collapsible--home-services-discovery") +
+          collapsibleBlock("Where opportunities leak (" + diag.niche + ")", "<p>" + esc(pack.opportunitiesLeak) + "</p>", "owner-dash-collapsible--home-services-leaks") +
+          collapsibleBlock("Best-fit AI Plug systems for " + diag.niche, "<p>" + esc(pack.bestSystems) + "</p>", "owner-dash-collapsible--home-services-systems") +
+          collapsibleBlock(diag.niche + " objection replies", pack.objections.map(function (item) {
+            return "<p><strong>" + esc(item[0]) + "</strong><br>" + esc(item[1]) + "</p>";
+          }).join(""), "owner-dash-collapsible--home-services-objections") +
+          collapsibleBlock(diag.niche + " delivery checklist", bulletListHtml(pack.deliveryChecklist), "owner-dash-collapsible--home-services-delivery") +
+          collapsibleBlock(diag.niche + " monthly recap logic", bulletListHtml(pack.monthlyRecap), "owner-dash-collapsible--home-services-recap") +
+          collapsibleBlock("Safe claims / do-not-say (" + diag.niche + ")", "<p>" + esc(pack.safeClaims) + "</p>", "owner-dash-collapsible--home-services-safe") +
+          '<div class="owner-dash-command-quick-copy-actions">' +
+          copyButtons +
+          "</div>" +
+          '<p class="owner-dash-stage-safe-note">Internal copy-only tools. Nothing sends, publishes, invoices, charges, or promises automatically. ' +
+          esc(pack.safeClaims) +
+          "</p>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden><p class="owner-dash-detail-manual-copy-label">Select and copy:</p><textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea></div>' +
+          "</section>"
+        );
+      }
+
+      function aiPlugCopyToolsBlock(lead) {
+        if (!lead || isRestaurantRow(lead)) return "";
+        var buttons = [
+          ["ai-plug-first-outreach-message", "Copy AI Plug first outreach", true],
+          ["ai-plug-warm-follow-up-message", "Copy AI Plug warm follow-up", false],
+          ["ai-plug-30-second-pitch", "Copy AI Plug 30-second pitch", false],
+          ["ai-plug-discovery-questions", "Copy discovery questions", false],
+          ["ai-plug-diagnosis-recap", "Copy diagnosis recap", true],
+          ["ai-plug-objection-response", "Copy objection response", false],
+          ["ai-plug-proposal-summary", "Copy proposal summary", false],
+          ["ai-plug-close-next-step", "Copy close / next step", false],
+          ["ai-plug-intake-request", "Copy intake / materials request", false],
+          ["ai-plug-launch-checklist", "Copy launch checklist", false],
+          ["ai-plug-monthly-recap", "Copy monthly recap", false],
+          ["ai-plug-renewal-upsell-message", "Copy renewal / upsell", false],
+          ["ai-plug-full-sales-bundle", "Copy full AI Plug sales bundle", true],
+          ["ai-plug-owner-notes-markers", "Copy owner-notes marker block", false],
+        ].map(function (item) {
+          return commandQuickCopyButton("copy-deal", item[0], item[1], item[2]);
+        }).join("");
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-plug-copy-tools">' +
+          '<h3 class="owner-dash-detail-section-title">AI Plug Copy Tools</h3>' +
+          '<p class="owner-dash-detail-section-note">Copy-only shortcuts for general AI Plug business work. Safe placeholders fill in when data is missing.</p>' +
+          '<div class="owner-dash-command-quick-copy-actions">' +
+          buttons +
+          "</div>" +
+          '<p class="owner-dash-stage-safe-note">' +
+          esc(aiPlugSafeCopyFooter()) +
+          "</p>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden><p class="owner-dash-detail-manual-copy-label">Select and copy:</p><textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea></div>' +
+          "</section>"
+        );
+      }
+
       function aiPlugRepCommandBlock() {
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--ai-plug-rep">' +
@@ -22377,13 +23840,25 @@
         var priority = calcBusinessPriority(lead);
         var nextAction = calcBusinessNextAction(lead, priority);
         var restaurant = isRestaurantRow(lead);
-        var navItems = restaurant ? RESTAURANT_COMMAND_NAV_ITEMS : BUSINESS_COMMAND_NAV_ITEMS;
+        var homeServices = !restaurant && isHomeServicesRow(lead);
+        var navItems;
+        if (restaurant) {
+          navItems = RESTAURANT_COMMAND_NAV_ITEMS;
+        } else if (homeServices) {
+          navItems = BUSINESS_COMMAND_NAV_ITEMS_WITH_HOME_SERVICES;
+        } else {
+          navItems = BUSINESS_COMMAND_NAV_ITEMS;
+        }
         return (
           '<div class="' +
           commandSheetClass(
             "business_leads",
             lead.id,
-            restaurant ? "owner-dash-command-sheet--restaurant-prospect" : "owner-dash-command-sheet--business-lead"
+            restaurant
+              ? "owner-dash-command-sheet--restaurant-prospect"
+              : homeServices
+              ? "owner-dash-command-sheet--home-services owner-dash-command-sheet--business-lead"
+              : "owner-dash-command-sheet--business-lead"
           ) +
           '" data-command-mode="' +
           esc(commandSheetMode("business_leads", lead.id)) +
@@ -22394,6 +23869,7 @@
           priorityBadgeHtml(priority) +
           businessServicesLeadBadgeHtml(lead) +
           restaurantBadgeHtml(lead) +
+          (homeServices ? '<span class="owner-dash-badge owner-dash-badge--teal">Home Services · ' + esc(homeServicesNicheKey(lead)) + "</span>" : "") +
           '<span class="owner-dash-badge ' +
           statusClass(lead.status) +
           '">' +
@@ -22408,8 +23884,10 @@
           commandSection("snapshot", "", nextActionHtml(nextAction)) +
           commandSection("snapshot", "quick-only", businessCommandSnapshotBlock(lead, priority, nextAction)) +
           commandSection("copy-tools", "quick-only", businessCommandQuickCopyBlock(lead)) +
+          (homeServices ? commandSection("home-services", "", homeServicesCommandBlock(lead)) : "") +
           (restaurant ? "" : commandSection("diagnosis", "full", aiPlugDiagnosisBlock(lead) + aiPlugFitPriorityBlock(lead) + aiPlugNicheBlock(lead))) +
           (restaurant ? "" : commandSection("offers", "full", aiPlugOfferEngineBlock(lead))) +
+          (restaurant ? "" : commandSection("copy-tools", "full", aiPlugCopyToolsBlock(lead))) +
           (restaurant ? "" : commandSection("discovery", "full", aiPlugDiscoveryBlock(lead))) +
           commandSection("opportunity", "full", opportunityBuilderBlock(lead)) +
           (restaurant ? restaurantSalesCommandBlock(lead) : "") +
@@ -30226,6 +31704,7 @@
               action === "copy-opportunity" ||
               action === "copy-restaurant" ||
               action === "copy-deal" ||
+              action === "copy-home-services" ||
               action === "copy-pricing" ||
               action === "copy-quote" ||
               action === "copy-close-onboarding" ||
