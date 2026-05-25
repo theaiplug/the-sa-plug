@@ -1,0 +1,21 @@
+Professional Services page — suggested image assets (not yet in repo).
+Use CSS placeholders on vertical cards until these exist. Do not reference missing paths in HTML.
+
+Suggested paths (no baked-in text, logos, fake UI, or dashboard screenshots):
+- professional-services-hero-consultation.png
+- professional-services-intake-review.png
+- professional-services-discovery-call.png
+- professional-services-owner-visibility.png
+- professional-services-follow-up-workflow.png
+- professional-services-real-estate-inquiry.png
+- professional-services-insurance-quote.png
+- professional-services-legal-intake.png
+- professional-services-medical-wellness-intake.png
+- professional-services-accounting-tax-intake.png
+- professional-services-consultant-discovery.png
+
+Currently used (existing assets):
+- business-smart-intake-forms.png (hero)
+- ai-business-smart-intake-routing.png (pain section)
+- ai-business-follow-up-automation.png (what we build)
+- business-lead-routing-human-handoff.png (trust section)
