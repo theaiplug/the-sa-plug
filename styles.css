@@ -17354,7 +17354,7 @@ body.owner-dash-detail-open {
   margin: calc(clamp(16px, 2vw, 20px) * -1) calc(clamp(16px, 2vw, 20px) * -1) 0;
   border-radius: calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0;
   overflow: hidden;
-  height: clamp(128px, 32vw, 156px);
+  height: clamp(168px, 40vw, 200px);
 }
 
 .page-home-services .hs-vertical-thumb img {
@@ -17362,7 +17362,7 @@ body.owner-dash-detail-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center center;
 }
 
 @media (min-width: 640px) {
