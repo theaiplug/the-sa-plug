@@ -31301,6 +31301,41 @@
         });
       }
 
+      function dashboardPayloadHasRecords(data) {
+        if (!data) return false;
+        return (
+          (Array.isArray(data.business_leads) && data.business_leads.length) ||
+          (Array.isArray(data.restaurant_leads) && data.restaurant_leads.length) ||
+          (Array.isArray(data.transportation_requests) && data.transportation_requests.length)
+        );
+      }
+
+      function isDashboardLoadOk(result) {
+        if (!result || !result.data) return false;
+        if (result.data.ok) return true;
+        return Boolean(result.ok && dashboardPayloadHasRecords(result.data));
+      }
+
+      function showSectionErrors(data) {
+        if (!data || !els.refreshError) return;
+        var sectionErrors = data.sectionErrors;
+        var parts = [];
+        if (sectionErrors && typeof sectionErrors === "object") {
+          Object.keys(sectionErrors).forEach(function (key) {
+            if (sectionErrors[key]) {
+              parts.push(String(key).replace(/_/g, " ") + ": " + sectionErrors[key]);
+            }
+          });
+        } else if (Array.isArray(data.errors) && data.errors.length) {
+          parts = data.errors.slice(0, 3);
+        }
+        if (!parts.length) {
+          hideRefreshError();
+          return;
+        }
+        showRefreshError("Some sections did not load: " + parts.join(" · "));
+      }
+
       function refreshCounts() {
         return fetchDashboard()
           .then(function (result) {
@@ -31353,11 +31388,12 @@
               finishUnauthorized();
               return;
             }
-            if (!result.ok || !result.data || !result.data.ok) {
+            if (!isDashboardLoadOk(result)) {
               showRefreshError("Could not refresh data. Try again in a moment.");
               return;
             }
             finishSuccess(result.data);
+            showSectionErrors(result.data);
           })
           .catch(function () {
             showRefreshError("Network error while refreshing. Try again.");
@@ -31911,12 +31947,12 @@
         hide(els.loading);
         hide(els.unauthorized);
         hide(els.error);
-        hideRefreshError();
         show(els.content);
         state.businessLeads = data.business_leads || [];
         state.restaurantLeads = data.restaurant_leads || [];
         state.transportRows = data.transportation_requests || [];
         state.counts = data.counts || null;
+        state.sectionErrors = data.sectionErrors || null;
         state.clientActivity = {};
         setCounts(state.counts);
         updateLastLoaded();
@@ -31979,11 +32015,17 @@
             finishUnauthorized();
             return;
           }
-          if (!result.ok || !result.data || !result.data.ok) {
-            finishError();
+          if (isDashboardLoadOk(result)) {
+            finishSuccess(result.data);
+            showSectionErrors(result.data);
             return;
           }
-          finishSuccess(result.data);
+          if (result.data && dashboardPayloadHasRecords(result.data)) {
+            finishSuccess(result.data);
+            showSectionErrors(result.data);
+            return;
+          }
+          finishError();
         })
         .catch(function () {
           finishError();

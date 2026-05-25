@@ -29,14 +29,20 @@ const BUSINESS_SELECT_STATUS =
 const BUSINESS_SELECT_CORE =
   "id,created_at,lead_quality,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary,alert_email_sent,page_path";
 
+const BUSINESS_SELECT_MINIMAL =
+  "id,created_at,contact_name,contact_email,contact_phone,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,urgency,timeline,ai_summary";
+
 const TRANSPORT_SELECT_FULL =
   "id,created_at,status,owner_notes,last_contacted_at,updated_at,source,lead_type,next_action,visitor_name,visitor_phone,visitor_email,preferred_contact_method,pickup_area,destination,requested_date,time_window,requested_time,party_size,luggage,request_type,trip_type,transportation_need,flight_number,hotel_or_resort,accessibility_needs,child_seats_needed,conversation_excerpt,notes,alert_email_sent,alert_sms_sent,page_path";
 
 const TRANSPORT_SELECT_CORE =
   "id,created_at,status,visitor_name,visitor_phone,visitor_email,pickup_area,destination,requested_time,party_size,request_type,conversation_excerpt,notes,alert_email_sent,alert_sms_sent,page_path";
 
+const TRANSPORT_SELECT_MINIMAL =
+  "id,created_at,visitor_name,visitor_phone,visitor_email,pickup_area,destination,requested_time,party_size,request_type,conversation_excerpt,notes";
+
 const RESTAURANT_SELECT_FULL =
-  "id,created_at,status,owner_notes,last_contacted_at,updated_at,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,ai_summary,notes,alert_email_sent,alert_sms_sent,page_path";
+  "id,created_at,status,owner_notes,last_contacted_at,updated_at,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,ai_summary,alert_email_sent,alert_sms_sent,page_path";
 
 const RESTAURANT_SELECT_CORE =
   "id,created_at,status,owner_notes,last_contacted_at,updated_at,contact_name,contact_email,contact_phone,preferred_contact_method,business_name,business_website,business_industry,business_location,current_problem,services_interested,recommended_system,ai_summary,alert_email_sent,alert_sms_sent,page_path";
@@ -91,6 +97,11 @@ async function supabaseCountWithHeaders(url, serviceKey, table, filter) {
   return parseCountFromRange(res);
 }
 
+function sanitizeErrorMessage(err) {
+  const raw = err instanceof Error ? err.message : String(err || "unknown error");
+  return raw.replace(/eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/g, "[redacted]").slice(0, 240);
+}
+
 async function fetchRecentRows(url, serviceKey, table, selectCols, filter = "") {
   const res = await fetch(
     `${url}/rest/v1/${table}?select=${encodeURIComponent(selectCols)}${filter}&order=created_at.desc&limit=${ROW_LIMIT}`,
@@ -113,51 +124,92 @@ async function fetchRecentRows(url, serviceKey, table, selectCols, filter = "") 
   return Array.isArray(data) ? data : [];
 }
 
-async function fetchBusinessLeads(url, serviceKey) {
-  try {
-    return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_ENHANCED);
-  } catch (firstErr) {
+async function fetchWithSelectFallbacks(url, serviceKey, table, selects, filter = "") {
+  let lastErr = null;
+  for (const cols of selects) {
     try {
-      return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_FULL);
-    } catch {
-      try {
-        return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_STATUS);
-      } catch {
-        try {
-          return await fetchRecentRows(url, serviceKey, "business_leads", BUSINESS_SELECT_CORE);
-        } catch {
-          throw firstErr;
-        }
-      }
+      return await fetchRecentRows(url, serviceKey, table, cols, filter);
+    } catch (err) {
+      lastErr = err;
     }
+  }
+  throw lastErr || new Error(`${table}: fetch failed`);
+}
+
+async function safeLoadSection(sectionName, loader) {
+  try {
+    const rows = await loader();
+    return { rows: Array.isArray(rows) ? rows : [], error: null };
+  } catch (err) {
+    const message = sanitizeErrorMessage(err);
+    console.warn("owner-dashboard-data section failed", {
+      section: sectionName,
+      message,
+    });
+    return { rows: [], error: message };
   }
 }
 
-async function fetchTransportRequests(url, serviceKey) {
+async function safeCount(label, counter) {
   try {
-    return await fetchRecentRows(url, serviceKey, "transportation_requests", TRANSPORT_SELECT_FULL);
-  } catch (firstErr) {
-    try {
-      return await fetchRecentRows(url, serviceKey, "transportation_requests", TRANSPORT_SELECT_CORE);
-    } catch {
-      throw firstErr;
-    }
+    const value = await counter();
+    return typeof value === "number" && !Number.isNaN(value) ? value : 0;
+  } catch (err) {
+    console.warn("owner-dashboard-data count failed", {
+      count: label,
+      message: sanitizeErrorMessage(err),
+    });
+    return 0;
   }
+}
+
+const BUSINESS_SELECT_CHAIN = [
+  BUSINESS_SELECT_ENHANCED,
+  BUSINESS_SELECT_FULL,
+  BUSINESS_SELECT_STATUS,
+  BUSINESS_SELECT_CORE,
+  BUSINESS_SELECT_MINIMAL,
+];
+
+const TRANSPORT_SELECT_CHAIN = [
+  TRANSPORT_SELECT_FULL,
+  TRANSPORT_SELECT_CORE,
+  TRANSPORT_SELECT_MINIMAL,
+];
+
+const RESTAURANT_SELECT_CHAIN = [RESTAURANT_SELECT_FULL, RESTAURANT_SELECT_CORE];
+
+async function fetchBusinessLeads(url, serviceKey) {
+  return fetchWithSelectFallbacks(url, serviceKey, "business_leads", BUSINESS_SELECT_CHAIN);
+}
+
+async function fetchTransportRequests(url, serviceKey) {
+  return fetchWithSelectFallbacks(url, serviceKey, "transportation_requests", TRANSPORT_SELECT_CHAIN);
 }
 
 function restaurantPageFilter() {
   return `&page_path=eq.${encodeURIComponent("/restaurants/")}`;
 }
 
+function isRestaurantLeadRow(row) {
+  const path = String((row && row.page_path) || "").toLowerCase();
+  if (path.indexOf("/restaurant") !== -1) return true;
+  const industry = String((row && row.business_industry) || "").toLowerCase();
+  if (industry === "restaurant") return true;
+  const text = restaurantLeadText(row || {});
+  return /restaurant partner program|\/restaurants\//i.test(text);
+}
+
 async function fetchRestaurantLeads(url, serviceKey) {
   const filter = restaurantPageFilter();
   try {
-    return await fetchRecentRows(url, serviceKey, "business_leads", RESTAURANT_SELECT_FULL, filter);
-  } catch (firstErr) {
+    return await fetchWithSelectFallbacks(url, serviceKey, "business_leads", RESTAURANT_SELECT_CHAIN, filter);
+  } catch (filteredErr) {
     try {
-      return await fetchRecentRows(url, serviceKey, "business_leads", RESTAURANT_SELECT_CORE, filter);
+      const rows = await fetchWithSelectFallbacks(url, serviceKey, "business_leads", RESTAURANT_SELECT_CHAIN, "");
+      return rows.filter(isRestaurantLeadRow);
     } catch {
-      throw firstErr;
+      throw filteredErr;
     }
   }
 }
@@ -197,10 +249,15 @@ function restaurantLeadInterest(row) {
 }
 
 function extractRestaurantOptionalMessage(row) {
-  const notes = row.notes == null ? "" : String(row.notes).trim();
-  if (!notes) return null;
-  const marker = notes.search(/inbound restaurant inquiry from\s+\/restaurants\//i);
-  const message = marker >= 0 ? notes.slice(0, marker).trim() : notes;
+  const notesSource =
+    row.notes != null && String(row.notes).trim()
+      ? String(row.notes).trim()
+      : row.owner_notes != null
+        ? String(row.owner_notes).trim()
+        : "";
+  if (!notesSource) return null;
+  const marker = notesSource.search(/inbound restaurant inquiry from\s+\/restaurants\//i);
+  const message = marker >= 0 ? notesSource.slice(0, marker).trim() : notesSource;
   return message || null;
 }
 
@@ -349,106 +406,206 @@ exports.handler = async (event) => {
 
   const supabaseUrl = process.env.SUPABASE_URL && String(process.env.SUPABASE_URL).replace(/\/$/, "");
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  console.log("owner-dashboard-data started", {
+    method: event.httpMethod,
+    env: {
+      OWNER_DASHBOARD_KEY: Boolean(expectedKey),
+      SUPABASE_URL: Boolean(supabaseUrl),
+      SUPABASE_SERVICE_ROLE_KEY: Boolean(serviceKey && String(serviceKey).trim()),
+    },
+    tables: ["business_leads", "transportation_requests"],
+  });
+
   if (!supabaseUrl || !serviceKey || !String(serviceKey).trim()) {
+    console.error("owner-dashboard-data misconfigured", { status: 503 });
     return json(503, {
       ok: false,
       error: "Service misconfigured",
     });
   }
 
-  try {
-    const [
-      businessRows,
-      restaurantRows,
-      transportRows,
-      totalBusiness,
-      totalRestaurant,
-      totalTransportation,
-      businessNew,
-      restaurantNew,
-      restaurantContacted,
-      restaurantQualified,
-      restaurantProposalSent,
-      restaurantWon,
-      restaurantNotFit,
-      transportationNew,
-      businessNeedsFollowUp,
-      transportNeedsFollowUp,
-      businessContacted,
-      transportContacted,
-      businessWon,
-      transportWon,
-      businessEmailAlerts,
-      transportEmailAlerts,
-      businessSmsAlerts,
-      transportSmsAlerts,
-    ] = await Promise.all([
-      fetchBusinessLeads(supabaseUrl, serviceKey),
-      fetchRestaurantLeads(supabaseUrl, serviceKey),
-      fetchTransportRequests(supabaseUrl, serviceKey),
-      supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", ""),
-      supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", restaurantPageFilter()),
-      supabaseCountWithHeaders(supabaseUrl, serviceKey, "transportation_requests", ""),
-      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "new"),
-      supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "new"),
-      supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "contacted"),
-      supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "qualified"),
-      supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "proposal sent"),
-      supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "won"),
-      supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "not a fit"),
-      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "new"),
-      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "needs follow-up"),
-      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "needs follow-up"),
-      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "contacted"),
-      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "contacted"),
-      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "won"),
-      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "won"),
-      supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", "&alert_email_sent=eq.true"),
-      supabaseCountWithHeaders(
-        supabaseUrl,
-        serviceKey,
-        "transportation_requests",
-        "&alert_email_sent=eq.true"
-      ),
-      supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", "&alert_sms_sent=eq.true"),
-      supabaseCountWithHeaders(
-        supabaseUrl,
-        serviceKey,
-        "transportation_requests",
-        "&alert_sms_sent=eq.true"
-      ),
-    ]);
+  const [businessSection, restaurantSection, transportSection] = await Promise.all([
+    safeLoadSection("business_leads", () => fetchBusinessLeads(supabaseUrl, serviceKey)),
+    safeLoadSection("restaurant_leads", () => fetchRestaurantLeads(supabaseUrl, serviceKey)),
+    safeLoadSection("transportation_requests", () => fetchTransportRequests(supabaseUrl, serviceKey)),
+  ]);
 
-    return json(200, {
-      ok: true,
-      business_leads: businessRows.map(mapBusinessLead),
-      restaurant_leads: restaurantRows.map(mapRestaurantLead),
-      transportation_requests: transportRows.map(mapTransportRequest),
-      counts: {
-        business_new: businessNew,
-        restaurant_new: restaurantNew,
-        restaurant_contacted: restaurantContacted,
-        restaurant_qualified: restaurantQualified,
-        restaurant_proposal_sent: restaurantProposalSent,
-        restaurant_won: restaurantWon,
-        restaurant_not_fit: restaurantNotFit,
-        transportation_new: transportationNew,
-        needs_follow_up: businessNeedsFollowUp + transportNeedsFollowUp,
-        contacted: businessContacted + transportContacted,
-        won: businessWon + transportWon,
-        total_business: totalBusiness,
-        total_restaurant: totalRestaurant,
-        total_transportation: totalTransportation,
-        email_alerts_sent: businessEmailAlerts + transportEmailAlerts,
-        sms_alerts_sent: businessSmsAlerts + transportSmsAlerts,
-      },
-    });
+  const sectionErrors = {};
+  if (businessSection.error) sectionErrors.business_leads = businessSection.error;
+  if (restaurantSection.error) sectionErrors.restaurant_leads = restaurantSection.error;
+  if (transportSection.error) sectionErrors.transportation_requests = transportSection.error;
+
+  const errors = Object.keys(sectionErrors).map(function (key) {
+    return key + ": " + sectionErrors[key];
+  });
+
+  const [
+    totalBusiness,
+    totalRestaurant,
+    totalTransportation,
+    businessNew,
+    restaurantNew,
+    restaurantContacted,
+    restaurantQualified,
+    restaurantProposalSent,
+    restaurantWon,
+    restaurantNotFit,
+    transportationNew,
+    businessNeedsFollowUp,
+    transportNeedsFollowUp,
+    businessContacted,
+    transportContacted,
+    businessWon,
+    transportWon,
+    businessEmailAlerts,
+    transportEmailAlerts,
+    businessSmsAlerts,
+    transportSmsAlerts,
+  ] = await Promise.all([
+    safeCount("total_business", () => supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", "")),
+    safeCount("total_restaurant", () =>
+      supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", restaurantPageFilter())
+    ),
+    safeCount("total_transportation", () =>
+      supabaseCountWithHeaders(supabaseUrl, serviceKey, "transportation_requests", "")
+    ),
+    safeCount("business_new", () =>
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "new")
+    ),
+    safeCount("restaurant_new", () => supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "new")),
+    safeCount("restaurant_contacted", () =>
+      supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "contacted")
+    ),
+    safeCount("restaurant_qualified", () =>
+      supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "qualified")
+    ),
+    safeCount("restaurant_proposal_sent", () =>
+      supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "proposal sent")
+    ),
+    safeCount("restaurant_won", () => supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "won")),
+    safeCount("restaurant_not_fit", () =>
+      supabaseCountRestaurantStatus(supabaseUrl, serviceKey, "not a fit")
+    ),
+    safeCount("transportation_new", () =>
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "new")
+    ),
+    safeCount("business_needs_follow_up", () =>
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "needs follow-up")
+    ),
+    safeCount("transport_needs_follow_up", () =>
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "needs follow-up")
+    ),
+    safeCount("business_contacted", () =>
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "contacted")
+    ),
+    safeCount("transport_contacted", () =>
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "contacted")
+    ),
+    safeCount("business_won", () => supabaseCountByStatusIlike(supabaseUrl, serviceKey, "business_leads", "won")),
+    safeCount("transport_won", () =>
+      supabaseCountByStatusIlike(supabaseUrl, serviceKey, "transportation_requests", "won")
+    ),
+    safeCount("business_email_alerts", () =>
+      supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", "&alert_email_sent=eq.true")
+    ),
+    safeCount("transport_email_alerts", () =>
+      supabaseCountWithHeaders(supabaseUrl, serviceKey, "transportation_requests", "&alert_email_sent=eq.true")
+    ),
+    safeCount("business_sms_alerts", () =>
+      supabaseCountWithHeaders(supabaseUrl, serviceKey, "business_leads", "&alert_sms_sent=eq.true")
+    ),
+    safeCount("transport_sms_alerts", () =>
+      supabaseCountWithHeaders(supabaseUrl, serviceKey, "transportation_requests", "&alert_sms_sent=eq.true")
+    ),
+  ]);
+
+  let businessLeads = [];
+  let restaurantLeads = [];
+  let transportRows = [];
+
+  try {
+    businessLeads = businessSection.rows.map(mapBusinessLead);
   } catch (err) {
-    console.error("owner-dashboard-data", err instanceof Error ? err.message : err);
+    const message = sanitizeErrorMessage(err);
+    sectionErrors.business_leads = sectionErrors.business_leads || "map: " + message;
+    errors.push("business_leads map: " + message);
+    console.warn("owner-dashboard-data map failed", { section: "business_leads", message });
+  }
+
+  try {
+    restaurantLeads = restaurantSection.rows.map(mapRestaurantLead);
+  } catch (err) {
+    const message = sanitizeErrorMessage(err);
+    sectionErrors.restaurant_leads = sectionErrors.restaurant_leads || "map: " + message;
+    errors.push("restaurant_leads map: " + message);
+    console.warn("owner-dashboard-data map failed", { section: "restaurant_leads", message });
+  }
+
+  try {
+    transportRows = transportSection.rows.map(mapTransportRequest);
+  } catch (err) {
+    const message = sanitizeErrorMessage(err);
+    sectionErrors.transportation_requests = sectionErrors.transportation_requests || "map: " + message;
+    errors.push("transportation_requests map: " + message);
+    console.warn("owner-dashboard-data map failed", { section: "transportation_requests", message });
+  }
+
+  const allSectionsFailed =
+    Boolean(businessSection.error) &&
+    Boolean(restaurantSection.error) &&
+    Boolean(transportSection.error);
+  const hasSectionErrors = Object.keys(sectionErrors).length > 0;
+
+  if (allSectionsFailed) {
+    console.error("owner-dashboard-data all sections failed", {
+      status: 502,
+      sectionErrors,
+    });
     return json(502, {
       ok: false,
       error: "fetch_failed",
-      message: err instanceof Error ? err.message : "Could not load dashboard data.",
+      message: errors[0] || "Could not load dashboard data.",
+      sectionErrors,
+      errors,
+      business_leads: [],
+      restaurant_leads: [],
+      transportation_requests: [],
     });
   }
+
+  console.log("owner-dashboard-data response", {
+    status: 200,
+    business_leads: businessLeads.length,
+    restaurant_leads: restaurantLeads.length,
+    transportation_requests: transportRows.length,
+    sectionErrors: Object.keys(sectionErrors),
+  });
+
+  return json(200, {
+    ok: true,
+    business_leads: businessLeads,
+    restaurant_leads: restaurantLeads,
+    transportation_requests: transportRows,
+    counts: {
+      business_new: businessNew,
+      restaurant_new: restaurantNew,
+      restaurant_contacted: restaurantContacted,
+      restaurant_qualified: restaurantQualified,
+      restaurant_proposal_sent: restaurantProposalSent,
+      restaurant_won: restaurantWon,
+      restaurant_not_fit: restaurantNotFit,
+      transportation_new: transportationNew,
+      needs_follow_up: businessNeedsFollowUp + transportNeedsFollowUp,
+      contacted: businessContacted + transportContacted,
+      won: businessWon + transportWon,
+      total_business: totalBusiness,
+      total_restaurant: totalRestaurant,
+      total_transportation: totalTransportation,
+      email_alerts_sent: businessEmailAlerts + transportEmailAlerts,
+      sms_alerts_sent: businessSmsAlerts + transportSmsAlerts,
+    },
+    sectionErrors: hasSectionErrors ? sectionErrors : undefined,
+    errors: errors.length ? errors : undefined,
+  });
 };
