@@ -4806,15 +4806,15 @@
         <div class="owner-dash-biz-command-head">
           <p class="eyebrow eyebrow-on-dark">AI PLUG BUSINESS SYSTEMS</p>
           <h2 id="owner-dash-ai-plug-business-command-heading">AI Plug Business Command</h2>
-          <p class="owner-dash-biz-command-subtitle">The AI Plug Business Command organizes business leads by diagnosis, offer fit, vertical, proposal status, delivery stage, and follow-up priority.</p>
+          <p class="owner-dash-biz-command-subtitle">The AI Plug Business Command helps reps diagnose where a business is losing opportunities between calls, forms, messages, questions, follow-up, and owner visibility, then choose the smallest useful system.</p>
           <p class="owner-dash-biz-command-guardrail">Internal business command only. Copy-only tools — nothing sends, publishes, invoices, charges, or promises automatically.</p>
         </div>
         <div class="owner-dash-biz-command-verticals" role="group" aria-label="Business pipeline vertical filters">
           <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical is-active" data-action="business-vertical-filter" data-business-vertical="all" aria-pressed="true">All Business Leads</button>
-          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="general" aria-pressed="false">General AI Plug</button>
-          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="restaurants" aria-pressed="false">Restaurants</button>
-          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="transportation" aria-pressed="false">Transportation / Concierge</button>
-          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="future-verticals" aria-pressed="false">Future Verticals</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="general" aria-pressed="false">New business leads</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="restaurants" aria-pressed="false">Restaurant vertical subset</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="transportation" aria-pressed="false">Transportation vertical subset</button>
+          <button type="button" class="owner-dash-filter owner-dash-biz-command-vertical" data-action="business-vertical-filter" data-business-vertical="future-verticals" aria-pressed="false">Future verticals</button>
         </div>
         <div id="owner-dash-biz-command-restaurant-link" class="owner-dash-biz-command-vertical-link" hidden>
           <p>Restaurant opportunities are part of the AI Plug business system and also have a dedicated Restaurant Program workflow below.</p>
@@ -4822,22 +4822,22 @@
         </div>
         <div>
           <h3 id="owner-dash-biz-command-queue-heading">AI Plug Rep Daily Queue</h3>
-          <p class="owner-dash-biz-command-note">Page-level queue for the broader AI Plug business pipeline. Restaurant rows still open the restaurant command sheet.</p>
+          <p class="owner-dash-biz-command-note">Page-level queue for AI Plug Business Requests, customer-path leaks, suggested systems, next actions, follow-up, proposal status, and delivery/recap work. Restaurant rows still open the restaurant command sheet.</p>
         </div>
         <div id="owner-dash-biz-command-buckets" class="owner-dash-biz-command-buckets" aria-labelledby="owner-dash-biz-command-queue-heading"></div>
         <div>
           <p class="owner-dash-biz-command-note">Recommended order:</p>
           <ol class="owner-dash-biz-command-order">
+            <li>New business leads</li>
             <li>Needs diagnosis</li>
             <li>Ready to contact</li>
-            <li>Discovery needed</li>
-            <li>Proposal ready</li>
-            <li>Proposal follow-up</li>
-            <li>Verbal yes / deposit</li>
-            <li>Won — intake / build</li>
-            <li>Live — recap / renewal</li>
-            <li>Vertical opportunity / needs classification</li>
-            <li>Not now / revisit</li>
+            <li>Follow-up due</li>
+            <li>Proposal-ready</li>
+            <li>Delivery / recap</li>
+            <li>Vertical opportunity</li>
+            <li>Restaurant vertical subset</li>
+            <li>Transportation vertical subset</li>
+            <li>Future verticals</li>
           </ol>
         </div>
       </section>
@@ -5983,10 +5983,15 @@
 
       var AI_PLUG_ALLOWED_POSITIONING = [
         "Better customer path",
+        "AI-assisted answers with approval",
+        "Smart intake",
         "Clearer intake",
         "Better inquiry capture",
-        "Better routing",
+        "Lead routing",
+        "Follow-up workflows",
+        "Owner-visible systems",
         "Faster response workflow",
+        "Practical AI support",
         "Better owner visibility",
         "Practical AI assistance with approval",
         "Start small and improve after proof",
@@ -6021,19 +6026,27 @@
 
       var AI_PLUG_DISCOVERY_GROUPS = [
         {
-          title: "Current Customer Path",
+          title: "Customer Path",
           questions: [
             "How do new customers usually find you right now?",
             "What should a good lead do first from their phone?",
-            "Where do people get confused, delayed, or drop off?",
+            "Where do people get confused, delayed, or drop off between interest and follow-up?",
           ],
         },
         {
-          title: "Website / Action Path",
+          title: "Lead Sources",
           questions: [
-            "Does the website make the next step obvious on mobile?",
-            "Which page, form, button, or call path matters most?",
-            "What wording should the owner approve before launch?",
+            "Where do leads come from today: Google, website, calls, text, email, DMs, referrals, ads, QR, or walk-ins?",
+            "Which source creates the best opportunities?",
+            "Which source creates the most messy or incomplete requests?",
+          ],
+        },
+        {
+          title: "Missed Calls / Messages",
+          questions: [
+            "What happens when calls are missed or messages arrive after hours?",
+            "Who owns calls, texts, DMs, emails, and form replies today?",
+            "Which requests need a human handoff before any response goes out?",
           ],
         },
         {
@@ -6041,39 +6054,55 @@
           questions: [
             "What details do you need before you can help a customer?",
             "Are current forms too light, too long, or routed to the wrong place?",
-            "What questions should never be customer-facing without approval?",
+            "Do customers need to upload photos, choose dates, describe a route, pick a package, or answer qualification questions?",
           ],
         },
         {
-          title: "Calls / Messages",
+          title: "Follow-Up",
           questions: [
-            "What happens when calls are missed or messages arrive after hours?",
-            "Who answers calls, forms, texts, DMs, and emails today?",
-            "Which replies should be drafted for manual review first?",
+            "How fast does the first follow-up usually happen?",
+            "How do you know whether someone has been contacted?",
+            "What follow-up should be drafted for manual review first?",
           ],
         },
         {
-          title: "Routing / Follow-Up",
-          questions: [
-            "Who should see each type of inquiry?",
-            "How do you know whether a lead has been contacted?",
-            "What follow-up should happen manually after first contact?",
-          ],
-        },
-        {
-          title: "Owner Visibility / Staff Workload",
+          title: "Owner Visibility",
           questions: [
             "What does the owner wish they could see every morning?",
-            "Which tasks are repeated by staff every week?",
-            "What needs manager review before a rep moves forward?",
+            "Which lead stages, notes, and next actions should be visible?",
+            "Where does the owner lose visibility today?",
           ],
         },
         {
-          title: "AI Readiness / Tools / Launch Priority",
+          title: "AI Operator Fit",
           questions: [
-            "What tools do you already use for website, forms, CRM, calendar, calls, or reviews?",
-            "What should AI assist with, and what must stay human-approved?",
-            "Who decides, what budget range is realistic, and what timeline matters?",
+            "Which customer questions are repeated often enough to document?",
+            "Which answers can be owner-approved, and which need staff review?",
+            "Should AI assist with answers, intake, routing, or internal summaries first?",
+          ],
+        },
+        {
+          title: "Content / Media Needs",
+          questions: [
+            "Do you need consistent content, service pages, campaign pages, QR funnels, social posts, or recap content?",
+            "What questions should content answer before a customer contacts you?",
+            "What proof, photos, packages, or examples should be organized?",
+          ],
+        },
+        {
+          title: "Current Tools",
+          questions: [
+            "What tools do you already use for website, forms, CRM, calendar, calls, email, text, chat, reviews, or reporting?",
+            "Which tools should stay in place for phase one?",
+            "Where do those tools fail to connect today?",
+          ],
+        },
+        {
+          title: "Budget / Timeline / Decision Maker",
+          questions: [
+            "Who approves scope, wording, access, and launch?",
+            "What timeline matters and why?",
+            "Is there a realistic first-phase budget, or should we start with a diagnostic/audit first?",
           ],
         },
       ];
@@ -6125,16 +6154,16 @@
       ];
 
       var AI_PLUG_BUSINESS_COMMAND_QUEUE_BUCKETS = [
-        { key: "needs-diagnosis", label: "Needs Diagnosis", explanation: "New or early leads that need a customer-path diagnosis before outreach." },
-        { key: "ready-to-contact", label: "Ready to Contact", explanation: "Reviewed or researched leads ready for first owner/rep contact." },
-        { key: "discovery-needed", label: "Discovery Needed", explanation: "Contact exists but qualifying discovery questions still need answers." },
-        { key: "proposal-ready", label: "Proposal Ready", explanation: "Qualified leads with enough diagnosis to prepare a first offer or proposal." },
-        { key: "proposal-follow-up", label: "Proposal Follow-Up", explanation: "Proposal, quote, or next-step follow-up should happen next." },
-        { key: "verbal-yes-deposit", label: "Verbal Yes / Deposit", explanation: "Verbal yes or deposit request stage — manual approval only." },
-        { key: "won-intake-build", label: "Won — Intake / Build", explanation: "Won clients needing intake, materials, build, or launch QA." },
-        { key: "live-recap-renewal", label: "Live — Recap / Renewal", explanation: "Live clients needing monthly recap, support review, or renewal planning." },
-        { key: "vertical-opportunity", label: "Vertical Opportunity / Needs Classification", explanation: "Leads that need niche/vertical classification before the right workflow is chosen." },
-        { key: "not-now-revisit", label: "Not Now / Revisit", explanation: "Leads marked not now or parked for a later revisit." },
+        { key: "new-business-leads", label: "New business leads", explanation: "Fresh AI Plug Business Requests that need review request handling and a first diagnosis." },
+        { key: "needs-diagnosis", label: "Needs diagnosis", explanation: "Leads that need a customer-path leak diagnosis before outreach or proposal language." },
+        { key: "ready-to-contact", label: "Ready to contact", explanation: "Reviewed or researched leads ready for a manual first response, text, call opener, or discovery invite." },
+        { key: "follow-up-due", label: "Follow-up due", explanation: "Leads waiting on a manual follow-up, no-response check, post-discovery recap, or next-step close." },
+        { key: "proposal-ready", label: "Proposal-ready", explanation: "Qualified leads with a diagnosed leak, suggested system, and proposal direction." },
+        { key: "delivery-recap", label: "Delivery / recap", explanation: "Won, intake, build, launch QA, live, recap, support, or renewal items." },
+        { key: "vertical-opportunity", label: "Vertical opportunity", explanation: "Leads that need niche classification so the pitch and first offer match the business type." },
+        { key: "restaurant-subset", label: "Restaurant vertical subset", explanation: "Restaurant business rows that should stay connected to Restaurant Sales Mode." },
+        { key: "transportation-subset", label: "Transportation vertical subset", explanation: "Transportation or concierge opportunities that should preserve transportation-specific handling." },
+        { key: "future-verticals", label: "Future verticals", explanation: "Home services, nightlife, event vendors, professional services, local brands, resort-area businesses, and other vertical opportunities." },
       ];
 
       var RESTAURANT_DISCOVERY_QUESTION_GROUPS = {
@@ -9262,6 +9291,9 @@
         if (!row) return false;
         var stageKey = businessCommandStageKey(row);
         var status = normStatus(row.status);
+        if (key === "new-business-leads") {
+          return status === "new" || stageKey === "new-lead";
+        }
         if (key === "not-now-revisit") {
           return stageKey === "not-now" || status === "not a fit";
         }
@@ -9289,7 +9321,7 @@
         if (key === "proposal-ready") {
           return stageKey === "proposal-ready" || stageKey === "qualified" || stageKey === "discovery-complete";
         }
-        if (key === "proposal-follow-up") {
+        if (key === "follow-up-due" || key === "proposal-follow-up") {
           return (
             stageKey === "follow-up-due" ||
             stageKey === "proposal-sent" ||
@@ -9318,6 +9350,9 @@
             businessCommandHasLiveNotes(row)
           );
         }
+        if (key === "delivery-recap") {
+          return matchesBusinessCommandBucket(row, "won-intake-build") || matchesBusinessCommandBucket(row, "live-recap-renewal");
+        }
         if (key === "vertical-opportunity") {
           if (isRestaurantRow(row) || isTransportationBusinessRow(row)) return false;
           if (isFutureVerticalBusinessRow(row)) return false;
@@ -9325,6 +9360,9 @@
           var industry = firstValue(row, ["business_industry", "industry"]);
           return !industry || String(industry).trim().length < 3 || aiPlugNicheKey(row) === "other";
         }
+        if (key === "restaurant-subset") return isRestaurantRow(row);
+        if (key === "transportation-subset") return isTransportationBusinessRow(row);
+        if (key === "future-verticals") return isFutureVerticalBusinessRow(row);
         return false;
       }
 
@@ -9378,32 +9416,40 @@
 
       function businessCommandBriefMetrics() {
         var rows = sortBusinessLeads(state.businessLeads);
+        var newBusinessLeads = 0;
         var needsDiagnosis = 0;
         var readyToContact = 0;
         var proposalReady = 0;
         var followUpDue = 0;
-        var wonIntakeBuild = 0;
-        var liveRecapRenewal = 0;
+        var deliveryRecap = 0;
         var verticalOpportunity = 0;
+        var transportationSubset = 0;
+        var futureVerticals = 0;
         rows.forEach(function (row) {
+          if (matchesBusinessCommandBucket(row, "new-business-leads")) newBusinessLeads += 1;
           if (matchesBusinessCommandBucket(row, "needs-diagnosis")) needsDiagnosis += 1;
           if (matchesBusinessCommandBucket(row, "ready-to-contact")) readyToContact += 1;
           if (matchesBusinessCommandBucket(row, "proposal-ready")) proposalReady += 1;
-          if (matchesBusinessCommandBucket(row, "proposal-follow-up")) followUpDue += 1;
-          if (matchesBusinessCommandBucket(row, "won-intake-build")) wonIntakeBuild += 1;
-          if (matchesBusinessCommandBucket(row, "live-recap-renewal")) liveRecapRenewal += 1;
+          if (matchesBusinessCommandBucket(row, "follow-up-due")) followUpDue += 1;
+          if (matchesBusinessCommandBucket(row, "delivery-recap")) deliveryRecap += 1;
           if (matchesBusinessCommandBucket(row, "vertical-opportunity")) verticalOpportunity += 1;
+          if (matchesBusinessCommandBucket(row, "transportation-subset")) transportationSubset += 1;
+          if (matchesBusinessCommandBucket(row, "future-verticals")) futureVerticals += 1;
         });
         return {
           total: rows.length,
+          newBusinessLeads: newBusinessLeads,
           needsDiagnosis: needsDiagnosis,
           readyToContact: readyToContact,
           proposalReady: proposalReady,
           followUpDue: followUpDue,
-          wonIntakeBuild: wonIntakeBuild,
-          liveRecapRenewal: liveRecapRenewal,
+          deliveryRecap: deliveryRecap,
+          wonIntakeBuild: deliveryRecap,
+          liveRecapRenewal: 0,
           verticalOpportunity: verticalOpportunity,
           restaurantSubset: rows.filter(isRestaurantRow).length,
+          transportationSubset: transportationSubset,
+          futureVerticals: futureVerticals,
         };
       }
 
@@ -10021,13 +10067,16 @@
             businessCommand.total,
             [
               ["Business systems", businessCommand.total],
+              ["New business leads", businessCommand.newBusinessLeads || 0],
               ["Needs diagnosis", businessCommand.needsDiagnosis, "Diagnosis"],
               ["Ready to contact", businessCommand.readyToContact],
               ["Proposal-ready", businessCommand.proposalReady, "Proposal-ready"],
               ["Follow-up due", businessCommand.followUpDue, "Follow-up due"],
-              ["Delivery / recap", businessCommand.wonIntakeBuild + businessCommand.liveRecapRenewal, "Delivery/recap"],
+              ["Delivery / recap", businessCommand.deliveryRecap || businessCommand.wonIntakeBuild + businessCommand.liveRecapRenewal, "Delivery/recap"],
               ["Vertical opportunity", businessCommand.verticalOpportunity, "Vertical opp"],
               ["Restaurant vertical subset", businessCommand.restaurantSubset, "Restaurants"],
+              ["Transportation vertical subset", businessCommand.transportationSubset || 0, "Transport"],
+              ["Future verticals", businessCommand.futureVerticals || 0],
             ],
             "teal"
           ),
@@ -13638,11 +13687,11 @@
 
       var AI_PLUG_OFFER_ENGINE = [
         {
-          offer: "AI Website / Website + Local SEO System",
+          offer: "Fix customer path",
           keywords: ["website", "seo", "google", "local search", "online presence", "homepage", "redesign"],
-          bestFor: "A business with a weak mobile path, unclear offer, or local search foundation gap.",
-          solves: "Creates a clearer customer path from search or referral to action.",
-          firstDeliverable: "Mobile-first website/action path review and first improved landing path.",
+          bestFor: "A business where the website, page, QR path, or mobile action path does not guide a customer to the next step.",
+          solves: "Connects customer attention to a clear action, intake, routing, and follow-up path.",
+          firstDeliverable: "Customer-path audit and first improved request/booking path.",
           complexity: "Medium",
           safeSales: "This gives customers a clearer next step and gives the owner a stronger foundation to build on.",
           askFirst: "What action should a good visitor take first from the website?",
@@ -13658,7 +13707,7 @@
           askFirst: "What offer or service needs the cleanest first action?",
         },
         {
-          offer: "Smart Form / Intake System",
+          offer: "Smart intake form",
           keywords: ["form", "intake", "quote request", "booking request", "details", "lead capture"],
           bestFor: "A business that gets incomplete requests or needs better information before responding.",
           solves: "Captures the right details so staff can respond with less back-and-forth.",
@@ -13668,7 +13717,7 @@
           askFirst: "What information do you need before you can help or quote someone?",
         },
         {
-          offer: "Lead Routing + Follow-Up System",
+          offer: "Fix lead handling",
           keywords: ["routing", "follow-up", "follow up", "missed lead", "slow response", "callback", "owner alert"],
           bestFor: "A business where calls, forms, DMs, or emails get scattered.",
           solves: "Routes inquiries to the right person and gives the owner a manual follow-up workflow.",
@@ -13688,7 +13737,7 @@
           askFirst: "Where will the QR code be seen, and what should the scan do?",
         },
         {
-          offer: "AI Chat Operator Planning",
+          offer: "Add AI website operator",
           keywords: ["chat", "chatbot", "questions", "answers", "faq", "ai operator"],
           bestFor: "A business that gets repeated questions online and needs approved answer planning.",
           solves: "Plans safe AI-assisted answers and escalation rules before launch.",
@@ -13698,7 +13747,7 @@
           askFirst: "Which customer questions can be answered safely, and which need a human?",
         },
         {
-          offer: "AI Phone Agent Planning",
+          offer: "Chat or phone planning",
           keywords: ["phone", "missed call", "voicemail", "answering", "after hours"],
           bestFor: "A business losing calls or needing after-hours triage planning.",
           solves: "Maps call handling, intake, handoff, and approval rules before any voice AI is considered.",
@@ -13708,7 +13757,7 @@
           askFirst: "What should happen when a call is missed or comes in after hours?",
         },
         {
-          offer: "Owner Visibility Dashboard",
+          offer: "Owner dashboard",
           keywords: ["dashboard", "owner visibility", "reporting", "status", "command center"],
           bestFor: "An owner who needs one place to see leads, notes, stages, and next actions.",
           solves: "Makes follow-up and status visible before requests get lost.",
@@ -13718,7 +13767,7 @@
           askFirst: "What does the owner need to see every morning?",
         },
         {
-          offer: "CRM / Pipeline Workflow",
+          offer: "Automations / operating layer",
           keywords: ["crm", "pipeline", "sales process", "stages", "workflow"],
           bestFor: "A team that needs a repeatable sales or delivery process.",
           solves: "Defines stages, notes, next actions, and manager review checkpoints.",
@@ -13728,7 +13777,7 @@
           askFirst: "What stages does a lead pass through before they become a client?",
         },
         {
-          offer: "Review / Repeat Customer Flow",
+          offer: "Follow-up workflows",
           keywords: ["review", "reviews", "repeat", "retention", "recap", "customer flow"],
           bestFor: "A business that needs better post-service follow-up and repeat customer reminders.",
           solves: "Creates a manual, owner-approved path for recaps, review asks, and return visits.",
@@ -13738,7 +13787,7 @@
           askFirst: "What should happen after a customer is served?",
         },
         {
-          offer: "Full Business Operating System",
+          offer: "Full AI business system",
           keywords: ["full system", "operating system", "multiple", "automation", "website", "dashboard", "crm"],
           bestFor: "A business with several leaks across website, intake, routing, follow-up, and owner visibility.",
           solves: "Connects the customer path, intake, routing, dashboard, and launch workflow in phases.",
@@ -13748,93 +13797,180 @@
           askFirst: "Which leak is costing the most attention or staff time right now?",
         },
         {
-          offer: "Ongoing Growth Management",
-          keywords: ["ongoing", "monthly", "management", "optimization", "content", "support"],
-          bestFor: "A client that needs monthly review, improvement, copy updates, and next-phase planning.",
-          solves: "Keeps the system maintained, reviewed, and improved after launch.",
-          firstDeliverable: "Monthly recap, optimization recommendation, and next-action plan.",
+          offer: "AI Media Engine / content system",
+          keywords: ["ongoing", "monthly", "management", "optimization", "content", "support", "media", "social", "campaign", "posts"],
+          bestFor: "A business that needs a consistent content rhythm, campaign pages, QR funnels, and owner-approved messaging.",
+          solves: "Turns repeated questions, offers, proof, and campaigns into a practical content system.",
+          firstDeliverable: "Content rhythm map, campaign page plan, and first owner-approved content workflow.",
           complexity: "Medium",
-          safeSales: "Monthly support helps improve the system over time without promising outcomes.",
-          askFirst: "What should be reviewed or improved every month?",
+          safeSales: "Content support gives the business a more consistent system without promising traffic or revenue.",
+          askFirst: "What questions, offers, and proof should customers see every month?",
+        },
+        {
+          offer: "Something like Where To Go SA",
+          keywords: ["where to go", "directory", "guide", "marketplace", "visitor", "local guide", "recommendation engine"],
+          bestFor: "A business or niche that needs a public guide, route, directory, concierge, or recommendation-style customer path.",
+          solves: "Creates a reviewed, owner-visible public path connected to intake, routing, and follow-up.",
+          firstDeliverable: "Guide concept audit and smallest useful public-to-private workflow map.",
+          complexity: "High",
+          safeSales: "Where To Go SA is proof of workflow, not a promise of traffic, ranking, bookings, or results.",
+          askFirst: "What audience would use the guide, and what owner-approved action should happen after interest?",
+        },
+        {
+          offer: "Diagnostic / audit first",
+          keywords: ["not sure", "diagnostic", "audit", "review", "figure out", "unsure", "unknown"],
+          bestFor: "A lead that has symptoms but not enough clarity to recommend a build.",
+          solves: "Finds the customer-path leak before scope, pricing, or automation is recommended.",
+          firstDeliverable: "Customer-path leak audit with first-move recommendation.",
+          complexity: "Low",
+          safeSales: "Start by diagnosing the leak before selling a system.",
+          askFirst: "Where does a good customer get lost between interest and follow-up?",
         },
       ];
 
       var AI_PLUG_NICHE_HELPER = {
+        "home services": {
+          pain: "Missed calls, quote details, photo intake, scheduling, estimate follow-up, and owner visibility.",
+          question: "What happens from first call, form, or photo request to quote or scheduled estimate?",
+          system: "Smart intake form plus Fix lead handling.",
+          language: "Cleaner quote intake, better routing, and manual estimate follow-up.",
+          quickPitch: "The first move is usually not a bigger website. It is a cleaner path for calls, photos, quote details, scheduling, and estimate follow-up so good requests do not disappear.",
+          discoveryQuestions: [
+            "Which job details do you need before quoting?",
+            "Do customers send photos, addresses, measurements, timing, or service type?",
+            "Who gets the request and how is estimate follow-up tracked?",
+          ],
+          likelyFirstOffer: "Smart intake form plus lead routing/alerts.",
+          commonObjection: "We already get calls. The issue is not replacing calls; it is making sure missed calls, photo details, quote requests, and follow-up are visible and easy to work.",
+          followUpMessage: "Hi [contact name], for [business name] I would start with the quote path: calls, photos, details, scheduling, routing, and estimate follow-up. No big rebuild needed until the first leak is clear.",
+          caution: "Do not promise booked jobs, claim volume, revenue, rankings, or estimate close rates.",
+        },
         restaurant: {
-          pain: "Visitor visibility, reservation path, QR/menu actions, private dining or catering inquiries, reviews, and repeat guests.",
-          question: "Are you trying to improve visibility, reservations, QR actions, private dining inquiries, reviews, or repeat guests?",
-          system: "Website + Local SEO, QR Funnel, Lead Routing, or Review / Repeat Customer Flow.",
-          language: "Better visitor/customer path and owner-approved follow-up.",
+          pain: "Visitor visibility, private events, group dining, QR paths, catering inquiries, and repeat guest follow-up.",
+          question: "Are visitors, private events, group dining, QR paths, catering inquiries, or repeat guest follow-up getting lost?",
+          system: "Restaurant Sales Mode plus Fix customer path, Smart intake, QR path, or AI Restaurant Growth Systems.",
+          language: "Better visitor/customer path and owner-approved follow-up through the restaurant-specific workflow.",
+          quickPitch: "For restaurants, the system should connect visitor attention to reservations, group/private dining, catering, QR actions, and follow-up without promising reservations or traffic.",
+          discoveryQuestions: [
+            "Which guest lane matters most: visitors, groups, private events, catering, repeat guests, or local discovery?",
+            "How are reservation, group, catering, QR, and DM inquiries handled now?",
+            "What does the owner need to see after an inquiry comes in?",
+          ],
+          likelyFirstOffer: "Use Restaurant Sales Mode, then choose visibility, QR, intake, or AI Restaurant Growth Systems.",
+          commonObjection: "We already have reservations. That helps. The question is whether visitor, group, catering, QR, and follow-up paths are connected and owner-visible.",
+          followUpMessage: "Hi [contact name], I would review [business name] through the restaurant workflow first: visitor lane, reservation/group path, QR or catering intake, and follow-up. No placement or reservation guarantees.",
           caution: "Do not rebuild restaurant dashboard tools here or promise placement, traffic, reservations, or reviews.",
         },
-        roofing: {
-          pain: "Missed calls, quote requests, storm-season routing, estimate follow-up, and owner visibility.",
-          question: "What happens from first call or form to estimate scheduled?",
-          system: "Smart Form / Intake System plus Lead Routing + Follow-Up System.",
-          language: "Clearer quote intake and faster response workflow.",
-          caution: "Do not promise booked jobs, claim volume, or insurance outcomes.",
+        "bars / nightlife": {
+          pain: "Table requests, private parties, events, social-to-booking paths, weekend traffic questions, and owner visibility.",
+          question: "What happens when someone asks about tables, private parties, events, hours, or weekend plans from social?",
+          system: "QR Funnel System, Add AI website operator, or Smart intake form.",
+          language: "Clearer event/table request path with approved answers and manual booking handoff.",
+          quickPitch: "The first useful system is a social-to-booking path for tables, parties, events, and weekend questions so staff are not chasing scattered DMs.",
+          discoveryQuestions: [
+            "Where do table, party, and event requests arrive today?",
+            "What details are needed before confirming availability?",
+            "Which questions can be answered from an approved guide?",
+          ],
+          likelyFirstOffer: "Event/table intake path plus approved answer map.",
+          commonObjection: "We already use Instagram. Social creates attention; the system connects that attention to a trackable request path.",
+          followUpMessage: "Hi [contact name], I would start with the table/private party path for [business name]: social, event questions, guest count, date, routing, and follow-up. Nothing sends automatically.",
+          caution: "Do not promise attendance, weekend traffic, bookings, or public listings.",
         },
-        flooring: {
-          pain: "Quote intake, showroom inquiries, measurement scheduling, photos, and follow-up.",
-          question: "What details do you need before a flooring quote is useful?",
-          system: "Smart Form / Intake System or Landing Page / Campaign Page.",
-          language: "Cleaner project intake and owner-visible follow-up.",
-          caution: "Do not promise project close rates or appointment volume.",
-        },
-        "home improvement": {
-          pain: "Service-type routing, quote requests, photos, scheduling, and follow-up.",
-          question: "Which services need separate intake or routing rules?",
-          system: "Lead Routing + Follow-Up System or Full Business Operating System.",
-          language: "Better inquiry capture and clearer next actions.",
-          caution: "Do not make licensing, warranty, or result claims unless client approves.",
-        },
-        "med spa": {
-          pain: "Treatment questions, consultation path, trust, intake sensitivity, and follow-up.",
-          question: "Which questions can be answered generally, and which need staff or provider review?",
-          system: "AI Chat Operator Planning plus Smart Form / Intake System.",
-          language: "Approved answers, clearer consultation intake, and owner visibility.",
-          caution: "Avoid medical claims, diagnosis language, or guaranteed treatment outcomes.",
-        },
-        attorney: {
-          pain: "Lead qualification, intake sensitivity, call routing, trust, and response speed.",
-          question: "What information can be collected before attorney review?",
-          system: "Smart Form / Intake System plus Owner Visibility Dashboard.",
-          language: "Cleaner intake and routing for manual review.",
-          caution: "Do not give legal advice or imply attorney-client relationship.",
-        },
-        "real estate": {
-          pain: "Listing inquiries, buyer/seller routing, showing requests, and follow-up.",
-          question: "Are you routing buyers, sellers, renters, investors, or listing inquiries differently?",
-          system: "Landing Page / Campaign Page plus CRM / Pipeline Workflow.",
-          language: "Better inquiry capture and pipeline visibility.",
-          caution: "Do not promise buyers, sellers, closings, leads, or MLS outcomes.",
-        },
-        "nightlife/venue": {
-          pain: "Events, VIP/table inquiries, hours, bookings, QR paths, and staff load.",
-          question: "What should happen when someone asks about events, tables, parties, or hours?",
-          system: "QR Funnel System plus AI Chat Operator Planning.",
-          language: "Clearer event/customer path with approved answers.",
-          caution: "Do not promise attendance, bookings, or public listings.",
-        },
-        "event vendor": {
-          pain: "Date availability, package questions, quote intake, and follow-up.",
+        "event vendors": {
+          pain: "Date availability, guest count, packages, budget, venue details, quote routing, and follow-up.",
           question: "What details decide whether an event inquiry is qualified?",
-          system: "Smart Form / Intake System plus CRM / Pipeline Workflow.",
-          language: "Cleaner event intake and follow-up visibility.",
+          system: "Smart intake form plus Automations / operating layer.",
+          language: "Cleaner event intake and quote follow-up visibility.",
+          quickPitch: "Event inquiries need structure: date, guest count, package, budget, venue, timing, and quote routing before anyone wastes time.",
+          discoveryQuestions: [
+            "What event details qualify or disqualify a request?",
+            "Who checks availability and packages?",
+            "How are quotes and follow-ups tracked?",
+          ],
+          likelyFirstOffer: "Event intake and quote routing workflow.",
+          commonObjection: "Send me info. I can, and the useful info is a quick checklist of what your inquiry path should collect before quoting.",
+          followUpMessage: "Hi [contact name], for [business name] I would start with event intake: date, guest count, package, venue, budget, routing, and quote follow-up.",
           caution: "Do not promise bookings or event volume.",
         },
-        "local service business": {
-          pain: "Missed calls, quote requests, dispatch/routing, follow-up, and owner visibility.",
-          question: "Where do calls, forms, or messages get missed today?",
-          system: "Lead Routing + Follow-Up System or Owner Visibility Dashboard.",
-          language: "Better capture, routing, and response workflow.",
-          caution: "Do not promise lead volume, revenue, rankings, or booked jobs.",
+        "transportation / concierge": {
+          pain: "Route requests, timing, pickup details, group needs, provider handoff, and follow-up.",
+          question: "What happens from route request to provider handoff or visitor follow-up?",
+          system: "Transportation-specific workflow plus Smart intake and lead routing.",
+          language: "Cleaner route intake, timing details, group needs, provider handoff, and follow-up.",
+          quickPitch: "Transportation requests need clear route, timing, pickup, group, luggage, provider handoff, and follow-up details before anyone promises availability.",
+          discoveryQuestions: [
+            "What route and timing details are required?",
+            "Who reviews provider fit?",
+            "What must be confirmed before any handoff?",
+          ],
+          likelyFirstOffer: "Route request intake and provider handoff workflow.",
+          commonObjection: "Can this automatically book rides? Not from this dashboard. The first step is intake, routing, and manual provider review.",
+          followUpMessage: "Hi [contact name], I would keep [business name] focused on route intake, timing, pickup details, provider handoff, and manual follow-up first.",
+          caution: "Do not promise rides, availability, bookings, route providers, or automated dispatch.",
+        },
+        "professional services": {
+          pain: "Consultation requests, qualification, trust proof, booking path, and owner-visible pipeline.",
+          question: "What information can be collected before a consultation is scheduled or reviewed?",
+          system: "Smart intake form plus Owner dashboard.",
+          language: "Cleaner qualification, trust-building path, and owner-visible consultation pipeline.",
+          quickPitch: "Professional services need a trust-first path that qualifies the request, routes it correctly, and keeps the owner aware of next steps.",
+          discoveryQuestions: [
+            "What makes a consultation request qualified?",
+            "Which proof or credibility signals should a prospect see first?",
+            "Who approves intake questions and booking rules?",
+          ],
+          likelyFirstOffer: "Consultation intake and owner-visible pipeline.",
+          commonObjection: "We already have software. Good. The first question is whether the customer path, intake, routing, and follow-up are actually connected.",
+          followUpMessage: "Hi [contact name], I would start with the consultation path for [business name]: qualification, trust proof, booking rules, routing, and owner visibility.",
+          caution: "Do not give legal, medical, financial, or regulated advice. Do not imply guaranteed cases, clients, or outcomes.",
+        },
+        "local brands": {
+          pain: "Content rhythm, campaign pages, QR funnels, customer questions, proof, offers, and follow-up.",
+          question: "What content, offer, or QR path should customers see before they ask questions?",
+          system: "AI Media Engine / content system plus campaign page or QR funnel.",
+          language: "Consistent owner-approved content and campaign paths without promising traffic.",
+          quickPitch: "Local brands often need a repeatable content and campaign system: questions, proof, offers, QR funnels, and follow-up all organized.",
+          discoveryQuestions: [
+            "What offers or questions repeat every month?",
+            "What proof, photos, products, or campaigns should be organized?",
+            "Where should QR, social, and page visitors go next?",
+          ],
+          likelyFirstOffer: "AI Media Engine / content system.",
+          commonObjection: "We tried marketing before. This is not a lead guarantee; it is a practical content and customer-path system that can be reviewed and improved.",
+          followUpMessage: "Hi [contact name], for [business name] I would start with a content rhythm and campaign path: offers, QR, customer questions, proof, and manual follow-up.",
+          caution: "Do not promise traffic, sales, rankings, followers, or viral content.",
+        },
+        "resort-area businesses": {
+          pain: "Visitor timing, resort guest questions, nearby discovery, route-based decisions, repeat visitor opportunities, and follow-up.",
+          question: "What do resort guests or nearby visitors ask before deciding where to go?",
+          system: "Something like Where To Go SA plus Smart intake or AI website operator.",
+          language: "Visitor-timing path, nearby discovery, route decisions, and owner-approved follow-up.",
+          quickPitch: "Resort-area businesses need a visitor path that answers timing, location, route, and nearby questions, then routes real requests clearly.",
+          discoveryQuestions: [
+            "What visitor questions repeat most often?",
+            "How do guests decide based on timing, route, nearby options, and group needs?",
+            "What follow-up or repeat visitor opportunity should be visible?",
+          ],
+          likelyFirstOffer: "Visitor path audit or guide-style workflow like Where To Go SA.",
+          commonObjection: "Can you guarantee visitor traffic? No. The useful step is making the visitor path clearer and easier to act on.",
+          followUpMessage: "Hi [contact name], I would review [business name] as a resort-area visitor path: timing, nearby discovery, route decisions, common questions, and request follow-up.",
+          caution: "Do not promise visitor traffic, bookings, rankings, reservations, or route placement.",
         },
         other: {
           pain: "Unclear customer path, intake, routing, follow-up, owner visibility, and measurement.",
           question: "Where does a good customer get stuck between first interest and follow-up?",
-          system: "Smart Form / Intake System or Owner Visibility Dashboard.",
+          system: "Diagnostic / audit first, Smart intake form, Fix lead handling, or Owner dashboard.",
           language: "Start with the first useful system and improve after proof.",
+          quickPitch: "The AI Plug connects the customer path behind the business: answers, intake, routing, follow-up, automations, content, and owner visibility.",
+          discoveryQuestions: [
+            "Where does the request start?",
+            "Where does it get delayed or lost?",
+            "What should the owner see and approve?",
+          ],
+          likelyFirstOffer: "Diagnostic / audit first.",
+          commonObjection: "I am not sure what I need. That is exactly why the first step should be a diagnosis, not a big build.",
+          followUpMessage: "Hi [contact name], I would start by mapping where [business name] loses opportunities between interest, intake, routing, and follow-up.",
           caution: "Keep claims conservative until the workflow and approval rules are known.",
         },
       };
@@ -13854,21 +13990,20 @@
 
       function aiPlugDiagnosis(lead) {
         var text = aiPlugLeadSourceText(lead);
-        var leak = "intake leak";
+        var leak = "Weak forms";
         var diagnosis = "The lead likely needs clearer inquiry capture before deeper automation is recommended.";
         var question = "What details do you need before you can respond confidently?";
         var nextAction = "Ask discovery questions and map the first customer path.";
         var checks = [
-          ["visibility leak", /visibility leak|visibility problem|not being seen|local seo|discovery|visibility/],
-          ["message leak", /message leak|scattered dm|scattered text|instagram|facebook dm|dms\/texts/],
-          ["action leak", /action leak|unclear next step|cta|booking path|confusing offer|no booking/],
-          ["intake leak", /intake leak|form|collect enough|quote request|details|weak form/],
-          ["response leak", /response leak|missed call|voicemail|after hours|slow response|calls get missed/],
-          ["follow-up leak", /follow-up leak|follow up leak|go cold|no follow|follow-up is too slow/],
-          ["owner visibility leak", /owner visibility leak|cannot see|dashboard|status view|owner cannot see/],
-          ["staff knowledge leak", /staff knowledge|same questions|faq|repeat answers|repeated questions/],
-          ["trust leak", /trust leak|reviews|credibility|proof|reputation/],
-          ["operations leak", /operations leak|workflow|scattered tools|operating|full system/],
+          ["Missed calls", /missed call|voicemail|after hours|unanswered call|calls get missed|phone/],
+          ["Weak forms", /weak form|form|intake|collect enough|quote request|details|photo|guest count|pickup|route/],
+          ["Scattered DMs/texts", /scattered dm|scattered text|instagram|facebook dm|dms\/texts|social messages|text message/],
+          ["Slow follow-up", /slow response|follow-up leak|follow up leak|go cold|no follow|follow-up is too slow|callback/],
+          ["Repeated questions", /same questions|faq|repeat answers|repeated questions|customer questions|guest questions/],
+          ["No booking/request path", /booking path|request path|appointment|schedule|reservation|no booking|unclear next step|cta/],
+          ["Need consistent content", /content|media|social|campaign|posts|seo|local search|visibility|qr funnel/],
+          ["No owner visibility", /owner visibility|cannot see|dashboard|status view|owner cannot see|reporting/],
+          ["Need full system", /workflow|scattered tools|operating|full system|multiple systems|business command|automation/],
         ];
         for (var i = 0; i < checks.length; i += 1) {
           if (checks[i][1].test(text)) {
@@ -13877,16 +14012,15 @@
           }
         }
         var map = {
-          "visibility leak": ["People may not be finding or noticing the business at the right decision moment.", "Where should the right customer first discover you?", "Review customer path / Fix my customer path."],
-          "message leak": ["Requests may be scattered across DMs, texts, email, and staff phones.", "Where do messages arrive today, and who owns the reply?", "Fix my lead handling — routing and intake first."],
-          "action leak": ["The business may have attention, but the next step is unclear or hard on mobile.", "What should a good visitor do first from their phone?", "Fix my customer path — clarify CTA and mobile flow."],
-          "intake leak": ["The business is not capturing enough useful details to respond well.", "What information do you need before you can help or quote someone?", "Fix my lead handling — smart intake first."],
-          "response leak": ["Calls or messages may be getting missed, delayed, or handled inconsistently.", "What happens when a call or message arrives after hours?", "Fix my lead handling — response workflow before automation."],
-          "follow-up leak": ["Interested leads may be going cold because follow-up is not tracked.", "How do you know a lead has been followed up?", "Fix my lead handling — follow-up workflow and status."],
-          "owner visibility leak": ["The owner likely cannot see lead status, next actions, or bottlenecks clearly.", "What do you need to see every morning to know nothing got lost?", "Owner dashboard / Fix my lead handling visibility."],
-          "staff knowledge leak": ["Staff may be answering repeat questions without a shared approved knowledge base.", "Which questions are safe to answer and which need approval?", "AI chat operator planning or approved guides."],
-          "trust leak": ["The business may need better proof, review flow, or credibility signals before people act.", "What proof do customers need before they trust the next step?", "Fix my customer path — trust and proof signals."],
-          "operations leak": ["The issue spans workflow, staff load, handoffs, and scattered tools.", "Where does the work get stuck internally?", "Build my full AI business system or start with diagnostic/audit."],
+          "Missed calls": ["Calls may be getting missed, delayed, or handled inconsistently before the owner can see what happened.", "What should happen when a call is missed or arrives after hours?", "Fix lead handling - missed-call path and manual response workflow."],
+          "Weak forms": ["The business is not capturing enough useful details to respond well.", "What information do you need before you can help, quote, route, or book someone?", "Smart intake form - intake questions and owner alert first."],
+          "Scattered DMs/texts": ["Requests may be scattered across DMs, texts, email, and staff phones.", "Where do messages arrive today, and who owns the reply?", "Fix lead handling - routing and intake first."],
+          "Slow follow-up": ["Interested leads may go cold because follow-up is not tracked or assigned.", "How do you know a lead has been followed up?", "Follow-up workflows - status and manual copy tools first."],
+          "Repeated questions": ["Staff may be answering repeat questions without an approved answer path.", "Which questions are safe to answer and which need staff review?", "Add AI website operator - approved answers and escalation rules."],
+          "No booking/request path": ["The business may have attention, but the next step is unclear or hard on mobile.", "What should a good customer do first from their phone?", "Fix customer path - request or booking path first."],
+          "Need consistent content": ["The business likely needs a repeatable content, campaign, QR, or proof system.", "What questions, offers, and proof should customers see every month?", "AI Media Engine / content system."],
+          "No owner visibility": ["The owner likely cannot see lead status, next actions, or bottlenecks clearly.", "What do you need to see every morning to know nothing got lost?", "Owner dashboard / owner-visible workflow."],
+          "Need full system": ["The issue spans customer path, intake, routing, follow-up, automations, content, and owner visibility.", "Which leak is costing the most attention or staff time right now?", "Full AI business system or diagnostic/audit first."],
         };
         if (map[leak]) {
           diagnosis = map[leak][0];
@@ -13927,19 +14061,97 @@
           var key = keys[i];
           if (key !== "other" && text.indexOf(key) !== -1) return key;
         }
-        if (/roof|roofer/.test(text)) return "roofing";
-        if (/floor|tile|carpet/.test(text)) return "flooring";
-        if (/med spa|spa|aesthetic|botox|inject/.test(text)) return "med spa";
-        if (/law|attorney|lawyer|legal/.test(text)) return "attorney";
-        if (/realtor|real estate|property/.test(text)) return "real estate";
-        if (/nightlife|venue|bar|club/.test(text)) return "nightlife/venue";
-        if (/event|wedding|vendor/.test(text)) return "event vendor";
+        if (/roof|roofer|floor|tile|carpet|hvac|plumb|electric|landscap|pool|cleaning|pest|garage|contractor|remodel|home service|home improvement/.test(text)) return "home services";
         if (/restaurant|food|cafe|dining/.test(text)) return "restaurant";
+        if (/nightlife|venue|bar|club|table request|private party|vip/.test(text)) return "bars / nightlife";
+        if (/event|wedding|vendor|guest count|venue detail|package/.test(text)) return "event vendors";
+        if (/transport|concierge|route|pickup|airport|shuttle|ride|limo|driver/.test(text)) return "transportation / concierge";
+        if (/law|attorney|lawyer|legal|med spa|spa|aesthetic|botox|clinic|dental|chiro|consultation|professional service|accounting|insurance|financial/.test(text)) return "professional services";
+        if (/brand|retail|product|campaign|content|qr|social|media/.test(text)) return "local brands";
+        if (/resort|hotel|visitor|tourist|nearby|route-based|route based/.test(text)) return "resort-area businesses";
         return "other";
       }
 
       function aiPlugSafeCopyFooter() {
         return "Internal/copy-only note: do not promise guaranteed leads, revenue, traffic, rankings, bookings, reviews, QR scans, appointment volume, AI replacing staff, automatic customer handling without approval, messages sent without manual review, or payment/invoice behavior.";
+      }
+
+      var AI_PLUG_FIT_LABELS = [
+        "Strong fit - urgent customer-path leak",
+        "Good fit - clear improvement opportunity",
+        "Needs diagnosis",
+        "Not a fit yet",
+      ];
+
+      var AI_PLUG_PRIORITY_LABELS = ["High", "Medium", "Low", "Hold"];
+
+      var AI_PLUG_FIRST_MOVE_OPTIONS = [
+        "Review business problem",
+        "Research business",
+        "Prepare diagnostic response",
+        "Send first follow-up",
+        "Schedule discovery call",
+        "Prepare first offer",
+        "Hold / not a fit",
+      ];
+
+      var AI_PLUG_OBJECTION_RESPONSES = [
+        ["I already have a website.", "That makes sense. I am not trying to replace a website just because it exists. The question is whether calls, forms, DMs, questions, and follow-up are connected after someone visits it. The smallest useful next step is a customer-path review so we can see whether the website is actually helping the request get captured and routed."],
+        ["I do not need AI.", "I get that. The useful part is not AI for its own sake. It is better answers, intake, routing, follow-up, and owner visibility with approval. The smallest next step is to identify one repeated question or intake problem AI can support without replacing your team."],
+        ["Can you guarantee leads?", "No, and I would not want to promise that. What we can improve is the path after interest: capture, routing, follow-up, and visibility. The next step is to find the leak and decide whether a small system would make the process cleaner."],
+        ["This sounds expensive.", "That is a fair concern. I would not start with a giant build. The safest move is to diagnose the main leak and choose the smallest useful first system, then expand only after it proves useful."],
+        ["I do not have time.", "That is exactly why the first step should be simple. I can review the current path and ask only the few questions needed to identify where requests get missed. Then we can decide whether it is worth a short discovery call."],
+        ["My staff already handles this.", "Good. The goal is not to replace staff. It is to make sure calls, forms, messages, and follow-up are easier for staff to see, route, and work. The smallest next step is mapping what staff handle now and where things still slip."],
+        ["I just need more customers.", "I understand. Before spending effort chasing more attention, I would check whether current opportunities are being captured and followed up. The next step is a quick leak diagnosis so we do not pour more interest into a broken path."],
+        ["I am not technical.", "You do not need to be. I would keep this in plain business terms: what customers ask, where requests go, who sees them, and what happens next. The next step is a simple workflow map."],
+        ["I need to think about it.", "That makes sense. You do not need to decide on a build now. The simple next action is to confirm the main leak and the smallest useful first step, then you can decide if it is worth moving forward."],
+        ["Send me information.", "Absolutely. I will send a short summary focused on the likely leak, the first system I would review, what it improves, and what it does not guarantee. After that, the next step can be a quick call only if it seems useful."],
+        ["We already have software.", "That can help. The question is whether the software connects the whole customer path: calls, forms, DMs, routing, follow-up, and owner visibility. The next step is to review where the existing tools are not connected."],
+        ["We tried marketing before.", "I hear that. This is not a promise that marketing will create results. The first move is operational: make the current customer path clearer so opportunities are captured, routed, and followed up before adding more campaigns."],
+        ["We are too small for this.", "That may be true for a full system. It is usually not true for a small intake or follow-up fix. The next step is to pick one leak that creates the most friction and decide if a small fix is worth it."],
+        ["I do not want a chatbot.", "Fair. A chatbot is only one possible tool, and it may not be the right first move. We can start with forms, routing, follow-up copy, or owner visibility before any AI operator is considered."],
+        ["How do I know this will work?", "You should not have to take that on faith. We start small, define what the system is supposed to improve, avoid guarantees, and review whether the workflow is clearer after launch. The next step is a focused diagnosis."],
+      ];
+
+      var AI_PLUG_FOLLOW_UP_MESSAGES = [
+        ["First follow-up", "Hi [contact name], this is Willie with The AI Plug / Where To Go SA. I saw your request for [business name]. The first thing I would review is where calls, forms, messages, questions, or follow-up may be getting disconnected. Would a quick customer-path review be useful?"],
+        ["Warm follow-up", "Hi [contact name], just following up on [business name]. I would keep the first step practical: diagnose the main leak, then decide whether smart intake, routing, follow-up, an AI website operator, content, or owner visibility is the smallest useful system."],
+        ["After no response", "Hi [contact name], I do not want to keep bugging you. Should I mark this as not now, or is it still worth reviewing where customer requests may be getting missed or delayed?"],
+        ["After discovery call", "Hi [contact name], thanks for walking through the customer path for [business name]. Based on what you shared, the main leak appears to be [diagnosed leak]. I would recommend starting with [recommended system] because it improves [what it improves] without promising leads, revenue, bookings, rankings, or reviews."],
+        ["After proposal", "Hi [contact name], following up on the proposal for [business name]. The recommended first phase is focused on [recommended system] and [first deliverable]. If the scope still looks right, the next step is confirming approval, assets, access, and launch expectations."],
+        ["Send me info reply", "Absolutely. I will send a short summary of what may be leaking, why it matters, the first system I would review, what it can improve, what is not guaranteed, and the simplest next step."],
+        ["Close / next-step message", "The next step is confirming the first phase: [recommended system], required assets, approval person, access, launch expectations, and follow-up cadence. Nothing goes live or customer-facing without approval."],
+        ["Not-a-fit / hold message", "Thanks for sharing the details. I do not think this is a fit for a build yet. I would hold until the customer-path leak, decision maker, timing, or first useful system is clearer."],
+      ];
+
+      function aiPlugFitPriority(lead) {
+        var diagnosis = aiPlugDiagnosis(lead || {});
+        var priority = calcBusinessPriority(lead || {});
+        var status = normStatus(lead && lead.status);
+        var text = aiPlugLeadSourceText(lead || {});
+        var fit = "Needs diagnosis";
+        if (status === "not a fit" || /guarantee|guaranteed|free only|not interested/.test(text)) fit = "Not a fit yet";
+        else if (priority.key === "hot" && /missed|slow|lost|urgent|asap|follow|booking|intake|route|owner/.test(text)) fit = "Strong fit - urgent customer-path leak";
+        else if (priority.key === "warm" || diagnosis.leak !== "Weak forms") fit = "Good fit - clear improvement opportunity";
+        var priorityLabel = fit === "Not a fit yet" ? "Hold" : priority.key === "hot" ? "High" : priority.key === "warm" ? "Medium" : "Low";
+        return { fit: fit, priority: priorityLabel };
+      }
+
+      function aiPlugRecommendedFirstMove(lead) {
+        var fit = aiPlugFitPriority(lead).fit;
+        var stage = dealStageInfo(lead || {}).key;
+        if (fit === "Not a fit yet") return "Hold / not a fit";
+        if (stage === "new-lead" || stage === "needs-diagnosis") return "Review business problem";
+        if (stage === "research-needed" || matchesBusinessCommandBucket(lead, "vertical-opportunity")) return "Research business";
+        if (stage === "ready-to-contact" || stage === "research-complete") return "Prepare diagnostic response";
+        if (stage === "contacted" || stage === "follow-up-due") return "Send first follow-up";
+        if (stage === "discovery-needed" || stage === "discovery-scheduled") return "Schedule discovery call";
+        if (stage === "qualified" || stage === "proposal-ready" || stage === "discovery-complete") return "Prepare first offer";
+        return "Prepare diagnostic response";
+      }
+
+      function aiPlugOfferPath(lead) {
+        return aiPlugRecommendOffer(lead || {}).offer || "Diagnostic / audit first";
       }
 
       function estimateDealValueTier(lead, sig, priority) {
@@ -18215,16 +18427,22 @@
 
       function buildAiPlugDiagnosisSummary(lead) {
         var d = aiPlugCopyData(lead);
+        var fit = aiPlugFitPriority(lead);
         return [
           "AI Plug lead diagnosis - " + d.business,
           "",
+          "Lead label: AI Plug Business Request",
           "Contact: " + d.contact,
           "Lead source: " + d.source,
           "Main problem: " + d.problem,
-          "Likely leak: " + d.diagnosis.leak,
+          "Business problem: " + d.problem,
+          "Customer-path leak: " + d.diagnosis.leak,
           "Plain-English diagnosis: " + d.diagnosis.diagnosis,
+          "Fit label: " + fit.fit,
+          "Priority: " + fit.priority,
           "Recommended first question: " + d.diagnosis.firstQuestion,
-          "Suggested first offer: " + d.diagnosis.suggestedFirstOffer,
+          "Suggested system: " + aiPlugOfferPath(lead),
+          "Recommended first move: " + aiPlugRecommendedFirstMove(lead),
           "Next action: " + d.diagnosis.nextAction,
           "",
           aiPlugSafeCopyFooter(),
@@ -18293,10 +18511,216 @@
           "",
           "Niche: " + d.nicheKey,
           "Likely pain points: " + d.niche.pain,
+          "Quick pitch: " + (d.niche.quickPitch || d.niche.language),
           "First question: " + d.niche.question,
           "Recommended starting system: " + d.niche.system,
+          "Likely first offer: " + (d.niche.likelyFirstOffer || d.niche.system),
+          "Common objection: " + (d.niche.commonObjection || "Start with diagnosis before recommending a build."),
+          "Follow-up message: " + (d.niche.followUpMessage || "Hi [contact name], I would start by mapping where [business name] loses opportunities between interest and follow-up."),
           "Safe language: " + d.niche.language,
           "Delivery caution notes: " + d.niche.caution,
+          "",
+          "Discovery questions:",
+          bulletText(d.niche.discoveryQuestions || [d.niche.question]),
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildAiPlugPitchScriptText(lead) {
+        var d = aiPlugCopyData(lead);
+        return [
+          "Business pitch script builder - " + d.business,
+          "",
+          "10-second pitch:",
+          "The AI Plug helps businesses stop losing opportunities when calls, forms, messages, questions, and follow-up are not connected.",
+          "",
+          "15-second pitch:",
+          "The AI Plug builds the customer path behind the business: answers, smart intake, routing, follow-up, automations, content, and owner visibility.",
+          "",
+          "30-second pitch:",
+          "For " + d.business + ", I would not start by selling random AI tools. I would look at " + d.diagnosis.leak + " first, then decide whether " + aiPlugOfferPath(lead) + " is the smallest useful system to make requests easier to capture, route, follow up, and review.",
+          "",
+          "60-second pitch:",
+          "Most businesses do not lose opportunities only because they need a prettier website. They lose them because calls get missed, forms are weak, DMs and texts are scattered, customers ask the same questions, follow-up is slow, or the owner cannot see what happened. The AI Plug connects that path with practical AI support, smart intake, routing, follow-up workflows, content systems, and owner-visible tools. For " + d.business + ", the first step would be diagnosing " + d.diagnosis.leak + " and starting with " + aiPlugOfferPath(lead) + ".",
+          "",
+          "Text-message version:",
+          "Hi " + d.contact + ", this is Willie with The AI Plug / Where To Go SA. For " + d.business + ", I would start by reviewing where customer requests may be getting missed between calls, forms, messages, and follow-up. Would a quick customer-path review be useful?",
+          "",
+          "Email version:",
+          "Subject: Customer-path review for " + d.business,
+          "",
+          "Hi " + d.contact + ",",
+          "",
+          "Thanks for reaching out. I would start by reviewing where opportunities may be leaking for " + d.business + ": calls, forms, DMs/texts, customer questions, routing, follow-up, and owner visibility. From there, we can decide whether " + aiPlugOfferPath(lead) + " is the smallest useful first system.",
+          "",
+          "I do not promise guaranteed leads, traffic, revenue, bookings, rankings, or reviews. The goal is a clearer customer path and a better follow-up process.",
+          "",
+          "Would you like to schedule a short discovery call?",
+          "",
+          "Willie",
+          "The AI Plug / Where To Go SA",
+          "",
+          "Phone opener:",
+          "Hi " + d.contact + ", this is Willie with The AI Plug / Where To Go SA. I saw your request for " + d.business + ". I am not calling to pitch a generic AI website. I wanted to understand where customer requests get lost now: calls, forms, messages, questions, routing, follow-up, or owner visibility.",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildAiPlugObjectionResponsesText(lead) {
+        var d = aiPlugCopyData(lead);
+        var lines = ["AI Plug objection handler - " + d.business, ""];
+        AI_PLUG_OBJECTION_RESPONSES.forEach(function (item) {
+          lines.push(item[0]);
+          lines.push(item[1]);
+          lines.push("");
+        });
+        lines.push(aiPlugSafeCopyFooter());
+        return lines.join("\n").trim();
+      }
+
+      function buildAiPlugFollowUpCenterText(lead) {
+        var d = aiPlugCopyData(lead);
+        var lines = ["Follow-Up Command Center - " + d.business, ""];
+        AI_PLUG_FOLLOW_UP_MESSAGES.forEach(function (item) {
+          lines.push(item[0] + ":");
+          lines.push(item[1].replace(/\[contact name\]/g, d.contact).replace(/\[business name\]/g, d.business).replace(/\[diagnosed leak\]/g, d.diagnosis.leak).replace(/\[recommended system\]/g, aiPlugOfferPath(lead)).replace(/\[first deliverable\]/g, d.offer.firstDeliverable).replace(/\[what it improves\]/g, d.offer.solves));
+          lines.push("");
+        });
+        lines.push(aiPlugSafeCopyFooter());
+        return lines.join("\n").trim();
+      }
+
+      function buildAiPlugProposalDirectionText(lead) {
+        var d = aiPlugCopyData(lead);
+        return [
+          "Proposal direction - " + d.business,
+          "",
+          "What is leaking:",
+          d.diagnosis.leak + " - " + d.diagnosis.diagnosis,
+          "",
+          "Why it matters:",
+          "If this stays disconnected, good opportunities can get delayed, routed to the wrong place, or missed before the owner can see the next action.",
+          "",
+          "First system recommended:",
+          aiPlugOfferPath(lead) + " / " + d.offer.firstDeliverable,
+          "",
+          "What it improves:",
+          d.offer.solves,
+          "",
+          "What is not guaranteed:",
+          "No guaranteed leads, traffic, revenue, bookings, reservations, rankings, reviews, appointment volume, or automatic customer-facing messages.",
+          "",
+          "Next step:",
+          aiPlugRecommendedFirstMove(lead) + " - " + d.diagnosis.nextAction,
+        ].join("\n");
+      }
+
+      function buildAiPlugCloseOnboardingText(lead) {
+        var d = aiPlugCopyData(lead);
+        return [
+          "Close / onboarding command - " + d.business,
+          "",
+          "Scope confirmation:",
+          "- Confirm first system: " + aiPlugOfferPath(lead),
+          "- Confirm first deliverable: " + d.offer.firstDeliverable,
+          "- Confirm what is included and what is not included.",
+          "",
+          "Required assets:",
+          "- Website and current links",
+          "- Logo / brand assets if needed",
+          "- Approved wording and offers",
+          "- Current forms, CRM, calendar, phone, chat, email, or reporting tools",
+          "- Routing contacts and escalation rules",
+          "",
+          "Access checklist:",
+          "- Website/admin access if needed",
+          "- Form destination access",
+          "- Email/alert destination approval",
+          "- CRM/calendar/tool access if included",
+          "",
+          "Approval points:",
+          "- Intake questions",
+          "- Customer-facing wording",
+          "- AI-assisted answers if included",
+          "- Launch preview",
+          "- Follow-up copy and cadence",
+          "",
+          "Launch expectations:",
+          "- Start with the smallest useful system.",
+          "- Test mobile path, intake, routing, alerts, owner visibility, and approval rules.",
+          "",
+          "Follow-up cadence:",
+          "- First check after launch",
+          "- Monthly recap if support is included",
+          "- Optimization after real usage is reviewed",
+          "",
+          "No-guarantee reminder:",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildAiPlugProjectDeliveryText(lead) {
+        var d = aiPlugCopyData(lead);
+        return [
+          "Project delivery command - " + d.business,
+          "",
+          "Recommended build first:",
+          aiPlugOfferPath(lead),
+          "",
+          "Delivery paths:",
+          "- Customer-path website",
+          "- AI website operator",
+          "- Smart intake form",
+          "- Lead routing/alerts",
+          "- Content/media system",
+          "- Automation workflow",
+          "- Owner dashboard",
+          "- Full business system",
+          "",
+          "Build priority:",
+          "Start with " + d.offer.firstDeliverable + " because the diagnosed leak is " + d.diagnosis.leak + ".",
+          "",
+          "Testing checklist:",
+          "- Mobile customer path",
+          "- Intake form or request path",
+          "- Routing/alert destination",
+          "- Follow-up workflow",
+          "- Owner-visible status",
+          "- Approval rules",
+          "- No unapproved automation",
+        ].join("\n");
+      }
+
+      function buildAiPlugRetentionText(lead) {
+        var d = aiPlugCopyData(lead);
+        return [
+          "Client support / retention command - " + d.business,
+          "",
+          "Check-in:",
+          "- Is the customer path still clear?",
+          "- Are requests being captured with the right details?",
+          "- Are routing and follow-up visible to the owner?",
+          "",
+          "Optimization:",
+          "- Tighten the highest-friction intake question, CTA, routing rule, or follow-up step.",
+          "",
+          "Monthly recap:",
+          "- What was launched or improved",
+          "- What requests or workflow issues were reviewed",
+          "- What should be optimized next",
+          "- What should stay manual or owner-approved",
+          "",
+          "Testimonial:",
+          "- Ask only if the client is happy with the process.",
+          "- Do not imply guaranteed results.",
+          "",
+          "Referral:",
+          "- Ask after useful client experience, not after unproven claims.",
+          "",
+          "Upsell:",
+          "- Consider next phase only after the first system proves useful: AI operator, content/media, automation, owner dashboard, or full business system.",
           "",
           aiPlugSafeCopyFooter(),
         ].join("\n");
@@ -18347,11 +18771,21 @@
           "ai-plug-first-outreach": [
             "Hi " + d.contact + ", this is Willie with The AI Plug / Where To Go SA.",
             "",
-            "I saw the request for " + d.business + " around " + d.problem + ". I would start by diagnosing the customer path before recommending a big build.",
+            "I saw the request for " + d.business + " around " + d.problem + ". I would start by diagnosing where calls, forms, messages, questions, or follow-up may be disconnected before recommending a big build.",
             "",
             "The first thing I would look at is " + d.diagnosis.leak + " and whether " + d.offer.offer + " is the smallest useful first system.",
             "",
             "Would it be worth a quick workflow mapping call?",
+          ],
+          "ai-plug-text-reply": [
+            "Hi " + d.contact + ", this is Willie with The AI Plug / Where To Go SA. I saw your request for " + d.business + ". I would start by reviewing where customer requests may be getting missed between calls, forms, messages, questions, and follow-up. Would a quick customer-path review be useful?",
+          ],
+          "ai-plug-call-opener": [
+            "Hi " + d.contact + ", this is Willie with The AI Plug / Where To Go SA.",
+            "",
+            "I saw your request for " + d.business + ". I am not calling to pitch a generic AI website. I wanted to understand where customer opportunities get lost today: missed calls, weak forms, scattered DMs/texts, repeated questions, slow follow-up, no request path, or owner visibility.",
+            "",
+            "If we identify one clear leak, we can decide the smallest useful next step.",
           ],
           "ai-plug-warm-follow-up": [
             "Hi " + d.contact + ", just following up on " + d.business + ".",
@@ -18397,22 +18831,41 @@
             "It helps track leads, notes, stages, next actions, launch QA, monthly recaps, and follow-up. It is internal and copy-only unless a separate automation is approved.",
           ],
           "ai-plug-objection-response": [
-            "That makes sense. I would not recommend buying a big system without seeing the bottleneck first.",
-            "",
-            "The safest move is to start small: confirm the leak, build the first useful workflow, test it, and improve after proof.",
+            buildAiPlugObjectionResponsesText(lead),
           ],
           "ai-plug-proposal-summary": [
-            "For " + d.business + ", I would recommend starting with " + d.offer.offer + ".",
-            "",
-            "Main problem: " + d.problem,
-            "Diagnosed leak: " + d.diagnosis.leak,
-            "First deliverable: " + d.offer.firstDeliverable,
-            "Next action: " + d.diagnosis.nextAction,
+            buildAiPlugProposalDirectionText(lead),
+          ],
+          "ai-plug-follow-up-email": [
+            buildAiPlugFollowUpCenterText(lead),
           ],
           "ai-plug-next-step-close": [
-            "The next step is not a commitment to a big build.",
+            buildAiPlugCloseOnboardingText(lead),
+          ],
+          "ai-plug-hold-message": [
+            "Hi " + d.contact + ", thanks for sharing the details for " + d.business + ". I do not think this is ready for a build yet. I would hold until the customer-path leak, decision maker, timing, or first useful system is clearer. Happy to revisit when those pieces are easier to confirm.",
+          ],
+          "ai-plug-command-summary": [
+            buildAiPlugDiagnosisSummary(lead),
             "",
-            "It is a short workflow mapping call to confirm the customer path, owner approval rules, and the first useful system.",
+            buildAiPlugOfferRecommendation(lead),
+            "",
+            buildAiPlugProposalDirectionText(lead),
+          ],
+          "ai-plug-crm-summary": [
+            "Owner-ready CRM summary - " + d.business,
+            "",
+            "Lead label: AI Plug Business Request",
+            "Business problem: " + d.problem,
+            "Customer-path leak: " + d.diagnosis.leak,
+            "Recommended first move: " + aiPlugRecommendedFirstMove(lead),
+            "Suggested system: " + aiPlugOfferPath(lead),
+            "Next action: " + d.diagnosis.nextAction,
+            "Follow-up date: [set follow-up date]",
+            "Proposal status: " + (dealStageInfo(lead || {}).label || "Not started"),
+            "Close/onboarding status: [not started]",
+            "",
+            aiPlugSafeCopyFooter(),
           ],
           "ai-plug-intake-message": [
             "To map the first version for " + d.business + ", I need the website, current forms/tools, routing contacts, approved wording, brand assets if needed, and anything we should not say or automate.",
@@ -18444,6 +18897,14 @@
         if (kind === "ai-plug-discovery-questions") return buildAiPlugDiscoveryQuestionsText(lead);
         if (kind === "ai-plug-proposal-ready") return buildAiPlugProposalReadySummary(lead);
         if (kind === "ai-plug-niche-translation") return buildAiPlugNicheTranslation(lead);
+        if (kind === "ai-plug-niche-pitch") return buildAiPlugNicheTranslation(lead);
+        if (kind === "ai-plug-pitch-builder") return buildAiPlugPitchScriptText(lead);
+        if (kind === "ai-plug-objection-responses") return buildAiPlugObjectionResponsesText(lead);
+        if (kind === "ai-plug-follow-up-center") return buildAiPlugFollowUpCenterText(lead);
+        if (kind === "ai-plug-proposal-direction") return buildAiPlugProposalDirectionText(lead);
+        if (kind === "ai-plug-close-onboarding") return buildAiPlugCloseOnboardingText(lead);
+        if (kind === "ai-plug-project-delivery") return buildAiPlugProjectDeliveryText(lead);
+        if (kind === "ai-plug-client-retention") return buildAiPlugRetentionText(lead);
         if (kind === "ai-plug-delivery-handoff") return buildAiPlugDeliveryHandoffText(lead);
         if (kind === "ai-plug-launch-qa") return buildAiPlugLaunchQaText(lead);
         if (String(kind || "").indexOf("ai-plug-") === 0) return buildAiPlugSalesCopy(kind, lead);
@@ -20981,11 +21442,20 @@
         var prepButtons = isBusiness
           ? [
               { kind: "summary", label: "Copy lead summary" },
-              { kind: "ai-plug-diagnosis", label: "Copy diagnosis", action: "copy-deal" },
+              { kind: "ai-plug-first-outreach", label: "Copy first response", action: "copy-deal" },
+              { kind: "ai-plug-text-reply", label: "Copy text reply", action: "copy-deal" },
+              { kind: "ai-plug-call-opener", label: "Copy call opener", action: "copy-deal" },
+              { kind: "ai-plug-diagnosis", label: "Copy diagnostic recap", action: "copy-deal" },
               { kind: "ai-plug-offer-recommendation", label: "Copy offer recommendation", action: "copy-deal" },
-              { kind: "discovery-questions", label: "Copy discovery questions", action: "copy-followup" },
-              { kind: "ai-plug-proposal-ready", label: "Copy proposal-ready summary", action: "copy-deal" },
-              { kind: "first-offer", label: "Copy first offer", action: "copy-followup" },
+              { kind: "ai-plug-discovery-questions", label: "Copy discovery questions", action: "copy-deal" },
+              { kind: "ai-plug-objection-responses", label: "Copy objection responses", action: "copy-deal" },
+              { kind: "ai-plug-follow-up-center", label: "Copy follow-up email", action: "copy-deal" },
+              { kind: "ai-plug-proposal-direction", label: "Copy proposal summary", action: "copy-deal" },
+              { kind: "ai-plug-next-step-close", label: "Copy next-step close", action: "copy-deal" },
+              { kind: "ai-plug-hold-message", label: "Copy hold/not-a-fit message", action: "copy-deal" },
+              { kind: "ai-plug-command-summary", label: "Copy business command summary", action: "copy-deal" },
+              { kind: "ai-plug-niche-pitch", label: "Copy niche-specific pitch", action: "copy-deal" },
+              { kind: "ai-plug-crm-summary", label: "Copy owner-ready CRM summary", action: "copy-deal" },
             ]
           : [{ kind: "request-summary", label: "Copy request summary", action: "copy-followup" }];
         return (
@@ -21233,9 +21703,12 @@
           detailRow("Business / restaurant", lead.business_name) +
           detailRow("Contact", lead.contact_name) +
           detailRow("Phone / email", [lead.contact_phone, lead.contact_email].filter(Boolean).join(" / ")) +
+          detailRow("Business problem", lead.current_problem || businessServicesFixFirstFromRow(lead), true) +
+          detailRow("Customer-path leak", aiPlugDiagnosis(lead).leak, true) +
           detailRow("Priority", priority && priority.label) +
           detailRow("Status", displayStatus(lead.status)) +
-          detailRow("Recommended system", lead.recommended_system || (isRestaurantRow(lead) ? restaurantSnapshot(lead).recommendedOffer : null), true) +
+          detailRow("Suggested system", lead.recommended_system || (isRestaurantRow(lead) ? restaurantSnapshot(lead).recommendedOffer : aiPlugOfferPath(lead)), true) +
+          detailRow("Recommended first move", isRestaurantRow(lead) ? nextAction : aiPlugRecommendedFirstMove(lead), true) +
           detailRow("Next recommended action", nextAction, true) +
           detailRow("Owner notes", lead.owner_notes, true) +
           "</div></section>"
@@ -21273,11 +21746,18 @@
             commandQuickCopyButton("copy-restaurant", "restaurant-close-message", "Copy close message", false);
         } else {
           buttons +=
-            commandQuickCopyButton("copy-deal", "ai-plug-diagnosis", "Copy diagnosis", true) +
-            commandQuickCopyButton("copy-deal", "ai-plug-offer-recommendation", "Copy offer", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-first-outreach", "Copy first response", true) +
+            commandQuickCopyButton("copy-deal", "ai-plug-text-reply", "Copy text reply", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-call-opener", "Copy call opener", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-discovery-questions", "Copy discovery questions", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-objection-responses", "Copy objection responses", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-diagnosis", "Copy diagnostic recap", true) +
+            commandQuickCopyButton("copy-deal", "ai-plug-niche-pitch", "Copy niche-specific pitch", false) +
             commandQuickCopyButton("copy-deal", "ai-plug-proposal-ready", "Copy proposal summary", false) +
-            commandQuickCopyButton("copy-followup", "sms-followup", "Copy SMS follow-up", false) +
-            commandQuickCopyButton("copy-field", "summary", "Copy lead summary", true);
+            commandQuickCopyButton("copy-deal", "ai-plug-next-step-close", "Copy next-step close", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-hold-message", "Copy hold/not-a-fit message", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-command-summary", "Copy business command summary", false) +
+            commandQuickCopyButton("copy-deal", "ai-plug-crm-summary", "Copy owner-ready CRM summary", true);
         }
         return (
           '<section class="owner-dash-command-quick-copy" data-command-view="quick-only">' +
@@ -21497,9 +21977,99 @@
         );
       }
 
+      function aiPlugFitPriorityBlock(lead) {
+        var fit = aiPlugFitPriority(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-plug-fit">' +
+          '<h3 class="owner-dash-detail-section-title">Business Fit + Priority</h3>' +
+          '<p class="owner-dash-detail-section-note">Use this to decide whether the lead deserves outreach, more diagnosis, or a hold.</p>' +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Fit label", fit.fit) +
+          detailRow("Priority", fit.priority) +
+          detailRow("Recommended first move", aiPlugRecommendedFirstMove(lead), true) +
+          detailRow("Offer path recommendation", aiPlugOfferPath(lead), true) +
+          "</div>" +
+          collapsibleBlock("Fit labels", bulletListHtml(AI_PLUG_FIT_LABELS), "owner-dash-collapsible--ai-plug-fit") +
+          collapsibleBlock("Priority labels", bulletListHtml(AI_PLUG_PRIORITY_LABELS), "owner-dash-collapsible--ai-plug-priority") +
+          collapsibleBlock("Recommended first move options", bulletListHtml(AI_PLUG_FIRST_MOVE_OPTIONS), "owner-dash-collapsible--ai-plug-first-move") +
+          "</section>"
+        );
+      }
+
+      function aiPlugPitchScriptBlock(lead) {
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-plug-pitch">' +
+          '<h3 class="owner-dash-detail-section-title">Business Pitch Script Builder</h3>' +
+          '<p class="owner-dash-detail-section-note">Plain-English scripts for the lead problem and niche. Copy only.</p>' +
+          '<pre class="owner-dash-followup-template">' +
+          esc(buildAiPlugPitchScriptText(lead)) +
+          "</pre>" +
+          '<div class="owner-dash-proposal-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="ai-plug-pitch-builder">Copy pitch builder</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="ai-plug-text-reply">Copy text reply</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="ai-plug-call-opener">Copy call opener</button>' +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden><p class="owner-dash-detail-manual-copy-label">Select and copy:</p><textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea></div>' +
+          "</section>"
+        );
+      }
+
+      function aiPlugObjectionHandlerBlock(lead) {
+        var html = AI_PLUG_OBJECTION_RESPONSES.map(function (item, idx) {
+          return collapsibleBlock(item[0], "<p>" + esc(item[1]) + "</p>", "owner-dash-collapsible--ai-plug-objection" + (idx < 3 ? " owner-dash-collapsible--open" : ""));
+        }).join("");
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-plug-objections">' +
+          '<h3 class="owner-dash-detail-section-title">Objection Handler</h3>' +
+          '<p class="owner-dash-detail-section-note">Acknowledge, reframe around the leak, name the smallest next step, and avoid guarantees.</p>' +
+          html +
+          '<div class="owner-dash-proposal-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="ai-plug-objection-responses">Copy objection responses</button>' +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden><p class="owner-dash-detail-manual-copy-label">Select and copy:</p><textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea></div>' +
+          "</section>"
+        );
+      }
+
+      function aiPlugProposalDirectionBlock(lead) {
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-plug-proposal-direction">' +
+          '<h3 class="owner-dash-detail-section-title">Proposal Direction Builder</h3>' +
+          '<p class="owner-dash-detail-section-note">Structure: what is leaking, why it matters, first system, what it improves, what is not guaranteed, next step.</p>' +
+          '<pre class="owner-dash-followup-template">' +
+          esc(buildAiPlugProposalDirectionText(lead)) +
+          "</pre>" +
+          '<div class="owner-dash-proposal-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="ai-plug-proposal-direction">Copy proposal summary</button>' +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden><p class="owner-dash-detail-manual-copy-label">Select and copy:</p><textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea></div>' +
+          "</section>"
+        );
+      }
+
+      function aiPlugLifecycleCommandBlock(title, note, text, copyKind, copyLabel) {
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-plug-lifecycle">' +
+          '<h3 class="owner-dash-detail-section-title">' + esc(title) + "</h3>" +
+          '<p class="owner-dash-detail-section-note">' + esc(note) + "</p>" +
+          '<pre class="owner-dash-followup-template">' + esc(text) + "</pre>" +
+          '<div class="owner-dash-proposal-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="' + esc(copyKind) + '">' + esc(copyLabel) + "</button>" +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden><p class="owner-dash-detail-manual-copy-label">Select and copy:</p><textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea></div>' +
+          "</section>"
+        );
+      }
+
       function aiPlugSalesCommandBlock(lead) {
         var buttons = [
-          ["ai-plug-first-outreach", "First outreach", true],
+          ["ai-plug-first-outreach", "first response", true],
+          ["ai-plug-text-reply", "text reply"],
+          ["ai-plug-call-opener", "call opener"],
           ["ai-plug-warm-follow-up", "Warm follow-up"],
           ["ai-plug-discovery-opener", "Discovery opener"],
           ["ai-plug-diagnosis-recap", "Diagnosis recap"],
@@ -21507,9 +22077,15 @@
           ["ai-plug-more-than-website", "More than a website"],
           ["ai-plug-ai-systems-explanation", "AI systems explanation"],
           ["ai-plug-dashboard-explanation", "Dashboard visibility"],
-          ["ai-plug-objection-response", "Objection response"],
+          ["ai-plug-objection-responses", "objection responses"],
+          ["ai-plug-follow-up-center", "follow-up email"],
           ["ai-plug-proposal-summary", "Proposal summary"],
-          ["ai-plug-next-step-close", "Next-step close"],
+          ["ai-plug-diagnosis", "diagnostic recap"],
+          ["ai-plug-next-step-close", "next-step close"],
+          ["ai-plug-hold-message", "hold/not-a-fit message"],
+          ["ai-plug-command-summary", "business command summary"],
+          ["ai-plug-niche-pitch", "niche-specific pitch"],
+          ["ai-plug-crm-summary", "owner-ready CRM summary"],
           ["ai-plug-launch-confirmation", "Launch confirmation"],
           ["ai-plug-monthly-recap", "Monthly recap"],
           ["ai-plug-renewal-upsell", "Renewal / upsell"],
@@ -21832,22 +22408,22 @@
           commandSection("snapshot", "", nextActionHtml(nextAction)) +
           commandSection("snapshot", "quick-only", businessCommandSnapshotBlock(lead, priority, nextAction)) +
           commandSection("copy-tools", "quick-only", businessCommandQuickCopyBlock(lead)) +
-          (restaurant ? "" : commandSection("diagnosis", "full", aiPlugDiagnosisBlock(lead) + aiPlugNicheBlock(lead))) +
+          (restaurant ? "" : commandSection("diagnosis", "full", aiPlugDiagnosisBlock(lead) + aiPlugFitPriorityBlock(lead) + aiPlugNicheBlock(lead))) +
           (restaurant ? "" : commandSection("offers", "full", aiPlugOfferEngineBlock(lead))) +
           (restaurant ? "" : commandSection("discovery", "full", aiPlugDiscoveryBlock(lead))) +
           commandSection("opportunity", "full", opportunityBuilderBlock(lead)) +
           (restaurant ? restaurantSalesCommandBlock(lead) : "") +
-          (restaurant ? "" : commandSection("deal", "full", aiPlugSalesCommandBlock(lead))) +
+          (restaurant ? "" : commandSection("deal", "full", aiPlugPitchScriptBlock(lead) + aiPlugSalesCommandBlock(lead) + aiPlugObjectionHandlerBlock(lead))) +
           commandSection("deal", "full", dealBuilderBlock(lead) + dealStageTrackerBlock(lead)) +
           commandSection(
             "proposal",
             "full",
-            proposalEstimateBlock(lead) + clientProposalSheetBlock(lead) + pricingBuilderBlock(lead) + quoteInvoicePrepBlock(lead)
+            (restaurant ? "" : aiPlugProposalDirectionBlock(lead)) + proposalEstimateBlock(lead) + clientProposalSheetBlock(lead) + pricingBuilderBlock(lead) + quoteInvoicePrepBlock(lead)
           ) +
-          commandSection("follow-up", "full", followUpCommandCenterBlock(lead)) +
-          commandSection("close", "full", closeOnboardingCommandBlock(lead)) +
-          commandSection("delivery", "full", (restaurant ? "" : aiPlugDeliveryHandoffBlock(lead)) + projectDeliveryCommandBlock(lead) + (restaurant ? "" : aiPlugQaRecapBlock(lead))) +
-          commandSection("support", "full", clientSupportRetentionCommandBlock(lead)) +
+          commandSection("follow-up", "full", (restaurant ? "" : aiPlugLifecycleCommandBlock("Follow-Up Command Center", "Copy-ready manual follow-ups for first touch, warm follow-up, no response, post-discovery, after proposal, send-info, close, and hold.", buildAiPlugFollowUpCenterText(lead), "ai-plug-follow-up-center", "Copy follow-up email")) + followUpCommandCenterBlock(lead)) +
+          commandSection("close", "full", (restaurant ? "" : aiPlugLifecycleCommandBlock("Close / Onboarding Command", "After interest, confirm scope, collect assets, set approval points, and keep launch expectations safe.", buildAiPlugCloseOnboardingText(lead), "ai-plug-close-onboarding", "Copy next-step close")) + closeOnboardingCommandBlock(lead)) +
+          commandSection("delivery", "full", (restaurant ? "" : aiPlugDeliveryHandoffBlock(lead) + aiPlugLifecycleCommandBlock("Project Delivery Command", "Choose what to build first from the diagnosed customer-path leak.", buildAiPlugProjectDeliveryText(lead), "ai-plug-project-delivery", "Copy project delivery command")) + projectDeliveryCommandBlock(lead) + (restaurant ? "" : aiPlugQaRecapBlock(lead))) +
+          commandSection("support", "full", (restaurant ? "" : aiPlugLifecycleCommandBlock("Client Support / Retention Command", "Guide check-ins, optimization, monthly recap, testimonial, referral, and responsible upsell.", buildAiPlugRetentionText(lead), "ai-plug-client-retention", "Copy retention command")) + clientSupportRetentionCommandBlock(lead)) +
           (restaurant ? "" : commandSection("rep", "full", aiPlugRepCommandBlock())) +
           (restaurant ? "" : commandSection("guardrails", "full", aiPlugGuardrailsBlock())) +
           commandSection("copy-tools", "full", groupedToolsBlock("business_leads")) +
