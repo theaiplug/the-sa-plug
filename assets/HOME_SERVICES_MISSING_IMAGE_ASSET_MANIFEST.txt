@@ -1,0 +1,12 @@
+WHERE TO GO SA / THE AI PLUG — HOME SERVICES MISSING IMAGE ASSETS
+
+Purpose: Remaining standalone website image assets for the Home Services + Home Improvement page.
+Upload location suggestion: your website asset folder.
+
+Included files:
+- home-services-hvac-service-call.png — 1448x1086 px
+- home-services-plumbing-request.png — 1448x1086 px
+- home-services-electrical-project.png — 1448x1086 px
+- home-services-restoration-estimating.png — 1448x1086 px
+- home-services-handyman-local-service.png — 1448x1086 px
+- home-services-smart-intake.png — 1448x1086 px

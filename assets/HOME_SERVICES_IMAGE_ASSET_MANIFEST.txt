@@ -1,0 +1,21 @@
+WHERE TO GO SA / THE AI PLUG — HOME SERVICES IMAGE ASSETS
+
+Purpose: Website-ready standalone image assets for the Home Services + Home Improvement page.
+Upload location suggestion: assets/ or the existing site image assets folder.
+
+Rules followed:
+- No website mockups included
+- No collage/grid images included
+- No baked-in headlines or marketing copy added by us
+- Filenames are GitHub-safe and page-specific
+
+Included files:
+- home-services-hero-ai-plug.png — 1672x941 px
+- home-services-problem-quote-request-flow.png — 1448x1086 px
+- home-services-conversion-intake.png — 1448x1086 px
+- home-services-owner-homeowner-consultation.png — 1448x1086 px
+- home-services-owner-visibility.png — 1448x1086 px
+- home-services-call-photo-followup.png — 1448x1086 px
+- home-services-roofing-inspection.png — 1448x1086 px
+- home-services-flooring-measurement.png — 1448x1086 px
+- home-services-remodel-consultation.png — 1448x1086 px
