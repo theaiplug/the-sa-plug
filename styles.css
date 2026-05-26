@@ -4650,6 +4650,55 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   margin-top: 12px;
 }
 
+.page-business-services .ai-bs-adaptation-card {
+  margin-top: clamp(20px, 3vw, 28px);
+  border-color: rgba(242, 178, 26, 0.28);
+  background:
+    linear-gradient(145deg, rgba(255, 251, 242, 0.08) 0%, rgba(5, 13, 26, 0.42) 100%),
+    rgba(255, 251, 242, 0.04);
+}
+
+.page-business-services .dark-showcase .ai-bs-adaptation-card,
+.page-business-services .ai-bs-adaptation-card--on-dark {
+  border-color: rgba(242, 178, 26, 0.32);
+  background:
+    linear-gradient(145deg, rgba(242, 178, 26, 0.1) 0%, rgba(5, 13, 26, 0.55) 100%),
+    rgba(255, 251, 242, 0.05);
+  box-shadow: 0 16px 40px rgba(2, 6, 14, 0.35);
+}
+
+.page-business-services .ai-bs-adaptation-card h3 {
+  color: rgba(255, 251, 242, 0.98);
+}
+
+.page-business-services .dark-showcase .ai-bs-adaptation-card p,
+.page-business-services .ai-bs-adaptation-card--on-dark p {
+  color: rgba(255, 246, 230, 0.88);
+}
+
+.page-business-services .section-cream .ai-bs-adaptation-card {
+  background: rgba(255, 251, 242, 0.98);
+  border-color: rgba(11, 29, 58, 0.12);
+}
+
+.page-business-services .section-cream .ai-bs-adaptation-card h3 {
+  color: rgba(11, 29, 58, 0.98);
+}
+
+.page-business-services .section-cream .ai-bs-adaptation-card p {
+  color: var(--slate);
+}
+
+.page-business-services .ai-bs-adaptation-card p + p {
+  margin-top: 12px;
+}
+
+.page-ask .ask-proof-adaptation-note {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  opacity: 0.92;
+}
+
 .page-business-services .ai-bs-path-card {
   display: flex;
   flex-direction: column;
