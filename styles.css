@@ -18952,6 +18952,11 @@ body.owner-dash-detail-open {
   .ai-proof-proofline, .ai-systems-chip, .ai-systems-card h3, .ai-systems-card p, .restaurant-owner-soft-link,
   .ai-systems-hero-caption, .consent-note, .footer-links a, .ai-offer-card, .ai-bs-owner-card
 ),
+.page-home-services :where(
+  h1, h2, h3, h4, p, li, a, button, label, legend, span, strong, .btn, .hero-text,
+  .section-text, .hs-compare-list, .hs-adapt-chip, .hs-first-path, .hs-help-card,
+  .hs-trade-compact, .hs-trust-item, .ai-bs-category-copy, .ai-owner-lede, .hs-consent-note
+),
 .page-business-services :where(
   h1, h2, h3, h4, p, li, a, button, label, legend, span, strong, .btn, .hero-text,
   .section-text, .ai-bs-leak-p, .ai-bs-leak-h, .ai-bs-proof-card-p, .ai-bs-proof-card-h,
@@ -18973,6 +18978,11 @@ body.owner-dash-detail-open {
 .page-home .ai-proof-section :where(
   p, li, .section-text, .ai-proof-lead, .ai-proof-proofline, .ai-systems-card p, .ai-systems-hero-caption,
   .restaurant-owner-soft-link, .consent-note
+),
+.page-home-services :where(
+  p, li, .hero-text, .section-text, .ai-bs-hero-support, .hs-compare-list,
+  .hs-band-lede, .hs-adapt-chip span, .hs-first-path p, .hs-help-card p,
+  .hs-trade-compact span, .hs-trust-item p, .ai-bs-category-copy, .ai-owner-lede, .hs-consent-note
 ),
 .page-business-services :where(
   p, li, .hero-text, .section-text, .ai-bs-leak-p, .ai-bs-proof-card-p, .ai-bs-pillar-card p,
@@ -19954,4 +19964,419 @@ body.owner-dash-detail-open {
   border-color: rgba(242, 178, 26, 0.45);
   background: rgba(242, 178, 26, 0.14);
   color: #fff8eb;
+}
+
+/* ==========================================================================
+   Home Services polish — hero, typography, compact bands, trades
+   ========================================================================== */
+
+/* Contractor hero: replace generic AI dashboard backdrop */
+.page-home-services .ai-bs-hero.hero-fiesta-dark {
+  background-image:
+    linear-gradient(90deg, rgba(5, 10, 24, 0.78) 0%, rgba(5, 10, 24, 0.52) 44%, rgba(5, 10, 24, 0.22) 72%, rgba(5, 10, 24, 0.08) 100%),
+    url("assets/home-services-owner-homeowner-consultation.png");
+  background-position: 0 0, 72% center;
+  background-size: cover, cover;
+}
+
+@media (max-width: 899px) {
+  .page-home-services .ai-bs-hero.hero-fiesta-dark {
+    min-height: 0;
+    max-height: none;
+    background-image:
+      linear-gradient(180deg, rgba(5, 10, 24, 0.88) 0%, rgba(5, 10, 24, 0.72) 55%, rgba(5, 10, 24, 0.5) 100%),
+      url("assets/home-services-owner-homeowner-consultation.png");
+    background-position: center, center 30%;
+    background-size: cover, cover;
+  }
+}
+
+.page-home-services .hs-hero-visual .hero-visual-panel {
+  border-color: rgba(20, 184, 166, 0.35);
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(255, 246, 230, 0.1);
+}
+
+.page-home-services .hs-main > .section {
+  padding-top: clamp(28px, 3.5vw, 44px);
+  padding-bottom: clamp(28px, 3.5vw, 44px);
+}
+
+.page-home-services .hs-final-band {
+  padding-top: clamp(24px, 3vw, 36px);
+  padding-bottom: clamp(28px, 3.5vw, 40px);
+}
+
+.page-home-services .hs-final-inner {
+  max-width: 38rem;
+}
+
+.page-home-services .hs-final-cta {
+  margin-top: clamp(12px, 1.8vw, 16px);
+}
+
+/* Typography: normal body copy — no stretched or tracked paragraphs */
+.page-home-services :where(
+  p,
+  li,
+  dd,
+  .hero-text,
+  .section-text,
+  .hs-compare-list,
+  .hs-compare-list li,
+  .hs-band-lede,
+  .hs-support-note,
+  .hs-adapt-chip span,
+  .hs-first-path p,
+  .hs-help-card p,
+  .hs-trade-compact span,
+  .ai-bs-category-copy,
+  .hs-trust-item p,
+  .ai-owner-lede,
+  .hs-form-note,
+  .hs-consent-note,
+  .transport-intake-section__heading,
+  .hs-intake-form input,
+  .hs-intake-form select,
+  .hs-intake-form textarea,
+  .hs-intake-form input::placeholder,
+  .hs-intake-form textarea::placeholder
+) {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: start;
+  text-align-last: start;
+  hyphens: none;
+  -webkit-hyphens: none;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.page-home-services :where(
+  .btn,
+  .hs-intake-form .transport-field span,
+  .hs-trade-compact strong,
+  .hs-adapt-chip strong,
+  .hs-first-path h3,
+  .hs-help-card h3,
+  .hs-trust-item h3,
+  .ai-bs-category-title
+) {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+}
+
+.page-home-services :where(.eyebrow, .eyebrow-on-dark, .ai-hero-eyebrow) {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-home-services .hs-intake-form .transport-field span {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.page-home-services .hs-intake-form .transport-intake-section__heading {
+  letter-spacing: 0.06em;
+}
+
+.page-home-services .hs-intake-form input::placeholder,
+.page-home-services .hs-intake-form textarea::placeholder {
+  color: rgba(11, 29, 58, 0.52);
+  opacity: 1;
+}
+
+.page-home-services .ai-strategic-title {
+  letter-spacing: -0.02em;
+  text-align: start;
+}
+
+.page-home-services .hero-title {
+  text-align: start;
+}
+
+@media (max-width: 899px) {
+  .page-home-services :where(
+    .hero-text,
+    .section-text,
+    .ai-bs-hero-support,
+    .hs-compare-list,
+    .hs-band-lede,
+    .hs-support-note,
+    .hs-adapt-chip span,
+    .hs-first-path p,
+    .hs-help-card p,
+    .ai-bs-category-copy,
+    .hs-trade-compact span,
+    .hs-trust-item p,
+    .ai-owner-lede,
+    .hs-consent-note
+  ) {
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    text-align: start !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+  }
+
+  .page-home-services .btn {
+    letter-spacing: normal !important;
+    text-transform: none !important;
+  }
+}
+
+/* Ongoing adaptation — compact band */
+.page-home-services .hs-adaptation-band {
+  background: linear-gradient(180deg, rgba(255, 251, 242, 0.98) 0%, rgba(255, 253, 248, 1) 100%);
+  border-top: 1px solid rgba(11, 29, 58, 0.06);
+}
+
+.page-home-services .hs-adapt-chips {
+  display: grid;
+  gap: clamp(10px, 1.6vw, 14px);
+  margin: clamp(12px, 2vw, 16px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .page-home-services .hs-adapt-chips {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-home-services .hs-adapt-chip {
+  margin: 0;
+  padding: clamp(14px, 2vw, 18px);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(11, 29, 58, 0.09);
+  border-top: 3px solid var(--turquoise);
+  box-shadow: 0 10px 24px rgba(11, 29, 58, 0.06);
+}
+
+.page-home-services .hs-adapt-chip strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: clamp(0.95rem, 0.2vw + 0.9rem, 1.02rem);
+  font-weight: 780;
+  color: var(--navy);
+}
+
+.page-home-services .hs-adapt-chip span {
+  display: block;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+/* Safe first step paths */
+.page-home-services .hs-first-paths {
+  display: grid;
+  gap: clamp(10px, 1.6vw, 14px);
+  margin: clamp(10px, 1.6vw, 14px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .page-home-services .hs-first-paths {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-home-services .hs-first-path {
+  margin: 0;
+  padding: clamp(14px, 2vw, 18px);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 246, 230, 0.08);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+}
+
+.page-home-services .hs-first-path h3 {
+  margin: 0 0 6px;
+  font-size: clamp(0.96rem, 0.2vw + 0.9rem, 1.02rem);
+  font-weight: 780;
+  color: #fff8eb;
+}
+
+.page-home-services .hs-first-path p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.48;
+  color: rgba(255, 246, 230, 0.84);
+}
+
+.page-home-services .hs-section-cta {
+  margin-top: clamp(16px, 2.2vw, 22px);
+}
+
+.page-home-services .hs-section-cta .btn {
+  min-height: 48px;
+}
+
+@media (max-width: 520px) {
+  .page-home-services .hs-section-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* What AI can help with — four cards */
+.page-home-services .hs-help-grid {
+  display: grid;
+  gap: clamp(12px, 2vw, 16px);
+  margin-top: clamp(10px, 1.6vw, 14px);
+}
+
+@media (min-width: 640px) {
+  .page-home-services .hs-help-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-home-services .hs-help-card {
+  padding: clamp(16px, 2vw, 20px);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(11, 29, 58, 0.09);
+  border-left: 3px solid var(--gold);
+  box-shadow: 0 10px 26px rgba(11, 29, 58, 0.06);
+}
+
+.page-home-services .hs-help-card h3 {
+  margin: 0 0 8px;
+  font-size: clamp(1rem, 0.2vw + 0.94rem, 1.06rem);
+  font-weight: 780;
+  color: var(--navy);
+}
+
+.page-home-services .hs-help-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.52;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-home-services .hs-support-note {
+  margin-top: clamp(14px, 2vw, 18px);
+  max-width: 42rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+/* Trades: featured + compact */
+.page-home-services .hs-trades-featured {
+  margin-top: clamp(12px, 2vw, 16px);
+}
+
+.page-home-services #starting-points .ai-bs-category-card {
+  padding-bottom: clamp(14px, 2vw, 18px);
+}
+
+.page-home-services #starting-points .ai-bs-category-actions {
+  display: none;
+}
+
+.page-home-services .hs-trades-compact {
+  display: grid;
+  gap: 8px;
+  margin: clamp(14px, 2vw, 18px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .page-home-services .hs-trades-compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-home-services .hs-trades-compact > li {
+  margin: 0;
+  min-width: 0;
+}
+
+.page-home-services .hs-trade-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: calc(var(--radius) - 4px);
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 246, 230, 0.06);
+  border: 1px solid rgba(255, 246, 230, 0.12);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.page-home-services .hs-trade-compact:hover {
+  border-color: rgba(20, 184, 166, 0.4);
+  background: rgba(20, 184, 166, 0.1);
+}
+
+.page-home-services .hs-trade-compact strong {
+  font-size: 0.94rem;
+  font-weight: 780;
+  color: #fff8eb;
+}
+
+.page-home-services .hs-trade-compact span {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(255, 246, 230, 0.82);
+}
+
+/* Trust — shorter cream band */
+.page-home-services .hs-trust-band .ai-owner-lede {
+  color: rgba(11, 29, 58, 0.86);
+  max-width: 42rem;
+}
+
+.page-home-services .hs-trust-grid {
+  display: grid;
+  gap: clamp(10px, 1.6vw, 14px);
+  margin: clamp(12px, 2vw, 16px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .page-home-services .hs-trust-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-home-services .hs-trust-item {
+  margin: 0;
+  padding: clamp(14px, 2vw, 18px);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(11, 29, 58, 0.09);
+  border-left: 3px solid var(--turquoise);
+}
+
+.page-home-services .hs-trust-item h3 {
+  margin: 0 0 6px;
+  font-size: clamp(0.96rem, 0.2vw + 0.9rem, 1rem);
+  font-weight: 780;
+  color: var(--navy);
+}
+
+.page-home-services .hs-trust-item p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.48;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-home-services #home-services-inquiry,
+.page-home-services #safe-first-step,
+.page-home-services #ongoing-adaptation {
+  scroll-margin-top: calc(var(--header-h, 64px) + 16px);
 }
