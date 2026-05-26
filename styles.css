@@ -19385,16 +19385,6 @@ body.owner-dash-detail-open {
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
-.page-home-services .hs-adaptation-card .ai-strategic-title {
-  max-width: 22ch;
-}
-
-@media (min-width: 720px) {
-  .page-home-services .hs-adaptation-card .ai-strategic-title {
-    max-width: none;
-  }
-}
-
 .page-home-services .hs-adaptation-signals li {
   background: rgba(255, 255, 255, 0.9);
   border-left-color: rgba(20, 184, 166, 0.85);
