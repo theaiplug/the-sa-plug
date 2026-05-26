@@ -8432,7 +8432,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   min-height: 48px;
 }
 
-.ai-proof-shell.ai-proof-systems .restaurant-owner-soft-link {
+.ai-proof-shell.ai-proof-systems .restaurant-owner-soft-link:not(.restaurant-owner-cta-strip) {
   margin: clamp(10px, 1.6vw, 14px) 0 0;
 }
 
@@ -21293,7 +21293,7 @@ body.owner-dash-detail-open {
 /* Homepage AI Plug / business proof section */
 .page-home .ai-proof-section {
   padding-top: clamp(2rem, 5vw, var(--biz-sec-pad));
-  padding-bottom: clamp(2rem, 5vw, var(--biz-sec-pad));
+  padding-bottom: clamp(2.5rem, 6vw, var(--biz-sec-pad));
 }
 
 .page-home .ai-proof-shell.ai-proof-systems {
@@ -21345,8 +21345,52 @@ body.owner-dash-detail-open {
   gap: var(--biz-space-sm);
 }
 
-.page-home .ai-proof-shell.ai-proof-systems .restaurant-owner-soft-link {
-  margin-top: clamp(8px, 1.4vw, var(--biz-space-sm));
+.page-home .ai-proof-shell.ai-proof-systems .restaurant-owner-cta-strip {
+  display: grid;
+  gap: 6px;
+  margin: clamp(16px, 3vw, 20px) 0 0;
+  padding: clamp(12px, 2vw, 14px) clamp(14px, 2.4vw, 16px);
+  max-width: 100%;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid rgba(255, 246, 230, 0.16);
+  background: rgba(255, 246, 230, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.page-home .restaurant-owner-cta-strip__lead {
+  margin: 0;
+  font-size: clamp(0.84rem, 0.12vw + 0.8rem, 0.88rem);
+  font-weight: 650;
+  line-height: 1.4;
+  color: rgba(255, 246, 230, 0.86);
+}
+
+.page-home .restaurant-owner-cta-strip__action {
+  margin: 0;
+  font-size: clamp(0.86rem, 0.14vw + 0.82rem, 0.9rem);
+  line-height: 1.45;
+}
+
+.page-home .restaurant-owner-cta-strip__action a {
+  display: inline;
+  font-weight: 800;
+  color: #fff8eb;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: rgba(242, 178, 26, 0.75);
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.page-home .restaurant-owner-cta-strip__action a:hover {
+  color: #fff;
+  text-decoration-color: rgba(20, 184, 166, 0.85);
+}
+
+.page-home .restaurant-owner-cta-strip__action a:focus-visible {
+  outline: 2px solid rgba(242, 178, 26, 0.65);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 @media (max-width: 639px) {
@@ -21369,12 +21413,71 @@ body.owner-dash-detail-open {
   .page-home .ai-proof-shell.ai-proof-systems .ai-proof-cta-row .btn {
     min-height: 44px;
   }
+
+  .page-home .ai-proof-section {
+    padding-bottom: clamp(48px, 11vw, 68px);
+  }
+
+  .page-home .ai-proof-shell.ai-proof-systems .restaurant-owner-cta-strip {
+    margin-top: 18px;
+  }
 }
 
 .page-home .footer.dark-showcase {
-  padding-top: var(--biz-space-lg);
-  padding-bottom: max(var(--biz-space-lg), calc(12px + env(safe-area-inset-bottom, 0px)));
-  gap: var(--biz-space-sm);
+  padding-top: clamp(28px, 4.5vw, var(--biz-space-lg));
+  padding-bottom: max(clamp(28px, 4vw, var(--biz-space-lg)), calc(12px + env(safe-area-inset-bottom, 0px)));
+  gap: clamp(14px, 2.2vw, var(--biz-space-md));
+  border-top-color: rgba(255, 246, 230, 0.24);
+}
+
+.page-home .footer.dark-showcase .footer-brand {
+  display: grid;
+  gap: clamp(4px, 0.8vw, 6px);
+}
+
+.page-home .footer.dark-showcase .footer-lead,
+.page-home .footer.dark-showcase .footer-mission {
+  margin-top: clamp(8px, 1.4vw, 10px);
+}
+
+.page-home .footer.dark-showcase .footer-links {
+  margin-top: clamp(4px, 1vw, 8px);
+  gap: clamp(8px, 1.4vw, 10px);
+}
+
+.page-home .footer.dark-showcase .wtgsa-social--footer {
+  margin-top: clamp(4px, 1vw, 8px);
+  gap: clamp(8px, 1.2vw, 10px);
+}
+
+.page-home .footer.dark-showcase .footer-note {
+  margin-top: clamp(10px, 1.8vw, 14px);
+  padding-top: clamp(12px, 2vw, 14px);
+  border-top: 1px solid rgba(255, 246, 230, 0.12);
+}
+
+@media (max-width: 899px) {
+  .page-home .footer.dark-showcase {
+    padding-top: clamp(40px, 6.5vw, 52px);
+    gap: clamp(16px, 2.8vw, 20px);
+  }
+
+  .page-home .footer.dark-showcase .footer-brand {
+    gap: 6px;
+  }
+
+  .page-home .footer.dark-showcase .footer-lead,
+  .page-home .footer.dark-showcase .footer-mission {
+    margin-top: 8px;
+  }
+
+  .page-home .footer.dark-showcase .footer-links {
+    margin-top: 6px;
+  }
+
+  .page-home .footer.dark-showcase .wtgsa-social--footer {
+    margin-top: 6px;
+  }
 }
 
 :is(.page-business-services, .page-restaurants) .ai-bs-owner-cards--compact {
