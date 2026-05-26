@@ -373,16 +373,30 @@
 
   var PATH_INTEREST_MAP = {
     "customer-path": "Fix customer path",
+    "website-audit": "Fix customer path",
+    "seo-visibility": "Fix customer path",
+    "paid-funnel": "Fix customer path",
+    "social-content": "AI Media Engine / content system",
     "ai-operator": "Add AI website operator",
+    "ai-intake": "Add AI website operator",
     "lead-handling": "Fix lead handling",
+    "follow-up": "Automations / follow-up workflows",
     "full-system": "Full AI business system",
+    "full-growth": "Full AI business system",
   };
 
   var PATH_LEAK_HINTS = {
     "customer-path": "No booking/request path",
+    "website-audit": "No booking/request path",
+    "seo-visibility": "Need consistent content",
+    "paid-funnel": "No booking/request path",
+    "social-content": "Need consistent content",
     "ai-operator": "Customers ask repeated questions",
+    "ai-intake": "Forms do not collect enough",
     "lead-handling": "DMs/texts are scattered",
+    "follow-up": "Follow-up is too slow",
     "full-system": "Need full system",
+    "full-growth": "Need full system",
   };
 
   function setSelectValue(id, value) {
