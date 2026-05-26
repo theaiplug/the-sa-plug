@@ -4219,6 +4219,19 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   align-items: center;
 }
 
+/* Keep hero copy full-width when the side visual is hidden (830–899px gap) */
+@media (max-width: 899px) {
+  .page-business-services .ai-bs-hero-shell.hero-inner-grid,
+  .page-business-services .ai-bs-hero-shell.hero-inner-grid.secondary-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page-business-services .ai-bs-hero-body {
+    max-width: none;
+    width: 100%;
+  }
+}
+
 .page-business-services .ai-bs-hero-visual {
   display: none;
 }
@@ -17976,6 +17989,38 @@ body.owner-dash-detail-open {
   margin-top: clamp(12px, 2vw, 18px);
 }
 
+/* Shared problem / guest band (home, hospitality, professional verticals) */
+.page-business-services .hs-problem-band {
+  display: grid;
+  gap: clamp(18px, 2.5vw, 26px);
+  margin-top: clamp(12px, 2vw, 18px);
+}
+
+@media (min-width: 900px) {
+  .page-business-services .hs-problem-band {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+  }
+
+  .page-business-services .hs-problem-band .hs-problem-visual {
+    margin-top: 0;
+  }
+}
+
+.page-business-services .hs-problem-visual {
+  margin: 0;
+  border-radius: calc(var(--radius) + 2px);
+  overflow: hidden;
+}
+
+.page-business-services .hs-problem-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
 .page-business-services .ps-trust-band .ps-trust-list {
   margin: 0;
 }
@@ -18337,6 +18382,65 @@ body.owner-dash-detail-open {
   }
 }
 
+/* Hospitality vertical — mobile layout, imagery, contrast */
+@media (max-width: 899px) {
+  .page-hospitality-local-experience .ai-bs-adaptation-promo-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page-hospitality-local-experience .hs-problem-visual img,
+  .page-hospitality-local-experience .hosp-adaptation-visual img,
+  .page-hospitality-local-experience .hosp-campaign-visual img,
+  .page-hospitality-local-experience .hosp-ops-visual img {
+    max-height: min(42vh, 320px);
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-hospitality-local-experience main > .section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .page-hospitality-local-experience .routes-band-inner {
+    gap: clamp(18px, 4vw, 26px);
+  }
+
+  .page-hospitality-local-experience .ai-band-head {
+    max-width: none;
+    margin-bottom: clamp(12px, 3vw, 18px);
+  }
+
+  .page-hospitality-local-experience .hosp-guest-band {
+    gap: clamp(14px, 3vw, 20px);
+  }
+
+  .page-hospitality-local-experience .hosp-guest-moments {
+    margin-top: 0;
+  }
+
+  .page-hospitality-local-experience .ai-bs-hero-cta.hero-cta-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.page-hospitality-local-experience .ai-bs-hero-support.hero-text-on-dark {
+  color: rgba(255, 248, 235, 0.94);
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.45);
+}
+
+.page-hospitality-local-experience .section-cream .section-text,
+.page-hospitality-local-experience .section-cream .ai-bs-pillar-lede {
+  color: rgba(11, 29, 58, 0.88);
+}
+
+.page-hospitality-local-experience .dark-showcase .hosp-ops-panel .hosp-proof-list li {
+  color: rgba(11, 29, 58, 0.9);
+}
+
 .page-business-services .ai-bs-restaurant-bridge {
   padding-top: clamp(22px, 2.8vw, 30px);
   padding-bottom: clamp(22px, 2.8vw, 30px);
@@ -18693,11 +18797,14 @@ body.owner-dash-detail-open {
   font-weight: 800;
 }
 
-@media (max-width: 640px) {
-  .page-business-services .ai-bs-intake-form .transport-intake-grid {
+@media (max-width: 768px) {
+  .page-business-services .ai-bs-intake-form .transport-intake-grid,
+  .page-business-services .hs-intake-form .transport-intake-grid {
     grid-template-columns: 1fr;
   }
+}
 
+@media (max-width: 640px) {
   .page-business-services .ai-bs-project-request-shell {
     padding: 16px 14px 24px;
   }
