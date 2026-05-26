@@ -21400,11 +21400,8 @@ body.owner-dash-detail-open {
   gap: clamp(18px, 2.4vw, 26px);
 }
 
-@media (min-width: 900px) {
-  .page-restaurants .rest-path-band {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    align-items: start;
-  }
+.page-restaurants .rest-path-band:has(.rest-path-card--visual) {
+  grid-template-columns: 1fr;
 }
 
 .page-restaurants .rest-path-visual {
@@ -21444,8 +21441,325 @@ body.owner-dash-detail-open {
   .page-restaurants .rest-path-band {
     grid-template-columns: 1fr;
   }
+}
 
-  .page-restaurants .rest-path-visual {
+.page-home .ai-proof-shell.ai-proof-systems .ai-proof-systems-intro.biz-editorial-band {
+  align-items: center;
+}
+
+/* ----- Business vertical: premium image integration ----- */
+:is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band {
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  :is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 48px);
+  }
+
+  :is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band--visual-left .biz-editorial-band__visual {
     order: -1;
+  }
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band__copy {
+  display: grid;
+  gap: clamp(12px, 1.8vw, 18px);
+  align-content: center;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band__copy .ai-band-head,
+:is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band__copy .hs-band-head {
+  margin-bottom: 0;
+  max-width: none;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band__visual {
+  margin: 0;
+  border-radius: calc(var(--radius) + 2px);
+  overflow: hidden;
+  border: 1px solid rgba(20, 184, 166, 0.22);
+  box-shadow: 0 20px 48px rgba(5, 10, 24, 0.28);
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .section-cream .biz-editorial-band__visual {
+  border-color: rgba(11, 29, 58, 0.1);
+  box-shadow: 0 16px 40px rgba(11, 29, 58, 0.12);
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .dark-showcase .biz-editorial-band__visual,
+:is(.page-business-services, .page-restaurants, .page-home) .ai-bs-section--navy .biz-editorial-band__visual {
+  border-color: rgba(20, 184, 166, 0.22);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.32);
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band__visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band__stack {
+  display: grid;
+  gap: clamp(10px, 1.6vw, 14px);
+}
+
+@media (max-width: 899px) {
+  :is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band--mobile-visual-first .biz-editorial-band__visual {
+    order: -1;
+  }
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card-grid {
+  display: grid;
+  gap: clamp(14px, 2vw, 18px);
+}
+
+@media (min-width: 720px) {
+  :is(.page-business-services, .page-restaurants, .page-home) .biz-action-card-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: clamp(200px, 38vw, 280px);
+  border-radius: calc(var(--radius) - 2px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 230, 0.16);
+  box-shadow: 0 16px 36px rgba(5, 10, 24, 0.28);
+  text-decoration: none;
+  color: inherit;
+  isolation: isolate;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card--static {
+  cursor: default;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) a.biz-action-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 48px rgba(5, 10, 24, 0.36);
+  border-color: rgba(242, 178, 26, 0.42);
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card--featured {
+  min-height: clamp(240px, 44vw, 320px);
+  border-color: rgba(242, 178, 26, 0.35);
+  box-shadow: 0 0 28px rgba(242, 178, 26, 0.18), 0 20px 44px rgba(5, 10, 24, 0.32);
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(2, 8, 18, 0.94) 0%, rgba(2, 8, 18, 0.55) 42%, rgba(2, 8, 18, 0.12) 72%, transparent 100%);
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card__body {
+  position: relative;
+  z-index: 2;
+  padding: clamp(14px, 2.2vw, 20px);
+  color: #fff8eb;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card__body .eyebrow {
+  margin: 0 0 6px;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(255, 200, 150, 0.95);
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card__body h3 {
+  margin: 0 0 8px;
+  font-size: clamp(1rem, 1.1vw + 0.82rem, 1.18rem);
+  font-weight: 850;
+  line-height: 1.2;
+  color: #fff8eb;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card__body p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(255, 246, 230, 0.92);
+  max-width: 38ch;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-action-card__cta {
+  display: inline-flex;
+  margin-top: 12px;
+  font-size: 0.82rem;
+  font-weight: 820;
+  color: var(--gold);
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-cta-panel {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(56px, 7vw, 80px);
+  padding-bottom: clamp(56px, 7vw, 80px);
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-cta-panel__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-cta-panel__bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-cta-panel__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(5, 10, 22, 0.94) 0%, rgba(8, 18, 36, 0.88) 48%, rgba(5, 10, 22, 0.82) 100%);
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-cta-panel__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(14px, 2vw, 20px);
+  max-width: 40rem;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-cta-panel__inner .ai-strategic-title {
+  color: #fff8eb;
+}
+
+:is(.page-business-services, .page-restaurants, .page-home) .biz-cta-panel__inner .section-text,
+:is(.page-business-services, .page-restaurants, .page-home) .biz-cta-panel__inner .ai-bs-final-copy {
+  color: rgba(255, 246, 230, 0.9);
+  max-width: 38rem;
+}
+
+.page-hospitality-local-experience .hosp-story-ops {
+  display: grid;
+  gap: clamp(22px, 3vw, 32px);
+}
+
+.page-home-services .hs-journey-editorial .hs-help-grid--intro {
+  margin-top: 0;
+}
+
+.page-home-services .hs-journey-editorial .hs-help-grid {
+  margin-top: clamp(14px, 2vw, 18px);
+}
+
+.page-professional-services .ps-why-band .biz-editorial-band__visual img {
+  aspect-ratio: 4 / 3;
+}
+
+.page-business-types .bt-gateway-card--visual {
+  padding: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.page-business-types .bt-gateway-card--visual .bt-gateway-title,
+.page-business-types .bt-gateway-card--visual .bt-gateway-who,
+.page-business-types .bt-gateway-card--visual .bt-gateway-lanes,
+.page-business-types .bt-gateway-card--visual .bt-gateway-actions {
+  padding-left: clamp(18px, 2.2vw, 22px);
+  padding-right: clamp(18px, 2.2vw, 22px);
+}
+
+.page-business-types .bt-gateway-card--visual .bt-gateway-title {
+  padding-top: clamp(14px, 2vw, 18px);
+}
+
+.page-business-types .bt-gateway-card--visual .bt-gateway-actions {
+  padding-bottom: clamp(18px, 2.2vw, 22px);
+}
+
+.page-business-types .bt-gateway-thumb--lane {
+  margin: 0;
+  aspect-ratio: 21 / 9;
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.page-business-types .bt-gateway-thumb--lane img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-restaurants .rest-path-card--visual {
+  padding: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.page-restaurants .rest-path-card__thumb {
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.page-restaurants .rest-path-card__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-restaurants .rest-path-card--visual .rest-path-card-body {
+  padding: clamp(16px, 2.2vw, 20px);
+  display: grid;
+  gap: 10px;
+}
+
+.page-business-services.ai-services-page .ai-bs-lanes-editorial {
+  display: grid;
+  gap: clamp(20px, 3vw, 28px);
+}
+
+@media (min-width: 960px) {
+  .page-business-services.ai-services-page .ai-bs-lanes-editorial {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: start;
+  }
+
+  .page-business-services.ai-services-page .ai-bs-lanes-editorial .ai-bs-section-visual--lanes {
+    margin: 0;
+    position: sticky;
+    top: 1.5rem;
+  }
+
+  .page-business-services.ai-services-page .ai-bs-lanes-editorial .ai-bs-section-visual--lanes img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
   }
 }
