@@ -18017,8 +18017,61 @@ body.owner-dash-detail-open {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  max-height: clamp(220px, 42vw, 480px);
+  aspect-ratio: 16 / 10;
   object-fit: cover;
+  object-position: center;
+}
+
+/* Section figures in vertical pages (not hero) — hospitality, professional, home */
+.page-business-services .hs-section-visual {
+  margin: 0;
+  border-radius: calc(var(--radius) + 2px);
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(11, 29, 58, 0.12);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+}
+
+.page-business-services .dark-showcase .hs-section-visual,
+.page-business-services .hs-section-visual--dark {
+  border-color: rgba(20, 184, 166, 0.22);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.page-business-services .hs-section-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: clamp(220px, 42vw, 480px);
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-business-services .hs-detail-grid {
+  display: grid;
+  gap: clamp(20px, 3vw, 28px);
+  align-items: center;
+  margin-bottom: clamp(16px, 2.2vw, 24px);
+}
+
+@media (min-width: 900px) {
+  .page-business-services .hs-detail-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+
+  .page-business-services .hs-detail-grid--reverse {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  .page-business-services .hs-detail-grid--reverse .hs-section-visual {
+    order: -1;
+  }
+}
+
+.page-business-services .hs-band-head--inline {
+  margin-bottom: 0;
+  max-width: none;
 }
 
 .page-business-services .ps-trust-band .ps-trust-list {
@@ -18382,33 +18435,34 @@ body.owner-dash-detail-open {
   }
 }
 
-/* Hospitality vertical — mobile layout, imagery, contrast */
+/* Hospitality + professional verticals — mobile section layout, contrast */
 @media (max-width: 899px) {
-  .page-hospitality-local-experience .ai-bs-adaptation-promo-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
+  .page-hospitality-local-experience .hs-section-visual img,
   .page-hospitality-local-experience .hs-problem-visual img,
   .page-hospitality-local-experience .hosp-adaptation-visual img,
   .page-hospitality-local-experience .hosp-campaign-visual img,
-  .page-hospitality-local-experience .hosp-ops-visual img {
-    max-height: min(42vh, 320px);
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
+  .page-hospitality-local-experience .hosp-ops-visual img,
+  .page-professional-services .hs-section-visual img,
+  .page-professional-services .hs-problem-visual img,
+  .page-professional-services .ps-adaptation-visual img {
+    max-height: min(40vh, 300px);
   }
 }
 
 @media (max-width: 640px) {
-  .page-hospitality-local-experience main > .section {
+  .page-hospitality-local-experience main > .section,
+  .page-professional-services main > .section {
     padding-left: 16px;
     padding-right: 16px;
   }
 
-  .page-hospitality-local-experience .routes-band-inner {
+  .page-hospitality-local-experience .routes-band-inner,
+  .page-professional-services .routes-band-inner {
     gap: clamp(18px, 4vw, 26px);
   }
 
-  .page-hospitality-local-experience .ai-band-head {
+  .page-hospitality-local-experience .ai-band-head,
+  .page-professional-services .ai-band-head {
     max-width: none;
     margin-bottom: clamp(12px, 3vw, 18px);
   }
@@ -18420,20 +18474,12 @@ body.owner-dash-detail-open {
   .page-hospitality-local-experience .hosp-guest-moments {
     margin-top: 0;
   }
-
-  .page-hospitality-local-experience .ai-bs-hero-cta.hero-cta-row .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-.page-hospitality-local-experience .ai-bs-hero-support.hero-text-on-dark {
-  color: rgba(255, 248, 235, 0.94);
-  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.45);
 }
 
 .page-hospitality-local-experience .section-cream .section-text,
-.page-hospitality-local-experience .section-cream .ai-bs-pillar-lede {
+.page-hospitality-local-experience .section-cream .ai-bs-pillar-lede,
+.page-professional-services .section-cream .section-text,
+.page-professional-services .section-cream .ai-bs-pillar-lede {
   color: rgba(11, 29, 58, 0.88);
 }
 
@@ -19321,8 +19367,21 @@ body.owner-dash-detail-open {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  max-height: clamp(220px, 42vw, 480px);
+  aspect-ratio: 16 / 10;
   object-fit: cover;
+  object-position: center;
+}
+
+.page-business-services .hosp-campaign-visual img,
+.page-business-services .hosp-ops-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: clamp(220px, 42vw, 480px);
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
 }
 
 .page-business-services .ai-bs-adaptation-signals {
@@ -19459,13 +19518,14 @@ body.owner-dash-detail-open {
   box-shadow: 0 18px 40px rgba(11, 29, 58, 0.12);
 }
 
-.page-hospitality-local-experience .hosp-hero-visual img,
 .page-hospitality-local-experience .hosp-campaign-visual img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
+  max-height: clamp(220px, 42vw, 480px);
+  aspect-ratio: 16 / 10;
   object-fit: cover;
+  object-position: center;
 }
 
 .page-hospitality-local-experience .hosp-adaptation-band {
@@ -19564,8 +19624,10 @@ body.owner-dash-detail-open {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
+  max-height: clamp(220px, 42vw, 480px);
+  aspect-ratio: 16 / 10;
   object-fit: cover;
+  object-position: center;
 }
 
 .page-hospitality-local-experience .hosp-campaign-chips {
