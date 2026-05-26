@@ -4233,7 +4233,32 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-business-services .ai-bs-hero-visual {
-  display: none;
+  display: block;
+  width: 100%;
+  max-width: min(520px, 100%);
+  margin-inline: auto;
+  align-self: start;
+}
+
+.page-business-services .ai-bs-hero-visual .hero-visual-panel {
+  min-height: clamp(220px, 52vw, 340px);
+  aspect-ratio: 16 / 10;
+  max-height: none;
+}
+
+@media (max-width: 899px) {
+  .page-business-services .ai-bs-hero-shell.hero-inner-grid {
+    gap: clamp(20px, 4vw, 28px);
+  }
+
+  .page-business-services .ai-bs-hero-body {
+    order: 0;
+  }
+
+  .page-business-services .ai-bs-hero-visual {
+    order: 1;
+    margin-top: clamp(4px, 1vw, 8px);
+  }
 }
 
 @media (min-width: 900px) {
@@ -4243,13 +4268,16 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   }
 
   .page-business-services .ai-bs-hero-visual {
-    display: block;
+    max-width: none;
+    margin-inline: 0;
     align-self: stretch;
     min-height: 0;
   }
 
   .page-business-services .ai-bs-hero-visual .hero-visual-panel {
     min-height: clamp(280px, 36vw, 420px);
+    aspect-ratio: 3 / 4;
+    max-height: min(74vh, 580px);
   }
 }
 
@@ -17469,18 +17497,6 @@ body.owner-dash-detail-open {
 
 .page-home-services .hs-hero-body {
   position: relative;
-  padding-left: clamp(14px, 2vw, 20px);
-}
-
-.page-home-services .hs-hero-accent {
-  position: absolute;
-  left: 0;
-  top: 0.35rem;
-  bottom: 0.35rem;
-  width: 3px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--gold), var(--turquoise), var(--coral));
-  box-shadow: 0 0 18px var(--hs-gold-glow);
 }
 
 .page-home-services .hs-hero-lead {
@@ -18127,11 +18143,10 @@ body.owner-dash-detail-open {
   }
 }
 
-@media (max-width: 829px) {
-  .page-home-services .hs-hero-visual {
-    margin-top: clamp(14px, 3vw, 20px);
-    max-width: min(520px, 100%);
-    margin-inline: auto;
+@media (max-width: 899px) {
+  .page-home-services .ai-bs-hero-visual .hero-inner-panel {
+    aspect-ratio: 16 / 10;
+    min-height: clamp(200px, 48vw, 320px);
   }
 }
 
