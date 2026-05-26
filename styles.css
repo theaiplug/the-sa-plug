@@ -4642,6 +4642,14 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   color: var(--slate);
 }
 
+.page-business-services .ai-bs-campaign-connect-card {
+  margin-top: clamp(20px, 3vw, 28px);
+}
+
+.page-business-services .ai-bs-campaign-connect-card p + p {
+  margin-top: 12px;
+}
+
 .page-business-services .ai-bs-path-card {
   display: flex;
   flex-direction: column;
