@@ -6901,6 +6901,33 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
     linear-gradient(168deg, rgba(255, 246, 230, 0.08) 0%, rgba(4, 12, 28, 0.58) 100%);
 }
 
+.page-business-services .ai-bs-category-thumb {
+  margin: calc(clamp(18px, 2.2vw, 22px) * -1) calc(clamp(18px, 2.2vw, 22px) * -1) 0;
+  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
+  overflow: hidden;
+  height: clamp(140px, 32vw, 180px);
+}
+
+.page-business-services .ai-bs-category-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (min-width: 640px) {
+  .page-business-services .ai-bs-category-thumb {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .page-business-services .ai-bs-category-thumb img {
+    aspect-ratio: 16 / 10;
+    height: auto;
+  }
+}
+
 .page-business-services .ai-bs-category-lane {
   margin: 0;
   font-size: 0.72rem;
@@ -19006,6 +19033,10 @@ body.owner-dash-detail-open {
 
 /* Vertical business pages: spacing when starting paths follow category cards */
 .page-business-services.page-home-services .ai-bs-category-grid + .ai-bs-starting-grid {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.page-business-services .ai-bs-category-grid + .ai-bs-category-grid {
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
