@@ -4233,32 +4233,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-business-services .ai-bs-hero-visual {
-  display: block;
-  width: 100%;
-  max-width: min(520px, 100%);
-  margin-inline: auto;
-  align-self: start;
-}
-
-.page-business-services .ai-bs-hero-visual .hero-visual-panel {
-  min-height: clamp(220px, 52vw, 340px);
-  aspect-ratio: 16 / 10;
-  max-height: none;
-}
-
-@media (max-width: 899px) {
-  .page-business-services .ai-bs-hero-shell.hero-inner-grid {
-    gap: clamp(20px, 4vw, 28px);
-  }
-
-  .page-business-services .ai-bs-hero-body {
-    order: 0;
-  }
-
-  .page-business-services .ai-bs-hero-visual {
-    order: 1;
-    margin-top: clamp(4px, 1vw, 8px);
-  }
+  display: none;
 }
 
 @media (min-width: 900px) {
@@ -4268,16 +4243,13 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   }
 
   .page-business-services .ai-bs-hero-visual {
-    max-width: none;
-    margin-inline: 0;
+    display: block;
     align-self: stretch;
     min-height: 0;
   }
 
   .page-business-services .ai-bs-hero-visual .hero-visual-panel {
     min-height: clamp(280px, 36vw, 420px);
-    aspect-ratio: 3 / 4;
-    max-height: min(74vh, 580px);
   }
 }
 
@@ -17483,13 +17455,6 @@ body.owner-dash-detail-open {
   border-top: 1px solid rgba(11, 29, 58, 0.06);
 }
 
-.page-home-services .hs-hero.hero-fiesta-dark {
-  background:
-    radial-gradient(ellipse 80% 60% at 18% 0%, rgba(20, 184, 166, 0.14), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 92% 18%, rgba(255, 106, 77, 0.11), transparent 50%),
-    linear-gradient(165deg, var(--navy-deep) 0%, var(--navy) 48%, #0a1628 100%);
-}
-
 .page-home-services .hs-hero-band {
   padding-top: clamp(22px, 3vw, 38px);
   padding-bottom: clamp(24px, 3.2vw, 40px);
@@ -17517,14 +17482,6 @@ body.owner-dash-detail-open {
   min-height: 48px;
   white-space: normal;
   text-align: center;
-}
-
-.page-home-services .hs-hero-visual .hero-inner-panel {
-  border-color: rgba(242, 178, 26, 0.42);
-  box-shadow:
-    0 28px 52px rgba(0, 0, 0, 0.34),
-    0 0 0 1px rgba(242, 178, 26, 0.45),
-    0 0 64px rgba(20, 184, 166, 0.16);
 }
 
 .page-home-services .hs-band-head {
@@ -18140,13 +18097,6 @@ body.owner-dash-detail-open {
 
   .page-home-services .hs-hero-cta .btn {
     width: 100%;
-  }
-}
-
-@media (max-width: 899px) {
-  .page-home-services .ai-bs-hero-visual .hero-inner-panel {
-    aspect-ratio: 16 / 10;
-    min-height: clamp(200px, 48vw, 320px);
   }
 }
 
