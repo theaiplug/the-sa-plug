@@ -18661,3 +18661,230 @@ body.owner-dash-detail-open {
 .page-business-services .ai-bs-proof-cta {
   margin-top: clamp(16px, 2.5vw, 24px);
 }
+
+/* --- AI adoption rebuild: hero, practical grid, lanes, process light --- */
+.page-business-services .ai-bs-hero-tagline {
+  font-weight: 820;
+  font-size: clamp(1.05rem, 0.45vw + 0.95rem, 1.22rem);
+  color: rgba(242, 178, 26, 0.95);
+  margin-bottom: clamp(10px, 1.5vw, 14px);
+}
+
+.page-business-services .ai-bs-hero-support {
+  margin-bottom: clamp(14px, 2vw, 18px);
+}
+
+.page-business-services .ai-bs-why-signals {
+  list-style: none;
+  margin: 0 0 clamp(18px, 2.5vw, 24px);
+  padding: 0;
+  display: grid;
+  gap: clamp(12px, 2vw, 16px);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .page-business-services .ai-bs-why-signals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-business-services .ai-bs-why-signals {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.page-business-services .ai-bs-why-signal {
+  padding: clamp(16px, 2vw, 20px);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 246, 230, 0.12);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(20, 184, 166, 0.12), transparent 48%),
+    linear-gradient(168deg, rgba(255, 246, 230, 0.06) 0%, rgba(4, 12, 28, 0.52) 100%);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+}
+
+.page-business-services .ai-bs-why-signal-label {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(242, 178, 26, 0.9);
+}
+
+.page-business-services .ai-bs-why-signal p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(255, 235, 210, 0.9);
+}
+
+.page-business-services .ai-bs-practical-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(12px, 2vw, 16px);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 520px) {
+  .page-business-services .ai-bs-practical-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .page-business-services .ai-bs-practical-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-business-services .ai-bs-practical-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.page-business-services .ai-bs-practical-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 100%;
+  padding: clamp(16px, 2vw, 20px);
+  padding-top: clamp(18px, 2.2vw, 22px);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(11, 29, 58, 0.08);
+  box-shadow: 0 12px 32px rgba(11, 29, 58, 0.07);
+  overflow: hidden;
+}
+
+.page-business-services .ai-bs-practical-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  pointer-events: none;
+}
+
+.page-business-services .ai-bs-practical-card--a::before { background: linear-gradient(90deg, var(--turquoise), rgba(20, 184, 166, 0.45)); }
+.page-business-services .ai-bs-practical-card--b::before { background: linear-gradient(90deg, var(--gold), var(--orange)); }
+.page-business-services .ai-bs-practical-card--c::before { background: linear-gradient(90deg, var(--pink), rgba(255, 92, 168, 0.45)); }
+.page-business-services .ai-bs-practical-card--d::before { background: linear-gradient(90deg, var(--orange), var(--gold)); }
+.page-business-services .ai-bs-practical-card--e::before { background: linear-gradient(90deg, var(--turquoise), var(--gold)); }
+.page-business-services .ai-bs-practical-card--f::before { background: linear-gradient(90deg, var(--pink), var(--orange)); }
+.page-business-services .ai-bs-practical-card--g::before { background: linear-gradient(90deg, var(--gold), var(--turquoise)); }
+.page-business-services .ai-bs-practical-card--h::before { background: linear-gradient(90deg, var(--orange), var(--pink)); }
+.page-business-services .ai-bs-practical-card--i::before { background: linear-gradient(90deg, var(--turquoise), var(--pink)); }
+.page-business-services .ai-bs-practical-card--j::before { background: linear-gradient(90deg, var(--gold), var(--pink)); }
+
+.page-business-services .ai-bs-practical-icon {
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: rgba(11, 29, 58, 0.45);
+}
+
+.page-business-services .ai-bs-practical-card h3 {
+  margin: 0;
+  font-size: clamp(0.96rem, 0.2vw + 0.88rem, 1.04rem);
+  font-weight: 880;
+  line-height: 1.3;
+  color: var(--navy, #0b1d3a);
+}
+
+.page-business-services .ai-bs-practical-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(11, 29, 58, 0.74);
+}
+
+.page-business-services .ai-bs-service-lanes {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .page-business-services .ai-bs-service-lanes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .page-business-services .ai-bs-service-lanes {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .page-business-services .ai-bs-service-lanes .ai-offer-card:nth-child(1),
+  .page-business-services .ai-bs-service-lanes .ai-offer-card:nth-child(2),
+  .page-business-services .ai-bs-service-lanes .ai-offer-card:nth-child(3) {
+    grid-column: span 2;
+  }
+
+  .page-business-services .ai-bs-service-lanes .ai-offer-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .page-business-services .ai-bs-service-lanes .ai-offer-card:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+}
+
+.page-business-services .ai-bs-lane-desc {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  line-height: 1.58;
+  color: rgba(255, 235, 210, 0.88);
+  flex: 1 1 auto;
+}
+
+.page-business-services .ai-bs-service-lanes .ai-offer-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-business-services .ai-bs-process-rail--light .ai-bs-process-card--light {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(11, 29, 58, 0.08);
+  box-shadow: 0 12px 32px rgba(11, 29, 58, 0.07);
+  backdrop-filter: none;
+}
+
+.page-business-services .ai-bs-process-rail--light .ai-bs-process-card--light .ai-process-num {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.35), rgba(242, 178, 26, 0.25));
+  border: 1px solid rgba(11, 29, 58, 0.1);
+  color: var(--navy, #0b1d3a);
+}
+
+.page-business-services .ai-bs-process-rail--light .ai-bs-process-card--light .ai-process-title {
+  color: var(--navy, #0b1d3a);
+}
+
+.page-business-services .ai-bs-process-rail--light .ai-bs-process-card--light .ai-process-body p {
+  color: rgba(11, 29, 58, 0.74);
+}
+
+@media (min-width: 1024px) {
+  .page-business-services .ai-bs-proof-cards--eight {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-business-services .ai-bs-starting-grid--ten {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1199px) {
+  .page-business-services .ai-bs-starting-grid--ten {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

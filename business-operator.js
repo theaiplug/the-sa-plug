@@ -372,14 +372,16 @@
   };
 
   var PATH_INTEREST_MAP = {
-    "customer-path": "Fix customer path",
-    "website-audit": "Fix customer path",
-    "seo-visibility": "Fix customer path",
-    "paid-funnel": "Fix customer path",
+    "customer-path": "AI website / conversion",
+    "website-audit": "AI website / conversion",
+    "seo-visibility": "SEO / AI search",
+    "paid-funnel": "Google Ads / paid campaigns",
     "social-content": "AI Media Engine / content system",
     "ai-operator": "Add AI website operator",
-    "ai-intake": "Add AI website operator",
-    "lead-handling": "Fix lead handling",
+    "ai-intake": "Smart intake",
+    "phone-voice": "Chat or phone planning",
+    "internal-assistant": "Owner dashboard / internal assistant",
+    "lead-handling": "Smart intake",
     "follow-up": "Automations / follow-up workflows",
     "full-system": "Full AI business system",
     "full-growth": "Full AI business system",
@@ -393,6 +395,8 @@
     "social-content": "Need consistent content",
     "ai-operator": "Customers ask repeated questions",
     "ai-intake": "Forms do not collect enough",
+    "phone-voice": "Calls get missed",
+    "internal-assistant": "Owner cannot see what happened",
     "lead-handling": "DMs/texts are scattered",
     "follow-up": "Follow-up is too slow",
     "full-system": "Need full system",
@@ -521,7 +525,7 @@
         return;
       }
       if (!leakCategory) {
-        showIntakeMessage("Choose where the request gets messy.", true);
+        showIntakeMessage("Choose where AI could help first.", true);
         intakeSubmit.disabled = false;
         return;
       }
@@ -587,7 +591,7 @@
           if (confirmEl) {
             confirmEl.hidden = false;
             confirmEl.textContent =
-              "Request received. The AI Plug will review your business type, bottleneck, and best starting point.";
+              "Request received. The AI Plug will review your business, AI adoption goals, and best starting point.";
             confirmEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
           }
           showIntakeMessage("", false);
