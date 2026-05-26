@@ -8599,7 +8599,8 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .ai-systems-card--proof-alert::before,
-.ai-systems-card--proof-adapt::before {
+.ai-systems-card--proof-adapt::before,
+.ai-systems-card--proof-live::before {
   background: linear-gradient(90deg, var(--pink), rgba(255, 92, 168, 0.45));
 }
 
@@ -9710,6 +9711,147 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 @media (prefers-reduced-motion: reduce) {
   .page-home .ai-systems-card--proof:hover {
     transform: none;
+  }
+}
+
+/* Homepage AI Plug — premium proof media card */
+.page-home .ai-proof-media-card.biz-editorial-band__visual {
+  overflow: visible;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.page-home .ai-proof-media-card__wrap {
+  position: relative;
+  width: 100%;
+  min-height: clamp(260px, 44vw, 380px);
+  overflow: hidden;
+  border-radius: clamp(18px, 2.6vw, 26px);
+  border: 1px solid rgba(255, 246, 230, 0.24);
+  background: #071022;
+  box-shadow:
+    0 32px 62px rgba(2, 6, 14, 0.55),
+    0 0 0 1px rgba(242, 178, 26, 0.2),
+    0 0 48px rgba(20, 184, 166, 0.08);
+  isolation: isolate;
+}
+
+.page-home .ai-proof-media-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: 50% 38%;
+  display: block;
+}
+
+.page-home .ai-proof-media-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 85% 55% at 72% 12%, rgba(20, 184, 166, 0.14), transparent 52%),
+    linear-gradient(
+      to top,
+      rgba(5, 10, 24, 0.88) 0%,
+      rgba(5, 10, 24, 0.52) 42%,
+      rgba(5, 10, 24, 0.12) 68%,
+      rgba(5, 10, 24, 0.04) 100%
+    );
+}
+
+.page-home .ai-proof-media-card__stack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(6px, 1.2vw, 10px);
+  padding: clamp(16px, 2.6vw, 24px);
+  max-width: min(36rem, 100%);
+}
+
+.page-home .ai-proof-media-card__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(253, 224, 150, 0.98);
+  background: rgba(8, 12, 24, 0.52);
+  border: 1px solid rgba(242, 178, 26, 0.45);
+}
+
+.page-home .ai-proof-media-card__headline {
+  margin: 0;
+  font-size: clamp(1.02rem, 0.42vw + 0.92rem, 1.28rem);
+  font-weight: 860;
+  letter-spacing: -0.022em;
+  line-height: 1.2;
+  color: #fff8eb;
+  text-shadow: 0 2px 20px rgba(5, 10, 24, 0.55);
+  max-width: 28ch;
+}
+
+.page-home .ai-proof-media-card__support {
+  margin: 0;
+  font-size: clamp(0.84rem, 0.16vw + 0.78rem, 0.92rem);
+  line-height: 1.5;
+  font-weight: 620;
+  color: rgba(255, 246, 230, 0.9);
+  max-width: 42ch;
+}
+
+.page-home .ai-proof-media-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.page-home .ai-proof-media-card__chips .ai-systems-chip {
+  font-size: 0.68rem;
+  padding: 5px 10px;
+  background: rgba(8, 12, 24, 0.42);
+  border-color: rgba(255, 246, 230, 0.24);
+  white-space: normal;
+  text-align: start;
+  line-height: 1.25;
+}
+
+@media (max-width: 639px) {
+  .page-home .ai-proof-media-card__wrap {
+    min-height: clamp(220px, 58vw, 300px);
+  }
+
+  .page-home .ai-proof-media-card__stack {
+    padding: 14px 16px 16px;
+    gap: 6px;
+  }
+
+  .page-home .ai-proof-media-card__headline {
+    max-width: none;
+    font-size: clamp(0.98rem, 0.3vw + 0.9rem, 1.08rem);
+  }
+
+  .page-home .ai-proof-media-card__chips {
+    gap: 5px;
+  }
+
+  .page-home .ai-proof-media-card__chips .ai-systems-chip {
+    font-size: 0.64rem;
+    padding: 4px 8px;
   }
 }
 
@@ -20786,7 +20928,7 @@ body.owner-dash-detail-open {
   .sms-consent-help
 ),
 .page-home .ai-proof-section :where(
-  p:not(.eyebrow):not(.ai-proof-eyebrow),
+  p:not(.eyebrow):not(.ai-proof-eyebrow):not(.ai-proof-media-card__headline):not(.ai-proof-media-card__support),
   li,
   .section-text,
   .ai-proof-lead,
@@ -20853,11 +20995,17 @@ body.owner-dash-detail-open {
   .ps-compare-title,
   .rest-path-title
 ),
-.page-home .ai-proof-section :where(.btn, .ai-systems-chip) {
+.page-home .ai-proof-section :where(.btn, .ai-systems-chip):not(.ai-proof-media-card__tag) {
   letter-spacing: normal;
   word-spacing: normal;
   text-transform: none;
   text-wrap: auto;
+}
+
+.page-home .ai-proof-media-card__tag {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  word-spacing: normal;
 }
 
 /* Headlines — no balance/pretty wrapping on business sales pages */
@@ -21431,6 +21579,24 @@ body.owner-dash-detail-open {
 
 .page-home .ai-proof-pillar-card {
   padding: clamp(14px, 2vw, var(--biz-card-pad));
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.page-home .ai-proof-pillar-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 246, 230, 0.22);
+  box-shadow:
+    0 18px 38px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 246, 230, 0.09);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-home .ai-proof-pillar-card:hover {
+    transform: none;
+  }
 }
 
 .page-home .ai-proof-pillar-card h3 {
@@ -21449,7 +21615,7 @@ body.owner-dash-detail-open {
 .page-home .ai-proof-shell.ai-proof-systems .restaurant-owner-cta-strip {
   display: grid;
   gap: 6px;
-  margin: clamp(20px, 3.5vw, 28px) 0 clamp(32px, 5vw, 40px);
+  margin: clamp(12px, 2vw, 18px) 0 0;
   padding: clamp(10px, 1.8vw, 12px) clamp(12px, 2.2vw, 14px);
   max-width: min(100%, 36rem);
   border-radius: calc(var(--radius) - 2px);
@@ -21499,10 +21665,6 @@ body.owner-dash-detail-open {
     max-width: none;
   }
 
-  .page-home .ai-proof-systems-visual img {
-    max-height: clamp(180px, 52vw, 260px);
-  }
-
   .page-home .ai-proof-pillar-grid {
     gap: 10px;
   }
@@ -21528,8 +21690,8 @@ body.owner-dash-detail-open {
   }
 
   .page-home .ai-proof-shell.ai-proof-systems .restaurant-owner-cta-strip {
-    margin-top: 20px;
-    margin-bottom: 48px;
+    margin-top: 14px;
+    margin-bottom: 0;
   }
 }
 
@@ -21996,6 +22158,17 @@ body.owner-dash-detail-open {
   aspect-ratio: 16 / 10;
   object-fit: cover;
   object-position: center;
+}
+
+.page-home .ai-proof-media-card.biz-editorial-band__visual .ai-proof-media-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: 50% 38%;
 }
 
 :is(.page-business-services, .page-restaurants, .page-home) .biz-editorial-band__stack {
