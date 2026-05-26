@@ -21398,7 +21398,35 @@ body.owner-dash-detail-open {
 
 .page-home .ai-proof-pillar-grid {
   gap: clamp(12px, 2vw, var(--biz-card-gap));
-  margin-top: clamp(8px, 1.4vw, 12px);
+  margin: 0;
+}
+
+@media (min-width: 960px) {
+  .page-home .ai-proof-pillar-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(14px, 1.8vw, 18px);
+  }
+}
+
+.page-home .ai-proof-shell.ai-proof-systems .ai-systems-grid--proof.ai-systems-grid--three {
+  gap: clamp(12px, 2vw, 16px);
+  margin: 0;
+}
+
+.page-home .ai-proof-shell.ai-proof-systems .ai-systems-card--proof {
+  padding: clamp(14px, 1.8vw, 18px);
+  gap: 6px;
+  min-height: 0;
+}
+
+.page-home .ai-proof-shell.ai-proof-systems .ai-systems-card--proof h3 {
+  font-size: clamp(0.94rem, 0.18vw + 0.88rem, 1rem);
+  font-weight: 820;
+}
+
+.page-home .ai-proof-shell.ai-proof-systems .ai-systems-card--proof p {
+  font-size: clamp(0.82rem, 0.1vw + 0.78rem, 0.86rem);
+  line-height: 1.5;
 }
 
 .page-home .ai-proof-pillar-card {
@@ -21414,7 +21442,7 @@ body.owner-dash-detail-open {
 }
 
 .page-home .ai-proof-shell.ai-proof-systems .ai-proof-cta-row {
-  margin-top: clamp(1.25rem, 2.8vw, var(--biz-space-md));
+  margin-top: 0;
   gap: var(--biz-space-sm);
 }
 
@@ -21480,6 +21508,14 @@ body.owner-dash-detail-open {
   }
 
   .page-home .ai-proof-pillar-card {
+    padding: 14px 16px;
+  }
+
+  .page-home .ai-proof-shell.ai-proof-systems .ai-systems-grid--proof.ai-systems-grid--three {
+    gap: 10px;
+  }
+
+  .page-home .ai-proof-shell.ai-proof-systems .ai-systems-card--proof {
     padding: 14px 16px;
   }
 
