@@ -8432,7 +8432,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   min-height: 48px;
 }
 
-.ai-proof-shell.ai-proof-systems .restaurant-owner-soft-link {
+.ai-proof-shell.ai-proof-systems .restaurant-owner-soft-link:not(.restaurant-owner-cta-strip) {
   margin: clamp(10px, 1.6vw, 14px) 0 0;
 }
 
