@@ -18500,3 +18500,133 @@ body.owner-dash-detail-open {
     letter-spacing: normal;
   }
 }
+
+/* --- Business services rebuild: AI era layout helpers --- */
+.page-business-services .ai-bs-advantage-grid {
+  list-style: none;
+  margin: 0 0 clamp(18px, 2.5vw, 26px);
+  padding: 0;
+  display: grid;
+  gap: clamp(12px, 2vw, 16px);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .page-business-services .ai-bs-advantage-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-business-services .ai-bs-advantage-card {
+  padding: clamp(16px, 2vw, 20px);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(11, 29, 58, 0.08);
+  box-shadow: 0 12px 32px rgba(11, 29, 58, 0.06);
+}
+
+.page-business-services .ai-bs-advantage-title {
+  margin: 0 0 8px;
+  font-size: clamp(0.98rem, 0.2vw + 0.9rem, 1.05rem);
+  font-weight: 880;
+  color: var(--navy, #0b1d3a);
+}
+
+.page-business-services .ai-bs-advantage-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(11, 29, 58, 0.78);
+}
+
+.page-business-services .ai-bs-advantage-foot {
+  margin-top: 0;
+}
+
+.page-business-services .ai-bs-market-pain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  max-width: 44rem;
+}
+
+.page-business-services .ai-bs-market-pain li {
+  position: relative;
+  padding-left: 1.35rem;
+  font-size: clamp(0.92rem, 0.2vw + 0.86rem, 0.98rem);
+  line-height: 1.55;
+  color: rgba(255, 235, 210, 0.9);
+}
+
+.page-business-services .ai-bs-market-pain li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  box-shadow: 0 0 10px rgba(242, 178, 26, 0.45);
+}
+
+.page-business-services .ai-bs-model-lanes {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .page-business-services .ai-bs-model-lanes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-business-services .ai-bs-model-card .ai-offer-list {
+  margin-bottom: 12px;
+}
+
+.page-business-services .ai-bs-category-grid--six {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .page-business-services .ai-bs-category-grid--six {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .page-business-services .ai-bs-category-grid--six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-business-services .ai-bs-starting-grid {
+  display: grid;
+  gap: clamp(14px, 2vw, 18px);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .page-business-services .ai-bs-starting-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-business-services .ai-bs-starting-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-business-services .ai-bs-path-card--featured {
+  border: 1px solid rgba(242, 178, 26, 0.45);
+  box-shadow:
+    0 18px 40px rgba(11, 29, 58, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.page-business-services .ai-bs-proof-cta {
+  margin-top: clamp(16px, 2.5vw, 24px);
+}
