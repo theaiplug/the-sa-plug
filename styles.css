@@ -13565,10 +13565,10 @@ body.page-ask main {
     text-align: start;
     overflow-wrap: break-word;
     word-break: normal;
-    text-wrap: wrap;
+    text-wrap: auto;
   }
 
-  :where(
+  body:not(.page-business-services):not(.page-restaurants) :where(
     p,
     .hero-text,
     .section-text,
@@ -13581,26 +13581,26 @@ body.page-ask main {
     .home-dir-copy,
     .home-lane-copy
   ) {
-    text-wrap: wrap !important;
+    text-wrap: auto !important;
   }
 
-  h1 {
+  body:not(.page-business-services):not(.page-restaurants) h1 {
     letter-spacing: -0.02em;
-    text-wrap: wrap;
+    text-wrap: auto;
   }
 
-  h2 {
+  body:not(.page-business-services):not(.page-restaurants) h2 {
     letter-spacing: -0.015em;
-    text-wrap: wrap;
+    text-wrap: auto;
   }
 
-  h3,
-  h4 {
+  body:not(.page-business-services):not(.page-restaurants) h3,
+  body:not(.page-business-services):not(.page-restaurants) h4 {
     letter-spacing: normal;
-    text-wrap: wrap;
+    text-wrap: auto;
   }
 
-  :where(
+  body:not(.page-business-services):not(.page-restaurants) :where(
     .eyebrow,
     .eyebrow-hero,
     .eyebrow-on-dark,
@@ -13614,30 +13614,32 @@ body.page-ask main {
     max-width: 100%;
   }
 
-  .btn,
-  .live-concierge__send,
-  .fam-route-cta-btn {
+  body:not(.page-business-services):not(.page-restaurants) :where(
+    .btn,
+    .live-concierge__send,
+    .fam-route-cta-btn
+  ) {
     letter-spacing: 0.01em;
     text-transform: none;
   }
 
   .page-home .home-dir-title,
   .page-home .home-lanes-intro h2 {
-    text-wrap: wrap;
+    text-wrap: auto;
   }
 
   .transport-concierge-main .tc-hero--cinematic .hero-title,
   .transport-concierge-main .tc-final h2 {
-    text-wrap: wrap !important;
+    text-wrap: auto !important;
   }
 
   .transport-concierge-main .tc-final .section-text {
-    text-wrap: wrap !important;
+    text-wrap: auto !important;
   }
 
   .eat-rec-card__inner,
-  .page-business-services .ai-offer-card.ai-bs-offer-card,
-  .page-business-services .ai-bs-owner-dark .ai-bs-owner-card {
+  .page-business-services:not(.page-home-services) .ai-offer-card.ai-bs-offer-card,
+  .page-business-services:not(.page-home-services) .ai-bs-owner-dark .ai-bs-owner-card {
     overflow-wrap: break-word;
     word-break: normal;
   }
@@ -20029,156 +20031,10 @@ body.owner-dash-detail-open {
   margin-top: clamp(12px, 1.8vw, 16px);
 }
 
-/* Typography: normal body copy — no stretched or tracked paragraphs */
-.page-home-services :where(
-  p,
-  li,
-  dd,
-  .hero-text,
-  .section-text,
-  .hs-compare-list,
-  .hs-compare-list li,
-  .hs-band-lede,
-  .hs-adapt-chip span,
-  .hs-first-path p,
-  .hs-help-card p,
-  .hs-trade-compact span,
-  .ai-bs-category-copy,
-  .hs-trust-item p,
-  .ai-owner-lede,
-  .hs-form-note,
-  .hs-consent-note,
-  .transport-intake-section__heading,
-  .hs-intake-form input,
-  .hs-intake-form select,
-  .hs-intake-form textarea,
-  .hs-intake-form input::placeholder,
-  .hs-intake-form textarea::placeholder
-) {
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-align: start;
-  text-align-last: start;
-  hyphens: none;
-  -webkit-hyphens: none;
-  overflow-wrap: normal;
-  word-break: normal;
-  text-wrap: wrap;
-  line-height: var(--hs-body-lh);
-}
-
-.page-home-services :where(
-  .btn,
-  .hs-intake-form .transport-field span,
-  .hs-trade-compact strong,
-  .hs-adapt-chip strong,
-  .hs-first-path h3,
-  .hs-help-card h3,
-  .hs-trust-item h3,
-  .hs-compare-title,
-  .ai-bs-category-title
-) {
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-wrap: wrap;
-}
-
-.page-home-services :where(.eyebrow, .eyebrow-on-dark, .ai-hero-eyebrow) {
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-wrap: wrap;
-}
-
-.page-home-services .hs-intake-form .transport-field span {
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: none;
-}
-
-.page-home-services .hs-intake-form .transport-intake-section__heading {
-  letter-spacing: 0.06em;
-}
-
 .page-home-services .hs-intake-form input::placeholder,
 .page-home-services .hs-intake-form textarea::placeholder {
   color: rgba(11, 29, 58, 0.52);
   opacity: 1;
-}
-
-.page-home-services .ai-strategic-title {
-  letter-spacing: -0.02em;
-  text-align: start;
-  text-wrap: wrap;
-}
-
-.page-home-services .hero-title {
-  text-align: start;
-  text-wrap: wrap;
-}
-
-@media (max-width: 899px) {
-  .page-home-services .ai-strategic-title,
-  .page-home-services .hero-title {
-    letter-spacing: -0.015em;
-    text-wrap: wrap;
-  }
-
-  .page-home-services :where(
-    .hero-text,
-    .section-text,
-    .ai-bs-hero-support,
-    .hs-compare-list,
-    .hs-compare-list li,
-    .hs-band-lede,
-    .hs-adapt-chip span,
-    .hs-first-path p,
-    .hs-help-card p,
-    .ai-bs-category-copy,
-    .hs-trade-compact span,
-    .hs-trust-item p,
-    .ai-owner-lede,
-    .hs-trust-lede,
-    .hs-consent-note
-  ) {
-    letter-spacing: normal !important;
-    word-spacing: normal !important;
-    text-align: start !important;
-    text-align-last: start !important;
-    hyphens: none !important;
-    -webkit-hyphens: none !important;
-    overflow-wrap: normal !important;
-    word-break: normal !important;
-    text-wrap: wrap !important;
-    line-height: 1.52 !important;
-  }
-
-  .page-home-services :where(
-    .hs-help-card h3,
-    .hs-trust-item h3,
-    .hs-first-path h3,
-    .hs-adapt-chip strong,
-    .hs-compare-title
-  ) {
-    letter-spacing: normal !important;
-    word-spacing: normal !important;
-    text-wrap: wrap !important;
-  }
-
-  .page-home-services .btn {
-    letter-spacing: normal !important;
-    word-spacing: normal !important;
-    text-transform: none !important;
-  }
-
-  .page-home-services .hs-band-head {
-    margin-bottom: 12px;
-  }
-
-  .page-home-services .hs-band-head .ai-strategic-title {
-    margin-bottom: 6px;
-  }
 }
 
 /* Ongoing adaptation — compact band */
@@ -20456,7 +20312,7 @@ body.owner-dash-detail-open {
 }
 
 .page-business-services.page-home-services .ai-strategic-title {
-  text-wrap: wrap;
+  text-wrap: auto;
 }
 
 .page-business-services.page-home-services .hs-compare-card {
@@ -20601,8 +20457,37 @@ body.owner-dash-detail-open {
   -webkit-hyphens: none;
   overflow-wrap: normal;
   word-break: normal;
-  text-wrap: wrap;
+  text-wrap: auto;
   line-height: var(--biz-body-lh, 1.52);
+}
+
+:is(.page-business-services, .page-restaurants) :where(
+  .hs-faq-item dd,
+  .hs-trust-lede,
+  .ai-owner-lede,
+  .hs-first-path p,
+  .hs-trade-compact span,
+  .hs-consent-note,
+  .site-header-proof,
+  .footer-tagline
+) {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: start;
+  text-align-last: start;
+  text-transform: none;
+  hyphens: none;
+  -webkit-hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: auto;
+  line-height: var(--biz-body-lh, 1.52);
+}
+
+:is(.page-business-services, .page-restaurants) :where(.hs-main, .site-header) :where(strong, em, b, i),
+:is(.page-business-services, .page-restaurants) > .footer :where(strong, em, b, i) {
+  letter-spacing: normal;
+  word-spacing: normal;
 }
 
 :is(.page-business-services, .page-restaurants) :where(
@@ -20626,7 +20511,7 @@ body.owner-dash-detail-open {
   letter-spacing: normal;
   word-spacing: normal;
   text-transform: none;
-  text-wrap: wrap;
+  text-wrap: auto;
 }
 
 /* Headlines — no balance/pretty wrapping on business sales pages */
@@ -20640,7 +20525,7 @@ body.owner-dash-detail-open {
   .ai-proof-headline
 ),
 .page-home .ai-proof-section :where(h2, .ai-proof-headline) {
-  text-wrap: wrap;
+  text-wrap: auto;
   text-align: start;
   hyphens: none;
   -webkit-hyphens: none;
@@ -20672,7 +20557,7 @@ body.owner-dash-detail-open {
 .page-home .ai-proof-section :where(.eyebrow, .ai-proof-eyebrow) {
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  text-wrap: wrap;
+  text-wrap: auto;
   word-spacing: normal;
 }
 
@@ -20895,23 +20780,37 @@ body.owner-dash-detail-open {
 
 @media (max-width: 899px) {
   :is(.page-business-services, .page-restaurants) :where(
-    p:not(.eyebrow):not(.eyebrow-on-dark):not(.eyebrow-hero),
+    p:not(.eyebrow):not(.eyebrow-on-dark):not(.eyebrow-hero):not(.ai-hero-eyebrow),
     li,
+    dd,
     .hero-text,
     .section-text,
     .ai-bs-hero-support,
+    .ai-bs-hero-tagline,
+    .ai-hero-lead,
     .hs-band-lede,
     .hs-compare-list,
     .hs-compare-list li,
     .hs-adapt-chip span,
+    .hs-first-path p,
     .hs-help-card p,
     .hs-trust-item p,
+    .hs-trade-compact span,
     .ai-bs-category-copy,
+    .ai-owner-lede,
+    .hs-trust-lede,
+    .hs-form-note,
+    .hs-consent-note,
+    .hs-faq-item dd,
     .hosp-proof-list li,
     .ps-compare-list li,
     .bt-gateway-lanes dd,
     .rest-path-copy,
-    .footer-note
+    .footer-lead,
+    .footer-mission,
+    .footer-note,
+    .footer-tagline,
+    .site-header-proof
   ),
   .page-home .ai-proof-section :where(
     p:not(.eyebrow),
@@ -20929,24 +20828,42 @@ body.owner-dash-detail-open {
     -webkit-hyphens: none !important;
     overflow-wrap: normal !important;
     word-break: normal !important;
-    text-wrap: wrap !important;
+    text-wrap: auto !important;
     line-height: 1.52 !important;
   }
 
-  :is(.page-business-services, .page-restaurants) :where(.hero-title, .ai-strategic-title) {
-    text-wrap: wrap !important;
-    letter-spacing: -0.015em;
-  }
-
-  :is(.page-business-services, .page-restaurants) .btn {
+  :is(.page-business-services, .page-restaurants) :where(
+    .hs-help-card h3,
+    .hs-trust-item h3,
+    .hs-first-path h3,
+    .hs-adapt-chip strong,
+    .hs-compare-title,
+    .ai-bs-category-title,
+    .btn
+  ) {
     letter-spacing: normal !important;
     word-spacing: normal !important;
     text-transform: none !important;
+    text-wrap: auto !important;
   }
 
-  :is(.page-business-services, .page-restaurants) :where(.eyebrow, .eyebrow-on-dark, .eyebrow-hero) {
+  :is(.page-business-services, .page-restaurants) :where(.hero-title, .ai-strategic-title) {
+    text-wrap: auto !important;
+    letter-spacing: -0.015em;
+  }
+
+  :is(.page-business-services, .page-restaurants) :where(.eyebrow, .eyebrow-on-dark, .eyebrow-hero, .ai-hero-eyebrow) {
     letter-spacing: 0.12em !important;
     text-transform: uppercase !important;
+    word-spacing: normal !important;
+  }
+
+  .page-home-services .hs-band-head {
+    margin-bottom: 12px;
+  }
+
+  .page-home-services .hs-band-head .ai-strategic-title {
+    margin-bottom: 6px;
   }
 
   :is(.page-business-services, .page-restaurants) .ai-bs-category-thumb img,
@@ -20987,5 +20904,168 @@ body.owner-dash-detail-open {
   .page-business-services .ai-bs-category-grid--four.ps-trades-featured,
   .page-home-services .ai-bs-category-grid--four {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Home Services — readable copy guard (header, main, footer; no eyebrow tracking leak) */
+.page-home-services .hs-intake-form .transport-field span {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.page-home-services .hs-intake-form .transport-intake-section__heading {
+  letter-spacing: 0.06em;
+}
+
+.page-home-services :is(.hs-main, .site-header) :where(
+  .hs-help-card,
+  .hs-first-path,
+  .hs-trust-item,
+  .hs-adapt-chip,
+  .hs-compare-card,
+  .ai-bs-category-card,
+  .hs-trade-compact,
+  .hs-form-shell,
+  .hs-faq-item
+) {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.page-home-services > .footer :where(
+  p,
+  li,
+  strong,
+  .footer-lead,
+  .footer-mission,
+  .footer-note,
+  .footer-tagline
+) {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: start;
+  text-align-last: start;
+  text-transform: none;
+  hyphens: none;
+  -webkit-hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: auto;
+  line-height: var(--hs-body-lh, var(--biz-body-lh, 1.52));
+}
+
+.page-home-services :is(.hs-main, .site-header) :where(
+  p:not(:is(.eyebrow, .eyebrow-on-dark, .eyebrow-hero, .ai-hero-eyebrow)),
+  li,
+  dd,
+  span,
+  strong,
+  em,
+  .hero-text,
+  .section-text,
+  .ai-bs-hero-support,
+  .ai-bs-hero-tagline,
+  .hs-band-lede,
+  .hs-compare-list,
+  .hs-compare-list li,
+  .hs-adapt-chip span,
+  .hs-first-path p,
+  .hs-help-card p,
+  .hs-trust-item p,
+  .hs-trade-compact span,
+  .ai-bs-category-copy,
+  .ai-owner-lede,
+  .hs-trust-lede,
+  .hs-form-note,
+  .hs-consent-note,
+  .hs-faq-item dd,
+  .site-header-proof
+) {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: start;
+  text-align-last: start;
+  text-transform: none;
+  hyphens: none;
+  -webkit-hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: auto;
+  line-height: var(--hs-body-lh, var(--biz-body-lh, 1.52));
+}
+
+@media (max-width: 899px) {
+  .page-home-services > .footer :where(
+    p,
+    li,
+    strong,
+    .footer-lead,
+    .footer-mission,
+    .footer-note,
+    .footer-tagline
+  ) {
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    text-align: start !important;
+    text-align-last: start !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    text-wrap: auto !important;
+    line-height: 1.52 !important;
+  }
+
+  .page-home-services :is(.hs-main, .site-header) :where(
+    p:not(:is(.eyebrow, .eyebrow-on-dark, .eyebrow-hero, .ai-hero-eyebrow)),
+    li,
+    dd,
+    span,
+    strong,
+    .hero-text,
+    .section-text,
+    .ai-bs-hero-support,
+    .ai-bs-hero-tagline,
+    .hs-band-lede,
+    .hs-compare-list,
+    .hs-compare-list li,
+    .hs-adapt-chip span,
+    .hs-first-path p,
+    .hs-help-card p,
+    .hs-trust-item p,
+    .hs-trade-compact span,
+    .ai-bs-category-copy,
+    .ai-owner-lede,
+    .hs-trust-lede,
+    .hs-form-note,
+    .hs-consent-note,
+    .hs-faq-item dd,
+    .site-header-proof,
+    .btn
+  ) {
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    text-align: start !important;
+    text-align-last: start !important;
+    text-transform: none !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    text-wrap: auto !important;
+    line-height: 1.52 !important;
+  }
+
+  .page-home-services :where(
+    .eyebrow,
+    .eyebrow-on-dark,
+    .eyebrow-hero,
+    .ai-hero-eyebrow
+  ) {
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    word-spacing: normal !important;
   }
 }
