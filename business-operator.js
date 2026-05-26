@@ -380,7 +380,7 @@
     "ai-operator": "Add AI website operator",
     "ai-intake": "Smart intake",
     "phone-voice": "Chat or phone planning",
-    "internal-assistant": "Owner dashboard / internal assistant",
+    "internal-assistant": "Internal assistant / workflow support",
     "lead-handling": "Smart intake",
     "follow-up": "Automations / follow-up workflows",
     "full-system": "Full AI business system",
