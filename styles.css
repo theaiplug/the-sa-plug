@@ -6626,6 +6626,74 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   font-weight: 800;
 }
 
+/* --- Section visuals (business services images) --- */
+.page-business-services .ai-bs-section-split {
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+  align-items: center;
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+@media (min-width: 900px) {
+  .page-business-services .ai-bs-section-split {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .page-business-services .ai-bs-section-split--visual-right .ai-bs-section-visual {
+    order: 2;
+  }
+
+  .page-business-services .ai-bs-section-split--visual-left .ai-bs-section-visual {
+    order: 0;
+  }
+}
+
+.page-business-services .ai-bs-section-split-copy {
+  margin-bottom: 0;
+  max-width: none;
+}
+
+.page-business-services .ai-bs-section-visual {
+  margin: 0;
+  border-radius: calc(var(--radius) + 2px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 230, 0.12);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 246, 230, 0.06);
+}
+
+.page-business-services .ai-bs-section-visual--wide {
+  margin-bottom: clamp(24px, 3.5vw, 36px);
+}
+
+.page-business-services .ai-bs-section-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: clamp(220px, 42vw, 480px);
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 899px) {
+  .page-business-services .ai-bs-section-split .ai-bs-section-visual {
+    order: 1;
+  }
+
+  .page-business-services .ai-bs-section-split .ai-bs-section-split-copy {
+    order: 0;
+  }
+}
+
+.page-business-services .ai-bs-business-operator .live-concierge__image-band-media img {
+  width: 100%;
+  height: auto;
+  max-height: clamp(200px, 36vw, 360px);
+  object-fit: cover;
+  object-position: center top;
+}
+
 .page-business-services .ai-bs-proof-flow {
   margin-top: clamp(2px, 0.8vw, 6px);
 }
@@ -8130,7 +8198,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 .ai-proof-shell.ai-proof-systems .ai-proof-headline {
   margin-bottom: 0 !important;
-  max-width: 26ch;
+  max-width: 32ch;
 }
 
 .ai-proof-shell.ai-proof-systems .ai-proof-lead {
@@ -8208,6 +8276,45 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 .ai-proof-shell.ai-proof-systems .restaurant-owner-soft-link {
   margin: clamp(10px, 1.6vw, 14px) 0 0;
+}
+
+.ai-proof-shell.ai-proof-systems .ai-proof-systems-intro {
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .ai-proof-shell.ai-proof-systems .ai-proof-systems-intro {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
+.ai-proof-systems-visual {
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.3);
+}
+
+.ai-proof-systems-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: clamp(220px, 38vw, 420px);
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 959px) {
+  .ai-proof-systems-visual {
+    order: 1;
+  }
+
+  .ai-proof-shell.ai-proof-systems .ai-proof-header-band {
+    order: 0;
+  }
 }
 
 .ai-systems-card--proof {
