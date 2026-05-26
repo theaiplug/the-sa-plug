@@ -1917,7 +1917,10 @@
       background: rgba(255, 255, 255, 0.94);
       box-shadow: 0 24px 58px rgba(11, 29, 58, 0.12);
       padding: clamp(16px, 2.4vw, 26px);
+      width: 100%;
+      max-width: 100%;
       min-width: 0;
+      box-sizing: border-box;
     }
 
     .transport-concierge-main .transport-intake-fieldset {
@@ -1927,45 +1930,10 @@
       grid-column: 1 / -1;
     }
 
-    .transport-concierge-main .transport-check-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-      gap: 10px;
-    }
-
-    .transport-concierge-main .transport-check-option {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      min-height: 46px;
-      padding: 10px 11px;
-      border-radius: 12px;
-      background: #fffefb;
-      border: 1px solid rgba(11, 29, 58, 0.13);
-      color: var(--navy);
-      font-size: 0.9rem;
-      font-weight: 650;
-      line-height: 1.35;
-      cursor: pointer;
-    }
-
-    .transport-concierge-main .transport-check-option input {
-      width: 1.2rem;
-      height: 1.2rem;
-      min-height: 1.2rem;
-      margin: 0.05rem 0 0;
-      flex: 0 0 auto;
-      accent-color: var(--gold);
-    }
-
-    .transport-concierge-main .sms-consent-block {
+    .transport-concierge-main .transport-intake-form .sms-consent-block {
       margin: 16px 0 0;
       background: rgba(255, 248, 235, 0.92);
       border-color: rgba(11, 29, 58, 0.1);
-    }
-
-    .transport-concierge-main .sms-consent-checkbox input[type="checkbox"] {
-      accent-color: var(--gold);
     }
 
     .transport-concierge-main .tc-partner-band {
@@ -1998,6 +1966,12 @@
       color: var(--slate);
     }
 
+    @media (max-width: 760px) {
+      .transport-concierge-main .tc-request-shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 520px) {
       .transport-concierge-main .tc-rebuild-section {
         padding-inline: 14px;
@@ -2012,11 +1986,21 @@
         padding-inline: 13px;
       }
 
+      .transport-concierge-main .transport-check-option {
+        padding: 12px 13px;
+        gap: 12px;
+      }
+
+      .transport-concierge-main .transport-intake-form .sms-consent-block {
+        padding: 12px 13px;
+      }
+
       .transport-concierge-main .transport-intake-form input,
       .transport-concierge-main .transport-intake-form select,
       .transport-concierge-main .transport-intake-form textarea,
       .transport-concierge-main .transport-intake-submit {
         width: 100%;
+        max-width: 100%;
         box-sizing: border-box;
       }
     }
@@ -2279,7 +2263,7 @@
                 <input type="checkbox" name="sms_consent" value="yes" />
                 <span>I agree to receive SMS messages from Where To Go SA about my request. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help.</span>
               </label>
-              <p class="sms-consent-help">SMS consent is optional and is not required to submit this form. We may still contact you by email or phone about your request. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</p>
+              <p class="sms-consent-help">SMS consent is optional and is not required to submit this form. We may still contact you by email or phone about your request. Message and data rates may apply. Reply STOP to opt out or HELP for help. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</p>
             </div>
             <button type="submit" class="btn btn-primary transport-intake-submit" id="transport-submit-intake">Send transportation request</button>
           </form>
