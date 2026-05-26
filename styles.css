@@ -4091,13 +4091,13 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-business-services main > .section.ai-bs-sec-major {
-  padding-top: clamp(42px, 5vw, 64px);
-  padding-bottom: clamp(42px, 5vw, 64px);
+  padding-top: var(--biz-sec-pad, clamp(56px, 7vw, 72px));
+  padding-bottom: var(--biz-sec-pad, clamp(56px, 7vw, 72px));
 }
 
 .page-business-services main > .section.ai-bs-sec-compact {
-  padding-top: clamp(22px, 3vw, 34px);
-  padding-bottom: clamp(22px, 3vw, 34px);
+  padding-top: var(--biz-sec-pad-compact, clamp(40px, 5vw, 48px));
+  padding-bottom: var(--biz-sec-pad-compact, clamp(40px, 5vw, 48px));
 }
 
 .page-business-services main > .section.ai-bs-section--capabilities {
@@ -4848,7 +4848,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 /* --- Section heads --- */
 .page-business-services .ai-band-head {
   max-width: 48rem;
-  margin-bottom: clamp(16px, 2.4vw, 26px);
+  margin-bottom: 0;
 }
 
 .page-business-services .ai-band-head--cream {
@@ -4856,14 +4856,14 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-business-services .ai-band-head .eyebrow {
-  margin-bottom: 8px;
+  margin-bottom: var(--biz-space-xs, clamp(6px, 1.2vw, 8px));
 }
 
 .page-business-services .ai-strategic-title {
   font-size: clamp(1.72rem, 2.8vw + 0.8rem, 2.5rem);
   line-height: 1.12;
   letter-spacing: -0.03em;
-  margin-bottom: 10px;
+  margin-bottom: var(--biz-space-sm, clamp(10px, 1.6vw, 14px));
 }
 
 .page-business-services .ai-band-head .section-text {
@@ -16632,11 +16632,11 @@ body.owner-dash-detail-open {
 
 .page-restaurants .rest-band-head {
   max-width: 40rem;
-  margin-bottom: clamp(16px, 2.2vw, 24px);
+  margin-bottom: 0;
 }
 
 .page-restaurants .rest-sec--proof .rest-band-head {
-  margin-bottom: clamp(14px, 2vw, 20px);
+  margin-bottom: 0;
 }
 
 .page-restaurants .rest-band-head--dark {
@@ -17288,7 +17288,8 @@ body.owner-dash-detail-open {
 }
 
 .page-restaurants .rest-sec--guardrail {
-  padding-top: clamp(22px, 3vw, 30px);
+  padding-top: var(--biz-sec-pad-compact, clamp(40px, 5vw, 48px));
+  padding-bottom: var(--biz-sec-pad-compact, clamp(40px, 5vw, 48px));
 }
 
 @media (max-width: 829px) {
@@ -17447,7 +17448,8 @@ body.owner-dash-detail-open {
 
 .page-home-services .hs-main,
 .page-home-services .hs-hero-shell,
-.page-home-services .routes-band-inner {
+.page-home-services .routes-band-inner,
+.page-business-services.page-home-services .routes-band-inner {
   min-width: 0;
   max-width: 100%;
 }
@@ -17492,15 +17494,15 @@ body.owner-dash-detail-open {
 
 .page-home-services .hs-band-head {
   max-width: 40rem;
-  margin-bottom: clamp(12px, 1.8vw, 20px);
+  margin-bottom: 0;
 }
 
 .page-home-services .hs-band-head .eyebrow {
-  margin-bottom: 6px;
+  margin-bottom: var(--biz-space-xs, clamp(6px, 1.2vw, 8px));
 }
 
 .page-home-services .hs-band-head .ai-strategic-title {
-  margin-bottom: 8px;
+  margin-bottom: var(--biz-space-sm, clamp(10px, 1.6vw, 14px));
 }
 
 .page-home-services .hs-band-lede {
@@ -18523,7 +18525,7 @@ body.owner-dash-detail-open {
   .page-hospitality-local-experience .ai-band-head,
   .page-professional-services .ai-band-head {
     max-width: none;
-    margin-bottom: clamp(12px, 3vw, 18px);
+    margin-bottom: 0;
   }
 
   .page-hospitality-local-experience .hosp-guest-band {
@@ -18617,7 +18619,7 @@ body.owner-dash-detail-open {
 
 .page-business-services .ai-bs-project-request-shell {
   width: 100%;
-  margin-top: clamp(14px, 2vw, 18px);
+  margin-top: var(--biz-space-md, clamp(18px, 2.4vw, 24px));
   padding: clamp(18px, 2.4vw, 24px) clamp(18px, 2.4vw, 24px) clamp(20px, 2.8vw, 26px);
   border-radius: calc(var(--radius) + 2px);
   background: rgba(255, 253, 248, 0.96);
@@ -20045,8 +20047,8 @@ body.owner-dash-detail-open {
 
 .page-home-services .hs-adapt-chips {
   display: grid;
-  gap: clamp(10px, 1.6vw, 14px);
-  margin: clamp(12px, 2vw, 16px) 0 0;
+  gap: var(--biz-card-gap, clamp(10px, 1.6vw, 14px));
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -20085,8 +20087,8 @@ body.owner-dash-detail-open {
 /* Safe first step paths */
 .page-home-services .hs-first-paths {
   display: grid;
-  gap: clamp(10px, 1.6vw, 14px);
-  margin: clamp(10px, 1.6vw, 14px) 0 0;
+  gap: var(--biz-card-gap, clamp(10px, 1.6vw, 14px));
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -20120,7 +20122,7 @@ body.owner-dash-detail-open {
 }
 
 .page-home-services .hs-section-cta {
-  margin-top: clamp(16px, 2.2vw, 22px);
+  margin-top: var(--biz-space-md, clamp(18px, 2.4vw, 24px));
 }
 
 .page-home-services .hs-section-cta .btn {
@@ -20137,8 +20139,8 @@ body.owner-dash-detail-open {
 /* What AI can help with — four cards */
 .page-home-services .hs-help-grid {
   display: grid;
-  gap: var(--hs-card-stack-gap);
-  margin-top: var(--hs-card-stack-gap);
+  gap: var(--biz-card-gap, var(--hs-card-stack-gap));
+  margin-top: 0;
 }
 
 @media (min-width: 640px) {
@@ -20238,13 +20240,13 @@ body.owner-dash-detail-open {
 
 /* Trust — compact cream band */
 .page-home-services .hs-trust-band {
-  padding-top: clamp(22px, 2.8vw, 36px);
-  padding-bottom: clamp(22px, 2.8vw, 36px);
+  padding-top: var(--biz-sec-pad-compact, clamp(40px, 5vw, 48px));
+  padding-bottom: var(--biz-sec-pad-compact, clamp(40px, 5vw, 48px));
 }
 
 .page-home-services .hs-band-head--trust {
   max-width: 38rem;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .page-home-services .hs-trust-band .hs-trust-lede,
@@ -20258,8 +20260,8 @@ body.owner-dash-detail-open {
 
 .page-home-services .hs-trust-grid {
   display: grid;
-  gap: var(--hs-card-stack-gap);
-  margin: 10px 0 0;
+  gap: var(--biz-card-gap, var(--hs-card-stack-gap));
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -20303,7 +20305,7 @@ body.owner-dash-detail-open {
 
 /* Home Services — scoped overrides vs shared business-services typography */
 .page-business-services.page-home-services .ai-band-head {
-  margin-bottom: clamp(12px, 1.8vw, 20px);
+  margin-bottom: 0;
 }
 
 .page-business-services.page-home-services .ai-band-head .section-text,
@@ -20328,29 +20330,29 @@ body.owner-dash-detail-open {
 
 @media (max-width: 899px) {
   .page-business-services.page-home-services .hs-help-grid {
-    gap: 12px;
-    margin-top: 12px;
+    gap: var(--biz-card-gap);
+    margin-top: 0;
   }
 
   .page-business-services.page-home-services .hs-help-card {
-    padding: 16px;
+    padding: var(--biz-card-pad);
   }
 
   .page-business-services.page-home-services .hs-trust-grid {
-    gap: 10px;
-    margin-top: 10px;
+    gap: var(--biz-card-gap);
+    margin-top: 0;
   }
 
   .page-business-services.page-home-services .hs-trust-item {
-    padding: 12px 14px;
+    padding: var(--biz-card-pad);
   }
 
   .page-business-services.page-home-services #contractor-journey .hs-band-head {
-    margin-bottom: 12px;
+    margin-bottom: 0;
   }
 
   .page-business-services.page-home-services .hs-trust-band > .routes-band-inner {
-    gap: 0;
+    gap: var(--biz-space-sm);
   }
 }
 
@@ -20361,13 +20363,30 @@ body.owner-dash-detail-open {
 
 :is(.page-business-services, .page-restaurants) {
   --biz-body-lh: 1.52;
+  --biz-space-xs: clamp(6px, 1.2vw, 8px);
+  --biz-space-sm: clamp(10px, 1.6vw, 14px);
+  --biz-space-md: clamp(18px, 2.4vw, 24px);
+  --biz-space-lg: clamp(32px, 4vw, 40px);
+  --biz-space-xl: clamp(48px, 5.5vw, 64px);
+  --biz-sec-pad: clamp(56px, 7vw, 72px);
+  --biz-sec-pad-compact: clamp(40px, 5vw, 48px);
   --biz-card-radius: calc(var(--radius) - 2px);
   --biz-card-pad: clamp(14px, 2vw, 18px);
   --biz-card-gap: clamp(10px, 1.6vw, 14px);
+  --biz-card-title-gap: var(--biz-space-xs);
 }
 
 .page-home .ai-proof-section {
   --biz-body-lh: 1.52;
+  --biz-space-xs: clamp(6px, 1.2vw, 8px);
+  --biz-space-sm: clamp(10px, 1.6vw, 14px);
+  --biz-space-md: clamp(18px, 2.4vw, 24px);
+  --biz-space-lg: clamp(32px, 4vw, 40px);
+  --biz-space-xl: clamp(48px, 5.5vw, 64px);
+  --biz-sec-pad: clamp(56px, 7vw, 72px);
+  --biz-sec-pad-compact: clamp(40px, 5vw, 48px);
+  --biz-card-pad: clamp(14px, 2vw, 18px);
+  --biz-card-gap: clamp(10px, 1.6vw, 14px);
 }
 
 /* Readable body copy — never inherit eyebrow tracking or label uppercase */
@@ -20568,32 +20587,64 @@ body.owner-dash-detail-open {
   text-transform: none;
 }
 
-/* Vertical section rhythm */
-:is(.page-business-services, .page-restaurants) main > .section {
-  padding-top: clamp(28px, 3.5vw, 44px);
-  padding-bottom: clamp(28px, 3.5vw, 44px);
+/* Vertical section rhythm — standard / compact section padding */
+:is(.page-business-services, .page-restaurants) main > .section:not(.hero):not(.ai-bs-hero):not(.hs-hero):not(.ps-hero):not(.hosp-hero):not(.rest-hero) {
+  padding-top: var(--biz-sec-pad);
+  padding-bottom: var(--biz-sec-pad);
+}
+
+:is(.page-business-services, .page-restaurants) main > .section.ai-bs-sec-major {
+  padding-top: var(--biz-sec-pad);
+  padding-bottom: var(--biz-sec-pad);
+}
+
+:is(.page-business-services, .page-restaurants) main > .section.ai-bs-sec-compact,
+:is(.page-business-services, .page-restaurants) .hs-adaptation-band,
+:is(.page-business-services, .page-restaurants) .hs-trust-band,
+:is(.page-business-services, .page-restaurants) .rest-sec--guardrail,
+:is(.page-business-services, .page-restaurants) .ai-bs-adaptation-promo,
+:is(.page-business-services, .page-restaurants) #ongoing-adaptation {
+  padding-top: var(--biz-sec-pad-compact);
+  padding-bottom: var(--biz-sec-pad-compact);
+}
+
+:is(.page-business-services, .page-restaurants) .routes-band-inner {
+  gap: var(--biz-space-md);
 }
 
 :is(.page-business-services, .page-restaurants) .ai-band-head,
 :is(.page-business-services, .page-restaurants) .hs-band-head,
 :is(.page-business-services, .page-restaurants) .rest-band-head {
   max-width: 40rem;
-  margin-bottom: clamp(12px, 1.8vw, 18px);
+  margin-bottom: 0;
 }
 
 :is(.page-business-services, .page-restaurants) .ai-band-head .eyebrow,
-:is(.page-business-services, .page-restaurants) .hs-band-head .eyebrow {
-  margin-bottom: 6px;
+:is(.page-business-services, .page-restaurants) .hs-band-head .eyebrow,
+:is(.page-business-services, .page-restaurants) .rest-band-head .eyebrow {
+  margin-bottom: var(--biz-space-xs);
 }
 
 :is(.page-business-services, .page-restaurants) .ai-band-head .ai-strategic-title,
-:is(.page-business-services, .page-restaurants) .hs-band-head .ai-strategic-title {
-  margin-bottom: 8px;
+:is(.page-business-services, .page-restaurants) .hs-band-head .ai-strategic-title,
+:is(.page-business-services, .page-restaurants) .rest-band-head h2 {
+  margin-bottom: var(--biz-space-sm);
 }
 
 :is(.page-business-services, .page-restaurants) .ai-band-head .section-text,
-:is(.page-business-services, .page-restaurants) .hs-band-head .section-text {
+:is(.page-business-services, .page-restaurants) .hs-band-head .section-text,
+:is(.page-business-services, .page-restaurants) .hs-band-head .hs-band-lede,
+:is(.page-business-services, .page-restaurants) .rest-band-head .section-text {
   margin-bottom: 0;
+}
+
+:is(.page-business-services, .page-restaurants) .ai-bs-section-split {
+  gap: var(--biz-space-md);
+  margin-bottom: var(--biz-space-md);
+}
+
+:is(.page-business-services, .page-restaurants) .ai-bs-section-visual--wide {
+  margin-bottom: var(--biz-space-md);
 }
 
 /* Shared card rhythm */
@@ -20610,12 +20661,35 @@ body.owner-dash-detail-open {
   .ai-bs-pillar-card,
   .ai-bs-category-card,
   .ai-bs-owner-card,
+  .ai-bs-adaptation-card,
+  .ai-bs-cap-card,
+  .ai-capability-card,
   .rest-path-card,
   .rest-ai-cap,
   .rest-proof-card
 ) {
   border-radius: var(--biz-card-radius, calc(var(--radius) - 2px));
   padding: var(--biz-card-pad, clamp(14px, 2vw, 18px));
+}
+
+:is(.page-business-services, .page-restaurants) :where(
+  .hs-help-card h3,
+  .hs-compare-card .hs-compare-title,
+  .hs-first-path h3,
+  .hs-trust-item h3,
+  .hosp-first-path h3,
+  .ps-compare-card .ps-compare-title,
+  .bt-gateway-card .bt-gateway-title,
+  .ai-bs-pillar-card h3,
+  .ai-bs-category-card .ai-bs-category-title,
+  .ai-bs-owner-card h3,
+  .ai-bs-adaptation-card h3,
+  .rest-path-card .rest-path-title,
+  .rest-ai-cap h3,
+  .rest-proof-card h3
+) {
+  margin-top: 0;
+  margin-bottom: var(--biz-card-title-gap);
 }
 
 :is(.page-business-services, .page-restaurants) :where(
@@ -20633,14 +20707,17 @@ body.owner-dash-detail-open {
   gap: var(--biz-card-gap, clamp(10px, 1.6vw, 14px));
 }
 
-/* Compact trust bands */
+/* Compact trust / guardrail bands */
 :is(.page-business-services, .page-restaurants) :where(
-  .hs-trust-band,
-  .ai-bs-owner-trust,
-  .rest-sec--guardrail
+  .ai-bs-owner-trust:not(.ai-bs-sec-major)
 ) {
-  padding-top: clamp(22px, 2.8vw, 32px);
-  padding-bottom: clamp(22px, 2.8vw, 32px);
+  padding-top: var(--biz-sec-pad-compact);
+  padding-bottom: var(--biz-sec-pad-compact);
+}
+
+:is(.page-business-services, .page-restaurants) .ai-bs-owner-trust.ai-bs-sec-major {
+  padding-top: var(--biz-sec-pad);
+  padding-bottom: var(--biz-sec-pad);
 }
 
 :is(.page-business-services, .page-restaurants) .ai-bs-owner-cards {
@@ -20873,12 +20950,151 @@ body.owner-dash-detail-open {
   }
 }
 
-:is(.page-business-services, .page-restaurants) .hs-section-cta {
-  margin-top: clamp(12px, 2vw, 16px);
+:is(.page-business-services, .page-restaurants) .hs-section-cta,
+:is(.page-business-services, .page-restaurants) .ai-bs-final-actions,
+:is(.page-business-services, .page-restaurants) .ai-bs-early-cta {
+  margin-top: var(--biz-space-md);
 }
 
 :is(.page-business-services, .page-restaurants) .hs-section-cta--dark .btn {
   min-height: 48px;
+}
+
+/* Form sections — headline → intro → card */
+:is(.page-business-services, .page-restaurants) .ai-bs-project-request-inner {
+  gap: var(--biz-space-md);
+}
+
+:is(.page-business-services, .page-restaurants) .ai-bs-project-request-shell,
+:is(.page-business-services, .page-restaurants) .hs-form-shell,
+:is(.page-business-services, .page-restaurants) .rest-form-shell {
+  margin-top: var(--biz-space-md);
+}
+
+:is(.page-business-services, .page-restaurants) :where(
+  .ai-bs-intake-form,
+  .hs-intake-form,
+  .rest-intake-form
+) .transport-intake-grid {
+  gap: var(--biz-space-sm) var(--biz-space-md);
+}
+
+:is(.page-business-services, .page-restaurants) :where(
+  .ai-bs-intake-form,
+  .hs-intake-form,
+  .rest-intake-form
+) .transport-intake-section {
+  margin-top: var(--biz-space-md);
+}
+
+:is(.page-business-services, .page-restaurants) :where(
+  .ai-bs-intake-form,
+  .hs-intake-form,
+  .rest-intake-form
+) .transport-field {
+  gap: var(--biz-space-xs);
+}
+
+:is(.page-business-services, .page-restaurants) :where(
+  .consent-note,
+  .hs-consent-note,
+  .rest-consent-note
+) {
+  margin-top: var(--biz-space-sm);
+}
+
+:is(.page-business-services, .page-restaurants) :where(
+  .ai-bs-intake-form,
+  .hs-intake-form,
+  .rest-intake-form
+) .transport-intake-submit,
+:is(.page-business-services, .page-restaurants) :where(
+  .ai-bs-intake-form,
+  .hs-intake-form,
+  .rest-intake-form
+) button[type="submit"] {
+  margin-top: var(--biz-space-md);
+}
+
+/* Footer — business pages */
+:is(.page-business-services, .page-restaurants) .footer.dark-showcase {
+  padding-top: var(--biz-space-lg);
+  padding-bottom: max(var(--biz-space-lg), calc(12px + env(safe-area-inset-bottom, 0px)));
+  gap: var(--biz-space-sm);
+}
+
+:is(.page-business-services, .page-restaurants) .footer-brand .footer-tagline {
+  margin-top: var(--biz-space-xs);
+}
+
+:is(.page-business-services, .page-restaurants) .footer-lead,
+:is(.page-business-services, .page-restaurants) .footer-mission {
+  margin-top: var(--biz-space-sm);
+}
+
+:is(.page-business-services, .page-restaurants) .footer-links.footer-links--business {
+  gap: var(--biz-space-xs);
+  margin-top: var(--biz-space-xs);
+}
+
+:is(.page-business-services, .page-restaurants) .footer-links.footer-links--business a {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+}
+
+:is(.page-business-services, .page-restaurants) .footer-note {
+  margin-top: var(--biz-space-sm);
+}
+
+/* Homepage AI Plug / business proof section */
+.page-home .ai-proof-section {
+  padding-top: var(--biz-sec-pad);
+  padding-bottom: var(--biz-sec-pad);
+}
+
+.page-home .ai-proof-shell.ai-proof-systems {
+  gap: var(--biz-space-md);
+}
+
+.page-home .ai-proof-shell.ai-proof-systems .ai-proof-header-band {
+  gap: var(--biz-space-sm);
+}
+
+.page-home .ai-proof-shell.ai-proof-systems .ai-proof-systems-intro {
+  gap: var(--biz-space-md);
+}
+
+.page-home .ai-systems-chip-row {
+  gap: var(--biz-space-xs);
+  margin-top: var(--biz-space-sm);
+}
+
+.page-home .ai-systems-grid--proof {
+  gap: var(--biz-card-gap);
+}
+
+.page-home .ai-systems-card--proof {
+  padding: var(--biz-card-pad);
+}
+
+.page-home .ai-systems-card--proof h3 {
+  margin: 0 0 var(--biz-card-title-gap);
+}
+
+.page-home .ai-proof-shell.ai-proof-systems .ai-proof-cta-row {
+  margin-top: var(--biz-space-md);
+  gap: var(--biz-space-sm);
+}
+
+.page-home .ai-proof-shell.ai-proof-systems .restaurant-owner-soft-link {
+  margin-top: var(--biz-space-sm);
+}
+
+.page-home .footer.dark-showcase {
+  padding-top: var(--biz-space-lg);
+  padding-bottom: max(var(--biz-space-lg), calc(12px + env(safe-area-inset-bottom, 0px)));
+  gap: var(--biz-space-sm);
 }
 
 :is(.page-business-services, .page-restaurants) .ai-bs-owner-cards--compact {
