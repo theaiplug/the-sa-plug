@@ -17888,7 +17888,7 @@ body.owner-dash-detail-open {
   color: rgba(11, 29, 58, 0.82);
 }
 
-.page-home-services .hs-intake-form .transport-intake-section__heading {
+.page-business-services .hs-intake-form .transport-intake-section__heading {
   margin: 0 0 14px;
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(11, 29, 58, 0.1);
@@ -17899,15 +17899,19 @@ body.owner-dash-detail-open {
   color: rgba(11, 29, 58, 0.88);
 }
 
-.page-home-services .hs-form-shell {
+.page-business-services .hs-form-shell {
   color: var(--navy);
 }
 
-.page-home-services .hs-form-shell :is(h2, h3, h4, p, label, span, legend) {
+.page-business-services .hs-form-shell :is(h2, h3, h4, p, label, span, legend) {
   color: inherit;
 }
 
-.page-home-services .hs-form-shell .transport-intake-section__heading {
+.page-business-services .hs-form-shell .transport-intake-section__heading {
+  color: rgba(11, 29, 58, 0.88);
+}
+
+.page-business-services .section-navy-routes .hs-form-shell .transport-intake-section__heading {
   color: rgba(11, 29, 58, 0.88);
 }
 
@@ -19175,14 +19179,6 @@ body.owner-dash-detail-open {
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-/* Home services: navy form band — keep light form shell readable */
-.page-home-services .section-navy-routes .hs-form-shell {
-  color: var(--navy);
-}
-
-.page-home-services .section-navy-routes .hs-form-shell .transport-intake-section__heading {
-  color: rgba(11, 29, 58, 0.88);
-}
 
 /* ==========================================================================
    Business page journey rebuild — shared + vertical layouts
