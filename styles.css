@@ -12500,6 +12500,53 @@ body.page-ask main {
   }
 }
 
+/* Start Here — Ask A Local: full-width mobile card (avoid stacked section + inner gutters) */
+.page-start-here .ask-local-shell.section-navy-routes {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (max-width: 760px) {
+  .page-start-here .ask-local-shell.section-navy-routes {
+    padding-left: clamp(18px, 5.2vw, 22px);
+    padding-right: clamp(18px, 5.2vw, 22px);
+  }
+
+  .page-start-here .ask-local-inner,
+  .page-start-here .ask-local-inner.live-concierge-inner,
+  .page-start-here .ask-local-inner.routes-band-inner {
+    --ask-local-max: none;
+    max-width: none;
+    width: 100%;
+    padding-inline: 0;
+    box-sizing: border-box;
+  }
+
+  .page-start-here .ask-local-tool.live-concierge-studio,
+  .page-start-here .ask-local-tool .live-concierge-card {
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  .page-start-here .ask-local-tool .live-concierge__image-band,
+  .page-start-here .ask-local-tool .live-concierge__image-band-media,
+  .page-start-here .ask-local-tool .live-concierge__image-band-media img,
+  .page-start-here .ask-local-tool .live-concierge__glass-panel,
+  .page-start-here .ask-local-tool .live-concierge__preview--placeholder,
+  .page-start-here .ask-local-tool .live-concierge__composer-stack,
+  .page-start-here .ask-local-tool .live-concierge__composer-stack .live-concierge__form,
+  .page-start-here .ask-local-tool .live-concierge__composer-stack .live-concierge__composer-unit,
+  .page-start-here .ask-local-tool .live-concierge__composer-stack .live-concierge__send,
+  .page-start-here .ask-local-tool .live-concierge__chips--starter,
+  .page-start-here .ask-local-tool .live-concierge__category {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
 /* Homepage: Ask entry band */
 .home-ask-entry {
   padding-top: clamp(28px, 4vw, 40px);
