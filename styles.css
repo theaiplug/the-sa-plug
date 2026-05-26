@@ -8364,6 +8364,90 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   }
 }
 
+.ai-proof-pillar-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(12px, 2vw, 16px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .ai-proof-pillar-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(14px, 2vw, 18px);
+  }
+}
+
+.ai-proof-pillar-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  padding: clamp(16px, 2.2vw, 20px);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  background:
+    radial-gradient(circle at 12% -20%, rgba(20, 184, 166, 0.12), transparent 42%),
+    linear-gradient(168deg, rgba(255, 246, 230, 0.08) 0%, rgba(4, 12, 28, 0.58) 100%);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 246, 230, 0.07);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ai-proof-pillar-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  pointer-events: none;
+}
+
+.ai-proof-pillar-card--advantage::before {
+  background: linear-gradient(90deg, var(--gold), rgba(242, 178, 26, 0.45));
+}
+
+.ai-proof-pillar-card--marketing::before {
+  background: linear-gradient(90deg, var(--turquoise), rgba(20, 184, 166, 0.45));
+}
+
+.ai-proof-pillar-card--operators::before {
+  background: linear-gradient(90deg, var(--orange), rgba(255, 139, 31, 0.45));
+}
+
+.ai-proof-pillar-card--adaptation::before {
+  background: linear-gradient(90deg, var(--pink), rgba(255, 92, 168, 0.45));
+}
+
+.ai-proof-pillar-card h3 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(0.96rem, 0.2vw + 0.9rem, 1.04rem);
+  font-weight: 850;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  color: var(--cream);
+}
+
+.ai-proof-pillar-card p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  flex: 1 1 auto;
+  font-size: clamp(0.84rem, 0.12vw + 0.8rem, 0.9rem);
+  line-height: 1.55;
+  color: rgba(255, 246, 230, 0.84);
+}
+
 .ai-systems-chip-row {
   display: flex;
   flex-wrap: wrap;
@@ -21312,49 +21396,38 @@ body.owner-dash-detail-open {
   gap: clamp(8px, 1.2vw, 12px);
 }
 
-.page-home .ai-proof-pillar-row {
-  margin-top: clamp(6px, 1vw, 10px);
-  gap: clamp(8px, 1.2vw, 10px);
-}
-
-.page-home .ai-proof-pillar {
-  min-height: 2.5rem;
-  padding: 9px 10px;
-  font-size: clamp(0.76rem, 0.1vw + 0.72rem, 0.84rem);
-}
-
-.page-home .ai-systems-grid--proof {
+.page-home .ai-proof-pillar-grid {
   gap: clamp(12px, 2vw, var(--biz-card-gap));
+  margin-top: clamp(8px, 1.4vw, 12px);
 }
 
-.page-home .ai-systems-card--proof {
+.page-home .ai-proof-pillar-card {
   padding: clamp(14px, 2vw, var(--biz-card-pad));
 }
 
-.page-home .ai-systems-card--proof h3 {
+.page-home .ai-proof-pillar-card h3 {
   margin: 0 0 var(--biz-card-title-gap);
-  font-size: clamp(0.96rem, 0.2vw + 0.9rem, 1.02rem);
 }
 
-.page-home .ai-systems-card--proof p {
+.page-home .ai-proof-pillar-card p {
   font-size: clamp(0.84rem, 0.12vw + 0.8rem, 0.88rem);
 }
 
 .page-home .ai-proof-shell.ai-proof-systems .ai-proof-cta-row {
-  margin-top: clamp(1rem, 2.4vw, var(--biz-space-md));
+  margin-top: clamp(1.25rem, 2.8vw, var(--biz-space-md));
   gap: var(--biz-space-sm);
 }
 
 .page-home .ai-proof-shell.ai-proof-systems .restaurant-owner-cta-strip {
   display: grid;
   gap: 6px;
-  margin: clamp(16px, 3vw, 20px) 0 0;
-  padding: clamp(12px, 2vw, 14px) clamp(14px, 2.4vw, 16px);
-  max-width: 100%;
+  margin: clamp(20px, 3.5vw, 28px) 0 clamp(32px, 5vw, 40px);
+  padding: clamp(10px, 1.8vw, 12px) clamp(12px, 2.2vw, 14px);
+  max-width: min(100%, 36rem);
   border-radius: calc(var(--radius) - 2px);
-  border: 1px solid rgba(255, 246, 230, 0.16);
-  background: rgba(255, 246, 230, 0.05);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  background: rgba(255, 246, 230, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .page-home .restaurant-owner-cta-strip__lead {
@@ -21402,11 +21475,11 @@ body.owner-dash-detail-open {
     max-height: clamp(180px, 52vw, 260px);
   }
 
-  .page-home .ai-systems-grid--three.ai-systems-grid--proof {
+  .page-home .ai-proof-pillar-grid {
     gap: 10px;
   }
 
-  .page-home .ai-systems-card--proof {
+  .page-home .ai-proof-pillar-card {
     padding: 14px 16px;
   }
 
@@ -21415,11 +21488,12 @@ body.owner-dash-detail-open {
   }
 
   .page-home .ai-proof-section {
-    padding-bottom: clamp(48px, 11vw, 68px);
+    padding-bottom: clamp(24px, 5vw, 32px);
   }
 
   .page-home .ai-proof-shell.ai-proof-systems .restaurant-owner-cta-strip {
-    margin-top: 18px;
+    margin-top: 20px;
+    margin-bottom: 48px;
   }
 }
 
