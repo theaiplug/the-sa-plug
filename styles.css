@@ -19371,6 +19371,93 @@ body.owner-dash-detail-open {
   margin-top: clamp(14px, 2vw, 18px);
 }
 
+.page-home-services .hs-adaptation-section {
+  background:
+    linear-gradient(180deg, rgba(255, 251, 242, 0.98) 0%, rgba(255, 253, 248, 1) 55%, rgba(245, 250, 252, 0.92) 100%);
+}
+
+.page-home-services .hs-adaptation-card {
+  margin-top: 0;
+  padding: clamp(20px, 2.6vw, 28px);
+  border-color: rgba(242, 178, 26, 0.34);
+  box-shadow:
+    0 22px 48px rgba(11, 29, 58, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.page-home-services .hs-adaptation-card .ai-strategic-title {
+  max-width: 22ch;
+}
+
+@media (min-width: 720px) {
+  .page-home-services .hs-adaptation-card .ai-strategic-title {
+    max-width: none;
+  }
+}
+
+.page-home-services .hs-adaptation-signals li {
+  background: rgba(255, 255, 255, 0.9);
+  border-left-color: rgba(20, 184, 166, 0.85);
+}
+
+.page-home-services .hs-adaptation-focus {
+  display: grid;
+  gap: 10px;
+  margin-top: clamp(14px, 2vw, 18px);
+}
+
+@media (min-width: 560px) {
+  .page-home-services .hs-adaptation-focus {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+.page-home-services .hs-adaptation-focus-col {
+  padding: 12px 14px;
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(11, 29, 58, 0.04);
+  border: 1px solid rgba(11, 29, 58, 0.08);
+}
+
+.page-home-services .hs-adaptation-focus-col--plug {
+  background: linear-gradient(145deg, rgba(20, 184, 166, 0.1) 0%, rgba(11, 29, 58, 0.04) 100%);
+  border-color: rgba(20, 184, 166, 0.28);
+}
+
+.page-home-services .hs-adaptation-focus-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(11, 29, 58, 0.62);
+}
+
+.page-home-services .hs-adaptation-focus-col strong {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  font-weight: 800;
+  color: rgba(11, 29, 58, 0.94);
+}
+
+.page-home-services .hs-adaptation-cta {
+  flex-wrap: wrap;
+}
+
+.page-home-services .hs-adaptation-cta .btn {
+  flex: 1 1 12rem;
+  min-width: 0;
+  text-align: center;
+}
+
+.page-home-services .hs-adaptation-visual img {
+  aspect-ratio: 16 / 10;
+  object-position: center 22%;
+}
+
 .page-home-services .hs-build-grid--cream {
   margin-top: clamp(12px, 2vw, 16px);
 }
