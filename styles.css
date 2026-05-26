@@ -19094,3 +19094,487 @@ body.owner-dash-detail-open {
   background: rgba(255, 255, 255, 0.92);
   border-color: rgba(11, 29, 58, 0.08);
 }
+
+/* ==========================================================================
+   Business page journey rebuild — shared + vertical layouts
+   ========================================================================== */
+
+.page-business-services .ai-bs-adaptation-promo-grid {
+  display: grid;
+  gap: clamp(20px, 3vw, 28px);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .page-business-services .ai-bs-adaptation-promo-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+}
+
+.page-business-services .ai-bs-adaptation-visual,
+.page-business-services .hosp-adaptation-visual,
+.page-business-services .ps-adaptation-visual {
+  margin: 0;
+  border-radius: calc(var(--radius) + 2px);
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(11, 29, 58, 0.14);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+}
+
+.page-business-services .ai-bs-adaptation-visual img,
+.page-business-services .hosp-adaptation-visual img,
+.page-business-services .ps-adaptation-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.page-business-services .ai-bs-adaptation-signals {
+  margin: clamp(14px, 2vw, 18px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.page-business-services .ai-bs-adaptation-signals li {
+  padding: 10px 12px;
+  border-radius: calc(var(--radius) - 4px);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: rgba(11, 29, 58, 0.86);
+  background: rgba(255, 255, 255, 0.72);
+  border-left: 3px solid var(--turquoise);
+}
+
+.page-business-services .ai-bs-adaptation-cta {
+  margin-top: clamp(14px, 2vw, 18px);
+}
+
+.page-home-services .hs-build-grid--cream {
+  margin-top: clamp(12px, 2vw, 16px);
+}
+
+.page-home-services .hs-build-card--cream {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+  box-shadow: 0 12px 28px rgba(11, 29, 58, 0.06);
+}
+
+.page-home-services .hs-build-card--cream .hs-build-num {
+  color: var(--turquoise);
+}
+
+.page-home-services .hs-build-card--cream h3 {
+  color: var(--navy);
+}
+
+.page-home-services .hs-build-card--cream p {
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-home-services .hs-support-note,
+.page-professional-services .hs-support-note {
+  margin-top: clamp(14px, 2vw, 18px);
+  font-size: 0.9rem;
+  opacity: 0.88;
+}
+
+.page-home-services .hs-offer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: calc(var(--radius) - 4px);
+  background: rgba(255, 246, 230, 0.08);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  color: #fff8eb;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.page-home-services .hs-offer-card strong {
+  font-size: 0.98rem;
+  font-weight: 780;
+}
+
+.page-home-services .hs-offer-card .btn {
+  margin-top: 6px;
+  align-self: flex-start;
+}
+
+.page-home-services .hs-offer-card--featured {
+  border-color: rgba(242, 178, 26, 0.45);
+  background: rgba(242, 178, 26, 0.12);
+}
+
+.page-professional-services .section-cream .ps-offer-detail-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+  box-shadow: 0 12px 28px rgba(11, 29, 58, 0.06);
+}
+
+.page-professional-services .section-cream .ps-offer-detail-card h3 {
+  color: var(--navy);
+}
+
+.page-professional-services .section-cream .ps-offer-detail-card p {
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-professional-services .section-cream .ps-secondary-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(11, 29, 58, 0.09);
+  box-shadow: 0 12px 28px rgba(11, 29, 58, 0.06);
+}
+
+.page-professional-services .section-cream .ps-secondary-card h4 {
+  color: var(--navy);
+}
+
+.page-professional-services .section-cream .ps-secondary-card p {
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-hospitality-local-experience .hosp-guest-moments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: clamp(14px, 2vw, 18px) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-hospitality-local-experience .hosp-guest-moments li {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 650;
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+}
+
+.page-hospitality-local-experience .hosp-hero-visual,
+.page-hospitality-local-experience .hosp-campaign-visual {
+  margin: clamp(14px, 2vw, 18px) 0 0;
+  border-radius: calc(var(--radius) + 2px);
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(11, 29, 58, 0.12);
+}
+
+.page-hospitality-local-experience .hosp-hero-visual img,
+.page-hospitality-local-experience .hosp-campaign-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.page-hospitality-local-experience .hosp-adaptation-band {
+  align-items: center;
+}
+
+.page-hospitality-local-experience .hosp-first-paths {
+  display: grid;
+  gap: clamp(12px, 2vw, 16px);
+}
+
+@media (min-width: 768px) {
+  .page-hospitality-local-experience .hosp-first-paths {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-hospitality-local-experience .hosp-first-path {
+  padding: clamp(16px, 2vw, 20px);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(11, 29, 58, 0.09);
+}
+
+.page-hospitality-local-experience .hosp-first-path h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 780;
+  color: var(--navy);
+}
+
+.page-hospitality-local-experience .hosp-first-path p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-hospitality-local-experience .hosp-first-path--featured {
+  border-color: rgba(20, 184, 166, 0.35);
+  box-shadow: 0 0 24px rgba(20, 184, 166, 0.12);
+}
+
+.page-hospitality-local-experience .hosp-first-path .btn {
+  margin-top: 12px;
+}
+
+.page-hospitality-local-experience .hosp-ops-dual {
+  display: grid;
+  gap: clamp(16px, 2.4vw, 22px);
+}
+
+@media (min-width: 900px) {
+  .page-hospitality-local-experience .hosp-ops-dual {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-hospitality-local-experience .hosp-ops-panel {
+  padding: clamp(18px, 2.4vw, 24px);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 246, 230, 0.07);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+}
+
+.page-hospitality-local-experience .hosp-ops-label {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.page-hospitality-local-experience .hosp-ops-panel h3 {
+  margin: 0 0 12px;
+  font-size: clamp(1rem, 0.25vw + 0.94rem, 1.08rem);
+  font-weight: 780;
+  color: #fff8eb;
+}
+
+.page-hospitality-local-experience .hosp-proof-list--dark li {
+  color: rgba(255, 246, 230, 0.9);
+  background: rgba(255, 246, 230, 0.07);
+  border-color: rgba(255, 246, 230, 0.14);
+  border-left-color: var(--gold);
+}
+
+.page-hospitality-local-experience .hosp-ops-visual {
+  margin-top: 14px;
+  border-radius: calc(var(--radius) - 4px);
+  overflow: hidden;
+}
+
+.page-hospitality-local-experience .hosp-ops-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.page-hospitality-local-experience .hosp-campaign-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 clamp(14px, 2vw, 18px);
+  padding: 0;
+  list-style: none;
+}
+
+.page-hospitality-local-experience .hosp-campaign-chips li {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 650;
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+}
+
+.page-hospitality-local-experience .hosp-venue-lanes {
+  display: grid;
+  gap: clamp(12px, 2vw, 14px);
+}
+
+.page-hospitality-local-experience .hosp-venue-lane {
+  display: grid;
+  gap: 8px;
+  padding: clamp(14px, 2vw, 18px);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(11, 29, 58, 0.09);
+}
+
+@media (min-width: 640px) {
+  .page-hospitality-local-experience .hosp-venue-lanes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-hospitality-local-experience .hosp-venue-lane h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 780;
+  color: var(--navy);
+}
+
+.page-hospitality-local-experience .hosp-venue-lane p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-hospitality-local-experience .hosp-venue-lane--featured {
+  border-color: rgba(242, 178, 26, 0.4);
+  box-shadow: 0 0 20px rgba(242, 178, 26, 0.12);
+}
+
+@media (min-width: 640px) {
+  .page-hospitality-local-experience .hosp-venue-lane--featured {
+    grid-column: 1 / -1;
+  }
+}
+
+.page-business-types .bt-gateway-grid {
+  display: grid;
+  gap: clamp(16px, 2.4vw, 22px);
+}
+
+.page-business-types .bt-gateway-card {
+  padding: clamp(18px, 2.4vw, 24px);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(255, 246, 230, 0.07);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+}
+
+.page-business-types .bt-gateway-card--featured {
+  border-color: rgba(242, 178, 26, 0.42);
+  box-shadow: 0 0 28px rgba(242, 178, 26, 0.1);
+}
+
+.page-business-types .bt-gateway-title {
+  margin: 0 0 8px;
+  font-size: clamp(1.05rem, 0.3vw + 0.98rem, 1.16rem);
+  font-weight: 780;
+  color: #fff8eb;
+}
+
+.page-business-types .bt-gateway-who {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 246, 230, 0.78);
+}
+
+.page-business-types .bt-gateway-lanes {
+  margin: 0 0 16px;
+  display: grid;
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .page-business-types .bt-gateway-lanes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-business-types .bt-gateway-lanes div {
+  padding: 10px 12px;
+  border-radius: calc(var(--radius) - 4px);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.page-business-types .bt-gateway-lanes dt {
+  margin: 0 0 4px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.page-business-types .bt-gateway-lanes dd {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: rgba(255, 246, 230, 0.86);
+}
+
+.page-business-types .bt-gateway-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.page-restaurants .rest-ai-adaptation {
+  margin: clamp(14px, 2vw, 20px) 0;
+  padding: clamp(16px, 2vw, 20px);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.28);
+}
+
+.page-restaurants .rest-ai-cap-grid {
+  display: grid;
+  gap: clamp(12px, 2vw, 16px);
+  margin-bottom: clamp(18px, 2.4vw, 26px);
+}
+
+@media (min-width: 640px) {
+  .page-restaurants .rest-ai-cap-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .page-restaurants .rest-ai-cap-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-restaurants .rest-ai-cap--support {
+    grid-column: 1 / -1;
+  }
+}
+
+.page-restaurants .rest-ai-cap {
+  padding: clamp(14px, 2vw, 18px);
+  border-radius: calc(var(--radius) - 4px);
+  background: rgba(255, 246, 230, 0.07);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+}
+
+.page-restaurants .rest-ai-cap-num {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+
+.page-restaurants .rest-ai-cap h3 {
+  margin: 0 0 8px;
+  font-size: 0.98rem;
+  font-weight: 780;
+  color: #fff8eb;
+}
+
+.page-restaurants .rest-ai-cap p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(255, 246, 230, 0.82);
+}
+
+.page-restaurants .rest-ai-cap--support {
+  border-style: dashed;
+  opacity: 0.92;
+}
+
+.ai-proof-section .ai-systems-chip--priority {
+  border-color: rgba(242, 178, 26, 0.45);
+  background: rgba(242, 178, 26, 0.14);
+  color: #fff8eb;
+}
