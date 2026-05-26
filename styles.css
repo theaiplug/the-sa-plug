@@ -19003,3 +19003,14 @@ body.owner-dash-detail-open {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Vertical business pages: spacing when starting paths follow category cards */
+.page-business-services.page-home-services .ai-bs-category-grid + .ai-bs-starting-grid {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Vertical pages: trust section on cream background */
+.page-business-services.page-home-services .section-cream.ai-bs-owner-trust .ai-bs-owner-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(11, 29, 58, 0.08);
+}
