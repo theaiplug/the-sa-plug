@@ -1,0 +1,39 @@
+WHERE TO GO SA / THE AI PLUG — PROFESSIONAL SERVICES IMAGE ASSETS
+
+Purpose: Website-ready standalone image assets for the Professional Services page.
+Upload location suggestion: the same site asset folder used for other business-services images.
+
+Included files:
+- professional-services-hero-consultation.png — 1672x941 px
+- professional-services-intake-review.png — 1448x1086 px
+- professional-services-owner-visibility.png — 1448x1086 px
+- professional-services-follow-up-workflow.png — 1448x1086 px
+- professional-services-real-estate-inquiry.png — 1448x1086 px
+- professional-services-insurance-quote.png — 1448x1086 px
+- professional-services-legal-intake.png — 1448x1086 px
+- professional-services-consultant-discovery.png — 1448x1086 px
+
+Suggested placements:
+- professional-services-hero-consultation.png — page hero / top consultation image
+- professional-services-intake-review.png — intake / qualified request path section
+- professional-services-owner-visibility.png — owner visibility / request tracking section
+- professional-services-follow-up-workflow.png — follow-up workflow section
+- professional-services-real-estate-inquiry.png — Real Estate card
+- professional-services-insurance-quote.png — Insurance Agencies card
+- professional-services-legal-intake.png — Law Firms / Legal Services card
+- professional-services-consultant-discovery.png — Consultants / B2B Services card
+
+Potential additional images still useful if generated later:
+- professional-services-medical-wellness-intake.png
+- professional-services-accounting-tax-intake.png
+- professional-services-financial-style-consultation.png
+- professional-services-recruiting-staffing-inquiry.png
+- professional-services-coaching-training-inquiry.png
+
+Asset rules:
+- No baked-in text
+- No logos
+- No fake UI
+- No readable documents
+- No dashboards or app mockups
+- Text should be handled in HTML/CSS, not inside the image

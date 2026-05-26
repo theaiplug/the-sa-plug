@@ -1,0 +1,41 @@
+WHERE TO GO SA / THE AI PLUG — HOSPITALITY + LOCAL EXPERIENCE IMAGE ASSETS
+
+Purpose: Website-ready standalone image assets for the Hospitality + Local Experience business-services page.
+Upload location suggestion: the same site asset folder used for other business-services images.
+
+Included files:
+- hospitality-local-experience-hero.png — 1672x941 px
+- hospitality-visitor-inquiry-path.png — 1672x941 px
+- hospitality-private-event-intake.png — 1672x941 px
+- hospitality-qr-funnel.png — 1672x941 px
+- hospitality-owner-visibility.png — 1672x941 px
+- hospitality-restaurant-inquiries.png — 1672x941 px
+- hospitality-bar-nightlife-inquiries.png — 1672x941 px
+- hospitality-rooftop-lounge-requests.png — 1672x941 px
+- hospitality-event-venue-inquiries.png — 1672x941 px
+- hospitality-attractions-tours.png — 1672x941 px
+
+Suggested placements:
+- hospitality-local-experience-hero.png — page hero / top hospitality image
+- hospitality-visitor-inquiry-path.png — visitor inquiry / scattered requests section
+- hospitality-private-event-intake.png — private event + group inquiry section
+- hospitality-qr-funnel.png — QR funnel path section
+- hospitality-owner-visibility.png — owner visibility / request tracking section
+- hospitality-restaurant-inquiries.png — Restaurants card
+- hospitality-bar-nightlife-inquiries.png — Bars + Nightlife card
+- hospitality-rooftop-lounge-requests.png — Rooftops + Lounges card
+- hospitality-event-venue-inquiries.png — Event Venues card
+- hospitality-attractions-tours.png — Attractions + Tours card
+
+Potential additional images still useful if generated later:
+- hospitality-resort-area-business.png
+- hospitality-local-brand-interest.png
+
+Asset rules:
+- No baked-in text
+- No restaurant names
+- No logos
+- No fake UI
+- No readable menus
+- No dashboards or app mockups
+- Text should be handled in HTML/CSS, not inside the image
