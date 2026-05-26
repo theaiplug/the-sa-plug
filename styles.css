@@ -4132,8 +4132,8 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   overflow-y: visible;
   background-color: #071022;
   background-image:
-    linear-gradient(90deg, rgba(5, 10, 24, 0.52) 0%, rgba(5, 10, 24, 0.28) 38%, rgba(5, 10, 24, 0.11) 62%, rgba(5, 10, 24, 0.03) 82%, transparent 100%),
-    url("assets/ai-business-dashboards-reporting.png");
+    linear-gradient(90deg, rgba(5, 10, 24, 0.62) 0%, rgba(5, 10, 24, 0.38) 42%, rgba(5, 10, 24, 0.14) 68%, rgba(5, 10, 24, 0.04) 86%, transparent 100%),
+    url("assets/the-ai-plug-hero-background-v2.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
   background-size: cover, cover;
@@ -4215,6 +4215,31 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   width: 100%;
 }
 
+.page-business-services .ai-bs-hero-shell.hero-inner-grid {
+  align-items: center;
+}
+
+.page-business-services .ai-bs-hero-visual {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .page-business-services .ai-bs-hero-shell.hero-inner-grid.secondary-hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+    gap: clamp(20px, 3.5vw, 44px);
+  }
+
+  .page-business-services .ai-bs-hero-visual {
+    display: block;
+    align-self: stretch;
+    min-height: 0;
+  }
+
+  .page-business-services .ai-bs-hero-visual .hero-visual-panel {
+    min-height: clamp(280px, 36vw, 420px);
+  }
+}
+
 .page-business-services .ai-bs-hero-body {
   position: relative;
   z-index: 3;
@@ -4224,6 +4249,12 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   width: 100%;
   max-width: 720px;
   gap: clamp(14px, 2vw, 18px);
+}
+
+@media (min-width: 900px) {
+  .page-business-services .ai-bs-hero-body {
+    max-width: none;
+  }
 }
 
 .page-business-services .ai-bs-hero-accent {
