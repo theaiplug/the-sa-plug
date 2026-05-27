@@ -23342,18 +23342,7 @@ body.owner-dash-detail-open {
   border-radius: 4px;
 }
 
-/* —— Desktop grid for feature cards —— */
-@media (min-width: 720px) {
-  .page-home .home-ai-plug__features {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(12px, 1.8vw, 16px);
-  }
-
-  .page-home .home-ai-plug__feature--connected {
-    grid-column: 1 / -1;
-  }
-}
-
+/* —— Tablet / desktop —— */
 @media (min-width: 720px) {
   .page-home .home-ai-plug__hero-frame {
     height: clamp(360px, 38vw, 400px);
@@ -23362,6 +23351,15 @@ body.owner-dash-detail-open {
   .page-home .home-ai-plug__hero-panel {
     justify-content: center;
     padding: clamp(24px, 3.5vw, 36px);
+  }
+
+  .page-home .home-ai-plug__features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(12px, 1.8vw, 16px);
+  }
+
+  .page-home .home-ai-plug__feature--connected {
+    grid-column: 1 / -1;
   }
 }
 
