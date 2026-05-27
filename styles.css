@@ -13302,12 +13302,15 @@ body.page-ask main {
   max-width: none;
   margin: 0;
   padding: 0;
+  min-height: clamp(420px, 62vh, 640px);
+  /* Override .hero-fiesta-dark gradients — photo must win */
   background-color: #0a1a2e;
-  background-image: var(--ask-hero-photo);
+  background-image:
+    linear-gradient(180deg, transparent 70%, rgba(9, 26, 52, 0.28) 100%),
+    url("/assets/downtown-river-promenade-twilight.png");
   background-repeat: no-repeat;
   background-position: center 42%;
   background-size: cover;
-  min-height: clamp(420px, 62vh, 640px);
 }
 
 .page-ask .ask-hero--cinematic.hero-fiesta-dark::before {
