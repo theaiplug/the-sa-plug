@@ -225,16 +225,28 @@ function json(statusCode, body, extraHeaders = {}) {
 }
 
 function extractAssistantText(data) {
+  if (!data || typeof data !== "object") return "";
+
+  if (typeof data.output_text === "string" && data.output_text.trim()) {
+    return data.output_text.trim();
+  }
+
   const out = Array.isArray(data.output) ? data.output : [];
   const parts = [];
   for (const item of out) {
     if (!item || typeof item !== "object") continue;
     if (item.type === "message" && item.role === "assistant" && Array.isArray(item.content)) {
       for (const c of item.content) {
-        if (c && c.type === "output_text" && typeof c.text === "string" && c.text.trim()) {
+        if (!c || typeof c !== "object") continue;
+        if (c.type === "output_text" && typeof c.text === "string" && c.text.trim()) {
+          parts.push(c.text.trim());
+        } else if (c.type === "text" && typeof c.text === "string" && c.text.trim()) {
           parts.push(c.text.trim());
         }
       }
+    }
+    if (typeof item.text === "string" && item.text.trim()) {
+      parts.push(item.text.trim());
     }
   }
   return parts.join("\n\n").trim();
