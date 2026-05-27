@@ -4485,6 +4485,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 .page-home {
   --home-shell-max: 1300px;
   --home-shell-pad: clamp(16px, 4vw, 48px);
+  --premium-atmosphere-photo: url("assets/evening_riverwalk_with_vibrant_ambiance.png");
 }
 
 @media (max-width: 768px) {
@@ -4504,7 +4505,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   }
 }
 
-.page-home main > .section.section-cream,
+.page-home main > .section.premium-atmosphere,
 .page-home .home-guide-directory.band,
 .page-home .transport-section.transport-section--story,
 .page-home .home-ask-launcher-compact.section-ask-premium,
@@ -4576,6 +4577,97 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 .page-home .home-guide-directory--tiles .home-directory-head {
   max-width: none;
   width: 100%;
+}
+
+/* Home — dark immersive bands (Start Here premium-atmosphere pattern) */
+.page-home .premium-atmosphere {
+  position: relative;
+  isolation: isolate;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+  color: rgba(255, 248, 235, 0.95);
+  border: none;
+  background-color: var(--premium-ink);
+  background-image:
+    linear-gradient(
+      180deg,
+      var(--premium-scrim-top) 0%,
+      var(--premium-scrim-mid) 50%,
+      var(--premium-scrim-bottom) 100%
+    ),
+    var(--premium-atmosphere-photo);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.page-home .premium-atmosphere::after {
+  display: none;
+}
+
+.page-home .premium-atmosphere > .routes-band-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.page-home .home-situation-band.premium-atmosphere {
+  margin-top: -1px;
+  border-block: none;
+  background-position: center 36%;
+}
+
+.page-home .home-situation-band .home-lanes-intro h2 {
+  color: var(--cream);
+}
+
+.page-home .home-situation-band .home-lanes-lead {
+  color: rgba(255, 246, 230, 0.86);
+}
+
+.page-home .home-ask-bridge.premium-atmosphere {
+  margin-top: -1px;
+  padding-block: clamp(6px, 1vw, 12px) clamp(14px, 2vw, 22px);
+  background-image:
+    linear-gradient(
+      180deg,
+      var(--premium-scrim-seam-top) 0%,
+      var(--premium-scrim-mid) 46%,
+      var(--premium-scrim-bottom) 100%
+    ),
+    var(--premium-atmosphere-photo);
+  background-position: center 30%;
+}
+
+.page-home .home-ask-bridge .home-ask-entry-copy h2 {
+  margin: 0;
+  color: var(--cream);
+  font-size: clamp(1.2rem, 1.6vw + 0.7rem, 1.55rem);
+  line-height: 1.14;
+  text-wrap: balance;
+}
+
+.page-home .home-ask-bridge .home-ask-entry-inner {
+  border-left: none;
+  border-radius: calc(var(--radius) + 6px);
+  border: 1px solid rgba(255, 246, 230, 0.16);
+  background: rgba(7, 16, 34, 0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 20px 44px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 246, 230, 0.08);
+}
+
+.page-home .home-ask-bridge .home-ask-entry-body {
+  color: rgba(255, 246, 230, 0.88);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-home .home-ask-bridge .home-ask-entry-inner {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(7, 16, 34, 0.88);
+  }
 }
 
 /* ----- Home: cinematic hero (Business Services benchmark) ----- */
@@ -9788,15 +9880,8 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   gap: clamp(4px, 0.7vw, 7px);
 }
 
-.page-home .home-ask-bridge.home-ask-entry {
-  padding-top: clamp(6px, 1vw, 12px);
-  padding-bottom: clamp(12px, 1.8vw, 20px);
-}
-
 .page-home .home-ask-bridge .home-ask-entry-inner {
-  border-left: 4px solid rgba(20, 184, 166, 0.82);
-  padding: clamp(12px, 1.6vw, 16px) clamp(14px, 2vw, 20px);
-  padding-left: clamp(14px, 2vw, 20px);
+  padding: clamp(14px, 2vw, 18px) clamp(16px, 2.2vw, 22px);
 }
 
 @media (min-width: 720px) {
@@ -9827,6 +9912,12 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 .page-home .home-ask-entry-copy h2 {
   text-wrap: balance;
+}
+
+.page-home .home-ask-bridge .home-ask-entry-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1vw, 8px);
 }
 
 .page-home .home-ask-entry-cta {
