@@ -9464,7 +9464,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   }
 }
 
-/* Homepage transport — full-bleed story card beside editorial intro */
+/* Homepage transport — route-planning feature block (intro + image card + trust note) */
 .transport-section.transport-section--story {
   overflow-x: clip;
 }
@@ -9474,15 +9474,30 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   margin-inline: auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(22px, 3vw, 36px);
+  gap: clamp(16px, 2.2vw, 22px);
   width: 100%;
 }
 
+.page-home .transport-story-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(20px, 2.8vw, 32px);
+  align-items: stretch;
+  padding: clamp(18px, 2.6vw, 28px);
+  border-radius: clamp(18px, 2.6vw, 26px);
+  border: 1px solid rgba(255, 246, 230, 0.16);
+  background:
+    linear-gradient(155deg, rgba(255, 246, 230, 0.05) 0%, rgba(7, 16, 34, 0.42) 52%),
+    rgba(4, 10, 22, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 230, 0.1),
+    0 28px 56px rgba(2, 6, 14, 0.38);
+}
+
 @media (min-width: 960px) {
-  .page-home .transport-story-shell {
-    display: grid;
+  .page-home .transport-story-body {
     grid-template-columns: minmax(0, 0.92fr) minmax(280px, 1.08fr);
-    gap: clamp(28px, 3.8vw, 48px);
+    gap: clamp(24px, 3.2vw, 40px);
     align-items: stretch;
   }
 
@@ -9494,7 +9509,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 .transport-story-intro {
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.8vw, 14px);
+  gap: clamp(12px, 1.6vw, 16px);
   max-width: 40rem;
 }
 
@@ -9502,6 +9517,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 820;
+  margin: 0;
 }
 
 .transport-story-heading {
@@ -9510,27 +9526,48 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   line-height: 1.06;
   letter-spacing: -0.032em;
   font-weight: 860;
+  text-wrap: balance;
 }
 
 .transport-story-lede {
   margin: 0;
+  text-align: left;
+  text-wrap: pretty;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1.58;
+  max-width: 38rem;
 }
 
-.transport-story-note {
-  margin-top: 4px !important;
+.transport-story-trust {
+  margin: 0;
+  padding: 0 clamp(4px, 1vw, 8px);
+  max-width: 52rem;
+  font-size: clamp(0.72rem, 0.12vw + 0.68rem, 0.8rem);
+  font-weight: 520;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  text-wrap: pretty;
+  word-break: normal;
+  color: rgba(255, 246, 230, 0.58);
 }
 
 .page-home .transport-story-card {
   display: block;
   text-decoration: none;
   color: inherit;
-  border-radius: clamp(18px, 2.6vw, 26px);
+  border-radius: clamp(14px, 2vw, 20px);
   overflow: hidden;
-  border: 1px solid rgba(255, 246, 230, 0.24);
+  border: 1px solid rgba(255, 246, 230, 0.2);
   box-shadow:
-    0 32px 62px rgba(2, 6, 14, 0.55),
-    0 0 0 1px rgba(242, 178, 26, 0.22);
+    0 20px 44px rgba(2, 6, 14, 0.42),
+    0 0 0 1px rgba(242, 178, 26, 0.16);
   background: #071022;
+  align-self: stretch;
+  min-height: 100%;
   transition:
     transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.22s ease,
@@ -9554,9 +9591,16 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 .page-home .transport-story-card-media-wrap {
   position: relative;
   width: 100%;
-  min-height: clamp(320px, 56vw, 520px);
+  min-height: clamp(300px, 52vw, 480px);
+  height: 100%;
   overflow: hidden;
   background: #0a1628;
+}
+
+@media (min-width: 960px) {
+  .page-home .transport-story-card-media-wrap {
+    min-height: 100%;
+  }
 }
 
 .page-home .transport-story-card-media {
@@ -9597,12 +9641,12 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   right: 0;
   bottom: 0;
   z-index: 2;
-  padding: clamp(18px, 3vw, 32px);
-  max-width: min(36rem, 94%);
+  padding: clamp(18px, 3vw, 28px);
+  max-width: min(34rem, 96%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: clamp(8px, 1.2vw, 10px);
 }
 
 .page-home .transport-story-card-kicker {
@@ -9615,47 +9659,35 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 .page-home .transport-story-card-title {
   margin: 0;
-  font-size: clamp(1.2rem, 0.5vw + 1.06rem, 1.52rem);
-  font-weight: 880;
-  letter-spacing: -0.028em;
-  line-height: 1.1;
+  font-size: clamp(1.05rem, 0.35vw + 0.96rem, 1.28rem);
+  font-weight: 860;
+  letter-spacing: -0.022em;
+  line-height: 1.22;
   color: #fff8eb;
   text-shadow: 0 2px 24px rgba(5, 10, 24, 0.45);
-}
-
-.page-home .transport-story-card-meta {
-  margin: 0;
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 246, 230, 0.72);
+  text-align: left;
+  text-wrap: pretty;
+  word-break: normal;
 }
 
 .page-home .transport-story-card-pitch {
-  margin: 4px 0 0;
-  font-size: clamp(0.9rem, 0.22vw + 0.82rem, 1.02rem);
-  line-height: 1.55;
+  margin: 0;
+  font-size: clamp(0.88rem, 0.2vw + 0.82rem, 0.98rem);
+  line-height: 1.5;
   font-weight: 620;
-  color: rgba(255, 246, 230, 0.92);
+  color: rgba(255, 246, 230, 0.9);
+  text-align: left;
+  text-wrap: pretty;
+  word-break: normal;
+  letter-spacing: normal;
 }
 
 .page-home .transport-story-card-stack .transport-story-card-btn {
   align-self: flex-start;
-  margin-top: 8px;
+  margin-top: clamp(6px, 1vw, 10px);
   pointer-events: none;
   box-shadow: 0 12px 34px rgba(255, 139, 31, 0.35);
-}
-
-.page-home .transport-story-outline.hero-secondary-btn {
-  border-color: rgba(255, 246, 230, 0.35);
-  color: rgba(255, 248, 235, 0.96);
-  background: rgba(4, 10, 22, 0.35);
-}
-
-.page-home .transport-story-outline.hero-secondary-btn:hover {
-  border-color: rgba(45, 212, 191, 0.48);
-  background: rgba(255, 246, 230, 0.08);
+  letter-spacing: 0.01em;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -14097,7 +14129,11 @@ body:has(.transport-concierge-main) {
     .live-concierge__rich-body,
     .tc-hero-lead,
     .home-dir-copy,
-    .home-lane-copy
+    .home-lane-copy,
+    .transport-story-lede,
+    .transport-story-trust,
+    .transport-story-card-title,
+    .transport-story-card-pitch
   ) {
     text-wrap: auto !important;
   }
