@@ -1,7 +1,7 @@
 (function () {
   var CONCIERGE_URL = "/.netlify/functions/visitor-concierge";
   var FALLBACK =
-    "The live concierge is having trouble loading right now. You can still use the popular moves below or send a request for help.";
+    "Ask A Local is having trouble loading right now. Try again in a moment, or use Request human help if you need a person to review your situation.";
 
   var root = document.getElementById("live-concierge");
   if (!root) return;
@@ -285,7 +285,7 @@
             ? result.data.previous_response_id
             : previousResponseId;
         appendBubble("assistant", result.data.reply.trim());
-        setStatus("Live · ready", true);
+        setStatus("Ready to ask", false);
       })
       .catch(function () {
         removeThinking();
@@ -344,6 +344,6 @@
     }, 150);
   }
 
-  setStatus("Live · ready", true);
+  setStatus("Ready to ask", false);
   syncTranscriptVisibility();
 })();
