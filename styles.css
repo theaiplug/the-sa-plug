@@ -22982,13 +22982,12 @@ body.owner-dash-detail-open {
     object-fit: cover;
   }
 }
-/* Homepage — Built by The AI Plug (clean rebuild) */
+/* Homepage — Built by The AI Plug (editorial image hero + overlay copy) */
 
 .page-home .home-ai-plug-section {
   --home-ai-plug-pad-y: clamp(2.25rem, 5.5vw, 3.75rem);
   --home-ai-plug-pad-x: clamp(1rem, 4vw, 1.5rem);
   --home-ai-plug-gap-lg: clamp(1.5rem, 3.2vw, 2.25rem);
-  --home-ai-plug-gap-md: clamp(1rem, 2.4vw, 1.5rem);
   --home-ai-plug-gap-sm: clamp(0.65rem, 1.6vw, 0.85rem);
   --home-ai-plug-body-lh: 1.55;
   position: relative;
@@ -23021,15 +23020,11 @@ body.owner-dash-detail-open {
   width: 100%;
 }
 
-/* —— Visual hero card —— */
-.page-home .home-ai-plug__hero {
-  margin: 0;
-}
-
-.page-home .home-ai-plug__hero-frame {
+/* —— Image hero card (text sits on image; no inner panel) —— */
+.page-home .home-ai-plug__hero-card {
   position: relative;
   width: 100%;
-  min-height: clamp(240px, 52vw, 400px);
+  min-height: clamp(430px, 88vw, 520px);
   overflow: hidden;
   border-radius: clamp(18px, 2.6vw, 26px);
   border: 1px solid rgba(255, 246, 230, 0.24);
@@ -23047,54 +23042,56 @@ body.owner-dash-detail-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 38%;
+  object-position: center;
   display: block;
 }
 
-.page-home .home-ai-plug__hero-scrim {
+.page-home .home-ai-plug__hero-gradient {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 80% 55% at 72% 8%, rgba(20, 184, 166, 0.14), transparent 52%),
+    linear-gradient(
+      to right,
+      rgba(5, 10, 24, 0.82) 0%,
+      rgba(5, 10, 24, 0.52) 38%,
+      rgba(5, 10, 24, 0.18) 62%,
+      transparent 88%
+    ),
     linear-gradient(
       to top,
-      rgba(5, 10, 24, 0.55) 0%,
-      rgba(5, 10, 24, 0.22) 42%,
-      rgba(5, 10, 24, 0.06) 68%,
-      rgba(5, 10, 24, 0) 100%
+      rgba(5, 10, 24, 0.78) 0%,
+      rgba(5, 10, 24, 0.38) 42%,
+      rgba(5, 10, 24, 0.08) 68%,
+      transparent 100%
     );
 }
 
-.page-home .home-ai-plug__hero-panel {
+.page-home .home-ai-plug__hero-overlay {
   position: absolute;
-  left: clamp(12px, 2.4vw, 20px);
-  right: clamp(12px, 2.4vw, 20px);
-  bottom: clamp(12px, 2.4vw, 20px);
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 2;
-  max-width: min(38rem, calc(100% - clamp(24px, 4.8vw, 40px)));
-  padding: clamp(16px, 2.6vw, 24px);
-  border-radius: clamp(14px, 2vw, 18px);
-  border: 1px solid rgba(255, 246, 230, 0.2);
-  background: linear-gradient(155deg, rgba(8, 14, 30, 0.82) 0%, rgba(5, 10, 24, 0.72) 100%);
-  box-shadow:
-    0 18px 42px rgba(0, 0, 0, 0.38),
-    inset 0 1px 0 rgba(255, 246, 230, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  box-sizing: border-box;
   display: grid;
   gap: clamp(8px, 1.4vw, 12px);
+  align-content: end;
+  justify-items: start;
+  max-width: min(40rem, 100%);
+  padding: clamp(20px, 3.2vw, 32px);
 }
 
 .page-home .home-ai-plug__eyebrow {
   margin: 0;
   font-size: clamp(0.58rem, 0.1vw + 0.54rem, 0.64rem);
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(253, 224, 150, 0.96);
   line-height: 1.3;
+  text-shadow: 0 1px 12px rgba(5, 10, 24, 0.45);
 }
 
 .page-home .home-ai-plug__hero-title {
@@ -23102,18 +23099,18 @@ body.owner-dash-detail-open {
   font-size: clamp(1.35rem, 4.8vw, 2rem);
   font-weight: 860;
   line-height: 1.14;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
   word-spacing: normal;
   color: #fff8eb;
   text-shadow: 0 2px 20px rgba(5, 10, 24, 0.55);
-  max-width: 24ch;
+  max-width: 22ch;
   text-wrap: pretty;
   hyphens: none;
   overflow-wrap: normal;
   word-break: normal;
 }
 
-.page-home .home-ai-plug__hero-line {
+.page-home .home-ai-plug__hero-subline {
   margin: 0;
   font-size: clamp(0.9rem, 0.2vw + 0.84rem, 1.02rem);
   font-weight: 700;
@@ -23122,6 +23119,7 @@ body.owner-dash-detail-open {
   word-spacing: normal;
   color: rgba(255, 246, 230, 0.92);
   max-width: 46ch;
+  text-shadow: 0 1px 14px rgba(5, 10, 24, 0.42);
   hyphens: none;
   overflow-wrap: normal;
   word-break: normal;
@@ -23168,9 +23166,10 @@ body.owner-dash-detail-open {
 .page-home .home-ai-plug__feature {
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items: start;
+  align-items: center;
   gap: 10px 12px;
   min-width: 0;
+  min-height: 3.75rem;
   margin: 0;
   padding: clamp(14px, 2.2vw, 18px);
   border-radius: calc(var(--radius) - 2px);
@@ -23366,13 +23365,26 @@ body.owner-dash-detail-open {
   }
 }
 
+@media (min-width: 720px) {
+  .page-home .home-ai-plug__hero-card {
+    min-height: clamp(360px, 42vw, 460px);
+  }
+
+  .page-home .home-ai-plug__hero-overlay {
+    top: 0;
+    align-content: center;
+    padding: clamp(24px, 3.5vw, 40px);
+  }
+}
+
 @media (min-width: 960px) {
-  .page-home .home-ai-plug__hero-frame {
-    min-height: clamp(280px, 32vw, 380px);
+  .page-home .home-ai-plug__hero-card {
+    min-height: clamp(380px, 32vw, 440px);
   }
 
   .page-home .home-ai-plug__hero-title {
     font-size: clamp(1.5rem, 2.2vw, 2.05rem);
+    max-width: 24ch;
   }
 
   .page-home .home-ai-plug__features {
@@ -23395,27 +23407,25 @@ body.owner-dash-detail-open {
     padding-bottom: clamp(2rem, 5.5vw, 2.5rem);
   }
 
-  .page-home .home-ai-plug__hero-frame {
-    min-height: clamp(220px, 62vw, 320px);
+  .page-home .home-ai-plug__hero-card {
+    min-height: clamp(430px, 118vw, 520px);
   }
 
-  .page-home .home-ai-plug__hero-panel {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    max-width: none;
-    padding: 14px 16px;
+  .page-home .home-ai-plug__hero-overlay {
+    padding: clamp(18px, 4.5vw, 24px);
   }
 
   .page-home .home-ai-plug__hero-title {
     max-width: none;
     font-size: clamp(1.28rem, 6.2vw, 1.62rem);
-    letter-spacing: -0.018em;
   }
 
   .page-home .home-ai-plug__eyebrow {
     font-size: 0.6rem;
-    letter-spacing: 0.1em;
+  }
+
+  .page-home .home-ai-plug__actions {
+    margin-top: 4px;
   }
 
   .page-home .home-ai-plug__actions .home-ai-plug__btn {
@@ -23424,7 +23434,7 @@ body.owner-dash-detail-open {
   }
 
   .page-home .home-ai-plug__restaurant {
-    margin-top: 14px;
+    margin-top: clamp(16px, 4vw, 20px);
   }
 }
 
