@@ -13264,8 +13264,22 @@ body.page-ask main {
 
 /* ----- Ask product page (tool-first rebuild) ----- */
 .page-ask .ask-product-main {
+  --ask-product-pad: clamp(16px, 4vw, 24px);
   letter-spacing: normal;
   word-spacing: normal;
+}
+
+/* One shared column width + inset for hero, tool, prompts, and lower sections */
+.page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band,
+.page-ask .ask-product-inner,
+.page-ask .ask-product-value-inner,
+.page-ask .ask-product-examples-inner,
+.page-ask .ask-product-human-inner {
+  width: 100%;
+  max-width: min(720px, 100%);
+  margin-inline: auto;
+  padding-inline: var(--ask-product-pad);
+  box-sizing: border-box;
 }
 
 .page-ask .ask-product-hero {
@@ -13306,11 +13320,7 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band {
-  width: 100%;
-  max-width: min(720px, 100%);
-  margin-inline: auto;
-  box-sizing: border-box;
-  padding: clamp(20px, 3.5vw, 32px) clamp(14px, 2.5vw, 28px) clamp(22px, 3.5vw, 30px);
+  padding-block: clamp(20px, 3.5vw, 32px) clamp(22px, 3.5vw, 30px);
 }
 
 .page-ask .ask-product-hero-shell {
@@ -13339,6 +13349,10 @@ body.page-ask main {
   -webkit-hyphens: none;
 }
 
+.page-ask .ask-product-hero .hero-text-on-dark {
+  max-width: none;
+}
+
 .page-ask .ask-product-hero-support {
   font-size: clamp(0.92rem, 0.22vw + 0.86rem, 1.02rem);
   line-height: 1.55;
@@ -13360,16 +13374,18 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-inner {
-  width: 100%;
-  max-width: min(720px, 100%);
-  margin-inline: auto;
-  padding-inline: clamp(14px, 2.5vw, 28px);
   display: flex;
   flex-direction: column;
   gap: clamp(22px, 3.5vw, 32px);
 }
 
-.page-ask .ask-product-tool-card {
+.page-ask .ask-product-tool.ask-local-tool.live-concierge-studio {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+
+.page-ask .ask-product-tool-card.live-concierge-card {
   border-radius: calc(var(--radius) + 10px);
   overflow: hidden;
   border: 1px solid rgba(255, 246, 230, 0.16);
@@ -13379,14 +13395,24 @@ body.page-ask main {
     inset 0 1px 0 rgba(255, 246, 230, 0.06);
 }
 
-.page-ask .ask-product-tool-status {
-  margin: 0;
-  padding: 12px clamp(14px, 2.2vw, 18px) 0;
+.page-ask .ask-product-tool-status.live-concierge__status {
+  display: block;
+  margin: 0 0 12px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(20, 184, 166, 0.9);
+}
+
+.page-ask .ask-product-tool-status.live-concierge__status--live {
+  border: none;
+  box-shadow: none;
 }
 
 .page-ask .ask-product-tool-status.live-concierge__status--live::before {
@@ -13395,9 +13421,29 @@ body.page-ask main {
 
 .page-ask .ask-product-tool .live-concierge__glass-panel {
   border: none;
+  border-top: none;
   background: transparent;
   box-shadow: none;
-  padding: 0 clamp(14px, 2.2vw, 18px) clamp(16px, 2.4vw, 20px);
+  padding: 0 0 clamp(16px, 2.4vw, 20px);
+}
+
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__main-card {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: clamp(10px, 2vw, 14px);
+}
+
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__preview--placeholder {
+  margin-inline: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .page-ask .ask-product-tool .live-concierge__preview-heading {
@@ -13491,14 +13537,6 @@ body.page-ask main {
   margin-inline: 0;
   padding-left: 0;
   padding-right: 0;
-}
-
-.page-ask .ask-product-value-inner,
-.page-ask .ask-product-examples-inner,
-.page-ask .ask-product-human-inner {
-  max-width: min(720px, 100%);
-  margin-inline: auto;
-  padding-inline: clamp(14px, 2.5vw, 28px);
 }
 
 .page-ask .ask-product-examples.section-navy-routes {
@@ -13681,14 +13719,23 @@ body.page-ask main {
 }
 
 @media (max-width: 768px) {
+  .page-ask .ask-product-main {
+    --ask-product-pad: 16px;
+  }
+
+  .page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band,
+  .page-ask .ask-product-inner,
+  .page-ask .ask-product-value-inner,
+  .page-ask .ask-product-examples-inner,
+  .page-ask .ask-product-human-inner {
+    max-width: none;
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  }
+
   .page-ask .ask-product-hero-visual img {
     max-height: none;
     object-fit: contain;
     object-position: center top;
-  }
-
-  .page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band {
-    padding-inline: max(12px, env(safe-area-inset-left, 0px)) max(12px, env(safe-area-inset-right, 0px));
   }
 
   .page-ask .ask-product-tool-section.section-navy-routes,
@@ -13696,17 +13743,6 @@ body.page-ask main {
     padding-left: 0;
     padding-right: 0;
   }
-
-  .page-ask .ask-product-inner,
-  .page-ask .ask-product-value-inner,
-  .page-ask .ask-product-examples-inner,
-  .page-ask .ask-product-human-inner {
-    max-width: none;
-    width: 100%;
-    padding-inline: 12px;
-    box-sizing: border-box;
-  }
-
 }
 
 @media (max-width: 640px) {
