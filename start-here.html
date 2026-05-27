@@ -14,18 +14,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Start Here | San Antonio Visitor Guide | Where To Go SA</title>
-  <meta name="description" content="Start Here helps San Antonio visitors choose the right first move, from downtown and River Walk plans to resort-area food, family stops, transportation help, and Ask A Local answers." />
+  <meta name="description" content="Start Here routes San Antonio visitors fast — pick food, downtown, family, resort, business, or transportation help, or Ask A Local when you are not sure." />
   <link rel="canonical" href="https://wheretogosa.com/start-here.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://wheretogosa.com/start-here.html" />
   <meta property="og:title" content="Start Here | San Antonio Visitor Guide | Where To Go SA" />
   <meta property="og:site_name" content="Where To Go SA" />
-  <meta property="og:description" content="Start Here helps San Antonio visitors choose the right first move, from downtown and River Walk plans to resort-area food, family stops, transportation help, and Ask A Local answers." />
+  <meta property="og:description" content="Start Here routes San Antonio visitors fast — pick food, downtown, family, resort, business, or transportation help, or Ask A Local when you are not sure." />
   <meta property="og:image" content="https://wheretogosa.com/assets/where-to-go-sa-primary-logo-lockup.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@wheretogosa" />
   <meta name="twitter:title" content="Start Here | San Antonio Visitor Guide | Where To Go SA" />
-  <meta name="twitter:description" content="Start Here helps San Antonio visitors choose the right first move, from downtown and River Walk plans to resort-area food, family stops, transportation help, and Ask A Local answers." />
+  <meta name="twitter:description" content="Start Here routes San Antonio visitors fast — pick food, downtown, family, resort, business, or transportation help, or Ask A Local when you are not sure." />
   <meta name="twitter:image" content="https://wheretogosa.com/assets/where-to-go-sa-primary-logo-lockup.png" />
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/wtgsa-favicon-32.png" />
@@ -38,74 +38,73 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Start Here — page-scoped flagship onboarding */
+    /* Start Here — visitor routing hub (rebuilt) */
 
-    /* Tighter section rhythm so the decision grid appears sooner */
     .start-here-main > .section {
-      padding-top: clamp(34px, 4vw, 46px);
-      padding-bottom: clamp(34px, 4vw, 46px);
+      padding-top: clamp(28px, 3.6vw, 40px);
+      padding-bottom: clamp(28px, 3.6vw, 40px);
     }
 
-    .start-here-main > .section.band.section-navy-routes {
-      padding-top: clamp(40px, 4.4vw, 52px);
-      padding-bottom: clamp(40px, 4.4vw, 52px);
-    }
-
-    /* Hero: reduce excess vertical padding by ~12–15% (premium, not cramped) */
-    .start-here-main.start-here-main .secondary-hero .hero-fiesta-inner.hero-inner-band {
-      padding-top: clamp(20px, 2.8vw, 36px);
-      padding-bottom: calc(clamp(20px, 2.8vw, 34px) + 4px);
-    }
-
-    .start-here-main .sh-hero-helper {
+    .start-here-main .sh-body-copy {
       margin: 0;
-      max-width: 38rem;
-      font-size: clamp(0.88rem, 0.9vw + 0.72rem, 0.98rem);
-      line-height: 1.55;
+      font-size: clamp(0.95rem, 0.35vw + 0.86rem, 1.05rem);
+      line-height: 1.62;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: left;
+      color: var(--slate);
+    }
+
+    .start-here-main .sh-section-head {
+      max-width: 40rem;
+      margin-bottom: clamp(18px, 2.4vw, 26px);
+    }
+
+    .start-here-main .sh-section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.45rem, 2.8vw + 0.35rem, 2rem);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      font-weight: 850;
+    }
+
+    .start-here-main .sh-section-head .sh-body-copy {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .start-here-main .band .sh-section-head .sh-body-copy {
       color: rgba(255, 246, 230, 0.84);
     }
 
-    .start-here-main .sh-hero-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 10px;
-      margin: 0;
-      padding: clamp(14px, 2vw, 18px) 0 0;
-      border-top: 1px solid rgba(255, 246, 230, 0.12);
-      list-style: none;
+    /* Hero — faster, decision-first */
+    .start-here-main.start-here-main .secondary-hero .hero-fiesta-inner.hero-inner-band {
+      padding-top: clamp(18px, 2.6vw, 32px);
+      padding-bottom: clamp(18px, 2.6vw, 32px);
     }
 
-    .start-here-main .sh-hero-chips li {
-      margin: 0;
-      padding: 0;
+    .page-start-here .cinematic-hero.hero-fiesta-dark {
+      min-height: 0;
     }
 
-    .start-here-main .sh-hero-chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 760;
-      letter-spacing: 0.02em;
-      color: rgba(255, 246, 230, 0.88);
-      background: rgba(255, 246, 230, 0.07);
-      border: 1px solid rgba(242, 178, 26, 0.28);
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    @media (max-width: 767px) {
+      .page-start-here .cinematic-hero.hero-fiesta-dark {
+        min-height: clamp(380px, 62vh, 520px);
+        max-height: none;
+      }
     }
 
-    .start-here-main .sh-hero-chip:hover {
-      background: rgba(255, 246, 230, 0.12);
-      border-color: rgba(20, 184, 166, 0.45);
-      transform: translateY(-1px);
+    @media (min-width: 768px) {
+      .page-start-here .cinematic-hero.hero-fiesta-dark {
+        min-height: clamp(360px, 48vh, 520px);
+        max-height: 580px;
+      }
     }
 
     .start-here-main .sh-hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px 12px;
-      margin: 0;
-      padding-top: clamp(4px, 1vw, 8px);
+      margin-top: clamp(6px, 1.2vw, 12px);
     }
 
     .start-here-main .sh-hero-actions .btn {
@@ -120,623 +119,623 @@
       }
     }
 
-    .start-here-main .hero-visual-frame::before {
-      opacity: 0.38;
-    }
-
-    .start-here-main .hero-inner-panel::after {
-      box-shadow: inset 0 0 0 1px rgba(242, 178, 26, 0.22);
-    }
-
-    /* Unified section-head rhythm + section-level H2 scale across the page */
-    .start-here-main > .section h2 {
-      font-size: clamp(1.7rem, 3.4vw + 0.4rem, 2.4rem);
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      margin-bottom: 14px;
-    }
-
-    .start-here-main .sh-section-head {
-      max-width: 44rem;
-      margin-bottom: clamp(22px, 2.8vw, 30px);
-    }
-
-    .start-here-main .sh-section-head .eyebrow {
-      margin-bottom: 12px;
-    }
-
-    .start-here-main .sh-section-head .section-text {
-      margin-bottom: 0;
-      font-size: clamp(1rem, 0.6vw + 0.86rem, 1.08rem);
-      line-height: 1.62;
-      max-width: 42rem;
-    }
-
-    .start-here-main .sh-orient-copy {
-      max-width: 44rem;
-    }
-
-    .start-here-main .sh-orient-copy .eyebrow {
-      margin-bottom: 12px;
-    }
-
-    .start-here-main .sh-orient-copy .section-text,
-    .start-here-main .sh-orient-copy .routes-intro {
-      font-size: clamp(1rem, 0.6vw + 0.86rem, 1.08rem);
-      line-height: 1.62;
-      max-width: 42rem;
-      color: rgba(255, 255, 255, 0.78);
-    }
-
-    .start-here-main .sh-final-cta h2 {
-      font-size: clamp(1.7rem, 3.4vw + 0.4rem, 2.5rem);
-      line-height: 1.08;
-      letter-spacing: -0.025em;
-    }
-
-    /* Smooth dark/light rhythm: soft fade at the bottom of the wash before the next dark section */
-    .start-here-main .section.section-turquoise-wash {
+    /* Decision hub — cinematic Ask launcher + visitor lanes (one premium band) */
+    .start-here-main .sh-decision-hub {
       position: relative;
+      margin-top: clamp(-20px, -2.5vw, -8px);
+      padding-top: clamp(32px, 4vw, 48px);
+      z-index: 2;
     }
 
-    .start-here-main .section.section-turquoise-wash::after {
+    .start-here-main .sh-decision-hub > .routes-band-inner {
+      gap: clamp(28px, 4vw, 44px);
+    }
+
+    .start-here-main .sh-ask-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      overflow: hidden;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255, 246, 230, 0.16);
+      background: linear-gradient(155deg, #050a14 0%, #0b1d3a 55%, #12102a 100%);
+      box-shadow:
+        0 28px 56px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(255, 246, 230, 0.06);
+    }
+
+    .start-here-main .sh-ask-panel::before {
       content: "";
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 0;
-      height: 56px;
-      background: linear-gradient(180deg, transparent, rgba(7, 19, 38, 0.18));
-      pointer-events: none;
+      top: 0;
+      height: 3px;
+      z-index: 3;
+      background: linear-gradient(90deg, var(--turquoise), var(--gold), var(--coral));
     }
 
-    .start-here-main .sh-decision-grid {
+    @media (min-width: 720px) {
+      .start-here-main .sh-ask-panel {
+        grid-template-columns: minmax(220px, 36%) minmax(0, 1fr);
+        min-height: 240px;
+      }
+    }
+
+    .start-here-main .sh-ask-panel__visual {
+      position: relative;
+      min-height: clamp(148px, 34vw, 200px);
+      overflow: hidden;
+    }
+
+    @media (min-width: 720px) {
+      .start-here-main .sh-ask-panel__visual {
+        min-height: 100%;
+      }
+    }
+
+    .start-here-main .sh-ask-panel__visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+    }
+
+    .start-here-main .sh-ask-panel__visual-shade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(5, 10, 24, 0.08) 0%, rgba(5, 10, 24, 0.55) 100%),
+        linear-gradient(90deg, transparent 40%, rgba(5, 10, 24, 0.72) 100%);
+    }
+
+    @media (max-width: 719px) {
+      .start-here-main .sh-ask-panel__visual-shade {
+        background: linear-gradient(180deg, transparent 20%, rgba(5, 10, 24, 0.88) 100%);
+      }
+    }
+
+    .start-here-main .sh-ask-panel__body {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(10px, 1.6vw, 14px);
+      padding: clamp(18px, 2.8vw, 28px) clamp(18px, 3vw, 32px) clamp(20px, 3vw, 30px);
+      background:
+        radial-gradient(ellipse 90% 80% at 100% 0%, rgba(20, 184, 166, 0.14), transparent 52%),
+        radial-gradient(circle at 0% 100%, rgba(255, 106, 77, 0.1), transparent 48%);
+    }
+
+    .start-here-main .sh-ask-panel__accent {
+      width: 100%;
+      max-width: 200px;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(242, 178, 26, 0.95), rgba(20, 184, 166, 0.85), transparent);
+      opacity: 0.95;
+    }
+
+    .start-here-main .sh-ask-panel__body .eyebrow {
+      margin-bottom: 0;
+    }
+
+    .start-here-main .sh-ask-panel h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 2.4vw + 0.4rem, 1.85rem);
+      line-height: 1.12;
+      letter-spacing: -0.028em;
+      font-weight: 860;
+      color: var(--cream);
+      text-wrap: balance;
+      max-width: 22ch;
+    }
+
+    .start-here-main .sh-ask-panel__copy {
+      margin: 0;
+      max-width: 38rem;
+      font-size: clamp(0.92rem, 0.3vw + 0.84rem, 1.02rem);
+      line-height: 1.6;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: left;
+      color: rgba(255, 246, 230, 0.86);
+    }
+
+    .start-here-main .sh-ask-panel__actions {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: clamp(12px, 1.8vw, 16px);
+      padding-top: 4px;
+    }
+
+    .start-here-main .sh-ask-panel__actions .btn-primary {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+    }
+
+    @media (min-width: 480px) {
+      .start-here-main .sh-ask-panel__actions .btn-primary {
+        width: auto;
+        align-self: flex-start;
+      }
+    }
+
+    .start-here-main .sh-ask-panel__chips.route-chip-row {
+      margin: 0;
+      padding: 0;
+      gap: 8px 10px;
+    }
+
+    .start-here-main .sh-ask-panel__chips .route-chip {
+      border-color: rgba(255, 246, 230, 0.22);
+      background: rgba(255, 246, 230, 0.07);
+      color: rgba(255, 246, 230, 0.92);
+      font-size: 0.8rem;
+      padding: 9px 14px;
+      letter-spacing: normal;
+    }
+
+    .start-here-main .sh-ask-panel__chips .route-chip:hover {
+      background: rgba(255, 246, 230, 0.14);
+      border-color: rgba(242, 178, 26, 0.55);
+      color: var(--cream);
+    }
+
+    .start-here-main .sh-hub-divider {
+      height: 1px;
+      border: 0;
+      margin: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 246, 230, 0.22) 20%,
+        rgba(20, 184, 166, 0.45) 50%,
+        rgba(255, 246, 230, 0.22) 80%,
+        transparent
+      );
+    }
+
+    .start-here-main .sh-lanes-intro {
+      max-width: none;
+      margin-bottom: 0;
+    }
+
+    .start-here-main .sh-lanes-intro .eyebrow {
+      margin-bottom: clamp(8px, 1.2vw, 12px);
+      color: var(--gold);
+    }
+
+    .start-here-main .sh-lanes-intro h2 {
+      margin: 0 0 clamp(10px, 1.4vw, 14px);
+      font-size: clamp(1.75rem, 3.6vw + 0.5rem, 2.65rem);
+      line-height: 1.06;
+      letter-spacing: -0.032em;
+      font-weight: 860;
+      color: var(--cream);
+      text-wrap: balance;
+      max-width: 14ch;
+    }
+
+    .start-here-main .sh-lanes-intro::after {
+      content: "";
+      display: block;
+      width: clamp(160px, 22vw, 260px);
+      height: 3px;
+      margin-top: clamp(12px, 1.8vw, 18px);
+      margin-bottom: clamp(14px, 2vw, 18px);
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        rgba(20, 184, 166, 0.95),
+        rgba(242, 178, 26, 0.95),
+        rgba(255, 106, 77, 0.88)
+      );
+      box-shadow: 0 0 24px rgba(20, 184, 166, 0.35);
+    }
+
+    .start-here-main .sh-lanes-lead {
+      margin: 0;
+      max-width: 36rem;
+      font-size: clamp(1rem, 0.4vw + 0.9rem, 1.08rem);
+      line-height: 1.62;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: left;
+      color: rgba(255, 246, 230, 0.84);
+    }
+
+    .start-here-main .sh-lanes-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .start-here-main .sh-lanes-meta li {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 246, 230, 0.88);
+      background: rgba(255, 246, 230, 0.06);
+      border: 1px solid rgba(242, 178, 26, 0.28);
+    }
+
+    /* Six visitor lanes */
+    .start-here-main .sh-lane-grid {
       display: grid;
       gap: clamp(14px, 1.6vw, 18px);
       grid-template-columns: 1fr;
       align-items: stretch;
-    }
-
-    @media (min-width: 600px) {
-      .start-here-main .sh-decision-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (min-width: 1100px) {
-      .start-here-main .sh-decision-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-    }
-
-    .start-here-main .sh-decision-card {
-      position: relative;
-      border-radius: var(--radius);
-      background: linear-gradient(165deg, #fffefb 0%, var(--cream-peach) 100%);
-      border: 1px solid rgba(11, 29, 58, 0.09);
-      box-shadow:
-        0 4px 0 rgba(242, 178, 26, 0.4),
-        0 22px 46px rgba(11, 29, 58, 0.14);
-      overflow: hidden;
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
-    }
-
-    .start-here-main .sh-decision-card::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 4px;
-      background: var(--sh-accent, linear-gradient(90deg, var(--turquoise), var(--coral)));
-      z-index: 1;
-    }
-
-    .start-here-main .sh-decision-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      border-radius: inherit;
-      background: radial-gradient(circle at 100% 0%, rgba(242, 178, 26, 0.08), transparent 45%);
-      z-index: 1;
-    }
-
-    .start-here-main .sh-decision-card--turq {
-      --sh-accent: linear-gradient(90deg, var(--turquoise), #0d9488);
-    }
-
-    .start-here-main .sh-decision-card--coral {
-      --sh-accent: linear-gradient(90deg, var(--coral), var(--orange));
-    }
-
-    .start-here-main .sh-decision-card--gold {
-      --sh-accent: linear-gradient(90deg, var(--gold), var(--orange));
-    }
-
-    .start-here-main .sh-decision-card--pink {
-      --sh-accent: linear-gradient(90deg, var(--pink), var(--coral));
-    }
-
-    .start-here-main .sh-decision-card--orange {
-      --sh-accent: linear-gradient(90deg, var(--orange), var(--gold));
-    }
-
-    .start-here-main .sh-decision-card--plum {
-      --sh-accent: linear-gradient(90deg, var(--plum), var(--pink));
-    }
-
-    .start-here-main .sh-decision-card:hover {
-      transform: translateY(-3px);
-      box-shadow:
-        0 4px 0 rgba(20, 184, 166, 0.5),
-        0 26px 54px rgba(11, 29, 58, 0.18);
-    }
-
-    .start-here-main .sh-decision-inner {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      padding: clamp(20px, 2.4vw, 24px) clamp(18px, 2.2vw, 22px) clamp(20px, 2.4vw, 24px);
-      position: relative;
-      z-index: 2;
-    }
-
-    .start-here-main .sh-decision-kicker {
-      margin: 0 0 10px;
-      font-size: 0.7rem;
-      font-weight: 900;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--navy);
-      opacity: 0.72;
-    }
-
-    .start-here-main .sh-decision-title {
-      margin: 0 0 10px;
-      font-size: 1.12rem;
-      font-weight: 850;
-      letter-spacing: -0.02em;
-      color: var(--navy);
-      line-height: 1.22;
-    }
-
-    .start-here-main .sh-decision-desc {
-      margin: 0;
-      flex: 1 1 auto;
-      font-size: 0.92rem;
-      line-height: 1.6;
-      color: var(--slate);
-    }
-
-    .start-here-main .sh-decision-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: clamp(14px, 1.8vw, 18px);
-      font-size: 0.88rem;
-      font-weight: 820;
-      color: var(--navy);
-      text-decoration: none;
-      width: fit-content;
-      max-width: 100%;
-      padding: 8px 0 2px;
-      border-bottom: 2px solid rgba(255, 106, 77, 0.5);
-      transition: border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .start-here-main .sh-decision-cta::after {
-      content: "\2192";
-      font-size: 1rem;
-      line-height: 1;
-      transition: transform 0.2s ease;
-    }
-
-    .start-here-main .sh-decision-cta:hover {
-      color: var(--coral);
-      border-bottom-color: var(--turquoise);
-    }
-
-    .start-here-main .sh-decision-cta:hover::after {
-      transform: translateX(4px);
-    }
-
-    .start-here-main .sh-orient-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 1300px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(22px, 3vw, 32px);
-    }
-
-    .start-here-main .sh-orient-editorial {
-      display: grid;
-      gap: clamp(16px, 2vw, 20px);
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 900px) {
-      .start-here-main .sh-orient-editorial {
-        grid-template-columns: 1.18fr 0.82fr;
-        align-items: stretch;
-      }
-    }
-
-    .start-here-main .sh-orient-lead {
-      position: relative;
-      border-radius: calc(var(--radius) + 4px);
-      overflow: hidden;
-      min-height: clamp(300px, 44vw, 440px);
-      border: 1px solid rgba(255, 246, 230, 0.2);
-      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.35);
-      height: 100%;
-    }
-
-    .start-here-main .sh-orient-lead img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 58%;
-      min-height: clamp(300px, 44vw, 440px);
-    }
-
-    .start-here-main .sh-orient-lead::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(180deg, transparent 42%, rgba(6, 12, 24, 0.55) 100%);
-    }
-
-    .start-here-main .sh-orient-lead-body {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 2;
-      padding: clamp(20px, 3vw, 28px);
-    }
-
-    .start-here-main .sh-orient-lead-body h3 {
-      margin: 0 0 8px;
-      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
-      color: var(--cream);
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
-    }
-
-    .start-here-main .sh-orient-lead-body p {
-      margin: 0;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: rgba(255, 246, 230, 0.92);
-      max-width: 36ch;
-    }
-
-    .start-here-main .sh-orient-stack {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(16px, 2vw, 20px);
-      height: 100%;
-    }
-
-    .start-here-main .sh-orient-card {
-      position: relative;
-      flex: 1 1 0;
-      min-height: clamp(170px, 22vw, 210px);
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid rgba(255, 246, 230, 0.16);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .start-here-main .sh-orient-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 22px 44px rgba(0, 0, 0, 0.34);
-    }
-
-    .start-here-main .sh-orient-card img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .start-here-main .sh-orient-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(165deg, rgba(6, 10, 20, 0.05) 20%, rgba(11, 29, 58, 0.5) 100%);
-      pointer-events: none;
-    }
-
-    .start-here-main .sh-orient-card-body {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 2;
-      padding: 16px 18px;
-    }
-
-    .start-here-main .sh-orient-card-body h3 {
-      margin: 0 0 6px;
-      font-size: 1.05rem;
-      color: var(--white);
-    }
-
-    .start-here-main .sh-orient-card-body p {
-      margin: 0;
-      font-size: 0.84rem;
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.92);
-    }
-
-    .start-here-main .sh-moves-wrap {
-      position: relative;
-      border-radius: calc(var(--radius) + 8px);
-      border: 1px solid rgba(255, 246, 230, 0.14);
-      background:
-        radial-gradient(ellipse 70% 55% at 8% 0%, rgba(20, 184, 166, 0.22), transparent 55%),
-        radial-gradient(circle at 96% 100%, rgba(255, 106, 77, 0.18), transparent 45%),
-        linear-gradient(160deg, #091a34 0%, #0b1d3a 52%, #16122a 100%);
-      box-shadow:
-        0 32px 64px rgba(11, 29, 58, 0.32),
-        inset 0 1px 0 rgba(255, 246, 230, 0.06);
-      padding: clamp(28px, 3.6vw, 44px) clamp(22px, 3.2vw, 40px);
-      overflow: hidden;
-    }
-
-    @media (max-width: 540px) {
-      .start-here-main .sh-moves-wrap {
-        padding: 24px 18px;
-      }
-    }
-
-    .start-here-main .sh-moves-wrap::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--turquoise), var(--coral), var(--gold));
-    }
-
-    .start-here-main .sh-moves-list {
       margin: 0;
       padding: 0;
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(18px, 2.4vw, 22px);
     }
 
-    .start-here-main .sh-moves-list li {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      grid-template-rows: auto auto;
-      gap: 6px 14px;
-      align-items: start;
-      padding-bottom: clamp(18px, 2.4vw, 22px);
-      border-bottom: 1px solid rgba(255, 246, 230, 0.1);
-    }
-
-    .start-here-main .sh-moves-list .sh-moves-icon {
-      grid-row: 1;
-      grid-column: 1;
-      align-self: center;
-    }
-
-    .start-here-main .sh-moves-list li > div {
-      display: contents;
-    }
-
-    .start-here-main .sh-moves-list strong {
-      grid-row: 1;
-      grid-column: 2;
-      align-self: center;
-    }
-
-    .start-here-main .sh-moves-list p {
-      grid-row: 2;
-      grid-column: 2;
-    }
-
-    .start-here-main .sh-moves-list li:last-child {
-      padding-bottom: 0;
-      border-bottom: 0;
-    }
-
-    .start-here-main .sh-moves-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 0.95rem;
-      color: var(--white);
-      background: linear-gradient(135deg, var(--turquoise), var(--coral));
-      border: 1px solid rgba(255, 246, 230, 0.22);
-      box-shadow: 0 10px 22px rgba(20, 184, 166, 0.32);
-      flex-shrink: 0;
-    }
-
-    .start-here-main .sh-moves-list strong {
-      display: block;
-      font-size: 1rem;
-      color: var(--cream);
-      margin-bottom: 5px;
-      letter-spacing: -0.01em;
-      line-height: 1.3;
-    }
-
-    .start-here-main .sh-moves-list p {
-      margin: 0;
-      font-size: 0.92rem;
-      line-height: 1.62;
-      color: rgba(255, 246, 230, 0.82);
-      max-width: 60ch;
-    }
-
-    .start-here-main .sh-moves-list a {
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 760;
-      border-bottom: 1px solid rgba(242, 178, 26, 0.5);
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .start-here-main .sh-moves-list a:hover {
-      color: var(--cream);
-      border-bottom-color: var(--turquoise);
-    }
-
-    .start-here-main .sh-route-grid {
-      display: grid;
-      gap: clamp(16px, 2vw, 20px);
-      grid-template-columns: 1fr;
-      align-items: stretch;
-    }
-
-    @media (min-width: 720px) {
-      .start-here-main .sh-route-grid {
+    @media (min-width: 560px) {
+      .start-here-main .sh-lane-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    .start-here-main .sh-route-card {
+    @media (min-width: 960px) {
+      .start-here-main .sh-lane-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .start-here-main .sh-lane-grid .image-route-card {
+      min-height: clamp(200px, 36vw, 260px);
+    }
+
+    .start-here-main .sh-lane-grid .image-route-card__body p {
+      font-size: 0.86rem;
+      line-height: 1.5;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: left;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* How it works — mobile: plain list; desktop: cinematic rail */
+    .start-here-main .sh-how-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0;
+    }
+
+    .start-here-main .sh-how-simple {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid rgba(255, 246, 230, 0.1);
+    }
+
+    .start-here-main .sh-how-simple li {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 246, 230, 0.08);
+      font-size: 0.94rem;
+      line-height: 1.48;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: left;
+      color: rgba(255, 246, 230, 0.9);
+    }
+
+    .start-here-main .sh-how-simple li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .start-here-main .sh-how-simple__n {
+      flex-shrink: 0;
+      min-width: 1.25rem;
+      font-size: 0.88rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: normal;
+    }
+
+    .start-here-main .sh-how-rail--rich {
+      display: none;
+    }
+
+    @media (min-width: 900px) {
+      .start-here-main .sh-how-panel {
+        position: relative;
+        gap: clamp(20px, 2.8vw, 28px);
+        padding: clamp(22px, 3.2vw, 34px) clamp(18px, 3vw, 30px);
+        border-radius: calc(var(--radius) + 8px);
+        border: 1px solid rgba(255, 246, 230, 0.14);
+        overflow: hidden;
+        background:
+          linear-gradient(118deg, rgba(5, 10, 24, 0.94) 0%, rgba(5, 10, 24, 0.82) 42%, rgba(5, 10, 24, 0.55) 100%),
+          url("assets/evening_riverwalk_with_vibrant_ambiance.png") center / cover no-repeat;
+        box-shadow:
+          0 28px 56px rgba(0, 0, 0, 0.34),
+          inset 0 1px 0 rgba(255, 246, 230, 0.06);
+      }
+
+      .start-here-main .sh-how-panel::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 3px;
+        z-index: 2;
+        background: linear-gradient(90deg, var(--turquoise), var(--gold), var(--coral), var(--pink));
+      }
+
+      .start-here-main .sh-how-simple {
+        display: none;
+      }
+
+      .start-here-main .sh-how-rail--rich {
+        display: grid;
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        gap: 0 4px;
+        grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) 36px minmax(0, 1fr);
+        align-items: stretch;
+      }
+
+      .start-here-main .sh-how-panel__lede {
+        display: block;
+      }
+    }
+
+    .start-here-main .sh-how-panel__head {
       position: relative;
-      border-radius: var(--radius);
-      padding: clamp(22px, 2.6vw, 28px) clamp(20px, 2.4vw, 26px) clamp(22px, 2.6vw, 28px);
-      background:
-        radial-gradient(circle at 100% 0%, rgba(255, 106, 77, 0.1), transparent 48%),
-        linear-gradient(155deg, #fffefb 0%, #f3faf8 100%);
-      border: 1px solid rgba(11, 29, 58, 0.09);
-      box-shadow:
-        0 4px 0 rgba(242, 178, 26, 0.4),
-        0 22px 46px rgba(11, 29, 58, 0.14);
+      z-index: 1;
+      max-width: 34rem;
+    }
+
+    .start-here-main .sh-how-panel__accent {
+      width: clamp(120px, 18vw, 200px);
+      height: 2px;
+      margin-bottom: clamp(12px, 1.6vw, 16px);
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(242, 178, 26, 0.95), rgba(20, 184, 166, 0.85), transparent);
+    }
+
+    .start-here-main .sh-how-panel__head .eyebrow {
+      margin-bottom: 8px;
+      color: var(--gold);
+    }
+
+    .start-here-main .sh-how-panel__head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.55rem, 3vw + 0.4rem, 2.35rem);
+      line-height: 1.06;
+      letter-spacing: -0.034em;
+      font-weight: 860;
+      color: var(--cream);
+      text-wrap: balance;
+    }
+
+    .start-here-main .sh-how-panel__lede {
+      display: none;
+      margin: 0;
+      font-size: clamp(0.94rem, 0.3vw + 0.86rem, 1.04rem);
+      line-height: 1.58;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: left;
+      color: rgba(255, 246, 230, 0.84);
+      max-width: 32rem;
+    }
+
+    @media (max-width: 899px) {
+      .start-here-main .sh-how-panel__head .eyebrow,
+      .start-here-main .sh-how-panel__accent {
+        display: none;
+      }
+
+      .start-here-main .sh-how-panel__head h2 {
+        font-size: 1.15rem;
+        margin-bottom: 0;
+      }
+    }
+
+    .start-here-main .sh-how-connector {
+      display: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (min-width: 900px) {
+      .start-here-main .sh-how-connector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        min-height: 100%;
+      }
+
+      .start-here-main .sh-how-connector span {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(20, 184, 166, 0.5), rgba(242, 178, 26, 0.85));
+        box-shadow: 0 0 16px rgba(242, 178, 26, 0.35);
+      }
+
+      .start-here-main .sh-how-connector span::after {
+        content: "";
+        position: absolute;
+        right: -1px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 7px solid rgba(242, 178, 26, 0.95);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .start-here-main .sh-how-node__card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-radius: calc(var(--radius) + 2px);
+      border: 1px solid rgba(255, 246, 230, 0.14);
+      background: rgba(5, 10, 24, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    @media (hover: hover) {
+      .start-here-main .sh-how-node__card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(242, 178, 26, 0.45);
+        box-shadow: 0 22px 48px rgba(0, 0, 0, 0.36);
+      }
+    }
+
+    .start-here-main .sh-how-node__visual {
+      position: relative;
+      min-height: clamp(132px, 30vw, 168px);
+      overflow: hidden;
+    }
+
+    .start-here-main .sh-how-node__visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    @media (hover: hover) {
+      .start-here-main .sh-how-node__card:hover .sh-how-node__visual img {
+        transform: scale(1.04);
+      }
+    }
+
+    .start-here-main .sh-how-node__shade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(5, 10, 24, 0.05) 0%, rgba(5, 10, 24, 0.78) 100%);
+    }
+
+    .start-here-main .sh-how-node__watermark {
+      position: absolute;
+      right: 10px;
+      bottom: 4px;
+      z-index: 2;
+      font-size: clamp(2.8rem, 8vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      color: rgba(255, 246, 230, 0.14);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .start-here-main .sh-how-node__body {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      height: 100%;
-      overflow: hidden;
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      padding: clamp(14px, 2vw, 18px) clamp(14px, 2.2vw, 18px) clamp(16px, 2.2vw, 20px);
     }
 
-    .start-here-main .sh-route-card::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--turquoise), var(--coral), var(--gold));
-      z-index: 1;
-    }
-
-    .start-here-main .sh-route-card:hover {
-      transform: translateY(-3px);
-      box-shadow:
-        0 4px 0 rgba(20, 184, 166, 0.5),
-        0 26px 54px rgba(11, 29, 58, 0.18);
-    }
-
-    .start-here-main .sh-route-eyebrow {
-      margin: 0 0 4px;
+    .start-here-main .sh-how-node__chip {
       display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.7rem;
+      align-self: flex-start;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.68rem;
       font-weight: 900;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--navy);
-      opacity: 0.6;
+      color: rgba(255, 246, 230, 0.92);
+      border: 1px solid rgba(255, 246, 230, 0.2);
+      background: rgba(255, 246, 230, 0.06);
     }
 
-    .start-here-main .sh-route-eyebrow::before {
-      content: "";
-      width: 18px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--turquoise), var(--coral));
-      border-radius: 2px;
+    .start-here-main .sh-how-node--pick .sh-how-node__chip {
+      border-color: rgba(20, 184, 166, 0.45);
+      background: rgba(20, 184, 166, 0.12);
     }
 
-    .start-here-main .sh-route-card h3 {
+    .start-here-main .sh-how-node--open .sh-how-node__chip {
+      border-color: rgba(242, 178, 26, 0.5);
+      background: rgba(242, 178, 26, 0.12);
+    }
+
+    .start-here-main .sh-how-node--adjust .sh-how-node__chip {
+      border-color: rgba(255, 106, 77, 0.45);
+      background: rgba(255, 106, 77, 0.12);
+    }
+
+    .start-here-main .sh-how-node__title {
       margin: 0;
-      font-size: 1.12rem;
-      color: var(--navy);
+      font-size: clamp(1rem, 0.5vw + 0.9rem, 1.12rem);
+      line-height: 1.22;
       letter-spacing: -0.02em;
       font-weight: 850;
-      line-height: 1.22;
+      color: var(--cream);
     }
 
-    .start-here-main .sh-route-desc {
+    .start-here-main .sh-how-node__text {
       margin: 0;
-      font-size: 0.92rem;
-      line-height: 1.6;
-      color: var(--slate);
-      flex: 1 1 auto;
+      font-size: clamp(0.86rem, 0.2vw + 0.8rem, 0.94rem);
+      line-height: 1.55;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: left;
+      color: rgba(255, 246, 230, 0.82);
     }
+    } /* min-width: 900px — desktop how-it-works rail */
 
-    .start-here-main .sh-route-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: clamp(14px, 1.8vw, 18px);
-      font-size: 0.88rem;
-      font-weight: 820;
-      color: var(--navy);
-      text-decoration: none;
-      width: fit-content;
-      max-width: 100%;
-      padding: 8px 0 2px;
-      border-bottom: 2px solid rgba(255, 106, 77, 0.5);
-      align-self: flex-start;
-      transition: border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .start-here-main .sh-route-link::after {
-      content: "\2192";
-      font-size: 1rem;
-      line-height: 1;
-      transition: transform 0.2s ease;
-    }
-
-    .start-here-main .sh-route-link:hover {
-      color: var(--coral);
-      border-bottom-color: var(--turquoise);
-    }
-
-    .start-here-main .sh-route-link:hover::after {
-      transform: translateX(4px);
-    }
-
-    /* Final CTA section: extra bottom breathing room above the footer / install prompts */
+    /* Final CTA */
     .start-here-main > .section.sh-final-section {
-      padding-bottom: clamp(56px, 6vw, 84px);
+      padding-bottom: clamp(48px, 5vw, 72px);
     }
 
     .start-here-main .sh-final-cta {
       position: relative;
       overflow: hidden;
-      border-radius: calc(var(--radius) + 8px);
-      padding: clamp(36px, 4.5vw, 52px) clamp(22px, 4vw, 40px);
-      border: 1px solid rgba(255, 246, 230, 0.16);
+      border-radius: calc(var(--radius) + 6px);
+      padding: clamp(28px, 3.6vw, 40px) clamp(20px, 3.2vw, 32px);
+      border: 1px solid rgba(255, 246, 230, 0.14);
       background:
-        radial-gradient(ellipse 80% 60% at 12% 0%, rgba(255, 106, 77, 0.2), transparent 50%),
-        radial-gradient(circle at 92% 80%, rgba(20, 184, 166, 0.18), transparent 42%),
-        linear-gradient(158deg, #050910 0%, #0b1d3a 48%, #1a1530 100%);
-      box-shadow:
-        0 32px 64px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 246, 230, 0.06);
+        radial-gradient(ellipse 70% 55% at 10% 0%, rgba(255, 106, 77, 0.18), transparent 50%),
+        radial-gradient(circle at 92% 80%, rgba(20, 184, 166, 0.16), transparent 42%),
+        linear-gradient(158deg, #050910 0%, #0b1d3a 50%, #16122a 100%);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
     }
 
     .start-here-main .sh-final-cta::before {
@@ -745,44 +744,29 @@
       left: 0;
       right: 0;
       top: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--turquoise), var(--coral), var(--pink), var(--orange), var(--gold));
+      height: 3px;
+      background: linear-gradient(90deg, var(--turquoise), var(--coral), var(--gold));
     }
 
     .start-here-main .sh-final-cta h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.35rem, 2.6vw + 0.3rem, 1.85rem);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
       color: var(--cream);
-      margin-bottom: 12px;
-      max-width: 26ch;
+      max-width: 22ch;
     }
 
-    .start-here-main .sh-final-cta .section-text {
+    .start-here-main .sh-final-cta .sh-body-copy {
       color: rgba(255, 246, 230, 0.86);
-      max-width: 40rem;
-      margin-bottom: clamp(20px, 2.5vw, 26px);
+      max-width: 38rem;
+      margin-bottom: clamp(16px, 2vw, 22px);
     }
 
     .start-here-main .sh-final-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px 12px;
-    }
-
-    .start-here-main .sh-final-actions .btn-secondary-hero {
-      border-color: rgba(255, 246, 230, 0.35);
-    }
-
-    /* Gold eyebrow on final CTA bookends the hero for a premium thematic frame */
-    .start-here-main .sh-final-cta .sh-final-eyebrow {
-      color: var(--gold) !important;
-      margin-bottom: 12px;
-    }
-
-    .start-here-main .sh-final-trust {
-      margin: clamp(16px, 2vw, 20px) 0 0;
-      font-size: 0.85rem;
-      line-height: 1.5;
-      color: rgba(255, 246, 230, 0.62);
-      letter-spacing: 0.01em;
     }
 
     @media (max-width: 419px) {
@@ -821,173 +805,75 @@
             <div class="sh-cinematic-accent" aria-hidden="true"></div>
             <p class="eyebrow eyebrow-on-dark eyebrow-hero">Start here</p>
             <h1 id="sh-hero-heading" class="hero-title">Start with the San Antonio guide that matches your trip.</h1>
-            <p class="hero-text hero-text-on-dark">Use this page to find the right starting point first &mdash; food, downtown, family, resort, transportation, or Ask A Local when you want help choosing the move.</p>
-            <div class="route-chip-row route-chip-row-hero sh-hero-chips" aria-label="Trip types">
-              <a class="route-chip" href="downtown.html">Business trip</a>
-              <a class="route-chip" href="summer-family.html">Family day</a>
-              <a class="route-chip" href="where-to-eat.html">Food now</a>
-              <a class="route-chip" href="downtown.html">Downtown</a>
-              <a class="route-chip" href="resort-food.html">Resort stay</a>
-              <a class="route-chip" href="driver-concierge.html#route-operator">Airport timing</a>
-              <a class="route-chip" href="driver-concierge.html#route-operator">Route + transportation help</a>
-            </div>
+            <p class="hero-text hero-text-on-dark">Food, downtown, family plans, resort stays, convention nights, airport timing, and transportation help &mdash; choose the situation closest to yours, or Ask A Local if you&rsquo;re not sure.</p>
             <div class="sh-hero-actions hero-cta-row">
-              <a href="#live-concierge" class="btn btn-primary">Ask A Local &rarr;</a>
-              <a class="btn btn-secondary-hero" href="#choose-path">Find my route</a>
+              <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+              <a class="btn btn-secondary-hero" href="#visitor-lanes">Pick a guide</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section band section-navy-routes live-concierge-section ask-local-shell" id="live-concierge" aria-labelledby="live-concierge-heading">
-      <div class="routes-band-inner live-concierge-inner ask-local-inner">
-        <header class="live-concierge__head">
-          <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Ask A Local</p>
-          <h2 id="live-concierge-heading" class="live-concierge__title">Not sure what to do first? Ask here.</h2>
-          <p class="section-text section-text-light live-concierge__lead">
-            Tell us where you are, who you&rsquo;re with, what time it is, and what you&rsquo;re trying to do. Pick a chip or type your question &mdash; answers appear above the box.
-          </p>
-          <p class="live-concierge__status" id="live-concierge-status" aria-live="polite">Live · ready</p>
-        </header>
-
-        <div class="live-concierge-studio ask-local-tool">
-          <div class="live-concierge-card">
-            <div class="live-concierge__image-band">
-              <div class="live-concierge__image-band-media">
-                <img
-                  src="assets/ask-sa-plug-hero-riverwalk-tower.png"
-                  alt="San Antonio River Walk and downtown skyline"
-                  width="1200"
-                  height="630"
-                  decoding="async"
-                  loading="eager"
-                  fetchpriority="high"
-                />
-              </div>
-            </div>
-
-              <div class="live-concierge__glass-panel live-concierge__glass-panel--tool-first">
-            <div class="live-concierge__main-card">
-              <div class="live-concierge__error" id="live-concierge-error" hidden role="alert"></div>
-
-              <div class="live-concierge__thread" id="live-concierge-thread">
-                <div class="live-concierge__conversation" id="live-concierge-conversation">
-                  <div class="live-concierge__answer-surface" id="live-concierge-answer-surface" aria-live="polite">
-                    <div class="live-concierge__preview live-concierge__preview--placeholder" id="live-concierge-preview">
-                      <p class="live-concierge__preview-label">Local answer</p>
-                      <p class="live-concierge__preview-heading">Your local answer will appear here.</p>
-                      <p class="live-concierge__preview-text">Ask in plain language. We&rsquo;ll turn it into the clearest local move.</p>
-                    </div>
-                    <div class="live-concierge__transcript" id="live-concierge-transcript" hidden>
-                      <div class="live-concierge__log" id="live-concierge-log" role="log" aria-relevant="additions" aria-label="Concierge answer"></div>
-                    </div>
-                  </div>
-                </div>
-
-                  <div class="live-concierge__composer-stack" id="live-concierge-composer">
-                    <form class="live-concierge__form" id="live-concierge-form" aria-label="Ask A Local concierge">
-                      <label class="live-concierge__input-label visually-hidden" for="live-concierge-input">Your question</label>
-                      <div class="live-concierge__composer-unit">
-                        <textarea
-                          id="live-concierge-input"
-                          class="live-concierge__input"
-                          name="message"
-                          rows="2"
-                          maxlength="12000"
-                          required
-                          autocomplete="off"
-                          placeholder="Example: We&rsquo;re staying at La Cantera with two kids and want dinner tonight without driving downtown."
-                        ></textarea>
-                      </div>
-                      <button type="submit" class="live-concierge__send" id="live-concierge-send">Ask A Local <span aria-hidden="true">&rarr;</span></button>
-                    </form>
-                    <p class="live-concierge__engage-hint">Try asking about dinner, parking, timing, cost, what to do next, or whether a place is worth it.</p>
-                  </div>
-              </div>
-            </div>
-
-            <div class="live-concierge__starter-chips" role="group" aria-labelledby="starter-chips-heading">
-              <p class="live-concierge__starter-label" id="starter-chips-heading">Quick Starts</p>
-              <div class="live-concierge__chips live-concierge__chips--starter">
-                <button type="button" class="live-concierge__chip live-concierge__chip--lane live-concierge__chip--starter" data-concierge-chip data-chip-text="What should we do tonight?">What should we do tonight?</button>
-                <button type="button" class="live-concierge__chip live-concierge__chip--lane live-concierge__chip--starter" data-concierge-chip data-chip-text="I need dinner near me">I need dinner near me</button>
-                <button type="button" class="live-concierge__chip live-concierge__chip--lane live-concierge__chip--starter" data-concierge-chip data-chip-text="I'm here for a convention">I&rsquo;m here for a convention</button>
-                <button type="button" class="live-concierge__chip live-concierge__chip--lane live-concierge__chip--starter" data-concierge-chip data-chip-text="I'm staying at a resort">I&rsquo;m staying at a resort</button>
-                <button type="button" class="live-concierge__chip live-concierge__chip--lane live-concierge__chip--starter" data-concierge-chip data-chip-text="I have kids with me">I have kids with me</button>
-                <button type="button" class="live-concierge__chip live-concierge__chip--lane live-concierge__chip--starter" data-concierge-chip data-chip-text="I need transportation help">I need transportation help</button>
-              </div>
-
-            </div>
-
-              <div class="live-concierge__chip-board live-concierge__chip-board--categories" id="concierge-prompt-categories">
-              <p class="live-concierge__categories-intro">More ideas by topic</p>
-              <details class="live-concierge__category">
-                <summary class="live-concierge__category-summary">Ask About A Place</summary>
-                <div class="live-concierge__chips live-concierge__chips--lane" role="group" aria-label="Ask about a place">
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Is the River Walk worth it tonight?">Is the River Walk worth it tonight?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Is The Pearl worth visiting today?">Is The Pearl worth visiting today?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="What should we do at Market Square?">What should we do at Market Square?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Is Tower of the Americas worth it?">Is Tower of the Americas worth it?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="What should we do downtown with kids?">What should we do downtown with kids?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="What is the best indoor heat escape?">What is the best indoor heat escape?</button>
-                </div>
-              </details>
-              <details class="live-concierge__category">
-                <summary class="live-concierge__category-summary">Resort Help</summary>
-                <div class="live-concierge__chips live-concierge__chips--lane" role="group" aria-label="Resort help">
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I'm staying at La Cantera — where should we eat?">I&rsquo;m staying at La Cantera &mdash; where should we eat?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I'm staying at JW Marriott — should we stay close or leave the resort?">I&rsquo;m staying at JW Marriott &mdash; should we stay close or leave the resort?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I'm staying at Hyatt Hill Country — what's nearby besides SeaWorld?">I&rsquo;m staying at Hyatt Hill Country &mdash; what&rsquo;s nearby besides SeaWorld?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Should we eat at the resort or go downtown?">Should we eat at the resort or go downtown?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="We have kids and need an easy resort-area dinner">We have kids and need an easy resort-area dinner</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="We want one special dinner away from the resort">We want one special dinner away from the resort</button>
-                </div>
-              </details>
-              <details class="live-concierge__category">
-                <summary class="live-concierge__category-summary">Food + Nightlife</summary>
-                <div class="live-concierge__chips live-concierge__chips--lane" role="group" aria-label="Food and nightlife">
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Best River Walk dinner tonight">Best River Walk dinner tonight</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Best rooftop or cocktail bar tonight">Best rooftop or cocktail bar tonight</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Best Mexican food near downtown">Best Mexican food near downtown</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Best steakhouse for a business dinner">Best steakhouse for a business dinner</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Best seafood or ceviche option">Best seafood or ceviche option</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Best easy group dinner">Best easy group dinner</button>
-                </div>
-              </details>
-              <details class="live-concierge__category">
-                <summary class="live-concierge__category-summary">Airport / Timing Help</summary>
-                <div class="live-concierge__chips live-concierge__chips--lane" role="group" aria-label="Airport and timing help">
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I have a flight later — where should we eat?">I have a flight later &mdash; where should we eat?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I just landed at SAT — what's a smart first stop?">I just landed at SAT &mdash; what&rsquo;s a smart first stop?</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="I'm near the airport and don't want downtown traffic">I&rsquo;m near the airport and don&rsquo;t want downtown traffic</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="Best food near SAT or the Quarry">Best food near SAT or the Quarry</button>
-                  <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-concierge-chip data-chip-text="We need a quick meal before returning to the airport">We need a quick meal before returning to the airport</button>
-                </div>
-              </details>
-              <p class="live-concierge__trust-note">Answers are for your trip, not a marketing list. For human transportation help, use the <a href="driver-concierge.html#route-operator">transportation request</a> option.</p>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section path-hub-section image-detail-section" id="choose-path" aria-labelledby="choose-path-heading">
+    <section class="section band section-navy-routes path-hub-section image-detail-section sh-decision-hub" id="visitor-lanes" aria-labelledby="visitor-lanes-heading">
       <div class="routes-band-inner">
-        <header class="path-hub-head sh-section-head">
-          <p class="eyebrow eyebrow-on-dark">Choose your path</p>
-          <h2 id="choose-path-heading">Your guide to the whole city</h2>
-          <p class="section-text section-text-light">Tap the move that matches your crew. Each card opens the guide built for that situation.</p>
+        <article class="sh-ask-panel" id="ask-local" aria-labelledby="ask-local-heading">
+          <div class="sh-ask-panel__visual" aria-hidden="true">
+            <img
+              src="assets/ask-sa-plug-hero-riverwalk-tower.png"
+              alt=""
+              width="1200"
+              height="630"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="sh-ask-panel__visual-shade"></div>
+          </div>
+          <div class="sh-ask-panel__body">
+            <div class="sh-ask-panel__accent" aria-hidden="true"></div>
+            <p class="eyebrow eyebrow-on-dark">Ask A Local</p>
+            <h2 id="ask-local-heading">Not sure where to start?</h2>
+            <p class="sh-ask-panel__copy">Tell us where you are, who you&rsquo;re with, what time it is, and what you&rsquo;re trying to do. We&rsquo;ll point you toward the right move.</p>
+            <div class="sh-ask-panel__actions">
+              <a href="/ask/" class="btn btn-primary">Ask A Local <span aria-hidden="true">&rarr;</span></a>
+              <div class="route-chip-row sh-ask-panel__chips" aria-label="Quick questions">
+                <a class="route-chip" href="/ask/?q=I%20need%20dinner%20near%20me">Dinner near me</a>
+                <a class="route-chip" href="/ask/?q=What%20should%20we%20do%20downtown%20tonight%3F">Downtown tonight</a>
+                <a class="route-chip" href="/ask/?q=I%27m%20staying%20at%20a%20resort">Resort stay</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <hr class="sh-hub-divider" />
+
+        <header class="path-hub-head sh-lanes-intro">
+          <p class="eyebrow eyebrow-on-dark">Pick your situation</p>
+          <h2 id="visitor-lanes-heading">Choose the guide closest to your trip</h2>
+          <p class="section-text section-text-light sh-lanes-lead">Open the guide when you know what you need. Ask A Local if you&rsquo;re not sure.</p>
+          <ul class="sh-lanes-meta" aria-label="What you get here">
+            <li>6 visitor guides</li>
+            <li>Ask anytime</li>
+          </ul>
         </header>
-        <div class="route-card-grid route-card-grid--dense" role="list">
-          <a href="downtown.html" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/elegant_evening_arrival_at_a_luxury_hotel.png" alt="Business and convention evening arrival in San Antonio" width="720" height="480" decoding="async" loading="lazy" />
+        <div class="sh-lane-grid" role="list">
+          <a href="where-to-eat.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/riverside_dining_under_warm_lights.png" alt="Riverside dining in San Antonio" width="720" height="480" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
-              <span class="eyebrow">Business &amp; convention</span>
-              <h3>I&rsquo;m here for business or a convention</h3>
-              <p>Client dinners, tight evening windows, and walkable downtown timing.</p>
+              <span class="eyebrow">Eat</span>
+              <h3>Food now</h3>
+              <p>Restaurants, breakfast, dinner, drinks, business meals, local picks, and where should we eat?</p>
+              <span class="image-route-card__cta">Open food guide</span>
+            </span>
+          </a>
+          <a href="downtown.html" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/twilight_on_the_river_walk.png" alt="Twilight on the San Antonio River Walk" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Downtown</span>
+              <h3>Downtown + River Walk</h3>
+              <p>River Walk, Alamo, Tower, Market Square, Pearl, first-night plans, walkable timing, and downtown decisions.</p>
               <span class="image-route-card__cta">Open downtown guide</span>
             </span>
           </a>
@@ -995,201 +881,116 @@
             <img class="image-route-card__media" src="assets/family_stroll_along_canal_in_golden_light.png" alt="Family strolling along a canal in golden light" width="720" height="480" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
-              <span class="eyebrow">Family crew</span>
-              <h3>I&rsquo;m with family</h3>
-              <p>Heat-smart routes, kid logistics, theme parks, zoo area, and resort rhythm.</p>
+              <span class="eyebrow">Family</span>
+              <h3>Family day</h3>
+              <p>Kids, museums, parks, theme parks, easy timing, family-friendly food, and realistic pacing.</p>
               <span class="image-route-card__cta">Open family guide</span>
-            </span>
-          </a>
-          <a href="where-to-eat.html" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/riverside_dining_under_warm_lights.png" alt="Riverside dining under warm lights" width="720" height="480" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Flavor first</span>
-              <h3>I need food now</h3>
-              <p>Willie Approved picks, districts, and backup options when the table is hungry tonight.</p>
-              <span class="image-route-card__cta">Open Food Picks</span>
-            </span>
-          </a>
-          <a href="downtown.html" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/twilight_on_the_river_walk.png" alt="Twilight on the San Antonio River Walk" width="720" height="480" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Walkable core</span>
-              <h3>I&rsquo;m downtown</h3>
-              <p>River Walk loops, Alamo timing, Market Square energy, and one-night plans.</p>
-              <span class="image-route-card__cta">Open downtown guide</span>
             </span>
           </a>
           <a href="resort-food.html" class="image-route-card" role="listitem">
             <img class="image-route-card__media" src="assets/sunset_dining_at_a_luxury_resort.png" alt="Sunset dining at a luxury resort" width="720" height="480" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
-              <span class="eyebrow">Resort guest</span>
-              <span class="h3-like">I&rsquo;m staying at a resort</span>
-              <p>Zone-matched dinners, traffic-smart nights, and tired-family backups.</p>
-              <span class="image-route-card__cta">Open resort guides</span>
+              <span class="eyebrow">Resort</span>
+              <h3>Resort stay</h3>
+              <p>JW, La Cantera, Hyatt Hill Country, resort-area food, nearby dinner, and stay near the resort or go downtown.</p>
+              <span class="image-route-card__cta">Open resort guide</span>
+            </span>
+          </a>
+          <a href="downtown.html#dt-convention" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/elegant_evening_arrival_at_a_luxury_hotel.png" alt="Business and convention evening in San Antonio" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Business</span>
+              <h3>Convention / business trip</h3>
+              <p>Client dinners, business meals, convention timing, downtown drinks, airport windows, and polished evenings.</p>
+              <span class="image-route-card__cta">Plan business trip</span>
             </span>
           </a>
           <a href="driver-concierge.html#route-operator" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/transport-luxury-city-arrival-night.png" alt="City arrival at night" width="720" height="480" decoding="async" loading="lazy" />
+            <img class="image-route-card__media" src="assets/transport-luxury-city-arrival-night.png" alt="City arrival at night for route planning" width="720" height="480" decoding="async" loading="lazy" />
             <span class="image-route-card__shade" aria-hidden="true"></span>
             <span class="image-route-card__body">
-              <span class="eyebrow">Route desk</span>
-              <h3>Transportation + local concierge</h3>
-              <p>Route help for airport, resort, convention, and night-out moves &mdash; get timing and pickup details first, then request human help if you need it.</p>
-              <span class="image-route-card__cta">Get Route Help</span>
+              <span class="eyebrow">Transportation</span>
+              <h3>Transportation + route help</h3>
+              <p>Airport, resort, downtown, group, night-out, luggage, pickup timing, and route planning.</p>
+              <span class="image-route-card__cta">Plan transportation</span>
             </span>
           </a>
+        </div>
+
+        <hr class="sh-hub-divider" />
+
+        <div class="sh-how-panel" id="how-it-works" aria-labelledby="how-it-works-heading">
+          <header class="sh-how-panel__head">
+            <div class="sh-how-panel__accent" aria-hidden="true"></div>
+            <p class="eyebrow eyebrow-on-dark">How it works</p>
+            <h2 id="how-it-works-heading">How it works</h2>
+            <p class="sh-how-panel__lede">The fastest path through San Antonio when you&rsquo;re already moving &mdash; no scrolling marathon required.</p>
+          </header>
+          <ol class="sh-how-simple">
+            <li><span class="sh-how-simple__n" aria-hidden="true">1.</span> Pick the situation closest to yours.</li>
+            <li><span class="sh-how-simple__n" aria-hidden="true">2.</span> Open the guide or Ask A Local.</li>
+            <li><span class="sh-how-simple__n" aria-hidden="true">3.</span> Use the plan, then adjust if timing changes.</li>
+          </ol>
+          <ol class="sh-how-rail sh-how-rail--rich">
+            <li class="sh-how-node sh-how-node--pick">
+              <article class="sh-how-node__card">
+                <div class="sh-how-node__visual">
+                  <img src="assets/golden_hour_along_the_riverwalk.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
+                  <span class="sh-how-node__shade" aria-hidden="true"></span>
+                  <span class="sh-how-node__watermark" aria-hidden="true">01</span>
+                </div>
+                <div class="sh-how-node__body">
+                  <span class="sh-how-node__chip">Step 1</span>
+                  <h3 class="sh-how-node__title">Pick your situation</h3>
+                  <p class="sh-how-node__text">Pick the situation closest to yours.</p>
+                </div>
+              </article>
+            </li>
+            <li class="sh-how-connector" aria-hidden="true"><span></span></li>
+            <li class="sh-how-node sh-how-node--open">
+              <article class="sh-how-node__card">
+                <div class="sh-how-node__visual">
+                  <img src="assets/riverside_dining_under_warm_lights.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
+                  <span class="sh-how-node__shade" aria-hidden="true"></span>
+                  <span class="sh-how-node__watermark" aria-hidden="true">02</span>
+                </div>
+                <div class="sh-how-node__body">
+                  <span class="sh-how-node__chip">Step 2</span>
+                  <h3 class="sh-how-node__title">Open the guide</h3>
+                  <p class="sh-how-node__text">Open the guide or Ask A Local.</p>
+                </div>
+              </article>
+            </li>
+            <li class="sh-how-connector" aria-hidden="true"><span></span></li>
+            <li class="sh-how-node sh-how-node--adjust">
+              <article class="sh-how-node__card">
+                <div class="sh-how-node__visual">
+                  <img src="assets/family_fun_at_sunset_in_the_park.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
+                  <span class="sh-how-node__shade" aria-hidden="true"></span>
+                  <span class="sh-how-node__watermark" aria-hidden="true">03</span>
+                </div>
+                <div class="sh-how-node__body">
+                  <span class="sh-how-node__chip">Step 3</span>
+                  <h3 class="sh-how-node__title">Adjust on the fly</h3>
+                  <p class="sh-how-node__text">Use the plan, then adjust if timing changes.</p>
+                </div>
+              </article>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
 
-    <section class="section band section-navy-routes" aria-labelledby="orient-heading">
-      <div class="sh-orient-inner routes-band-inner">
-        <div class="sh-orient-copy">
-          <p class="eyebrow">How visitors plan</p>
-          <h2 id="orient-heading">How most visitors use Where To Go SA</h2>
-          <p class="section-text routes-intro">Some visitors want the best first dinner. Some want a downtown route. Some want resort guidance, family ideas, or transportation help. Start with the move that matches your trip, then go deeper where you need it.</p>
-        </div>
-        <div class="sh-orient-editorial">
-          <div class="sh-orient-lead">
-            <img src="assets/twilight_on_the_river_walk.png" alt="Downtown San Antonio and River Walk at dusk" width="900" height="700" decoding="async" loading="lazy" />
-            <div class="sh-orient-lead-body">
-              <h3>Downtown &amp; first-night energy</h3>
-              <p>River Walk timing, Pearl detours, and a clean read on what to do when you only have one evening.</p>
-            </div>
-          </div>
-          <div class="sh-orient-stack">
-            <article class="sh-orient-card">
-              <img src="assets/riverside_dining_under_warm_lights.png" alt="San Antonio dining near the river" width="640" height="400" decoding="async" loading="lazy" />
-              <div class="sh-orient-card-body">
-                <h3>Food &amp; districts</h3>
-                <p>Strong dinner picks, Willie Approved rooms, and follow-up nights by neighborhood.</p>
-              </div>
-            </article>
-            <article class="sh-orient-card">
-              <img src="assets/sunset_dining_at_a_luxury_resort.png" alt="Resort dining and Hill Country hospitality" width="640" height="400" decoding="async" loading="lazy" />
-              <div class="sh-orient-card-body">
-                <h3>Resort area timing</h3>
-                <p>When distance and traffic matter, start with zone-matched picks before you chase downtown.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-turquoise-wash" aria-labelledby="first-moves-heading">
-      <div class="sh-section-head">
-        <p class="eyebrow">Easy first moves</p>
-        <h2 id="first-moves-heading">Five moves that make every San Antonio trip easier</h2>
-        <p class="section-text">Local-style guidance so you spend less time scrolling and more time in the right room.</p>
-      </div>
-      <div class="sh-moves-wrap">
-        <ul class="sh-moves-list">
-          <li>
-            <span class="sh-moves-icon" aria-hidden="true">1</span>
-            <div>
-              <strong>Match trip type or hotel zone first</strong>
-              <p>Use the seven path cards above, or jump straight to downtown, food, family, or resorts if you already know your constraint.</p>
-            </div>
-          </li>
-          <li>
-            <span class="sh-moves-icon" aria-hidden="true">2</span>
-            <div>
-              <strong>When dinner is the priority, open the food guide</strong>
-              <p>The <a href="where-to-eat.html">Where To Eat</a> page is built for strong first stops, districts, and group-safe picks.</p>
-            </div>
-          </li>
-          <li>
-            <span class="sh-moves-icon" aria-hidden="true">3</span>
-            <div>
-              <strong>One night near the River Walk? Use the downtown guide</strong>
-              <p>The <a href="downtown.html">Downtown</a> page is the tightest plan for walkable timing and convention-adjacent evenings.</p>
-            </div>
-          </li>
-          <li>
-            <span class="sh-moves-icon" aria-hidden="true">4</span>
-            <div>
-              <strong>Resort or La Cantera zone? Distance matters</strong>
-              <p>Open <a href="resort-food.html">Resort Guides</a> before you burn an hour in traffic for a meal you could nail closer to the property.</p>
-            </div>
-          </li>
-          <li>
-            <span class="sh-moves-icon" aria-hidden="true">5</span>
-            <div>
-              <strong>When timing, party size, or vibe is uncertain, ask</strong>
-              <p><a href="#live-concierge">Ask A Local</a> with your hotel, crew, and window &mdash; get a pointed move instead of guessing.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section band section-navy-routes" id="starter-routes" aria-labelledby="starter-routes-heading">
-      <div class="routes-band-inner">
-        <header class="sh-section-head">
-          <p class="eyebrow eyebrow-light">Tonight&rsquo;s playbook</p>
-          <h2 id="starter-routes-heading">Featured starter routes</h2>
-          <p class="section-text section-text-light">Four common plans visitors ask for. Tap through when one matches your night.</p>
-        </header>
-        <div class="route-card-grid" role="list">
-          <a href="driver-concierge.html#route-operator" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/elegant_evening_arrival_at_a_luxury_hotel.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Route 01</span>
-              <h3>Airport arrival</h3>
-              <p>Airport &rarr; first meal &rarr; quick city feel &rarr; easy next step.</p>
-              <span class="image-route-card__cta">Get Route Help</span>
-            </span>
-          </a>
-          <a href="downtown.html" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/golden_hour_along_the_riverwalk.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Route 02</span>
-              <h3>Convention evening</h3>
-              <p>Hotel area &rarr; polished dinner &rarr; drinks &rarr; easy return.</p>
-              <span class="image-route-card__cta">Open downtown guide</span>
-            </span>
-          </a>
-          <a href="summer-family.html" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/family_fun_at_sunset_in_the_park.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Route 03</span>
-              <h3>Family day plan</h3>
-              <p>Day activity &rarr; food &rarr; low-stress evening move.</p>
-              <span class="image-route-card__cta">Open family guide</span>
-            </span>
-          </a>
-          <a href="where-to-eat.html" class="image-route-card" role="listitem">
-            <img class="image-route-card__media" src="assets/riverside_dining_under_warm_lights.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
-            <span class="image-route-card__shade" aria-hidden="true"></span>
-            <span class="image-route-card__body">
-              <span class="eyebrow">Route 04</span>
-              <h3>Food-first visitor</h3>
-              <p>Pick your move &rarr; best first stop &rarr; district follow-up.</p>
-              <span class="image-route-card__cta">Open Food Picks</span>
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section sh-final-section">
+    <section class="section sh-final-section" aria-labelledby="sh-final-heading">
       <div class="sh-final-cta">
-        <p class="eyebrow sh-final-eyebrow">Still deciding?</p>
-        <h2>Jump back to the route grid when you know your day type.</h2>
-        <p class="section-text">Food, downtown, family, resort, and transport pages are built to read fast. When you want a custom pass through your real timing and crew, use Ask A Local next.</p>
+        <h2 id="sh-final-heading">Still not sure where to start?</h2>
+        <p class="sh-body-copy">Tell us your hotel, timing, group, and what you&rsquo;re trying to do. Ask A Local will point you toward the best next move.</p>
         <div class="sh-final-actions">
-          <a href="#choose-path" class="btn btn-primary">Find my route</a>
-          <a href="/ask/" class="btn btn-secondary-hero">Ask A Local</a>
+          <a href="/ask/" class="btn btn-primary">Ask A Local</a>
+          <a href="where-to-eat.html" class="btn btn-secondary-hero">Start with food</a>
         </div>
-        <p class="sh-final-trust">Real local picks. Built for visitors who want a better plan.</p>
-        <div data-wtgsa-social-inline></div>
       </div>
     </section>
   </main>
@@ -1222,6 +1023,5 @@
     <p class="footer-note">Built by <strong>The AI Plug</strong> &mdash; helping businesses gain a practical AI advantage through marketing, content, operators, automation, and ongoing AI adaptation.</p>
   </footer>
   <script src="script.js"></script>
-  <script src="ask-concierge.js" defer></script>
 </body>
 </html>
