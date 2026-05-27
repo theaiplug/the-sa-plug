@@ -13268,19 +13268,49 @@ body.page-ask main {
   word-spacing: normal;
 }
 
-.page-ask .ask-product-hero.hero-fiesta-dark.secondary-hero {
-  min-height: clamp(300px, 52vh, 440px);
-  background-image:
-    linear-gradient(118deg, rgba(5, 10, 24, 0.42) 0%, rgba(5, 10, 24, 0.22) 48%, rgba(5, 10, 24, 0.08) 100%),
-    url("assets/ask-downtown-night-plan.png");
+.page-ask .ask-product-hero {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #0a1a2e;
 }
 
-.page-ask .ask-product-hero .hero-fiesta-inner.hero-inner-band {
-  padding-bottom: clamp(12px, 2vw, 20px);
+.page-ask .ask-product-hero-visual {
+  margin: 0;
+  line-height: 0;
+  background: #0a1a2e;
+}
+
+.page-ask .ask-product-hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(52vh, 520px);
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.page-ask .ask-product-hero-copy {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background:
+    radial-gradient(ellipse 80% 65% at 90% 18%, rgba(255, 106, 77, 0.32), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 12% 72%, rgba(20, 184, 166, 0.18), transparent 50%),
+    linear-gradient(138deg, #04060d 0%, #0b1730 36%, #16122a 68%, #071a32 100%);
+}
+
+.page-ask .ask-product-hero-copy::after {
+  display: none;
+}
+
+.page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band {
+  padding: clamp(20px, 3.5vw, 32px) clamp(14px, 3vw, 28px) clamp(22px, 3.5vw, 30px);
 }
 
 .page-ask .ask-product-hero-shell {
-  max-width: 36rem;
+  max-width: 40rem;
 }
 
 .page-ask .ask-product-hero-eyebrow {
@@ -13307,7 +13337,7 @@ body.page-ask main {
 .page-ask .ask-product-hero-support {
   font-size: clamp(0.92rem, 0.22vw + 0.86rem, 1.02rem);
   line-height: 1.55;
-  max-width: 34rem;
+  max-width: none;
 }
 
 .page-ask .ask-product-hero-actions {
@@ -13319,11 +13349,16 @@ body.page-ask main {
   padding-bottom: clamp(28px, 4vw, 40px);
 }
 
+.page-ask .ask-product-tool-section.section-navy-routes {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .page-ask .ask-product-inner {
   width: 100%;
   max-width: min(720px, 100%);
   margin-inline: auto;
-  padding-inline: clamp(16px, 4vw, 28px);
+  padding-inline: clamp(14px, 2.5vw, 28px);
   display: flex;
   flex-direction: column;
   gap: clamp(22px, 3.5vw, 32px);
@@ -13445,16 +13480,27 @@ body.page-ask main {
   padding-block: clamp(32px, 5vw, 48px);
 }
 
+.page-ask .ask-product-value.section-cream,
+.page-ask .ask-product-human.section-cream {
+  max-width: none;
+  margin-inline: 0;
+}
+
 .page-ask .ask-product-value-inner,
 .page-ask .ask-product-examples-inner,
 .page-ask .ask-product-human-inner {
   max-width: min(720px, 100%);
   margin-inline: auto;
-  padding-inline: clamp(16px, 4vw, 28px);
+  padding-inline: clamp(14px, 2.5vw, 28px);
+}
+
+.page-ask .ask-product-examples.section-navy-routes {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .page-ask .ask-product-section-head {
-  max-width: 36rem;
+  max-width: none;
   margin-bottom: clamp(18px, 2.5vw, 24px);
 }
 
@@ -13473,6 +13519,11 @@ body.page-ask main {
 .page-ask .ask-product-section-head .section-text {
   margin: 0;
   line-height: 1.52;
+  color: var(--slate);
+}
+
+.page-ask .ask-product-section-head--on-dark .section-text {
+  color: rgba(255, 248, 235, 0.82);
 }
 
 .page-ask .ask-product-value-list {
@@ -13568,12 +13619,21 @@ body.page-ask main {
   padding-block: clamp(28px, 4vw, 40px);
 }
 
+.page-ask .ask-product-human .ask-product-section-head h2 {
+  color: var(--navy);
+}
+
+.page-ask .ask-product-human-inner .section-text {
+  color: var(--slate);
+}
+
 .page-ask .ask-product-human-note {
   margin: 0 0 18px;
-  max-width: 36rem;
-  font-size: clamp(0.86rem, 0.18vw + 0.82rem, 0.94rem);
-  line-height: 1.5;
-  color: rgba(11, 29, 58, 0.72);
+  max-width: none;
+  font-size: clamp(0.9rem, 0.2vw + 0.86rem, 0.98rem);
+  line-height: 1.55;
+  font-weight: 600;
+  color: rgba(11, 29, 58, 0.88);
 }
 
 .page-ask .ask-product-human-actions {
@@ -13594,12 +13654,13 @@ body.page-ask main {
 }
 
 @media (min-width: 900px) {
-  .page-ask .ask-product-hero.hero-fiesta-dark.secondary-hero {
-    min-height: clamp(280px, 42vh, 380px);
+  .page-ask .ask-product-hero-visual img {
+    max-height: min(46vh, 480px);
+    object-position: center 38%;
   }
 
   .page-ask .ask-product-tool-section {
-    margin-top: clamp(-24px, -2vw, -12px);
+    margin-top: 0;
   }
 
   .page-ask .ask-product-inner {
@@ -13616,11 +13677,49 @@ body.page-ask main {
   }
 }
 
-@media (max-width: 640px) {
-  .page-ask .ask-product-hero.hero-fiesta-dark.secondary-hero {
-    min-height: clamp(280px, 68vh, 420px);
+@media (max-width: 768px) {
+  .page-ask .ask-product-hero-visual img {
+    max-height: none;
+    object-fit: contain;
+    object-position: center top;
   }
 
+  .page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band {
+    padding-inline: max(12px, env(safe-area-inset-left, 0px)) max(12px, env(safe-area-inset-right, 0px));
+  }
+
+  .page-ask .ask-product-tool-section.section-navy-routes,
+  .page-ask .ask-product-examples.section-navy-routes {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .page-ask .ask-product-value.section-cream,
+  .page-ask .ask-product-human.section-cream {
+    padding-left: max(12px, env(safe-area-inset-left, 0px));
+    padding-right: max(12px, env(safe-area-inset-right, 0px));
+  }
+
+  .page-ask .ask-product-inner,
+  .page-ask .ask-product-value-inner,
+  .page-ask .ask-product-examples-inner,
+  .page-ask .ask-product-human-inner {
+    max-width: none;
+    width: 100%;
+    padding-inline: 12px;
+    box-sizing: border-box;
+  }
+
+  .page-ask .ask-product-tool .live-concierge__glass-panel {
+    padding-inline: 12px;
+  }
+
+  .page-ask .ask-product-hero-shell {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
   .page-ask .ask-product-human-actions .btn {
     width: 100%;
     justify-content: center;
