@@ -22354,7 +22354,7 @@ body.owner-dash-detail-open {
 
 .page-home .footer.dark-showcase {
   padding-top: clamp(28px, 4.5vw, var(--biz-space-lg));
-  padding-bottom: max(clamp(28px, 4vw, var(--biz-space-lg)), calc(12px + env(safe-area-inset-bottom, 0px)));
+  padding-bottom: max(clamp(40px, 5.5vw, 56px), calc(24px + env(safe-area-inset-bottom, 0px)));
   gap: clamp(14px, 2.2vw, var(--biz-space-md));
   border-top-color: rgba(255, 246, 230, 0.24);
 }
@@ -23474,9 +23474,15 @@ body.owner-dash-detail-open {
   width: 100%;
 }
 
-/* —— Image hero card (text sits on image; no inner panel) —— */
+.page-home .home-ai-plug__hero-card + .home-ai-plug__features {
+  margin-top: 0;
+}
+
+/* —— Image hero card: headline on image, body copy in panel below —— */
 .page-home .home-ai-plug__hero-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   overflow: hidden;
   border-radius: clamp(18px, 2.6vw, 26px);
@@ -23583,7 +23589,16 @@ body.owner-dash-detail-open {
   word-break: normal;
 }
 
-/* —— Supporting copy —— */
+/* —— Body copy panel (inside hero card, below image) —— */
+.page-home .home-ai-plug__hero-body {
+  flex-shrink: 0;
+  padding: clamp(16px, 2.6vw, 24px) clamp(16px, 2.8vw, 28px) clamp(18px, 2.8vw, 26px);
+  border-top: 1px solid rgba(255, 246, 230, 0.12);
+  background:
+    radial-gradient(ellipse 80% 60% at 0% 0%, rgba(20, 184, 166, 0.1), transparent 55%),
+    linear-gradient(180deg, #0a1528 0%, #071022 100%);
+}
+
 .page-home .home-ai-plug__copy {
   display: grid;
   gap: var(--home-ai-plug-gap-sm);
