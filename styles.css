@@ -13273,6 +13273,7 @@ body.page-ask main {
   --ask-shell-max: 45rem;
   --ask-shell-pad: clamp(20px, 5vw, 32px);
   --ask-card-pad-block: clamp(18px, 4.2vw, 24px);
+  --ask-section-pad: clamp(40px, 6vw, 56px);
   /* Match prompt-chip padding-inline — body copy aligns to label text, not pill border */
   --ask-text-inset: 14px;
   letter-spacing: normal;
@@ -13314,7 +13315,38 @@ body.page-ask main {
 .page-ask .ask-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 70%, rgba(2, 6, 14, 0.2) 100%);
+  background: linear-gradient(
+    180deg,
+    transparent 52%,
+    rgba(9, 26, 52, 0.55) 78%,
+    rgba(7, 16, 32, 0.92) 100%
+  );
+}
+
+.page-ask .ask-product-hero .hero-title {
+  font-size: clamp(1.85rem, 4.2vw + 0.5rem, 2.65rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 32px rgba(2, 6, 14, 0.45);
+}
+
+.page-ask .ask-product-hero .hero-content .eyebrow-hero {
+  margin-bottom: clamp(10px, 1.8vw, 14px);
+  color: rgba(242, 178, 26, 0.95);
+  text-shadow: 0 1px 12px rgba(2, 6, 14, 0.35);
+}
+
+.page-ask .ask-product-hero-actions .btn-primary {
+  min-height: 50px;
+  box-shadow:
+    0 18px 40px rgba(255, 139, 31, 0.34),
+    0 3px 0 rgba(255, 255, 255, 0.45) inset;
+}
+
+.page-ask .ask-product-hero-actions .btn-secondary-hero {
+  min-height: 50px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .page-ask .ask-hero--cinematic .hero-fiesta-inner.hero-inner-band.ask-product-shell {
@@ -13374,8 +13406,17 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-tool-section {
-  padding-top: clamp(12px, 2vw, 18px);
-  padding-bottom: clamp(32px, 4.5vw, 44px);
+  position: relative;
+  padding-top: clamp(8px, 1.5vw, 14px);
+  padding-bottom: clamp(36px, 5vw, 52px);
+}
+
+.page-ask .ask-product-tool-section.section-navy-routes {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(20, 184, 166, 0.22), transparent 34%),
+    radial-gradient(circle at 92% 88%, rgba(255, 92, 168, 0.16), transparent 36%),
+    radial-gradient(circle at 78% 14%, rgba(255, 139, 31, 0.14), transparent 32%),
+    linear-gradient(160deg, #091a34 0%, #0b1d3a 44%, #10274a 100%);
 }
 
 .page-ask .ask-product-tool-section.section-navy-routes,
@@ -13763,20 +13804,28 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-prompts {
-  padding-top: clamp(4px, 1vw, 8px);
-  border-top: 1px solid rgba(255, 246, 230, 0.1);
+  padding-top: clamp(22px, 3.2vw, 30px);
+  border-top: 1px solid rgba(255, 246, 230, 0.12);
 }
 
 .page-ask .ask-product-prompts-head {
-  margin-bottom: clamp(14px, 2vw, 18px);
+  margin-bottom: clamp(16px, 2.4vw, 22px);
+}
+
+.page-ask .ask-product-prompts-eyebrow {
+  margin-bottom: 8px;
+  font-size: clamp(0.64rem, 0.1vw + 0.6rem, 0.7rem);
+  letter-spacing: 0.16em;
+  color: rgba(20, 184, 166, 0.92);
 }
 
 .page-ask .ask-product-prompts-title {
-  margin: 0 0 6px;
-  font-size: clamp(1.05rem, 0.35vw + 0.98rem, 1.2rem);
+  margin: 0 0 8px;
+  font-size: clamp(1.15rem, 0.45vw + 1rem, 1.35rem);
   font-weight: 800;
-  color: rgba(255, 248, 235, 0.96);
-  letter-spacing: -0.02em;
+  color: rgba(255, 248, 235, 0.98);
+  letter-spacing: -0.025em;
+  line-height: 1.18;
 }
 
 .page-ask .ask-product-prompts-lead {
@@ -13836,8 +13885,13 @@ body.page-ask main {
     0 10px 22px rgba(2, 6, 14, 0.28);
 }
 
-.page-ask .ask-product-value {
-  padding-block: clamp(32px, 5vw, 48px);
+.page-ask .ask-product-value.section-cream {
+  padding-block: var(--ask-section-pad);
+  background:
+    radial-gradient(circle at 10% 18%, rgba(242, 178, 26, 0.14), transparent 42%),
+    radial-gradient(circle at 90% 82%, rgba(20, 184, 166, 0.12), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 92, 168, 0.06), transparent 55%),
+    linear-gradient(180deg, var(--cream) 0%, var(--cream-peach) 100%);
 }
 
 .page-ask .ask-product-value.section,
@@ -13857,16 +13911,31 @@ body.page-ask main {
   margin-bottom: clamp(18px, 2.5vw, 24px);
 }
 
+.page-ask .ask-product-eyebrow {
+  margin-bottom: 10px;
+  font-size: clamp(0.66rem, 0.1vw + 0.62rem, 0.72rem);
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: var(--coral);
+}
+
 .page-ask .ask-product-section-head h2 {
-  margin: 0 0 10px;
-  font-size: clamp(1.4rem, 2.8vw + 0.4rem, 1.85rem);
-  line-height: 1.14;
-  letter-spacing: -0.025em;
+  margin: 0 0 12px;
+  font-size: clamp(1.45rem, 2.8vw + 0.45rem, 1.95rem);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
   color: var(--navy);
+}
+
+.page-ask .ask-product-section-head--on-dark .eyebrow.eyebrow-on-dark {
+  margin-bottom: 10px;
+  letter-spacing: 0.16em;
+  color: rgba(20, 184, 166, 0.92);
 }
 
 .page-ask .ask-product-section-head--on-dark h2 {
   color: rgba(255, 248, 235, 0.98);
+  text-shadow: 0 1px 20px rgba(2, 6, 14, 0.25);
 }
 
 .page-ask .ask-product-section-head .section-text {
@@ -13884,7 +13953,7 @@ body.page-ask main {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 10px;
+  gap: clamp(10px, 1.8vw, 14px);
   grid-template-columns: 1fr;
 }
 
@@ -13896,23 +13965,61 @@ body.page-ask main {
 
 .page-ask .ask-product-value-list li {
   display: block;
-  padding: 12px var(--ask-text-inset) 12px calc(var(--ask-text-inset) - 3px);
+  padding: 14px var(--ask-text-inset) 14px calc(var(--ask-text-inset) - 3px);
   border-left: 3px solid var(--gold);
   border-radius: calc(var(--radius) + 2px);
-  font-size: clamp(0.9rem, 0.18vw + 0.86rem, 0.96rem);
-  font-weight: 650;
-  line-height: 1.4;
+  font-size: clamp(0.9rem, 0.18vw + 0.86rem, 0.97rem);
+  font-weight: 700;
+  line-height: 1.42;
   color: var(--navy);
-  background: rgba(255, 255, 255, 0.72);
-  border-top: 1px solid rgba(11, 29, 58, 0.08);
-  border-right: 1px solid rgba(11, 29, 58, 0.08);
-  border-bottom: 1px solid rgba(11, 29, 58, 0.08);
-  box-shadow: 0 8px 20px rgba(2, 6, 14, 0.05);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 248, 238, 0.86) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.85);
+  border-right: 1px solid rgba(11, 29, 58, 0.07);
+  border-bottom: 1px solid rgba(11, 29, 58, 0.09);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 12px 28px rgba(11, 29, 58, 0.08);
   box-sizing: border-box;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
-.page-ask .ask-product-examples {
-  padding-block: clamp(32px, 5vw, 48px);
+@media (hover: hover) {
+  .page-ask .ask-product-value-list li:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 18px 36px rgba(11, 29, 58, 0.12);
+  }
+}
+
+.page-ask .ask-product-examples.section-navy-routes {
+  position: relative;
+  padding-block: var(--ask-section-pad);
+  background:
+    radial-gradient(circle at 8% 92%, rgba(242, 178, 26, 0.16), transparent 30%),
+    radial-gradient(circle at 12% 12%, rgba(20, 184, 166, 0.2), transparent 32%),
+    radial-gradient(circle at 90% 86%, rgba(255, 92, 168, 0.18), transparent 36%),
+    radial-gradient(circle at 80% 12%, rgba(255, 139, 31, 0.18), transparent 34%),
+    linear-gradient(160deg, #091a34 0%, #0b1d3a 44%, #10274a 100%);
+}
+
+.page-ask .ask-product-examples.section-navy-routes::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--turquoise) 0%,
+    var(--gold) 50%,
+    var(--coral) 100%
+  );
+  opacity: 0.85;
+  pointer-events: none;
 }
 
 .page-ask .ask-product-example-list {
@@ -13924,11 +14031,30 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-example-card {
-  padding: clamp(16px, 2.2vw, 20px) var(--ask-text-inset);
-  border-radius: calc(var(--radius) + 4px);
-  border: 1px solid rgba(255, 246, 230, 0.14);
-  background: rgba(5, 12, 26, 0.55);
-  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.05);
+  height: 100%;
+  padding: clamp(18px, 2.4vw, 22px) var(--ask-text-inset);
+  border-radius: calc(var(--radius) + 6px);
+  border: 1px solid rgba(255, 246, 230, 0.18);
+  background:
+    radial-gradient(ellipse 100% 80% at 0% 0%, rgba(20, 184, 166, 0.1), transparent 55%),
+    linear-gradient(168deg, rgba(10, 22, 42, 0.96) 0%, rgba(5, 12, 26, 0.92) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.08) inset,
+    0 16px 40px rgba(2, 6, 14, 0.32);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+@media (hover: hover) {
+  .page-ask .ask-product-example-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(242, 178, 26, 0.28);
+    box-shadow:
+      0 1px 0 rgba(255, 246, 230, 0.1) inset,
+      0 22px 48px rgba(2, 6, 14, 0.4);
+  }
 }
 
 .page-ask .ask-product-example-q,
@@ -13960,8 +14086,12 @@ body.page-ask main {
   color: rgba(242, 178, 26, 0.88);
 }
 
-.page-ask .ask-product-human {
-  padding-block: clamp(28px, 4vw, 40px);
+.page-ask .ask-product-human.section-cream {
+  padding-block: var(--ask-section-pad);
+  background:
+    radial-gradient(circle at 88% 20%, rgba(255, 92, 168, 0.1), transparent 38%),
+    radial-gradient(circle at 12% 88%, rgba(20, 184, 166, 0.11), transparent 40%),
+    linear-gradient(180deg, var(--cream) 0%, var(--cream-turq) 100%);
 }
 
 .page-ask .ask-product-human .ask-product-section-head h2 {
@@ -13984,13 +14114,34 @@ body.page-ask main {
 .page-ask .ask-product-human-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 12px;
+  gap: 12px 14px;
   align-items: center;
   padding-right: var(--ask-text-inset);
 }
 
+.page-ask .ask-product-human-actions .btn {
+  min-height: 48px;
+  font-weight: 800;
+}
+
+.page-ask .ask-product-human-actions .btn-primary {
+  box-shadow:
+    0 14px 32px rgba(255, 139, 31, 0.28),
+    0 3px 0 rgba(255, 255, 255, 0.35) inset;
+}
+
+.page-ask .ask-product-human-actions .btn-secondary {
+  border-color: rgba(11, 29, 58, 0.18);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 8px 20px rgba(11, 29, 58, 0.08);
+}
+
 .page-ask .ask-product-human-back {
-  min-height: 44px;
+  min-height: 48px;
+}
+
+.page-ask .footer.dark-showcase {
+  border-top: 1px solid rgba(255, 246, 230, 0.12);
 }
 
 .page-ask .footer-note--compact {
