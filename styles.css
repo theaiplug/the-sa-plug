@@ -22354,7 +22354,7 @@ body.owner-dash-detail-open {
 
 .page-home .footer.dark-showcase {
   padding-top: clamp(28px, 4.5vw, var(--biz-space-lg));
-  padding-bottom: max(clamp(28px, 4vw, var(--biz-space-lg)), calc(12px + env(safe-area-inset-bottom, 0px)));
+  padding-bottom: max(clamp(40px, 5.5vw, 56px), calc(24px + env(safe-area-inset-bottom, 0px)));
   gap: clamp(14px, 2.2vw, var(--biz-space-md));
   border-top-color: rgba(255, 246, 230, 0.24);
 }
@@ -22381,13 +22381,16 @@ body.owner-dash-detail-open {
 
 .page-home .footer.dark-showcase .footer-note {
   margin-top: clamp(10px, 1.8vw, 14px);
+  margin-bottom: 0;
   padding-top: clamp(12px, 2vw, 14px);
+  padding-bottom: clamp(4px, 0.8vw, 8px);
   border-top: 1px solid rgba(255, 246, 230, 0.12);
 }
 
 @media (max-width: 899px) {
   .page-home .footer.dark-showcase {
     padding-top: clamp(40px, 6.5vw, 52px);
+    padding-bottom: max(clamp(44px, 8vw, 64px), calc(28px + env(safe-area-inset-bottom, 0px)));
     gap: clamp(16px, 2.8vw, 20px);
   }
 
@@ -23471,9 +23474,15 @@ body.owner-dash-detail-open {
   width: 100%;
 }
 
-/* —— Image hero card (text sits on image; no inner panel) —— */
+.page-home .home-ai-plug__hero-card + .home-ai-plug__features {
+  margin-top: 0;
+}
+
+/* —— Image hero card: headline on image, body copy in panel below —— */
 .page-home .home-ai-plug__hero-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   overflow: hidden;
   border-radius: clamp(18px, 2.6vw, 26px);
@@ -23580,7 +23589,36 @@ body.owner-dash-detail-open {
   word-break: normal;
 }
 
-/* —— Supporting copy —— */
+/* —— Body copy panel (inside hero card, below image) —— */
+.page-home .home-ai-plug__hero-body {
+  position: relative;
+  flex-shrink: 0;
+  padding: clamp(20px, 3vw, 30px) clamp(16px, 2.8vw, 28px) clamp(20px, 3vw, 28px);
+  background:
+    radial-gradient(ellipse 90% 70% at 100% 0%, rgba(242, 178, 26, 0.1), transparent 52%),
+    radial-gradient(ellipse 75% 65% at 0% 100%, rgba(20, 184, 166, 0.12), transparent 50%),
+    linear-gradient(168deg, #152a48 0%, #101f38 52%, #0c172c 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 230, 0.18),
+    inset 0 -12px 28px rgba(0, 0, 0, 0.14);
+}
+
+.page-home .home-ai-plug__hero-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: clamp(16px, 2.8vw, 28px);
+  right: clamp(16px, 2.8vw, 28px);
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 184, 166, 0.95) 0%,
+    rgba(242, 178, 26, 0.95) 48%,
+    rgba(255, 106, 77, 0.88) 100%
+  );
+}
+
 .page-home .home-ai-plug__copy {
   display: grid;
   gap: var(--home-ai-plug-gap-sm);
@@ -23604,8 +23642,16 @@ body.owner-dash-detail-open {
   color: rgba(255, 246, 230, 0.86);
 }
 
+.page-home .home-ai-plug__hero-body .home-ai-plug__paragraph {
+  color: rgba(255, 248, 235, 0.95);
+}
+
 .page-home .home-ai-plug__copy .home-ai-plug__paragraph + .home-ai-plug__paragraph {
   color: rgba(255, 246, 230, 0.78);
+}
+
+.page-home .home-ai-plug__hero-body .home-ai-plug__copy .home-ai-plug__paragraph + .home-ai-plug__paragraph {
+  color: rgba(255, 246, 230, 0.86);
 }
 
 /* —— Capability feature cards —— */
@@ -23899,5 +23945,288 @@ body.owner-dash-detail-open {
 @media (max-width: 419px) {
   .page-home .home-ai-plug__actions .home-ai-plug__btn {
     min-height: 44px;
+  }
+}
+
+/* ==============================================================
+   Homepage visitor-first rework — compact directory, launcher, proof
+   ============================================================== */
+
+.page-home .home-hero--cinematic .hero-title,
+.page-home .home-hero--cinematic .hero-text-on-dark,
+.page-home .home-hero--cinematic .hero-proof-item {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left;
+}
+
+/* Situation cards — tighter mobile heights, less copy stack */
+.page-home .home-lane-card--featured .home-lane-card-media-wrap {
+  min-height: clamp(220px, 44vw, 360px);
+}
+
+.page-home .home-lane-card--medium .home-lane-card-media-wrap {
+  min-height: clamp(200px, 48vw, 280px);
+}
+
+.page-home .home-lane-card--compact .home-lane-card-media-wrap {
+  min-height: clamp(200px, 42vw, 300px);
+}
+
+@media (min-width: 900px) {
+  .page-home .home-lane-card--featured .home-lane-card-media-wrap {
+    min-height: clamp(300px, 24vw, 400px);
+  }
+
+  .page-home .home-lane-card--medium .home-lane-card-media-wrap {
+    min-height: clamp(260px, 18vw, 320px);
+  }
+
+  .page-home .home-lane-card--compact .home-lane-card-media-wrap {
+    min-height: clamp(240px, 16vw, 300px);
+  }
+}
+
+.page-home .home-lane-copy {
+  -webkit-line-clamp: 2;
+}
+
+/* Guide directory — compact tile list (distinct from situation posters) */
+.page-home .home-guide-directory--tiles {
+  padding-top: clamp(22px, 2.8vw, 34px);
+  padding-bottom: clamp(24px, 3vw, 38px);
+  border-block: 1px solid rgba(255, 246, 230, 0.1);
+  background:
+    radial-gradient(ellipse 80% 50% at 8% 0%, rgba(20, 184, 166, 0.12), transparent 50%),
+    linear-gradient(180deg, #060d18 0%, #0b1628 100%);
+}
+
+.page-home .home-guide-directory--tiles .home-directory-head {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1vw, 10px);
+  max-width: 40rem;
+  margin-bottom: clamp(14px, 2vw, 20px);
+}
+
+.page-home .home-guide-directory--tiles .home-directory-head .eyebrow {
+  margin-bottom: 4px;
+  letter-spacing: 0.12em;
+}
+
+.page-home .home-guide-directory--tiles .explore-title {
+  margin: 0;
+  font-size: clamp(1.35rem, 2vw + 0.75rem, 1.85rem);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+  color: var(--cream);
+}
+
+.page-home .home-guide-directory--tiles .home-directory-lede {
+  margin: 0;
+  font-size: clamp(0.88rem, 0.2vw + 0.82rem, 0.96rem);
+  line-height: 1.5;
+  color: rgba(255, 246, 230, 0.82);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left;
+}
+
+.page-home .home-guide-tile-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(8px, 1.2vw, 10px);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .page-home .home-guide-tile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-home .home-guide-tile-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.page-home .home-guide-tile-grid > li {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.page-home .home-guide-tile {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.4vw, 14px);
+  min-height: clamp(72px, 12vw, 88px);
+  padding: clamp(8px, 1.2vw, 10px) clamp(10px, 1.4vw, 12px);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--cream);
+  background: rgba(255, 246, 230, 0.06);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.page-home .home-guide-tile:hover {
+  transform: translateY(-2px);
+  border-color: rgba(242, 178, 26, 0.38);
+  background: rgba(255, 246, 230, 0.1);
+}
+
+.page-home .home-guide-tile:focus-visible {
+  outline: 3px solid rgba(242, 178, 26, 0.9);
+  outline-offset: 2px;
+}
+
+.page-home .home-guide-tile--hub {
+  border-color: rgba(255, 139, 31, 0.32);
+  background: rgba(255, 139, 31, 0.08);
+}
+
+.page-home .home-guide-tile-thumb-wrap {
+  flex-shrink: 0;
+  width: clamp(64px, 14vw, 76px);
+  height: clamp(52px, 11vw, 60px);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0a1428;
+}
+
+.page-home .home-guide-tile-thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-home .home-guide-tile-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+}
+
+.page-home .home-guide-tile-label {
+  font-size: clamp(0.92rem, 0.2vw + 0.86rem, 1rem);
+  font-weight: 820;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #fff8eb;
+}
+
+.page-home .home-guide-tile-desc {
+  font-size: clamp(0.78rem, 0.12vw + 0.74rem, 0.84rem);
+  line-height: 1.42;
+  letter-spacing: normal;
+  word-spacing: normal;
+  color: rgba(255, 246, 230, 0.78);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.page-home .home-guide-tile-arrow {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(242, 178, 26, 0.9);
+  line-height: 1;
+}
+
+/* Ask launcher — compressed after bridge */
+.page-home .home-ask-launcher-compact.section-ask-premium {
+  padding-top: clamp(28px, 4vw, 40px);
+  padding-bottom: clamp(28px, 4vw, 40px);
+}
+
+.page-home .home-ask-launcher-compact .ask-concierge {
+  gap: clamp(14px, 2vw, 20px);
+}
+
+.page-home .home-ask-launcher-compact .home-ask-launcher-intro {
+  gap: clamp(8px, 1.2vw, 12px);
+}
+
+.page-home .home-ask-launcher-compact .ask-headline {
+  font-size: clamp(1.35rem, 2.2vw + 0.65rem, 1.85rem);
+}
+
+.page-home .home-ask-launcher-compact .section-text-ask {
+  font-size: clamp(0.9rem, 0.2vw + 0.84rem, 0.98rem);
+  line-height: 1.52;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+.page-home .home-ask-launcher-compact .ask-intake-card {
+  padding: clamp(16px, 2.4vw, 20px);
+}
+
+.page-home .home-ask-launcher-compact .ask-composer-teaser {
+  margin-bottom: 12px;
+}
+
+.page-home .prompt-chip-grid--compact {
+  gap: 8px;
+}
+
+.page-home .home-ask-launcher-compact .prompt-chip {
+  font-size: clamp(0.78rem, 0.12vw + 0.74rem, 0.84rem);
+  padding: 8px 12px;
+}
+
+.page-home .ask-sample-preview--compact {
+  margin-top: 12px;
+  padding: 12px 14px;
+}
+
+.page-home .ask-sample-preview--compact .ask-sample-lede {
+  margin: 0;
+  font-size: clamp(0.82rem, 0.1vw + 0.78rem, 0.88rem);
+  line-height: 1.48;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left;
+}
+
+.page-home .ask-sample-preview--compact .ask-sample-list {
+  display: none;
+}
+
+/* Transport — tighter homepage block */
+.page-home .transport-section.transport-section--story {
+  padding-top: clamp(22px, 3vw, 32px);
+  padding-bottom: clamp(20px, 2.8vw, 28px);
+}
+
+.page-home .transport-story-heading {
+  font-size: clamp(1.35rem, 1.8vw + 0.75rem, 1.95rem);
+}
+
+.page-home .transport-story-lede {
+  font-size: clamp(0.9rem, 0.2vw + 0.84rem, 0.98rem);
+  line-height: 1.52;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+@media (min-width: 960px) {
+  .page-home .transport-story-body {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 1fr);
+    gap: clamp(18px, 2.4vw, 28px);
+    padding: clamp(16px, 2.2vw, 22px);
   }
 }
