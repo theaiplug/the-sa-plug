@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=start-here-lighter-scrim" />
+  <link rel="stylesheet" href="styles.css?v=start-here-shell-align" />
   <style>
     /* Start Here — visitor routing hub (rebuilt) */
 
@@ -302,13 +302,16 @@
 
     .start-here-main .sh-lanes-hub .path-hub-head.sh-lanes-intro {
       margin-bottom: 0;
+      width: 100%;
+      max-width: none;
     }
 
     .start-here-main .sh-lanes-intro {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
       gap: clamp(12px, 1.8vw, 16px);
+      width: 100%;
       max-width: none;
       margin: 0;
     }
@@ -326,7 +329,7 @@
       font-weight: 860;
       color: var(--cream);
       text-wrap: balance;
-      max-width: 14ch;
+      max-width: 22ch;
     }
 
     .start-here-main .sh-lanes-intro__rule {
@@ -418,12 +421,35 @@
       overflow: hidden;
     }
 
-    /* How it works — mobile: plain list; desktop: cinematic rail */
+    .start-here-main .sh-hub-divider {
+      width: 100%;
+      margin: 0;
+      border: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 246, 230, 0.14) 12%,
+        rgba(242, 178, 26, 0.45) 50%,
+        rgba(255, 246, 230, 0.14) 88%,
+        transparent 100%
+      );
+    }
+
+    /* How it works — mobile: refined card; desktop: cinematic rail */
     .start-here-main .sh-how-panel {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      padding: 0;
+      gap: clamp(16px, 2.4vw, 22px);
+      width: 100%;
+      padding: clamp(18px, 2.8vw, 24px);
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid rgba(255, 246, 230, 0.12);
+      background: linear-gradient(168deg, rgba(8, 18, 34, 0.72) 0%, rgba(5, 10, 24, 0.88) 100%);
+      box-shadow:
+        0 20px 44px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 246, 230, 0.05);
+      box-sizing: border-box;
     }
 
     .start-here-main .sh-how-simple {
@@ -468,8 +494,8 @@
     @media (min-width: 900px) {
       .start-here-main .sh-how-panel {
         position: relative;
-        gap: clamp(20px, 2.8vw, 28px);
-        padding: clamp(22px, 3.2vw, 34px) clamp(18px, 3vw, 30px);
+        gap: clamp(22px, 3vw, 30px);
+        padding: clamp(24px, 3.2vw, 34px);
         border-radius: calc(var(--radius) + 8px);
         border: 1px solid rgba(255, 246, 230, 0.14);
         overflow: hidden;
@@ -521,7 +547,8 @@
     .start-here-main .sh-how-panel__head {
       position: relative;
       z-index: 1;
-      max-width: 34rem;
+      width: 100%;
+      max-width: 40rem;
     }
 
     .start-here-main .sh-how-panel__accent {
@@ -539,12 +566,20 @@
 
     .start-here-main .sh-how-panel__head h2 {
       margin: 0 0 10px;
-      font-size: clamp(1.55rem, 3vw + 0.4rem, 2.35rem);
-      line-height: 1.06;
-      letter-spacing: -0.034em;
+      font-size: clamp(1.45rem, 2.8vw + 0.35rem, 2rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
       font-weight: 860;
       color: var(--cream);
       text-wrap: balance;
+      max-width: 18ch;
+    }
+
+    @media (min-width: 900px) {
+      .start-here-main .sh-how-panel__head h2 {
+        font-size: clamp(1.55rem, 3vw + 0.4rem, 2.35rem);
+        max-width: none;
+      }
     }
 
     .start-here-main .sh-how-panel__lede {
@@ -560,14 +595,14 @@
     }
 
     @media (max-width: 899px) {
-      .start-here-main .sh-how-panel__head .eyebrow,
-      .start-here-main .sh-how-panel__accent {
-        display: none;
+      .start-here-main .sh-how-panel__head h2 {
+        font-size: clamp(1.25rem, 4vw + 0.5rem, 1.45rem);
+        margin-bottom: 6px;
       }
 
-      .start-here-main .sh-how-panel__head h2 {
-        font-size: 1.15rem;
-        margin-bottom: 0;
+      .start-here-main .sh-how-panel__lede {
+        display: block;
+        margin-bottom: 4px;
       }
     }
 

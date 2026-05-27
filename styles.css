@@ -7889,10 +7889,19 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   border-block: 1px solid rgba(255, 246, 230, 0.08);
 }
 
+.page-start-here .path-hub-section.premium-atmosphere {
+  padding-inline: 0;
+}
+
 .path-hub-section .path-hub-head {
   max-width: 48rem;
   /* Space to the card grid lives on .routes-band-inner gap alone (avoid flex gap + head margin stacking). */
   margin-bottom: 0;
+}
+
+.page-start-here .path-hub-section .path-hub-head.sh-lanes-intro {
+  max-width: none;
+  width: 100%;
 }
 
 /* Start Here / choose-path: editorial rhythm headline → cards (scoped: path-hub appears only here). */
@@ -7967,6 +7976,9 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 .page-start-here {
   --premium-atmosphere-photo: url("assets/evening_riverwalk_with_vibrant_ambiance.png");
+  /* Shared column + gutter — hero, bands, and footer CTA align on one edge */
+  --sh-shell-max: 1300px;
+  --sh-shell-pad: clamp(16px, 4vw, 48px);
 }
 
 :is(.page-ask, .page-start-here) .premium-atmosphere,
@@ -8004,6 +8016,28 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 :is(.page-ask, .page-start-here) .ask-product-atmosphere .ask-product-section-head {
   position: relative;
   z-index: 1;
+}
+
+.page-start-here .premium-atmosphere > .routes-band-inner {
+  width: 100%;
+  max-width: var(--sh-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--sh-shell-pad);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .page-start-here {
+    --sh-shell-pad: max(16px, env(safe-area-inset-left, 0px));
+  }
+
+  .page-start-here .premium-atmosphere > .routes-band-inner {
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  .page-start-here .sh-final-section.premium-atmosphere {
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  }
 }
 
 /* Start Here — band positions (subtle scroll parallax on one photo) */
@@ -8073,13 +8107,15 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 .page-start-here .sh-final-section.premium-atmosphere {
   max-width: none;
   margin-inline: 0;
-  padding-inline: clamp(16px, 4.5vw, 74px);
+  padding-inline: var(--sh-shell-pad);
   background-position: center 48%;
 }
 
 .page-start-here .sh-final-section.premium-atmosphere .sh-final-cta {
   position: relative;
   z-index: 1;
+  max-width: var(--sh-shell-max);
+  margin-inline: auto;
 }
 
 :is(.page-ask, .page-start-here) .footer.premium-atmosphere-footer.dark-showcase,
@@ -8175,10 +8211,10 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: min(1320px, 100%);
+  max-width: var(--sh-shell-max);
   margin-inline: auto;
   box-sizing: border-box;
-  padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 48px);
+  padding: clamp(20px, 4vw, 44px) var(--sh-shell-pad);
 }
 
 .page-start-here .sh-cinematic-shell {
