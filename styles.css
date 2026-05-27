@@ -9405,7 +9405,13 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 .page-home .home-lanes-lead,
 .page-home .home-trust-lede,
-.page-home .home-directory-lede {
+.page-home .home-directory-lede,
+.page-home .section-text-explore.home-directory-lede,
+.page-home .home-hero-lede,
+.page-home .hero-proof-item,
+.page-home .home-lane-copy,
+.page-home .home-lane-best,
+.page-home .home-dir-copy {
   letter-spacing: normal;
   word-spacing: normal;
   text-align: left;
@@ -9433,20 +9439,54 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-home .home-lane-card--transport .home-lane-chip {
-  white-space: normal;
-  line-height: 1.28;
-  text-overflow: unset;
-  max-width: min(100%, 14rem);
+  white-space: nowrap;
+  line-height: 1.2;
+  max-width: 100%;
+}
+
+.page-home .home-lane-card--transport .home-lane-title {
+  font-size: clamp(1rem, 0.32vw + 0.94rem, 1.2rem);
+  -webkit-line-clamp: 2;
+}
+
+.page-home .home-lane-card--transport .home-lane-copy {
+  max-width: 100%;
+  -webkit-line-clamp: 2;
+  line-height: 1.45;
+}
+
+.page-home .home-lane-card--transport .home-lane-card-body {
+  gap: clamp(4px, 0.7vw, 7px);
 }
 
 .page-home .home-ask-bridge.home-ask-entry {
-  padding-top: clamp(8px, 1.2vw, 14px);
-  padding-bottom: clamp(16px, 2.2vw, 24px);
+  padding-top: clamp(6px, 1vw, 12px);
+  padding-bottom: clamp(12px, 1.8vw, 20px);
 }
 
-.page-home .home-ask-entry-inner {
+.page-home .home-ask-bridge .home-ask-entry-inner {
   border-left: 4px solid rgba(20, 184, 166, 0.82);
-  padding-left: clamp(14px, 2.2vw, 22px);
+  padding: clamp(12px, 1.6vw, 16px) clamp(14px, 2vw, 20px);
+  padding-left: clamp(14px, 2vw, 20px);
+}
+
+@media (min-width: 720px) {
+  .page-home .home-ask-bridge .home-ask-entry-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(16px, 2.4vw, 28px);
+  }
+
+  .page-home .home-ask-bridge .home-ask-entry-copy {
+    gap: 6px;
+    max-width: none;
+  }
+
+  .page-home .home-ask-bridge .home-ask-entry-cta {
+    margin-top: 0;
+    flex-shrink: 0;
+  }
 }
 
 .page-home .home-ask-entry-body {
@@ -9474,8 +9514,8 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 /* Guide directory — compact, distinct from situation cards */
 .page-home .home-guide-directory.section-explore-dark {
-  padding-top: clamp(32px, 4vw, 48px);
-  padding-bottom: clamp(36px, 4.5vw, 52px);
+  padding-top: clamp(26px, 3.2vw, 40px);
+  padding-bottom: clamp(28px, 3.5vw, 44px);
   border-block: 1px solid rgba(255, 246, 230, 0.1);
   background:
     radial-gradient(ellipse 90% 55% at 12% 0%, rgba(20, 184, 166, 0.14), transparent 52%),
@@ -9500,11 +9540,22 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-home .home-guide-directory .home-dir-card-media-wrap {
-  min-height: clamp(168px, 28vw, 220px);
+  min-height: clamp(148px, 24vw, 188px);
 }
 
 .page-home .home-guide-directory .home-dir-slot--hero .home-dir-card-media-wrap {
-  min-height: clamp(200px, 34vw, 280px);
+  min-height: clamp(148px, 24vw, 188px);
+}
+
+.page-home .home-guide-directory .home-dir-card {
+  box-shadow:
+    0 14px 32px rgba(2, 6, 14, 0.34),
+    0 0 0 1px rgba(20, 184, 166, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.page-home .home-guide-directory .home-dir-card:hover {
+  transform: translateY(-2px);
 }
 
 .page-home .home-guide-directory .home-dir-card-body {
@@ -9545,7 +9596,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 @media (min-width: 900px) {
   .page-home .home-guide-directory .home-directory-editorial {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-auto-rows: auto;
+    grid-auto-rows: 1fr;
     align-items: stretch;
   }
 
@@ -9557,56 +9608,28 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
     grid-row: auto;
   }
 
-  .page-home .home-guide-directory .home-dir-slot--hero {
-    grid-column: 1 / span 2;
-    grid-row: 1;
-  }
-
-  .page-home .home-guide-directory .home-dir-slot--wide {
-    grid-column: 3;
-    grid-row: 1;
-  }
-
-  .page-home .home-guide-directory .home-dir-slot--tall {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .page-home .home-guide-directory .home-dir-slot:nth-child(4) {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .page-home .home-guide-directory .home-dir-slot:nth-child(5) {
-    grid-column: 3;
-    grid-row: 2;
-  }
-
-  .page-home .home-guide-directory .home-dir-slot:nth-child(6) {
-    grid-column: 1 / -1;
-    grid-row: 3;
-  }
-
-  .page-home .home-guide-directory .home-dir-slot--tall .home-dir-card-media-wrap {
-    min-height: clamp(176px, 14vw, 228px);
-  }
-
-  .page-home .home-guide-directory .home-dir-card-media-wrap {
-    min-height: clamp(176px, 14vw, 228px);
-  }
-
+  .page-home .home-guide-directory .home-dir-slot--tall .home-dir-card-media-wrap,
+  .page-home .home-guide-directory .home-dir-card-media-wrap,
   .page-home .home-guide-directory .home-dir-slot--hero .home-dir-card-media-wrap {
-    min-height: clamp(200px, 16vw, 252px);
+    min-height: clamp(160px, 12vw, 200px);
   }
 }
 
 .page-home .home-trust-band.trust-strip--home-proof {
-  padding-top: clamp(24px, 3vw, 36px);
-  padding-bottom: clamp(24px, 3vw, 36px);
+  padding-top: clamp(18px, 2.4vw, 28px);
+  padding-bottom: clamp(18px, 2.4vw, 28px);
 }
 
 .page-home .home-trust-compact.trust-strip--home-proof {
-  padding: clamp(24px, 3.2vw, 40px) clamp(16px, 4.5vw, 70px);
+  padding: clamp(20px, 2.6vw, 32px) clamp(16px, 4.5vw, 70px);
+}
+
+.page-home .home-trust-compact.trust-strip--home-proof .trust-strip-inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.8vw, 18px);
+  max-width: min(920px, 100%);
+  margin-inline: auto;
 }
 
 .page-home .home-trust-lede {
@@ -9614,7 +9637,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-home .home-trust-compact-head.trust-strip-head {
-  margin-bottom: clamp(14px, 2vw, 20px);
+  margin-bottom: 0;
 }
 
 .page-home .home-trust-compact-head h2 {
@@ -13303,7 +13326,7 @@ body.page-ask main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: clamp(8px, 1.2vw, 12px);
+  gap: clamp(6px, 1vw, 10px);
   min-width: 0;
   max-width: 40rem;
 }
