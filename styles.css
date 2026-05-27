@@ -7963,9 +7963,6 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 .page-ask {
   --premium-atmosphere-photo: url("/assets/downtown-river-promenade-twilight.png");
-  /* Ask hero: keep the photo bright; only a light bottom fade for headline contrast */
-  --premium-hero-scrim-bottom: rgba(6, 14, 26, 0.14);
-  --premium-hero-scrim-bottom-end: rgba(6, 14, 26, 0.28);
 }
 
 .page-start-here {
@@ -13502,7 +13499,7 @@ body.page-ask main:not(.ask-product-main) {
   box-sizing: border-box;
 }
 
-/* Hero: photo-first — override .hero-fiesta-dark fiesta paints */
+/* Hero: clear photo — no scrim (text uses shadow only) */
 .page-ask .ask-hero--cinematic.hero-fiesta-dark.secondary-hero {
   isolation: isolate;
   display: flex;
@@ -13514,14 +13511,7 @@ body.page-ask main:not(.ask-product-main) {
   padding: 0;
   min-height: clamp(420px, 62vh, 640px);
   background-color: #0a1a2e;
-  background:
-    linear-gradient(
-      180deg,
-      transparent 75%,
-      rgba(6, 14, 26, 0.06) 90%,
-      rgba(6, 14, 26, 0.18) 100%
-    ),
-    url("/assets/downtown-river-promenade-twilight.png") center 42% / cover no-repeat;
+  background: url("/assets/downtown-river-promenade-twilight.png") center 42% / cover no-repeat;
 }
 
 .page-ask .ask-hero--cinematic.hero-fiesta-dark::before {
@@ -13529,15 +13519,7 @@ body.page-ask main:not(.ask-product-main) {
 }
 
 .page-ask .ask-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
-  pointer-events: none;
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    transparent 78%,
-    rgba(6, 14, 26, 0.06) 92%,
-    var(--premium-hero-scrim-bottom) 98%,
-    var(--premium-hero-scrim-bottom-end) 100%
-  );
+  display: none;
 }
 
 .page-ask .ask-product-hero .hero-title {
