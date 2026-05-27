@@ -11247,7 +11247,8 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   scroll-margin-top: calc(var(--header-h, 64px) + 20px);
 }
 
-body.page-ask main {
+/* Legacy Ask guide layout only — product page uses .ask-product-main (no extra main pad) */
+body.page-ask main:not(.ask-product-main) {
   padding-bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 56px));
 }
 
@@ -11743,7 +11744,7 @@ body.page-ask main {
   z-index: 1;
 }
 
-.page-ask #human-help.section-cream {
+.page-ask #human-help.section-cream:not(.ask-product-human) {
   padding-bottom: max(clamp(44px, 5vw, 56px), calc(env(safe-area-inset-bottom, 0px) + 36px));
 }
 
@@ -13278,6 +13279,7 @@ body.page-ask main {
   --ask-shell-pad: clamp(20px, 5vw, 32px);
   --ask-card-pad-block: clamp(18px, 4.2vw, 24px);
   --ask-section-pad: clamp(40px, 6vw, 56px);
+  padding-bottom: 0;
   /* Vertical rhythm — shared gaps for copy, controls, and section blocks */
   --ask-stack-xs: 8px;
   --ask-stack-sm: 12px;
@@ -14121,6 +14123,8 @@ body.page-ask main {
 
 .page-ask .ask-product-human.section-cream {
   padding-block: var(--ask-section-pad);
+  /* Last band before footer — single bottom pad (no stacked #human-help / main gutter) */
+  margin-bottom: 0;
   background:
     radial-gradient(circle at 88% 20%, rgba(255, 92, 168, 0.1), transparent 38%),
     radial-gradient(circle at 12% 88%, rgba(20, 184, 166, 0.11), transparent 40%),
