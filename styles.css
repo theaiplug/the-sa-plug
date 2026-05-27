@@ -4481,6 +4481,103 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   }
 }
 
+/* ----- Home: unified shell gutters (matches Start Here --sh-shell-*) ----- */
+.page-home {
+  --home-shell-max: 1300px;
+  --home-shell-pad: clamp(16px, 4vw, 48px);
+}
+
+@media (max-width: 768px) {
+  .page-home {
+    --home-shell-pad: max(16px, env(safe-area-inset-left, 0px));
+  }
+}
+
+.page-home .home-hero--cinematic .hero-fiesta-inner.hero-inner-band {
+  max-width: var(--home-shell-max);
+  padding: clamp(20px, 4vw, 44px) var(--home-shell-pad);
+}
+
+@media (max-width: 768px) {
+  .page-home .home-hero--cinematic .hero-fiesta-inner.hero-inner-band {
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  }
+}
+
+.page-home main > .section.section-cream,
+.page-home .home-guide-directory.band,
+.page-home .transport-section.transport-section--story,
+.page-home .home-ask-launcher-compact.section-ask-premium,
+.page-home .home-trust-band--light.trust-strip--home-proof,
+.page-home .home-ai-plug-section {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.page-home :is(.routes-band-inner, .transport-story-shell) {
+  width: 100%;
+  max-width: var(--home-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--home-shell-pad);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .page-home :is(.routes-band-inner, .transport-story-shell) {
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  }
+}
+
+.page-home .home-ask-launcher-compact .ask-concierge {
+  width: 100%;
+  max-width: var(--home-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--home-shell-pad);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .page-home .home-ask-launcher-compact .ask-concierge {
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  }
+}
+
+.page-home .home-trust-band--light .trust-strip-inner,
+.page-home .home-trust-compact.trust-strip--home-proof .trust-strip-inner {
+  width: 100%;
+  max-width: var(--home-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--home-shell-pad);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .page-home .home-trust-band--light .trust-strip-inner,
+  .page-home .home-trust-compact.trust-strip--home-proof .trust-strip-inner {
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  }
+}
+
+.page-home .home-ai-plug {
+  padding-inline: var(--home-shell-pad);
+}
+
+@media (max-width: 768px) {
+  .page-home .home-ai-plug {
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  }
+}
+
+.page-home .home-lanes-intro {
+  max-width: none;
+  width: 100%;
+}
+
+.page-home .home-guide-directory--tiles .home-directory-head {
+  max-width: none;
+  width: 100%;
+}
+
 /* ----- Home: cinematic hero (Business Services benchmark) ----- */
 .page-home .home-hero--cinematic.hero-fiesta-dark {
   isolation: isolate;
@@ -4516,10 +4613,8 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: min(1320px, 100%);
   margin-inline: auto;
   box-sizing: border-box;
-  padding: clamp(20px, 4vw, 44px) clamp(16px, 4vw, 48px);
 }
 
 .page-home .home-hero-shell {
@@ -9186,7 +9281,6 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-home .home-lanes-intro {
-  max-width: 42rem;
   margin-bottom: clamp(6px, 1vw, 14px);
 }
 
@@ -9856,7 +9950,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-home .home-trust-compact.trust-strip--home-proof {
-  padding: clamp(20px, 2.6vw, 32px) clamp(16px, 4.5vw, 70px);
+  padding-block: clamp(20px, 2.6vw, 32px);
 }
 
 .page-home .home-trust-compact.trust-strip--home-proof .trust-strip-inner {
@@ -24553,14 +24647,13 @@ body.owner-dash-detail-open {
 
 .page-home .home-ai-plug-section {
   --home-ai-plug-pad-y: clamp(2.25rem, 5.5vw, 3.75rem);
-  --home-ai-plug-pad-x: clamp(1rem, 4vw, 1.5rem);
   --home-ai-plug-gap-lg: clamp(1.5rem, 3.2vw, 2.25rem);
   --home-ai-plug-gap-sm: clamp(0.65rem, 1.6vw, 0.85rem);
   --home-ai-plug-body-lh: 1.55;
   position: relative;
   isolation: isolate;
   margin-top: clamp(4px, 1.2vw, 12px);
-  padding: var(--home-ai-plug-pad-y) var(--home-ai-plug-pad-x);
+  padding-block: var(--home-ai-plug-pad-y);
   border-top: 1px solid rgba(255, 246, 230, 0.12);
   overflow: hidden;
 }
@@ -25151,7 +25244,6 @@ body.owner-dash-detail-open {
   display: flex;
   flex-direction: column;
   gap: clamp(6px, 1vw, 10px);
-  max-width: 40rem;
   margin-bottom: clamp(14px, 2vw, 20px);
 }
 
@@ -25380,7 +25472,7 @@ body.owner-dash-detail-open {
 /* Homepage — Why this guide: light band between Ask (dark) and Transport (dark) */
 .page-home .home-trust-band--light.trust-strip--home-proof {
   position: relative;
-  padding: clamp(28px, 4.5vw, 44px) clamp(16px, 4.5vw, 48px);
+  padding-block: clamp(28px, 4.5vw, 44px);
   background:
     radial-gradient(ellipse 90% 50% at 50% 0%, rgba(20, 184, 166, 0.07), transparent 58%),
     linear-gradient(180deg, #fffbf6 0%, #f8f2e8 52%, #f0e9de 100%);
