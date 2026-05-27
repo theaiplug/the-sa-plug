@@ -119,82 +119,259 @@
       }
     }
 
-    /* Compact Ask A Local launcher */
-    .start-here-main .sh-ask-section {
-      padding-top: clamp(22px, 3vw, 32px);
-      padding-bottom: clamp(22px, 3vw, 32px);
+    /* Decision hub — cinematic Ask launcher + visitor lanes (one premium band) */
+    .start-here-main .sh-decision-hub {
+      position: relative;
+      margin-top: clamp(-20px, -2.5vw, -8px);
+      padding-top: clamp(32px, 4vw, 48px);
+      z-index: 2;
     }
 
-    .start-here-main .sh-ask-card {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: clamp(20px, 2.8vw, 28px) clamp(20px, 3vw, 28px);
-      border-radius: calc(var(--radius) + 4px);
-      background:
-        radial-gradient(ellipse 80% 70% at 0% 0%, rgba(20, 184, 166, 0.12), transparent 55%),
-        linear-gradient(155deg, #fffefb 0%, #f3faf8 100%);
-      border: 1px solid rgba(11, 29, 58, 0.09);
+    .start-here-main .sh-decision-hub > .routes-band-inner {
+      gap: clamp(28px, 4vw, 44px);
+    }
+
+    .start-here-main .sh-ask-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      overflow: hidden;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255, 246, 230, 0.16);
+      background: linear-gradient(155deg, #050a14 0%, #0b1d3a 55%, #12102a 100%);
       box-shadow:
-        0 4px 0 rgba(242, 178, 26, 0.35),
-        0 18px 40px rgba(11, 29, 58, 0.12);
+        0 28px 56px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(255, 246, 230, 0.06);
     }
 
-    .start-here-main .sh-ask-card h2 {
-      margin: 0 0 8px;
-      font-size: clamp(1.2rem, 2vw + 0.5rem, 1.45rem);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: var(--navy);
-      font-weight: 850;
+    .start-here-main .sh-ask-panel::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 3px;
+      z-index: 3;
+      background: linear-gradient(90deg, var(--turquoise), var(--gold), var(--coral));
     }
 
-    .start-here-main .sh-ask-card .sh-body-copy {
+    @media (min-width: 720px) {
+      .start-here-main .sh-ask-panel {
+        grid-template-columns: minmax(220px, 36%) minmax(0, 1fr);
+        min-height: 240px;
+      }
+    }
+
+    .start-here-main .sh-ask-panel__visual {
+      position: relative;
+      min-height: clamp(148px, 34vw, 200px);
+      overflow: hidden;
+    }
+
+    @media (min-width: 720px) {
+      .start-here-main .sh-ask-panel__visual {
+        min-height: 100%;
+      }
+    }
+
+    .start-here-main .sh-ask-panel__visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+    }
+
+    .start-here-main .sh-ask-panel__visual-shade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(5, 10, 24, 0.08) 0%, rgba(5, 10, 24, 0.55) 100%),
+        linear-gradient(90deg, transparent 40%, rgba(5, 10, 24, 0.72) 100%);
+    }
+
+    @media (max-width: 719px) {
+      .start-here-main .sh-ask-panel__visual-shade {
+        background: linear-gradient(180deg, transparent 20%, rgba(5, 10, 24, 0.88) 100%);
+      }
+    }
+
+    .start-here-main .sh-ask-panel__body {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(10px, 1.6vw, 14px);
+      padding: clamp(18px, 2.8vw, 28px) clamp(18px, 3vw, 32px) clamp(20px, 3vw, 30px);
+      background:
+        radial-gradient(ellipse 90% 80% at 100% 0%, rgba(20, 184, 166, 0.14), transparent 52%),
+        radial-gradient(circle at 0% 100%, rgba(255, 106, 77, 0.1), transparent 48%);
+    }
+
+    .start-here-main .sh-ask-panel__accent {
+      width: 100%;
+      max-width: 200px;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(242, 178, 26, 0.95), rgba(20, 184, 166, 0.85), transparent);
+      opacity: 0.95;
+    }
+
+    .start-here-main .sh-ask-panel__body .eyebrow {
+      margin-bottom: 0;
+    }
+
+    .start-here-main .sh-ask-panel h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 2.4vw + 0.4rem, 1.85rem);
+      line-height: 1.12;
+      letter-spacing: -0.028em;
+      font-weight: 860;
+      color: var(--cream);
+      text-wrap: balance;
+      max-width: 22ch;
+    }
+
+    .start-here-main .sh-ask-panel__copy {
+      margin: 0;
       max-width: 38rem;
+      font-size: clamp(0.92rem, 0.3vw + 0.84rem, 1.02rem);
+      line-height: 1.6;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: left;
+      color: rgba(255, 246, 230, 0.86);
+    }
+
+    .start-here-main .sh-ask-panel__actions {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: clamp(12px, 1.8vw, 16px);
+      padding-top: 4px;
+    }
+
+    .start-here-main .sh-ask-panel__actions .btn-primary {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+    }
+
+    @media (min-width: 480px) {
+      .start-here-main .sh-ask-panel__actions .btn-primary {
+        width: auto;
+        align-self: flex-start;
+      }
+    }
+
+    .start-here-main .sh-ask-panel__chips.route-chip-row {
+      margin: 0;
+      padding: 0;
+      gap: 8px 10px;
+    }
+
+    .start-here-main .sh-ask-panel__chips .route-chip {
+      border-color: rgba(255, 246, 230, 0.22);
+      background: rgba(255, 246, 230, 0.07);
+      color: rgba(255, 246, 230, 0.92);
+      font-size: 0.8rem;
+      padding: 9px 14px;
+      letter-spacing: normal;
+    }
+
+    .start-here-main .sh-ask-panel__chips .route-chip:hover {
+      background: rgba(255, 246, 230, 0.14);
+      border-color: rgba(242, 178, 26, 0.55);
+      color: var(--cream);
+    }
+
+    .start-here-main .sh-hub-divider {
+      height: 1px;
+      border: 0;
+      margin: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 246, 230, 0.22) 20%,
+        rgba(20, 184, 166, 0.45) 50%,
+        rgba(255, 246, 230, 0.22) 80%,
+        transparent
+      );
+    }
+
+    .start-here-main .sh-lanes-intro {
+      max-width: none;
+      margin-bottom: 0;
+    }
+
+    .start-here-main .sh-lanes-intro .eyebrow {
+      margin-bottom: clamp(8px, 1.2vw, 12px);
+      color: var(--gold);
+    }
+
+    .start-here-main .sh-lanes-intro h2 {
+      margin: 0 0 clamp(10px, 1.4vw, 14px);
+      font-size: clamp(1.75rem, 3.6vw + 0.5rem, 2.65rem);
+      line-height: 1.06;
+      letter-spacing: -0.032em;
+      font-weight: 860;
+      color: var(--cream);
+      text-wrap: balance;
+      max-width: 14ch;
+    }
+
+    .start-here-main .sh-lanes-intro::after {
+      content: "";
+      display: block;
+      width: clamp(160px, 22vw, 260px);
+      height: 3px;
+      margin-top: clamp(12px, 1.8vw, 18px);
       margin-bottom: clamp(14px, 2vw, 18px);
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        rgba(20, 184, 166, 0.95),
+        rgba(242, 178, 26, 0.95),
+        rgba(255, 106, 77, 0.88)
+      );
+      box-shadow: 0 0 24px rgba(20, 184, 166, 0.35);
     }
 
-    .start-here-main .sh-ask-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px 12px;
+    .start-here-main .sh-lanes-lead {
+      margin: 0;
+      max-width: 36rem;
+      font-size: clamp(1rem, 0.4vw + 0.9rem, 1.08rem);
+      line-height: 1.62;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: left;
+      color: rgba(255, 246, 230, 0.84);
     }
 
-    .start-here-main .sh-ask-chips {
+    .start-here-main .sh-lanes-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 8px 10px;
       margin: 0;
       padding: 0;
       list-style: none;
-      width: 100%;
     }
 
-    .start-here-main .sh-ask-chips li {
-      margin: 0;
-      padding: 0;
-    }
-
-    .start-here-main .sh-ask-chip {
+    .start-here-main .sh-lanes-meta li {
       display: inline-flex;
       align-items: center;
-      padding: 8px 14px;
+      padding: 7px 12px;
       border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 760;
-      letter-spacing: normal;
-      word-spacing: normal;
-      text-decoration: none;
-      color: var(--navy);
-      background: rgba(11, 29, 58, 0.05);
-      border: 1px solid rgba(11, 29, 58, 0.12);
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .start-here-main .sh-ask-chip:hover {
-      background: rgba(20, 184, 166, 0.1);
-      border-color: rgba(20, 184, 166, 0.4);
-      transform: translateY(-1px);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 246, 230, 0.88);
+      background: rgba(255, 246, 230, 0.06);
+      border: 1px solid rgba(242, 178, 26, 0.28);
     }
 
     /* Six visitor lanes */
@@ -394,27 +571,46 @@
       </div>
     </section>
 
-    <section class="section section-turquoise-wash sh-ask-section" id="ask-local" aria-labelledby="ask-local-heading">
-      <div class="sh-ask-card">
-        <h2 id="ask-local-heading">Not sure where to start?</h2>
-        <p class="sh-body-copy">Tell us where you are, who you&rsquo;re with, what time it is, and what you&rsquo;re trying to do. We&rsquo;ll point you toward the right move.</p>
-        <div class="sh-ask-actions">
-          <a href="/ask/" class="btn btn-primary">Ask A Local</a>
-          <ul class="sh-ask-chips" aria-label="Quick questions">
-            <li><a class="sh-ask-chip" href="/ask/?q=I%20need%20dinner%20near%20me">Dinner near me</a></li>
-            <li><a class="sh-ask-chip" href="/ask/?q=What%20should%20we%20do%20downtown%20tonight%3F">Downtown tonight</a></li>
-            <li><a class="sh-ask-chip" href="/ask/?q=I%27m%20staying%20at%20a%20resort">Resort stay</a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section band section-navy-routes path-hub-section image-detail-section" id="visitor-lanes" aria-labelledby="visitor-lanes-heading">
+    <section class="section band section-navy-routes path-hub-section image-detail-section sh-decision-hub" id="visitor-lanes" aria-labelledby="visitor-lanes-heading">
       <div class="routes-band-inner">
-        <header class="path-hub-head sh-section-head">
+        <article class="sh-ask-panel" id="ask-local" aria-labelledby="ask-local-heading">
+          <div class="sh-ask-panel__visual" aria-hidden="true">
+            <img
+              src="assets/ask-sa-plug-hero-riverwalk-tower.png"
+              alt=""
+              width="1200"
+              height="630"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="sh-ask-panel__visual-shade"></div>
+          </div>
+          <div class="sh-ask-panel__body">
+            <div class="sh-ask-panel__accent" aria-hidden="true"></div>
+            <p class="eyebrow eyebrow-on-dark">Ask A Local</p>
+            <h2 id="ask-local-heading">Not sure where to start?</h2>
+            <p class="sh-ask-panel__copy">Tell us where you are, who you&rsquo;re with, what time it is, and what you&rsquo;re trying to do. We&rsquo;ll point you toward the right move.</p>
+            <div class="sh-ask-panel__actions">
+              <a href="/ask/" class="btn btn-primary">Ask A Local <span aria-hidden="true">&rarr;</span></a>
+              <div class="route-chip-row sh-ask-panel__chips" aria-label="Quick questions">
+                <a class="route-chip" href="/ask/?q=I%20need%20dinner%20near%20me">Dinner near me</a>
+                <a class="route-chip" href="/ask/?q=What%20should%20we%20do%20downtown%20tonight%3F">Downtown tonight</a>
+                <a class="route-chip" href="/ask/?q=I%27m%20staying%20at%20a%20resort">Resort stay</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <hr class="sh-hub-divider" />
+
+        <header class="path-hub-head sh-lanes-intro">
           <p class="eyebrow eyebrow-on-dark">Pick your situation</p>
           <h2 id="visitor-lanes-heading">Choose the guide closest to your trip</h2>
-          <p class="sh-body-copy">Open the guide when you know what you need. Ask A Local if you&rsquo;re not sure.</p>
+          <p class="section-text section-text-light sh-lanes-lead">Open the guide when you know what you need. Ask A Local if you&rsquo;re not sure.</p>
+          <ul class="sh-lanes-meta" aria-label="What you get here">
+            <li>6 visitor guides</li>
+            <li>Ask anytime</li>
+          </ul>
         </header>
         <div class="sh-lane-grid" role="list">
           <a href="where-to-eat.html" class="image-route-card" role="listitem">
