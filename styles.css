@@ -23440,17 +23440,18 @@ body.owner-dash-detail-open {
   overflow: hidden;
 }
 
-/* Homepage — Transport story card → Built by The AI Plug (fiesta divider + tight gap) */
-.page-home .transport-section.transport-section--story:has(+ .home-ai-plug-section) {
-  padding-bottom: clamp(18px, 3.2vw, 26px);
-  border-bottom: none;
-}
-
-.page-home .transport-section.transport-section--story:has(+ .home-ai-plug-section)::after {
-  content: "";
+/* Homepage — full-bleed fiesta divider between sections */
+.page-home .home-fiesta-divider {
   display: block;
-  width: 100%;
+  width: 100vw;
+  max-width: 100vw;
   height: 5px;
+  margin: 0;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0;
+  border: none;
+  flex-shrink: 0;
   background: linear-gradient(
     90deg,
     rgba(20, 184, 166, 0.95) 0%,
@@ -23459,7 +23460,13 @@ body.owner-dash-detail-open {
   );
 }
 
-.page-home .transport-section + .home-ai-plug-section {
+/* Homepage — Transport → divider → AI Plug */
+.page-home .transport-section.transport-section--story:has(+ .home-fiesta-divider) {
+  padding-bottom: clamp(18px, 3.2vw, 26px);
+  border-bottom: none;
+}
+
+.page-home .home-fiesta-divider + .home-ai-plug-section {
   margin-top: 0;
   border-top: none;
   padding-top: clamp(18px, 3.2vw, 26px);
