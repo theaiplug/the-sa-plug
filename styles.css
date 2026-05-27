@@ -23906,35 +23906,12 @@ body.owner-dash-detail-open {
    Homepage visitor-first rework — compact directory, launcher, proof
    ============================================================== */
 
-/* Hero — stronger read zone over background image */
-.page-home .home-hero--cinematic.hero-fiesta-dark {
-  background-image:
-    linear-gradient(90deg, rgba(5, 10, 24, 0.78) 0%, rgba(5, 10, 24, 0.48) 42%, rgba(5, 10, 24, 0.18) 68%, transparent 100%),
-    url("assets/twilight_riverwalk_with_city_skyline.png");
-}
-
 .page-home .home-hero--cinematic .hero-title,
 .page-home .home-hero--cinematic .hero-text-on-dark,
 .page-home .home-hero--cinematic .hero-proof-item {
   letter-spacing: normal;
   word-spacing: normal;
   text-align: left;
-}
-
-.page-home .home-hero--cinematic .hero-proof-item {
-  font-size: clamp(0.78rem, 0.16vw + 0.74rem, 0.86rem);
-  letter-spacing: normal;
-}
-
-@media (max-width: 767px) {
-  .page-home .home-hero--cinematic.hero-fiesta-dark {
-    min-height: clamp(520px, 88vh, 620px);
-    max-height: none;
-    background-image:
-      linear-gradient(180deg, rgba(5, 10, 24, 0.55) 0%, rgba(5, 10, 24, 0.72) 55%, rgba(5, 10, 24, 0.88) 100%),
-      url("assets/twilight_riverwalk_with_city_skyline.png");
-    background-position: center, center 30%;
-  }
 }
 
 /* Situation cards — tighter mobile heights, less copy stack */
@@ -24206,91 +24183,4 @@ body.owner-dash-detail-open {
     gap: clamp(18px, 2.4vw, 28px);
     padding: clamp(16px, 2.2vw, 22px);
   }
-}
-
-/* AI Plug — secondary compact proof band */
-.page-home .home-ai-plug-section--secondary {
-  padding-top: clamp(20px, 3vw, 28px);
-  padding-bottom: clamp(24px, 3.5vw, 32px);
-  border-top: 1px solid rgba(255, 246, 230, 0.1);
-}
-
-.page-home .home-ai-plug--compact {
-  gap: clamp(14px, 2vw, 18px);
-}
-
-.page-home .home-ai-plug--compact .home-ai-plug__header {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(6px, 1vw, 10px);
-  max-width: 44rem;
-}
-
-.page-home .home-ai-plug--compact .home-ai-plug__eyebrow {
-  margin: 0;
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(253, 224, 150, 0.92);
-}
-
-.page-home .home-ai-plug--compact .home-ai-plug__title {
-  margin: 0;
-  font-size: clamp(1.2rem, 1.6vw + 0.7rem, 1.55rem);
-  font-weight: 860;
-  line-height: 1.14;
-  letter-spacing: -0.026em;
-  word-spacing: normal;
-  color: #fff8eb;
-}
-
-.page-home .home-ai-plug--compact .home-ai-plug__lede {
-  margin: 0;
-  font-size: clamp(0.88rem, 0.16vw + 0.82rem, 0.96rem);
-  line-height: 1.52;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-align: left;
-  color: rgba(255, 246, 230, 0.84);
-}
-
-.page-home .home-ai-plug__proof-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 8px;
-  max-width: 36rem;
-}
-
-@media (min-width: 720px) {
-  .page-home .home-ai-plug__proof-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-width: none;
-    gap: 10px;
-  }
-}
-
-.page-home .home-ai-plug__proof-list li {
-  margin: 0;
-  padding: 10px 12px;
-  font-size: clamp(0.8rem, 0.12vw + 0.76rem, 0.86rem);
-  font-weight: 650;
-  line-height: 1.4;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-align: left;
-  color: rgba(255, 246, 230, 0.88);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 246, 230, 0.12);
-  background: rgba(255, 246, 230, 0.05);
-}
-
-.page-home .home-ai-plug--compact .home-ai-plug__actions {
-  margin-top: 4px;
-}
-
-.page-home .home-ai-plug--compact .home-ai-plug__restaurant {
-  margin-top: 0;
 }
