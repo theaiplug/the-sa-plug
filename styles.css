@@ -14150,14 +14150,44 @@ body.page-ask main:not(.ask-product-main) {
   min-height: 48px;
 }
 
-.page-ask .footer.dark-showcase {
-  border-top: 1px solid rgba(255, 246, 230, 0.12);
+/* Footer: same twilight atmosphere as post-hero bands (no dark-showcase color washes) */
+.page-ask .footer.ask-product-footer.dark-showcase {
+  position: relative;
+  isolation: isolate;
+  margin-top: 0;
+  border-top: none;
+  border-bottom: none;
+  background-color: var(--ask-ink);
+  background-image:
+    linear-gradient(180deg, rgba(5, 12, 24, 0.82) 0%, rgba(6, 14, 26, 0.94) 55%, rgba(4, 10, 22, 0.98) 100%),
+    var(--ask-atmosphere-photo);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 64%;
+}
+
+.page-ask .footer.ask-product-footer.dark-showcase > * {
+  position: relative;
+  z-index: 1;
+}
+
+.page-ask .footer.ask-product-footer .footer-links a {
+  border-color: rgba(255, 246, 230, 0.22);
+  background: rgba(8, 18, 34, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.page-ask .footer.ask-product-footer .footer-links a:hover {
+  border-color: rgba(242, 178, 26, 0.42);
+  background: rgba(12, 24, 44, 0.72);
 }
 
 .page-ask .footer-note--compact {
   font-size: 0.84rem;
   line-height: 1.5;
   max-width: 36rem;
+  color: rgba(255, 248, 235, 0.68);
 }
 
 @media (min-width: 900px) {
