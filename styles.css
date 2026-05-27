@@ -24234,38 +24234,116 @@ body.owner-dash-detail-open {
 
 /* Homepage — Why this guide: light band between Ask (dark) and Transport (dark) */
 .page-home .home-trust-band--light.trust-strip--home-proof {
+  position: relative;
+  padding: clamp(28px, 4.5vw, 44px) clamp(16px, 4.5vw, 48px);
   background:
-    radial-gradient(ellipse 85% 55% at 8% 0%, rgba(20, 184, 166, 0.1), transparent 52%),
-    radial-gradient(circle at 92% 18%, rgba(242, 178, 26, 0.12), transparent 46%),
-    linear-gradient(180deg, #fffaf3 0%, #f6f0e6 55%, #efe8dc 100%);
-  border-block: 1px solid rgba(11, 29, 58, 0.08);
+    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(20, 184, 166, 0.07), transparent 58%),
+    linear-gradient(180deg, #fffbf6 0%, #f8f2e8 52%, #f0e9de 100%);
+  border-block: 1px solid rgba(11, 29, 58, 0.07);
+}
+
+.page-home .home-trust-band--light.trust-strip--home-proof::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 184, 166, 0.85) 0%,
+    rgba(242, 178, 26, 0.9) 50%,
+    rgba(255, 106, 77, 0.8) 100%
+  );
+}
+
+.page-home .home-trust-band--light .trust-strip-inner.home-trust-compact-inner {
+  gap: clamp(14px, 2.2vw, 20px);
 }
 
 .page-home .home-trust-band--light .trust-strip-eyebrow.eyebrow {
-  color: var(--turquoise);
+  margin-bottom: 8px;
+  color: #0d9488;
   letter-spacing: 0.12em;
+  font-weight: 850;
 }
 
 .page-home .home-trust-band--light .home-trust-compact-head h2 {
   color: var(--navy);
+  font-size: clamp(1.28rem, 2vw + 0.72rem, 1.72rem);
+  line-height: 1.14;
+  letter-spacing: -0.024em;
 }
 
 .page-home .home-trust-band--light .home-trust-lede {
-  color: rgba(11, 29, 58, 0.78);
+  margin-top: 2px;
+  color: rgba(11, 29, 58, 0.74);
+  font-size: clamp(0.9rem, 0.2vw + 0.84rem, 0.98rem);
+  line-height: 1.55;
   letter-spacing: normal;
   word-spacing: normal;
   text-align: left;
 }
 
-.page-home .home-trust-band--light .home-trust-proof-item {
-  color: rgba(11, 29, 58, 0.9);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(11, 29, 58, 0.1);
-  box-shadow:
-    0 10px 24px rgba(11, 29, 58, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+.page-home .home-trust-band--light .home-trust-proof-row--light {
+  gap: clamp(8px, 1.2vw, 10px);
+  margin-top: clamp(4px, 0.8vw, 8px);
 }
 
-.page-home .home-trust-band--light .home-trust-proof-icon {
-  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+.page-home .home-trust-band--light .home-trust-proof-row--light .home-trust-proof-item {
+  display: block;
+  margin: 0;
+  padding: clamp(12px, 2vw, 14px) clamp(14px, 2.2vw, 16px);
+  border-radius: 12px;
+  font-size: clamp(0.86rem, 0.18vw + 0.8rem, 0.94rem);
+  font-weight: 750;
+  line-height: 1.4;
+  letter-spacing: normal;
+  word-spacing: normal;
+  color: rgba(11, 29, 58, 0.9);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+  border-left-width: 4px;
+  box-shadow: none;
+}
+
+.page-home .home-trust-band--light .home-trust-proof-item--route {
+  border-left-color: #14b8a6;
+  background: linear-gradient(
+    105deg,
+    rgba(20, 184, 166, 0.14) 0%,
+    rgba(20, 184, 166, 0.04) 38%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+}
+
+.page-home .home-trust-band--light .home-trust-proof-item--timing {
+  border-left-color: #d97706;
+  background: linear-gradient(
+    105deg,
+    rgba(242, 178, 26, 0.16) 0%,
+    rgba(242, 178, 26, 0.05) 38%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+}
+
+.page-home .home-trust-band--light .home-trust-proof-item--visitors {
+  border-left-color: #ea580c;
+  background: linear-gradient(
+    105deg,
+    rgba(255, 106, 77, 0.12) 0%,
+    rgba(255, 106, 77, 0.04) 38%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+}
+
+@media (min-width: 600px) {
+  .page-home .home-trust-band--light .home-trust-proof-row--light {
+    gap: 12px;
+  }
+
+  .page-home .home-trust-band--light .home-trust-proof-row--light .home-trust-proof-item {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+  }
 }
