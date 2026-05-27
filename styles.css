@@ -4579,6 +4579,14 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   color: rgba(255, 246, 230, 0.9);
 }
 
+.page-home .home-hero-lede {
+  max-width: 34rem;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left;
+  text-wrap: pretty;
+}
+
 .page-home .home-hero-chips.route-chip-row-hero {
   align-self: stretch;
   padding-top: clamp(12px, 2vw, 18px);
@@ -4636,6 +4644,19 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   .page-home .home-hero-cta.hero-cta-row .btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .page-home .home-hero--cinematic .hero-text-on-dark.home-hero-lede {
+    font-size: clamp(0.92rem, 0.28vw + 0.86rem, 1rem);
+    line-height: 1.58;
+  }
+
+  .page-home .home-hero-body {
+    gap: clamp(10px, 1.6vw, 14px);
+  }
+
+  .page-home .home-hero--cinematic .hero-proof-row {
+    gap: 8px 12px;
   }
 }
 
@@ -9376,6 +9397,228 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   }
 }
 
+/* Homepage visitor journey — hero through trust (rhythm + type) */
+.page-home .home-situation-band.home-immersive-routes.section {
+  padding-top: clamp(22px, 2.8vw, 36px);
+  padding-bottom: clamp(22px, 3vw, 36px);
+}
+
+.page-home .home-lanes-lead,
+.page-home .home-trust-lede,
+.page-home .home-directory-lede {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+.page-home .home-lane-card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(5, 10, 24, 0.68) 0%,
+    rgba(5, 10, 24, 0.34) 42%,
+    rgba(5, 10, 24, 0.08) 72%,
+    transparent 100%
+  );
+}
+
+.page-home .home-lane-card-body {
+  padding-bottom: max(clamp(18px, 2.8vw, 24px), calc(env(safe-area-inset-bottom, 0px) + 10px));
+}
+
+.page-home .home-lane-cta {
+  font-size: 0.72rem;
+  padding-bottom: 3px;
+  border-bottom-width: 2px;
+}
+
+.page-home .home-lane-card--transport .home-lane-chip {
+  white-space: normal;
+  line-height: 1.28;
+  text-overflow: unset;
+  max-width: min(100%, 14rem);
+}
+
+.page-home .home-ask-bridge.home-ask-entry {
+  padding-top: clamp(10px, 1.6vw, 18px);
+  padding-bottom: clamp(28px, 3.6vw, 44px);
+}
+
+.page-home .home-ask-entry-inner {
+  border-left: 4px solid rgba(20, 184, 166, 0.82);
+  padding-left: clamp(18px, 2.8vw, 26px);
+}
+
+.page-home .home-ask-entry-body {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+.page-home .home-ask-entry-copy h2 {
+  text-wrap: balance;
+}
+
+.page-home .home-ask-entry-cta {
+  min-width: min(100%, 11.5rem);
+}
+
+@media (max-width: 520px) {
+  .page-home .home-ask-entry-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-home .home-ask-entry-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Guide directory — compact, distinct from situation cards */
+.page-home .home-guide-directory.section-explore-dark {
+  padding-top: clamp(32px, 4vw, 48px);
+  padding-bottom: clamp(36px, 4.5vw, 52px);
+  border-block: 1px solid rgba(255, 246, 230, 0.1);
+  background:
+    radial-gradient(ellipse 90% 55% at 12% 0%, rgba(20, 184, 166, 0.14), transparent 52%),
+    radial-gradient(circle at 88% 18%, rgba(242, 178, 26, 0.1), transparent 40%),
+    linear-gradient(180deg, #050b16 0%, #0a1528 52%, #0d1c36 100%);
+}
+
+.page-home .home-guide-directory .home-directory-head-copy {
+  max-width: 40rem;
+}
+
+.page-home .home-guide-directory .home-directory-head .eyebrow {
+  margin-bottom: 8px;
+}
+
+.page-home .home-guide-directory .home-directory-editorial {
+  gap: clamp(10px, 1.35vw, 14px);
+}
+
+.page-home .home-guide-directory .home-dir-card {
+  border-radius: clamp(14px, 1.8vw, 20px);
+}
+
+.page-home .home-guide-directory .home-dir-card-media-wrap {
+  min-height: clamp(168px, 28vw, 220px);
+}
+
+.page-home .home-guide-directory .home-dir-slot--hero .home-dir-card-media-wrap {
+  min-height: clamp(200px, 34vw, 280px);
+}
+
+.page-home .home-guide-directory .home-dir-card-body {
+  padding-bottom: max(clamp(14px, 2.2vw, 20px), calc(env(safe-area-inset-bottom, 0px) + 8px));
+  gap: clamp(4px, 0.8vw, 7px);
+}
+
+.page-home .home-guide-directory .home-dir-title {
+  font-size: clamp(1rem, 0.32vw + 0.92rem, 1.2rem);
+}
+
+.page-home .home-guide-directory .home-dir-copy {
+  font-size: clamp(0.8rem, 0.16vw + 0.76rem, 0.88rem);
+  line-height: 1.48;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+.page-home .home-guide-directory .home-dir-cta {
+  margin-top: 2px;
+  font-size: 0.66rem;
+}
+
+@media (min-width: 520px) and (max-width: 899px) {
+  .page-home .home-guide-directory .home-directory-editorial {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-home .home-guide-directory .home-dir-slot--hero {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 900px) {
+  .page-home .home-guide-directory .home-directory-editorial {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    align-items: stretch;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot--hero,
+  .page-home .home-guide-directory .home-dir-slot--wide,
+  .page-home .home-guide-directory .home-dir-slot--tall,
+  .page-home .home-guide-directory .home-dir-slot {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot--hero {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot--wide {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot--tall {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot:nth-child(5) {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot:nth-child(6) {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot--tall .home-dir-card-media-wrap {
+    min-height: clamp(176px, 14vw, 228px);
+  }
+
+  .page-home .home-guide-directory .home-dir-card-media-wrap {
+    min-height: clamp(176px, 14vw, 228px);
+  }
+
+  .page-home .home-guide-directory .home-dir-slot--hero .home-dir-card-media-wrap {
+    min-height: clamp(200px, 16vw, 252px);
+  }
+}
+
+.page-home .home-trust-band.trust-strip--home-proof {
+  padding-top: clamp(40px, 5vw, 60px);
+}
+
+.page-home .home-trust-lede {
+  max-width: 44rem;
+}
+
+.page-home .trust-card-story-body p {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left;
+  text-wrap: pretty;
+}
+
 /* Homepage trust strip — golden-hour navy + immersive story cards */
 .trust-strip.trust-strip--home-proof {
   padding: clamp(48px, 6vw, 72px) clamp(16px, 4.5vw, 70px);
@@ -13020,13 +13263,17 @@ body.page-ask main {
   color: var(--navy);
 }
 
-.home-ask-entry-copy p {
+.home-ask-entry-copy p,
+.home-ask-entry-body {
   margin: 0;
   font-size: clamp(0.9rem, 0.4vw + 0.82rem, 0.98rem);
   line-height: 1.55;
   color: rgba(11, 29, 58, 0.72);
   font-weight: 600;
   max-width: 36rem;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left;
 }
 
 .home-ask-entry-inner .btn {
@@ -14198,6 +14445,13 @@ body:has(.transport-concierge-main) {
     .tc-hero-lead,
     .home-dir-copy,
     .home-lane-copy,
+    .home-lane-best,
+    .home-lanes-lead,
+    .home-hero-lede,
+    .home-ask-entry-body,
+    .home-trust-lede,
+    .home-directory-lede,
+    .trust-card-story-body p,
     .transport-story-lede,
     .transport-story-trust,
     .transport-story-card-title,
@@ -14230,6 +14484,9 @@ body:has(.transport-concierge-main) {
     .live-concierge__lane-label,
     .image-route-card__body .eyebrow,
     .page-home .home-dir-chip,
+    .page-home .home-lane-chip,
+    .page-home .home-lane-best-label,
+    .trust-card-story-chip,
     .page-jump-band .eyebrow
   ) {
     letter-spacing: 0.12em;
