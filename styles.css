@@ -21078,6 +21078,12 @@ body.owner-dash-detail-open {
   word-spacing: normal;
 }
 
+.page-home .ai-proof-section .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card h3 {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+}
+
 /* Eyebrows / kickers only — wide tracking must not cascade to siblings or children */
 :is(.page-business-services, .page-restaurants) :where(
   .eyebrow,
@@ -21615,7 +21621,7 @@ body.owner-dash-detail-open {
 }
 
 @media (min-width: 960px) {
-  .page-home .ai-proof-pillar-grid {
+  .page-home .ai-proof-pillar-grid:not(.ai-proof-pillar-grid--capabilities) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: clamp(14px, 1.8vw, 18px);
   }
@@ -22402,6 +22408,250 @@ body.owner-dash-detail-open {
 
   .page-home .ai-proof-systems-intro--stacked .ai-proof-support-band {
     gap: 10px;
+  }
+}
+
+/* Homepage AI Plug — stacked proof layout (image → copy → cards → CTAs) */
+.page-home .ai-proof-shell.ai-proof-systems--stacked {
+  display: grid;
+  gap: clamp(1.1rem, 2.8vw, var(--biz-space-md));
+}
+
+.page-home .ai-proof-shell.ai-proof-systems--stacked .ai-proof-systems-visual {
+  margin: 0;
+  width: 100%;
+}
+
+.page-home .ai-proof-body--support {
+  display: grid;
+  gap: clamp(8px, 1.2vw, 12px);
+  max-width: 60rem;
+}
+
+.page-home .ai-proof-media-card--hero .ai-proof-media-card__glass {
+  position: absolute;
+  left: clamp(12px, 2.4vw, 20px);
+  right: clamp(12px, 2.4vw, 20px);
+  bottom: clamp(12px, 2.4vw, 20px);
+  z-index: 2;
+  max-width: min(38rem, calc(100% - clamp(24px, 4.8vw, 40px)));
+  padding: clamp(16px, 2.6vw, 24px);
+  border-radius: clamp(14px, 2vw, 18px);
+  border: 1px solid rgba(255, 246, 230, 0.2);
+  background:
+    linear-gradient(155deg, rgba(8, 14, 30, 0.82) 0%, rgba(5, 10, 24, 0.72) 100%);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 246, 230, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.page-home .ai-proof-media-card--hero .ai-proof-media-card__stack {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  padding: 0;
+  max-width: none;
+  gap: clamp(8px, 1.4vw, 12px);
+}
+
+.page-home .ai-proof-media-card--hero .ai-proof-media-card__overlay {
+  background:
+    radial-gradient(ellipse 80% 55% at 72% 8%, rgba(20, 184, 166, 0.14), transparent 52%),
+    linear-gradient(
+      to top,
+      rgba(5, 10, 24, 0.55) 0%,
+      rgba(5, 10, 24, 0.22) 42%,
+      rgba(5, 10, 24, 0.06) 68%,
+      rgba(5, 10, 24, 0) 100%
+    );
+}
+
+.page-home .ai-proof-media-card--hero .ai-proof-media-card__tag {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  font-size: clamp(0.58rem, 0.1vw + 0.54rem, 0.64rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(253, 224, 150, 0.96);
+}
+
+.page-home .ai-proof-pillar-grid--capabilities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.8vw, 14px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-home .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 10px 12px;
+  min-height: clamp(4.5rem, 12vw, 5.5rem);
+  padding: clamp(14px, 2.2vw, 18px);
+  border-radius: calc(var(--radius) - 2px);
+  cursor: default;
+  pointer-events: none;
+  text-decoration: none;
+  transform: none;
+}
+
+.page-home .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card:hover {
+  transform: none;
+  border-color: rgba(255, 246, 230, 0.14);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 246, 230, 0.07);
+}
+
+.page-home .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card::before {
+  display: none;
+}
+
+.page-home .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card--span-full {
+  grid-column: 1 / -1;
+}
+
+.page-home .ai-proof-pillar-card__accent {
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin-top: 0.42em;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(255, 246, 230, 0.06);
+}
+
+.page-home .ai-proof-pillar-card--advantage .ai-proof-pillar-card__accent {
+  background: var(--gold);
+}
+
+.page-home .ai-proof-pillar-card--adaptation .ai-proof-pillar-card__accent {
+  background: var(--turquoise);
+}
+
+.page-home .ai-proof-pillar-card--growth .ai-proof-pillar-card__accent {
+  background: var(--orange);
+}
+
+.page-home .ai-proof-pillar-card--automation .ai-proof-pillar-card__accent {
+  background: var(--pink);
+}
+
+.page-home .ai-proof-pillar-card--operators .ai-proof-pillar-card__accent {
+  background: var(--turquoise);
+}
+
+.page-home .ai-proof-pillar-card--marketing .ai-proof-pillar-card__accent {
+  background: var(--orange);
+}
+
+.page-home .ai-proof-pillar-card--connected .ai-proof-pillar-card__accent {
+  background: rgba(120, 160, 255, 0.95);
+}
+
+.page-home .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card {
+  border-left: 3px solid rgba(255, 246, 230, 0.12);
+}
+
+.page-home .ai-proof-pillar-card--advantage {
+  border-left-color: rgba(242, 178, 26, 0.55);
+}
+
+.page-home .ai-proof-pillar-card--adaptation {
+  border-left-color: rgba(20, 184, 166, 0.5);
+}
+
+.page-home .ai-proof-pillar-card--growth {
+  border-left-color: rgba(255, 139, 31, 0.5);
+}
+
+.page-home .ai-proof-pillar-card--automation {
+  border-left-color: rgba(255, 92, 168, 0.45);
+}
+
+.page-home .ai-proof-pillar-card--operators {
+  border-left-color: rgba(20, 184, 166, 0.48);
+}
+
+.page-home .ai-proof-pillar-card--marketing {
+  border-left-color: rgba(255, 139, 31, 0.48);
+}
+
+.page-home .ai-proof-pillar-card--connected {
+  border-left-color: rgba(120, 160, 255, 0.5);
+}
+
+.page-home .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card h3 {
+  margin: 0;
+  font-size: clamp(0.88rem, 0.14vw + 0.84rem, 0.98rem);
+  font-weight: 800;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: 1.3;
+  color: rgba(255, 248, 235, 0.98);
+  text-wrap: pretty;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.page-home .ai-proof-section--bridge .ai-proof-body--support .ai-proof-lead,
+.page-home .ai-proof-section--bridge .ai-proof-body--support .ai-proof-support {
+  margin: 0;
+  max-width: 52ch;
+  font-size: clamp(0.9rem, 0.16vw + 0.84rem, 0.98rem);
+  line-height: 1.55;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-wrap: pretty;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+@media (min-width: 720px) {
+  .page-home .ai-proof-pillar-grid--capabilities {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(12px, 1.8vw, 16px);
+  }
+
+  .page-home .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card--span-full {
+    grid-column: span 2;
+  }
+
+  .page-home .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card--connected {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 639px) {
+  .page-home .ai-proof-media-card--hero .ai-proof-media-card__glass {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: none;
+    padding: 14px 16px;
+  }
+
+  .page-home .ai-proof-pillar-grid--capabilities {
+    gap: 10px;
+  }
+
+  .page-home .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card {
+    min-height: 0;
+    padding: 14px 14px 14px 12px;
+  }
+
+  .page-home .ai-proof-pillar-grid--capabilities .ai-proof-pillar-card h3 {
+    font-size: clamp(0.84rem, 0.12vw + 0.8rem, 0.92rem);
   }
 }
 
