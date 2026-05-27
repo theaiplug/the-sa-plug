@@ -9563,15 +9563,36 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
   .page-home .home-guide-directory .home-dir-slot--hero {
     grid-column: 1 / span 2;
+    grid-row: 1;
   }
 
   .page-home .home-guide-directory .home-dir-slot--wide {
     grid-column: 3;
+    grid-row: 1;
   }
 
-  .page-home .home-guide-directory .home-dir-slot--tall .home-dir-card-media-wrap,
   .page-home .home-guide-directory .home-dir-slot--tall {
-    min-height: 0;
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot:nth-child(5) {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot:nth-child(6) {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+
+  .page-home .home-guide-directory .home-dir-slot--tall .home-dir-card-media-wrap {
+    min-height: clamp(176px, 14vw, 228px);
   }
 
   .page-home .home-guide-directory .home-dir-card-media-wrap {
