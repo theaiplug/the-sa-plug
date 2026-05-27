@@ -13328,6 +13328,7 @@ body.page-ask main {
   max-width: var(--ask-shell-max);
   margin-inline: auto;
   box-sizing: border-box;
+  padding-inline: var(--ask-shell-pad);
   padding-block: clamp(24px, 4vw, 40px) calc(clamp(24px, 4vw, 40px) + 5px);
 }
 
@@ -13377,9 +13378,9 @@ body.page-ask main {
   padding-bottom: clamp(28px, 4vw, 40px);
 }
 
-.page-ask .ask-product-tool-section.section-navy-routes {
-  padding-left: 0;
-  padding-right: 0;
+.page-ask .ask-product-tool-section.section-navy-routes,
+.page-ask .ask-product-tool-section.section {
+  padding-inline: 0;
 }
 
 .page-ask .ask-product-inner.ask-product-shell {
@@ -13394,15 +13395,26 @@ body.page-ask main {
   margin-inline: 0;
 }
 
-/* Body copy shares the same text column as words inside prompt chips */
-.page-ask .ask-product-hero-copy .hero-content,
+/*
+ * Shared copy column (shell gutter + text inset) — headings, hero, prompts, and
+ * cream-section notes align with example-card text and words inside prompt chips.
+ */
+.page-ask .ask-product-hero .hero-content,
 .page-ask .ask-product-section-head,
 .page-ask .ask-product-prompts-head,
 .page-ask .ask-product-prompt-group-label,
-.page-ask .ask-product-prompts-lead,
 .page-ask .ask-product-human-note {
   padding-left: var(--ask-text-inset);
   box-sizing: border-box;
+}
+
+/* Tool card: one horizontal inset on the card — no nested copy padding */
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__main-card,
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__glass-panel,
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__answer-surface,
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__answer-surface:has(.live-concierge__preview--placeholder) {
+  padding: 0;
+  padding-inline: 0;
 }
 
 .page-ask .ask-product-tool-card.live-concierge-card {
@@ -13457,13 +13469,15 @@ body.page-ask main {
   box-sizing: border-box;
   width: 100%;
   margin: 0 0 clamp(14px, 2.4vw, 18px);
-  padding: clamp(14px, 2.4vw, 18px);
+  padding-block: clamp(14px, 2.4vw, 18px);
+  padding-inline: 0;
   border-radius: calc(var(--radius) + 2px);
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
   margin: 14px 0 0;
   padding: 0;
+  max-width: none;
 }
 
 .page-ask .ask-product-tool .live-concierge__preview-heading {
