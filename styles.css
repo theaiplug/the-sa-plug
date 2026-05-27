@@ -13278,6 +13278,12 @@ body.page-ask main {
   --ask-shell-pad: clamp(20px, 5vw, 32px);
   --ask-card-pad-block: clamp(18px, 4.2vw, 24px);
   --ask-section-pad: clamp(40px, 6vw, 56px);
+  /* Vertical rhythm — shared gaps for copy, controls, and section blocks */
+  --ask-stack-xs: 8px;
+  --ask-stack-sm: 12px;
+  --ask-stack-md: 16px;
+  --ask-stack-lg: 24px;
+  --ask-stack-xl: 32px;
   /* Match prompt-chip padding-inline — body copy aligns to label text, not pill border */
   --ask-text-inset: 14px;
   letter-spacing: normal;
@@ -13337,9 +13343,22 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-hero .hero-content .eyebrow-hero {
-  margin-bottom: clamp(10px, 1.8vw, 14px);
+  margin-bottom: 0;
   color: rgba(242, 178, 26, 0.95);
   text-shadow: 0 1px 12px rgba(2, 6, 14, 0.35);
+}
+
+.page-ask .ask-product-hero.hero-fiesta-dark .hero-content.secondary-hero-copy {
+  gap: clamp(14px, 2.2vw, 18px);
+}
+
+.page-ask .ask-product-hero-actions.hero-cta-row,
+.page-ask .ask-product-hero-actions {
+  margin-top: 0;
+}
+
+.page-ask .ask-product-hero-actions.hero-cta-row {
+  gap: var(--ask-stack-sm) 14px;
 }
 
 .page-ask .ask-product-hero-actions .btn-primary {
@@ -13407,10 +13426,6 @@ body.page-ask main {
   max-width: none;
 }
 
-.page-ask .ask-product-hero-actions {
-  margin-top: clamp(6px, 1vw, 10px);
-}
-
 .page-ask .ask-product-tool-section {
   position: relative;
   padding-top: clamp(8px, 1.5vw, 14px);
@@ -13430,10 +13445,17 @@ body.page-ask main {
   padding-inline: 0;
 }
 
-.page-ask .ask-product-inner.ask-product-shell {
+.page-ask .routes-band-inner.ask-product-inner.ask-product-shell {
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 4vw, 32px);
+  gap: clamp(28px, 4vw, 36px);
+}
+
+/* Cream / navy bands: section-head margin supplies rhythm (not routes-band-inner flex gap) */
+.page-ask .ask-product-value-inner.routes-band-inner,
+.page-ask .ask-product-examples-inner.routes-band-inner,
+.page-ask .ask-product-human-inner.routes-band-inner {
+  gap: 0;
 }
 
 .page-ask .ask-product-tool.ask-local-tool.live-concierge-studio {
@@ -13569,8 +13591,8 @@ body.page-ask main {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px 16px;
-  margin: 0 0 clamp(18px, 2.8vw, 22px);
+  gap: var(--ask-stack-sm) var(--ask-stack-md);
+  margin: 0 0 var(--ask-stack-lg);
   padding: 0 var(--ask-chat-field-pad);
 }
 
@@ -13689,8 +13711,8 @@ body.page-ask main {
   box-sizing: border-box;
   width: 100%;
   min-height: clamp(100px, 22vw, 128px);
-  margin: 0 0 clamp(14px, 2.4vw, 18px);
-  padding-block: clamp(4px, 1vw, 8px) clamp(16px, 2.6vw, 20px);
+  margin: 0 0 var(--ask-stack-md);
+  padding-block: clamp(4px, 1vw, 8px) var(--ask-stack-md);
   padding-inline: var(--ask-chat-field-pad);
   border: none;
   border-radius: 0;
@@ -13706,10 +13728,16 @@ body.page-ask main {
   box-shadow: none;
 }
 
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__composer-stack .live-concierge__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ask-stack-sm);
+}
+
 .page-ask .ask-product-tool .live-concierge__composer-stack {
   box-sizing: border-box;
   margin: 0;
-  padding: clamp(14px, 2.4vw, 18px) 0 0;
+  padding: var(--ask-stack-md) 0 0;
   border: none;
   border-top: 1px solid rgba(255, 246, 230, 0.1);
   border-radius: 0;
@@ -13749,7 +13777,7 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
-  margin: 14px 0 0;
+  margin: var(--ask-stack-sm) 0 0;
   padding: 0 0 0 var(--ask-chat-field-pad);
   max-width: none;
   color: rgba(255, 248, 235, 0.55);
@@ -13758,7 +13786,7 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-tool .live-concierge__preview-heading {
-  margin: 0 0 10px;
+  margin: 0 0 var(--ask-stack-xs);
   font-size: clamp(1.1rem, 0.4vw + 1rem, 1.28rem);
   font-weight: 800;
   letter-spacing: -0.025em;
@@ -13777,7 +13805,7 @@ body.page-ask main {
 
 .page-ask .ask-product-tool .live-concierge__input-label {
   display: block;
-  margin: 0 0 10px;
+  margin: 0 0 var(--ask-stack-xs);
   padding-left: var(--ask-chat-field-pad);
   font-size: 0.74rem;
   font-weight: 850;
@@ -13788,7 +13816,7 @@ body.page-ask main {
 
 .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send {
   min-height: 54px;
-  margin-top: 4px;
+  margin-top: 0;
   border-radius: calc(var(--radius) + 2px);
   border: 1px solid rgba(255, 255, 255, 0.62);
   font-size: clamp(1rem, 0.28vw + 0.94rem, 1.08rem);
@@ -13812,23 +13840,23 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-prompts {
-  padding-top: clamp(22px, 3.2vw, 30px);
+  padding-top: var(--ask-stack-md);
   border-top: 1px solid rgba(255, 246, 230, 0.12);
 }
 
 .page-ask .ask-product-prompts-head {
-  margin-bottom: clamp(16px, 2.4vw, 22px);
+  margin-bottom: var(--ask-stack-lg);
 }
 
 .page-ask .ask-product-prompts-eyebrow {
-  margin-bottom: 8px;
+  margin-bottom: var(--ask-stack-xs);
   font-size: clamp(0.64rem, 0.1vw + 0.6rem, 0.7rem);
   letter-spacing: 0.16em;
   color: rgba(20, 184, 166, 0.92);
 }
 
 .page-ask .ask-product-prompts-title {
-  margin: 0 0 8px;
+  margin: 0 0 var(--ask-stack-xs);
   font-size: clamp(1.15rem, 0.45vw + 1rem, 1.35rem);
   font-weight: 800;
   color: rgba(255, 248, 235, 0.98);
@@ -13844,11 +13872,11 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-prompt-group + .ask-product-prompt-group {
-  margin-top: clamp(14px, 2vw, 18px);
+  margin-top: var(--ask-stack-md);
 }
 
 .page-ask .ask-product-prompt-group-label {
-  margin: 0 0 10px;
+  margin: 0 0 var(--ask-stack-xs);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -13859,7 +13887,7 @@ body.page-ask main {
 .page-ask .ask-product-prompt-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--ask-stack-xs) var(--ask-stack-sm);
 }
 
 .page-ask .ask-product-prompt-chips .live-concierge__chip--lane {
@@ -13912,11 +13940,11 @@ body.page-ask main {
 
 .page-ask .ask-product-section-head {
   max-width: none;
-  margin-bottom: clamp(18px, 2.5vw, 24px);
+  margin-bottom: var(--ask-stack-lg);
 }
 
 .page-ask .ask-product-eyebrow {
-  margin-bottom: 10px;
+  margin-bottom: var(--ask-stack-xs);
   font-size: clamp(0.66rem, 0.1vw + 0.62rem, 0.72rem);
   font-weight: 900;
   letter-spacing: 0.16em;
@@ -13924,7 +13952,7 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-section-head h2 {
-  margin: 0 0 12px;
+  margin: 0 0 var(--ask-stack-sm);
   font-size: clamp(1.45rem, 2.8vw + 0.45rem, 1.95rem);
   line-height: 1.12;
   letter-spacing: -0.028em;
@@ -13932,7 +13960,7 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-section-head--on-dark .eyebrow.eyebrow-on-dark {
-  margin-bottom: 10px;
+  margin-bottom: var(--ask-stack-xs);
   letter-spacing: 0.16em;
   color: rgba(20, 184, 166, 0.92);
 }
@@ -13957,7 +13985,7 @@ body.page-ask main {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: clamp(10px, 1.8vw, 14px);
+  gap: var(--ask-stack-sm);
   grid-template-columns: 1fr;
 }
 
@@ -14032,7 +14060,7 @@ body.page-ask main {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: clamp(12px, 2vw, 16px);
+  gap: var(--ask-stack-md);
 }
 
 .page-ask .ask-product-example-card {
@@ -14071,15 +14099,15 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-example-q {
-  margin-bottom: 12px;
-  padding-bottom: 12px;
+  margin-bottom: var(--ask-stack-sm);
+  padding-bottom: var(--ask-stack-sm);
   border-bottom: 1px solid rgba(255, 246, 230, 0.1);
   font-weight: 600;
 }
 
 .page-ask .ask-product-example-label {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: var(--ask-stack-xs);
   font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.1em;
@@ -14108,7 +14136,7 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-human-note {
-  margin: 0 0 18px;
+  margin: 0 0 var(--ask-stack-lg);
   max-width: none;
   font-size: clamp(0.9rem, 0.2vw + 0.86rem, 0.98rem);
   line-height: 1.55;
@@ -14119,7 +14147,7 @@ body.page-ask main {
 .page-ask .ask-product-human-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 14px;
+  gap: var(--ask-stack-sm) 14px;
   align-items: center;
   padding-right: var(--ask-text-inset);
 }
