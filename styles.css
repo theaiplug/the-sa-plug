@@ -13266,6 +13266,36 @@ body.page-ask main:not(.ask-product-main) {
 /* ----- Ask product page (tool-first rebuild) ----- */
 .page-ask {
   --ask-hero-photo: url("/assets/downtown-river-promenade-twilight.png");
+  --ask-atmosphere-photo: url("/assets/downtown-river-promenade-twilight.png");
+  --ask-ink: #060e1a;
+}
+
+/* Post-hero bands: same twilight photo + deep ink overlay (no teal/pink/orange washes) */
+.page-ask .ask-product-atmosphere {
+  position: relative;
+  isolation: isolate;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+  color: rgba(255, 248, 235, 0.95);
+  border: none;
+  background-color: var(--ask-ink);
+  background-image:
+    linear-gradient(180deg, rgba(5, 12, 24, 0.9) 0%, rgba(7, 16, 30, 0.86) 50%, rgba(5, 12, 24, 0.92) 100%),
+    var(--ask-atmosphere-photo);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.page-ask .ask-product-atmosphere::after {
+  display: none;
+}
+
+.page-ask .ask-product-atmosphere > .routes-band-inner,
+.page-ask .ask-product-atmosphere .ask-product-prompts,
+.page-ask .ask-product-atmosphere .ask-product-section-head {
+  position: relative;
+  z-index: 1;
 }
 
 /*
@@ -13328,7 +13358,7 @@ body.page-ask main:not(.ask-product-main) {
 .page-ask .ask-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 70%, rgba(9, 26, 52, 0.28) 100%);
+  background: linear-gradient(180deg, transparent 55%, rgba(6, 14, 26, 0.5) 82%, rgba(6, 14, 26, 0.88) 100%);
 }
 
 .page-ask .ask-product-hero .hero-title {
@@ -13434,15 +13464,15 @@ body.page-ask main:not(.ask-product-main) {
   padding-bottom: clamp(36px, 5vw, 52px);
 }
 
-.page-ask .ask-product-tool-section.section-navy-routes {
-  background:
-    radial-gradient(circle at 14% 0%, rgba(20, 184, 166, 0.22), transparent 34%),
-    radial-gradient(circle at 92% 88%, rgba(255, 92, 168, 0.16), transparent 36%),
-    radial-gradient(circle at 78% 14%, rgba(255, 139, 31, 0.14), transparent 32%),
-    linear-gradient(160deg, #091a34 0%, #0b1d3a 44%, #10274a 100%);
+.page-ask .ask-product-tool-section.ask-product-atmosphere {
+  margin-top: -1px;
+  background-image:
+    linear-gradient(180deg, rgba(6, 14, 26, 0.68) 0%, rgba(7, 16, 30, 0.88) 42%, rgba(5, 12, 24, 0.93) 100%),
+    var(--ask-atmosphere-photo);
+  background-position: center 30%;
 }
 
-.page-ask .ask-product-tool-section.section-navy-routes,
+.page-ask .ask-product-tool-section.ask-product-atmosphere,
 .page-ask .ask-product-tool-section.section {
   padding-inline: 0;
 }
@@ -13494,21 +13524,6 @@ body.page-ask main:not(.ask-product-main) {
   isolation: isolate;
 }
 
-@media (min-width: 720px) {
-  .page-ask .ask-product-tool-wrap::before {
-    content: "";
-    position: absolute;
-    inset: -20px -12px -28px;
-    z-index: -1;
-    pointer-events: none;
-    background:
-      radial-gradient(ellipse 70% 55% at 50% 18%, rgba(20, 184, 166, 0.2), transparent 68%),
-      radial-gradient(ellipse 55% 45% at 88% 72%, rgba(242, 178, 26, 0.14), transparent 62%);
-    filter: blur(28px);
-    opacity: 0.9;
-  }
-}
-
 /* Premium Ask A Local studio card (hero product surface) */
 .page-ask .ask-product-tool-card.live-concierge-card {
   /* In-card chat copy + typed text share one column (composer field padding) */
@@ -13523,15 +13538,11 @@ body.page-ask main:not(.ask-product-main) {
     clamp(24px, 4.8vw, 30px);
   border-radius: calc(var(--radius) + 14px);
   overflow: hidden;
-  border: 1px solid rgba(255, 246, 230, 0.2);
+  border: 1px solid rgba(255, 246, 230, 0.16);
   background:
-    radial-gradient(ellipse 120% 85% at 0% 0%, rgba(20, 184, 166, 0.14), transparent 52%),
-    radial-gradient(ellipse 90% 70% at 100% 100%, rgba(242, 178, 26, 0.11), transparent 48%),
-    radial-gradient(ellipse 55% 45% at 92% 8%, rgba(255, 92, 168, 0.09), transparent 42%),
-    linear-gradient(165deg, rgba(11, 24, 44, 0.99) 0%, rgba(7, 16, 32, 0.98) 46%, rgba(4, 10, 22, 1) 100%);
+    linear-gradient(168deg, rgba(10, 22, 40, 0.97) 0%, rgba(5, 12, 24, 0.99) 55%, rgba(4, 10, 22, 1) 100%);
   box-shadow:
-    0 1px 0 rgba(255, 246, 230, 0.1) inset,
-    0 0 0 1px rgba(20, 184, 166, 0.08) inset,
+    0 1px 0 rgba(255, 246, 230, 0.08) inset,
     0 36px 80px rgba(2, 6, 14, 0.58),
     0 14px 32px rgba(2, 6, 14, 0.38);
 }
@@ -13544,10 +13555,9 @@ body.page-ask main:not(.ask-product-main) {
   padding: 1px;
   background: linear-gradient(
     148deg,
-    rgba(20, 184, 166, 0.55) 0%,
-    rgba(255, 246, 230, 0.14) 38%,
-    rgba(242, 178, 26, 0.35) 72%,
-    rgba(255, 139, 31, 0.28) 100%
+    rgba(242, 178, 26, 0.42) 0%,
+    rgba(255, 246, 230, 0.12) 45%,
+    rgba(242, 178, 26, 0.28) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -13566,13 +13576,11 @@ body.page-ask main:not(.ask-product-main) {
   height: 4px;
   background: linear-gradient(
     90deg,
-    var(--turquoise) 0%,
-    rgba(20, 184, 166, 0.65) 22%,
-    var(--gold) 52%,
-    var(--orange) 78%,
-    var(--coral) 100%
+    rgba(242, 178, 26, 0.15) 0%,
+    rgba(242, 178, 26, 0.75) 50%,
+    rgba(242, 178, 26, 0.15) 100%
   );
-  opacity: 0.92;
+  opacity: 0.88;
   pointer-events: none;
   z-index: 3;
 }
@@ -13917,19 +13925,15 @@ body.page-ask main:not(.ask-product-main) {
 .page-ask .ask-product-prompt-chips .live-concierge__chip--lane:hover {
   border-color: rgba(242, 178, 26, 0.45);
   background:
-    linear-gradient(155deg, rgba(20, 184, 166, 0.16) 0%, rgba(8, 18, 34, 0.92) 100%);
+    linear-gradient(155deg, rgba(18, 32, 56, 0.96) 0%, rgba(8, 18, 34, 0.94) 100%);
   box-shadow:
     0 1px 0 rgba(255, 246, 230, 0.1) inset,
     0 10px 22px rgba(2, 6, 14, 0.28);
 }
 
-.page-ask .ask-product-value.section-cream {
+.page-ask .ask-product-value.ask-product-atmosphere {
   padding-block: var(--ask-section-pad);
-  background:
-    radial-gradient(circle at 10% 18%, rgba(242, 178, 26, 0.14), transparent 42%),
-    radial-gradient(circle at 90% 82%, rgba(20, 184, 166, 0.12), transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(255, 92, 168, 0.06), transparent 55%),
-    linear-gradient(180deg, var(--cream) 0%, var(--cream-peach) 100%);
+  background-position: center 40%;
 }
 
 .page-ask .ask-product-value.section,
@@ -13945,7 +13949,7 @@ body.page-ask main:not(.ask-product-main) {
   margin-bottom: var(--ask-stack-lg);
 }
 
-.page-ask .ask-product-eyebrow {
+.page-ask .ask-product-eyebrow:not(.eyebrow-on-dark) {
   margin-bottom: var(--ask-stack-xs);
   font-size: clamp(0.66rem, 0.1vw + 0.62rem, 0.72rem);
   font-weight: 900;
@@ -13953,12 +13957,18 @@ body.page-ask main:not(.ask-product-main) {
   color: var(--coral);
 }
 
+.page-ask .ask-product-section-head--on-dark .ask-product-eyebrow.eyebrow-on-dark {
+  margin-bottom: var(--ask-stack-xs);
+  font-size: clamp(0.66rem, 0.1vw + 0.62rem, 0.72rem);
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
 .page-ask .ask-product-section-head h2 {
   margin: 0 0 var(--ask-stack-sm);
   font-size: clamp(1.45rem, 2.8vw + 0.45rem, 1.95rem);
   line-height: 1.12;
   letter-spacing: -0.028em;
-  color: var(--navy);
 }
 
 .page-ask .ask-product-section-head--on-dark .eyebrow.eyebrow-on-dark {
@@ -14028,33 +14038,11 @@ body.page-ask main:not(.ask-product-main) {
   }
 }
 
-.page-ask .ask-product-examples.section-navy-routes {
+.page-ask .ask-product-examples.ask-product-atmosphere {
   position: relative;
   padding-inline: 0;
   padding-block: var(--ask-section-pad);
-  background:
-    radial-gradient(circle at 8% 92%, rgba(242, 178, 26, 0.16), transparent 30%),
-    radial-gradient(circle at 12% 12%, rgba(20, 184, 166, 0.2), transparent 32%),
-    radial-gradient(circle at 90% 86%, rgba(255, 92, 168, 0.18), transparent 36%),
-    radial-gradient(circle at 80% 12%, rgba(255, 139, 31, 0.18), transparent 34%),
-    linear-gradient(160deg, #091a34 0%, #0b1d3a 44%, #10274a 100%);
-}
-
-.page-ask .ask-product-examples.section-navy-routes::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--turquoise) 0%,
-    var(--gold) 50%,
-    var(--coral) 100%
-  );
-  opacity: 0.85;
-  pointer-events: none;
+  background-position: center 48%;
 }
 
 .page-ask .ask-product-example-list {
@@ -14069,10 +14057,8 @@ body.page-ask main:not(.ask-product-main) {
   height: 100%;
   padding: clamp(18px, 2.4vw, 22px) var(--ask-text-inset);
   border-radius: calc(var(--radius) + 6px);
-  border: 1px solid rgba(255, 246, 230, 0.18);
-  background:
-    radial-gradient(ellipse 100% 80% at 0% 0%, rgba(20, 184, 166, 0.1), transparent 55%),
-    linear-gradient(168deg, rgba(10, 22, 42, 0.96) 0%, rgba(5, 12, 26, 0.92) 100%);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  background: linear-gradient(168deg, rgba(12, 24, 44, 0.94) 0%, rgba(6, 14, 28, 0.92) 100%);
   box-shadow:
     0 1px 0 rgba(255, 246, 230, 0.08) inset,
     0 16px 40px rgba(2, 6, 14, 0.32);
@@ -14121,22 +14107,11 @@ body.page-ask main:not(.ask-product-main) {
   color: rgba(242, 178, 26, 0.88);
 }
 
-.page-ask .ask-product-human.section-cream {
+.page-ask .ask-product-human.ask-product-atmosphere {
   padding-block: var(--ask-section-pad);
   /* Last band before footer — single bottom pad (no stacked #human-help / main gutter) */
   margin-bottom: 0;
-  background:
-    radial-gradient(circle at 88% 20%, rgba(255, 92, 168, 0.1), transparent 38%),
-    radial-gradient(circle at 12% 88%, rgba(20, 184, 166, 0.11), transparent 40%),
-    linear-gradient(180deg, var(--cream) 0%, var(--cream-turq) 100%);
-}
-
-.page-ask .ask-product-human .ask-product-section-head h2 {
-  color: var(--navy);
-}
-
-.page-ask .ask-product-human-inner .section-text {
-  color: var(--slate);
+  background-position: center 56%;
 }
 
 .page-ask .ask-product-human-note {
@@ -14145,7 +14120,7 @@ body.page-ask main:not(.ask-product-main) {
   font-size: clamp(0.9rem, 0.2vw + 0.86rem, 0.98rem);
   line-height: 1.55;
   font-weight: 600;
-  color: rgba(11, 29, 58, 0.88);
+  color: rgba(255, 248, 235, 0.78);
 }
 
 .page-ask .ask-product-human-actions {
@@ -14167,24 +14142,52 @@ body.page-ask main:not(.ask-product-main) {
     0 3px 0 rgba(255, 255, 255, 0.35) inset;
 }
 
-.page-ask .ask-product-human-actions .btn-secondary {
-  border-color: rgba(11, 29, 58, 0.18);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 8px 20px rgba(11, 29, 58, 0.08);
+.page-ask .ask-product-human-actions .btn-secondary-hero {
+  box-shadow: 0 8px 22px rgba(2, 6, 14, 0.28);
 }
 
 .page-ask .ask-product-human-back {
   min-height: 48px;
 }
 
-.page-ask .footer.dark-showcase {
-  border-top: 1px solid rgba(255, 246, 230, 0.12);
+/* Footer: same twilight atmosphere as post-hero bands (no dark-showcase color washes) */
+.page-ask .footer.ask-product-footer.dark-showcase {
+  position: relative;
+  isolation: isolate;
+  margin-top: 0;
+  border-top: none;
+  border-bottom: none;
+  background-color: var(--ask-ink);
+  background-image:
+    linear-gradient(180deg, rgba(5, 12, 24, 0.82) 0%, rgba(6, 14, 26, 0.94) 55%, rgba(4, 10, 22, 0.98) 100%),
+    var(--ask-atmosphere-photo);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 64%;
+}
+
+.page-ask .footer.ask-product-footer.dark-showcase > * {
+  position: relative;
+  z-index: 1;
+}
+
+.page-ask .footer.ask-product-footer .footer-links a {
+  border-color: rgba(255, 246, 230, 0.22);
+  background: rgba(8, 18, 34, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.page-ask .footer.ask-product-footer .footer-links a:hover {
+  border-color: rgba(242, 178, 26, 0.42);
+  background: rgba(12, 24, 44, 0.72);
 }
 
 .page-ask .footer-note--compact {
   font-size: 0.84rem;
   line-height: 1.5;
   max-width: 36rem;
+  color: rgba(255, 248, 235, 0.68);
 }
 
 @media (min-width: 900px) {
@@ -14237,10 +14240,10 @@ body.page-ask main:not(.ask-product-main) {
     text-shadow: 0 1px 16px rgba(2, 6, 14, 0.4);
   }
 
-  .page-ask .ask-product-tool-section.section-navy-routes,
-  .page-ask .ask-product-examples.section-navy-routes,
-  .page-ask .ask-product-value.section,
-  .page-ask .ask-product-human.section {
+  .page-ask .ask-product-tool-section.ask-product-atmosphere,
+  .page-ask .ask-product-examples.ask-product-atmosphere,
+  .page-ask .ask-product-value.ask-product-atmosphere,
+  .page-ask .ask-product-human.ask-product-atmosphere {
     padding-inline: 0;
   }
 
