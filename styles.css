@@ -22998,6 +22998,18 @@ body.owner-dash-detail-open {
   overflow: hidden;
 }
 
+/* Homepage — Transport story card → Built by The AI Plug (no bridge-band gap) */
+.page-home .transport-section.transport-section--story:has(+ .home-ai-plug-section) {
+  padding-bottom: clamp(18px, 3.2vw, 26px);
+  border-bottom: none;
+}
+
+.page-home .transport-section + .home-ai-plug-section {
+  margin-top: 0;
+  border-top: none;
+  padding-top: clamp(18px, 3.2vw, 26px);
+}
+
 .page-home .home-ai-plug-section::before {
   content: "";
   position: absolute;
@@ -23399,6 +23411,14 @@ body.owner-dash-detail-open {
   .page-home .home-ai-plug-section {
     padding-top: clamp(1.75rem, 5vw, 2.25rem);
     padding-bottom: clamp(2rem, 5.5vw, 2.5rem);
+  }
+
+  .page-home .transport-section.transport-section--story:has(+ .home-ai-plug-section) {
+    padding-bottom: clamp(16px, 3.5vw, 22px);
+  }
+
+  .page-home .transport-section + .home-ai-plug-section {
+    padding-top: clamp(16px, 3.5vw, 22px);
   }
 
   .page-home .home-ai-plug__hero-media-wrap {
