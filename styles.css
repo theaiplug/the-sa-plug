@@ -13263,22 +13263,25 @@ body.page-ask main {
 }
 
 /* ----- Ask product page (tool-first rebuild) ----- */
+/*
+ * Layout model (standard product-page pattern):
+ * 1. .ask-product-shell — centered column + page gutter (all sections share this)
+ * 2. .ask-product-tool-card — full width of shell; inner padding clears rounded corners
+ * 3. Headlines, prompts, and card body share the same column — no stacked extra gutters
+ */
 .page-ask .ask-product-main {
-  --ask-product-pad: clamp(16px, 4vw, 24px);
+  --ask-shell-max: 45rem;
+  --ask-shell-pad: clamp(20px, 5vw, 32px);
+  --ask-card-pad: clamp(18px, 4.2vw, 24px);
   letter-spacing: normal;
   word-spacing: normal;
 }
 
-/* One shared column width + inset for hero, tool, prompts, and lower sections */
-.page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band,
-.page-ask .ask-product-inner,
-.page-ask .ask-product-value-inner,
-.page-ask .ask-product-examples-inner,
-.page-ask .ask-product-human-inner {
+.page-ask .ask-product-shell {
   width: 100%;
-  max-width: min(720px, 100%);
+  max-width: var(--ask-shell-max);
   margin-inline: auto;
-  padding-inline: var(--ask-product-pad);
+  padding-inline: var(--ask-shell-pad);
   box-sizing: border-box;
 }
 
@@ -13319,8 +13322,9 @@ body.page-ask main {
   display: none;
 }
 
-.page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band {
-  padding-block: clamp(20px, 3.5vw, 32px) clamp(22px, 3.5vw, 30px);
+.page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band.ask-product-shell {
+  max-width: var(--ask-shell-max);
+  padding-block: clamp(24px, 4vw, 36px) clamp(26px, 4vw, 34px);
 }
 
 .page-ask .ask-product-hero-shell {
@@ -13373,10 +13377,10 @@ body.page-ask main {
   padding-right: 0;
 }
 
-.page-ask .ask-product-inner {
+.page-ask .ask-product-inner.ask-product-shell {
   display: flex;
   flex-direction: column;
-  gap: clamp(22px, 3.5vw, 32px);
+  gap: clamp(24px, 4vw, 32px);
 }
 
 .page-ask .ask-product-tool.ask-local-tool.live-concierge-studio {
@@ -13386,6 +13390,9 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-tool-card.live-concierge-card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--ask-card-pad);
   border-radius: calc(var(--radius) + 10px);
   overflow: hidden;
   border: 1px solid rgba(255, 246, 230, 0.16);
@@ -13395,9 +13402,19 @@ body.page-ask main {
     inset 0 1px 0 rgba(255, 246, 230, 0.06);
 }
 
+.page-ask .ask-product-tool-card .live-concierge__glass-panel,
+.page-ask .ask-product-tool-card .live-concierge__main-card,
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__main-card {
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
 .page-ask .ask-product-tool-status.live-concierge__status {
   display: block;
-  margin: 0 0 12px;
+  width: 100%;
+  margin: 0 0 14px;
   padding: 0;
   border: none;
   border-radius: 0;
@@ -13408,6 +13425,7 @@ body.page-ask main {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(20, 184, 166, 0.9);
+  text-align: left;
 }
 
 .page-ask .ask-product-tool-status.live-concierge__status--live {
@@ -13419,31 +13437,17 @@ body.page-ask main {
   display: none;
 }
 
-.page-ask .ask-product-tool .live-concierge__glass-panel {
-  border: none;
-  border-top: none;
-  background: transparent;
-  box-shadow: none;
-  padding: 0 0 clamp(16px, 2.4vw, 20px);
-}
-
-.page-ask .ask-product-tool.ask-local-tool .live-concierge__main-card {
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  padding-bottom: clamp(10px, 2vw, 14px);
-}
-
 .page-ask .ask-product-tool.ask-local-tool .live-concierge__preview--placeholder {
-  margin-inline: 0;
-  padding-left: 0;
-  padding-right: 0;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 clamp(14px, 2.4vw, 18px);
+  padding: clamp(14px, 2.4vw, 18px);
+  border-radius: calc(var(--radius) + 2px);
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
-  margin-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
+  margin: 14px 0 0;
+  padding: 0;
 }
 
 .page-ask .ask-product-tool .live-concierge__preview-heading {
@@ -13720,16 +13724,13 @@ body.page-ask main {
 
 @media (max-width: 768px) {
   .page-ask .ask-product-main {
-    --ask-product-pad: 16px;
+    --ask-shell-pad: max(20px, env(safe-area-inset-left, 0px));
+    --ask-card-pad: 18px;
   }
 
-  .page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band,
-  .page-ask .ask-product-inner,
-  .page-ask .ask-product-value-inner,
-  .page-ask .ask-product-examples-inner,
-  .page-ask .ask-product-human-inner {
+  .page-ask .ask-product-shell {
     max-width: none;
-    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+    padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px));
   }
 
   .page-ask .ask-product-hero-visual img {
@@ -13742,6 +13743,10 @@ body.page-ask main {
   .page-ask .ask-product-examples.section-navy-routes {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .page-ask .ask-product-example-list {
+    grid-template-columns: 1fr;
   }
 }
 
