@@ -13446,7 +13446,10 @@ body.page-ask main {
   isolation: isolate;
   box-sizing: border-box;
   width: 100%;
-  padding: clamp(22px, 4.8vw, 28px) var(--ask-text-inset);
+  padding:
+    clamp(26px, 5vw, 32px)
+    var(--ask-text-inset)
+    clamp(24px, 4.8vw, 30px);
   border-radius: calc(var(--radius) + 14px);
   overflow: hidden;
   border: 1px solid rgba(255, 246, 230, 0.2);
@@ -13514,49 +13517,88 @@ body.page-ask main {
   box-shadow: none;
 }
 
-.page-ask .ask-product-tool-status.live-concierge__status {
+.page-ask .ask-product-tool-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 9px;
-  width: 100%;
-  margin: 0 0 clamp(16px, 2.6vw, 20px);
-  padding: 0 0 0 var(--ask-chat-field-pad);
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  font-size: 0.72rem;
+  justify-content: space-between;
+  gap: 12px 16px;
+  margin: 0 0 clamp(18px, 2.8vw, 22px);
+  padding: 0 var(--ask-chat-field-pad);
+}
+
+.page-ask .ask-product-tool-kicker {
+  margin: 0;
+  font-size: clamp(0.64rem, 0.12vw + 0.6rem, 0.7rem);
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(20, 184, 166, 0.95);
+  color: rgba(255, 246, 230, 0.46);
+}
+
+.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 8px 15px 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 184, 166, 0.44);
+  background:
+    linear-gradient(
+      152deg,
+      rgba(20, 184, 166, 0.24) 0%,
+      rgba(8, 18, 34, 0.9) 52%,
+      rgba(4, 10, 22, 0.96) 100%
+    );
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.14) inset,
+    0 10px 26px rgba(2, 6, 14, 0.3);
+  font-size: clamp(0.64rem, 0.1vw + 0.6rem, 0.7rem);
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(255, 248, 235, 0.94);
   text-align: left;
 }
 
-.page-ask .ask-product-tool-status.live-concierge__status::before {
+.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status::before {
   content: "";
   display: block;
   flex: 0 0 auto;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--turquoise);
   box-shadow:
-    0 0 0 3px rgba(20, 184, 166, 0.2),
-    0 0 12px rgba(20, 184, 166, 0.65);
+    0 0 0 3px rgba(20, 184, 166, 0.22),
+    0 0 10px rgba(20, 184, 166, 0.7);
 }
 
-.page-ask .ask-product-tool-status.live-concierge__status--live {
-  border: none;
-  box-shadow: none;
+.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live {
+  border-color: rgba(242, 178, 26, 0.52);
+  color: rgba(255, 248, 235, 0.98);
+  background:
+    linear-gradient(
+      152deg,
+      rgba(242, 178, 26, 0.22) 0%,
+      rgba(8, 18, 34, 0.92) 52%,
+      rgba(4, 10, 22, 0.98) 100%
+    );
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.12) inset,
+    0 0 24px rgba(242, 178, 26, 0.14),
+    0 10px 26px rgba(2, 6, 14, 0.3);
 }
 
-.page-ask .ask-product-tool-status.live-concierge__status--live::before {
+.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live::before {
   display: block;
   background: var(--gold);
   box-shadow:
-    0 0 0 3px rgba(242, 178, 26, 0.22),
-    0 0 14px rgba(242, 178, 26, 0.55);
+    0 0 0 3px rgba(242, 178, 26, 0.24),
+    0 0 12px rgba(242, 178, 26, 0.65);
   animation: ask-product-status-pulse 1.8s ease-in-out infinite;
 }
 
@@ -13573,7 +13615,7 @@ body.page-ask main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-ask .ask-product-tool-status.live-concierge__status--live::before {
+  .page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live::before {
     animation: none;
   }
 
@@ -13613,8 +13655,19 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack {
-  padding-top: clamp(6px, 1.2vw, 10px);
-  border-top: 1px solid rgba(255, 246, 230, 0.1);
+  box-sizing: border-box;
+  margin-top: 2px;
+  padding:
+    clamp(16px, 2.6vw, 20px)
+    var(--ask-chat-field-pad)
+    clamp(6px, 1.2vw, 10px);
+  border-radius: calc(var(--radius) + 4px);
+  border: 1px solid rgba(255, 246, 230, 0.1);
+  border-top: 1px solid rgba(255, 246, 230, 0.14);
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 0%, rgba(20, 184, 166, 0.06), transparent 58%),
+    rgba(0, 0, 0, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.05);
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit {
@@ -13657,7 +13710,7 @@ body.page-ask main {
 
 .page-ask .ask-product-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
   margin: 14px 0 0;
-  padding: 0 0 0 var(--ask-chat-field-pad);
+  padding: 0;
   max-width: none;
   color: rgba(255, 248, 235, 0.55);
   font-size: clamp(0.74rem, 0.16vw + 0.7rem, 0.8rem);
@@ -13685,7 +13738,7 @@ body.page-ask main {
 .page-ask .ask-product-tool .live-concierge__input-label {
   display: block;
   margin: 0 0 10px;
-  padding-left: var(--ask-chat-field-pad);
+  padding-left: 0;
   font-size: 0.74rem;
   font-weight: 850;
   letter-spacing: 0.11em;
@@ -13764,12 +13817,32 @@ body.page-ask main {
 .page-ask .ask-product-prompt-chips .live-concierge__chip--lane {
   min-height: 2.5rem;
   padding: 8px var(--ask-text-inset);
+  border-color: rgba(255, 246, 230, 0.2);
+  background:
+    linear-gradient(155deg, rgba(12, 24, 44, 0.92) 0%, rgba(5, 12, 26, 0.88) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.08) inset,
+    0 6px 16px rgba(2, 6, 14, 0.2);
   font-size: clamp(0.8rem, 0.16vw + 0.76rem, 0.86rem);
   font-weight: 700;
   letter-spacing: normal;
   word-spacing: normal;
   text-align: left;
   line-height: 1.35;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.14s ease;
+}
+
+.page-ask .ask-product-prompt-chips .live-concierge__chip--lane:hover {
+  border-color: rgba(242, 178, 26, 0.45);
+  background:
+    linear-gradient(155deg, rgba(20, 184, 166, 0.16) 0%, rgba(8, 18, 34, 0.92) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.1) inset,
+    0 10px 22px rgba(2, 6, 14, 0.28);
 }
 
 .page-ask .ask-product-value {
