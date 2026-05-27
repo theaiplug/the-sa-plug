@@ -4663,10 +4663,20 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-home .home-ask-bridge .home-ask-entry-inner {
+  .page-home .home-ask-bridge .home-ask-entry-inner,
+  .page-ask .ask-product-example-card,
+  .start-here-main .sh-ask-panel,
+  .start-here-main .sh-final-cta {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+  }
+
+  .page-home .home-ask-bridge .home-ask-entry-inner {
     background: rgba(7, 16, 34, 0.88);
+  }
+
+  .page-ask .ask-product-example-card {
+    background: rgba(7, 16, 34, 0.92);
   }
 }
 
@@ -8157,15 +8167,19 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   --premium-hero-scrim-bottom-end: rgba(6, 14, 26, 0.52);
 }
 
+.page-ask,
+.page-start-here {
+  /* Shared column + gutter — hero, bands, and footer CTA align on one edge */
+  --sh-shell-max: 1300px;
+  --sh-shell-pad: clamp(16px, 4vw, 48px);
+}
+
 .page-ask {
-  --premium-atmosphere-photo: url("/assets/downtown-river-promenade-twilight.png");
+  --premium-atmosphere-photo: url("/assets/evening_riverwalk_with_vibrant_ambiance.png");
 }
 
 .page-start-here {
   --premium-atmosphere-photo: url("assets/evening_riverwalk_with_vibrant_ambiance.png");
-  /* Shared column + gutter — hero, bands, and footer CTA align on one edge */
-  --sh-shell-max: 1300px;
-  --sh-shell-pad: clamp(16px, 4vw, 48px);
 }
 
 :is(.page-ask, .page-start-here) .premium-atmosphere,
@@ -8205,7 +8219,8 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   z-index: 1;
 }
 
-.page-start-here .premium-atmosphere > .routes-band-inner {
+:is(.page-start-here, .page-ask) .premium-atmosphere > .routes-band-inner,
+.page-ask .ask-product-atmosphere > .routes-band-inner.ask-product-band-shell {
   width: 100%;
   max-width: var(--sh-shell-max);
   margin-inline: auto;
@@ -8214,15 +8229,20 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 @media (max-width: 768px) {
-  .page-start-here {
+  :is(.page-start-here, .page-ask) {
     --sh-shell-pad: max(16px, env(safe-area-inset-left, 0px));
   }
 
-  .page-start-here .premium-atmosphere > .routes-band-inner {
+  :is(.page-start-here, .page-ask) .premium-atmosphere > .routes-band-inner,
+  .page-ask .ask-product-atmosphere > .routes-band-inner.ask-product-band-shell {
     padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
   }
 
   .page-start-here .sh-final-section.premium-atmosphere {
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  .page-ask .ask-product-value--light .ask-product-band-shell {
     padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
   }
 }
@@ -13685,7 +13705,7 @@ body.page-ask main:not(.ask-product-main) {
 
 /* ----- Ask product page (tool-first rebuild) ----- */
 .page-ask {
-  --ask-hero-photo: url("/assets/downtown-river-promenade-twilight.png");
+  --ask-hero-photo: url("/assets/evening_riverwalk_with_vibrant_ambiance.png");
 }
 
 /*
@@ -13731,8 +13751,19 @@ body.page-ask main:not(.ask-product-main) {
   margin: 0;
   padding: 0;
   min-height: clamp(420px, 62vh, 640px);
-  background-color: #0a1a2e;
-  background: url("/assets/downtown-river-promenade-twilight.png") center 42% / cover no-repeat;
+  background-color: #071022;
+  background-image:
+    linear-gradient(
+      90deg,
+      var(--premium-hero-scrim-side) 0%,
+      var(--premium-hero-scrim-side-mid) 38%,
+      rgba(5, 10, 24, 0.06) 62%,
+      transparent 82%
+    ),
+    url("/assets/evening_riverwalk_with_vibrant_ambiance.png");
+  background-repeat: no-repeat;
+  background-position: 0 0, center 42%;
+  background-size: cover, cover;
 }
 
 .page-ask .ask-hero--cinematic.hero-fiesta-dark::before {
@@ -13740,7 +13771,14 @@ body.page-ask main:not(.ask-product-main) {
 }
 
 .page-ask .ask-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
-  display: none;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    transparent 62%,
+    var(--premium-hero-scrim-bottom) 88%,
+    var(--premium-hero-scrim-bottom-end) 100%
+  );
 }
 
 .page-ask .ask-product-hero .hero-title {
@@ -14299,6 +14337,57 @@ body.page-ask main:not(.ask-product-main) {
   padding-inline: 0;
 }
 
+/* Ask — light value breather (matches Home trust band) */
+.page-ask .ask-product-value--light {
+  position: relative;
+  max-width: none;
+  margin-inline: 0;
+  padding-block: clamp(28px, 4.5vw, 44px);
+  padding-inline: 0;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(20, 184, 166, 0.07), transparent 58%),
+    linear-gradient(180deg, #fffbf6 0%, #f8f2e8 52%, #f0e9de 100%);
+  border-block: 1px solid rgba(11, 29, 58, 0.07);
+}
+
+.page-ask .ask-product-value--light::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 184, 166, 0.85) 0%,
+    rgba(242, 178, 26, 0.9) 50%,
+    rgba(255, 106, 77, 0.8) 100%
+  );
+}
+
+.page-ask .ask-product-value--light .ask-product-band-shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--sh-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--sh-shell-pad);
+  box-sizing: border-box;
+}
+
+.page-ask .ask-product-value--light .ask-product-eyebrow {
+  color: #0d9488;
+}
+
+.page-ask .ask-product-value--light .ask-product-section-head h2 {
+  color: var(--navy);
+  text-shadow: none;
+}
+
+.page-ask .ask-product-value--light .ask-product-section-head .section-text {
+  color: rgba(11, 29, 58, 0.74);
+}
+
 .page-ask .ask-product-section-head {
   max-width: none;
   margin-bottom: var(--ask-stack-lg);
@@ -14400,9 +14489,9 @@ body.page-ask main:not(.ask-product-main) {
   padding: clamp(18px, 2.4vw, 22px) var(--ask-text-inset);
   border-radius: calc(var(--radius) + 6px);
   border: 1px solid rgba(255, 246, 230, 0.18);
-  background:
-    radial-gradient(ellipse 100% 80% at 0% 0%, rgba(20, 184, 166, 0.1), transparent 55%),
-    linear-gradient(168deg, rgba(10, 22, 42, 0.96) 0%, rgba(5, 12, 26, 0.92) 100%);
+  background: rgba(7, 16, 34, 0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   box-shadow:
     0 1px 0 rgba(255, 246, 230, 0.08) inset,
     0 16px 40px rgba(2, 6, 14, 0.32);
