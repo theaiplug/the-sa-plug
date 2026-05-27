@@ -142,67 +142,67 @@ main {
   Inner subpages: default sections sit on the global dark canvas — lock readable
   fiesta-on-dark type below.
 */
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) {
   color: var(--on-dark-body-soft);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) :is(h2, h3) {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) :is(h2, h3) {
   color: var(--on-dark-heading);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .section-text {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .section-text {
   color: var(--on-dark-body);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .section-text a {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .section-text a {
   color: var(--turquoise);
   text-decoration: underline;
   text-underline-offset: 0.14em;
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .section-text a:hover {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .section-text a:hover {
   color: var(--gold);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) > .eyebrow,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) > div > .eyebrow:first-child,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) :is(.eat-section-head, .sh-section-head, .tc-section-head) .eyebrow:not(.eyebrow-on-dark) {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) > .eyebrow,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) > div > .eyebrow:first-child,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) :is(.eat-section-head, .sh-section-head, .tc-section-head) .eyebrow:not(.eyebrow-on-dark) {
   color: var(--on-dark-eyebrow);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card h3 {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card h3 {
   color: var(--navy);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card p,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card small {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card p,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .card small {
   color: var(--slate);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .required-note {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .required-note {
   color: rgba(255, 246, 230, 0.94);
   background: rgba(255, 106, 77, 0.16);
   border-color: rgba(255, 106, 77, 0.4);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section).split {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section).split {
   align-items: stretch;
 }
 
 @media (min-width: 830px) {
-  main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section).split {
+  main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section).split {
     gap: clamp(24px, 3.2vw, 36px);
   }
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .grid-3,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .grid-4,
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .feature-grid {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .grid-3,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .grid-4,
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .feature-grid {
   margin-top: clamp(18px, 2.2vw, 24px);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .grid-4-split {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section) .grid-4-split {
   margin-top: clamp(8px, 1.35vw, 13px);
 }
 
@@ -22980,5 +22980,456 @@ body.owner-dash-detail-open {
   .page-business-services.ai-services-page .ai-bs-lanes-editorial .ai-bs-section-visual--lanes img {
     aspect-ratio: 4 / 5;
     object-fit: cover;
+  }
+}
+/* Homepage — Built by The AI Plug (clean rebuild) */
+
+.page-home .home-ai-plug-section {
+  --home-ai-plug-pad-y: clamp(2.25rem, 5.5vw, 3.75rem);
+  --home-ai-plug-pad-x: clamp(1rem, 4vw, 1.5rem);
+  --home-ai-plug-gap-lg: clamp(1.5rem, 3.2vw, 2.25rem);
+  --home-ai-plug-gap-md: clamp(1rem, 2.4vw, 1.5rem);
+  --home-ai-plug-gap-sm: clamp(0.65rem, 1.6vw, 0.85rem);
+  --home-ai-plug-body-lh: 1.55;
+  position: relative;
+  isolation: isolate;
+  margin-top: clamp(4px, 1.2vw, 12px);
+  padding: var(--home-ai-plug-pad-y) var(--home-ai-plug-pad-x);
+  border-top: 1px solid rgba(255, 246, 230, 0.12);
+  overflow: hidden;
+}
+
+.page-home .home-ai-plug-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 72% 48% at 18% 0%, rgba(20, 184, 166, 0.16), transparent 58%),
+    radial-gradient(ellipse 55% 40% at 92% 12%, rgba(242, 178, 26, 0.14), transparent 52%),
+    radial-gradient(ellipse 60% 35% at 50% 100%, rgba(255, 106, 77, 0.08), transparent 55%);
+}
+
+.page-home .home-ai-plug {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--home-ai-plug-gap-lg);
+  max-width: 1300px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* —— Visual hero card —— */
+.page-home .home-ai-plug__hero {
+  margin: 0;
+}
+
+.page-home .home-ai-plug__hero-frame {
+  position: relative;
+  width: 100%;
+  min-height: clamp(240px, 52vw, 400px);
+  overflow: hidden;
+  border-radius: clamp(18px, 2.6vw, 26px);
+  border: 1px solid rgba(255, 246, 230, 0.24);
+  background: #071022;
+  box-shadow:
+    0 32px 62px rgba(2, 6, 14, 0.55),
+    0 0 0 1px rgba(242, 178, 26, 0.2),
+    0 0 48px rgba(20, 184, 166, 0.08);
+  isolation: isolate;
+}
+
+.page-home .home-ai-plug__hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 38%;
+  display: block;
+}
+
+.page-home .home-ai-plug__hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 55% at 72% 8%, rgba(20, 184, 166, 0.14), transparent 52%),
+    linear-gradient(
+      to top,
+      rgba(5, 10, 24, 0.55) 0%,
+      rgba(5, 10, 24, 0.22) 42%,
+      rgba(5, 10, 24, 0.06) 68%,
+      rgba(5, 10, 24, 0) 100%
+    );
+}
+
+.page-home .home-ai-plug__hero-panel {
+  position: absolute;
+  left: clamp(12px, 2.4vw, 20px);
+  right: clamp(12px, 2.4vw, 20px);
+  bottom: clamp(12px, 2.4vw, 20px);
+  z-index: 2;
+  max-width: min(38rem, calc(100% - clamp(24px, 4.8vw, 40px)));
+  padding: clamp(16px, 2.6vw, 24px);
+  border-radius: clamp(14px, 2vw, 18px);
+  border: 1px solid rgba(255, 246, 230, 0.2);
+  background: linear-gradient(155deg, rgba(8, 14, 30, 0.82) 0%, rgba(5, 10, 24, 0.72) 100%);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 246, 230, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: grid;
+  gap: clamp(8px, 1.4vw, 12px);
+}
+
+.page-home .home-ai-plug__eyebrow {
+  margin: 0;
+  font-size: clamp(0.58rem, 0.1vw + 0.54rem, 0.64rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(253, 224, 150, 0.96);
+  line-height: 1.3;
+}
+
+.page-home .home-ai-plug__hero-title {
+  margin: 0;
+  font-size: clamp(1.35rem, 4.8vw, 2rem);
+  font-weight: 860;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  word-spacing: normal;
+  color: #fff8eb;
+  text-shadow: 0 2px 20px rgba(5, 10, 24, 0.55);
+  max-width: 24ch;
+  text-wrap: pretty;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.page-home .home-ai-plug__hero-line {
+  margin: 0;
+  font-size: clamp(0.9rem, 0.2vw + 0.84rem, 1.02rem);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: normal;
+  word-spacing: normal;
+  color: rgba(255, 246, 230, 0.92);
+  max-width: 46ch;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* —— Supporting copy —— */
+.page-home .home-ai-plug__copy {
+  display: grid;
+  gap: var(--home-ai-plug-gap-sm);
+  max-width: 60rem;
+}
+
+.page-home .home-ai-plug__paragraph {
+  margin: 0;
+  max-width: 52ch;
+  font-size: clamp(0.9rem, 0.16vw + 0.84rem, 0.98rem);
+  line-height: var(--home-ai-plug-body-lh);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: start;
+  text-transform: none;
+  hyphens: none;
+  -webkit-hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: pretty;
+  color: rgba(255, 246, 230, 0.86);
+}
+
+.page-home .home-ai-plug__copy .home-ai-plug__paragraph + .home-ai-plug__paragraph {
+  color: rgba(255, 246, 230, 0.78);
+}
+
+/* —— Capability feature cards —— */
+.page-home .home-ai-plug__features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(10px, 1.8vw, 14px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-home .home-ai-plug__feature {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 10px 12px;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(14px, 2.2vw, 18px);
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  border-left-width: 3px;
+  background:
+    radial-gradient(circle at 12% -20%, rgba(20, 184, 166, 0.12), transparent 42%),
+    linear-gradient(168deg, rgba(255, 246, 230, 0.08) 0%, rgba(4, 12, 28, 0.58) 100%);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 246, 230, 0.07);
+}
+
+.page-home .home-ai-plug__feature-accent {
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin-top: 0.42em;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(255, 246, 230, 0.06);
+}
+
+.page-home .home-ai-plug__feature--advantage {
+  border-left-color: rgba(242, 178, 26, 0.55);
+}
+
+.page-home .home-ai-plug__feature--advantage .home-ai-plug__feature-accent {
+  background: var(--gold);
+}
+
+.page-home .home-ai-plug__feature--adaptation {
+  border-left-color: rgba(20, 184, 166, 0.5);
+}
+
+.page-home .home-ai-plug__feature--adaptation .home-ai-plug__feature-accent {
+  background: var(--turquoise);
+}
+
+.page-home .home-ai-plug__feature--growth {
+  border-left-color: rgba(255, 139, 31, 0.5);
+}
+
+.page-home .home-ai-plug__feature--growth .home-ai-plug__feature-accent {
+  background: var(--orange);
+}
+
+.page-home .home-ai-plug__feature--automation {
+  border-left-color: rgba(255, 92, 168, 0.45);
+}
+
+.page-home .home-ai-plug__feature--automation .home-ai-plug__feature-accent {
+  background: var(--pink);
+}
+
+.page-home .home-ai-plug__feature--operators {
+  border-left-color: rgba(20, 184, 166, 0.48);
+}
+
+.page-home .home-ai-plug__feature--operators .home-ai-plug__feature-accent {
+  background: var(--turquoise);
+}
+
+.page-home .home-ai-plug__feature--marketing {
+  border-left-color: rgba(255, 139, 31, 0.48);
+}
+
+.page-home .home-ai-plug__feature--marketing .home-ai-plug__feature-accent {
+  background: var(--orange);
+}
+
+.page-home .home-ai-plug__feature--connected {
+  border-left-color: rgba(120, 160, 255, 0.5);
+}
+
+.page-home .home-ai-plug__feature--connected .home-ai-plug__feature-accent {
+  background: rgba(120, 160, 255, 0.95);
+}
+
+.page-home .home-ai-plug__feature-title {
+  margin: 0;
+  min-width: 0;
+  font-size: clamp(0.92rem, 0.16vw + 0.86rem, 1rem);
+  font-weight: 800;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: 1.3;
+  color: rgba(255, 248, 235, 0.98);
+  text-wrap: pretty;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* —— CTAs —— */
+.page-home .home-ai-plug__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+}
+
+.page-home .home-ai-plug__btn {
+  flex: 1 1 auto;
+  min-width: min(100%, 11rem);
+  min-height: 48px;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+}
+
+.page-home .home-ai-plug__btn--primary {
+  box-shadow:
+    0 14px 36px rgba(255, 139, 31, 0.4),
+    0 0 24px rgba(242, 178, 26, 0.15);
+}
+
+.page-home .home-ai-plug__btn--secondary {
+  background: rgba(4, 12, 26, 0.45);
+  color: rgba(255, 248, 235, 0.96);
+  border: 1px solid rgba(255, 246, 230, 0.28);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.page-home .home-ai-plug__btn--secondary:hover {
+  border-color: rgba(20, 184, 166, 0.45);
+  color: rgba(255, 250, 240, 0.99);
+  background: rgba(255, 246, 230, 0.08);
+}
+
+/* —— Restaurant CTA —— */
+.page-home .home-ai-plug__restaurant {
+  display: grid;
+  gap: 6px;
+  margin: clamp(4px, 1vw, 8px) 0 0;
+  padding: clamp(10px, 1.8vw, 12px) clamp(12px, 2.2vw, 14px);
+  max-width: min(100%, 36rem);
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  background: rgba(255, 246, 230, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.page-home .home-ai-plug__restaurant-lead {
+  margin: 0;
+  font-size: clamp(0.84rem, 0.12vw + 0.8rem, 0.88rem);
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: rgba(255, 246, 230, 0.86);
+}
+
+.page-home .home-ai-plug__restaurant-action {
+  margin: 0;
+  font-size: clamp(0.86rem, 0.14vw + 0.82rem, 0.9rem);
+  line-height: 1.45;
+  letter-spacing: normal;
+}
+
+.page-home .home-ai-plug__restaurant-action a {
+  display: inline;
+  font-weight: 800;
+  color: #fff8eb;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: rgba(242, 178, 26, 0.75);
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.page-home .home-ai-plug__restaurant-action a:hover {
+  color: #fff;
+  text-decoration-color: rgba(20, 184, 166, 0.85);
+}
+
+.page-home .home-ai-plug__restaurant-action a:focus-visible {
+  outline: 2px solid rgba(242, 178, 26, 0.65);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* —— Desktop grid for feature cards —— */
+@media (min-width: 720px) {
+  .page-home .home-ai-plug__features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(12px, 1.8vw, 16px);
+  }
+
+  .page-home .home-ai-plug__feature--connected {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 960px) {
+  .page-home .home-ai-plug__hero-frame {
+    min-height: clamp(280px, 32vw, 380px);
+  }
+
+  .page-home .home-ai-plug__hero-title {
+    font-size: clamp(1.5rem, 2.2vw, 2.05rem);
+  }
+
+  .page-home .home-ai-plug__features {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-home .home-ai-plug__feature--growth,
+  .page-home .home-ai-plug__feature--operators {
+    grid-column: span 1;
+  }
+
+  .page-home .home-ai-plug__feature--connected {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 639px) {
+  .page-home .home-ai-plug-section {
+    padding-top: clamp(1.75rem, 5vw, 2.25rem);
+    padding-bottom: clamp(2rem, 5.5vw, 2.5rem);
+  }
+
+  .page-home .home-ai-plug__hero-frame {
+    min-height: clamp(220px, 62vw, 320px);
+  }
+
+  .page-home .home-ai-plug__hero-panel {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: none;
+    padding: 14px 16px;
+  }
+
+  .page-home .home-ai-plug__hero-title {
+    max-width: none;
+    font-size: clamp(1.28rem, 6.2vw, 1.62rem);
+    letter-spacing: -0.018em;
+  }
+
+  .page-home .home-ai-plug__eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+
+  .page-home .home-ai-plug__actions .home-ai-plug__btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .page-home .home-ai-plug__restaurant {
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 419px) {
+  .page-home .home-ai-plug__actions .home-ai-plug__btn {
+    min-height: 44px;
   }
 }
