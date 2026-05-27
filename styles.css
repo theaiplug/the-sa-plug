@@ -13677,7 +13677,7 @@ body.page-ask main:not(.ask-product-main) {
   isolation: isolate;
 }
 
-/* Premium Ask A Local studio card — fiesta top line, no outer glow */
+/* Ask A Local studio card — one frame, same language as site concierge panels */
 .page-ask .ask-product-tool-card.live-concierge-card {
   /* In-card chat copy + typed text share one column (composer field padding) */
   --ask-chat-field-pad: clamp(14px, 2.4vw, 18px);
@@ -13686,42 +13686,19 @@ body.page-ask main:not(.ask-product-main) {
   box-sizing: border-box;
   width: 100%;
   padding:
-    clamp(26px, 5vw, 32px)
+    clamp(22px, 4.2vw, 28px)
     var(--ask-text-inset)
-    clamp(24px, 4.8vw, 30px);
-  border-radius: calc(var(--radius) + 14px);
+    clamp(20px, 4vw, 26px);
+  border-radius: calc(var(--radius) + 8px);
   overflow: hidden;
-  border: 2px solid rgba(255, 248, 235, 0.22);
-  background: linear-gradient(168deg, rgba(10, 22, 40, 0.97) 0%, rgba(5, 12, 24, 0.99) 55%, rgba(4, 10, 22, 1) 100%);
-  box-shadow:
-    0 1px 0 rgba(255, 248, 235, 0.1) inset,
-    0 0 0 1px rgba(255, 248, 235, 0.12) inset,
-    0 28px 64px rgba(2, 6, 14, 0.52),
-    0 12px 28px rgba(2, 6, 14, 0.34);
+  border: 1px solid rgba(242, 178, 26, 0.28);
+  background: #0a1628;
+  box-shadow: 0 24px 56px rgba(2, 6, 14, 0.48);
 }
 
-.page-ask .ask-product-tool-card.live-concierge-card::before {
-  display: none;
-}
-
+.page-ask .ask-product-tool-card.live-concierge-card::before,
 .page-ask .ask-product-tool-card.live-concierge-card::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--turquoise) 0%,
-    rgba(20, 184, 166, 0.85) 22%,
-    var(--gold) 52%,
-    var(--orange) 78%,
-    var(--coral) 100%
-  );
-  opacity: 0.95;
-  pointer-events: none;
-  z-index: 4;
+  display: none;
 }
 
 .page-ask .ask-product-tool-card .live-concierge__glass-panel,
@@ -13896,23 +13873,17 @@ body.page-ask main:not(.ask-product-main) {
 
 .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit {
   padding: var(--ask-chat-field-pad);
-  border-radius: calc(var(--radius) + 2px);
-  border: 1px solid rgba(255, 246, 230, 0.18);
-  background: rgba(2, 6, 14, 0.55);
-  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.06);
-  transition:
-    border-color 0.22s ease,
-    box-shadow 0.22s ease,
-    background 0.22s ease;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  background: rgba(5, 12, 26, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.05);
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit:focus-within {
-  border-color: rgba(242, 178, 26, 0.5);
-  background: rgba(3, 8, 18, 0.72);
-  box-shadow:
-    0 0 0 1px rgba(242, 178, 26, 0.16),
-    0 0 0 4px rgba(20, 184, 166, 0.1),
-    inset 0 1px 0 rgba(255, 246, 230, 0.08);
+  border-color: rgba(242, 178, 26, 0.38);
+  background: rgba(5, 12, 26, 0.88);
+  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.07);
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__input {
@@ -13957,35 +13928,46 @@ body.page-ask main:not(.ask-product-main) {
   margin: 0 0 var(--ask-stack-xs);
   padding-left: var(--ask-chat-field-pad);
   font-size: 0.74rem;
-  font-weight: 850;
-  letter-spacing: 0.11em;
+  font-weight: 750;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(242, 178, 26, 0.94);
+  color: rgba(255, 246, 230, 0.52);
 }
 
-.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send {
-  min-height: 54px;
-  margin-top: 0;
-  border-radius: calc(var(--radius) + 2px);
-  border: 1px solid rgba(255, 255, 255, 0.62);
-  font-size: clamp(1rem, 0.28vw + 0.94rem, 1.08rem);
+/* One primary CTA — same fill + edge as hero .btn-primary (no white rim / double stack) */
+.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary {
+  width: 100%;
+  min-height: 52px;
+  margin: 0;
+  padding: 14px 22px 15px;
+  border-radius: var(--btn-radius);
+  border: 1px solid rgba(214, 118, 12, 0.55);
+  font-size: clamp(0.98rem, 0.28vw + 0.92rem, 1.06rem);
   font-weight: 850;
-  letter-spacing: 0.02em;
-  box-shadow:
-    0 20px 44px rgba(255, 139, 31, 0.36),
-    0 8px 20px rgba(242, 178, 26, 0.26),
-    0 3px 0 rgba(255, 255, 255, 0.48) inset,
-    0 -2px 0 rgba(180, 83, 9, 0.14) inset;
+  letter-spacing: 0.01em;
+  color: var(--navy);
+  background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%);
+  box-shadow: var(--shadow-glow);
+  filter: none;
 }
 
-.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send:hover:not(:disabled) {
+.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  filter: brightness(1.06) saturate(1.06);
-  box-shadow:
-    0 28px 56px rgba(255, 139, 31, 0.48),
-    0 12px 26px rgba(242, 178, 26, 0.34),
-    0 4px 0 rgba(255, 255, 255, 0.55) inset,
-    0 -3px 0 rgba(180, 83, 9, 0.12) inset;
+  filter: none;
+  border-color: rgba(214, 118, 12, 0.65);
+  box-shadow: 0 22px 44px rgba(255, 139, 31, 0.38);
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 12px 28px rgba(255, 139, 31, 0.3);
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .page-ask .ask-product-prompts {
