@@ -12,7 +12,9 @@
   var sendBtn = document.getElementById("live-concierge-send");
   var statusEl = document.getElementById("live-concierge-status");
   var errorBanner = document.getElementById("live-concierge-error");
-  var chips = root.querySelectorAll("[data-concierge-chip]");
+  var chips = document.querySelectorAll(
+    "#live-concierge [data-concierge-chip], #ask-prompts [data-concierge-chip]"
+  );
   var transcriptEl = document.getElementById("live-concierge-transcript");
   var threadEl = document.getElementById("live-concierge-thread");
   var conversationEl = document.getElementById("live-concierge-conversation");
@@ -46,6 +48,41 @@
     if (!errorBanner) return;
     errorBanner.hidden = !show;
     errorBanner.textContent = show ? FALLBACK : "";
+  }
+
+  function logConciergeIssue(label, detail) {
+    if (typeof console === "undefined" || !console.warn) return;
+    console.warn("[Ask A Local] " + label, detail || {});
+  }
+
+  function readConciergeResponse(res) {
+    return res.text().then(function (body) {
+      var data = null;
+      if (body) {
+        try {
+          data = JSON.parse(body);
+        } catch (e) {
+          data = null;
+        }
+      }
+      return {
+        ok: res.ok,
+        status: res.status,
+        data: data,
+      };
+    });
+  }
+
+  /** Prefer `reply`; ignore error payloads (they also use `message`). */
+  function extractReply(data) {
+    if (!data || typeof data !== "object" || data.error) return "";
+    if (typeof data.reply === "string" && data.reply.trim()) return data.reply.trim();
+    var alt = ["answer", "text", "result"];
+    for (var i = 0; i < alt.length; i++) {
+      var val = data[alt[i]];
+      if (typeof val === "string" && val.trim()) return val.trim();
+    }
+    return "";
   }
 
   function escapeHtml(s) {
@@ -244,6 +281,16 @@
     nudgeConversationIntoView();
   }
 
+  function handleRequestFailure(result, networkFailure) {
+    appendBubble("assistant", FALLBACK);
+    showError(true);
+    if (networkFailure) {
+      setStatus("Offline", false);
+      return;
+    }
+    setStatus("Try again", false);
+  }
+
   function sendMessage(text) {
     var trimmed = (text || "").trim();
     if (!trimmed || busy) return;
@@ -267,31 +314,34 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     })
-      .then(function (res) {
-        return res.json().then(function (data) {
-          return { ok: res.ok, status: res.status, data: data };
-        });
-      })
+      .then(readConciergeResponse)
       .then(function (result) {
         removeThinking();
-        if (!result.ok || !result.data || typeof result.data.reply !== "string" || !result.data.reply.trim()) {
-          appendBubble("assistant", FALLBACK);
-          showError(true);
-          setStatus("Reconnecting soon", false);
+        var reply = extractReply(result.data);
+        if (!result.ok || !reply) {
+          logConciergeIssue("request failed", {
+            status: result.status,
+            code: result.data && result.data.code,
+            error: result.data && result.data.error,
+            hasJson: !!result.data,
+          });
+          handleRequestFailure(result, false);
           return;
         }
         previousResponseId =
           typeof result.data.previous_response_id === "string"
             ? result.data.previous_response_id
             : previousResponseId;
-        appendBubble("assistant", result.data.reply.trim());
+        appendBubble("assistant", reply);
+        showError(false);
         setStatus("Ready to ask", false);
       })
-      .catch(function () {
+      .catch(function (err) {
         removeThinking();
-        appendBubble("assistant", FALLBACK);
-        showError(true);
-        setStatus("Offline", false);
+        logConciergeIssue("network error", {
+          message: err && err.message ? err.message : "fetch failed",
+        });
+        handleRequestFailure(null, true);
       })
       .finally(function () {
         busy = false;
@@ -329,6 +379,9 @@
     }
   }
 
+  setStatus("Ready to ask", false);
+  syncTranscriptVisibility();
+
   var bootPrompt = getQueryPrompt();
   if (bootPrompt) {
     setTimeout(function () {
@@ -343,7 +396,4 @@
       if (input) input.value = "";
     }, 150);
   }
-
-  setStatus("Ready to ask", false);
-  syncTranscriptVisibility();
 })();
