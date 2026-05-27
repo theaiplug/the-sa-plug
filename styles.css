@@ -13677,7 +13677,7 @@ body.page-ask main:not(.ask-product-main) {
   isolation: isolate;
 }
 
-/* Premium Ask A Local studio card — thick gold frame */
+/* Premium Ask A Local studio card — fiesta top line, no outer glow */
 .page-ask .ask-product-tool-card.live-concierge-card {
   /* In-card chat copy + typed text share one column (composer field padding) */
   --ask-chat-field-pad: clamp(14px, 2.4vw, 18px);
@@ -13691,15 +13691,13 @@ body.page-ask main:not(.ask-product-main) {
     clamp(24px, 4.8vw, 30px);
   border-radius: calc(var(--radius) + 14px);
   overflow: hidden;
-  border: 3px solid rgba(242, 178, 26, 0.92);
+  border: 2px solid rgba(255, 248, 235, 0.22);
   background: linear-gradient(168deg, rgba(10, 22, 40, 0.97) 0%, rgba(5, 12, 24, 0.99) 55%, rgba(4, 10, 22, 1) 100%);
   box-shadow:
-    0 1px 0 rgba(255, 248, 235, 0.12) inset,
-    0 0 0 1px rgba(255, 248, 235, 0.18) inset,
-    0 0 32px rgba(242, 178, 26, 0.38),
-    0 0 48px rgba(242, 178, 26, 0.16),
-    0 36px 80px rgba(2, 6, 14, 0.58),
-    0 14px 32px rgba(2, 6, 14, 0.38);
+    0 1px 0 rgba(255, 248, 235, 0.1) inset,
+    0 0 0 1px rgba(255, 248, 235, 0.12) inset,
+    0 28px 64px rgba(2, 6, 14, 0.52),
+    0 12px 28px rgba(2, 6, 14, 0.34);
 }
 
 .page-ask .ask-product-tool-card.live-concierge-card::before {
@@ -13712,24 +13710,18 @@ body.page-ask main:not(.ask-product-main) {
   left: 0;
   right: 0;
   top: 0;
-  height: 5px;
-  background: linear-gradient(90deg, #e5a80f 0%, var(--gold) 35%, #ffd56a 65%, var(--gold) 100%);
-  box-shadow: 0 0 20px rgba(242, 178, 26, 0.65);
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--turquoise) 0%,
+    rgba(20, 184, 166, 0.85) 22%,
+    var(--gold) 52%,
+    var(--orange) 78%,
+    var(--coral) 100%
+  );
+  opacity: 0.95;
   pointer-events: none;
   z-index: 4;
-}
-
-@media (min-width: 720px) {
-  .page-ask .ask-product-tool-wrap::before {
-    content: "";
-    position: absolute;
-    inset: -20px -12px -28px;
-    z-index: -1;
-    pointer-events: none;
-    background: radial-gradient(ellipse 75% 60% at 50% 20%, rgba(242, 178, 26, 0.28), transparent 70%);
-    filter: blur(28px);
-    opacity: 0.9;
-  }
 }
 
 .page-ask .ask-product-tool-card .live-concierge__glass-panel,
