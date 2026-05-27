@@ -23607,10 +23607,11 @@ body.owner-dash-detail-open {
   content: "";
   position: absolute;
   top: 0;
-  left: clamp(16px, 2.8vw, 28px);
-  right: clamp(16px, 2.8vw, 28px);
+  left: 0;
+  right: 0;
+  width: 100%;
   height: 3px;
-  border-radius: 999px;
+  border-radius: 0;
   background: linear-gradient(
     90deg,
     rgba(20, 184, 166, 0.95) 0%,
