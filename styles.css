@@ -13264,7 +13264,7 @@ body.page-ask main {
 
 /* ----- Ask product page (tool-first rebuild) ----- */
 .page-ask {
-  --ask-hero-photo: url("assets/ask-pearl-local-night-out.png");
+  --ask-hero-photo: url("assets/ask-resort-route-evening.png");
 }
 
 /*
@@ -13305,7 +13305,7 @@ body.page-ask main {
   background-color: #0a1a2e;
   background-image: var(--ask-hero-photo);
   background-repeat: no-repeat;
-  background-position: center 40%;
+  background-position: center 44%;
   background-size: cover;
   min-height: clamp(420px, 62vh, 640px);
 }
