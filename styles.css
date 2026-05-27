@@ -13299,9 +13299,7 @@ body.page-ask main {
   margin: 0;
   padding: 0;
   background-color: #0a1a2e;
-  background-image:
-    linear-gradient(90deg, rgba(5, 10, 24, 0.55) 0%, rgba(5, 10, 24, 0.3) 42%, rgba(5, 10, 24, 0.12) 68%, transparent 100%),
-    url("assets/ask-downtown-night-plan.png");
+  background-image: url("assets/ask-downtown-night-plan.png");
   background-repeat: no-repeat;
   background-position: 0 0, center 42%;
   background-size: cover, cover;
@@ -13315,19 +13313,20 @@ body.page-ask main {
 .page-ask .ask-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(
-    180deg,
-    transparent 52%,
-    rgba(9, 26, 52, 0.55) 78%,
-    rgba(7, 16, 32, 0.92) 100%
-  );
+  background: linear-gradient(180deg, transparent 70%, rgba(9, 26, 52, 0.28) 100%);
 }
 
 .page-ask .ask-product-hero .hero-title {
   font-size: clamp(1.85rem, 4.2vw + 0.5rem, 2.65rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
-  text-shadow: 0 2px 32px rgba(2, 6, 14, 0.45);
+  text-shadow:
+    0 2px 24px rgba(2, 6, 14, 0.55),
+    0 1px 3px rgba(2, 6, 14, 0.4);
+}
+
+.page-ask .ask-product-hero .hero-text-on-dark {
+  text-shadow: 0 1px 14px rgba(2, 6, 14, 0.5);
 }
 
 .page-ask .ask-product-hero .hero-content .eyebrow-hero {
@@ -13660,7 +13659,9 @@ body.page-ask main {
     animation: none;
   }
 
-  .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send:hover:not(:disabled) {
+  .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send:hover:not(:disabled),
+  .page-ask .ask-product-value-list li:hover,
+  .page-ask .ask-product-example-card:hover {
     transform: none;
   }
 }
@@ -13902,10 +13903,6 @@ body.page-ask main {
   padding-inline: 0;
 }
 
-.page-ask .ask-product-examples.section-navy-routes {
-  padding-inline: 0;
-}
-
 .page-ask .ask-product-section-head {
   max-width: none;
   margin-bottom: clamp(18px, 2.5vw, 24px);
@@ -13996,6 +13993,7 @@ body.page-ask main {
 
 .page-ask .ask-product-examples.section-navy-routes {
   position: relative;
+  padding-inline: 0;
   padding-block: var(--ask-section-pad);
   background:
     radial-gradient(circle at 8% 92%, rgba(242, 178, 26, 0.16), transparent 30%),
