@@ -13403,7 +13403,8 @@ body.page-ask main {
 .page-ask .ask-product-section-head,
 .page-ask .ask-product-prompts-head,
 .page-ask .ask-product-prompt-group-label,
-.page-ask .ask-product-human-note {
+.page-ask .ask-product-human-note,
+.page-ask .ask-product-human-actions {
   padding-left: var(--ask-text-inset);
   box-sizing: border-box;
 }
@@ -13566,16 +13567,15 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-value.section,
-.page-ask .ask-product-human.section {
+.page-ask .ask-product-human.section,
+.page-ask .ask-product-examples.section {
   max-width: none;
   margin-inline: 0;
-  padding-left: 0;
-  padding-right: 0;
+  padding-inline: 0;
 }
 
 .page-ask .ask-product-examples.section-navy-routes {
-  padding-left: 0;
-  padding-right: 0;
+  padding-inline: 0;
 }
 
 .page-ask .ask-product-section-head {
@@ -13621,28 +13621,20 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-value-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 14px;
+  display: block;
+  padding: 12px var(--ask-text-inset) 12px calc(var(--ask-text-inset) - 3px);
+  border-left: 3px solid var(--gold);
   border-radius: calc(var(--radius) + 2px);
   font-size: clamp(0.9rem, 0.18vw + 0.86rem, 0.96rem);
   font-weight: 650;
   line-height: 1.4;
   color: var(--navy);
   background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(11, 29, 58, 0.08);
+  border-top: 1px solid rgba(11, 29, 58, 0.08);
+  border-right: 1px solid rgba(11, 29, 58, 0.08);
+  border-bottom: 1px solid rgba(11, 29, 58, 0.08);
   box-shadow: 0 8px 20px rgba(2, 6, 14, 0.05);
-}
-
-.page-ask .ask-product-value-list li::before {
-  content: "";
-  flex: 0 0 auto;
-  width: 8px;
-  height: 8px;
-  margin-top: 0.45em;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), var(--orange));
+  box-sizing: border-box;
 }
 
 .page-ask .ask-product-examples {
@@ -13720,6 +13712,7 @@ body.page-ask main {
   flex-wrap: wrap;
   gap: 10px 12px;
   align-items: center;
+  padding-right: var(--ask-text-inset);
 }
 
 .page-ask .ask-product-human-back {
@@ -13783,9 +13776,10 @@ body.page-ask main {
   }
 
   .page-ask .ask-product-tool-section.section-navy-routes,
-  .page-ask .ask-product-examples.section-navy-routes {
-    padding-left: 0;
-    padding-right: 0;
+  .page-ask .ask-product-examples.section-navy-routes,
+  .page-ask .ask-product-value.section,
+  .page-ask .ask-product-human.section {
+    padding-inline: 0;
   }
 
   .page-ask .ask-product-example-list {
@@ -15156,9 +15150,14 @@ body:has(.transport-concierge-main) {
 
 /* Ask page: tighter connected concierge module on mobile */
 @media (max-width: 767px) {
-  .page-ask .live-concierge__glass-panel {
+  .page-ask .live-concierge__glass-panel:not(.ask-product-tool-card .live-concierge__glass-panel) {
     padding-bottom: clamp(10px, 2vw, 14px);
     border-bottom: 1px solid rgba(255, 246, 230, 0.08);
+  }
+
+  .page-ask .ask-product-tool-card .live-concierge__glass-panel {
+    padding-bottom: 0;
+    border-bottom: none;
   }
 
   .page-ask .live-concierge__main-card {
