@@ -13267,12 +13267,14 @@ body.page-ask main {
  * Layout model (standard product-page pattern):
  * 1. .ask-product-shell — centered column + page gutter (all sections share this)
  * 2. .ask-product-tool-card — full width of shell; inner padding clears rounded corners
- * 3. Headlines, prompts, and card body share the same column — no stacked extra gutters
+ * 3. --ask-text-inset matches chip label padding — copy aligns to words inside pills, not pill edges
  */
 .page-ask .ask-product-main {
   --ask-shell-max: 45rem;
   --ask-shell-pad: clamp(20px, 5vw, 32px);
-  --ask-card-pad: clamp(18px, 4.2vw, 24px);
+  --ask-card-pad-block: clamp(18px, 4.2vw, 24px);
+  /* Match prompt-chip padding-inline — body copy aligns to label text, not pill border */
+  --ask-text-inset: 14px;
   letter-spacing: normal;
   word-spacing: normal;
 }
@@ -13389,10 +13391,21 @@ body.page-ask main {
   margin-inline: 0;
 }
 
+/* Body copy shares the same text column as words inside prompt chips */
+.page-ask .ask-product-hero-copy .hero-content,
+.page-ask .ask-product-section-head,
+.page-ask .ask-product-prompts-head,
+.page-ask .ask-product-prompt-group-label,
+.page-ask .ask-product-prompts-lead,
+.page-ask .ask-product-human-note {
+  padding-left: var(--ask-text-inset);
+  box-sizing: border-box;
+}
+
 .page-ask .ask-product-tool-card.live-concierge-card {
   box-sizing: border-box;
   width: 100%;
-  padding: var(--ask-card-pad);
+  padding: var(--ask-card-pad-block) var(--ask-text-inset);
   border-radius: calc(var(--radius) + 10px);
   overflow: hidden;
   border: 1px solid rgba(255, 246, 230, 0.16);
@@ -13522,7 +13535,7 @@ body.page-ask main {
 
 .page-ask .ask-product-prompt-chips .live-concierge__chip--lane {
   min-height: 2.5rem;
-  padding: 8px 14px;
+  padding: 8px var(--ask-text-inset);
   font-size: clamp(0.8rem, 0.16vw + 0.76rem, 0.86rem);
   font-weight: 700;
   letter-spacing: normal;
@@ -13628,7 +13641,7 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-example-card {
-  padding: clamp(16px, 2.2vw, 20px);
+  padding: clamp(16px, 2.2vw, 20px) var(--ask-text-inset);
   border-radius: calc(var(--radius) + 4px);
   border: 1px solid rgba(255, 246, 230, 0.14);
   background: rgba(5, 12, 26, 0.55);
@@ -13722,10 +13735,16 @@ body.page-ask main {
   }
 }
 
+@media (max-width: 380px) {
+  .page-ask .ask-product-main {
+    --ask-text-inset: 11px;
+  }
+}
+
 @media (max-width: 768px) {
   .page-ask .ask-product-main {
     --ask-shell-pad: max(20px, env(safe-area-inset-left, 0px));
-    --ask-card-pad: 18px;
+    --ask-card-pad-block: 18px;
   }
 
   .page-ask .ask-product-shell {
