@@ -413,125 +413,272 @@
       overflow: hidden;
     }
 
-    /* How it works — premium compact strip (matches decision hub) */
-    .start-here-main .sh-how-section {
-      padding-top: clamp(28px, 3.6vw, 40px);
-      padding-bottom: clamp(28px, 3.6vw, 40px);
-      border-block: 1px solid rgba(255, 246, 230, 0.08);
-    }
-
-    .start-here-main .sh-how-inner {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(18px, 2.6vw, 26px);
-    }
-
-    .start-here-main .sh-how-head {
-      max-width: 36rem;
-    }
-
-    .start-here-main .sh-how-head h2 {
-      margin: 0;
-      font-size: clamp(1.35rem, 2.4vw + 0.35rem, 1.75rem);
-      line-height: 1.1;
-      letter-spacing: -0.028em;
-      font-weight: 860;
-      color: var(--cream);
-      text-wrap: balance;
-    }
-
-    .start-here-main .sh-how-head::after {
-      content: "";
-      display: block;
-      width: clamp(120px, 16vw, 180px);
-      height: 3px;
-      margin-top: clamp(10px, 1.6vw, 14px);
-      border-radius: 999px;
-      background: linear-gradient(
-        90deg,
-        rgba(20, 184, 166, 0.95),
-        rgba(242, 178, 26, 0.95),
-        rgba(255, 106, 77, 0.88)
-      );
-      box-shadow: 0 0 20px rgba(20, 184, 166, 0.28);
-    }
-
-    .start-here-main .sh-how-steps {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: clamp(10px, 1.4vw, 14px);
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 640px) {
-      .start-here-main .sh-how-steps {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    .start-here-main .sh-how-step {
+    /* How it works — cinematic flow rail (closes decision hub) */
+    .start-here-main .sh-how-panel {
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      padding: clamp(16px, 2.2vw, 20px) clamp(16px, 2.4vw, 20px);
-      border-radius: calc(var(--radius) + 2px);
-      border: 1px solid rgba(255, 246, 230, 0.12);
-      background:
-        radial-gradient(ellipse 90% 70% at 0% 0%, rgba(20, 184, 166, 0.1), transparent 55%),
-        linear-gradient(165deg, rgba(8, 18, 36, 0.92) 0%, rgba(12, 24, 48, 0.88) 100%);
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+      gap: clamp(20px, 2.8vw, 28px);
+      padding: clamp(22px, 3.2vw, 34px) clamp(18px, 3vw, 30px);
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255, 246, 230, 0.14);
       overflow: hidden;
+      background:
+        linear-gradient(118deg, rgba(5, 10, 24, 0.94) 0%, rgba(5, 10, 24, 0.82) 42%, rgba(5, 10, 24, 0.55) 100%),
+        url("assets/evening_riverwalk_with_vibrant_ambiance.png") center / cover no-repeat;
+      box-shadow:
+        0 28px 56px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 246, 230, 0.06);
     }
 
-    .start-here-main .sh-how-step::before {
+    .start-here-main .sh-how-panel::before {
       content: "";
       position: absolute;
       left: 0;
       right: 0;
       top: 0;
       height: 3px;
-      background: var(--sh-step-accent, linear-gradient(90deg, var(--turquoise), var(--coral)));
+      z-index: 2;
+      background: linear-gradient(90deg, var(--turquoise), var(--gold), var(--coral), var(--pink));
     }
 
-    .start-here-main .sh-how-step:nth-child(1) {
-      --sh-step-accent: linear-gradient(90deg, var(--turquoise), #0d9488);
+    .start-here-main .sh-how-panel__head {
+      position: relative;
+      z-index: 1;
+      max-width: 34rem;
     }
 
-    .start-here-main .sh-how-step:nth-child(2) {
-      --sh-step-accent: linear-gradient(90deg, var(--gold), var(--orange));
+    .start-here-main .sh-how-panel__accent {
+      width: clamp(120px, 18vw, 200px);
+      height: 2px;
+      margin-bottom: clamp(12px, 1.6vw, 16px);
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(242, 178, 26, 0.95), rgba(20, 184, 166, 0.85), transparent);
     }
 
-    .start-here-main .sh-how-step:nth-child(3) {
-      --sh-step-accent: linear-gradient(90deg, var(--coral), var(--pink));
+    .start-here-main .sh-how-panel__head .eyebrow {
+      margin-bottom: 8px;
+      color: var(--gold);
     }
 
-    .start-here-main .sh-how-step__num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 10px;
-      font-size: 0.88rem;
-      font-weight: 900;
+    .start-here-main .sh-how-panel__head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.55rem, 3vw + 0.4rem, 2.35rem);
+      line-height: 1.06;
+      letter-spacing: -0.034em;
+      font-weight: 860;
       color: var(--cream);
-      background: rgba(255, 246, 230, 0.08);
-      border: 1px solid rgba(255, 246, 230, 0.18);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+      text-wrap: balance;
     }
 
-    .start-here-main .sh-how-step__text {
+    .start-here-main .sh-how-panel__lede {
       margin: 0;
-      font-size: clamp(0.9rem, 0.25vw + 0.84rem, 0.98rem);
+      font-size: clamp(0.94rem, 0.3vw + 0.86rem, 1.04rem);
+      line-height: 1.58;
+      letter-spacing: normal;
+      word-spacing: normal;
+      text-align: left;
+      color: rgba(255, 246, 230, 0.84);
+      max-width: 32rem;
+    }
+
+    .start-here-main .sh-how-rail {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 900px) {
+      .start-here-main .sh-how-rail {
+        grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) 36px minmax(0, 1fr);
+        align-items: stretch;
+        gap: 0 4px;
+      }
+    }
+
+    .start-here-main .sh-how-connector {
+      display: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (min-width: 900px) {
+      .start-here-main .sh-how-connector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        min-height: 100%;
+      }
+
+      .start-here-main .sh-how-connector span {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(20, 184, 166, 0.5), rgba(242, 178, 26, 0.85));
+        box-shadow: 0 0 16px rgba(242, 178, 26, 0.35);
+      }
+
+      .start-here-main .sh-how-connector span::after {
+        content: "";
+        position: absolute;
+        right: -1px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 7px solid rgba(242, 178, 26, 0.95);
+      }
+    }
+
+    @media (max-width: 899px) {
+      .start-here-main .sh-how-rail {
+        gap: clamp(14px, 2.2vw, 18px);
+      }
+
+      .start-here-main .sh-how-node {
+        position: relative;
+        padding-left: 16px;
+      }
+
+      .start-here-main .sh-how-node::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        border-radius: 2px;
+        background: linear-gradient(180deg, var(--turquoise), var(--gold), var(--coral));
+        opacity: 0.65;
+      }
+    }
+
+    .start-here-main .sh-how-node__card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-radius: calc(var(--radius) + 2px);
+      border: 1px solid rgba(255, 246, 230, 0.14);
+      background: rgba(5, 10, 24, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    @media (hover: hover) {
+      .start-here-main .sh-how-node__card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(242, 178, 26, 0.45);
+        box-shadow: 0 22px 48px rgba(0, 0, 0, 0.36);
+      }
+    }
+
+    .start-here-main .sh-how-node__visual {
+      position: relative;
+      min-height: clamp(132px, 30vw, 168px);
+      overflow: hidden;
+    }
+
+    .start-here-main .sh-how-node__visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.35s ease;
+    }
+
+    @media (hover: hover) {
+      .start-here-main .sh-how-node__card:hover .sh-how-node__visual img {
+        transform: scale(1.04);
+      }
+    }
+
+    .start-here-main .sh-how-node__shade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(5, 10, 24, 0.05) 0%, rgba(5, 10, 24, 0.78) 100%);
+    }
+
+    .start-here-main .sh-how-node__watermark {
+      position: absolute;
+      right: 10px;
+      bottom: 4px;
+      z-index: 2;
+      font-size: clamp(2.8rem, 8vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      color: rgba(255, 246, 230, 0.14);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .start-here-main .sh-how-node__body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: clamp(14px, 2vw, 18px) clamp(14px, 2.2vw, 18px) clamp(16px, 2.2vw, 20px);
+    }
+
+    .start-here-main .sh-how-node__chip {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 246, 230, 0.92);
+      border: 1px solid rgba(255, 246, 230, 0.2);
+      background: rgba(255, 246, 230, 0.06);
+    }
+
+    .start-here-main .sh-how-node--pick .sh-how-node__chip {
+      border-color: rgba(20, 184, 166, 0.45);
+      background: rgba(20, 184, 166, 0.12);
+    }
+
+    .start-here-main .sh-how-node--open .sh-how-node__chip {
+      border-color: rgba(242, 178, 26, 0.5);
+      background: rgba(242, 178, 26, 0.12);
+    }
+
+    .start-here-main .sh-how-node--adjust .sh-how-node__chip {
+      border-color: rgba(255, 106, 77, 0.45);
+      background: rgba(255, 106, 77, 0.12);
+    }
+
+    .start-here-main .sh-how-node__title {
+      margin: 0;
+      font-size: clamp(1rem, 0.5vw + 0.9rem, 1.12rem);
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+      font-weight: 850;
+      color: var(--cream);
+    }
+
+    .start-here-main .sh-how-node__text {
+      margin: 0;
+      font-size: clamp(0.86rem, 0.2vw + 0.8rem, 0.94rem);
       line-height: 1.55;
       letter-spacing: normal;
       word-spacing: normal;
       text-align: left;
-      color: rgba(255, 246, 230, 0.9);
-      font-weight: 520;
+      color: rgba(255, 246, 230, 0.82);
     }
 
     /* Final CTA */
@@ -732,28 +879,63 @@
             </span>
           </a>
         </div>
-      </div>
-    </section>
 
-    <section class="section band section-navy-routes sh-how-section" aria-labelledby="how-it-works-heading">
-      <div class="routes-band-inner sh-how-inner">
-        <header class="sh-how-head">
-          <h2 id="how-it-works-heading">How it works</h2>
-        </header>
-        <ol class="sh-how-steps">
-          <li class="sh-how-step">
-            <span class="sh-how-step__num" aria-hidden="true">1</span>
-            <p class="sh-how-step__text">Pick the situation closest to yours.</p>
-          </li>
-          <li class="sh-how-step">
-            <span class="sh-how-step__num" aria-hidden="true">2</span>
-            <p class="sh-how-step__text">Open the guide or Ask A Local.</p>
-          </li>
-          <li class="sh-how-step">
-            <span class="sh-how-step__num" aria-hidden="true">3</span>
-            <p class="sh-how-step__text">Use the plan, then adjust if timing changes.</p>
-          </li>
-        </ol>
+        <hr class="sh-hub-divider" />
+
+        <div class="sh-how-panel" id="how-it-works" aria-labelledby="how-it-works-heading">
+          <header class="sh-how-panel__head">
+            <div class="sh-how-panel__accent" aria-hidden="true"></div>
+            <p class="eyebrow eyebrow-on-dark">How it works</p>
+            <h2 id="how-it-works-heading">Pick. Open. Adjust.</h2>
+            <p class="sh-how-panel__lede">The fastest path through San Antonio when you&rsquo;re already moving &mdash; no scrolling marathon required.</p>
+          </header>
+          <ol class="sh-how-rail">
+            <li class="sh-how-node sh-how-node--pick">
+              <article class="sh-how-node__card">
+                <div class="sh-how-node__visual">
+                  <img src="assets/golden_hour_along_the_riverwalk.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
+                  <span class="sh-how-node__shade" aria-hidden="true"></span>
+                  <span class="sh-how-node__watermark" aria-hidden="true">01</span>
+                </div>
+                <div class="sh-how-node__body">
+                  <span class="sh-how-node__chip">Step 1</span>
+                  <h3 class="sh-how-node__title">Pick your situation</h3>
+                  <p class="sh-how-node__text">Pick the situation closest to yours.</p>
+                </div>
+              </article>
+            </li>
+            <li class="sh-how-connector" aria-hidden="true"><span></span></li>
+            <li class="sh-how-node sh-how-node--open">
+              <article class="sh-how-node__card">
+                <div class="sh-how-node__visual">
+                  <img src="assets/riverside_dining_under_warm_lights.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
+                  <span class="sh-how-node__shade" aria-hidden="true"></span>
+                  <span class="sh-how-node__watermark" aria-hidden="true">02</span>
+                </div>
+                <div class="sh-how-node__body">
+                  <span class="sh-how-node__chip">Step 2</span>
+                  <h3 class="sh-how-node__title">Open the guide</h3>
+                  <p class="sh-how-node__text">Open the guide or Ask A Local.</p>
+                </div>
+              </article>
+            </li>
+            <li class="sh-how-connector" aria-hidden="true"><span></span></li>
+            <li class="sh-how-node sh-how-node--adjust">
+              <article class="sh-how-node__card">
+                <div class="sh-how-node__visual">
+                  <img src="assets/family_fun_at_sunset_in_the_park.png" alt="" width="640" height="420" decoding="async" loading="lazy" />
+                  <span class="sh-how-node__shade" aria-hidden="true"></span>
+                  <span class="sh-how-node__watermark" aria-hidden="true">03</span>
+                </div>
+                <div class="sh-how-node__body">
+                  <span class="sh-how-node__chip">Step 3</span>
+                  <h3 class="sh-how-node__title">Adjust on the fly</h3>
+                  <p class="sh-how-node__text">Use the plan, then adjust if timing changes.</p>
+                </div>
+              </article>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 
