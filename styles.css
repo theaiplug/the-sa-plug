@@ -23589,18 +23589,18 @@ body.owner-dash-detail-open {
   word-break: normal;
 }
 
-/* —— Body copy panel (inside hero card, below image) —— */
+/* —— Body copy panel (warm strip — readable contrast under image) —— */
 .page-home .home-ai-plug__hero-body {
   position: relative;
   flex-shrink: 0;
   padding: clamp(20px, 3vw, 30px) clamp(16px, 2.8vw, 28px) clamp(20px, 3vw, 28px);
   background:
-    radial-gradient(ellipse 90% 70% at 100% 0%, rgba(242, 178, 26, 0.1), transparent 52%),
-    radial-gradient(ellipse 75% 65% at 0% 100%, rgba(20, 184, 166, 0.12), transparent 50%),
-    linear-gradient(168deg, #152a48 0%, #101f38 52%, #0c172c 100%);
+    radial-gradient(ellipse 85% 65% at 100% 0%, rgba(242, 178, 26, 0.14), transparent 52%),
+    radial-gradient(ellipse 70% 60% at 0% 100%, rgba(20, 184, 166, 0.08), transparent 48%),
+    linear-gradient(168deg, #fffaf3 0%, #f7f0e4 46%, #efe6d8 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 246, 230, 0.18),
-    inset 0 -12px 28px rgba(0, 0, 0, 0.14);
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(11, 29, 58, 0.06);
 }
 
 .page-home .home-ai-plug__hero-body::before {
@@ -23643,7 +23643,7 @@ body.owner-dash-detail-open {
 }
 
 .page-home .home-ai-plug__hero-body .home-ai-plug__paragraph {
-  color: rgba(255, 248, 235, 0.95);
+  color: rgba(11, 29, 58, 0.92);
 }
 
 .page-home .home-ai-plug__copy .home-ai-plug__paragraph + .home-ai-plug__paragraph {
@@ -23651,7 +23651,7 @@ body.owner-dash-detail-open {
 }
 
 .page-home .home-ai-plug__hero-body .home-ai-plug__copy .home-ai-plug__paragraph + .home-ai-plug__paragraph {
-  color: rgba(255, 246, 230, 0.86);
+  color: rgba(11, 29, 58, 0.76);
 }
 
 /* —— Capability feature cards —— */
