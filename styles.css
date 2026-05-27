@@ -13287,7 +13287,11 @@ body.page-ask main {
   box-sizing: border-box;
 }
 
-.page-ask .ask-product-hero {
+/* Hero: copy first, photography below (matches other guide pages) */
+.page-ask .ask-product-hero.ask-hero--cinematic {
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
   max-width: none;
   margin: 0;
   padding: 0;
@@ -13295,7 +13299,32 @@ body.page-ask main {
   background: #0a1a2e;
 }
 
+.page-ask .ask-hero--cinematic.hero-fiesta-dark::before {
+  display: none;
+}
+
+.page-ask .ask-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
+  display: none;
+}
+
+.page-ask .ask-product-hero-copy {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  background:
+    radial-gradient(ellipse 80% 65% at 90% 18%, rgba(255, 106, 77, 0.32), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 12% 72%, rgba(20, 184, 166, 0.18), transparent 50%),
+    linear-gradient(138deg, #04060d 0%, #0b1730 36%, #16122a 68%, #071a32 100%);
+}
+
+.page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band.ask-product-shell {
+  max-width: var(--ask-shell-max);
+  padding-block: clamp(24px, 4vw, 36px) clamp(22px, 3.5vw, 28px);
+}
+
 .page-ask .ask-product-hero-visual {
+  order: 2;
   margin: 0;
   line-height: 0;
   background: #0a1a2e;
@@ -13305,28 +13334,9 @@ body.page-ask main {
   display: block;
   width: 100%;
   height: auto;
-  max-height: min(52vh, 520px);
+  max-height: min(44vh, 440px);
   object-fit: cover;
   object-position: center 42%;
-}
-
-.page-ask .ask-product-hero-copy {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  background:
-    radial-gradient(ellipse 80% 65% at 90% 18%, rgba(255, 106, 77, 0.32), transparent 55%),
-    radial-gradient(ellipse 55% 45% at 12% 72%, rgba(20, 184, 166, 0.18), transparent 50%),
-    linear-gradient(138deg, #04060d 0%, #0b1730 36%, #16122a 68%, #071a32 100%);
-}
-
-.page-ask .ask-product-hero-copy::after {
-  display: none;
-}
-
-.page-ask .ask-product-hero-copy .hero-fiesta-inner.hero-inner-band.ask-product-shell {
-  max-width: var(--ask-shell-max);
-  padding-block: clamp(24px, 4vw, 36px) clamp(26px, 4vw, 34px);
 }
 
 .page-ask .ask-product-hero-shell {
@@ -13717,7 +13727,7 @@ body.page-ask main {
 
 @media (min-width: 900px) {
   .page-ask .ask-product-hero-visual img {
-    max-height: min(46vh, 480px);
+    max-height: min(40vh, 400px);
     object-position: center 38%;
   }
 
@@ -13753,9 +13763,9 @@ body.page-ask main {
   }
 
   .page-ask .ask-product-hero-visual img {
-    max-height: none;
-    object-fit: contain;
-    object-position: center top;
+    max-height: min(36vh, 320px);
+    object-fit: cover;
+    object-position: center 40%;
   }
 
   .page-ask .ask-product-tool-section.section-navy-routes,
