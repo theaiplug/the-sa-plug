@@ -7943,14 +7943,30 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 /* ----- Premium page atmosphere (Start Here + Ask) ----- */
+/*
+ * Scrim tokens: keep photos visible; darken only enough for cream-on-dark copy.
+ * Tune --premium-scrim-* if headings need more contrast.
+ */
+:is(.page-ask, .page-start-here) {
+  --premium-ink: #060e1a;
+  --premium-scrim-top: rgba(5, 12, 24, 0.52);
+  --premium-scrim-mid: rgba(7, 16, 30, 0.44);
+  --premium-scrim-bottom: rgba(5, 12, 24, 0.56);
+  --premium-scrim-seam-top: rgba(6, 14, 26, 0.38);
+  --premium-scrim-footer-top: rgba(5, 12, 24, 0.5);
+  --premium-scrim-footer-bottom: rgba(4, 10, 22, 0.68);
+  --premium-hero-scrim-side: rgba(5, 10, 24, 0.32);
+  --premium-hero-scrim-side-mid: rgba(5, 10, 24, 0.14);
+  --premium-hero-scrim-bottom: rgba(6, 14, 26, 0.38);
+  --premium-hero-scrim-bottom-end: rgba(6, 14, 26, 0.52);
+}
+
 .page-ask {
   --premium-atmosphere-photo: url("/assets/downtown-river-promenade-twilight.png");
-  --premium-ink: #060e1a;
 }
 
 .page-start-here {
   --premium-atmosphere-photo: url("assets/evening_riverwalk_with_vibrant_ambiance.png");
-  --premium-ink: #060e1a;
 }
 
 :is(.page-ask, .page-start-here) .premium-atmosphere,
@@ -7964,7 +7980,12 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   border: none;
   background-color: var(--premium-ink);
   background-image:
-    linear-gradient(180deg, rgba(5, 12, 24, 0.9) 0%, rgba(7, 16, 30, 0.86) 50%, rgba(5, 12, 24, 0.92) 100%),
+    linear-gradient(
+      180deg,
+      var(--premium-scrim-top) 0%,
+      var(--premium-scrim-mid) 50%,
+      var(--premium-scrim-bottom) 100%
+    ),
     var(--premium-atmosphere-photo);
   background-repeat: no-repeat;
   background-size: cover;
@@ -7986,7 +8007,12 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 .page-start-here .sh-ask-band.premium-atmosphere {
   margin-top: -1px;
   background-image:
-    linear-gradient(180deg, rgba(6, 14, 26, 0.72) 0%, rgba(7, 16, 30, 0.88) 42%, rgba(5, 12, 24, 0.93) 100%),
+    linear-gradient(
+      180deg,
+      var(--premium-scrim-seam-top) 0%,
+      var(--premium-scrim-mid) 42%,
+      var(--premium-scrim-bottom) 100%
+    ),
     var(--premium-atmosphere-photo);
   background-position: center 28%;
 }
@@ -7995,7 +8021,12 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   border-block: none;
   background-color: var(--premium-ink);
   background-image:
-    linear-gradient(180deg, rgba(5, 12, 24, 0.9) 0%, rgba(7, 16, 30, 0.86) 50%, rgba(5, 12, 24, 0.92) 100%),
+    linear-gradient(
+      180deg,
+      var(--premium-scrim-top) 0%,
+      var(--premium-scrim-mid) 50%,
+      var(--premium-scrim-bottom) 100%
+    ),
     var(--premium-atmosphere-photo);
   background-position: center 38%;
 }
@@ -8024,7 +8055,12 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   border-bottom: none;
   background-color: var(--premium-ink);
   background-image:
-    linear-gradient(180deg, rgba(5, 12, 24, 0.82) 0%, rgba(6, 14, 26, 0.94) 55%, rgba(4, 10, 22, 0.98) 100%),
+    linear-gradient(
+      180deg,
+      var(--premium-scrim-footer-top) 0%,
+      var(--premium-scrim-mid) 55%,
+      var(--premium-scrim-footer-bottom) 100%
+    ),
     var(--premium-atmosphere-photo);
   background-repeat: no-repeat;
   background-size: cover;
@@ -8064,7 +8100,13 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   overflow-x: clip;
   background-color: #071022;
   background-image:
-    linear-gradient(90deg, rgba(5, 10, 24, 0.52) 0%, rgba(5, 10, 24, 0.28) 36%, rgba(5, 10, 24, 0.1) 58%, rgba(5, 10, 24, 0.03) 78%, transparent 100%),
+    linear-gradient(
+      90deg,
+      var(--premium-hero-scrim-side) 0%,
+      var(--premium-hero-scrim-side-mid) 38%,
+      rgba(5, 10, 24, 0.06) 62%,
+      transparent 82%
+    ),
     url("assets/evening_riverwalk_with_vibrant_ambiance.png");
   background-repeat: no-repeat;
   background-position: 0 0, center;
@@ -8078,7 +8120,12 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 .page-start-here .secondary-hero.hero-fiesta-dark.cinematic-hero::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 55%, rgba(6, 14, 26, 0.5) 82%, rgba(6, 14, 26, 0.88) 100%);
+  background: linear-gradient(
+    180deg,
+    transparent 62%,
+    var(--premium-hero-scrim-bottom) 88%,
+    var(--premium-hero-scrim-bottom-end) 100%
+  );
 }
 
 .page-start-here .cinematic-hero .hero-fiesta-inner.hero-inner-band {
@@ -13427,7 +13474,12 @@ body.page-ask main:not(.ask-product-main) {
   /* Override .hero-fiesta-dark gradients — photo must win */
   background-color: #0a1a2e;
   background-image:
-    linear-gradient(180deg, transparent 70%, rgba(9, 26, 52, 0.28) 100%),
+    linear-gradient(
+      180deg,
+      transparent 68%,
+      var(--premium-hero-scrim-bottom) 92%,
+      var(--premium-hero-scrim-bottom-end) 100%
+    ),
     url("/assets/downtown-river-promenade-twilight.png");
   background-repeat: no-repeat;
   background-position: center 42%;
@@ -13441,7 +13493,12 @@ body.page-ask main:not(.ask-product-main) {
 .page-ask .ask-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 70%, rgba(9, 26, 52, 0.28) 100%);
+  background: linear-gradient(
+    180deg,
+    transparent 64%,
+    var(--premium-hero-scrim-bottom) 90%,
+    var(--premium-hero-scrim-bottom-end) 100%
+  );
 }
 
 .page-ask .ask-product-hero .hero-title {
