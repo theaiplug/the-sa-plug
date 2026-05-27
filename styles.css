@@ -9440,13 +9440,13 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-home .home-ask-bridge.home-ask-entry {
-  padding-top: clamp(10px, 1.6vw, 18px);
-  padding-bottom: clamp(28px, 3.6vw, 44px);
+  padding-top: clamp(8px, 1.2vw, 14px);
+  padding-bottom: clamp(16px, 2.2vw, 24px);
 }
 
 .page-home .home-ask-entry-inner {
   border-left: 4px solid rgba(20, 184, 166, 0.82);
-  padding-left: clamp(18px, 2.8vw, 26px);
+  padding-left: clamp(14px, 2.2vw, 22px);
 }
 
 .page-home .home-ask-entry-body {
@@ -9461,15 +9461,11 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-home .home-ask-entry-cta {
+  align-self: flex-start;
   min-width: min(100%, 11.5rem);
 }
 
 @media (max-width: 520px) {
-  .page-home .home-ask-entry-inner {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
   .page-home .home-ask-entry-cta {
     width: 100%;
     justify-content: center;
@@ -9605,11 +9601,69 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 .page-home .home-trust-band.trust-strip--home-proof {
-  padding-top: clamp(40px, 5vw, 60px);
+  padding-top: clamp(24px, 3vw, 36px);
+  padding-bottom: clamp(24px, 3vw, 36px);
+}
+
+.page-home .home-trust-compact.trust-strip--home-proof {
+  padding: clamp(24px, 3.2vw, 40px) clamp(16px, 4.5vw, 70px);
 }
 
 .page-home .home-trust-lede {
   max-width: 44rem;
+}
+
+.page-home .home-trust-compact-head.trust-strip-head {
+  margin-bottom: clamp(14px, 2vw, 20px);
+}
+
+.page-home .home-trust-compact-head h2 {
+  font-size: clamp(1.2rem, 1.8vw + 0.7rem, 1.65rem);
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.page-home .home-trust-proof-row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .page-home .home-trust-proof-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 14px;
+  }
+}
+
+.page-home .home-trust-proof-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: clamp(0.8rem, 0.2vw + 0.76rem, 0.88rem);
+  font-weight: 750;
+  line-height: 1.38;
+  letter-spacing: 0.01em;
+  color: rgba(255, 246, 230, 0.92);
+  background: rgba(255, 246, 230, 0.06);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.page-home .home-trust-proof-icon {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--turquoise), var(--gold));
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.18);
 }
 
 .page-home .trust-card-story-body p {
@@ -13230,34 +13284,33 @@ body.page-ask main {
 
 /* Homepage: Ask entry band */
 .home-ask-entry {
-  padding-top: clamp(28px, 4vw, 40px);
-  padding-bottom: clamp(28px, 4vw, 40px);
+  padding-top: clamp(12px, 1.8vw, 18px);
+  padding-bottom: clamp(16px, 2.4vw, 22px);
 }
 
 .home-ask-entry-inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(16px, 2.5vw, 24px);
-  padding: clamp(20px, 3vw, 28px);
-  border-radius: calc(var(--radius) + 8px);
+  padding: clamp(14px, 2.2vw, 20px);
+  border-radius: calc(var(--radius) + 6px);
   border: 1px solid rgba(11, 29, 58, 0.08);
   background:
     radial-gradient(ellipse 80% 80% at 0% 0%, rgba(20, 184, 166, 0.12), transparent 55%),
     radial-gradient(circle at 100% 100%, rgba(255, 106, 77, 0.1), transparent 45%),
     linear-gradient(168deg, #fffdfb 0%, #f4fbf9 100%);
-  box-shadow: 0 16px 40px rgba(2, 6, 14, 0.08);
+  box-shadow: 0 12px 32px rgba(2, 6, 14, 0.07);
 }
 
 .home-ask-entry-copy {
-  flex: 1 1 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(8px, 1.2vw, 12px);
   min-width: 0;
+  max-width: 40rem;
 }
 
 .home-ask-entry-copy h2 {
-  margin: 0 0 8px;
-  font-size: clamp(1.25rem, 2vw + 0.65rem, 1.55rem);
+  margin: 0;
+  font-size: clamp(1.15rem, 1.6vw + 0.62rem, 1.45rem);
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--navy);
@@ -13266,19 +13319,20 @@ body.page-ask main {
 .home-ask-entry-copy p,
 .home-ask-entry-body {
   margin: 0;
-  font-size: clamp(0.9rem, 0.4vw + 0.82rem, 0.98rem);
-  line-height: 1.55;
-  color: rgba(11, 29, 58, 0.72);
-  font-weight: 600;
+  font-size: clamp(0.88rem, 0.35vw + 0.8rem, 0.96rem);
+  line-height: 1.5;
+  color: rgba(11, 29, 58, 0.78);
+  font-weight: 500;
   max-width: 36rem;
   letter-spacing: normal;
   word-spacing: normal;
   text-align: left;
 }
 
-.home-ask-entry-inner .btn {
+.home-ask-entry-cta {
+  margin-top: clamp(2px, 0.4vw, 4px);
+  min-height: 46px;
   flex-shrink: 0;
-  min-height: 48px;
 }
 
 
