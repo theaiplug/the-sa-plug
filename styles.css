@@ -13677,8 +13677,10 @@ body.page-ask main:not(.ask-product-main) {
   isolation: isolate;
 }
 
-/* Ask A Local studio card — one frame, same language as site concierge panels */
+/* Ask A Local studio card — thick CTA-matched frame */
 .page-ask .ask-product-tool-card.live-concierge-card {
+  /* Shared edge with .btn-primary send — thicker on the card */
+  --ask-cta-edge: rgba(214, 118, 12, 0.68);
   /* In-card chat copy + typed text share one column (composer field padding) */
   --ask-chat-field-pad: clamp(14px, 2.4vw, 18px);
   position: relative;
@@ -13691,14 +13693,28 @@ body.page-ask main:not(.ask-product-main) {
     clamp(20px, 4vw, 26px);
   border-radius: calc(var(--radius) + 8px);
   overflow: hidden;
-  border: 1px solid rgba(242, 178, 26, 0.28);
-  background: #0a1628;
-  box-shadow: 0 24px 56px rgba(2, 6, 14, 0.48);
+  border: 3px solid var(--ask-cta-edge);
+  color: rgba(255, 248, 235, 0.94);
+  background: linear-gradient(180deg, rgba(11, 24, 44, 1) 0%, #0a1628 42%, #081422 100%);
+  box-shadow:
+    0 24px 56px rgba(2, 6, 14, 0.5),
+    0 0 0 1px rgba(255, 139, 31, 0.14);
 }
 
-.page-ask .ask-product-tool-card.live-concierge-card::before,
-.page-ask .ask-product-tool-card.live-concierge-card::after {
+.page-ask .ask-product-tool-card.live-concierge-card::before {
   display: none;
+}
+
+.page-ask .ask-product-tool-card.live-concierge-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange) 0%, var(--gold) 100%);
+  pointer-events: none;
+  z-index: 4;
 }
 
 .page-ask .ask-product-tool-card .live-concierge__glass-panel,
@@ -13718,17 +13734,19 @@ body.page-ask main:not(.ask-product-main) {
   align-items: center;
   justify-content: space-between;
   gap: var(--ask-stack-sm) var(--ask-stack-md);
-  margin: 0 0 var(--ask-stack-lg);
-  padding: 0 var(--ask-chat-field-pad);
+  margin: 0 0 var(--ask-stack-md);
+  padding: 0 var(--ask-chat-field-pad) var(--ask-stack-md);
+  border-bottom: 1px solid rgba(255, 139, 31, 0.22);
 }
 
 .page-ask .ask-product-tool-kicker {
   margin: 0;
-  font-size: clamp(0.64rem, 0.12vw + 0.6rem, 0.7rem);
+  font-size: clamp(0.68rem, 0.14vw + 0.62rem, 0.74rem);
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 246, 230, 0.46);
+  color: var(--gold);
+  text-shadow: 0 1px 14px rgba(242, 178, 26, 0.28);
 }
 
 .page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status {
@@ -13941,7 +13959,7 @@ body.page-ask main:not(.ask-product-main) {
   margin: 0;
   padding: 14px 22px 15px;
   border-radius: var(--btn-radius);
-  border: 1px solid rgba(214, 118, 12, 0.55);
+  border: 1px solid var(--ask-cta-edge, rgba(214, 118, 12, 0.68));
   font-size: clamp(0.98rem, 0.28vw + 0.92rem, 1.06rem);
   font-weight: 850;
   letter-spacing: 0.01em;
@@ -13954,7 +13972,7 @@ body.page-ask main:not(.ask-product-main) {
 .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
   filter: none;
-  border-color: rgba(214, 118, 12, 0.65);
+  border-color: rgba(214, 118, 12, 0.82);
   box-shadow: 0 22px 44px rgba(255, 139, 31, 0.38);
 }
 
