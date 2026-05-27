@@ -7942,6 +7942,119 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   box-shadow: 0 14px 36px rgba(2, 6, 14, 0.18);
 }
 
+/* ----- Premium page atmosphere (Start Here + Ask) ----- */
+.page-ask {
+  --premium-atmosphere-photo: url("/assets/downtown-river-promenade-twilight.png");
+  --premium-ink: #060e1a;
+}
+
+.page-start-here {
+  --premium-atmosphere-photo: url("assets/evening_riverwalk_with_vibrant_ambiance.png");
+  --premium-ink: #060e1a;
+}
+
+:is(.page-ask, .page-start-here) .premium-atmosphere,
+:is(.page-ask, .page-start-here) .ask-product-atmosphere {
+  position: relative;
+  isolation: isolate;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+  color: rgba(255, 248, 235, 0.95);
+  border: none;
+  background-color: var(--premium-ink);
+  background-image:
+    linear-gradient(180deg, rgba(5, 12, 24, 0.9) 0%, rgba(7, 16, 30, 0.86) 50%, rgba(5, 12, 24, 0.92) 100%),
+    var(--premium-atmosphere-photo);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+:is(.page-ask, .page-start-here) .premium-atmosphere::after,
+:is(.page-ask, .page-start-here) .ask-product-atmosphere::after {
+  display: none;
+}
+
+:is(.page-ask, .page-start-here) .premium-atmosphere > .routes-band-inner,
+:is(.page-ask, .page-start-here) .premium-atmosphere .ask-product-prompts,
+:is(.page-ask, .page-start-here) .premium-atmosphere .ask-product-section-head {
+  position: relative;
+  z-index: 1;
+}
+
+/* Start Here — band positions (subtle scroll parallax on one photo) */
+.page-start-here .sh-ask-band.premium-atmosphere {
+  margin-top: -1px;
+  background-image:
+    linear-gradient(180deg, rgba(6, 14, 26, 0.72) 0%, rgba(7, 16, 30, 0.88) 42%, rgba(5, 12, 24, 0.93) 100%),
+    var(--premium-atmosphere-photo);
+  background-position: center 28%;
+}
+
+.page-start-here .path-hub-section.premium-atmosphere.sh-lanes-hub {
+  border-block: none;
+  background-color: var(--premium-ink);
+  background-image:
+    linear-gradient(180deg, rgba(5, 12, 24, 0.9) 0%, rgba(7, 16, 30, 0.86) 50%, rgba(5, 12, 24, 0.92) 100%),
+    var(--premium-atmosphere-photo);
+  background-position: center 38%;
+}
+
+.page-start-here .sh-lanes-hub.premium-atmosphere {
+  background-position: center 38%;
+}
+
+.page-start-here .sh-final-section.premium-atmosphere {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: clamp(16px, 4.5vw, 74px);
+  background-position: center 48%;
+}
+
+.page-start-here .sh-final-section.premium-atmosphere .sh-final-cta {
+  position: relative;
+  z-index: 1;
+}
+
+:is(.page-ask, .page-start-here) .footer.premium-atmosphere-footer.dark-showcase {
+  position: relative;
+  isolation: isolate;
+  margin-top: 0;
+  border-top: none;
+  border-bottom: none;
+  background-color: var(--premium-ink);
+  background-image:
+    linear-gradient(180deg, rgba(5, 12, 24, 0.82) 0%, rgba(6, 14, 26, 0.94) 55%, rgba(4, 10, 22, 0.98) 100%),
+    var(--premium-atmosphere-photo);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.page-start-here .footer.premium-atmosphere-footer.dark-showcase {
+  background-position: center 58%;
+}
+
+.page-ask .footer.premium-atmosphere-footer.dark-showcase {
+  background-position: center 64%;
+}
+
+:is(.page-ask, .page-start-here) .footer.premium-atmosphere-footer.dark-showcase > * {
+  position: relative;
+  z-index: 1;
+}
+
+:is(.page-ask, .page-start-here) .footer.premium-atmosphere-footer .footer-links a {
+  border-color: rgba(255, 246, 230, 0.22);
+  background: rgba(8, 18, 34, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+:is(.page-ask, .page-start-here) .footer.premium-atmosphere-footer .footer-links a:hover {
+  border-color: rgba(242, 178, 26, 0.42);
+  background: rgba(12, 24, 44, 0.72);
+}
+
 /* Start Here hub: cinematic hero (full-bleed photography) */
 .page-start-here .cinematic-hero.hero-fiesta-dark.secondary-hero {
   isolation: isolate;
@@ -7965,7 +8078,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 .page-start-here .secondary-hero.hero-fiesta-dark.cinematic-hero::after {
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(180deg, transparent 64%, rgba(2, 6, 14, 0.22) 100%);
+  background: linear-gradient(180deg, transparent 55%, rgba(6, 14, 26, 0.5) 82%, rgba(6, 14, 26, 0.88) 100%);
 }
 
 .page-start-here .cinematic-hero .hero-fiesta-inner.hero-inner-band {

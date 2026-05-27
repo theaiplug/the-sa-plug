@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=start-here-atmosphere" />
   <style>
     /* Start Here — visitor routing hub (rebuilt) */
 
@@ -52,7 +52,7 @@
       letter-spacing: normal;
       word-spacing: normal;
       text-align: left;
-      color: var(--slate);
+      color: rgba(255, 248, 235, 0.86);
     }
 
     .start-here-main .sh-section-head {
@@ -119,14 +119,13 @@
       }
     }
 
-    /* Ask A Local — cream section with dark card inside */
+    /* Ask A Local — atmosphere band with dark card inside */
     .start-here-main .sh-ask-band {
       position: relative;
-      margin-top: clamp(-20px, -2.5vw, -8px);
+      margin-top: -1px;
       padding-top: clamp(28px, 4vw, 40px);
       padding-bottom: clamp(28px, 4vw, 40px);
       z-index: 2;
-      background: linear-gradient(180deg, var(--cream) 0%, var(--cream-peach) 100%);
     }
 
     .start-here-main .sh-ask-band > .routes-band-inner {
@@ -150,7 +149,7 @@
       overflow: hidden;
       border-radius: calc(var(--radius) + 8px);
       border: 1px solid rgba(255, 246, 230, 0.16);
-      background: linear-gradient(155deg, #050a14 0%, #0b1d3a 55%, #12102a 100%);
+      background: linear-gradient(168deg, rgba(10, 22, 40, 0.97) 0%, rgba(5, 12, 24, 0.99) 55%, rgba(4, 10, 22, 1) 100%);
       box-shadow:
         0 28px 56px rgba(0, 0, 0, 0.38),
         inset 0 1px 0 rgba(255, 246, 230, 0.06);
@@ -164,7 +163,12 @@
       top: 0;
       height: 3px;
       z-index: 3;
-      background: linear-gradient(90deg, var(--turquoise), var(--gold), var(--coral));
+      background: linear-gradient(
+        90deg,
+        rgba(242, 178, 26, 0.15) 0%,
+        rgba(242, 178, 26, 0.75) 50%,
+        rgba(242, 178, 26, 0.15) 100%
+      );
     }
 
     @media (min-width: 720px) {
@@ -216,9 +220,7 @@
       justify-content: center;
       gap: clamp(10px, 1.6vw, 14px);
       padding: clamp(18px, 2.8vw, 28px) clamp(18px, 3vw, 32px) clamp(20px, 3vw, 30px);
-      background:
-        radial-gradient(ellipse 90% 80% at 100% 0%, rgba(20, 184, 166, 0.14), transparent 52%),
-        radial-gradient(circle at 0% 100%, rgba(255, 106, 77, 0.1), transparent 48%);
+      background: transparent;
     }
 
     .start-here-main .sh-ask-panel__accent {
@@ -226,7 +228,7 @@
       max-width: 200px;
       height: 2px;
       border-radius: 2px;
-      background: linear-gradient(90deg, rgba(242, 178, 26, 0.95), rgba(20, 184, 166, 0.85), transparent);
+      background: linear-gradient(90deg, rgba(242, 178, 26, 0.95), rgba(242, 178, 26, 0.35), transparent);
       opacity: 0.95;
     }
 
@@ -336,11 +338,11 @@
       border-radius: 999px;
       background: linear-gradient(
         90deg,
-        rgba(20, 184, 166, 0.95),
-        rgba(242, 178, 26, 0.95),
-        rgba(255, 106, 77, 0.88)
+        rgba(242, 178, 26, 0.2) 0%,
+        rgba(242, 178, 26, 0.85) 50%,
+        rgba(242, 178, 26, 0.2) 100%
       );
-      box-shadow: 0 0 24px rgba(20, 184, 166, 0.35);
+      box-shadow: 0 0 20px rgba(242, 178, 26, 0.2);
     }
 
     .start-here-main .sh-lanes-lead {
@@ -487,7 +489,12 @@
         top: 0;
         height: 3px;
         z-index: 2;
-        background: linear-gradient(90deg, var(--turquoise), var(--gold), var(--coral), var(--pink));
+        background: linear-gradient(
+          90deg,
+          rgba(242, 178, 26, 0.15) 0%,
+          rgba(242, 178, 26, 0.75) 50%,
+          rgba(242, 178, 26, 0.15) 100%
+        );
       }
 
       .start-here-main .sh-how-simple {
@@ -734,11 +741,10 @@
       border-radius: calc(var(--radius) + 6px);
       padding: clamp(28px, 3.6vw, 40px) clamp(20px, 3.2vw, 32px);
       border: 1px solid rgba(255, 246, 230, 0.14);
-      background:
-        radial-gradient(ellipse 70% 55% at 10% 0%, rgba(255, 106, 77, 0.18), transparent 50%),
-        radial-gradient(circle at 92% 80%, rgba(20, 184, 166, 0.16), transparent 42%),
-        linear-gradient(158deg, #050910 0%, #0b1d3a 50%, #16122a 100%);
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
+      background: linear-gradient(168deg, rgba(12, 24, 44, 0.94) 0%, rgba(6, 14, 28, 0.92) 100%);
+      box-shadow:
+        0 1px 0 rgba(255, 246, 230, 0.08) inset,
+        0 24px 48px rgba(2, 6, 14, 0.32);
     }
 
     .start-here-main .sh-final-cta::before {
@@ -748,7 +754,12 @@
       right: 0;
       top: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--turquoise), var(--coral), var(--gold));
+      background: linear-gradient(
+        90deg,
+        rgba(242, 178, 26, 0.15) 0%,
+        rgba(242, 178, 26, 0.75) 50%,
+        rgba(242, 178, 26, 0.15) 100%
+      );
     }
 
     .start-here-main .sh-final-cta h2 {
@@ -818,7 +829,7 @@
       </div>
     </section>
 
-    <section class="section section-cream sh-ask-band" id="ask-local" aria-labelledby="ask-local-heading">
+    <section class="section premium-atmosphere sh-ask-band" id="ask-local" aria-labelledby="ask-local-heading">
       <div class="routes-band-inner">
         <article class="sh-ask-panel">
           <div class="sh-ask-panel__visual" aria-hidden="true">
@@ -850,7 +861,7 @@
       </div>
     </section>
 
-    <section class="section band section-navy-routes path-hub-section image-detail-section sh-lanes-hub" id="visitor-lanes" aria-labelledby="visitor-lanes-heading">
+    <section class="section band premium-atmosphere path-hub-section image-detail-section sh-lanes-hub" id="visitor-lanes" aria-labelledby="visitor-lanes-heading">
       <div class="routes-band-inner">
         <header class="path-hub-head sh-lanes-intro">
           <p class="eyebrow eyebrow-on-dark">Pick your situation</p>
@@ -989,7 +1000,7 @@
       </div>
     </section>
 
-    <section class="section sh-final-section" aria-labelledby="sh-final-heading">
+    <section class="section premium-atmosphere sh-final-section" aria-labelledby="sh-final-heading">
       <div class="sh-final-cta">
         <h2 id="sh-final-heading">Still not sure where to start?</h2>
         <p class="sh-body-copy">Tell us your hotel, timing, group, and what you&rsquo;re trying to do. Ask A Local will point you toward the best next move.</p>
@@ -1000,7 +1011,7 @@
       </div>
     </section>
   </main>
-  <footer class="footer dark-showcase">
+  <footer class="footer dark-showcase premium-atmosphere-footer">
     <div class="footer-brand">
       <strong>Where To Go SA</strong>
       <span class="footer-tagline">Where locals send visitors.</span>
