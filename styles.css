@@ -21695,6 +21695,131 @@ body.owner-dash-detail-open {
   }
 }
 
+/* Homepage AI Plug — streamlined focus band */
+.page-home .ai-proof-section.ai-proof-section--focus {
+  position: relative;
+  isolation: isolate;
+  margin-top: clamp(4px, 1.2vw, 12px);
+  padding-top: clamp(2.25rem, 5.5vw, 3.25rem);
+  padding-bottom: clamp(2.5rem, 6.5vw, 3.75rem);
+  border-top: 1px solid rgba(255, 246, 230, 0.12);
+  overflow: hidden;
+}
+
+.page-home .ai-proof-section.ai-proof-section--focus::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 72% 48% at 18% 0%, rgba(20, 184, 166, 0.16), transparent 58%),
+    radial-gradient(ellipse 55% 40% at 92% 12%, rgba(242, 178, 26, 0.14), transparent 52%),
+    radial-gradient(ellipse 60% 35% at 50% 100%, rgba(255, 106, 77, 0.08), transparent 55%);
+}
+
+.page-home .ai-proof-systems--home {
+  position: relative;
+  z-index: 1;
+  gap: clamp(1rem, 2.2vw, 1.35rem);
+}
+
+.page-home .ai-proof-section--focus .ai-proof-header-band {
+  gap: clamp(10px, 1.8vw, 16px);
+}
+
+.page-home .ai-proof-section--focus .ai-proof-headline {
+  font-size: clamp(1.62rem, 4.4vw, 2.35rem);
+  font-weight: 860;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  max-width: 18ch;
+}
+
+.page-home .ai-proof-section--focus .ai-proof-proofline {
+  font-size: clamp(0.94rem, 0.24vw + 0.88rem, 1.05rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: rgba(255, 235, 210, 0.92);
+  max-width: 46ch;
+}
+
+.page-home .ai-proof-section--focus .ai-proof-lead {
+  margin: 0;
+  max-width: 52ch;
+  font-size: clamp(0.92rem, 0.18vw + 0.84rem, 1rem);
+  line-height: 1.55;
+  color: rgba(255, 246, 230, 0.82);
+}
+
+.page-home .ai-proof-header-band .ai-proof-cta-row {
+  margin-top: clamp(10px, 1.8vw, 16px);
+}
+
+.page-home .ai-proof-media-card--proof-only .ai-proof-media-card__wrap {
+  min-height: clamp(190px, 34vw, 300px);
+  box-shadow:
+    0 28px 52px rgba(2, 6, 14, 0.5),
+    0 0 0 1px rgba(242, 178, 26, 0.22),
+    0 0 40px rgba(20, 184, 166, 0.1);
+}
+
+.page-home .ai-proof-media-card--proof-only .ai-proof-media-card__overlay {
+  background:
+    radial-gradient(ellipse 70% 45% at 80% 8%, rgba(20, 184, 166, 0.1), transparent 50%),
+    linear-gradient(
+      to top,
+      rgba(5, 10, 24, 0.62) 0%,
+      rgba(5, 10, 24, 0.2) 38%,
+      rgba(5, 10, 24, 0.02) 72%
+    );
+}
+
+.page-home .ai-proof-media-card--proof-only .ai-proof-media-card__stack {
+  align-items: flex-start;
+  padding: clamp(12px, 2vw, 16px);
+}
+
+.page-home .ai-proof-systems--home .restaurant-owner-cta-strip {
+  margin-top: clamp(6px, 1.2vw, 10px);
+}
+
+.page-home main + .footer.dark-showcase {
+  padding-top: clamp(36px, 5.5vw, 56px);
+  margin-top: 0;
+}
+
+@media (max-width: 639px) {
+  .page-home .ai-proof-section.ai-proof-section--focus {
+    padding-top: clamp(1.75rem, 5vw, 2.25rem);
+    padding-bottom: clamp(2rem, 5.5vw, 2.5rem);
+  }
+
+  .page-home .ai-proof-section--focus .ai-proof-headline {
+    max-width: none;
+    font-size: clamp(1.48rem, 6.8vw, 1.85rem);
+  }
+
+  .page-home .ai-proof-media-card--proof-only .ai-proof-media-card__wrap {
+    min-height: clamp(180px, 52vw, 240px);
+  }
+
+  .page-home .ai-proof-header-band .ai-proof-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .page-home .ai-proof-header-band .ai-proof-cta-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .page-home main + .footer.dark-showcase {
+    padding-top: clamp(32px, 6vw, 44px);
+  }
+}
+
 .page-home .footer.dark-showcase {
   padding-top: clamp(28px, 4.5vw, var(--biz-space-lg));
   padding-bottom: max(clamp(28px, 4vw, var(--biz-space-lg)), calc(12px + env(safe-area-inset-bottom, 0px)));
