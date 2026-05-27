@@ -11043,7 +11043,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   background-color: #0a1a2e;
   background-image:
     linear-gradient(118deg, rgba(5, 10, 24, 0.32) 0%, rgba(5, 10, 24, 0.16) 45%, rgba(5, 10, 24, 0.05) 100%),
-    url("assets/ask-downtown-night-plan.png");
+    var(--ask-hero-photo);
   background-repeat: no-repeat;
   background-position: 0 0, center 40%;
   background-size: cover, cover;
@@ -11064,7 +11064,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   .page-ask .ask-page-hero.hero-fiesta-dark.secondary-hero {
     background-image:
       linear-gradient(185deg, rgba(5, 10, 24, 0.12) 0%, rgba(5, 10, 24, 0.28) 42%, rgba(5, 10, 24, 0.44) 100%),
-      url("assets/ask-downtown-night-plan.png");
+      var(--ask-hero-photo);
     background-position: 0 0, center 36%;
     min-height: clamp(440px, 78vh, 620px);
   }
@@ -11230,9 +11230,13 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 :is(.page-ask, .page-start-here) #live-concierge,
+.page-ask #live-concierge-tool,
+.page-ask #ask-prompts,
+.page-ask #ask-value,
+.page-ask #example-questions,
+.page-ask #human-help,
 .page-ask #popular-routes,
 .page-ask #more-moves,
-.page-ask #human-help,
 .page-ask #ai-proof,
 .page-ask #final-cta,
 .page-ask [id^="route-"] {
@@ -11243,7 +11247,8 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   scroll-margin-top: calc(var(--header-h, 64px) + 20px);
 }
 
-body.page-ask main {
+/* Legacy Ask guide layout only — product page uses .ask-product-main (no extra main pad) */
+body.page-ask main:not(.ask-product-main) {
   padding-bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 56px));
 }
 
@@ -11739,7 +11744,7 @@ body.page-ask main {
   z-index: 1;
 }
 
-.page-ask #human-help.section-cream {
+.page-ask #human-help.section-cream:not(.ask-product-human) {
   padding-bottom: max(clamp(44px, 5vw, 56px), calc(env(safe-area-inset-bottom, 0px) + 36px));
 }
 
@@ -13258,6 +13263,999 @@ body.page-ask main {
   }
 }
 
+/* ----- Ask product page (tool-first rebuild) ----- */
+.page-ask {
+  --ask-hero-photo: url("/assets/downtown-river-promenade-twilight.png");
+}
+
+/*
+ * Layout model (standard product-page pattern):
+ * 1. .ask-product-shell — centered column + page gutter (all sections share this)
+ * 2. .ask-product-tool-card — full width of shell; inner padding clears rounded corners
+ * 3. --ask-text-inset matches chip label padding — copy aligns to words inside pills, not pill edges
+ */
+.page-ask .ask-product-main {
+  --ask-shell-max: 45rem;
+  --ask-shell-pad: clamp(20px, 5vw, 32px);
+  --ask-card-pad-block: clamp(18px, 4.2vw, 24px);
+  --ask-section-pad: clamp(40px, 6vw, 56px);
+  padding-bottom: 0;
+  /* Vertical rhythm — shared gaps for copy, controls, and section blocks */
+  --ask-stack-xs: 8px;
+  --ask-stack-sm: 12px;
+  --ask-stack-md: 16px;
+  --ask-stack-lg: 24px;
+  --ask-stack-xl: 32px;
+  /* Match prompt-chip padding-inline — body copy aligns to label text, not pill border */
+  --ask-text-inset: 14px;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+.page-ask .ask-product-shell {
+  width: 100%;
+  max-width: var(--ask-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--ask-shell-pad);
+  box-sizing: border-box;
+}
+
+/* Hero: cinematic background photo with copy on top (matches Downtown / Where To Eat) */
+.page-ask .ask-hero--cinematic.hero-fiesta-dark.secondary-hero {
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-x: clip;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  min-height: clamp(420px, 62vh, 640px);
+  /* Override .hero-fiesta-dark gradients — photo must win */
+  background-color: #0a1a2e;
+  background-image:
+    linear-gradient(180deg, transparent 70%, rgba(9, 26, 52, 0.28) 100%),
+    url("/assets/downtown-river-promenade-twilight.png");
+  background-repeat: no-repeat;
+  background-position: center 42%;
+  background-size: cover;
+}
+
+.page-ask .ask-hero--cinematic.hero-fiesta-dark::before {
+  display: none;
+}
+
+.page-ask .ask-hero--cinematic.secondary-hero.hero-fiesta-dark::after {
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 70%, rgba(9, 26, 52, 0.28) 100%);
+}
+
+.page-ask .ask-product-hero .hero-title {
+  font-size: clamp(1.85rem, 4.2vw + 0.5rem, 2.65rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-shadow:
+    0 2px 24px rgba(2, 6, 14, 0.55),
+    0 1px 3px rgba(2, 6, 14, 0.4);
+}
+
+.page-ask .ask-product-hero .hero-text-on-dark {
+  text-shadow: 0 1px 14px rgba(2, 6, 14, 0.5);
+}
+
+.page-ask .ask-product-hero .hero-content .eyebrow-hero {
+  margin-bottom: 0;
+  color: rgba(242, 178, 26, 0.95);
+  text-shadow: 0 1px 12px rgba(2, 6, 14, 0.35);
+}
+
+.page-ask .ask-product-hero.hero-fiesta-dark .hero-content.secondary-hero-copy {
+  gap: clamp(14px, 2.2vw, 18px);
+}
+
+.page-ask .ask-product-hero-actions.hero-cta-row,
+.page-ask .ask-product-hero-actions {
+  margin-top: 0;
+}
+
+.page-ask .ask-product-hero-actions.hero-cta-row {
+  gap: var(--ask-stack-sm) 14px;
+}
+
+.page-ask .ask-product-hero-actions .btn-primary {
+  min-height: 50px;
+  box-shadow:
+    0 18px 40px rgba(255, 139, 31, 0.34),
+    0 3px 0 rgba(255, 255, 255, 0.45) inset;
+}
+
+.page-ask .ask-product-hero-actions .btn-secondary-hero {
+  min-height: 50px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.page-ask .ask-hero--cinematic .hero-fiesta-inner.hero-inner-band.ask-product-shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--ask-shell-max);
+  margin-inline: auto;
+  box-sizing: border-box;
+  padding-inline: var(--ask-shell-pad);
+  padding-block: clamp(24px, 4vw, 40px) calc(clamp(24px, 4vw, 40px) + 5px);
+}
+
+.page-ask .ask-hero--cinematic .hero-shell.ask-product-hero-shell {
+  display: block;
+  width: 100%;
+  max-width: none;
+}
+
+.page-ask .ask-product-hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.page-ask .ask-product-hero .hero-title,
+.page-ask .ask-product-hero .hero-text-on-dark,
+.page-ask .ask-product-section-head h2,
+.page-ask .ask-product-section-head .section-text,
+.page-ask .ask-product-prompts-title,
+.page-ask .ask-product-prompts-lead,
+.page-ask .ask-product-example-card,
+.page-ask .ask-product-human-inner .section-text,
+.page-ask .ask-product-human-note {
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
+
+.page-ask .ask-product-hero .hero-text-on-dark {
+  max-width: none;
+}
+
+.page-ask .ask-product-hero-support {
+  font-size: clamp(0.92rem, 0.22vw + 0.86rem, 1.02rem);
+  line-height: 1.55;
+  max-width: none;
+}
+
+.page-ask .ask-product-tool-section {
+  position: relative;
+  padding-top: clamp(8px, 1.5vw, 14px);
+  padding-bottom: clamp(36px, 5vw, 52px);
+}
+
+.page-ask .ask-product-tool-section.section-navy-routes {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(20, 184, 166, 0.22), transparent 34%),
+    radial-gradient(circle at 92% 88%, rgba(255, 92, 168, 0.16), transparent 36%),
+    radial-gradient(circle at 78% 14%, rgba(255, 139, 31, 0.14), transparent 32%),
+    linear-gradient(160deg, #091a34 0%, #0b1d3a 44%, #10274a 100%);
+}
+
+.page-ask .ask-product-tool-section.section-navy-routes,
+.page-ask .ask-product-tool-section.section {
+  padding-inline: 0;
+}
+
+.page-ask .routes-band-inner.ask-product-inner.ask-product-shell {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 36px);
+}
+
+/* Cream / navy bands: section-head margin supplies rhythm (not routes-band-inner flex gap) */
+.page-ask .ask-product-value-inner.routes-band-inner,
+.page-ask .ask-product-examples-inner.routes-band-inner,
+.page-ask .ask-product-human-inner.routes-band-inner {
+  gap: 0;
+}
+
+.page-ask .ask-product-tool.ask-local-tool.live-concierge-studio {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+
+/*
+ * Shared copy column (shell gutter + text inset) — headings, hero, prompts, and
+ * cream-section notes align with example-card text and words inside prompt chips.
+ */
+.page-ask .ask-product-hero .hero-content,
+.page-ask .ask-product-section-head,
+.page-ask .ask-product-prompts-head,
+.page-ask .ask-product-prompt-group-label,
+.page-ask .ask-product-human-note,
+.page-ask .ask-product-human-actions {
+  padding-left: var(--ask-text-inset);
+  box-sizing: border-box;
+}
+
+/* Tool card: one horizontal inset on the card — no nested copy padding */
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__main-card,
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__glass-panel,
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__answer-surface,
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__answer-surface:has(.live-concierge__preview--placeholder) {
+  padding: 0;
+  padding-inline: 0;
+}
+
+.page-ask .ask-product-tool-wrap {
+  position: relative;
+  isolation: isolate;
+}
+
+@media (min-width: 720px) {
+  .page-ask .ask-product-tool-wrap::before {
+    content: "";
+    position: absolute;
+    inset: -20px -12px -28px;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 18%, rgba(20, 184, 166, 0.2), transparent 68%),
+      radial-gradient(ellipse 55% 45% at 88% 72%, rgba(242, 178, 26, 0.14), transparent 62%);
+    filter: blur(28px);
+    opacity: 0.9;
+  }
+}
+
+/* Premium Ask A Local studio card (hero product surface) */
+.page-ask .ask-product-tool-card.live-concierge-card {
+  /* In-card chat copy + typed text share one column (composer field padding) */
+  --ask-chat-field-pad: clamp(14px, 2.4vw, 18px);
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: 100%;
+  padding:
+    clamp(26px, 5vw, 32px)
+    var(--ask-text-inset)
+    clamp(24px, 4.8vw, 30px);
+  border-radius: calc(var(--radius) + 14px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 230, 0.2);
+  background:
+    radial-gradient(ellipse 120% 85% at 0% 0%, rgba(20, 184, 166, 0.14), transparent 52%),
+    radial-gradient(ellipse 90% 70% at 100% 100%, rgba(242, 178, 26, 0.11), transparent 48%),
+    radial-gradient(ellipse 55% 45% at 92% 8%, rgba(255, 92, 168, 0.09), transparent 42%),
+    linear-gradient(165deg, rgba(11, 24, 44, 0.99) 0%, rgba(7, 16, 32, 0.98) 46%, rgba(4, 10, 22, 1) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.1) inset,
+    0 0 0 1px rgba(20, 184, 166, 0.08) inset,
+    0 36px 80px rgba(2, 6, 14, 0.58),
+    0 14px 32px rgba(2, 6, 14, 0.38);
+}
+
+.page-ask .ask-product-tool-card.live-concierge-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    148deg,
+    rgba(20, 184, 166, 0.55) 0%,
+    rgba(255, 246, 230, 0.14) 38%,
+    rgba(242, 178, 26, 0.35) 72%,
+    rgba(255, 139, 31, 0.28) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.page-ask .ask-product-tool-card.live-concierge-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--turquoise) 0%,
+    rgba(20, 184, 166, 0.65) 22%,
+    var(--gold) 52%,
+    var(--orange) 78%,
+    var(--coral) 100%
+  );
+  opacity: 0.92;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.page-ask .ask-product-tool-card .live-concierge__glass-panel,
+.page-ask .ask-product-tool-card .live-concierge__main-card,
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__main-card {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-ask .ask-product-tool-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ask-stack-sm) var(--ask-stack-md);
+  margin: 0 0 var(--ask-stack-lg);
+  padding: 0 var(--ask-chat-field-pad);
+}
+
+.page-ask .ask-product-tool-kicker {
+  margin: 0;
+  font-size: clamp(0.64rem, 0.12vw + 0.6rem, 0.7rem);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 246, 230, 0.46);
+}
+
+.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 8px 15px 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 184, 166, 0.44);
+  background:
+    linear-gradient(
+      152deg,
+      rgba(20, 184, 166, 0.24) 0%,
+      rgba(8, 18, 34, 0.9) 52%,
+      rgba(4, 10, 22, 0.96) 100%
+    );
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.14) inset,
+    0 10px 26px rgba(2, 6, 14, 0.3);
+  font-size: clamp(0.64rem, 0.1vw + 0.6rem, 0.7rem);
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(255, 248, 235, 0.94);
+  text-align: left;
+}
+
+.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status::before {
+  content: "";
+  display: block;
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--turquoise);
+  box-shadow:
+    0 0 0 3px rgba(20, 184, 166, 0.22),
+    0 0 10px rgba(20, 184, 166, 0.7);
+}
+
+.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live {
+  border-color: rgba(242, 178, 26, 0.52);
+  color: rgba(255, 248, 235, 0.98);
+  background:
+    linear-gradient(
+      152deg,
+      rgba(242, 178, 26, 0.22) 0%,
+      rgba(8, 18, 34, 0.92) 52%,
+      rgba(4, 10, 22, 0.98) 100%
+    );
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.12) inset,
+    0 0 24px rgba(242, 178, 26, 0.14),
+    0 10px 26px rgba(2, 6, 14, 0.3);
+}
+
+.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live::before {
+  display: block;
+  background: var(--gold);
+  box-shadow:
+    0 0 0 3px rgba(242, 178, 26, 0.24),
+    0 0 12px rgba(242, 178, 26, 0.65);
+  animation: ask-product-status-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes ask-product-status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scale(0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live::before {
+    animation: none;
+  }
+
+  .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send:hover:not(:disabled),
+  .page-ask .ask-product-value-list li:hover,
+  .page-ask .ask-product-example-card:hover {
+    transform: none;
+  }
+}
+
+/*
+ * Single studio surface — no nested cards. One copy column (--ask-chat-field-pad)
+ * shared by preview, label, textarea, and hint; only the input has a field outline.
+ */
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__conversation,
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__conversation:not(.live-concierge__conversation--started) {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__preview--placeholder,
+.page-ask .ask-product-tool .live-concierge__preview:not(.live-concierge__preview--placeholder) {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: clamp(100px, 22vw, 128px);
+  margin: 0 0 var(--ask-stack-md);
+  padding-block: clamp(4px, 1vw, 8px) var(--ask-stack-md);
+  padding-inline: var(--ask-chat-field-pad);
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-ask .ask-product-tool .live-concierge__log {
+  padding: clamp(4px, 1vw, 8px) var(--ask-chat-field-pad) clamp(16px, 2.6vw, 20px);
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__composer-stack .live-concierge__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ask-stack-sm);
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack {
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--ask-stack-md) 0 0;
+  border: none;
+  border-top: 1px solid rgba(255, 246, 230, 0.1);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit {
+  padding: var(--ask-chat-field-pad);
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid rgba(255, 246, 230, 0.18);
+  background: rgba(2, 6, 14, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.06);
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease;
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit:focus-within {
+  border-color: rgba(242, 178, 26, 0.5);
+  background: rgba(3, 8, 18, 0.72);
+  box-shadow:
+    0 0 0 1px rgba(242, 178, 26, 0.16),
+    0 0 0 4px rgba(20, 184, 166, 0.1),
+    inset 0 1px 0 rgba(255, 246, 230, 0.08);
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__input {
+  padding: 0;
+  font-size: clamp(0.98rem, 0.24vw + 0.92rem, 1.06rem);
+  line-height: 1.5;
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__input::placeholder {
+  color: rgba(255, 248, 235, 0.52);
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
+  margin: var(--ask-stack-sm) 0 0;
+  padding: 0 0 0 var(--ask-chat-field-pad);
+  max-width: none;
+  color: rgba(255, 248, 235, 0.55);
+  font-size: clamp(0.74rem, 0.16vw + 0.7rem, 0.8rem);
+  line-height: 1.5;
+}
+
+.page-ask .ask-product-tool .live-concierge__preview-heading {
+  margin: 0 0 var(--ask-stack-xs);
+  font-size: clamp(1.1rem, 0.4vw + 1rem, 1.28rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.22;
+  color: rgba(255, 248, 235, 0.98);
+  text-shadow: 0 1px 18px rgba(2, 6, 14, 0.35);
+}
+
+.page-ask .ask-product-tool .live-concierge__preview--placeholder .live-concierge__preview-text {
+  margin: 0;
+  font-size: clamp(0.9rem, 0.2vw + 0.86rem, 0.98rem);
+  line-height: 1.55;
+  font-weight: 500;
+  color: rgba(255, 248, 235, 0.8);
+}
+
+.page-ask .ask-product-tool .live-concierge__input-label {
+  display: block;
+  margin: 0 0 var(--ask-stack-xs);
+  padding-left: var(--ask-chat-field-pad);
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(242, 178, 26, 0.94);
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send {
+  min-height: 54px;
+  margin-top: 0;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  font-size: clamp(1rem, 0.28vw + 0.94rem, 1.08rem);
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 20px 44px rgba(255, 139, 31, 0.36),
+    0 8px 20px rgba(242, 178, 26, 0.26),
+    0 3px 0 rgba(255, 255, 255, 0.48) inset,
+    0 -2px 0 rgba(180, 83, 9, 0.14) inset;
+}
+
+.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.06) saturate(1.06);
+  box-shadow:
+    0 28px 56px rgba(255, 139, 31, 0.48),
+    0 12px 26px rgba(242, 178, 26, 0.34),
+    0 4px 0 rgba(255, 255, 255, 0.55) inset,
+    0 -3px 0 rgba(180, 83, 9, 0.12) inset;
+}
+
+.page-ask .ask-product-prompts {
+  padding-top: var(--ask-stack-md);
+  border-top: 1px solid rgba(255, 246, 230, 0.12);
+}
+
+.page-ask .ask-product-prompts-head {
+  margin-bottom: var(--ask-stack-lg);
+}
+
+.page-ask .ask-product-prompts-eyebrow {
+  margin-bottom: var(--ask-stack-xs);
+  font-size: clamp(0.64rem, 0.1vw + 0.6rem, 0.7rem);
+  letter-spacing: 0.16em;
+  color: rgba(20, 184, 166, 0.92);
+}
+
+.page-ask .ask-product-prompts-title {
+  margin: 0 0 var(--ask-stack-xs);
+  font-size: clamp(1.15rem, 0.45vw + 1rem, 1.35rem);
+  font-weight: 800;
+  color: rgba(255, 248, 235, 0.98);
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+}
+
+.page-ask .ask-product-prompts-lead {
+  margin: 0;
+  font-size: clamp(0.86rem, 0.18vw + 0.82rem, 0.94rem);
+  line-height: 1.48;
+  color: rgba(255, 248, 235, 0.68);
+}
+
+.page-ask .ask-product-prompt-group + .ask-product-prompt-group {
+  margin-top: var(--ask-stack-md);
+}
+
+.page-ask .ask-product-prompt-group-label {
+  margin: 0 0 var(--ask-stack-xs);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(20, 184, 166, 0.88);
+}
+
+.page-ask .ask-product-prompt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ask-stack-xs) var(--ask-stack-sm);
+}
+
+.page-ask .ask-product-prompt-chips .live-concierge__chip--lane {
+  min-height: 2.5rem;
+  padding: 8px var(--ask-text-inset);
+  border-color: rgba(255, 246, 230, 0.2);
+  background:
+    linear-gradient(155deg, rgba(12, 24, 44, 0.92) 0%, rgba(5, 12, 26, 0.88) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.08) inset,
+    0 6px 16px rgba(2, 6, 14, 0.2);
+  font-size: clamp(0.8rem, 0.16vw + 0.76rem, 0.86rem);
+  font-weight: 700;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: left;
+  line-height: 1.35;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.14s ease;
+}
+
+.page-ask .ask-product-prompt-chips .live-concierge__chip--lane:hover {
+  border-color: rgba(242, 178, 26, 0.45);
+  background:
+    linear-gradient(155deg, rgba(20, 184, 166, 0.16) 0%, rgba(8, 18, 34, 0.92) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.1) inset,
+    0 10px 22px rgba(2, 6, 14, 0.28);
+}
+
+.page-ask .ask-product-value.section-cream {
+  padding-block: var(--ask-section-pad);
+  background:
+    radial-gradient(circle at 10% 18%, rgba(242, 178, 26, 0.14), transparent 42%),
+    radial-gradient(circle at 90% 82%, rgba(20, 184, 166, 0.12), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 92, 168, 0.06), transparent 55%),
+    linear-gradient(180deg, var(--cream) 0%, var(--cream-peach) 100%);
+}
+
+.page-ask .ask-product-value.section,
+.page-ask .ask-product-human.section,
+.page-ask .ask-product-examples.section {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.page-ask .ask-product-section-head {
+  max-width: none;
+  margin-bottom: var(--ask-stack-lg);
+}
+
+.page-ask .ask-product-eyebrow {
+  margin-bottom: var(--ask-stack-xs);
+  font-size: clamp(0.66rem, 0.1vw + 0.62rem, 0.72rem);
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: var(--coral);
+}
+
+.page-ask .ask-product-section-head h2 {
+  margin: 0 0 var(--ask-stack-sm);
+  font-size: clamp(1.45rem, 2.8vw + 0.45rem, 1.95rem);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+  color: var(--navy);
+}
+
+.page-ask .ask-product-section-head--on-dark .eyebrow.eyebrow-on-dark {
+  margin-bottom: var(--ask-stack-xs);
+  letter-spacing: 0.16em;
+  color: rgba(20, 184, 166, 0.92);
+}
+
+.page-ask .ask-product-section-head--on-dark h2 {
+  color: rgba(255, 248, 235, 0.98);
+  text-shadow: 0 1px 20px rgba(2, 6, 14, 0.25);
+}
+
+.page-ask .ask-product-section-head .section-text {
+  margin: 0;
+  line-height: 1.52;
+  color: var(--slate);
+}
+
+.page-ask .ask-product-section-head--on-dark .section-text {
+  color: rgba(255, 248, 235, 0.82);
+}
+
+.page-ask .ask-product-value-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--ask-stack-sm);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 520px) {
+  .page-ask .ask-product-value-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.page-ask .ask-product-value-list li {
+  display: block;
+  padding: 14px var(--ask-text-inset) 14px calc(var(--ask-text-inset) - 3px);
+  border-left: 3px solid var(--gold);
+  border-radius: calc(var(--radius) + 2px);
+  font-size: clamp(0.9rem, 0.18vw + 0.86rem, 0.97rem);
+  font-weight: 700;
+  line-height: 1.42;
+  color: var(--navy);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 248, 238, 0.86) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.85);
+  border-right: 1px solid rgba(11, 29, 58, 0.07);
+  border-bottom: 1px solid rgba(11, 29, 58, 0.09);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 12px 28px rgba(11, 29, 58, 0.08);
+  box-sizing: border-box;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+@media (hover: hover) {
+  .page-ask .ask-product-value-list li:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 18px 36px rgba(11, 29, 58, 0.12);
+  }
+}
+
+.page-ask .ask-product-examples.section-navy-routes {
+  position: relative;
+  padding-inline: 0;
+  padding-block: var(--ask-section-pad);
+  background:
+    radial-gradient(circle at 8% 92%, rgba(242, 178, 26, 0.16), transparent 30%),
+    radial-gradient(circle at 12% 12%, rgba(20, 184, 166, 0.2), transparent 32%),
+    radial-gradient(circle at 90% 86%, rgba(255, 92, 168, 0.18), transparent 36%),
+    radial-gradient(circle at 80% 12%, rgba(255, 139, 31, 0.18), transparent 34%),
+    linear-gradient(160deg, #091a34 0%, #0b1d3a 44%, #10274a 100%);
+}
+
+.page-ask .ask-product-examples.section-navy-routes::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--turquoise) 0%,
+    var(--gold) 50%,
+    var(--coral) 100%
+  );
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.page-ask .ask-product-example-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--ask-stack-md);
+}
+
+.page-ask .ask-product-example-card {
+  height: 100%;
+  padding: clamp(18px, 2.4vw, 22px) var(--ask-text-inset);
+  border-radius: calc(var(--radius) + 6px);
+  border: 1px solid rgba(255, 246, 230, 0.18);
+  background:
+    radial-gradient(ellipse 100% 80% at 0% 0%, rgba(20, 184, 166, 0.1), transparent 55%),
+    linear-gradient(168deg, rgba(10, 22, 42, 0.96) 0%, rgba(5, 12, 26, 0.92) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 246, 230, 0.08) inset,
+    0 16px 40px rgba(2, 6, 14, 0.32);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+@media (hover: hover) {
+  .page-ask .ask-product-example-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(242, 178, 26, 0.28);
+    box-shadow:
+      0 1px 0 rgba(255, 246, 230, 0.1) inset,
+      0 22px 48px rgba(2, 6, 14, 0.4);
+  }
+}
+
+.page-ask .ask-product-example-q,
+.page-ask .ask-product-example-a {
+  margin: 0;
+  font-size: clamp(0.88rem, 0.18vw + 0.84rem, 0.95rem);
+  line-height: 1.52;
+  color: rgba(255, 248, 235, 0.88);
+}
+
+.page-ask .ask-product-example-q {
+  margin-bottom: var(--ask-stack-sm);
+  padding-bottom: var(--ask-stack-sm);
+  border-bottom: 1px solid rgba(255, 246, 230, 0.1);
+  font-weight: 600;
+}
+
+.page-ask .ask-product-example-label {
+  display: block;
+  margin-bottom: var(--ask-stack-xs);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(20, 184, 166, 0.9);
+}
+
+.page-ask .ask-product-example-a .ask-product-example-label {
+  color: rgba(242, 178, 26, 0.88);
+}
+
+.page-ask .ask-product-human.section-cream {
+  padding-block: var(--ask-section-pad);
+  /* Last band before footer — single bottom pad (no stacked #human-help / main gutter) */
+  margin-bottom: 0;
+  background:
+    radial-gradient(circle at 88% 20%, rgba(255, 92, 168, 0.1), transparent 38%),
+    radial-gradient(circle at 12% 88%, rgba(20, 184, 166, 0.11), transparent 40%),
+    linear-gradient(180deg, var(--cream) 0%, var(--cream-turq) 100%);
+}
+
+.page-ask .ask-product-human .ask-product-section-head h2 {
+  color: var(--navy);
+}
+
+.page-ask .ask-product-human-inner .section-text {
+  color: var(--slate);
+}
+
+.page-ask .ask-product-human-note {
+  margin: 0 0 var(--ask-stack-lg);
+  max-width: none;
+  font-size: clamp(0.9rem, 0.2vw + 0.86rem, 0.98rem);
+  line-height: 1.55;
+  font-weight: 600;
+  color: rgba(11, 29, 58, 0.88);
+}
+
+.page-ask .ask-product-human-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ask-stack-sm) 14px;
+  align-items: center;
+  padding-right: var(--ask-text-inset);
+}
+
+.page-ask .ask-product-human-actions .btn {
+  min-height: 48px;
+  font-weight: 800;
+}
+
+.page-ask .ask-product-human-actions .btn-primary {
+  box-shadow:
+    0 14px 32px rgba(255, 139, 31, 0.28),
+    0 3px 0 rgba(255, 255, 255, 0.35) inset;
+}
+
+.page-ask .ask-product-human-actions .btn-secondary {
+  border-color: rgba(11, 29, 58, 0.18);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 8px 20px rgba(11, 29, 58, 0.08);
+}
+
+.page-ask .ask-product-human-back {
+  min-height: 48px;
+}
+
+.page-ask .footer.dark-showcase {
+  border-top: 1px solid rgba(255, 246, 230, 0.12);
+}
+
+.page-ask .footer-note--compact {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  max-width: 36rem;
+}
+
+@media (min-width: 900px) {
+  .page-ask .ask-hero--cinematic.hero-fiesta-dark.secondary-hero {
+    min-height: clamp(400px, 52vh, 580px);
+    background-position: center 38%;
+  }
+
+  .page-ask .ask-product-tool-section {
+    margin-top: 0;
+  }
+
+  .page-ask .ask-product-example-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .page-ask .ask-product-example-card {
+    height: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .page-ask .ask-product-main {
+    --ask-text-inset: 11px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-ask .ask-product-main {
+    --ask-shell-pad: max(20px, env(safe-area-inset-left, 0px));
+    --ask-card-pad-block: 18px;
+  }
+
+  .page-ask .ask-product-shell {
+    max-width: none;
+    padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px));
+  }
+
+  .page-ask .ask-hero--cinematic.hero-fiesta-dark.secondary-hero {
+    min-height: clamp(380px, 68vh, 560px);
+    background-position: center 36%;
+  }
+
+  .page-ask .ask-product-hero .hero-title {
+    text-shadow: 0 2px 24px rgba(2, 6, 14, 0.5);
+  }
+
+  .page-ask .ask-product-hero .hero-text-on-dark {
+    text-shadow: 0 1px 16px rgba(2, 6, 14, 0.4);
+  }
+
+  .page-ask .ask-product-tool-section.section-navy-routes,
+  .page-ask .ask-product-examples.section-navy-routes,
+  .page-ask .ask-product-value.section,
+  .page-ask .ask-product-human.section {
+    padding-inline: 0;
+  }
+
+  .page-ask .ask-product-example-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-ask .ask-product-human-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* Start Here — Ask A Local: full-width mobile card (avoid stacked section + inner gutters) */
 .page-start-here .ask-local-shell.section-navy-routes {
   padding-left: 0;
@@ -14617,6 +15615,11 @@ body:has(.transport-concierge-main) {
   .page-ask .live-concierge__glass-panel {
     padding-bottom: clamp(10px, 2vw, 14px);
     border-bottom: 1px solid rgba(255, 246, 230, 0.08);
+  }
+
+  .page-ask .ask-product-tool-card .live-concierge__glass-panel {
+    padding-bottom: 0;
+    border-bottom: none;
   }
 
   .page-ask .live-concierge__main-card {
