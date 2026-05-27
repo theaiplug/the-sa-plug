@@ -13624,62 +13624,56 @@ body.page-ask main {
   }
 }
 
+/*
+ * Single studio surface — no nested cards. One copy column (--ask-chat-field-pad)
+ * shared by preview, label, textarea, and hint; only the input has a field outline.
+ */
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__conversation,
+.page-ask .ask-product-tool.ask-local-tool .live-concierge__conversation:not(.live-concierge__conversation--started) {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
 .page-ask .ask-product-tool.ask-local-tool .live-concierge__preview--placeholder,
 .page-ask .ask-product-tool .live-concierge__preview:not(.live-concierge__preview--placeholder) {
   box-sizing: border-box;
   width: 100%;
-  min-height: clamp(118px, 26vw, 148px);
-  margin: 0 0 clamp(16px, 2.6vw, 20px);
-  padding-block: clamp(16px, 2.6vw, 20px);
+  min-height: clamp(100px, 22vw, 128px);
+  margin: 0 0 clamp(14px, 2.4vw, 18px);
+  padding-block: clamp(4px, 1vw, 8px) clamp(16px, 2.6vw, 20px);
   padding-inline: var(--ask-chat-field-pad);
-  border-radius: calc(var(--radius) + 4px);
-  border: 1px solid rgba(255, 246, 230, 0.12);
-  background:
-    radial-gradient(ellipse 100% 90% at 0% 0%, rgba(20, 184, 166, 0.1), transparent 55%),
-    rgba(2, 7, 16, 0.72);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 246, 230, 0.09),
-    0 10px 28px rgba(2, 6, 14, 0.28);
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .page-ask .ask-product-tool .live-concierge__log {
-  padding: var(--ask-chat-field-pad);
-  border: 1px solid rgba(255, 246, 230, 0.12);
-  border-radius: calc(var(--radius) + 4px);
-  background:
-    radial-gradient(ellipse 100% 90% at 0% 0%, rgba(20, 184, 166, 0.08), transparent 55%),
-    linear-gradient(168deg, rgba(8, 18, 34, 0.98) 0%, rgba(4, 10, 22, 0.96) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 246, 230, 0.08),
-    0 10px 28px rgba(2, 6, 14, 0.28);
+  padding: clamp(4px, 1vw, 8px) var(--ask-chat-field-pad) clamp(16px, 2.6vw, 20px);
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack {
   box-sizing: border-box;
-  margin-top: 2px;
-  padding:
-    clamp(16px, 2.6vw, 20px)
-    var(--ask-chat-field-pad)
-    clamp(6px, 1.2vw, 10px);
-  border-radius: calc(var(--radius) + 4px);
-  border: 1px solid rgba(255, 246, 230, 0.1);
-  border-top: 1px solid rgba(255, 246, 230, 0.14);
-  background:
-    radial-gradient(ellipse 90% 70% at 50% 0%, rgba(20, 184, 166, 0.06), transparent 58%),
-    rgba(0, 0, 0, 0.14);
-  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.05);
+  margin: 0;
+  padding: clamp(14px, 2.4vw, 18px) 0 0;
+  border: none;
+  border-top: 1px solid rgba(255, 246, 230, 0.1);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit {
   padding: var(--ask-chat-field-pad);
   border-radius: calc(var(--radius) + 2px);
-  border: 1px solid rgba(255, 246, 230, 0.16);
-  background:
-    radial-gradient(ellipse 85% 65% at 0% 0%, rgba(20, 184, 166, 0.07), transparent 52%),
-    rgba(2, 6, 14, 0.82);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 246, 230, 0.07),
-    0 6px 20px rgba(2, 6, 14, 0.22);
+  border: 1px solid rgba(255, 246, 230, 0.18);
+  background: rgba(2, 6, 14, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.06);
   transition:
     border-color 0.22s ease,
     box-shadow 0.22s ease,
@@ -13687,15 +13681,12 @@ body.page-ask main {
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit:focus-within {
-  border-color: rgba(242, 178, 26, 0.48);
-  background:
-    radial-gradient(ellipse 85% 65% at 0% 0%, rgba(20, 184, 166, 0.1), transparent 52%),
-    rgba(3, 8, 18, 0.92);
+  border-color: rgba(242, 178, 26, 0.5);
+  background: rgba(3, 8, 18, 0.72);
   box-shadow:
-    0 0 0 1px rgba(242, 178, 26, 0.18),
-    0 0 0 4px rgba(20, 184, 166, 0.12),
-    inset 0 1px 0 rgba(255, 246, 230, 0.1),
-    0 10px 28px rgba(2, 6, 14, 0.32);
+    0 0 0 1px rgba(242, 178, 26, 0.16),
+    0 0 0 4px rgba(20, 184, 166, 0.1),
+    inset 0 1px 0 rgba(255, 246, 230, 0.08);
 }
 
 .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__input {
@@ -13710,7 +13701,7 @@ body.page-ask main {
 
 .page-ask .ask-product-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
   margin: 14px 0 0;
-  padding: 0;
+  padding: 0 0 0 var(--ask-chat-field-pad);
   max-width: none;
   color: rgba(255, 248, 235, 0.55);
   font-size: clamp(0.74rem, 0.16vw + 0.7rem, 0.8rem);
@@ -13738,7 +13729,7 @@ body.page-ask main {
 .page-ask .ask-product-tool .live-concierge__input-label {
   display: block;
   margin: 0 0 10px;
-  padding-left: 0;
+  padding-left: var(--ask-chat-field-pad);
   font-size: 0.74rem;
   font-weight: 850;
   letter-spacing: 0.11em;
