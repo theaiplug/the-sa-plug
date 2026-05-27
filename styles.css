@@ -23440,10 +23440,23 @@ body.owner-dash-detail-open {
   overflow: hidden;
 }
 
-/* Homepage — Transport story card → Built by The AI Plug (no bridge-band gap) */
+/* Homepage — Transport story card → Built by The AI Plug (fiesta divider + tight gap) */
 .page-home .transport-section.transport-section--story:has(+ .home-ai-plug-section) {
   padding-bottom: clamp(18px, 3.2vw, 26px);
   border-bottom: none;
+}
+
+.page-home .transport-section.transport-section--story:has(+ .home-ai-plug-section)::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 184, 166, 0.95) 0%,
+    rgba(242, 178, 26, 0.95) 48%,
+    rgba(255, 106, 77, 0.88) 100%
+  );
 }
 
 .page-home .transport-section + .home-ai-plug-section {
