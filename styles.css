@@ -23450,7 +23450,7 @@ body.owner-dash-detail-open {
   content: "";
   display: block;
   width: 100%;
-  height: 3px;
+  height: 5px;
   background: linear-gradient(
     90deg,
     rgba(20, 184, 166, 0.95) 0%,
