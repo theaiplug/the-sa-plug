@@ -3150,8 +3150,37 @@
 
     .page-owner-dashboard .owner-dash-restaurant-snapshot {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 8px;
+    }
+
+    .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-pricing-snapshot,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-quote-snapshot,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-close-snapshot,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-delivery-snapshot,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-proposal-metrics {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-pricing-snapshot-item strong,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-quote-snapshot-item strong,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-close-snapshot-item strong,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-delivery-snapshot-item strong,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-deal-metric strong {
+      overflow-wrap: break-word;
+      word-break: break-word;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 559px) {
+      .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-pricing-snapshot,
+      .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-quote-snapshot,
+      .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-close-snapshot,
+      .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-delivery-snapshot,
+      .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-proposal-metrics,
+      .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-restaurant-snapshot {
+        grid-template-columns: 1fr;
+      }
     }
 
     .page-owner-dashboard .owner-dash-restaurant-snapshot-item--wide {
@@ -14396,17 +14425,17 @@
         "home services": {
           pain: "Missed calls, quote details, photo intake, scheduling, estimate follow-up, owner visibility, and staff handoff between office / owner / estimator / crew.",
           question: "What happens from first call, form, or photo request to quote or scheduled estimate?",
-          system: "Smart Intake / Form Starter plus Lead Routing + Follow-Up System (see Home Services command block for niche-specific systems).",
+          system: "Quote request form + photo intake, missed-call follow-up, and owner alert flow (see Home Services command block for niche-specific deliverables).",
           language: "Cleaner quote intake, better routing, manual estimate follow-up, and owner-visible status — no job, claim, financing, or ranking guarantees.",
-          quickPitch: "The first move is usually not a bigger website. It is a cleaner path for calls, photos, quote details, scheduling, and estimate follow-up so good requests do not disappear.",
+          quickPitch: "The first move is usually not a bigger website. It is a cleaner lead flow for calls, photos, quote details, scheduling, and estimate follow-up so good requests do not disappear.",
           discoveryQuestions: [
             "Which job details do you need before quoting?",
             "Do customers send photos, addresses, measurements, timing, or service type?",
             "Who gets the request and how is estimate follow-up tracked?",
           ],
-          likelyFirstOffer: "Smart Intake / Form Starter plus Lead Routing + Follow-Up System.",
+          likelyFirstOffer: "Missed-call follow-up + owner alert flow, or quote request form + photo intake.",
           commonObjection: "We already get calls. The issue is not replacing calls; it is making sure missed calls, photo details, quote requests, and follow-up are visible and easy to work.",
-          followUpMessage: "Hi [contact name], for [business name] I would start with the quote path: calls, photos, details, scheduling, routing, and estimate follow-up. No big rebuild needed until the first leak is clear.",
+          followUpMessage: "Hi [contact name], for [business name] I would start with the quote request process: calls, photos, details, scheduling, routing, and estimate follow-up. No big rebuild needed until the first leak is clear.",
           caution: "Do not promise booked jobs, claim approval, insurance coverage, financing approval, energy savings, rankings, or estimate close rates.",
         },
         restaurant: {
@@ -16013,7 +16042,7 @@
           result.firstDeliverable = hsDeliverable;
           result.bestFirstDeliverable = hsDeliverable;
           result.outcome = homeServicesProposalOutcome(lead, hsDeliverable);
-          result.scope = homeServicesProposalScopeForDeliverable(hsDeliverable);
+          result.scope = homeServicesProposalScopeForDeliverable(hsDeliverable, lead);
           result.mainPainPoint = hsDiag.diagnosis || homeServicesIssueLabel(hsDiag.leak);
           result.included = result.scope.slice();
           result.leaveOut = uniqueLimitedBullets(
@@ -16141,11 +16170,12 @@
       }
 
       function buildProposalEstimateNotes(lead, proposal) {
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
         return [
           "Estimate notes for " + (lead.business_name || "Lead"),
           "",
-          "Recommended package:",
-          proposal.recommendedPackage,
+          (hs ? "Recommended first deliverable:" : "Recommended package:"),
+          hs ? proposal.firstDeliverable : proposal.recommendedPackage,
           "",
           "Project type:",
           proposal.projectType,
@@ -16176,6 +16206,7 @@
       }
 
       function buildProposalOwnerChecklist(lead) {
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
         return [
           "Owner checklist for " + (lead.business_name || "Lead"),
           "",
@@ -16189,10 +16220,10 @@
           "- Confirm what the owner wants to approve before launch",
           "",
           "First build should include:",
-          "- Clear customer path",
+          hs ? "- Clear request / quote flow" : "- Clear customer path",
           "- Intake questions",
           "- Owner alert",
-          "- Follow-up path",
+          hs ? "- Follow-up process" : "- Follow-up path",
           "- Simple dashboard visibility",
           "- Manual approval checkpoint",
         ].join("\n");
@@ -17330,8 +17361,31 @@
         );
       }
 
-      function goodBetterBestOptions(pricing) {
+      function goodBetterBestOptions(pricing, lead) {
         var packageName = pricing.recommendedPackage;
+        var hs = lead && isHomeServicesRow(lead) && !isRestaurantRow(lead);
+        if (hs) {
+          return {
+            good: {
+              name: "Good — Best first build",
+              description:
+                "Smallest launchable version focused on the main bottleneck: " + pricing.firstDeliverable + ".",
+              range: pricing.logic.goodRange,
+            },
+            better: {
+              name: "Better — Intake + owner alert flow",
+              description:
+                "Stronger quote/photo intake, owner alerts, and estimate follow-up visibility for phase one.",
+              range: pricing.logic.betterRange,
+            },
+            best: {
+              name: "Best — Supported " + (pricing.firstDeliverable || "multi-deliverable build"),
+              description:
+                "Expanded intake, owner dashboard, follow-up, and optional monthly optimization — scoped by deliverable, not package name.",
+              range: pricing.logic.bestRange,
+            },
+          };
+        }
         return {
           good: {
             name: "Good — First useful system",
@@ -17378,7 +17432,7 @@
           disclaimer: INTERNAL_PRICING_DISCLAIMER,
           logic: logic,
         };
-        pricing.options = goodBetterBestOptions(pricing);
+        pricing.options = goodBetterBestOptions(pricing, lead);
         return pricing;
       }
 
@@ -17602,7 +17656,7 @@
         "Website/domain access or current website link",
         "Logo/brand assets if available",
         "Current lead sources",
-        "Current forms/messages/call flow",
+        "Current forms, messages, and call handling",
         "Top customer questions",
         "Services/areas served",
         "Approval person",
@@ -17616,7 +17670,7 @@
         },
         {
           day: "Day 2",
-          plan: "Build or outline first customer path and intake flow.",
+          plan: "Build or outline first request flow and intake form.",
         },
         {
           day: "Day 3",
@@ -17821,7 +17875,7 @@
         "Collect client materials",
         "Confirm access needs",
         "Map current lead/customer workflow",
-        "Build first customer path",
+        "Build first request flow",
         "Build or connect intake form",
         "Confirm owner alerts",
         "Confirm dashboard visibility",
@@ -18203,6 +18257,7 @@
 
       function projectDeliveryCommandBlock(lead) {
         var d = calcProjectDeliveryData(lead);
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--project-delivery" data-project-delivery-command>' +
           '<div class="owner-dash-delivery-head">' +
@@ -18214,8 +18269,8 @@
           '<p class="owner-dash-delivery-card-label">Delivery Snapshot</p>' +
           '<div class="owner-dash-delivery-snapshot">' +
           projectDeliverySnapshotItem("Business", d.business, false) +
-          projectDeliverySnapshotItem("Recommended package", d.recommendedPackage, false) +
-          projectDeliverySnapshotItem("First deliverable", d.firstDeliverable, false) +
+          projectDeliverySnapshotItem(hs ? "Recommended first deliverable" : "Recommended package", hs ? d.firstDeliverable : d.recommendedPackage, false) +
+          projectDeliverySnapshotItem(hs ? "Best first build" : "First deliverable", hs ? homeServicesBestFirstBuild(lead) : d.firstDeliverable, false) +
           projectDeliverySnapshotItem("Current status", d.currentStatus, false) +
           projectDeliverySnapshotItem("Delivery stage", d.deliveryStage, false) +
           projectDeliverySnapshotItem("Next delivery action", d.nextAction, true) +
@@ -18691,7 +18746,12 @@
       function clientSupportRetentionCommandBlock(lead) {
         var r = calcClientRetentionData(lead);
         var restaurant = isRestaurantRow(lead);
-        var commandTitle = restaurant ? "Restaurant Client Success Command" : "Client Support / Retention Command";
+        var hs = !restaurant && isHomeServicesRow(lead);
+        var commandTitle = restaurant
+          ? "Restaurant Client Success Command"
+          : hs
+          ? "Client Success / Monthly Support Review"
+          : "Client Support / Retention Command";
         var commandSubtitle = restaurant
           ? "Keep restaurant clients active, improve the system, capture wins, and prepare the next offer."
           : "Keep launched clients active, supported, and moving into the next phase. Copy only — nothing is sent automatically.";
@@ -18710,8 +18770,8 @@
           '<p class="owner-dash-retention-card-label">Retention Snapshot</p>' +
           '<div class="owner-dash-retention-snapshot">' +
           clientRetentionSnapshotItem("Business", r.business, false) +
-          clientRetentionSnapshotItem("Recommended package", r.recommendedPackage, false) +
-          clientRetentionSnapshotItem("First deliverable", r.firstDeliverable, false) +
+          clientRetentionSnapshotItem(hs ? "Recommended first deliverable" : "Recommended package", hs ? r.firstDeliverable : r.recommendedPackage, false) +
+          clientRetentionSnapshotItem(hs ? "Best first build" : "First deliverable", hs ? homeServicesBestFirstBuild(lead) : r.firstDeliverable, false) +
           clientRetentionSnapshotItem("Current status", r.currentStatus, false) +
           clientRetentionSnapshotItem("Support stage", r.supportStage, false) +
           clientRetentionSnapshotItem("Next retention action", r.nextRetentionAction, true) +
@@ -18779,17 +18839,36 @@
 
       function buildPricingRecommendationCopy(lead) {
         var p = calcPricingBuilder(lead);
-        return [
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
+        var lines = [
           "Internal pricing recommendation — " + p.business,
           "",
           INTERNAL_PRICING_DISCLAIMER,
           "",
-          "Service module (price deliverables first):",
-          p.recommendedPackage,
-          "",
-          "Typical deliverables in this module:",
-          bulletText(p.deliverables || []),
-          "",
+        ];
+        if (hs) {
+          lines.push(
+            "Recommended first deliverable:",
+            p.firstDeliverable,
+            "",
+            "Internal service module:",
+            p.recommendedPackage,
+            "",
+            "Typical deliverables:",
+            bulletText(p.deliverables || []),
+            ""
+          );
+        } else {
+          lines.push(
+            "Service module (price deliverables first):",
+            p.recommendedPackage,
+            "",
+            "Typical deliverables in this module:",
+            bulletText(p.deliverables || []),
+            ""
+          );
+        }
+        lines.push(
           "Suggested internal range (not a final quote):",
           p.priceRange,
           "",
@@ -18806,24 +18885,28 @@
           p.confidence,
           "",
           "Why this module fits:",
-          p.reason,
-        ].join("\n");
+          p.reason
+        );
+        return lines.join("\n");
       }
 
       function buildPricingConversationCopy(lead) {
         var p = calcPricingBuilder(lead);
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
         return [
           "For pricing, I would not recommend guessing before we map the first workflow.",
           "",
           "Based on what you shared, this looks like a " +
-            p.projectType +
+            (hs ? "home services" : p.projectType) +
             " first build because the main issue is " +
             p.mainPainPoint +
             " and the best first deliverable is " +
             p.firstDeliverable +
             ".",
           "",
-          "The smart way to price this is around the first useful system:",
+          (hs
+            ? "The smart way to price this is around the first deliverable and request flow:"
+            : "The smart way to price this is around the first useful system:") +
           "- What needs to be captured",
           "- Where requests need to go",
           "- What the owner needs to see",
@@ -19009,19 +19092,27 @@
 
       function pricingBuilderBlock(lead) {
         var p = calcPricingBuilder(lead);
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--pricing" data-pricing-builder>' +
           '<div class="owner-dash-pricing-head">' +
           '<div><h3 class="owner-dash-detail-section-title">Pricing Builder</h3>' +
-          '<p class="owner-dash-detail-section-note">Internal pricing guidance by real service module and deliverables. Copy only — not a final quote, invoice, or payment request.</p></div>' +
+          '<p class="owner-dash-detail-section-note">' +
+          (hs
+            ? "Internal price guidance by deliverable and service module. Copy only — not a final quote, invoice, or payment request."
+            : "Internal pricing guidance by real service module and deliverables. Copy only — not a final quote, invoice, or payment request.") +
+          "</p></div>" +
           '<span class="owner-dash-pricing-badge">Internal guidance only</span>' +
           "</div>" +
           '<p class="owner-dash-pricing-safe-note">' + esc(INTERNAL_PRICING_DISCLAIMER) + "</p>" +
           '<div class="owner-dash-pricing-money-card">' +
           '<p class="owner-dash-pricing-card-label">Pricing Snapshot</p>' +
           '<div class="owner-dash-pricing-snapshot">' +
-          pricingSnapshotItem("Service module", p.recommendedPackage, true) +
-          pricingSnapshotItem("Typical deliverables", (p.deliverables || []).slice(0, 3).join(" · ") || "Confirm in discovery", true) +
+          pricingSnapshotItem(hs ? "Recommended first deliverable" : "Service module", hs ? p.firstDeliverable : p.recommendedPackage, true) +
+          pricingSnapshotItem(hs ? "Internal service module" : "Typical deliverables", hs ? p.recommendedPackage : (p.deliverables || []).slice(0, 3).join(" · ") || "Confirm in discovery", true) +
+          (hs
+            ? pricingSnapshotItem("Typical deliverables", (p.deliverables || []).slice(0, 3).join(" · ") || "Confirm in discovery", true)
+            : "") +
           pricingSnapshotItem("Internal range (guidance)", p.priceRange, false) +
           pricingSnapshotItem("Payment / milestone guidance", p.paymentStructure, true) +
           pricingSnapshotItem("Monthly support (optional)", p.monthlySupport, false) +
@@ -19107,6 +19198,7 @@
 
       function quoteInvoicePrepBlock(lead) {
         var q = calcQuoteInvoicePrep(lead);
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--quote-prep" data-quote-invoice-prep>' +
           '<div class="owner-dash-quote-head">' +
@@ -19118,8 +19210,8 @@
           '<p class="owner-dash-quote-card-label">Quote Snapshot</p>' +
           '<div class="owner-dash-quote-snapshot">' +
           quotePrepSnapshotItem("Business", q.business, false) +
-          quotePrepSnapshotItem("Recommended package", q.recommendedPackage, false) +
-          quotePrepSnapshotItem("Project type", q.projectType, false) +
+          quotePrepSnapshotItem(hs ? "Recommended first deliverable" : "Recommended package", hs ? q.firstDeliverable : q.recommendedPackage, false) +
+          quotePrepSnapshotItem(hs ? "Internal service module" : "Project type", hs ? q.recommendedPackage : q.projectType, false) +
           quotePrepSnapshotItem("Suggested quote range", q.priceRange, false) +
           quotePrepSnapshotItem("Recommended quote position", q.quotePosition, true) +
           quotePrepSnapshotItem("Deposit recommendation", q.depositRecommendation, false) +
@@ -19283,6 +19375,7 @@
       function closeOnboardingCommandBlock(lead) {
         var c = calcCloseOnboardingData(lead);
         var restaurant = isRestaurantRow(lead);
+        var hs = !restaurant && isHomeServicesRow(lead);
         var close = restaurant ? restaurantCloseData(lead) : null;
         var title = restaurant ? "Restaurant Close Command" : "Close / Onboarding Command";
         var subtitle = restaurant
@@ -19301,8 +19394,8 @@
             closeOnboardingSnapshotItem("Next restaurant close action", close.nextCloseAction, true)
           : closeOnboardingSnapshotItem("Business", c.business, false) +
             closeOnboardingSnapshotItem("Contact", c.contact, false) +
-            closeOnboardingSnapshotItem("Recommended package", c.recommendedPackage, false) +
-            closeOnboardingSnapshotItem("First deliverable", c.firstDeliverable, false) +
+            closeOnboardingSnapshotItem(hs ? "Recommended first deliverable" : "Recommended package", hs ? c.firstDeliverable : c.recommendedPackage, false) +
+            closeOnboardingSnapshotItem(hs ? "Best first build" : "First deliverable", hs ? homeServicesBestFirstBuild(lead) : c.firstDeliverable, false) +
             closeOnboardingSnapshotItem("Suggested quote range", c.priceRange, false) +
             closeOnboardingSnapshotItem("Payment structure", c.paymentTerms, false) +
             closeOnboardingSnapshotItem("Current stage", c.currentStatus, false) +
@@ -19443,6 +19536,7 @@
           "Primary contact: " + data.contact,
           "Main issue: " + data.mainIssue,
           "Recommended first deliverable: " + data.deliverable,
+          "Best first build: " + data.bestFirstBuild,
           "",
           "What we would build first:",
           bulletText(data.scope),
@@ -19487,6 +19581,7 @@
           data.outcome,
           "",
           "Recommended first deliverable: " + data.deliverable,
+          "Best first build: " + data.bestFirstBuild,
           "",
           "What we would build first:",
           bulletText(data.scope),
@@ -19525,7 +19620,7 @@
           clientProposalSnapshotItem("Primary contact", data.contact, false) +
           clientProposalSnapshotItem("Main issue", data.mainIssue, true) +
           clientProposalSnapshotItem("Recommended first deliverable", data.deliverable, false) +
-          clientProposalSnapshotItem("Best first build", data.deliverable, false) +
+          clientProposalSnapshotItem("Best first build", data.bestFirstBuild, false) +
           clientProposalSnapshotItem("Next step", data.nextStep, true) +
           "</div>" +
           '<div class="owner-dash-client-proposal-scope-grid" aria-label="Client-Friendly Scope">' +
@@ -19805,11 +19900,15 @@
           "</p></div>" +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary owner-dash-proposal-ready-btn" data-action="move-proposal-ready">Move to Proposal Ready</button>' +
           "</div>" +
-          '<div class="owner-dash-proposal-types" aria-label="Proposal Type">' +
-          PROPOSAL_TYPES.map(function (type) {
-            return proposalTypeButton(type, proposal.type);
-          }).join("") +
-          "</div>" +
+          (hsProposal
+            ? '<p class="owner-dash-proposal-safe-note">Internal mapping only: ' +
+              esc(proposal.type) +
+              " (not shown to the owner — deliverables above are what matter).</p>"
+            : '<div class="owner-dash-proposal-types" aria-label="Proposal Type">' +
+              PROPOSAL_TYPES.map(function (type) {
+                return proposalTypeButton(type, proposal.type);
+              }).join("") +
+              "</div>") +
           '<div class="owner-dash-proposal-preview-card">' +
           '<div class="owner-dash-proposal-metrics">' +
           '<div class="owner-dash-deal-metric owner-dash-deal-metric--wide"><span>' +
@@ -19973,11 +20072,14 @@
 
       function followUpTemplateData(lead) {
         var proposal = calcProposalEstimate(lead);
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
         return {
           contact: lead.contact_name || "there",
           business: lead.business_name || "your business",
           pain: proposal.mainPainPoint || "your main bottleneck",
-          packageName: proposal.recommendedPackage || "the recommended first system",
+          packageName: hs
+            ? proposal.firstDeliverable || "the recommended first deliverable"
+            : proposal.recommendedPackage || "the recommended first system",
           deliverable: proposal.firstDeliverable || "the first practical deliverable",
         };
       }
@@ -20094,6 +20196,7 @@
         var data = followUpTemplateData(lead);
         var priority = leadTemperatureLabel(calcBusinessPriority(lead));
         var rec = calcFollowUpRecommendation(lead);
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
         return [
           "Follow-up plan for " + data.business,
           "",
@@ -20106,7 +20209,7 @@
           "Main pain point:",
           data.pain,
           "",
-          "Recommended package:",
+          (hs ? "Recommended first deliverable:" : "Recommended package:"),
           data.packageName,
           "",
           "Best first deliverable:",
@@ -20177,12 +20280,15 @@
       function followUpSummaryPreviewBlock(lead, rec) {
         var priority = leadTemperatureLabel(calcBusinessPriority(lead));
         var data = followUpTemplateData(lead);
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
         return (
           '<div class="owner-dash-followup-preview" aria-label="Follow-up summary preview">' +
           '<div class="owner-dash-followup-preview-item"><span>Lead temperature</span><strong>' +
           esc(priority) +
           "</strong></div>" +
-          '<div class="owner-dash-followup-preview-item"><span>Recommended package</span><strong>' +
+          '<div class="owner-dash-followup-preview-item"><span>' +
+          (hs ? "Recommended first deliverable" : "Recommended package") +
+          "</span><strong>" +
           esc(data.packageName) +
           "</strong></div>" +
           '<div class="owner-dash-followup-preview-item"><span>Best next message</span><strong>' +
@@ -21010,14 +21116,14 @@
           ],
           tenSecondPitch: "We help roofers keep inspection requests, leak calls, roof photos, and estimate follow-up from getting lost.",
           fifteenSecondPitch: "We build a cleaner path for roofing leads so leak calls, storm inquiries, photos, inspection requests, and follow-up route to the right person instead of getting buried in texts.",
-          thirtySecondPitch: "Most roofing companies do not lose jobs because they are bad roofers. They lose opportunities when inspection requests, storm calls, roof photos, estimate notes, and follow-up are scattered. We help build the path behind the website so the owner or sales team can see what came in, what needs inspection, what needs follow-up, and what is worth chasing.",
-          textReply: "Got it. Based on what you said, I would not start with anything complicated. I would look at the [LEAK] first and see if a simple request path or follow-up workflow would make roofing requests easier to manage. No promises on jobs or claims.",
-          emailSubject: "Follow-up on your roofing request path",
-          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on making the roofing request path clearer before we talk about a larger system. This does not guarantee jobs, claims, or results; it is meant to help your team capture better details, route requests, and follow up more consistently.",
-          callOpener: "Hey [CONTACT], I will keep it quick. I work with roofing businesses on cleaning up the request path behind calls, photos, estimates, and follow-up. Before I recommend anything, can I ask how those requests usually come in today?",
+          thirtySecondPitch: "Most roofing companies do not lose jobs because they are bad roofers. They lose opportunities when inspection requests, storm calls, roof photos, estimate notes, and follow-up are scattered. We help build the lead flow behind the website so the owner or sales team can see what came in, what needs inspection, what needs follow-up, and what is worth chasing.",
+          textReply: "Got it. Based on what you said, I would not start with anything complicated. I would look at [LEAK] first and see if missed-call follow-up or a roof inspection request form with photo intake would make roofing requests easier to manage. No promises on jobs or claims.",
+          emailSubject: "Follow-up on your roofing lead flow",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on missed roofing calls and clearer roof inspection requests before we talk about a larger build. This does not guarantee jobs, claims, or results; it is meant to help your team capture better details, route requests, and follow up more consistently.",
+          callOpener: "Hey [CONTACT], I will keep it quick. I work with roofing businesses on missed calls, roof inspection requests, photos, estimates, and follow-up. Before I recommend anything, can I ask how those requests usually come in today?",
           proposalSummary: "We recommend starting with [OFFER] for your roofing workflow because the main issue appears to be [LEAK]. The first build will focus on capturing better job details, routing requests clearly, and making estimate follow-up easier to see. This is not a guarantee of jobs, claims, or revenue. It is a practical improvement to your quote request and follow-up process.",
           objections: [
-            ["I already have a website.", "That is good. I would look past whether the website exists and ask whether the roofing request path captures the details your team actually needs."],
+            ["I already have a website.", "That is good. I would look past whether the website exists and ask whether the roofing request flow captures the details your team actually needs."],
             ["I do not need AI.", "That is fine. This does not have to start with AI. It can start with intake, routing, roof photos, and follow-up."],
             ["Can you guarantee leads?", "No. What we can do is improve how requests are captured and followed up once interest exists. No claim promises either."],
             ["This sounds expensive.", "We can start with one practical piece — usually photo intake or estimate follow-up — instead of a full system."],
@@ -21031,7 +21137,7 @@
             "Confirm follow-up rules for estimates and inspections",
             "Confirm approval rules for any customer-facing wording",
             "Use claim-aware language, not claim-outcome language",
-            "Test the full request path on mobile before launch",
+            "Test the full request flow on mobile before launch",
           ],
           monthlyRecap: [
             "Roofing requests captured",
@@ -21063,12 +21169,12 @@
           fifteenSecondPitch: "We build a cleaner path for flooring leads so showroom questions, room photos, measurements, installation details, and follow-up do not get scattered.",
           thirtySecondPitch: "Flooring leads often stall because the customer asks about materials, sends a few room photos, maybe needs a measurement, and then follow-up gets loose. We help build the path that captures the right project details, routes the request, and keeps the estimate or showroom follow-up visible.",
           textReply: "Got it. Based on what you said, I would start with [LEAK]. A cleaner measurement / photo / showroom follow-up path usually makes flooring leads easier to manage.",
-          emailSubject: "Follow-up on your flooring request path",
-          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on the flooring request path — measurements, room photos, product questions, and showroom follow-up — before we talk about a larger system.",
-          callOpener: "Hey [CONTACT], I work with flooring businesses on cleaning up the request path behind measurement requests, room photos, product questions, and follow-up. Can I ask how those requests usually come in today?",
+          emailSubject: "Follow-up on your flooring request flow",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on the flooring request flow — measurements, room photos, product questions, and showroom follow-up — before we talk about a larger system.",
+          callOpener: "Hey [CONTACT], I work with flooring businesses on cleaning up the request flow behind measurement requests, room photos, product questions, and follow-up. Can I ask how those requests usually come in today?",
           proposalSummary: "We recommend starting with [OFFER] for your flooring workflow because the main leak appears to be [LEAK]. The system will focus on capturing better project details, routing requests clearly, and making showroom / installation follow-up easier to see.",
           objections: [
-            ["I already have a website.", "Good. The question is whether the request path captures room photos, measurements, material questions, and timing."],
+            ["I already have a website.", "Good. The question is whether the request flow captures room photos, measurements, material questions, and timing."],
             ["I do not need AI.", "Fine. The first step can be intake, photos, and follow-up — no AI required."],
             ["Can you guarantee installs?", "No. We improve how requests are captured and followed up, not market demand."],
             ["This sounds expensive.", "We can start with one piece — measurement intake or showroom follow-up — instead of a full system."],
@@ -21080,7 +21186,7 @@
             "Confirm who receives alerts (showroom, estimator, installer)",
             "Confirm follow-up rules for showroom visits and estimates",
             "Confirm approval rules for customer-facing wording",
-            "Test the full request path on mobile before launch",
+            "Test the full request flow on mobile before launch",
           ],
           monthlyRecap: [
             "Flooring requests captured",
@@ -21112,9 +21218,9 @@
           fifteenSecondPitch: "We build a cleaner intake and follow-up path for restoration jobs so emergency details, claim documents, photos, and homeowner communication do not get scattered.",
           thirtySecondPitch: "Restoration work is stressful for the homeowner and detail-heavy for the company. The first request needs the right information, photos, documents, and communication path. We help organize that workflow without making claim promises or replacing professional judgment.",
           textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] — claim-safe, documentation-focused, and no promises on claim outcomes.",
-          emailSubject: "Follow-up on your restoration / insurance estimating request path",
+          emailSubject: "Follow-up on your restoration / insurance estimating request flow",
           emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on cleaner loss intake, photos, documents, and estimate follow-up. This is documentation and workflow support — not insurance, legal, or claim advice.",
-          callOpener: "Hey [CONTACT], I work with restoration businesses on the request path behind emergency intake, photos, documents, and estimate follow-up. Can I ask how those requests usually come in today?",
+          callOpener: "Hey [CONTACT], I work with restoration businesses on the request flow behind emergency intake, photos, documents, and estimate follow-up. Can I ask how those requests usually come in today?",
           proposalSummary: "We recommend starting with [OFFER] for your restoration / insurance estimating workflow because the main leak appears to be [LEAK]. The system focuses on cleaner loss intake, photo and document organization, estimate status visibility, and claim-aware (not claim-outcome) communication.",
           objections: [
             ["I already have a website.", "Good. The website is the front door; the workflow behind it is what matters for loss intake, photos, and documents."],
@@ -21130,7 +21236,7 @@
             "Confirm follow-up rules for estimate status",
             "Confirm approval rules for any customer-facing or claim-adjacent wording",
             "Keep language documentation-focused and claim-safe",
-            "Test the full request path on mobile before launch",
+            "Test the full request flow on mobile before launch",
           ],
           monthlyRecap: [
             "Restoration requests captured",
@@ -21162,9 +21268,9 @@
           fifteenSecondPitch: "We help remodelers capture budget, timeline, scope, photos, and homeowner expectations before a consultation turns into a time sink.",
           thirtySecondPitch: "For remodelers, the problem is usually not getting a name and phone number. It is knowing whether the project is real, whether the budget is realistic, what the homeowner expects, what photos are available, and whether the timeline makes sense. We build the intake and follow-up path around that.",
           textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so consultations come in already qualified.",
-          emailSubject: "Follow-up on your remodeling request path",
+          emailSubject: "Follow-up on your remodeling request flow",
           emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on consultation qualification, scope, budget, photos, and follow-up — before any larger build is considered.",
-          callOpener: "Hey [CONTACT], I work with remodelers on the request path behind consultations, photos, scope, budget, and follow-up. Can I ask how those requests usually come in today?",
+          callOpener: "Hey [CONTACT], I work with remodelers on the request flow behind consultations, photos, scope, budget, and follow-up. Can I ask how those requests usually come in today?",
           proposalSummary: "We recommend starting with [OFFER] for your remodeling workflow because the main leak appears to be [LEAK]. The system focuses on qualifying consultation requests, capturing photos and scope, and making proposal follow-up easier to see.",
           objections: [
             ["I already have a website.", "Good. The question is whether the website filters and qualifies before a consultation."],
@@ -21178,7 +21284,7 @@
             "Confirm who reviews and books consultations",
             "Confirm follow-up rules for proposals",
             "Confirm approval rules for change-order and pricing wording",
-            "Test the full request path on mobile before launch",
+            "Test the full request flow on mobile before launch",
           ],
           monthlyRecap: [
             "Consultation requests captured",
@@ -21208,9 +21314,9 @@
           fifteenSecondPitch: "We build a cleaner path for HVAC requests so service calls, emergencies, install quotes, and maintenance plans do not get scattered.",
           thirtySecondPitch: "HVAC companies juggle service calls, emergencies, install quotes, financing questions, and maintenance reminders. When those go into different inboxes and phones, good jobs slip. We help build a smarter intake, routing, and follow-up path so requests come in with the right details and the team can see what is next.",
           textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so HVAC requests come in with the right system details.",
-          emailSubject: "Follow-up on your HVAC request path",
+          emailSubject: "Follow-up on your HVAC request flow",
           emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on service intake, emergency routing, and quote follow-up.",
-          callOpener: "Hey [CONTACT], I work with HVAC businesses on the request path behind service calls, emergencies, install quotes, and maintenance plans. Can I ask how those requests usually come in today?",
+          callOpener: "Hey [CONTACT], I work with HVAC businesses on the request flow behind service calls, emergencies, install quotes, and maintenance plans. Can I ask how those requests usually come in today?",
           proposalSummary: "We recommend starting with [OFFER] for your HVAC workflow because the main leak appears to be [LEAK]. The system focuses on cleaner service intake, emergency routing, install-quote follow-up, and maintenance plan reminders.",
           objections: [
             ["I already have a website.", "Good. The question is whether service calls, emergencies, and install quotes are actually routed and followed up behind it."],
@@ -21224,7 +21330,7 @@
             "Confirm emergency / after-hours routing",
             "Confirm install-quote follow-up rules",
             "Confirm maintenance plan reminder rules",
-            "Test the full request path on mobile before launch",
+            "Test the full request flow on mobile before launch",
           ],
           monthlyRecap: [
             "Service / emergency requests captured",
@@ -21255,9 +21361,9 @@
           fifteenSecondPitch: "We build a cleaner path for plumbing requests so emergencies, scheduled service, larger jobs, and follow-up do not get scattered.",
           thirtySecondPitch: "Plumbing companies handle a mix of emergencies, scheduled service, water heater replacements, and sewer or drain jobs. If intake and routing are loose, good jobs slip. We help build a smarter intake, routing, and follow-up path so the team can see what is next.",
           textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so plumbing requests come in with the right details and route correctly.",
-          emailSubject: "Follow-up on your plumbing request path",
+          emailSubject: "Follow-up on your plumbing request flow",
           emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on emergency intake, routing, and larger-job follow-up.",
-          callOpener: "Hey [CONTACT], I work with plumbing businesses on the request path behind service calls, emergencies, and larger jobs. Can I ask how those requests usually come in today?",
+          callOpener: "Hey [CONTACT], I work with plumbing businesses on the request flow behind service calls, emergencies, and larger jobs. Can I ask how those requests usually come in today?",
           proposalSummary: "We recommend starting with [OFFER] for your plumbing workflow because the main leak appears to be [LEAK]. The system focuses on cleaner service intake, emergency routing, and follow-up on larger jobs.",
           objections: [
             ["I already have a website.", "Good. The question is whether emergencies and larger jobs route and follow up behind it."],
@@ -21270,7 +21376,7 @@
             "Confirm what details must be captured (location, severity, water-off status)",
             "Confirm emergency routing rules",
             "Confirm follow-up rules for larger jobs",
-            "Test the full request path on mobile before launch",
+            "Test the full request flow on mobile before launch",
           ],
           monthlyRecap: [
             "Plumbing service / emergency requests captured",
@@ -21299,9 +21405,9 @@
           fifteenSecondPitch: "We build a cleaner path for electrical requests so safety calls, service calls, and panel / EV / generator installs do not get scattered.",
           thirtySecondPitch: "Electrical companies handle safety calls, service work, and larger install jobs like panel upgrades, EV chargers, and generators. When intake and follow-up are loose, good install jobs slip. We help build a smarter intake, routing, and follow-up path.",
           textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so electrical requests come in with the right details.",
-          emailSubject: "Follow-up on your electrical request path",
+          emailSubject: "Follow-up on your electrical request flow",
           emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on safety call routing, install-quote intake, and follow-up.",
-          callOpener: "Hey [CONTACT], I work with electrical businesses on the request path behind service calls, safety calls, and larger installs. Can I ask how those requests usually come in today?",
+          callOpener: "Hey [CONTACT], I work with electrical businesses on the request flow behind service calls, safety calls, and larger installs. Can I ask how those requests usually come in today?",
           proposalSummary: "We recommend starting with [OFFER] for your electrical workflow because the main leak appears to be [LEAK]. The system focuses on cleaner safety-call routing, install-quote intake, and follow-up.",
           objections: [
             ["I already have a website.", "Good. The question is whether safety calls and install quotes route and follow up behind it."],
@@ -21314,7 +21420,7 @@
             "Confirm what details must be captured (panel age, system type, install scope)",
             "Confirm safety-call routing rules",
             "Confirm follow-up rules for install quotes",
-            "Test the full request path on mobile before launch",
+            "Test the full request flow on mobile before launch",
           ],
           monthlyRecap: [
             "Electrical service / safety requests captured",
@@ -21343,9 +21449,9 @@
           fifteenSecondPitch: "We build a cleaner path for window, siding, and exterior leads so consultation requests, photos, measurements, and follow-up do not get scattered.",
           thirtySecondPitch: "Window, siding, and exterior leads usually need an in-home consultation. If photos, measurements, scope, and financing questions are not captured early, the team wastes time on consultations that go nowhere. We help build the intake and follow-up path so consultations come in already qualified.",
           textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so consultation requests come in with the right details.",
-          emailSubject: "Follow-up on your exterior request path",
+          emailSubject: "Follow-up on your exterior request flow",
           emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on consultation qualification, photos, measurements, and quote follow-up.",
-          callOpener: "Hey [CONTACT], I work with window, siding, and exterior companies on the request path behind consultations, photos, and follow-up. Can I ask how those requests usually come in today?",
+          callOpener: "Hey [CONTACT], I work with window, siding, and exterior companies on the request flow behind consultations, photos, and follow-up. Can I ask how those requests usually come in today?",
           proposalSummary: "We recommend starting with [OFFER] for your window / siding / exterior workflow because the main leak appears to be [LEAK]. The system focuses on consultation qualification, photo and measurement intake, and quote follow-up.",
           objections: [
             ["I already have a website.", "Good. The question is whether consultations come in already qualified."],
@@ -21358,7 +21464,7 @@
             "Confirm what details must be captured (photos, measurements, scope, financing)",
             "Confirm follow-up rules for in-home quotes",
             "Confirm approval rules for any financing-adjacent wording",
-            "Test the full request path on mobile before launch",
+            "Test the full request flow on mobile before launch",
           ],
           monthlyRecap: [
             "Consultation requests captured",
@@ -21388,9 +21494,9 @@
           fifteenSecondPitch: "We build a cleaner path for small-job requests so scope, photos, scheduling, and follow-up do not get scattered.",
           thirtySecondPitch: "Small-job businesses lose time chasing scope and photos. We help build a smarter intake and scheduling path so requests come in with the right details, route to the right person, and get followed up consistently.",
           textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so small-job requests come in with the right scope and photos.",
-          emailSubject: "Follow-up on your handyman / local service request path",
+          emailSubject: "Follow-up on your handyman / local service request flow",
           emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on small-job intake, scope, photos, scheduling, and follow-up.",
-          callOpener: "Hey [CONTACT], I work with handyman and local service businesses on the request path behind small jobs, photos, and scheduling. Can I ask how those requests usually come in today?",
+          callOpener: "Hey [CONTACT], I work with handyman and local service businesses on the request flow behind small jobs, photos, and scheduling. Can I ask how those requests usually come in today?",
           proposalSummary: "We recommend starting with [OFFER] for your handyman / local service workflow because the main leak appears to be [LEAK]. The system focuses on cleaner intake, photos, scope, scheduling, and follow-up.",
           objections: [
             ["I already have a website.", "Good. The question is whether small-job requests come in with the right scope and photos."],
@@ -21403,7 +21509,7 @@
             "Confirm what details must be captured (scope, photos, address, timing)",
             "Confirm scheduling rules",
             "Confirm follow-up and review-request rules",
-            "Test the full request path on mobile before launch",
+            "Test the full request flow on mobile before launch",
           ],
           monthlyRecap: [
             "Small-job requests captured",
@@ -21434,12 +21540,12 @@
           fifteenSecondPitch: "We help home service businesses tighten the request flow behind quote requests, job photos, scheduling, and follow-up so details get captured and routed to the owner.",
           thirtySecondPitch: "Most home service companies do not lose jobs because they are bad at the work. They lose opportunities because the request flow is scattered. Calls come in while you are on a job. Photos come by text. Forms miss key details. Estimates go out and follow-up is hard to track. We help build the workflow behind the website so the right details are captured, routed, followed up, and visible to the owner.",
           textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so home service requests come in with the right details and follow-up is easier to see.",
-          emailSubject: "Follow-up on your home services request path",
-          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on the home services request path — intake, photos, scheduling, routing, and follow-up.",
-          callOpener: "Hey [CONTACT], I work with home service businesses on the request path behind calls, photos, quote requests, and follow-up. Can I ask how those requests usually come in today?",
+          emailSubject: "Follow-up on your home services request flow",
+          emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on the home services request flow — intake, photos, scheduling, routing, and follow-up.",
+          callOpener: "Hey [CONTACT], I work with home service businesses on the request flow behind calls, photos, quote requests, and follow-up. Can I ask how those requests usually come in today?",
           proposalSummary: "We recommend starting with [OFFER] for your home services workflow because the main leak appears to be [LEAK]. The system focuses on capturing better job details, routing requests clearly, and making estimate / job follow-up easier to see.",
           objections: [
-            ["I already have a website.", "Good. The question is whether the request path captures the job details your team actually needs."],
+            ["I already have a website.", "Good. The question is whether the request flow captures the job details your team actually needs."],
             ["I do not need AI.", "Fine. The first step can be intake, routing, photos, and follow-up — no AI required."],
             ["Can you guarantee jobs?", "No. What we can do is improve how requests are captured, routed, and followed up once interest exists."],
             ["This sounds expensive.", "We can start with one piece instead of a full system."],
@@ -21452,7 +21558,7 @@
             "Confirm who receives alerts",
             "Confirm follow-up rules for estimates",
             "Confirm approval rules for customer-facing wording",
-            "Test the full request path on mobile before launch",
+            "Test the full request flow on mobile before launch",
           ],
           monthlyRecap: [
             "Home services requests captured",
@@ -21647,7 +21753,28 @@
         return "Website / landing page + clear request form";
       }
 
-      function homeServicesProposalScopeForDeliverable(deliverable) {
+      function homeServicesLeadFlowFocus(row) {
+        return buildHomeServicesVerticalPack(row).queueFocus;
+      }
+
+      function homeServicesBestFirstBuild(row) {
+        var deliverable = String(homeServicesRecommendedDeliverable(row) || "");
+        var niche = homeServicesNicheKey(row);
+        var lower = deliverable.toLowerCase();
+        if (/missed-call/.test(lower)) {
+          if (niche === "Roofing") return "Missed-call follow-up + owner alert flow for roofing";
+          return deliverable;
+        }
+        if (/quote request|photo intake/.test(lower) && niche === "Roofing") {
+          return "Roof inspection request form + photo intake";
+        }
+        if (/quote request|photo intake/.test(lower)) {
+          return deliverable;
+        }
+        return deliverable;
+      }
+
+      function homeServicesProposalScopeForDeliverable(deliverable, row) {
         var d = String(deliverable || "").toLowerCase();
         if (/paid ads|google ads/.test(d)) {
           return [
@@ -21659,11 +21786,21 @@
           ];
         }
         if (/missed-call/.test(d)) {
+          if (row && homeServicesNicheKey(row) === "Roofing") {
+            return [
+              "Missed-call follow-up text/email template",
+              "Roofing request intake form",
+              "Photo intake fields",
+              "Owner alert flow",
+              "Basic lead status tracking",
+              "Follow-up copy tools",
+            ];
+          }
           return [
             "Missed-call follow-up workflow",
             "Owner alert flow",
             "After-hours routing rules",
-            "Basic request status tracking",
+            "Basic lead status tracking",
           ];
         }
         if (/quote request|photo intake/.test(d)) {
@@ -21712,44 +21849,97 @@
 
       function homeServicesProposalOutcome(row, deliverable) {
         var pack = homeServicesPack(row);
-        var issue = homeServicesIssueLabel(homeServicesLeakKey(row));
+        var leak = homeServicesLeakKey(row);
+        var niche = homeServicesNicheKey(row);
+        if (leak === "missed-call leak" && niche === "Roofing") {
+          return (
+            "A practical first build focused on missed roofing calls and unanswered roof inspection requests. The goal is to help " +
+            (pack.niche_lower || "the business") +
+            " capture better job details, respond faster, and keep follow-up from getting lost."
+          );
+        }
+        var issue = homeServicesIssueLabel(leak);
         return (
           "A practical first build focused on " +
           issue +
           ". The goal is to help " +
           (pack.niche_lower || "the business") +
-          " capture better details, respond faster, and keep follow-up from getting lost — starting with " +
-          deliverable +
-          "."
+          " capture better job details, respond faster, and keep follow-up from getting lost."
         );
+      }
+
+      function homeServicesClientProposalFixes(lead, diag) {
+        var leak = diag.leak;
+        var niche = homeServicesNicheKey(lead);
+        if (leak === "missed-call leak" && niche === "Roofing") {
+          return [
+            "Missed calls",
+            "Unclear roof request details",
+            "Buried roof photos",
+            "Slow estimate follow-up",
+            "No clear owner visibility",
+          ];
+        }
+        return uniqueLimitedBullets(
+          [
+            homeServicesIssueLabel(leak),
+            "Missed or delayed requests",
+            "Weak quote / photo intake",
+            "Estimate follow-up getting lost",
+            "Owner cannot see what needs action",
+          ],
+          5
+        );
+      }
+
+      function homeServicesClientProposalNotOverbuild(lead) {
+        var niche = homeServicesNicheKey(lead);
+        var items = [
+          "Complex CRM migration",
+          "Fully autonomous AI decisions",
+          "Big automation before the workflow is mapped",
+          "Guaranteed jobs, revenue, rankings, reviews, or appointments",
+          "Replacing dispatchers or field staff",
+        ];
+        if (niche === "Restoration / Insurance Estimating") {
+          items.push("Claim outcome, coverage, or adjuster promises");
+        }
+        return uniqueLimitedBullets(items, 6);
+      }
+
+      function homeServicesClientProposalOwnerApproved() {
+        return [
+          "Customer-facing wording",
+          "Follow-up language",
+          "Routing rules",
+          "Launch timing",
+          "Any automation behavior",
+        ];
       }
 
       function homeServicesClientProposalData(lead) {
         var deliverable = homeServicesRecommendedDeliverable(lead);
+        var bestFirstBuild = homeServicesBestFirstBuild(lead);
         var diag = homeServicesDiagnosis(lead);
         var pack = homeServicesPack(lead);
+        var leak = diag.leak;
+        var nextStep =
+          leak === "missed-call leak" && homeServicesNicheKey(lead) === "Roofing"
+            ? "Map how roofing calls, photos, inspection requests, and estimates move today, then confirm the smallest useful first build."
+            : diag.nextAction ||
+              "Confirm the quote request process, routing, and follow-up rules on a short workflow call.";
         return {
           business: lead.business_name || "your business",
           contact: lead.contact_name || "there",
           businessType: pack.niche_lower || "home services",
-          mainIssue: diag.diagnosis || homeServicesIssueLabel(diag.leak),
+          mainIssue: diag.diagnosis || homeServicesIssueLabel(leak),
           deliverable: deliverable,
-          scope: homeServicesProposalScopeForDeliverable(deliverable),
-          fixes: uniqueLimitedBullets(
-            [
-              homeServicesIssueLabel(diag.leak),
-              "Missed or delayed requests",
-              "Weak quote / photo intake",
-              "Estimate follow-up getting lost",
-              "Owner cannot see what needs action",
-            ],
-            5
-          ),
-          ownerApproved: clientProposalOwnerApprovedBullets(),
-          notOverbuild: clientProposalNotOverbuildBullets(),
-          nextStep:
-            diag.nextAction ||
-            "Confirm the quote request process, routing, and follow-up rules on a short workflow call.",
+          bestFirstBuild: bestFirstBuild,
+          scope: homeServicesProposalScopeForDeliverable(deliverable, lead),
+          fixes: homeServicesClientProposalFixes(lead, diag),
+          ownerApproved: homeServicesClientProposalOwnerApproved(),
+          notOverbuild: homeServicesClientProposalNotOverbuild(lead),
+          nextStep: nextStep,
           outcome: homeServicesProposalOutcome(lead, deliverable),
         };
       }
@@ -21784,11 +21974,11 @@
         return [
           "Hi " + ctx.contact + ", this is Willie with The AI Plug.",
           "",
-          "For " + ctx.business + ", I help " + ctx.niche_lower + " businesses clean up the path behind " + ctx.pack.objectives,
+          "For " + ctx.business + ", I help " + ctx.niche_lower + " businesses clean up the lead flow behind " + ctx.pack.objectives,
           "",
           "Right now, the main thing I would look at is " + ctx.issue + ". I would not start with a big system — I would start with " + ctx.offer + " as the smallest useful first step.",
           "",
-          "No promises on jobs, claims, financing approvals, or rankings. Just a cleaner request path for the work you already do well.",
+          "No promises on jobs, claims, financing approvals, or rankings. Just a cleaner request flow for the work you already do well.",
           "",
           aiPlugSafeCopyFooter(),
         ].join("\n");
@@ -21895,7 +22085,7 @@
           "Hi " + ctx.contact + ", if this feels reasonable, the next step is simple:",
           "",
           "1. Confirm " + ctx.issue + " is the right place to start.",
-          "2. Map the current " + ctx.niche_lower + " request path and the details your team needs.",
+          "2. Map the current " + ctx.niche_lower + " request flow and the details your team needs.",
           "3. Build the first version of " + ctx.offer + " for owner approval before anything is customer-facing.",
           "",
           "No commitments to a bigger system. We start with the smallest useful piece.",
@@ -21909,7 +22099,7 @@
         return [
           ctx.niche + " follow-up — " + ctx.business,
           "",
-          "Hi " + ctx.contact + ", quick check-in on the " + ctx.niche_lower + " request-path idea for " + ctx.business + ".",
+          "Hi " + ctx.contact + ", quick check-in on the " + ctx.niche_lower + " lead flow for " + ctx.business + ".",
           "",
           "The first step would still be " + ctx.offer + ", focused on " + ctx.issue + ". Not a rebuild — just the smallest useful piece.",
           "",
@@ -21950,7 +22140,7 @@
           bulletText(ctx.pack.monthlyRecap),
           "",
           "Diagnosed leak this month: " + ctx.leak,
-          "Current first system: " + ctx.offer,
+          "Current first deliverable: " + ctx.offer,
           "Recommended next move: " + ctx.diag.nextAction,
           "",
           "No guaranteed results. Recap is for owner-visible workflow review.",
@@ -22137,7 +22327,9 @@
           firstQuestion: diag.firstQuestion,
           nextAction: diag.nextAction,
           queueFocus: vpack.queueFocus,
+          leadFlowFocus: homeServicesLeadFlowFocus(row),
           firstSystem: diag.firstOffer,
+          bestFirstBuild: homeServicesBestFirstBuild(row),
           suggestedPackage: vpack.suggestedPackage,
           pricePosition: vpack.pricePosition,
           opportunitiesLeak: pack.opportunitiesLeak,
@@ -22160,8 +22352,8 @@
           "",
           "Niche: " + ctx.niche,
           "Owner focus: " + ctx.issue,
-          "Recommended first deliverables: " + ctx.offer,
-          "Service module (internal): " + pricing.recommendedPackage,
+          "Recommended first deliverable: " + ctx.offer,
+          "Internal service module: " + pricing.recommendedPackage,
           "Typical deliverables:",
           bulletText(pricing.deliverables || []),
           "Internal range (not a final quote): " + pricing.priceRange,
@@ -22273,7 +22465,7 @@
       function homeServicesAiPlugTermsHtml() {
         var terms = [
           ["First useful deliverable", "The smallest practical build — usually quote/photo intake, missed-call alerts, Google Ads landing page, service-area page, owner lead tracker, or estimate follow-up — not a vague AI package."],
-          ["Request path (internal)", "How missed calls, quote requests, photos, scheduling, estimates, and follow-up reach the owner or dispatcher."],
+          ["Request flow (internal)", "How missed calls, quote requests, photos, scheduling, estimates, and follow-up reach the owner or dispatcher."],
           ["Owner-approved workflow", "Customer-facing wording, routing rules, and any automation boundaries the owner reviews before launch."],
           ["Strategy / audit review", "A paid review of website, ads, intake, follow-up, and local visibility — which real deliverables to fix first."],
           ["Monthly owner recap", "A recurring check-in on requests captured, missing details, follow-ups due, reviews, and seasonal offers — no performance guarantees."],
@@ -22698,7 +22890,7 @@
           closeCommand:
             "Close on confirming intake fields, routing, and follow-up rules — no job volume, ranking, or insurance outcome promises.",
           clientSuccessCommand:
-            "Monthly AI Advantage Review: requests captured, missing job details, estimate follow-ups due, review/referral opportunities, and seasonal offer planning.",
+            "Monthly support review: requests captured, missing job details, estimate follow-ups due, review/referral opportunities, and seasonal offer planning.",
           internalActions: [
             "Mark missed-call / quote-form leak confirmed",
             "Mark photo intake path needed",
@@ -26173,7 +26365,9 @@
         var hsDiag = hs ? homeServicesDiagnosis(lead) : null;
         return (
           '<section class="owner-dash-detail-section owner-dash-command-snapshot">' +
-          '<h3 class="owner-dash-detail-section-title">Business Snapshot</h3>' +
+          '<h3 class="owner-dash-detail-section-title">' +
+          (hs ? "Home Services Snapshot" : "Business Snapshot") +
+          "</h3>" +
           '<p class="owner-dash-detail-section-note">Fast operating view for mobile. Full training and tool sections stay available in Full Training View.</p>' +
           '<div class="owner-dash-detail-grid">' +
           detailRow(restaurant ? "Business / restaurant name" : "Business name", lead.business_name) +
@@ -26187,11 +26381,15 @@
               detailRow("Guardrail risk", aiAdvantageDisplay(aiAdvantageClassify(lead).guardrailRisk, "Needs review"))) +
           (hs ? detailRow("Home services niche", hsDiag.niche) : "") +
           detailRow("Business problem", lead.current_problem || businessServicesFixFirstFromRow(lead), true) +
-          detailRow("Customer-path leak", aiPlugDiagnosis(lead).leak, true) +
-          (hs ? detailRow("Home services leak", hsDiag.leak, true) : "") +
+          (hs ? "" : detailRow("Customer-path leak", aiPlugDiagnosis(lead).leak, true)) +
+          (hs ? detailRow("Diagnosed leak", hsDiag.leak, true) : "") +
+          (hs ? detailRow("Lead flow focus", homeServicesLeadFlowFocus(lead), true) : "") +
           detailRow("Priority", priority && priority.label) +
           detailRow("Status", displayStatus(lead.status)) +
-          detailRow("Suggested system", lead.recommended_system || (isRestaurantRow(lead) ? restaurantSnapshot(lead).recommendedOffer : (hs ? hsDiag.firstOffer : aiPlugOfferPath(lead))), true) +
+          (hs
+            ? detailRow("First useful deliverable", hsDiag.firstOffer, false) +
+              detailRow("Suggested first build", homeServicesBestFirstBuild(lead), true)
+            : detailRow("Suggested system", lead.recommended_system || (isRestaurantRow(lead) ? restaurantSnapshot(lead).recommendedOffer : aiPlugOfferPath(lead)), true)) +
           detailRow(
             "Recommended first move",
             restaurant || hs ? nextAction : aiPlugRecommendedFirstMove(lead),
@@ -26999,9 +27197,9 @@
           restaurantSnapshotItem("Home services niche", snap.niche, false) +
           restaurantSnapshotItem("Diagnosed leak", snap.leak, false) +
           restaurantSnapshotItem("Main opportunity", snap.diagnosis, true) +
-          restaurantSnapshotItem("Request flow focus", snap.queueFocus, true) +
-          restaurantSnapshotItem("Recommended first deliverable", snap.firstSystem, false) +
-          restaurantSnapshotItem("Best first build", snap.firstSystem, false) +
+          restaurantSnapshotItem("Lead flow focus", snap.leadFlowFocus || snap.queueFocus, true) +
+          restaurantSnapshotItem("First useful deliverable", snap.firstSystem, false) +
+          restaurantSnapshotItem("Suggested first build", snap.bestFirstBuild || snap.firstSystem, false) +
           restaurantSnapshotItem("Internal price guidance", snap.pricePosition, true) +
           restaurantSnapshotItem("Next home services action", snap.nextAction, true) +
           "</div>" +
@@ -27019,7 +27217,7 @@
           homeServicesCopyButton("home-services-research-summary", "Copy research summary", true) +
           homeServicesActionButton("research-complete", "Mark research complete", false) +
           homeServicesActionButton("service-area-confirmed", "Mark service area confirmed", false) +
-          homeServicesActionButton("intake-path-reviewed", "Mark intake path reviewed", false) +
+          homeServicesActionButton("intake-path-reviewed", "Mark intake flow reviewed", false) +
           "</div></div>" +
           '<div class="owner-dash-restaurant-command-block" data-command-section="discovery" data-command-view="full">' +
           '<h3 class="owner-dash-detail-section-title">Discovery Questions</h3>' +
@@ -27111,11 +27309,11 @@
           projectDeliveryCommandBlock(lead) +
           "</div>" +
           '<div class="owner-dash-restaurant-command-block" data-command-section="support" data-command-view="full">' +
-          '<h3 class="owner-dash-detail-section-title">Client Success / Monthly AI Advantage Command</h3>' +
-          '<p class="owner-dash-detail-section-note">Monthly review of requests captured, missing job details, estimate follow-ups, review requests, and seasonal offers — no performance guarantees.</p>' +
-          collapsibleBlock("Monthly AI Advantage Review prompts", bulletListHtml(pack.monthlyRecap), "owner-dash-collapsible--home-services-recap") +
+          '<h3 class="owner-dash-detail-section-title">Client Success / Monthly Support Review</h3>' +
+          '<p class="owner-dash-detail-section-note">Monthly workflow review of requests captured, missing job details, estimate follow-ups, review requests, and seasonal offers — no performance guarantees.</p>' +
+          collapsibleBlock("Monthly support review prompts", bulletListHtml(pack.monthlyRecap), "owner-dash-collapsible--home-services-recap") +
           '<div class="owner-dash-restaurant-command-copy">' +
-          homeServicesCopyButton("home-services-monthly-recap", "Copy monthly AI advantage recap", true) +
+          homeServicesCopyButton("home-services-monthly-recap", "Copy monthly support recap", true) +
           "</div>" +
           clientSupportRetentionCommandBlock(lead) +
           "</div>" +
@@ -27133,7 +27331,7 @@
           '<div class="owner-dash-restaurant-command-copy">' +
           homeServicesCopyButton("home-services-launch-checklist", "Copy launch checklist", true) +
           homeServicesActionButton("build-ready", "Mark build ready", false) +
-          homeServicesActionButton("launched", "Mark home services path launched", true) +
+          homeServicesActionButton("launched", "Mark home services flow launched", true) +
           "</div></div>" +
           '<div class="owner-dash-restaurant-command-block" data-command-section="retention" data-command-view="full">' +
           '<h3 class="owner-dash-detail-section-title">Review / Referral / Retention System</h3>' +
