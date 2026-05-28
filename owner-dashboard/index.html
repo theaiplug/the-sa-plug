@@ -4687,6 +4687,11 @@
         scroll-margin-top: 10px;
       }
 
+      .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-command-section,
+      .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-restaurant-command-block {
+        scroll-margin-top: 72px;
+      }
+
       .page-owner-dashboard .owner-dash-command-nav {
         position: static;
         margin-bottom: 10px;
@@ -7437,7 +7442,70 @@
         return { label: "Low priority", key: "low", score: score, className: "owner-dash-badge--low" };
       }
 
+      function homeServicesNotesSuggestProposalWork(row) {
+        return ownerNotesInclude(row, [
+          "proposal",
+          "quote",
+          "estimate",
+          "scope",
+          "pricing",
+          "quote prep",
+          "proposal ready",
+          "proposal/quote",
+        ]);
+      }
+
+      function homeServicesLeadNextAction(lead, priority) {
+        if (!lead) return "Review home services lead";
+        var manual = ownerNoteMarkerValue(lead, "Home services next action:");
+        if (manual) return manual;
+
+        var status = normStatus(lead.status);
+        if (status === "not a fit") return "Archive or leave notes";
+        if (status === "won" || status === "lost" || status === "archived") {
+          return "No active follow-up";
+        }
+
+        var stageKey = dealStageInfo(lead).key;
+        var proposalWork =
+          homeServicesNotesSuggestProposalWork(lead) ||
+          hasProposalReadyNote(lead) ||
+          hasProposalSentNote(lead) ||
+          stageKey === "proposal-ready" ||
+          stageKey === "proposal-sent";
+
+        if (stageKey === "won") return "No active follow-up";
+        if (stageKey === "lost" || stageKey === "not-a-fit") return "Archive or leave notes";
+        if (stageKey === "proposal-sent") return "Send proposal follow-up";
+        if (stageKey === "proposal-ready") return "Send proposal manually";
+        if (stageKey === "negotiating") return "Confirm scope, price, or timing";
+        if (stageKey === "follow-up-due" || status === "needs follow-up") {
+          return hasProposalSentNote(lead) ? "Send proposal follow-up" : "Follow up on estimate or inquiry";
+        }
+        if (status === "qualified" || stageKey === "qualified") {
+          if (hasProposalSentNote(lead)) return "Send proposal follow-up";
+          if (proposalWork) return "Confirm scope and quote range";
+          if (priority && priority.key === "hot") return "Prepare first offer";
+          return "Move to proposal/quote prep";
+        }
+        if (status === "contacted") return "Add call notes and confirm job details";
+        if (status === "new" && priority && priority.key === "hot") return "Call or text today";
+        if (status === "new" && lead.contact_phone) return "Send SMS follow-up";
+        if (status === "new" && lead.contact_email && !lead.contact_phone) {
+          return "Send email reply";
+        }
+        if (status === "new") return "Confirm service area and intake path";
+        if (status === "reviewed") return "Send first outreach";
+        if (isBusinessServicesLead(lead) && (status === "new" || !status)) {
+          return "Review job intake and service-area path";
+        }
+        return "Add call notes and set next step";
+      }
+
       function calcBusinessNextAction(lead, priority) {
+        if (lead && isHomeServicesRow(lead) && !isRestaurantRow(lead)) {
+          return homeServicesLeadNextAction(lead, priority || calcBusinessPriority(lead));
+        }
         var status = normStatus(lead.status);
         if (status === "not a fit") return "Archive or leave notes";
         if (status === "won" || status === "lost" || status === "archived") {
@@ -20735,8 +20803,9 @@
         var leak = homeServicesLeakKey(row);
         var detail = HOME_SERVICES_LEAK_DETAIL[leak] || HOME_SERVICES_LEAK_DETAIL["quote-form leak"];
         var firstOffer = ownerNoteMarkerValue(row, "Home services first offer:") || detail.firstOffer;
-        var nextAction = ownerNoteMarkerValue(row, "Home services next action:") ||
-          "Confirm the " + leak + ", then recommend " + firstOffer + " as the smallest useful first system.";
+        var nextAction =
+          ownerNoteMarkerValue(row, "Home services next action:") ||
+          homeServicesLeadNextAction(row, calcBusinessPriority(row));
         return {
           niche: homeServicesNicheKey(row),
           leak: leak,
@@ -25034,6 +25103,7 @@
         { key: "retention", label: "Reviews" },
         { key: "guardrails", label: "Guardrails" },
         { key: "copy-tools", label: "Copy" },
+        { key: "owner-tools", label: "Owner Tools" },
         { key: "actions", label: "Actions" },
       ];
 
@@ -25158,7 +25228,11 @@
           detailRow("Priority", priority && priority.label) +
           detailRow("Status", displayStatus(lead.status)) +
           detailRow("Suggested system", lead.recommended_system || (isRestaurantRow(lead) ? restaurantSnapshot(lead).recommendedOffer : (hs ? hsDiag.firstOffer : aiPlugOfferPath(lead))), true) +
-          detailRow("Recommended first move", isRestaurantRow(lead) ? nextAction : aiPlugRecommendedFirstMove(lead), true) +
+          detailRow(
+            "Recommended first move",
+            restaurant || hs ? nextAction : aiPlugRecommendedFirstMove(lead),
+            true
+          ) +
           detailRow("Next recommended action", nextAction, true) +
           detailRow("Owner notes", lead.owner_notes, true) +
           "</div></section>"
@@ -25179,9 +25253,32 @@
         );
       }
 
+      function homeServicesGenericOwnerToolsBlock(lead) {
+        if (!lead || !isHomeServicesRow(lead)) return "";
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--tools owner-dash-command-quick-copy" data-command-section="owner-tools">' +
+          '<h3 class="owner-dash-detail-section-title">Owner Tools / Copy Tools</h3>' +
+          '<p class="owner-dash-detail-section-note">Generic contact and CRM copy helpers. Use the Home Services command sections above for niche-specific plumbing and trade copy.</p>' +
+          '<div class="owner-dash-command-quick-copy-actions">' +
+          commandQuickCopyButton("copy-field", "phone", "Copy phone", false) +
+          commandQuickCopyButton("copy-field", "email", "Copy email", false) +
+          commandQuickCopyButton("copy-followup", "email-reply", "Copy email reply", true) +
+          commandQuickCopyButton("copy-followup", "call-script", "Copy call script", false) +
+          commandQuickCopyButton("copy-deal", "ai-plug-diagnosis-recap", "Copy diagnosis recap", false) +
+          commandQuickCopyButton("copy-deal", "ai-plug-crm-summary", "Copy owner-ready CRM summary", false) +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
       function businessCommandQuickCopyBlock(lead) {
         var restaurant = isRestaurantRow(lead);
         var homeServices = !restaurant && isHomeServicesRow(lead);
+        if (homeServices) return "";
         var verticalPack = verticalAiCommandPack(lead);
         var buttons =
           commandQuickCopyButton("copy-field", "phone", "Copy phone", false) +
@@ -25909,7 +26006,7 @@
           '<span class="owner-dash-restaurant-mode-badge">Home Services · ' +
           esc(snap.niche) +
           "</span></div>" +
-          '<div class="owner-dash-restaurant-command-block" data-command-section="snapshot" data-command-view="full"><p class="owner-dash-restaurant-card-label">Home Services Snapshot</p>' +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="snapshot"><p class="owner-dash-restaurant-card-label">Home Services Snapshot</p>' +
           '<div class="owner-dash-restaurant-snapshot">' +
           restaurantSnapshotItem("Business name", snap.business, false) +
           restaurantSnapshotItem("Contact", snap.contact, false) +
@@ -26351,9 +26448,10 @@
 
       function renderBusinessDetail(lead) {
         var priority = calcBusinessPriority(lead);
-        var nextAction = calcBusinessNextAction(lead, priority);
         var restaurant = isRestaurantRow(lead);
         var homeServices = !restaurant && isHomeServicesRow(lead);
+        var nextAction = calcBusinessNextAction(lead, priority);
+        var displayNextAction = homeServices ? homeServicesLeadNextAction(lead, priority) : nextAction;
         var homeServicesOs = usesHomeServicesLeadCommandOs(lead);
         var verticalPack = verticalAiCommandPack(lead);
         var verticalOs = usesVerticalLeadCommandOs(lead);
@@ -26412,9 +26510,10 @@
           esc(fmtDate(lead.created_at)) +
           "</time></div>" +
           commandSheetNavHtml("business_leads", lead.id, navItems) +
-          commandSection("snapshot", "", nextActionHtml(nextAction)) +
-          commandSection("snapshot", "quick-only", businessCommandSnapshotBlock(lead, priority, nextAction)) +
-          commandSection("copy-tools", "quick-only", businessCommandQuickCopyBlock(lead)) +
+          commandSection("snapshot", "", nextActionHtml(displayNextAction)) +
+          commandSection("snapshot", "quick-only", businessCommandSnapshotBlock(lead, priority, displayNextAction)) +
+          (homeServicesOs ? homeServicesSalesCommandBlock(lead) : "") +
+          (!homeServicesOs ? commandSection("copy-tools", "quick-only", businessCommandQuickCopyBlock(lead)) : "") +
           verticalSections +
           (verticalOs || homeServicesOs
             ? ""
@@ -26425,7 +26524,6 @@
               (restaurant ? "" : commandSection("discovery", "full", aiAdvantageDiscoveryScriptBlock(lead) + aiPlugDiscoveryBlock(lead)))) +
           commandSection("opportunity", "full", verticalOs || homeServicesOs ? "" : opportunityBuilderBlock(lead)) +
           (restaurant ? restaurantSalesCommandBlock(lead) : "") +
-          (homeServicesOs ? homeServicesSalesCommandBlock(lead) : "") +
           (verticalOs || restaurant || homeServicesOs
             ? ""
             : commandSection("deal", "full", aiAdvantageFirstSystemBlock(lead) + aiPlugPitchScriptBlock(lead) + aiPlugSalesCommandBlock(lead) + aiPlugObjectionHandlerBlock(lead))) +
@@ -26509,6 +26607,7 @@
           (restaurant || verticalOs || homeServicesOs ? "" : commandSection("rep", "full", aiPlugRepCommandBlock())) +
           (restaurant || verticalOs || homeServicesOs ? "" : commandSection("guardrails", "full", aiPlugGuardrailsBlock())) +
           (verticalOs || homeServicesOs ? "" : commandSection("copy-tools", "full", groupedToolsBlock("business_leads"))) +
+          (homeServicesOs ? commandSection("owner-tools", "", homeServicesGenericOwnerToolsBlock(lead)) : "") +
           commandSection("close", "", quickStatusBlock("business_leads", lead.status)) +
           commandSection("notes", "", workflowBlock("business_leads", lead)) +
           commandSection("support", "full", activityTimelineBlock("business_leads", lead)) +
