@@ -4536,13 +4536,48 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
     }
 
-    @media (min-width: 1025px) {
+    @media (min-width: 1280px) {
       .page-owner-dashboard .owner-dash-command-nav {
         position: sticky;
         top: 0;
         z-index: 3;
         box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
       }
+    }
+
+    .page-owner-dashboard .owner-dash-home-services-command,
+    .page-owner-dashboard .owner-dash-home-services-command * {
+      box-sizing: border-box;
+    }
+
+    .page-owner-dashboard .owner-dash-command-sheet--home-services .owner-dash-detail-value,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services .owner-dash-restaurant-snapshot strong,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services .owner-dash-restaurant-snapshot span,
+    .page-owner-dashboard .owner-dash-command-sheet--home-services pre {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    .page-owner-dashboard .owner-dash-ai-plug-term-grid {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 0;
+    }
+
+    .page-owner-dashboard .owner-dash-ai-plug-term {
+      margin: 0;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(94, 234, 212, 0.18);
+      background: rgba(20, 184, 166, 0.06);
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: rgba(255, 246, 230, 0.86);
+    }
+
+    .page-owner-dashboard .owner-dash-ai-plug-term strong {
+      color: #c8fff5;
     }
 
     .page-owner-dashboard .owner-dash-command-bar {
@@ -4641,9 +4676,24 @@
       scroll-margin-top: 18px;
     }
 
-    @media (min-width: 1025px) {
+    @media (min-width: 1280px) {
       .page-owner-dashboard .owner-dash-command-section {
         scroll-margin-top: 112px;
+      }
+    }
+
+    @media (max-width: 1279px) {
+      .page-owner-dashboard .owner-dash-command-section {
+        scroll-margin-top: 10px;
+      }
+
+      .page-owner-dashboard .owner-dash-command-nav {
+        position: static;
+        margin-bottom: 10px;
+      }
+
+      .page-owner-dashboard .owner-dash-command-nav-label {
+        display: block;
       }
     }
 
@@ -4672,7 +4722,7 @@
       display: none !important;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1279px) {
       .page-owner-dashboard .owner-dash-command-nav {
         margin-left: -2px;
         margin-right: -2px;
@@ -20973,20 +21023,312 @@
         if (!row) return "";
         switch (kind) {
           case "home-services-first-outreach": return buildHomeServicesFirstOutreach(row);
+          case "home-services-warm-follow-up": return buildHomeServicesFollowUp(row);
           case "home-services-text-reply": return buildHomeServicesTextReply(row);
           case "home-services-email-reply": return buildHomeServicesEmailReply(row);
           case "home-services-call-opener": return buildHomeServicesCallOpener(row);
           case "home-services-discovery-questions": return buildHomeServicesDiscoveryQuestions(row);
           case "home-services-objection-response": return buildHomeServicesObjectionResponse(row);
           case "home-services-proposal-summary": return buildHomeServicesProposalSummary(row);
+          case "home-services-pricing-guidance": return buildHomeServicesPricingGuidance(row);
+          case "home-services-quote-prep": return buildHomeServicesQuotePrep(row);
           case "home-services-close-next-step": return buildHomeServicesCloseNextStep(row);
           case "home-services-follow-up": return buildHomeServicesFollowUp(row);
           case "home-services-delivery-checklist": return buildHomeServicesDeliveryChecklist(row);
+          case "home-services-materials-checklist": return buildHomeServicesMaterialsChecklist(row);
+          case "home-services-launch-checklist": return buildHomeServicesLaunchChecklist(row);
+          case "home-services-review-retention": return buildHomeServicesReviewRetention(row);
           case "home-services-monthly-recap": return buildHomeServicesMonthlyRecap(row);
+          case "home-services-research-summary": return buildHomeServicesResearchSummary(row);
           case "home-services-full-sales-bundle": return buildHomeServicesFullSalesBundle(row);
           case "home-services-owner-notes-markers": return buildHomeServicesOwnerNotesMarkers(row);
           default: return "";
         }
+      }
+
+      var HOME_SERVICES_MATERIALS_CHECKLIST = [
+        "Service area list and dispatch zones confirmed",
+        "Logo, truck photos, and license numbers for trust blocks",
+        "Before/after photo examples (with customer permission)",
+        "Estimator / dispatcher contact routing confirmed",
+        "Photo/video intake examples for common jobs",
+        "Emergency vs scheduled call rules documented",
+        "Customer approval wording for estimates and change orders",
+        "Access instructions template (gate codes, pets, parking)",
+      ];
+
+      var HOME_SERVICES_LAUNCH_CHECKLIST = [
+        "Mobile quote / call path test",
+        "Missed-call and after-hours routing test",
+        "Photo intake test (drain, leak, water heater, etc.)",
+        "Service area and scheduling field test",
+        "Dispatcher/owner alert test",
+        "Estimate follow-up visibility check",
+        "Appointment reminder wording approved by owner",
+        "No auto-send verification — copy-only paths only",
+      ];
+
+      var HOME_SERVICES_REVIEW_RETENTION_ITEMS = [
+        "Review request after completed work (manual send only)",
+        "Referral ask for neighbors / property managers",
+        "Seasonal offer planning (water heater, drain cleaning, maintenance)",
+        "No-response lead re-touch (quote not accepted)",
+        "Emergency-call follow-up quality check",
+        "Monthly AI Advantage Review — pipeline visibility for owner",
+        "Next-phase AI roadmap — only after phase one is working",
+      ];
+
+      var HOME_SERVICES_RESEARCH_REVIEW_ITEMS = [
+        "Website / Google Business Profile — how quote requests enter today",
+        "Missed-call and after-hours path",
+        "Quote form / text / photo intake quality",
+        "Service area and scheduling rules on the site",
+        "Estimate follow-up and no-response lead handling",
+        "Dispatcher/owner handoff and lead routing",
+        "Review request process after completed jobs",
+        "Emergency vs non-emergency messaging (no outcome promises)",
+      ];
+
+      function homeServicesDiscoveryList(row) {
+        var pack = homeServicesPack(row);
+        var list = (pack.discovery || []).slice();
+        var niche = homeServicesNicheKey(row);
+        if (niche === "Plumbing") {
+          list = list.concat([
+            "How do clogged drains, water heaters, leaks, and sewer jobs get triaged?",
+            "What photo/video intake do you need before dispatch (leak location, water heater age, drain backup)?",
+            "How do estimate requests vs emergency calls route to the owner or dispatcher?",
+            "What happens when a quote is sent but not accepted — who follows up?",
+            "How do you handle service-area questions and dispatch timing on busy days?",
+            "When do you ask for reviews after completed plumbing work?",
+          ]);
+        }
+        return list;
+      }
+
+      function homeServicesSnapshot(row) {
+        var diag = homeServicesDiagnosis(row);
+        var pack = homeServicesPack(row);
+        var vpack = buildHomeServicesVerticalPack(row);
+        return {
+          business: row.business_name || "Business TBD",
+          contact: row.contact_name || "Contact TBD",
+          contactLine: [row.contact_phone, row.contact_email].filter(Boolean).join(" / ") || "—",
+          niche: diag.niche,
+          serviceArea: firstValue(row, ["service_area", "business_location", "location"]) || "Confirm service area",
+          leak: diag.leak,
+          diagnosis: diag.diagnosis,
+          firstOffer: diag.firstOffer,
+          firstQuestion: diag.firstQuestion,
+          nextAction: diag.nextAction,
+          queueFocus: vpack.queueFocus,
+          firstSystem: diag.firstOffer,
+          suggestedPackage: vpack.suggestedPackage,
+          pricePosition: vpack.pricePosition,
+          opportunitiesLeak: pack.opportunitiesLeak,
+          bestSystems: pack.bestSystems,
+        };
+      }
+
+      function buildHomeServicesPricingGuidance(row) {
+        var ctx = homeServicesCopyContext(row);
+        var vpack = buildHomeServicesVerticalPack(row);
+        return [
+          "Home Services pricing guidance — " + ctx.business,
+          "",
+          "Niche: " + ctx.niche,
+          "Diagnosed leak: " + ctx.leak,
+          "Recommended first system: " + ctx.offer,
+          "",
+          vpack.pricingNote,
+          "",
+          "Phase-one focus: intake, routing, photo capture, scheduling visibility, or follow-up — not a full rebuild.",
+          "",
+          ctx.pack.safeClaims,
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesQuotePrep(row) {
+        var ctx = homeServicesCopyContext(row);
+        var vpack = buildHomeServicesVerticalPack(row);
+        return [
+          "Quote / invoice prep guidance — " + ctx.business,
+          "",
+          "Confirm before quoting:",
+          "- Service area and dispatch zones",
+          "- Required job details (address, urgency, photos, access notes)",
+          "- Estimator vs dispatcher routing and owner approval points",
+          "- Emergency vs scheduled handling",
+          "- Customer approval steps for estimates and change orders",
+          "- Follow-up owner when quote is not accepted",
+          "",
+          vpack.quotePrepGuidance,
+          "",
+          "Internal prep only — not a final invoice. Nothing sends automatically.",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildHomeServicesMaterialsChecklist(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          "Materials / access checklist — " + ctx.business + " (" + ctx.niche + ")",
+          "",
+        ]
+          .concat(
+            HOME_SERVICES_MATERIALS_CHECKLIST.map(function (item) {
+              return "- " + item;
+            })
+          )
+          .concat(["", ctx.pack.safeClaims, "", aiPlugSafeCopyFooter()])
+          .join("\n");
+      }
+
+      function buildHomeServicesLaunchChecklist(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          "Launch checklist — " + ctx.business + " (" + ctx.niche + ")",
+          "",
+        ]
+          .concat(
+            HOME_SERVICES_LAUNCH_CHECKLIST.map(function (item) {
+              return "- " + item;
+            })
+          )
+          .concat(["", ctx.pack.safeClaims, "", aiPlugSafeCopyFooter()])
+          .join("\n");
+      }
+
+      function buildHomeServicesReviewRetention(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          "Review / referral / retention system — " + ctx.business,
+          "",
+        ]
+          .concat(
+            HOME_SERVICES_REVIEW_RETENTION_ITEMS.map(function (item) {
+              return "- " + item;
+            })
+          )
+          .concat(["", ctx.pack.safeClaims, "", aiPlugSafeCopyFooter()])
+          .join("\n");
+      }
+
+      function buildHomeServicesResearchSummary(row) {
+        var ctx = homeServicesCopyContext(row);
+        return [
+          "Home Services research summary — " + ctx.business,
+          "Niche: " + ctx.niche,
+          "Diagnosed leak: " + ctx.leak,
+          "",
+          "Where opportunities leak:",
+          ctx.pack.opportunitiesLeak,
+          "",
+          "Best-fit systems:",
+          ctx.pack.bestSystems,
+          "",
+          "Research review:",
+        ]
+          .concat(
+            HOME_SERVICES_RESEARCH_REVIEW_ITEMS.map(function (item) {
+              return "- " + item;
+            })
+          )
+          .concat(["", aiPlugSafeCopyFooter()])
+          .join("\n");
+      }
+
+      function homeServicesAiPlugTermsHtml() {
+        var terms = [
+          ["First Useful AI System", "The smallest practical workflow improvement — usually intake, routing, photo capture, scheduling visibility, or follow-up — not a giant AI rebuild."],
+          ["Customer Path Behind the Business", "How missed calls, quote requests, photos, scheduling, estimates, and follow-up move from first contact to the owner or dispatcher."],
+          ["Owner-Approved AI Workflow", "Any customer-facing wording, routing rules, or automation boundaries the owner reviews before launch."],
+          ["AI Advantage Review", "A practical review of where requests leak today and which single system would help first."],
+          ["Monthly AI Advantage Review", "A recurring owner check-in on requests captured, missing details, follow-ups due, reviews, and seasonal offers — no performance guarantees."],
+          ["Practical AI Adoption Plan", "Phase-one scope focused on one leak (missed calls, photo intake, estimate follow-up, etc.) before any larger build."],
+          ["Next-Phase AI Roadmap", "Optional later improvements after phase one is working — only discussed after proof, not promised upfront."],
+        ];
+        return (
+          '<div class="owner-dash-ai-plug-term-grid">' +
+          terms
+            .map(function (item) {
+              return '<p class="owner-dash-ai-plug-term"><strong>' + esc(item[0]) + ":</strong> " + esc(item[1]) + "</p>";
+            })
+            .join("") +
+          "</div>"
+        );
+      }
+
+      function homeServicesCopyButton(kind, label, primary) {
+        return commandQuickCopyButton("copy-home-services", kind, label, !!primary);
+      }
+
+      function homeServicesActionButton(action, label, primary) {
+        return (
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact ' +
+          (primary ? "owner-dash-btn--primary" : "owner-dash-btn--secondary") +
+          '" data-action="mark-home-services-stage" data-home-services-action="' +
+          esc(action) +
+          '">' +
+          esc(label) +
+          "</button>"
+        );
+      }
+
+      function homeServicesCardList(title, items) {
+        return (
+          '<article class="owner-dash-restaurant-command-block"><p class="owner-dash-restaurant-card-label">' +
+          esc(title) +
+          "</p>" +
+          bulletListHtml(items, "owner-dash-deal-list") +
+          "</article>"
+        );
+      }
+
+      function homeServicesGuardrailsCard(pack) {
+        return (
+          '<p class="owner-dash-restaurant-guardrail-note">Copy only — nothing sends automatically. No payment, invoice, email, SMS, or public listing automation from this dashboard. AI does not replace dispatchers, estimators, or field staff.</p>' +
+          '<div class="owner-dash-restaurant-guardrails">' +
+          homeServicesCardList("Do not promise", AI_PLUG_GUARDRAILS_DO_NOT_PROMISE) +
+          homeServicesCardList("Allowed positioning", [
+            "Improve how requests are captured, routed, and followed up",
+            "Owner-approved workflows behind the customer path",
+            "Practical phase-one systems before larger builds",
+          ]) +
+          '<p class="owner-dash-restaurant-guardrail-note">' +
+          esc((pack && pack.safeClaims) || "No guaranteed jobs, traffic, revenue, rankings, reviews, or results.") +
+          "</p></div>"
+        );
+      }
+
+      function homeServicesOpportunityBuilderBlock(lead) {
+        var diag = homeServicesDiagnosis(lead);
+        var pack = homeServicesPack(lead);
+        var opp = calcBusinessOpportunity(lead);
+        return (
+          '<div class="owner-dash-restaurant-command-block" data-command-section="opportunity" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Lead / Job Opportunity Builder</h3>' +
+          '<p class="owner-dash-detail-section-note">Map the job opportunity from missed calls, quote requests, photo intake, service area, scheduling, and estimate follow-up — before pitching a build.</p>' +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Detected niche", diag.niche) +
+          detailRow("Likely leak", diag.leak) +
+          detailRow("Plain-English diagnosis", diag.diagnosis, true) +
+          detailRow("Best first offer", diag.firstOffer, true) +
+          detailRow("Best-fit systems", pack.bestSystems, true) +
+          detailRow("Where opportunities leak", pack.opportunitiesLeak, true) +
+          detailRow("Recommended offer", opp.offer) +
+          detailRow("Estimated value tier", opp.tier) +
+          detailRow("Suggested first move", opp.suggestedFirstMove, true) +
+          "</div>" +
+          '<div class="owner-dash-opportunity-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-opportunity" data-copy-kind="mini-proposal">Copy mini-proposal</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-opportunity" data-copy-kind="discovery-agenda">Copy discovery agenda</button>' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-opportunity" data-copy-kind="proposal-notes">Copy proposal notes</button>' +
+          "</div></div>"
+        );
       }
 
       var VERTICAL_AI_COMMAND_PACKS = {
@@ -21356,7 +21698,11 @@
       }
 
       function usesVerticalLeadCommandOs(row) {
-        return !!verticalAiCommandPack(row) && !isRestaurantRow(row);
+        return !!verticalAiCommandPack(row) && !isRestaurantRow(row) && !isHomeServicesRow(row);
+      }
+
+      function usesHomeServicesLeadCommandOs(row) {
+        return isHomeServicesRow(row) && !isRestaurantRow(row);
       }
 
       function verticalAiCommandContext(row) {
@@ -21772,9 +22118,9 @@
       function businessCommandNavItemsForLead(lead) {
         var restaurant = isRestaurantRow(lead);
         if (restaurant) return RESTAURANT_COMMAND_NAV_ITEMS;
+        if (usesHomeServicesLeadCommandOs(lead)) return HOME_SERVICES_COMMAND_NAV_ITEMS.slice();
         if (usesVerticalLeadCommandOs(lead)) return VERTICAL_LEAD_COMMAND_NAV_ITEMS.slice();
-        var homeServices = isHomeServicesRow(lead);
-        return homeServices ? BUSINESS_COMMAND_NAV_ITEMS_WITH_HOME_SERVICES.slice() : BUSINESS_COMMAND_NAV_ITEMS.slice();
+        return BUSINESS_COMMAND_NAV_ITEMS.slice();
       }
 
       function buildAiPlugSalesCopy(kind, lead) {
@@ -24669,6 +25015,28 @@
         { key: "copy-tools", label: "Copy" },
       ];
 
+      var HOME_SERVICES_COMMAND_NAV_ITEMS = [
+        { key: "snapshot", label: "Snapshot" },
+        { key: "notes", label: "Notes" },
+        { key: "opportunity", label: "Job Opportunity" },
+        { key: "research", label: "Research" },
+        { key: "discovery", label: "Discovery" },
+        { key: "objections", label: "Objections" },
+        { key: "proposal", label: "Proposal" },
+        { key: "pricing", label: "Pricing" },
+        { key: "quote", label: "Quote Prep" },
+        { key: "follow-up", label: "Follow-Up" },
+        { key: "close", label: "Close" },
+        { key: "delivery", label: "Delivery" },
+        { key: "support", label: "Client Success" },
+        { key: "materials", label: "Materials" },
+        { key: "launch", label: "Launch" },
+        { key: "retention", label: "Reviews" },
+        { key: "guardrails", label: "Guardrails" },
+        { key: "copy-tools", label: "Copy" },
+        { key: "actions", label: "Actions" },
+      ];
+
       function commandSheetKey(table, id) {
         return String(table || "") + ":" + String(id || "");
       }
@@ -24676,7 +25044,7 @@
       function isCompactCommandSheetNav() {
         return typeof window !== "undefined" &&
           window.matchMedia &&
-          window.matchMedia("(max-width: 1024px)").matches;
+          window.matchMedia("(max-width: 1279px)").matches;
       }
 
       function isMobileCommandSheetDefault() {
@@ -24774,7 +25142,7 @@
           '<h3 class="owner-dash-detail-section-title">Business Snapshot</h3>' +
           '<p class="owner-dash-detail-section-note">Fast operating view for mobile. Full training and tool sections stay available in Full Training View.</p>' +
           '<div class="owner-dash-detail-grid">' +
-          detailRow("Business / restaurant", lead.business_name) +
+          detailRow(restaurant ? "Business / restaurant name" : "Business name", lead.business_name) +
           detailRow("Contact", lead.contact_name) +
           detailRow("Phone / email", [lead.contact_phone, lead.contact_email].filter(Boolean).join(" / ")) +
           detailRow("Vertical lane", businessVerticalLabel(lead)) +
@@ -25525,58 +25893,222 @@
         );
       }
 
-      function homeServicesCommandBlock(lead) {
+      function homeServicesSalesCommandBlock(lead) {
         if (!lead || !isHomeServicesRow(lead)) return "";
+        var snap = homeServicesSnapshot(lead);
         var diag = homeServicesDiagnosis(lead);
         var pack = homeServicesPack(lead);
-        var copyButton = function (kind, label, primary) {
-          return commandQuickCopyButton("copy-home-services", kind, label, !!primary);
-        };
-        var copyButtons =
-          copyButton("home-services-first-outreach", "Copy " + diag.niche + " first outreach", true) +
-          copyButton("home-services-text-reply", "Copy " + diag.niche + " text reply", false) +
-          copyButton("home-services-email-reply", "Copy " + diag.niche + " email reply", false) +
-          copyButton("home-services-call-opener", "Copy " + diag.niche + " call opener", false) +
-          copyButton("home-services-discovery-questions", "Copy " + diag.niche + " discovery questions", false) +
-          copyButton("home-services-objection-response", "Copy " + diag.niche + " objection response", false) +
-          copyButton("home-services-proposal-summary", "Copy " + diag.niche + " proposal summary", true) +
-          copyButton("home-services-close-next-step", "Copy " + diag.niche + " close / next step", false) +
-          copyButton("home-services-follow-up", "Copy " + diag.niche + " follow-up", false) +
-          copyButton("home-services-delivery-checklist", "Copy " + diag.niche + " delivery checklist", false) +
-          copyButton("home-services-monthly-recap", "Copy " + diag.niche + " monthly recap", false) +
-          copyButton("home-services-full-sales-bundle", "Copy full " + diag.niche + " sales bundle", true) +
-          copyButton("home-services-owner-notes-markers", "Copy owner-notes marker block", false);
+        var discovery = homeServicesDiscoveryList(lead);
+        var hsGuardrail =
+          "Internal home services sales guidance only. Nothing is sent, published, invoiced, charged, or promised automatically.";
         return (
-          '<section class="owner-dash-detail-section owner-dash-detail-section--home-services">' +
-          '<h3 class="owner-dash-detail-section-title">Home Services / Home Improvement Command</h3>' +
-          '<p class="owner-dash-detail-section-note">Detected vertical lane: <strong>Home Services</strong>. Compact command block for the diagnosed niche. Restaurant rows are not handled here.</p>' +
-          '<div class="owner-dash-detail-grid">' +
-          detailRow("Detected niche", diag.niche) +
-          detailRow("Likely home services leak", diag.leak) +
-          detailRow("Plain-English diagnosis", diag.diagnosis, true) +
-          detailRow("First question to ask", diag.firstQuestion, true) +
-          detailRow("Best first offer", diag.firstOffer, true) +
-          detailRow("Next action", diag.nextAction, true) +
+          '<section class="owner-dash-detail-section owner-dash-detail-section--home-services-command owner-dash-home-services-command owner-dash-restaurant-command" data-home-services-command data-command-section="sales">' +
+          '<div class="owner-dash-restaurant-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Home Services + Contractors Command</h3>' +
+          '<p class="owner-dash-detail-section-note">Home services sales operating system: missed calls, quote requests, photo intake, service area, scheduling, estimates, job follow-up, dispatcher handoff, and review requests. Copy only — nothing sends automatically. No restaurant language in this lane.</p></div>' +
+          '<span class="owner-dash-restaurant-mode-badge">Home Services · ' +
+          esc(snap.niche) +
+          "</span></div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="snapshot" data-command-view="full"><p class="owner-dash-restaurant-card-label">Home Services Snapshot</p>' +
+          '<div class="owner-dash-restaurant-snapshot">' +
+          restaurantSnapshotItem("Business name", snap.business, false) +
+          restaurantSnapshotItem("Contact", snap.contact, false) +
+          restaurantSnapshotItem("Phone / email", snap.contactLine, false) +
+          restaurantSnapshotItem("Service area", snap.serviceArea, false) +
+          restaurantSnapshotItem("Home services niche", snap.niche, false) +
+          restaurantSnapshotItem("Diagnosed leak", snap.leak, false) +
+          restaurantSnapshotItem("Main opportunity", snap.diagnosis, true) +
+          restaurantSnapshotItem("Customer path focus", snap.queueFocus, true) +
+          restaurantSnapshotItem("First useful AI system", snap.firstSystem, false) +
+          restaurantSnapshotItem("Suggested first package", snap.suggestedPackage, false) +
+          restaurantSnapshotItem("Suggested price position", snap.pricePosition, false) +
+          restaurantSnapshotItem("Next home services action", snap.nextAction, true) +
           "</div>" +
-          collapsibleBlock(diag.niche + " discovery questions", bulletListHtml(pack.discovery), "owner-dash-collapsible--home-services-discovery") +
-          collapsibleBlock("Where opportunities leak (" + diag.niche + ")", "<p>" + esc(pack.opportunitiesLeak) + "</p>", "owner-dash-collapsible--home-services-leaks") +
-          collapsibleBlock("Best-fit AI Plug systems for " + diag.niche, "<p>" + esc(pack.bestSystems) + "</p>", "owner-dash-collapsible--home-services-systems") +
-          collapsibleBlock(diag.niche + " objection replies", pack.objections.map(function (item) {
-            return "<p><strong>" + esc(item[0]) + "</strong><br>" + esc(item[1]) + "</p>";
-          }).join(""), "owner-dash-collapsible--home-services-objections") +
-          collapsibleBlock(diag.niche + " delivery checklist", bulletListHtml(pack.deliveryChecklist), "owner-dash-collapsible--home-services-delivery") +
-          collapsibleBlock(diag.niche + " monthly recap logic", bulletListHtml(pack.monthlyRecap), "owner-dash-collapsible--home-services-recap") +
-          collapsibleBlock("Safe claims / do-not-say (" + diag.niche + ")", "<p>" + esc(pack.safeClaims) + "</p>", "owner-dash-collapsible--home-services-safe") +
-          '<div class="owner-dash-command-quick-copy-actions">' +
-          copyButtons +
+          homeServicesAiPlugTermsHtml() +
           "</div>" +
-          '<p class="owner-dash-stage-safe-note">Internal copy-only tools. Nothing sends, publishes, invoices, charges, or promises automatically. ' +
-          esc(pack.safeClaims) +
+          homeServicesOpportunityBuilderBlock(lead) +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="research" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Home Services Research Review</h3>' +
+          '<p class="owner-dash-detail-section-note">Review how calls, forms, photos, scheduling, and follow-up work before outreach or build.</p>' +
+          homeServicesCardList("Research review checklist", HOME_SERVICES_RESEARCH_REVIEW_ITEMS) +
+          '<p class="owner-dash-restaurant-workflow-guardrail">' +
+          esc(hsGuardrail) +
+          "</p>" +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-research-summary", "Copy research summary", true) +
+          homeServicesActionButton("research-complete", "Mark research complete", false) +
+          homeServicesActionButton("service-area-confirmed", "Mark service area confirmed", false) +
+          homeServicesActionButton("intake-path-reviewed", "Mark intake path reviewed", false) +
+          "</div></div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="discovery" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Discovery Questions</h3>' +
+          '<p class="owner-dash-detail-section-note">Ask about missed calls, quote requests, photo intake, scheduling, estimates, emergency calls, and dispatcher/owner handoff.</p>' +
+          homeServicesCardList(snap.niche + " discovery questions", discovery) +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-discovery-questions", "Copy discovery questions", true) +
+          homeServicesCopyButton("home-services-call-opener", "Copy call opener", false) +
+          "</div></div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="objections" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Objection Handler</h3>' +
+          collapsibleBlock(
+            snap.niche + " objection replies",
+            pack.objections
+              .map(function (item) {
+                return "<p><strong>" + esc(item[0]) + "</strong><br>" + esc(item[1]) + "</p>";
+              })
+              .join(""),
+            "owner-dash-collapsible--home-services-objections"
+          ) +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-objection-response", "Copy objection responses", true) +
+          "</div></div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="proposal" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Proposal / Estimate Builder</h3>' +
+          '<p class="owner-dash-detail-section-note">Internal estimate scope — confirm job type, service area, photo intake, and follow-up rules before any quote.</p>' +
+          '<pre class="owner-dash-followup-template">' +
+          esc(buildHomeServicesProposalSummary(lead)) +
+          "</pre>" +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-proposal-summary", "Copy proposal / estimate summary", true) +
+          "</div>" +
+          proposalEstimateBlock(lead) +
+          clientProposalSheetBlock(lead) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="pricing" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Pricing Builder</h3>' +
+          '<p class="owner-dash-detail-section-note">Price the smallest useful intake, routing, or follow-up path first — not a full system upfront.</p>' +
+          '<pre class="owner-dash-followup-template">' +
+          esc(buildHomeServicesPricingGuidance(lead)) +
+          "</pre>" +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-pricing-guidance", "Copy pricing guidance", true) +
+          "</div>" +
+          pricingBuilderBlock(lead) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="quote" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Quote / Invoice Prep Guidance</h3>' +
+          '<p class="owner-dash-detail-section-note">Prep scope for estimates and owner-approved customer steps — not auto-invoicing.</p>' +
+          '<pre class="owner-dash-followup-template">' +
+          esc(buildHomeServicesQuotePrep(lead)) +
+          "</pre>" +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-quote-prep", "Copy quote prep guidance", true) +
+          "</div>" +
+          quoteInvoicePrepBlock(lead) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="follow-up" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Follow-Up Command</h3>' +
+          '<p class="owner-dash-detail-section-note">Manual follow-up for no-response leads, post-estimate check-ins, and quote-not-accepted paths. Copy only.</p>' +
+          '<pre class="owner-dash-followup-template">' +
+          esc(buildHomeServicesFollowUp(lead)) +
+          "</pre>" +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-follow-up", "Copy follow-up", true) +
+          homeServicesCopyButton("home-services-text-reply", "Copy text reply", false) +
+          homeServicesCopyButton("home-services-email-reply", "Copy email reply", false) +
+          "</div>" +
+          followUpCommandCenterBlock(lead) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="close" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Close / Next-Step Command</h3>' +
+          '<p class="owner-dash-detail-section-note">Confirm intake fields, routing, scheduling rules, and customer approval steps — no job volume or ranking promises.</p>' +
+          '<pre class="owner-dash-followup-template">' +
+          esc(buildHomeServicesCloseNextStep(lead)) +
+          "</pre>" +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-close-next-step", "Copy close / next step", true) +
+          "</div>" +
+          closeOnboardingCommandBlock(lead) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="delivery" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Delivery / Build Command</h3>' +
+          '<p class="owner-dash-detail-section-note">Owner-approved workflow build: lead routing, photo intake, scheduling visibility, and service pipeline visibility.</p>' +
+          collapsibleBlock(snap.niche + " delivery checklist", bulletListHtml(pack.deliveryChecklist), "owner-dash-collapsible--home-services-delivery") +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-delivery-checklist", "Copy delivery checklist", true) +
+          "</div>" +
+          projectDeliveryCommandBlock(lead) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="support" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Client Success / Monthly AI Advantage Command</h3>' +
+          '<p class="owner-dash-detail-section-note">Monthly review of requests captured, missing job details, estimate follow-ups, review requests, and seasonal offers — no performance guarantees.</p>' +
+          collapsibleBlock("Monthly AI Advantage Review prompts", bulletListHtml(pack.monthlyRecap), "owner-dash-collapsible--home-services-recap") +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-monthly-recap", "Copy monthly AI advantage recap", true) +
+          "</div>" +
+          clientSupportRetentionCommandBlock(lead) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="materials" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Materials / Access Checklist</h3>' +
+          homeServicesCardList("Collect before build", HOME_SERVICES_MATERIALS_CHECKLIST) +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-materials-checklist", "Copy materials / access checklist", true) +
+          homeServicesActionButton("materials-requested", "Mark materials requested", false) +
+          homeServicesActionButton("materials-received", "Mark materials received", false) +
+          "</div></div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="launch" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Launch Checklist</h3>' +
+          homeServicesCardList("Pre-launch tests", HOME_SERVICES_LAUNCH_CHECKLIST) +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-launch-checklist", "Copy launch checklist", true) +
+          homeServicesActionButton("build-ready", "Mark build ready", false) +
+          homeServicesActionButton("launched", "Mark home services path launched", true) +
+          "</div></div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="retention" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Review / Referral / Retention System</h3>' +
+          homeServicesCardList("After completed work", HOME_SERVICES_REVIEW_RETENTION_ITEMS) +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-review-retention", "Copy review / retention system", true) +
+          "</div></div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="guardrails" data-command-view="full">' +
+          '<p class="owner-dash-restaurant-card-label">Home Services Guardrails</p>' +
+          homeServicesGuardrailsCard(pack) +
+          "</div>" +
+          '<div class="owner-dash-restaurant-copy-grid" data-command-section="copy-tools" data-command-view="full"><p class="owner-dash-restaurant-card-label">Home Services Copy Tools</p>' +
+          '<div class="owner-dash-restaurant-command-copy">' +
+          homeServicesCopyButton("home-services-first-outreach", "Copy first outreach", true) +
+          homeServicesCopyButton("home-services-warm-follow-up", "Copy warm follow-up", false) +
+          homeServicesCopyButton("home-services-text-reply", "Copy text reply", false) +
+          homeServicesCopyButton("home-services-email-reply", "Copy email reply", false) +
+          homeServicesCopyButton("home-services-call-opener", "Copy call opener", false) +
+          homeServicesCopyButton("home-services-discovery-questions", "Copy discovery questions", false) +
+          homeServicesCopyButton("home-services-objection-response", "Copy objection responses", false) +
+          homeServicesCopyButton("home-services-proposal-summary", "Copy proposal summary", false) +
+          homeServicesCopyButton("home-services-pricing-guidance", "Copy pricing guidance", false) +
+          homeServicesCopyButton("home-services-quote-prep", "Copy quote prep", false) +
+          homeServicesCopyButton("home-services-close-next-step", "Copy close / next step", false) +
+          homeServicesCopyButton("home-services-follow-up", "Copy follow-up", false) +
+          homeServicesCopyButton("home-services-delivery-checklist", "Copy delivery checklist", false) +
+          homeServicesCopyButton("home-services-monthly-recap", "Copy monthly recap", false) +
+          homeServicesCopyButton("home-services-full-sales-bundle", "Copy full home services sales bundle", true) +
+          homeServicesCopyButton("home-services-owner-notes-markers", "Copy owner-notes markers", false) +
+          "</div></div>" +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="actions" data-command-view="full"><p class="owner-dash-restaurant-card-label">Internal Status Action Buttons</p>' +
+          '<p class="owner-dash-detail-section-note">Updates internal status/notes only. Nothing sends to customers automatically.</p>' +
+          '<div class="owner-dash-restaurant-command-actions">' +
+          homeServicesActionButton("prospect", "Mark home services prospect", false) +
+          homeServicesActionButton("contacted", "Mark contacted", false) +
+          homeServicesActionButton("discovery-needed", "Mark discovery needed", false) +
+          homeServicesActionButton("proposal-ready", "Mark proposal ready", true) +
+          homeServicesActionButton("estimate-sent", "Mark estimate sent", false) +
+          homeServicesActionButton("needs-follow-up", "Mark needs follow-up", false) +
+          homeServicesActionButton("no-response-lead", "Mark no-response lead", false) +
+          homeServicesActionButton("won", "Mark won / client", true) +
+          homeServicesActionButton("not-now", "Mark not now", false) +
+          homeServicesActionButton("not-a-fit", "Mark not a fit", false) +
+          "</div></div>" +
+          '<p class="owner-dash-restaurant-v1-note">' +
+          esc(hsGuardrail) +
           "</p>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
-          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden><p class="owner-dash-detail-manual-copy-label">Select and copy:</p><textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea></div>' +
+          '<span class="owner-dash-restaurant-feedback" data-home-services-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden><p class="owner-dash-detail-manual-copy-label">Select and copy:</p><textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea></div>' +
           "</section>"
         );
+      }
+
+      function homeServicesCommandBlock(lead) {
+        return homeServicesSalesCommandBlock(lead);
       }
 
       function aiPlugCopyToolsBlock(lead) {
@@ -25822,16 +26354,16 @@
         var nextAction = calcBusinessNextAction(lead, priority);
         var restaurant = isRestaurantRow(lead);
         var homeServices = !restaurant && isHomeServicesRow(lead);
+        var homeServicesOs = usesHomeServicesLeadCommandOs(lead);
         var verticalPack = verticalAiCommandPack(lead);
         var verticalOs = usesVerticalLeadCommandOs(lead);
         var navItems = businessCommandNavItemsForLead(lead);
         var sheetExtra = restaurant
           ? "owner-dash-command-sheet--restaurant-prospect"
+          : homeServicesOs
+          ? "owner-dash-command-sheet--home-services owner-dash-command-sheet--home-services-os owner-dash-command-sheet--business-lead"
           : verticalOs
-          ? "owner-dash-command-sheet--vertical-os owner-dash-command-sheet--business-lead" +
-            (homeServices ? " owner-dash-command-sheet--home-services" : "")
-          : homeServices
-          ? "owner-dash-command-sheet--home-services owner-dash-command-sheet--business-lead"
+          ? "owner-dash-command-sheet--vertical-os owner-dash-command-sheet--business-lead"
           : "owner-dash-command-sheet--business-lead";
         var verticalSections = verticalOs
           ? commandSection("snapshot", "full", verticalLeadSnapshotBlock(lead)) +
@@ -25884,21 +26416,21 @@
           commandSection("snapshot", "quick-only", businessCommandSnapshotBlock(lead, priority, nextAction)) +
           commandSection("copy-tools", "quick-only", businessCommandQuickCopyBlock(lead)) +
           verticalSections +
-          (verticalOs
+          (verticalOs || homeServicesOs
             ? ""
-            : (homeServices ? commandSection("home-services", "", homeServicesCommandBlock(lead)) : "") +
-              (restaurant ? "" : commandSection("advantage", "full", aiAdvantageLeadSummaryBlock(lead) + aiAdvantageGrowthReviewBlock(lead))) +
+            : (restaurant ? "" : commandSection("advantage", "full", aiAdvantageLeadSummaryBlock(lead) + aiAdvantageGrowthReviewBlock(lead))) +
               (restaurant ? "" : commandSection("diagnosis", "full", aiPlugDiagnosisBlock(lead) + aiPlugFitPriorityBlock(lead) + aiPlugNicheBlock(lead))) +
               (restaurant ? "" : commandSection("offers", "full", aiPlugOfferEngineBlock(lead) + aiAdvantagePricingPanelBlock(lead))) +
               (restaurant ? "" : commandSection("copy-tools", "full", aiPlugCopyToolsBlock(lead))) +
               (restaurant ? "" : commandSection("discovery", "full", aiAdvantageDiscoveryScriptBlock(lead) + aiPlugDiscoveryBlock(lead)))) +
-          commandSection("opportunity", "full", verticalOs ? "" : opportunityBuilderBlock(lead)) +
+          commandSection("opportunity", "full", verticalOs || homeServicesOs ? "" : opportunityBuilderBlock(lead)) +
           (restaurant ? restaurantSalesCommandBlock(lead) : "") +
-          (verticalOs || restaurant
+          (homeServicesOs ? homeServicesSalesCommandBlock(lead) : "") +
+          (verticalOs || restaurant || homeServicesOs
             ? ""
             : commandSection("deal", "full", aiAdvantageFirstSystemBlock(lead) + aiPlugPitchScriptBlock(lead) + aiPlugSalesCommandBlock(lead) + aiPlugObjectionHandlerBlock(lead))) +
-          (verticalOs ? "" : commandSection("deal", "full", dealBuilderBlock(lead) + dealStageTrackerBlock(lead))) +
-          (verticalOs
+          (verticalOs || homeServicesOs ? "" : commandSection("deal", "full", dealBuilderBlock(lead) + dealStageTrackerBlock(lead))) +
+          (verticalOs || homeServicesOs
             ? ""
             : commandSection(
                 "proposal",
@@ -25909,7 +26441,7 @@
                   pricingBuilderBlock(lead) +
                   quoteInvoicePrepBlock(lead)
               )) +
-          (verticalOs
+          (verticalOs || homeServicesOs
             ? ""
             : commandSection(
                 "follow-up",
@@ -25924,7 +26456,7 @@
                       "Copy follow-up email"
                     )) + followUpCommandCenterBlock(lead)
               )) +
-          (verticalOs
+          (verticalOs || homeServicesOs
             ? ""
             : commandSection(
                 "close",
@@ -25939,7 +26471,7 @@
                       "Copy next-step close"
                     )) + closeOnboardingCommandBlock(lead)
               )) +
-          (verticalOs
+          (verticalOs || homeServicesOs
             ? ""
             : commandSection(
                 "delivery",
@@ -25958,7 +26490,7 @@
                   projectDeliveryCommandBlock(lead) +
                   (restaurant ? "" : aiPlugQaRecapBlock(lead))
               )) +
-          (verticalOs
+          (verticalOs || homeServicesOs
             ? ""
             : commandSection(
                 "support",
@@ -25974,16 +26506,16 @@
                       "Copy retention command"
                     )) + clientSupportRetentionCommandBlock(lead)
               )) +
-          (restaurant || verticalOs ? "" : commandSection("rep", "full", aiPlugRepCommandBlock())) +
-          (restaurant || verticalOs ? "" : commandSection("guardrails", "full", aiPlugGuardrailsBlock())) +
-          (verticalOs ? "" : commandSection("copy-tools", "full", groupedToolsBlock("business_leads"))) +
+          (restaurant || verticalOs || homeServicesOs ? "" : commandSection("rep", "full", aiPlugRepCommandBlock())) +
+          (restaurant || verticalOs || homeServicesOs ? "" : commandSection("guardrails", "full", aiPlugGuardrailsBlock())) +
+          (verticalOs || homeServicesOs ? "" : commandSection("copy-tools", "full", groupedToolsBlock("business_leads"))) +
           commandSection("close", "", quickStatusBlock("business_leads", lead.status)) +
           commandSection("notes", "", workflowBlock("business_leads", lead)) +
           commandSection("support", "full", activityTimelineBlock("business_leads", lead)) +
           commandSection(
             "snapshot",
             "full",
-            (restaurant || verticalOs ? "" : aiAdvantageLeadSummaryBlock(lead)) + businessLeadDetailsBlock(lead) + businessAiTranscriptBlock(lead)
+            (restaurant || verticalOs || homeServicesOs ? "" : aiAdvantageLeadSummaryBlock(lead)) + businessLeadDetailsBlock(lead) + businessAiTranscriptBlock(lead)
           ) +
           "</div>"
         );
@@ -26157,6 +26689,13 @@
       function scrollToCommandSection(sheet, key) {
         var target = findCommandSection(sheet, key);
         if (!target) return;
+        if (isCompactCommandSheetNav()) {
+          var nav = sheet.querySelector(".owner-dash-command-nav");
+          var offset = nav ? Math.ceil(nav.getBoundingClientRect().height) + 14 : 14;
+          var top = window.pageYOffset + target.getBoundingClientRect().top - offset;
+          window.scrollTo({ behavior: "smooth", top: Math.max(0, top) });
+          return;
+        }
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
@@ -28264,6 +28803,194 @@
           })
           .catch(function () {
             setClientRetentionFeedback(section, "Network error. Try again.", true);
+          })
+          .finally(function () {
+            buttons.forEach(function (b) {
+              b.disabled = false;
+            });
+            sourceBtn.textContent =
+              sourceBtn.getAttribute("data-original-label") || sourceBtn.textContent.replace("Saving...", "Save");
+          });
+      }
+
+      function setHomeServicesFeedback(section, message, isError) {
+        var fb = section && section.querySelector("[data-home-services-feedback]");
+        if (!fb) return;
+        fb.hidden = false;
+        fb.textContent = message;
+        fb.className = "owner-dash-restaurant-feedback" + (isError ? " owner-dash-restaurant-feedback--error" : "");
+      }
+
+      function homeServicesStageActionConfig(action, lead) {
+        var currentKey = normStatus(lead && lead.status);
+        var configs = {
+          prospect: {
+            note: "Home services: prospect.",
+            activity: "Home services — Prospect marked",
+            label: "Home services prospect",
+            tone: "info",
+          },
+          contacted: {
+            status: currentKey === "new" ? "Contacted" : null,
+            note: "Home services: contacted.",
+            activity: "Home services — Contacted",
+            label: "Contacted",
+            tone: "ok",
+            lastContacted: true,
+          },
+          "discovery-needed": {
+            status: currentKey === "won" || currentKey === "lost" ? null : "Needs follow-up",
+            note: "Home services: discovery needed.",
+            activity: "Home services — Discovery needed",
+            label: "Discovery needed",
+            tone: "pending",
+          },
+          "proposal-ready": {
+            status: currentKey === "won" || currentKey === "lost" ? null : "Qualified",
+            note: "Home services: proposal ready.",
+            activity: "Home services — Proposal ready",
+            label: "Proposal ready",
+            tone: "ok",
+          },
+          "estimate-sent": {
+            note: "Home services: estimate sent.",
+            activity: "Home services — Estimate sent",
+            label: "Estimate sent",
+            tone: "ok",
+          },
+          "needs-follow-up": {
+            status: "Needs follow-up",
+            note: "Home services: needs follow-up.",
+            activity: "Home services — Needs follow-up",
+            label: "Needs follow-up",
+            tone: "pending",
+          },
+          "no-response-lead": {
+            status: "Needs follow-up",
+            note: "Home services: no-response lead — follow-up due.",
+            activity: "Home services — No-response lead",
+            label: "No-response lead",
+            tone: "pending",
+          },
+          won: {
+            status: "Won",
+            note: "Home services: won / client.",
+            activity: "Home services — Won / client",
+            label: "Won / client",
+            tone: "ok",
+          },
+          "not-now": {
+            note: "Home services: not now.",
+            activity: "Home services — Not now",
+            label: "Not now",
+            tone: "pending",
+          },
+          "not-a-fit": {
+            status: "Not a fit",
+            note: "Home services: not a fit.",
+            activity: "Home services — Not a fit",
+            label: "Not a fit",
+            tone: "pending",
+          },
+          "research-complete": {
+            status: currentKey === "new" ? "Reviewed" : null,
+            note: "Home services research: complete.",
+            activity: "Home services research — Complete",
+            label: "Research complete",
+            tone: "ok",
+          },
+          "service-area-confirmed": {
+            note: "Home services: service area confirmed.",
+            activity: "Home services — Service area confirmed",
+            label: "Service area confirmed",
+            tone: "info",
+          },
+          "intake-path-reviewed": {
+            note: "Home services: intake path reviewed.",
+            activity: "Home services — Intake path reviewed",
+            label: "Intake path reviewed",
+            tone: "info",
+          },
+          "materials-requested": {
+            note: "Home services: materials requested.",
+            activity: "Home services — Materials requested",
+            label: "Materials requested",
+            tone: "pending",
+          },
+          "materials-received": {
+            note: "Home services: materials received.",
+            activity: "Home services — Materials received",
+            label: "Materials received",
+            tone: "ok",
+          },
+          "build-ready": {
+            note: "Home services: build ready.",
+            activity: "Home services — Build ready",
+            label: "Build ready",
+            tone: "ok",
+          },
+          launched: {
+            status: currentKey === "lost" || currentKey === "not a fit" ? null : "Won",
+            note: "Home services: customer path launched.",
+            activity: "Home services — Launched",
+            label: "Launched",
+            tone: "ok",
+          },
+        };
+        return configs[action] || null;
+      }
+
+      function handleHomeServicesStageAction(sheet, sourceBtn) {
+        if (!state.detailOpen || state.detailOpen.table !== "business_leads" || !sheet || !sourceBtn) return;
+        var table = state.detailOpen.table;
+        var id = state.detailOpen.id;
+        var hit = findRecord(table, id);
+        if (!hit || !isHomeServicesRow(hit.row)) return;
+        var action = sourceBtn.getAttribute("data-home-services-action");
+        var config = homeServicesStageActionConfig(action, hit.row);
+        if (!config) return;
+        var section =
+          sourceBtn.closest(".owner-dash-detail-section--home-services-command") ||
+          sheet.querySelector(".owner-dash-detail-section--home-services-command");
+        var workflowEl = sheet.querySelector(".owner-dash-workflow");
+        var workflowValues = workflowEl ? readWorkflowValues(workflowEl) : {};
+        var previousNotes = String(hit.row.owner_notes || "");
+        var notesBase = workflowValues.owner_notes != null ? workflowValues.owner_notes : hit.row.owner_notes;
+        var nextNotes = appendRestaurantNote(notesBase, config.note);
+        var payload = { owner_notes: nextNotes };
+        if (config.status) payload.status = config.status;
+        if (config.lastContacted) payload.last_contacted_at = new Date().toISOString();
+        var buttons = section ? section.querySelectorAll('[data-action="mark-home-services-stage"]') : [];
+        buttons.forEach(function (b) {
+          b.disabled = true;
+        });
+        sourceBtn.setAttribute("data-original-label", sourceBtn.textContent);
+        sourceBtn.textContent = "Saving...";
+        setHomeServicesFeedback(section, "Saving home services marker...", false);
+
+        postUpdate(table, id, payload)
+          .then(function (result) {
+            if (!result.ok || !result.data || !result.data.record) {
+              setHomeServicesFeedback(
+                section,
+                (result.data && result.data.error) || "Could not update home services marker. Try saving manually.",
+                true
+              );
+              return;
+            }
+            applyRecordUpdate(table, id, result.data.record);
+            if (String(result.data.record.owner_notes || "") !== previousNotes) {
+              addClientActivity(table, id, "Owner note updated", "ok");
+            }
+            addClientActivity(table, id, config.activity, config.tone, "");
+            renderAll();
+            var freshSection =
+              els.detailBody && els.detailBody.querySelector(".owner-dash-detail-section--home-services-command");
+            setHomeServicesFeedback(freshSection || section, config.label + " marked. Nothing was sent.", false);
+            refreshCounts();
+          })
+          .catch(function () {
+            setHomeServicesFeedback(section, "Network error. Try again.", true);
           })
           .finally(function () {
             buttons.forEach(function (b) {
@@ -33946,6 +34673,11 @@
             return;
           }
 
+          if (sheet && action === "mark-home-services-stage") {
+            handleHomeServicesStageAction(sheet, btn);
+            return;
+          }
+
           if (sheet && action === "save-restaurant-rep-status") {
             handleRestaurantRepStatusSave(sheet, btn);
             return;
@@ -34130,7 +34862,7 @@
 
       function initCommandMenuResponsive() {
         if (!window.matchMedia) return;
-        var mobileCommandMedia = window.matchMedia("(max-width: 1024px)");
+        var mobileCommandMedia = window.matchMedia("(max-width: 1279px)");
         var handleCommandMenuChange = function () {
           setDashboardMenuOpen(state.dashboardMenuOpen);
           document.querySelectorAll(".owner-dash-command-nav").forEach(function (nav) {
