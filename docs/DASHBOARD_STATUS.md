@@ -171,6 +171,50 @@ Live Supabase load, copy button content, Restaurant Sales Mode, Transportation R
 
 ---
 
+## 2026-05-28 — Pricing + Client-Language Reset
+
+PR **#129** was merged to `main`.
+
+| Field | Value |
+|-------|-------|
+| PR | #129 |
+| Branch | `cursor/dashboard-pricing-language-reset-a60b` |
+| Commit | `873e1a0` |
+| Merged commit | `8e21704` |
+
+**Purpose:** Reset dashboard pricing and proposal language to follow the new real-world service inventory and pricing foundation.
+
+### What changed
+
+1. Dashboard now uses **deliverable-first pricing** instead of vague AI package pricing.
+2. **Paid ads** are included as real service logic: Google Ads, Meta/Facebook/Instagram Ads, TikTok Ads, ad creative/testing, campaign tracking, monthly management, with ad spend separate.
+3. **Home Services** copy now uses owner language first: roofing leads, missed calls, quote requests, photo intake, estimate follow-up, Google Ads, owner lead tracker.
+4. **Restaurant visibility pricing** remains separate from AI Plug system build pricing.
+5. **Restaurant Sales Mode** was preserved.
+6. **Transportation request logic** was preserved.
+7. Pricing areas must show **internal guidance / confirm scope before quoting**.
+8. No invoices, payment links, deposits, public listings, auto-SMS, auto-email, or customer-facing automation were added.
+
+### Required source files (read before dashboard/pricing/manual/sales-copy work)
+
+- `/docs/THE_AI_PLUG_REAL_WORLD_SERVICE_RESET_V1.md`
+- `/docs/THE_AI_PLUG_SERVICE_INVENTORY_AND_PRICING_FOUNDATION_V1.md`
+
+### Rule
+
+All future dashboard/pricing/manual/sales-copy work must read the two reset files first. **Client language and real deliverables override old AI/package language.**
+
+### Remaining QA
+
+- Live Supabase dashboard test
+- Home Services lead copy-button test
+- Restaurant Sales Mode test
+- Transportation request test
+- Mobile pricing builder test
+- Copy-button paste test
+
+---
+
 ## AI Advantage First Dashboard Update
 
 A Cursor branch/PR was created for AI Advantage First v3 dashboard alignment.
@@ -430,4 +474,4 @@ Do not rebuild from scratch unless explicitly requested:
 
 Use this at the start of future dashboard work:
 
-“Read `/docs/WHERE_TO_GO_SA_PROJECT_INDEX.md`, `/docs/DASHBOARD_STATUS.md`, `/docs/TECH_STACK_STATUS.md`, `/docs/THE_AI_PLUG_MASTER_MANUAL_V3_COMPLETE_2026-05-27.md`, and `/docs/THE_AI_PLUG_LIVE_BUSINESS_SYSTEM_ALIGNMENT_2026-05-27.md` first. Continue from the latest completed state. Do not rebuild dashboard modules marked complete. Preserve restaurant tools, transportation requests, public/private boundaries, safe claims, and no-secret rules.”
+“Read `/docs/WHERE_TO_GO_SA_PROJECT_INDEX.md`, `/docs/DASHBOARD_STATUS.md`, `/docs/THE_AI_PLUG_REAL_WORLD_SERVICE_RESET_V1.md`, `/docs/THE_AI_PLUG_SERVICE_INVENTORY_AND_PRICING_FOUNDATION_V1.md`, `/docs/TECH_STACK_STATUS.md`, `/docs/THE_AI_PLUG_MASTER_MANUAL_V3_COMPLETE_2026-05-27.md`, and `/docs/THE_AI_PLUG_LIVE_BUSINESS_SYSTEM_ALIGNMENT_2026-05-27.md` first. Continue from the latest completed state. Client language and real deliverables override old AI/package language. Do not rebuild dashboard modules marked complete. Preserve restaurant tools, transportation requests, public/private boundaries, safe claims, and no-secret rules.”
