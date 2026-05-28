@@ -3988,6 +3988,10 @@
       .owner-dash-daily-brief,
       .owner-dash-export,
       .owner-dash-biz-command,
+      .owner-dash-ai-advantage-card,
+      .owner-dash-detail-section--ai-advantage-summary,
+      .owner-dash-detail-section--ai-growth-review,
+      .owner-dash-detail-section--ai-advantage-pricing,
       .owner-dash-restaurant-first50,
       .owner-dash-restaurant-create,
       .owner-dash-restaurant-command,
@@ -14594,30 +14598,103 @@
         ],
       };
 
+      /* v3 manual Chapter 23 ranges — used for AI Advantage pricing guidance only */
       var AI_ADVANTAGE_V3_PRICING_BY_SYSTEM = {
         "AI Growth Review": {
           offerPath: "AI Growth Review (diagnostic first)",
-          setupRange: "$500–$1,200",
-          monthlyRange: "Optional $150–$300/mo after launch",
-          packageKey: "Starter Website + Lead Path Fix",
+          setupRange: "$497–$1,500",
+          monthlyRange: "None by default",
+          targetNote: "Best starting target: $750–$1,000",
         },
         "AI Website + Conversion System": {
           offerPath: "AI Website + Conversion System",
-          setupRange: "$750–$2,500",
-          monthlyRange: "$150–$500/mo",
-          packageKey: "Starter Website + Lead Path Fix",
+          setupRange: "$2,500–$12,000+",
+          monthlyRange: "$250–$1,500+/mo",
+          targetNote: "Best starting target: $3,500–$7,500",
+        },
+        "AI Content + Social Media Engine": {
+          offerPath: "AI Content + Social Media Engine",
+          setupRange: "$1,500–$6,000+",
+          monthlyRange: "$750–$4,000+/mo",
+          targetNote: "Best starting target: $2,500 setup + $1,500/mo",
+        },
+        "SEO + AI Search Visibility": {
+          offerPath: "SEO + AI Search Visibility",
+          setupRange: "$1,500–$7,500+",
+          monthlyRange: "$750–$3,500+/mo",
+          targetNote: "Best starting target: $2,500 setup + $1,250/mo",
+        },
+        "Paid Campaign + Landing Page System": {
+          offerPath: "Paid Campaign + Landing Page System",
+          setupRange: "$1,500–$7,500+",
+          monthlyRange: "$750–$3,500+/mo management (ad spend separate)",
+          targetNote: "Best starting target: $2,500 setup + $1,000/mo management",
+        },
+        "AI Chat Operator / Customer Experience": {
+          offerPath: "AI Chat Operator / Customer Experience",
+          setupRange: "$2,500–$10,000+",
+          monthlyRange: "$500–$2,500+/mo",
+          targetNote: "Best starting target: $3,500–$6,500 setup + $750/mo",
+        },
+        "AI Phone / Voice Planning": {
+          offerPath: "AI Phone / Voice Planning",
+          setupRange: "$1,500–$7,500+ planning",
+          monthlyRange: "Confirm after planning scope",
+          targetNote: "Best starting target: $2,500 planning",
         },
         "Smart Intake + Automation": {
           offerPath: "Smart Intake + Automation",
-          setupRange: "$1,500–$3,500",
-          monthlyRange: "$300–$750/mo",
-          packageKey: "Lead Capture System",
+          setupRange: "$1,500–$7,500+",
+          monthlyRange: "$750–$3,500+/mo",
+          targetNote: "Best starting target: $2,500 setup + $1,250/mo",
+        },
+        "Internal AI Assistants + Workflow Support": {
+          offerPath: "Internal AI Assistants + Workflow Support",
+          setupRange: "$1,500–$8,000+",
+          monthlyRange: "$250–$2,000+/mo",
+          targetNote: "Best starting target: $2,500–$5,000 setup + $500/mo",
+        },
+        "QR Campaign / Menu Path": {
+          offerPath: "QR Campaign / Menu Path",
+          setupRange: "$1,500–$10,000+",
+          monthlyRange: "$500–$3,000+/mo",
+          targetNote: "Best starting target: $2,500–$6,500 setup + $750/mo",
+        },
+        "Visitor Visibility Review": {
+          offerPath: "Visitor Visibility Review",
+          setupRange: "$497–$1,500 review",
+          monthlyRange: "Partner/visibility fees vary by program",
+          targetNote: "Review fit before quoting visibility placement",
+        },
+        "Provider Handoff Workflow": {
+          offerPath: "Provider Handoff Workflow",
+          setupRange: "$1,500–$7,500+",
+          monthlyRange: "$750–$3,500+/mo",
+          targetNote: "Scope depends on routing, alerts, and provider rules",
+        },
+        "Consultation Intake + Qualification": {
+          offerPath: "Consultation Intake + Qualification",
+          setupRange: "$1,500–$7,500+",
+          monthlyRange: "$750–$3,500+/mo",
+          targetNote: "Higher end when compliance/approval workflows are heavy",
+        },
+        "Product Answer / Customer Experience": {
+          offerPath: "Product Answer / Customer Experience",
+          setupRange: "$2,500–$10,000+",
+          monthlyRange: "$500–$2,500+/mo",
+          targetNote: "Best starting target: $3,500–$6,500 setup + $750/mo",
         },
         "Full AI Growth System": {
           offerPath: "Full AI Growth System (phased)",
-          setupRange: "$7,500–$15,000+",
-          monthlyRange: "$1,500–$3,500+/mo",
-          packageKey: "Full AI Growth System",
+          setupRange: "$7,500–$35,000+",
+          monthlyRange: "$1,500–$7,500+/mo",
+          targetNote: "Best starting target: $10,000–$18,000 setup + $2,500/mo",
+        },
+        "Other / Custom": {
+          offerPath: "Custom scope after AI Growth Review",
+          setupRange: "Confirm after discovery",
+          monthlyRange: "Confirm after discovery",
+          targetNote: "Do not quote full-system pricing before diagnosis",
         },
       };
 
@@ -14763,48 +14840,56 @@
       function aiAdvantageDeriveServiceLane(lead, firstSystem, businessType) {
         var saved = aiAdvantageMarker(lead, "service lane:");
         if (saved) return aiAdvantageMatchOption(AI_ADVANTAGE_V3_SERVICE_LANES, saved);
-        if (businessType === "Restaurants" && /visibility|partner|visitor/i.test(String(firstSystem).toLowerCase())) {
+        var sys = String(firstSystem || "").toLowerCase();
+        if (businessType === "Restaurants" && /visibility|partner|visitor|qr|menu path/i.test(sys)) {
           return "Restaurant Partner Program / Visitor Visibility";
         }
         if (firstSystem === "AI Growth Review") return "AI Growth Review";
-        if (/content|seo|paid|marketing/i.test(firstSystem)) return "AI Marketing Systems";
-        if (/chat|phone|product answer|customer experience/i.test(firstSystem)) return "AI Customer Experience";
-        if (/intake|automation|handoff|consultation/i.test(firstSystem)) return "AI Intake + Automation";
-        if (/assistant|workflow/i.test(firstSystem)) return "AI Business Assistants";
         if (firstSystem === "Full AI Growth System") return "Full AI Growth System";
-        return "AI Growth Management";
+        if (/website|conversion|content|seo|paid|campaign|marketing|search visibility|qr|menu path|visitor visibility/i.test(sys)) {
+          return "AI Marketing Systems";
+        }
+        if (/chat|phone|voice|product answer|customer experience/i.test(sys)) return "AI Customer Experience";
+        if (/intake|automation|handoff|consultation/i.test(sys)) return "AI Intake + Automation";
+        if (/assistant|workflow/i.test(sys)) return "AI Business Assistants";
+        return "Other / Custom";
       }
 
       function aiAdvantageClassify(lead) {
-        if (!lead) {
-          return {
-            businessType: "Not classified yet",
-            serviceLane: "Not classified yet",
-            firstSystem: "Not classified yet",
-            problemType: "Not classified yet",
-            aiAwareness: "Not classified yet",
-            guardrailRisk: "Needs review",
-            nextAction: "Needs review",
-          };
-        }
-        var diagnosis = aiPlugDiagnosis(lead);
-        var businessType = aiAdvantageDeriveBusinessType(lead);
-        var firstSystem = aiAdvantageMapOfferToFirstSystem(lead);
-        var serviceLane = aiAdvantageDeriveServiceLane(lead, firstSystem, businessType);
-        var problemType = aiAdvantageDeriveProblemType(lead, diagnosis);
-        var aiAwareness = aiAdvantageDeriveAiAwareness(lead);
-        var guardrailRisk = aiAdvantageDeriveGuardrailRisk(lead);
-        var nextAction = aiAdvantageMarker(lead, "next action:") || calcBusinessNextAction(lead, calcBusinessPriority(lead));
-        return {
-          businessType: businessType,
-          serviceLane: serviceLane,
-          firstSystem: firstSystem,
-          problemType: problemType,
-          aiAwareness: aiAwareness,
-          guardrailRisk: guardrailRisk,
-          nextAction: nextAction,
-          diagnosis: diagnosis,
+        var empty = {
+          businessType: "Not classified yet",
+          serviceLane: "Not classified yet",
+          firstSystem: "Not classified yet",
+          problemType: "Not classified yet",
+          aiAwareness: "Not classified yet",
+          guardrailRisk: "Needs review",
+          nextAction: "Needs review",
+          diagnosis: { leak: "intake leak", diagnosis: "Needs review", firstQuestion: "Where do requests break down today?" },
         };
+        if (!lead) return empty;
+        try {
+          var diagnosis = aiPlugDiagnosis(lead) || empty.diagnosis;
+          var businessType = aiAdvantageDeriveBusinessType(lead);
+          var firstSystem = aiAdvantageMapOfferToFirstSystem(lead);
+          var serviceLane = aiAdvantageDeriveServiceLane(lead, firstSystem, businessType);
+          var problemType = aiAdvantageDeriveProblemType(lead, diagnosis);
+          var aiAwareness = aiAdvantageDeriveAiAwareness(lead);
+          var guardrailRisk = aiAdvantageDeriveGuardrailRisk(lead);
+          var nextAction =
+            aiAdvantageMarker(lead, "next action:") || calcBusinessNextAction(lead, calcBusinessPriority(lead));
+          return {
+            businessType: businessType,
+            serviceLane: serviceLane,
+            firstSystem: firstSystem,
+            problemType: problemType,
+            aiAwareness: aiAwareness,
+            guardrailRisk: guardrailRisk,
+            nextAction: nextAction,
+            diagnosis: diagnosis,
+          };
+        } catch (classifyErr) {
+          return empty;
+        }
       }
 
       function aiAdvantageFirstSystemDetail(lead, classification) {
@@ -14831,23 +14916,26 @@
 
       function aiAdvantageGrowthReviewContent(lead) {
         var c = aiAdvantageClassify(lead);
-        var text = leadContextText(lead);
+        var text = lead ? leadContextText(lead) : "";
+        var diagnosisText = (c.diagnosis && c.diagnosis.diagnosis) || "";
+        var problemType = String(c.problemType || "");
         return {
           attentionNow: aiAdvantageDisplay(
-            businessServicesLeakFromRow(lead) || lead.customer_flow_issue,
+            (lead && (businessServicesLeakFromRow(lead) || lead.customer_flow_issue)) || "",
             "Needs review — confirm how customers find the business today (search, referrals, social, walk-in, ads, QR)."
           ),
           requestsBreak: aiAdvantageDisplay(
-            lead.current_problem || c.diagnosis.diagnosis,
+            (lead && lead.current_problem) || diagnosisText,
             "Needs review — where do calls, forms, DMs, or messages fail to become a clear next step?"
           ),
           repeatedQuestions: /repeat|faq|same question/i.test(text)
             ? "Likely repeated customer questions — document top questions and approval boundaries."
             : "Needs review — list the top 5 questions customers ask before staff can help.",
-          intakeFollowUp: c.problemType.indexOf("intake") !== -1 || c.problemType.indexOf("follow-up") !== -1
-            ? c.diagnosis.diagnosis
+          intakeFollowUp:
+            problemType.indexOf("intake") !== -1 || problemType.indexOf("follow-up") !== -1
+            ? diagnosisText || "Needs review — confirm intake fields, routing, and follow-up timing."
             : "Needs review — confirm intake fields, routing, and follow-up timing.",
-          internalAssistant: c.problemType.indexOf("assistant") !== -1 || c.problemType.indexOf("busywork") !== -1
+          internalAssistant: problemType.indexOf("assistant") !== -1 || problemType.indexOf("busywork") !== -1
             ? "Possible internal assistant opportunity — start with summaries, routing, or draft follow-up for approval."
             : "Not primary yet unless staff time on repeat tasks is confirmed.",
           recommendedSystem: c.firstSystem,
@@ -14880,12 +14968,13 @@
       function aiAdvantagePricingGuidance(lead) {
         var c = aiAdvantageClassify(lead);
         var preset = AI_ADVANTAGE_V3_PRICING_BY_SYSTEM[c.firstSystem] || AI_ADVANTAGE_V3_PRICING_BY_SYSTEM["AI Growth Review"];
-        var logic = pricingLogicForPackage(preset.packageKey);
+        var ladder = lead ? aiPlugRecommendLadderOffer(lead) : null;
         return {
-          offerPath: preset.offerPath,
-          setupRange: (logic && logic.range) || preset.setupRange,
-          monthlyRange: (logic && logic.monthly) || preset.monthlyRange,
-          complexity: aiPlugRecommendLadderOffer(lead).complexity || "Confirm after discovery",
+          offerPath: preset.offerPath || c.firstSystem,
+          setupRange: preset.setupRange || "Confirm after discovery",
+          monthlyRange: preset.monthlyRange || "Confirm after discovery",
+          targetNote: preset.targetNote || "",
+          complexity: (ladder && ladder.complexity) || "Confirm after discovery",
           passThrough: "Ad spend, third-party tools, photography, and licensing are pass-through unless included in writing.",
           exclusions: "No guaranteed leads, traffic, revenue, bookings, rankings, reviews, or automatic customer messaging.",
           noGuarantee: "Pricing guidance only — not a final invoice. Confirm scope, assets, approvals, and timeline before quoting.",
@@ -14906,14 +14995,20 @@
         questions.forEach(function (q) {
           lines.push("- " + q);
         });
-        lines.push("", "First diagnosis question: " + c.diagnosis.firstQuestion, "", aiPlugSafeCopyFooter());
+        lines.push(
+          "",
+          "First diagnosis question: " +
+            ((c.diagnosis && c.diagnosis.firstQuestion) || "Where do customer requests or questions break down today?"),
+          "",
+          aiPlugSafeCopyFooter()
+        );
         return lines.join("\n");
       }
 
       function buildAiAdvantageProposalSummary(lead) {
         var c = aiAdvantageClassify(lead);
         var detail = aiAdvantageFirstSystemDetail(lead, c);
-        var problem = lead.current_problem || c.diagnosis.diagnosis || c.problemType;
+        var problem = (lead && lead.current_problem) || (c.diagnosis && c.diagnosis.diagnosis) || c.problemType;
         var guardrail =
           c.guardrailRisk === "High"
             ? "high guardrail review"
@@ -15033,6 +15128,7 @@
           "Recommended offer path: " + p.offerPath,
           "Setup range: " + p.setupRange,
           "Monthly range: " + p.monthlyRange,
+          (p.targetNote ? "Planning target: " + p.targetNote : ""),
           "Complexity notes: " + p.complexity,
           "Pass-through costs: " + p.passThrough,
           "Scope exclusions: " + p.exclusions,
@@ -20846,6 +20942,7 @@
       }
 
       function aiPlugBusinessTextForKind(kind, lead) {
+        if (String(kind || "").indexOf("ai-advantage-") === 0 && isRestaurantRow(lead)) return "";
         if (kind === "ai-plug-diagnosis") return buildAiPlugDiagnosisSummary(lead);
         if (kind === "ai-plug-offer-recommendation") return buildAiPlugOfferRecommendation(lead);
         if (kind === "ai-plug-discovery-questions") return buildAiPlugDiscoveryQuestionsText(lead);
@@ -24008,6 +24105,7 @@
           detailRow("Recommended offer path", p.offerPath, true) +
           detailRow("Setup range", p.setupRange) +
           detailRow("Monthly range", p.monthlyRange) +
+          (p.targetNote ? detailRow("Planning target", p.targetNote, true) : "") +
           detailRow("Complexity notes", p.complexity, true) +
           detailRow("Pass-through costs", p.passThrough, true) +
           detailRow("Scope exclusions", p.exclusions, true) +
@@ -28522,7 +28620,11 @@
 
       function copyRestaurantRepDailyCallList() {
         if (!els.restaurantRepDailyQueue) return;
-        var text = buildRestaurantRepDailyCallList();
+        var text = String(buildRestaurantRepDailyCallList() || "").trim();
+        if (!text) {
+          setCopyFeedback(els.restaurantRepDailyQueue, "Nothing to copy.", true);
+          return;
+        }
         hideManualCopy(els.restaurantRepDailyQueue);
         function onSuccess() {
           setCopyFeedback(els.restaurantRepDailyQueue, "Copied.");
@@ -29109,7 +29211,11 @@
 
       function copyTodayActionList() {
         if (!els.todayActions) return;
-        var text = buildTodayActionCopyText();
+        var text = String(buildTodayActionCopyText() || "").trim();
+        if (!text) {
+          setCopyFeedback(els.todayActions, "Nothing to copy.", true);
+          return;
+        }
         hideManualCopy(els.todayActions);
         function onSuccess() {
           setCopyFeedback(els.todayActions, "Copied.");
@@ -29376,7 +29482,11 @@
       }
 
       function copyVisibleListSummary() {
-        var text = buildVisibleListSummaryCopy();
+        var text = String(buildVisibleListSummaryCopy() || "").trim();
+        if (!text) {
+          setVisibleCopyFeedback("Nothing to copy.", true);
+          return;
+        }
         function onSuccess() {
           setVisibleCopyFeedback("Copied.");
         }
@@ -31609,6 +31719,10 @@
             ? restaurantProposalPackageScopeText(row, values)
             : restaurantProposalPackageEmailText(row, values);
         text = String(text || "").trim();
+        if (!text) {
+          setCopyFeedback(section, "Nothing to copy.", true);
+          return;
+        }
         hideManualCopy(section);
         function onSuccess() {
           setCopyFeedback(section, "Copied.");
@@ -31728,7 +31842,11 @@
         var row = restaurantLeadRowFromButton(btn);
         if (!section || !row) return;
         updateRestaurantProposalPreview(section);
-        var text = restaurantProposalCopyText(row, readRestaurantProposalValues(section)).trim();
+        var text = String(restaurantProposalCopyText(row, readRestaurantProposalValues(section)) || "").trim();
+        if (!text) {
+          setCopyFeedback(section, "Nothing to copy.", true);
+          return;
+        }
         hideManualCopy(section);
         function onSuccess() {
           setCopyFeedback(section, "Copied.");
