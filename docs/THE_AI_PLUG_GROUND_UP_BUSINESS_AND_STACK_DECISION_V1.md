@@ -38,7 +38,7 @@ Read this file **before** changing public business pages, launch offer language,
   - `THE_AI_PLUG_REAL_WORLD_SERVICE_RESET_V1.md`
   - `THE_AI_PLUG_SERVICE_INVENTORY_AND_PRICING_FOUNDATION_V1.md`
   - `THE_AI_PLUG_PRICING_LOCK_V1.md`
-- The **14 internal services** stay internal. Public pages lead with **three launch offers**, not the full service list.
+- The **14 internal services** stay internal. Public pages lead with the **launch-ready offer architecture** (Lead Rescue, Front Desk, Job Board, House Account, The Last Call), not the full service list.
 
 ### What this file does not authorize changing
 
@@ -189,11 +189,10 @@ Three distinct revenue lanes. Do not merge pricing or promises across lanes on p
 
 ### Lane 2 — The AI Plug systems
 
-**Launch offers (public):** Lead Rescue, The Front Desk, The Job Board (see below).
+**Launch-ready offer architecture (public):** Lead Rescue, The Front Desk, The Job Board, House Account, The Last Call (see below).
 
-**Later / custom:**
+**Also available as scoped builds (not the public headline ladder):**
 
-- House Account
 - AI / business system upgrades
 - Website + intake + follow-up
 - Ads + landing page + tracking
@@ -218,11 +217,27 @@ Three distinct revenue lanes. Do not merge pricing or promises across lanes on p
 
 ## Launch offer direction
 
+### Before the business launches publicly
+
+All offers should be **fully documented** before launch. The business is **not launching** until the model, pages, pricing, stack, and sales materials are stable.
+
+None of the offers below are paused, hidden, or waiting on proof to exist as offers. They are all part of the **launch-ready offer architecture**. The difference is **sales priority and fit**, not whether an offer is prepared.
+
+### Offer roles (sales priority)
+
+| Offer | Role |
+|-------|------|
+| **Lead Rescue** | Primary **entry** offer |
+| **The Front Desk** | Primary **recurring** offer |
+| **The Job Board** | **Ads + intake** offer (best fit when intake is already working) |
+| **House Account** | Premium **selective account** offer |
+| **The Last Call** | **Hospitality / nightlife** offer |
+
 ### Public rule
 
 - Business pages **must not** lead with the **14-service internal list**.
 - The 14 services stay in internal inventory / dashboard / manuals.
-- Public pages lead with **three launch offers** (+ hold / later offers clearly marked).
+- Public pages lead with **Lead Rescue first**, then the rest of the offer architecture by fit — not the full internal service menu.
 
 ### Lead Rescue
 
@@ -264,7 +279,7 @@ Three distinct revenue lanes. Do not merge pricing or promises across lanes on p
 
 **Price:** **$2,000** setup + **$1,100/mo** + **ad spend** (client-funded).
 
-**Rule:** **Only after intake works** (typically after Lead Rescue or Front Desk foundation).
+**Best fit:** After intake is working (typically following Lead Rescue or The Front Desk). This is a **fit and sequence** rule, not an offer that is unprepared or unavailable.
 
 **Includes:**
 
@@ -278,13 +293,15 @@ Three distinct revenue lanes. Do not merge pricing or promises across lanes on p
 
 **Price:** **$3,500** setup + **$2,200/mo+**
 
-**Rule:** **Hold** until proof and case studies exist.
+**Role:** Premium **selective account** offer — full-scope relationship for businesses that need ongoing systems, ads support, and hands-on management. Sold when scope, budget, and fit match; not the default first pitch.
 
 ### The Last Call
 
-**Status:** Hospitality-specific **later** offer.
+**Role:** **Hospitality / nightlife** offer in the launch-ready architecture.
 
 **For:** Restaurants, bars, clubs, nightlife, events.
+
+**Fit:** Second monetization lane and hospitality owners; pitch when visitor, event, and late-night inquiry problems are the lead story.
 
 ---
 
@@ -317,7 +334,7 @@ Includes:
 - QR / menu / event paths
 - Social / content support (when scoped)
 - Review / repeat guest systems
-- AI restaurant systems **later** (The AI Plug Lane 2)
+- AI restaurant systems via The AI Plug Lane 2 (including The Last Call when fit matches)
 
 **Two public paths (unchanged strategic split):**
 
@@ -407,7 +424,7 @@ Do **not** lead marketing or public pages with:
 - Broad AI marketing retainers
 - Guaranteed lead generation
 
-**House Account** and **The Last Call** stay off primary navigation until proof exists.
+These are **go-to-market emphasis** choices (what not to lead with), not offers that are unprepared or unavailable. House Account and The Last Call remain documented launch offers; public nav and first-touch copy should still reflect **sales priority** (Lead Rescue and Front Desk first).
 
 ---
 
@@ -465,7 +482,7 @@ Each business page should answer, in order:
 
 ### Relationship to prior “five lane” live site
 
-`THE_AI_PLUG_LIVE_BUSINESS_SYSTEM_ALIGNMENT_2026-05-27.md` documents the live five-lane AI Marketing / Customer Experience / Intake / Assistants / Growth Management model. **This decision file supersedes that model for public business-page rebuilds** in favor of **Lead Rescue / Front Desk / Job Board** as the public ladder. Internal dashboard may still reference broader service lanes until updated in a dedicated dashboard task.
+`THE_AI_PLUG_LIVE_BUSINESS_SYSTEM_ALIGNMENT_2026-05-27.md` documents the live five-lane AI Marketing / Customer Experience / Intake / Assistants / Growth Management model. **This decision file supersedes that model for public business-page rebuilds** in favor of the **launch-ready offer architecture** (Lead Rescue → Front Desk → Job Board, plus House Account and The Last Call by fit). Internal dashboard may still reference broader service lanes until updated in a dedicated dashboard task.
 
 ---
 
@@ -499,16 +516,16 @@ Each business page should answer, in order:
 
 ## Quick reference — launch pricing
 
-| Offer | Pricing | Status |
-|-------|---------|--------|
-| Lead Rescue | $1,000 one-time | **Launch** |
-| The Front Desk | $1,250 setup + $550/mo | **Launch** |
-| The Job Board | $2,000 setup + $1,100/mo + ad spend | **Launch** (after intake) |
-| House Account | $3,500 setup + $2,200/mo+ | **Hold** |
-| The Last Call | TBD | **Later** (hospitality) |
-| Starter Visibility | $399 / 90 days | **Lane 1** |
-| Featured Visitor Placement | $750 / 90 days | **Lane 1** |
-| Route Partner | $1,250 / 90 days | **Lane 1** |
+| Offer | Pricing | Sales priority / role |
+|-------|---------|------------------------|
+| Lead Rescue | $1,000 one-time | Primary **entry** offer |
+| The Front Desk | $1,250 setup + $550/mo | Primary **recurring** offer |
+| The Job Board | $2,000 setup + $1,100/mo + ad spend | **Ads + intake** (best fit when intake works) |
+| House Account | $3,500 setup + $2,200/mo+ | Premium **selective account** |
+| The Last Call | Documented in launch sales materials | **Hospitality / nightlife** |
+| Starter Visibility | $399 / 90 days | **Lane 1** visibility |
+| Featured Visitor Placement | $750 / 90 days | **Lane 1** visibility |
+| Route Partner | $1,250 / 90 days | **Lane 1** visibility |
 
 ---
 
@@ -517,9 +534,10 @@ Each business page should answer, in order:
 | Date | Change |
 |------|--------|
 | 2026-05-28 | v1 created — ground-up business model, three revenue lanes, launch offers, stack decision, first sales wedge |
+| 2026-05-28 | Clarified launch-ready offer architecture: all five core offers documented before public launch; sales priority vs fit, not paused/hidden offers |
 
 ---
 
 ## Continuation prompt (for new threads)
 
-> Read `/docs/WHERE_TO_GO_SA_PROJECT_INDEX.md`, `/docs/THE_AI_PLUG_GROUND_UP_BUSINESS_AND_STACK_DECISION_V1.md`, `/docs/WEBSITE_STATUS.md`, `/docs/DASHBOARD_STATUS.md`, and `/docs/TECH_STACK_STATUS.md` first. Public business pages lead with Lead Rescue / Front Desk / Job Board — not the 14-service list. Home Services is the first sales wedge. Where To Go SA stays visitor-first. Do not hard-lock GoHighLevel until the 7-day test passes. Do not edit dashboard, Netlify functions, Supabase schema, pricing lock files, or manuals unless explicitly tasked.
+> Read `/docs/WHERE_TO_GO_SA_PROJECT_INDEX.md`, `/docs/THE_AI_PLUG_GROUND_UP_BUSINESS_AND_STACK_DECISION_V1.md`, `/docs/WEBSITE_STATUS.md`, `/docs/DASHBOARD_STATUS.md`, and `/docs/TECH_STACK_STATUS.md` first. All five core offers (Lead Rescue, Front Desk, Job Board, House Account, The Last Call) are launch-ready once model, pages, pricing, stack, and sales materials are stable — lead with Lead Rescue and Front Desk by sales priority, not the 14-service list. Home Services is the first sales wedge. Where To Go SA stays visitor-first. Do not hard-lock GoHighLevel until the 7-day test passes. Do not edit dashboard, Netlify functions, Supabase schema, pricing lock files, or manuals unless explicitly tasked.
