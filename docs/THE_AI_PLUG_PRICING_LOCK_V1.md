@@ -1,28 +1,41 @@
 # The AI Plug Pricing Lock v1
 
+**Status: DRAFT — OWNER REVIEW REQUIRED**
+
+This is not final pricing yet. Do not use this file for quotes, proposals, manuals, dashboard pricing, public sales sheets, or client-facing pricing until Willie approves it.
+
+This file becomes the official pricing source only when the status is changed to:
+
+**PRICING LOCKED — APPROVED BY WILLIE**
+
+---
+
+## Summary
+
+Adds `/docs/THE_AI_PLUG_PRICING_LOCK_V1.md` — a draft owner-review pricing foundation for The AI Plug, based on real deliverables rather than vague AI package names.
+
 Last updated: 2026-05-28  
 Project: Where To Go SA / The AI Plug  
 Public visitor brand: Where To Go SA  
 Business systems brand: The AI Plug  
-Status: **Official internal pricing source of truth**
 
 ---
 
 ## Purpose
 
-This file is the **official internal pricing lock** for The AI Plug.
+This file is a **draft owner-review pricing foundation** for The AI Plug.
 
-It exists so pricing is based on **real deliverables**, not vague AI package names, agency framework language, or dashboard copy that was written before the full service inventory existed.
+It exists so pricing can be based on **real deliverables**, not vague AI package names, agency framework language, or dashboard copy that was written before the full service inventory was understood.
 
-**Authority order (read in this order for pricing work):**
+**Read order while this file is in draft:**
 
 1. `/docs/THE_AI_PLUG_REAL_WORLD_SERVICE_RESET_V1.md` — language and direction
-2. `/docs/THE_AI_PLUG_SERVICE_INVENTORY_AND_PRICING_FOUNDATION_V1.md` — inventory and foundation ranges
-3. **This file** — `/docs/THE_AI_PLUG_PRICING_LOCK_V1.md` — locked ranges, guardrails, and package rules
+2. `/docs/THE_AI_PLUG_SERVICE_INVENTORY_AND_PRICING_FOUNDATION_V1.md` — inventory and foundation ranges (active for quoting until this file is approved)
+3. **This file** — `/docs/THE_AI_PLUG_PRICING_LOCK_V1.md` — proposed ranges, guardrails, and package rules (**not for live quoting until approved**)
 
-If older files disagree with this lock on **price ranges or guardrails**, this file wins for internal quoting until explicitly revised.
+After status is **PRICING LOCKED — APPROVED BY WILLIE**, this file becomes the authoritative pricing source. Until then, use the foundation file for any approved internal guidance.
 
-This is **not** a public price sheet unless owner approves specific “starting at” language for a channel.
+This is **not** a public price sheet. It is **not** approved for client-facing use until Willie signs off.
 
 ---
 
@@ -47,7 +60,9 @@ Only after those answers: name the package, then explain where AI assists produc
 
 ## Dashboard / manual / sales rule
 
-After this file exists, the following **must read this file** and **must not invent pricing**:
+**While status is DRAFT — OWNER REVIEW REQUIRED:** do **not** wire this file into dashboard pricing, proposal builders, manuals, or public sales sheets. Continue using `/docs/THE_AI_PLUG_SERVICE_INVENTORY_AND_PRICING_FOUNDATION_V1.md` for any approved internal guidance.
+
+**After status is PRICING LOCKED — APPROVED BY WILLIE**, the following **must read this file** and **must not invent pricing**:
 
 - Dashboard pricing guidance and proposal builders
 - Training manuals and academy text
@@ -703,4 +718,4 @@ Allowed language:
 4. `/docs/WHERE_TO_GO_SA_PROJECT_INDEX.md`
 5. `/docs/DASHBOARD_STATUS.md`
 
-**Do not invent prices outside this lock.** Propose changes via doc revision with owner approval, then update dashboard/manuals in a separate task.
+**While in draft:** do not treat these ranges as approved for quotes. Propose edits via doc revision; Willie must change status to **PRICING LOCKED — APPROVED BY WILLIE** before dashboard/manuals/public pricing may adopt this file.
