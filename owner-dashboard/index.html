@@ -1148,8 +1148,9 @@
       margin: 0;
       color: rgba(255, 246, 230, 0.72);
       font-size: 0.82rem;
-      line-height: 1.45;
-      overflow-wrap: normal;
+      line-height: 1.5;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .page-owner-dashboard .owner-dash-client-proposal-snapshot {
@@ -1182,8 +1183,9 @@
       display: block;
       color: rgba(255, 246, 230, 0.92);
       font-size: 0.82rem;
-      line-height: 1.35;
-      overflow-wrap: normal;
+      line-height: 1.4;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .page-owner-dashboard .owner-dash-client-proposal-scope-grid {
@@ -1202,11 +1204,25 @@
       padding-left: 18px;
       color: rgba(255, 246, 230, 0.76);
       font-size: 0.8rem;
-      line-height: 1.45;
+      line-height: 1.5;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .page-owner-dashboard .owner-dash-client-proposal-card li + li {
       margin-top: 3px;
+    }
+
+    .page-owner-dashboard .owner-dash-proposal-preview-card,
+    .page-owner-dashboard .owner-dash-proposal-metrics .owner-dash-deal-metric {
+      min-width: 0;
+    }
+
+    .page-owner-dashboard .owner-dash-proposal-metrics .owner-dash-deal-metric strong,
+    .page-owner-dashboard .owner-dash-proposal-outcome-text {
+      overflow-wrap: break-word;
+      word-break: break-word;
+      line-height: 1.45;
     }
 
     .page-owner-dashboard .owner-dash-client-proposal-tone,
@@ -5846,7 +5862,7 @@
       var PROPOSAL_PACKAGE_MAP = {
         "Starter Fix": {
           recommendedPackage: "Starter Website + Lead Path Fix",
-          firstDeliverable: "Clearer landing page and request path",
+          firstDeliverable: "Landing page + quote request form",
           projectType: "Starter",
           outcome: "Give visitors a cleaner reason to take action and make the next step obvious.",
           scope: [
@@ -5867,12 +5883,12 @@
         },
         "Lead Capture System": {
           recommendedPackage: "Lead Capture System",
-          firstDeliverable: "Smart intake form + owner alert flow",
+          firstDeliverable: "Quote request form + owner alert flow",
           projectType: "Standard",
           outcome:
             "Stop good leads from getting lost by capturing the right details and routing them to the owner clearly.",
           scope: [
-            "Smart intake path",
+            "Smart intake form",
             "Better request questions",
             "Email owner alert",
             "Follow-up copy tools",
@@ -5891,7 +5907,7 @@
         },
         "Business Command System": {
           recommendedPackage: "Owner Dashboard / CRM-Lite",
-          firstDeliverable: "Owner lead tracker + intake routing",
+          firstDeliverable: "Owner dashboard / CRM-lite",
           projectType: "Premium",
           outcome:
             "Give the owner one place to see quote requests, calls, photos, follow-up status, and next actions.",
@@ -14002,7 +14018,7 @@
       function firstDeliverableForOffer(offer) {
         var map = {
           "Foundation System": "Mobile-first landing or site shell with offer, lead form, and owner-approved copy",
-          "Lead Capture System": "Smart intake path with owner alerts and follow-up visibility",
+          "Lead Capture System": "Smart intake form with owner alerts and follow-up visibility",
           "Operating System Layer": "Connected intake + call/chat plan + owner dashboard checkpoints",
           "Full Business Command Center": "Workflow map plus phased build plan for site, intake, routing, and dashboard",
           "AI Media Engine": "Content workflow map plus first campaign batch template",
@@ -15939,19 +15955,21 @@
       }
 
       function recommendProposalTypeForHomeServices(lead) {
-        var diag = homeServicesDiagnosis(lead);
-        var offer = String(diag.firstOffer || "").toLowerCase();
-        var leak = String(diag.leak || "").toLowerCase();
-        if (/owner visibility|dashboard|pipeline|command/.test(offer + " " + leak)) {
-          return "Business Command System";
-        }
-        if (/seo|local seo|visibility upgrade|growth|content|media/.test(offer)) {
-          return "Lead Capture System";
-        }
-        if (/website|landing|page cleanup|starter/.test(offer)) {
+        var text = aiPlugLeadSourceText(lead);
+        var deliverable = String(homeServicesRecommendedDeliverable(lead) || "").toLowerCase();
+        if (HOME_SERVICES_PAID_ADS_PATTERN.test(text) || /paid ads|google ads|landing page/.test(deliverable)) {
           return "Starter Fix";
         }
-        if (/missed|recovery|intake|photo|routing|follow-up|follow up|quote|scheduling|review/.test(offer + " " + leak)) {
+        if (/owner dashboard|crm/.test(deliverable)) {
+          return "Business Command System";
+        }
+        if (/local seo|monthly optimization/.test(deliverable)) {
+          return "Full AI Growth System";
+        }
+        if (/website|landing page \+ clear request/.test(deliverable)) {
+          return "Starter Fix";
+        }
+        if (/missed-call|quote request|photo intake|estimate follow-up|review request/.test(deliverable)) {
           return "Lead Capture System";
         }
         return "Lead Capture System";
@@ -15973,7 +15991,7 @@
         var type = selectedProposalType(lead);
         var base = proposalPackageForType(type);
         var sig = leadSignals(lead);
-        return {
+        var result = {
           type: type,
           recommendedPackage: base.recommendedPackage,
           packageName: base.recommendedPackage,
@@ -15987,6 +16005,33 @@
           nextStep: base.nextStep,
           mainPainPoint: mainPainPointForDeal(lead, sig),
         };
+        if (isHomeServicesRow(lead) && !isRestaurantRow(lead)) {
+          var hsDeliverable = homeServicesRecommendedDeliverable(lead);
+          var hsDiag = homeServicesDiagnosis(lead);
+          result.recommendedPackage = hsDeliverable;
+          result.packageName = hsDeliverable;
+          result.firstDeliverable = hsDeliverable;
+          result.bestFirstDeliverable = hsDeliverable;
+          result.outcome = homeServicesProposalOutcome(lead, hsDeliverable);
+          result.scope = homeServicesProposalScopeForDeliverable(hsDeliverable);
+          result.mainPainPoint = hsDiag.diagnosis || homeServicesIssueLabel(hsDiag.leak);
+          result.included = result.scope.slice();
+          result.leaveOut = uniqueLimitedBullets(
+            [
+              "Complex CRM migration",
+              "Fully autonomous AI decisions",
+              "Guaranteed jobs, revenue, rankings, reviews, or appointments",
+              "Replacing dispatchers or field staff",
+              "Final quotes or payment links from the dashboard",
+              "Ad spend bundled into management (ad spend stays separate)",
+            ],
+            6
+          );
+          result.nextStep =
+            hsDiag.nextAction ||
+            "Confirm scope before quoting — especially service area, photo intake, routing, and follow-up rules.";
+        }
+        return result;
       }
 
       function proposalTextForKind(kind, lead) {
@@ -16006,6 +16051,10 @@
 
       function buildSimpleProposalCopy(lead, proposal) {
         var business = lead.business_name || "your business";
+        var hs = isHomeServicesRow(lead) && !isRestaurantRow(lead);
+        if (hs) {
+          return buildHomeServicesClientProposalCopy(lead, selectedClientProposalTone(lead));
+        }
         return [
           "Simple proposal for " + business,
           "",
@@ -16039,6 +16088,9 @@
       }
 
       function buildProposalSmsCopy(lead, proposal) {
+        if (isHomeServicesRow(lead) && !isRestaurantRow(lead)) {
+          return buildHomeServicesClientProposalShortText(lead);
+        }
         var contact = lead.contact_name || "there";
         return (
           "Hi " +
@@ -16049,11 +16101,14 @@
           proposal.mainPainPoint +
           ". The first move would be " +
           proposal.firstDeliverable +
-          ", so your leads have a clearer path and you can see what needs attention. Want me to map the first version for you?"
+          ", so your leads have a clearer request flow and you can see what needs attention. Want me to map the first version for you?"
         );
       }
 
       function buildProposalEmailCopy(lead, proposal) {
+        if (isHomeServicesRow(lead) && !isRestaurantRow(lead)) {
+          return buildHomeServicesClientProposalEmail(lead);
+        }
         var business = lead.business_name || "your business";
         var contact = lead.contact_name || "there";
         return [
@@ -16071,7 +16126,7 @@
           "The best first deliverable would be:",
           proposal.firstDeliverable,
           "",
-          "The goal is to create a clearer customer path, better intake, stronger follow-up, and more owner visibility without overbuilding the system before the workflow is mapped.",
+          "The goal is to create a clearer request flow, better intake, stronger follow-up, and more owner visibility without overbuilding before the workflow is mapped.",
           "",
           "A good first scope would include:",
           bulletText(firstScopeBullets(proposal)),
@@ -16256,7 +16311,7 @@
             data.pain +
             ".",
           goal:
-            "The goal is not to overbuild. The goal is to create a clearer customer path, capture the right details, route the request properly, and give the owner better visibility before anything gets lost.",
+            "The goal is not to overbuild. The goal is to tighten the request flow, capture the right details, route the request properly, and give the owner better visibility before anything gets lost.",
           close:
             "This would be built around how your business actually works, starting with the first useful system instead of a giant rebuild.",
           shortAsk: "Want me to map that first version?",
@@ -16286,7 +16341,7 @@
               data.pain +
               ".",
             goal:
-              "The priority is a polished first system: a clearer customer path, better details at intake, cleaner routing, and stronger owner visibility before opportunities fall through the cracks.",
+              "The priority is a polished first build: a clearer request flow, better details at intake, cleaner routing, and stronger owner visibility before opportunities fall through the cracks.",
             close:
               "This keeps the first offer focused, professional, and built around the way your business actually operates.",
             shortAsk: "Would you like me to map the first polished version?",
@@ -16317,7 +16372,7 @@
               data.pain +
               ".",
             goal:
-              "The idea is to keep it useful and not overcomplicate it: make the customer path easier, ask for the right details, route the request clearly, and help the owner see what needs attention.",
+              "The idea is to keep it useful and not overcomplicate it: make the quote request process easier, ask for the right details, route the request clearly, and help the owner see what needs attention.",
             close:
               "This would start with the first useful system for your actual day-to-day workflow, then grow from there.",
             shortAsk: "Want me to map that first version with you?",
@@ -16346,7 +16401,7 @@
               data.pain +
               ".",
             goal:
-              "The job is to stop leakage in the lead flow: clarify the customer path, capture usable details, route requests correctly, and give the owner a cleaner view of what needs action.",
+              "The job is to stop leakage in the lead flow: clarify the request flow, capture usable details, route requests correctly, and give the owner a cleaner view of what needs action.",
             close:
               "This starts with the first system the business can actually run, then adds automation once the workflow is proven.",
             shortAsk: "Want me to map the first operating version?",
@@ -16450,7 +16505,7 @@
           "Rather than overbuilding, I would start with:",
           data.deliverable,
           "",
-          "The purpose is to create a clearer customer path, capture better request details, improve follow-up, and give the owner more visibility before leads get missed.",
+          "The purpose is to create a clearer request flow, capture better request details, improve follow-up, and give the owner more visibility before leads get missed.",
           "",
           "A strong first version would include:",
           bulletText(clientProposalScopeForCopy(data)),
@@ -16539,7 +16594,7 @@
           "",
           "The smart move is to price the first build around:",
           "- Mapping the current lead flow",
-          "- Building the first customer path",
+          "- Building the first request flow and intake form",
           "- Setting up the intake / alert / dashboard layer",
           "- Keeping owner approval built in",
           "- Leaving bigger automation for phase two",
@@ -16611,6 +16666,59 @@
       function clientProposalTextForKind(kind, lead) {
         if (!lead) return "";
         var tone = selectedClientProposalTone(lead);
+        if (isHomeServicesRow(lead) && !isRestaurantRow(lead)) {
+          if (kind === "client-proposal") return buildHomeServicesClientProposalCopy(lead, tone);
+          if (kind === "client-proposal-short-text") return buildHomeServicesClientProposalShortText(lead);
+          if (kind === "client-proposal-email") return buildHomeServicesClientProposalEmail(lead);
+          if (kind === "client-proposal-outline") return buildHomeServicesClientProposalCopy(lead, tone);
+          if (kind === "client-proposal-pricing-opener") {
+            var hsData = homeServicesClientProposalData(lead);
+            return [
+              "Before I quote " + hsData.business + ", I want to confirm the first scope around " + hsData.deliverable + ".",
+              "",
+              "Internal price guidance only — not a final quote. Confirm service area, photo intake, routing, and follow-up rules first.",
+              "Ad spend is always separate when paid ads are involved.",
+              "No guaranteed leads, jobs, traffic, rankings, reviews, revenue, bookings, or appointments.",
+              "Nothing sends without owner approval.",
+            ].join("\n");
+          }
+          if (kind === "client-proposal-scope-confirmation") {
+            var scopeData = homeServicesClientProposalData(lead);
+            return [
+              "Scope confirmation for " + scopeData.business,
+              "",
+              "Main issue: " + scopeData.mainIssue,
+              "Recommended first deliverable: " + scopeData.deliverable,
+              "",
+              "What we would build first:",
+              bulletText(scopeData.scope),
+              "",
+              "What we would not overbuild first:",
+              bulletText(scopeData.notOverbuild),
+            ].join("\n");
+          }
+          if (kind === "client-proposal-next-step-close") {
+            var closeData = homeServicesClientProposalData(lead);
+            return [
+              "Next step for " + closeData.business + ":",
+              "",
+              closeData.nextStep,
+              "",
+              "On a short call we would confirm how quote requests, calls, and photos arrive today, who follows up, and what stays owner-approved.",
+            ].join("\n");
+          }
+          if (kind === "client-proposal-assets") {
+            return [
+              "Proposal assets for " + (lead.business_name || "Business"),
+              "",
+              buildHomeServicesClientProposalCopy(lead, tone),
+              "",
+              buildHomeServicesClientProposalShortText(lead),
+              "",
+              buildHomeServicesClientProposalEmail(lead),
+            ].join("\n");
+          }
+        }
         if (kind === "client-proposal") return buildClientProposalCopy(lead, tone);
         if (kind === "client-proposal-short-text") return buildClientProposalShortText(lead, tone);
         if (kind === "client-proposal-email") return buildClientProposalEmail(lead, tone);
@@ -19324,7 +19432,146 @@
         );
       }
 
+      function buildHomeServicesClientProposalCopy(lead, tone) {
+        var data = homeServicesClientProposalData(lead);
+        return [
+          "Recommended first build for " + data.business,
+          "",
+          data.outcome,
+          "",
+          "Business: " + data.business,
+          "Primary contact: " + data.contact,
+          "Main issue: " + data.mainIssue,
+          "Recommended first deliverable: " + data.deliverable,
+          "",
+          "What we would build first:",
+          bulletText(data.scope),
+          "",
+          "What this helps fix:",
+          bulletText(data.fixes),
+          "",
+          "What stays owner-approved:",
+          bulletText(data.ownerApproved),
+          "",
+          "What we would not overbuild first:",
+          bulletText(data.notOverbuild),
+          "",
+          "Next step: " + data.nextStep,
+          "",
+          "Copy only. Confirm scope before quoting. Ad spend is separate when ads are involved. No guaranteed leads, jobs, traffic, rankings, reviews, revenue, bookings, or appointments. Nothing sends without owner approval.",
+        ].join("\n");
+      }
+
+      function buildHomeServicesClientProposalShortText(lead) {
+        var data = homeServicesClientProposalData(lead);
+        return (
+          "Hi " +
+          data.contact +
+          ", based on what you shared about " +
+          data.business +
+          ", I would start with " +
+          data.deliverable +
+          " focused on " +
+          data.mainIssue +
+          ". The goal is better details at intake, faster response, and follow-up that does not get lost. Want me to map the first version?"
+        );
+      }
+
+      function buildHomeServicesClientProposalEmail(lead) {
+        var data = homeServicesClientProposalData(lead);
+        return [
+          "Subject: Recommended first build for " + data.business,
+          "",
+          "Hi " + data.contact + ",",
+          "",
+          data.outcome,
+          "",
+          "Recommended first deliverable: " + data.deliverable,
+          "",
+          "What we would build first:",
+          bulletText(data.scope),
+          "",
+          "What this helps fix:",
+          bulletText(data.fixes),
+          "",
+          "Everything stays owner-approved before anything goes live. We would not overbuild phase one with complex CRM migration, autonomous AI, or guaranteed outcome claims.",
+          "",
+          "Next step: " + data.nextStep,
+          "",
+          "Willie",
+          "The AI Plug",
+        ].join("\n");
+      }
+
+      function homeServicesClientProposalSheetBlock(lead) {
+        var data = homeServicesClientProposalData(lead);
+        var tone = selectedClientProposalTone(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--client-proposal" data-client-proposal-sheet>' +
+          '<div class="owner-dash-client-proposal-head">' +
+          '<div><h3 class="owner-dash-detail-section-title">Client Proposal Sheet</h3>' +
+          '<p class="owner-dash-detail-section-note">Home services proposal preview — deliverable-first, owner language. Copy only — nothing is sent automatically.</p></div>' +
+          '<span class="owner-dash-client-proposal-badge">Copy only</span>' +
+          "</div>" +
+          '<div class="owner-dash-client-proposal-hero">' +
+          "<h4>Recommended first build for " +
+          esc(data.business) +
+          "</h4>" +
+          "<p>" +
+          esc(data.outcome) +
+          "</p></div>" +
+          '<div class="owner-dash-client-proposal-snapshot" aria-label="Proposal Snapshot Card">' +
+          clientProposalSnapshotItem("Business", data.business, false) +
+          clientProposalSnapshotItem("Primary contact", data.contact, false) +
+          clientProposalSnapshotItem("Main issue", data.mainIssue, true) +
+          clientProposalSnapshotItem("Recommended first deliverable", data.deliverable, false) +
+          clientProposalSnapshotItem("Best first build", data.deliverable, false) +
+          clientProposalSnapshotItem("Next step", data.nextStep, true) +
+          "</div>" +
+          '<div class="owner-dash-client-proposal-scope-grid" aria-label="Client-Friendly Scope">' +
+          clientProposalScopeCard("What we would build first", data.scope) +
+          clientProposalScopeCard("What this helps fix", data.fixes) +
+          clientProposalScopeCard("What stays owner-approved", data.ownerApproved) +
+          clientProposalScopeCard("What we would not overbuild first", data.notOverbuild) +
+          "</div>" +
+          '<div class="owner-dash-client-proposal-tone">' +
+          '<p class="owner-dash-client-proposal-card-label">Proposal Tone</p>' +
+          '<div class="owner-dash-client-proposal-tone-actions" aria-label="Proposal Tone">' +
+          CLIENT_PROPOSAL_TONES.map(function (toneOption) {
+            return clientProposalToneButton(toneOption, tone);
+          }).join("") +
+          "</div></div>" +
+          '<div class="owner-dash-client-proposal-copy">' +
+          '<p class="owner-dash-client-proposal-card-label">Copy proposal assets</p>' +
+          '<div class="owner-dash-client-proposal-copy-actions">' +
+          clientProposalCopyButton("client-proposal", "Copy client proposal", true) +
+          clientProposalCopyButton("client-proposal-short-text", "Copy short text proposal", false) +
+          clientProposalCopyButton("client-proposal-email", "Copy polished email proposal", false) +
+          clientProposalCopyButton("client-proposal-outline", "Copy one-page proposal outline", false) +
+          clientProposalCopyButton("client-proposal-pricing-opener", "Copy pricing conversation opener", false) +
+          clientProposalCopyButton("client-proposal-scope-confirmation", "Copy scope confirmation", false) +
+          clientProposalCopyButton("client-proposal-next-step-close", "Copy next-step close", false) +
+          "</div></div>" +
+          '<div class="owner-dash-client-proposal-actions">' +
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="mark-client-proposal-drafted">Mark proposal drafted</button>' +
+          clientProposalCopyButton("client-proposal-assets", "Copy all proposal assets", false) +
+          "</div>" +
+          '<p class="owner-dash-client-proposal-safe-note">Selected tone: ' +
+          esc(clientProposalToneLabel(tone)) +
+          ". Internal pricing is guidance only — confirm scope before quoting. Ad spend separate when ads apply. Copy only.</p>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<span class="owner-dash-client-proposal-feedback" data-client-proposal-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
+          '<p class="owner-dash-detail-manual-copy-label">Select and copy:</p>' +
+          '<textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="6" readonly></textarea>' +
+          "</div></section>"
+        );
+      }
+
       function clientProposalSheetBlock(lead) {
+        if (isHomeServicesRow(lead) && !isRestaurantRow(lead)) {
+          return homeServicesClientProposalSheetBlock(lead);
+        }
         var data = clientProposalData(lead);
         var tone = selectedClientProposalTone(lead);
         return (
@@ -19340,14 +19587,13 @@
           "</h4>" +
           "<p>A practical first build focused on " +
           esc(data.pain) +
-          " — designed to improve the customer path, capture better details, and give the owner clearer next steps.</p></div>" +
+          " — designed to improve the lead flow, capture better details, and give the owner clearer next steps.</p></div>" +
           '<div class="owner-dash-client-proposal-snapshot" aria-label="Proposal Snapshot Card">' +
           clientProposalSnapshotItem("Business", data.business, false) +
           clientProposalSnapshotItem("Primary contact", data.contact, false) +
-          clientProposalSnapshotItem("Main pain point", data.pain, true) +
-          clientProposalSnapshotItem("Recommended system", data.packageName, false) +
-          clientProposalSnapshotItem("Best first deliverable", data.deliverable, false) +
-          clientProposalSnapshotItem("Project type", data.projectType, false) +
+          clientProposalSnapshotItem("Main issue", data.pain, true) +
+          clientProposalSnapshotItem("Recommended first deliverable", data.deliverable, false) +
+          clientProposalSnapshotItem("Best first build", data.deliverable, false) +
           clientProposalSnapshotItem("Next step", data.nextStep, true) +
           "</div>" +
           '<div class="owner-dash-client-proposal-scope-grid" aria-label="Client-Friendly Scope">' +
@@ -19547,11 +19793,16 @@
 
       function proposalEstimateBlock(lead) {
         var proposal = calcProposalEstimate(lead);
+        var hsProposal = isHomeServicesRow(lead) && !isRestaurantRow(lead);
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--proposal" data-proposal-estimate-generator>' +
           '<div class="owner-dash-proposal-head">' +
           '<div><h3 class="owner-dash-detail-section-title">Proposal / Estimate Generator</h3>' +
-          '<p class="owner-dash-detail-section-note">Build a simple first offer from this lead. Copy only — nothing is sent automatically.</p></div>' +
+          '<p class="owner-dash-detail-section-note">' +
+          (hsProposal
+            ? "Deliverable-first preview for this home services lead. Package names below are internal grouping only. Copy only — nothing is sent automatically."
+            : "Build a simple first offer from this lead. Copy only — nothing is sent automatically.") +
+          "</p></div>" +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary owner-dash-proposal-ready-btn" data-action="move-proposal-ready">Move to Proposal Ready</button>' +
           "</div>" +
           '<div class="owner-dash-proposal-types" aria-label="Proposal Type">' +
@@ -19561,15 +19812,20 @@
           "</div>" +
           '<div class="owner-dash-proposal-preview-card">' +
           '<div class="owner-dash-proposal-metrics">' +
-          '<div class="owner-dash-deal-metric"><span>Recommended package</span><strong>' +
-          esc(proposal.recommendedPackage) +
+          '<div class="owner-dash-deal-metric owner-dash-deal-metric--wide"><span>' +
+          (hsProposal ? "Recommended first deliverable" : "Recommended package") +
+          "</span><strong>" +
+          esc(hsProposal ? proposal.firstDeliverable : proposal.recommendedPackage) +
           "</strong></div>" +
-          '<div class="owner-dash-deal-metric"><span>Best first deliverable</span><strong>' +
+          '<div class="owner-dash-deal-metric"><span>Best first build</span><strong>' +
           esc(proposal.firstDeliverable) +
           "</strong></div>" +
-          '<div class="owner-dash-deal-metric"><span>Estimated project type</span><strong>' +
-          esc(proposal.projectType) +
-          "</strong></div></div>" +
+          (hsProposal
+            ? ""
+            : '<div class="owner-dash-deal-metric"><span>Estimated project type</span><strong>' +
+              esc(proposal.projectType) +
+              "</strong></div>") +
+          "</div>" +
           '<div class="owner-dash-proposal-outcome"><p class="owner-dash-deal-k">Plain-English outcome</p>' +
           '<p class="owner-dash-proposal-outcome-text">' +
           esc(proposal.outcome) +
@@ -20759,7 +21015,7 @@
           emailSubject: "Follow-up on your roofing request path",
           emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on making the roofing request path clearer before we talk about a larger system. This does not guarantee jobs, claims, or results; it is meant to help your team capture better details, route requests, and follow up more consistently.",
           callOpener: "Hey [CONTACT], I will keep it quick. I work with roofing businesses on cleaning up the request path behind calls, photos, estimates, and follow-up. Before I recommend anything, can I ask how those requests usually come in today?",
-          proposalSummary: "We recommend starting with [OFFER] for your roofing workflow because the main leak appears to be [LEAK]. The system will focus on capturing better job details, routing requests clearly, and making estimate follow-up easier to see. This is not a guarantee of jobs, claims, or revenue. It is a practical improvement to the customer path.",
+          proposalSummary: "We recommend starting with [OFFER] for your roofing workflow because the main issue appears to be [LEAK]. The first build will focus on capturing better job details, routing requests clearly, and making estimate follow-up easier to see. This is not a guarantee of jobs, claims, or revenue. It is a practical improvement to your quote request and follow-up process.",
           objections: [
             ["I already have a website.", "That is good. I would look past whether the website exists and ask whether the roofing request path captures the details your team actually needs."],
             ["I do not need AI.", "That is fine. This does not have to start with AI. It can start with intake, routing, roof photos, and follow-up."],
@@ -21175,8 +21431,8 @@
             "Which service areas matter most?",
           ],
           tenSecondPitch: "We help home service companies stop losing quote requests when calls, photos, forms, and follow-up are scattered.",
-          fifteenSecondPitch: "We build the customer path behind your home service business so quote requests, job photos, scheduling details, and follow-up get captured and routed.",
-          thirtySecondPitch: "Most home service companies do not lose jobs because they are bad at the work. They lose opportunities because the customer path is scattered. Calls come in while you are on a job. Photos come by text. Forms miss key details. Estimates go out and follow-up is hard to track. We help build the system behind the website so the right details are captured, routed, followed up, and visible to the owner.",
+          fifteenSecondPitch: "We help home service businesses tighten the request flow behind quote requests, job photos, scheduling, and follow-up so details get captured and routed to the owner.",
+          thirtySecondPitch: "Most home service companies do not lose jobs because they are bad at the work. They lose opportunities because the request flow is scattered. Calls come in while you are on a job. Photos come by text. Forms miss key details. Estimates go out and follow-up is hard to track. We help build the workflow behind the website so the right details are captured, routed, followed up, and visible to the owner.",
           textReply: "Got it. Based on what you said, the main issue sounds like [LEAK]. I would start with [OFFER] so home service requests come in with the right details and follow-up is easier to see.",
           emailSubject: "Follow-up on your home services request path",
           emailBody: "based on our conversation, the main issue sounds like [LEAK]. The safest first step would be [OFFER], which focuses on the home services request path — intake, photos, scheduling, routing, and follow-up.",
@@ -21216,7 +21472,15 @@
         return HOME_SERVICES_NICHE_PACKS[niche] || HOME_SERVICES_NICHE_PACKS["Home Services General"];
       }
 
+      var HOME_SERVICES_PAID_ADS_PATTERN =
+        /\b(google ads|facebook ads|instagram ads|meta ads|tiktok ads|paid ads|ppc|ad spend|ad campaign|run ads|advertising|campaign)\b/i;
+
       var HOME_SERVICES_LEAK_CATEGORIES = [
+        {
+          key: "paid-ads leak",
+          label: "Paid ads leak",
+          pattern: HOME_SERVICES_PAID_ADS_PATTERN,
+        },
         { key: "missed-call leak", label: "Missed-call leak", pattern: /\b(missed call|voicemail|after hours|unanswered|on a job|calls? get missed|phone leak)\b/i },
         { key: "quote-form leak", label: "Quote-form leak", pattern: /\b(quote (?:form|request)|weak form|intake form|website form|smart form|missing details|incomplete request)\b/i },
         { key: "photo-intake leak", label: "Photo-intake leak", pattern: /\b(photo|picture|image|text(?:s|ed)? photos|send (?:photos|pics))\b/i },
@@ -21250,67 +21514,72 @@
       }
 
       var HOME_SERVICES_LEAK_DETAIL = {
+        "paid-ads leak": {
+          diagnosis: "Paid ads are running or planned, but the landing page and quote request process after the click are not set up to capture usable job details.",
+          firstQuestion: "When someone clicks your ad today, what should they see and what details do you need before you call back?",
+          firstOffer: "Google Ads setup + landing page (ad spend separate)",
+        },
         "missed-call leak": {
           diagnosis: "Calls are coming in while the team is on a job and getting missed before anyone can see them.",
           firstQuestion: "What happens when someone calls about a job while you are on a roof, under a sink, or out in the field?",
-          firstOffer: "Missed Lead Recovery System",
+          firstOffer: "Missed-call follow-up + owner alert flow",
         },
         "quote-form leak": {
           diagnosis: "Quote requests are arriving with missing job details, so the team has to chase photos, address, scope, and timing.",
           firstQuestion: "What information do you wish customers gave you upfront before you have to call them back?",
-          firstOffer: "Smart Quote Request System",
+          firstOffer: "Quote request form + photo intake",
         },
         "photo-intake leak": {
           diagnosis: "Customers text photos to different people and the images get buried before the right team member sees them.",
           firstQuestion: "Where do roof / room / damage photos arrive today, and who sees them first?",
-          firstOffer: "Photo Intake + Job Details Funnel",
+          firstOffer: "Quote request form + photo intake",
         },
         "scheduling leak": {
-          diagnosis: "Scheduling estimates, consultations, or service visits is happening across calls, texts, and inboxes — not a single owner-visible path.",
+          diagnosis: "Scheduling estimates, consultations, or service visits is happening across calls, texts, and inboxes — not one owner-visible booking/request flow.",
           firstQuestion: "How do estimates and service visits actually get on the calendar today?",
-          firstOffer: "Lead Routing + Follow-Up System",
+          firstOffer: "Quote request form + owner alert flow",
         },
         "follow-up leak": {
           diagnosis: "Sent estimates and interested homeowners go cold because follow-up is not tracked or assigned.",
           firstQuestion: "How do you know today whether a sent estimate has been followed up?",
-          firstOffer: "Follow-Up + Review Request System",
+          firstOffer: "Estimate follow-up workflow",
         },
         "proposal leak": {
-          diagnosis: "Proposals and estimates go out but get lost between sent and decided — no owner-visible status path.",
+          diagnosis: "Proposals and estimates go out but get lost between sent and decided — no owner-visible follow-up process.",
           firstQuestion: "Once an estimate is sent, who is responsible for the next move and when?",
-          firstOffer: "Lead Routing + Follow-Up System",
+          firstOffer: "Estimate follow-up workflow",
         },
         "review/referral leak": {
           diagnosis: "After-job review and referral opportunities are inconsistent or never asked for.",
           firstQuestion: "What should happen after a job is completed and the homeowner is happy?",
-          firstOffer: "Follow-Up + Review Request System",
+          firstOffer: "Review request workflow",
         },
         "local visibility leak": {
           diagnosis: "The business is not showing up well in local search for the service areas that matter most.",
           firstQuestion: "When a homeowner in your top service area searches, what do you want them to see first?",
-          firstOffer: "Service Area Local SEO Upgrade",
+          firstOffer: "Local SEO service page",
         },
         "service-area clarity leak": {
           diagnosis: "Service-area clarity is weak — requests come in from outside coverage, or right-area homeowners cannot tell if you cover them.",
           firstQuestion: "Which service areas or zip codes are worth saying yes to, and which should be filtered out at intake?",
-          firstOffer: "Service Area Local SEO Upgrade",
+          firstOffer: "Local SEO service page",
         },
         "owner visibility leak": {
           diagnosis: "The owner cannot see new requests, scheduled estimates, sent quotes, and follow-up status in one place.",
           firstQuestion: "What do you need to see every morning to know nothing slipped yesterday?",
-          firstOffer: "Owner Visibility Dashboard",
+          firstOffer: "Owner dashboard / CRM-lite",
         },
         "staff handoff leak": {
           diagnosis: "Handoffs between office, owner, estimator, and crew are losing details, photos, or follow-up commitments.",
           firstQuestion: "Where in the office → estimator → crew handoff do details usually get lost?",
-          firstOffer: "Lead Routing + Follow-Up System",
+          firstOffer: "Owner dashboard / CRM-lite",
         },
       };
 
       function homeServicesDiagnosis(row) {
         var leak = homeServicesLeakKey(row);
         var detail = HOME_SERVICES_LEAK_DETAIL[leak] || HOME_SERVICES_LEAK_DETAIL["quote-form leak"];
-        var firstOffer = ownerNoteMarkerValue(row, "Home services first offer:") || detail.firstOffer;
+        var firstOffer = homeServicesRecommendedDeliverable(row) || detail.firstOffer;
         var nextAction =
           ownerNoteMarkerValue(row, "Home services next action:") ||
           homeServicesLeadNextAction(row, calcBusinessPriority(row));
@@ -21326,6 +21595,7 @@
 
       function homeServicesIssueLabel(leakKey) {
         var map = {
+          "paid-ads leak": "paid ads and post-click intake",
           "missed-call leak": "missed calls",
           "quote-form leak": "quote requests with missing job details",
           "photo-intake leak": "photo intake before callback",
@@ -21339,6 +21609,149 @@
           "staff handoff leak": "dispatcher / owner handoff",
         };
         return map[leakKey] || String(leakKey || "requests").replace(/\s*leak$/i, "").replace(/-/g, " ");
+      }
+
+      function homeServicesRecommendedDeliverable(row) {
+        var manual = ownerNoteMarkerValue(row, "Home services first offer:");
+        if (manual) return manual;
+        var text = aiPlugLeadSourceText(row);
+        if (HOME_SERVICES_PAID_ADS_PATTERN.test(text)) {
+          return "Google Ads setup + landing page (ad spend separate)";
+        }
+        if (/\b(missed call|voicemail|after hours|unanswered|on a job|calls? get missed|phone leak)\b/i.test(text)) {
+          return "Missed-call follow-up + owner alert flow";
+        }
+        if (
+          /\b(quote (?:form|request)|weak form|missing (?:job )?details|incomplete request|photo intake|send (?:photos|pics)|text(?:s|ed)? photos)\b/i.test(
+            text
+          )
+        ) {
+          return "Quote request form + photo intake";
+        }
+        if (
+          /\b(estimate(?:s)? not answered|estimates? go cold|after the (?:quote|estimate)|quote sent|estimate follow|proposal leak|no follow)\b/i.test(
+            text
+          )
+        ) {
+          return "Estimate follow-up workflow";
+        }
+        if (/\b(review|reviews|referral|testimonial|before and after)\b/i.test(text)) {
+          return "Review request workflow";
+        }
+        if (/\b(owner visibility|track(?:ing)? leads|pipeline|dashboard|crm|owner cannot see)\b/i.test(text)) {
+          return "Owner dashboard / CRM-lite";
+        }
+        if (/\b(local seo|google business|service area page|local search|search rank|map listing)\b/i.test(text)) {
+          return "Local SEO service page";
+        }
+        return "Website / landing page + clear request form";
+      }
+
+      function homeServicesProposalScopeForDeliverable(deliverable) {
+        var d = String(deliverable || "").toLowerCase();
+        if (/paid ads|google ads/.test(d)) {
+          return [
+            "Google Ads / Meta / TikTok setup (if scoped)",
+            "Landing page or quote request form tied to the ad",
+            "Conversion tracking basics",
+            "Owner-approved ad copy",
+            "Ad spend separate from management",
+          ];
+        }
+        if (/missed-call/.test(d)) {
+          return [
+            "Missed-call follow-up workflow",
+            "Owner alert flow",
+            "After-hours routing rules",
+            "Basic request status tracking",
+          ];
+        }
+        if (/quote request|photo intake/.test(d)) {
+          return [
+            "Quote request form",
+            "Photo intake fields",
+            "Service-area and urgency questions",
+            "Owner alert summary",
+          ];
+        }
+        if (/estimate follow-up/.test(d)) {
+          return [
+            "Estimate follow-up workflow",
+            "Owner-visible quote status",
+            "Follow-up copy tools (owner-approved)",
+          ];
+        }
+        if (/review request/.test(d)) {
+          return [
+            "Review request workflow",
+            "Owner-approved review ask timing",
+            "Referral follow-up notes",
+          ];
+        }
+        if (/owner dashboard|crm/.test(d)) {
+          return [
+            "Owner dashboard / CRM-lite",
+            "Lead / request status pipeline",
+            "Routing and handoff visibility",
+          ];
+        }
+        if (/local seo/.test(d)) {
+          return [
+            "Local SEO service page",
+            "Service-area clarity",
+            "Owner-approved page copy",
+          ];
+        }
+        return [
+          "Landing page or website cleanup",
+          "Clear request / quote form",
+          "Owner alert flow",
+          "Basic follow-up visibility",
+        ];
+      }
+
+      function homeServicesProposalOutcome(row, deliverable) {
+        var pack = homeServicesPack(row);
+        var issue = homeServicesIssueLabel(homeServicesLeakKey(row));
+        return (
+          "A practical first build focused on " +
+          issue +
+          ". The goal is to help " +
+          (pack.niche_lower || "the business") +
+          " capture better details, respond faster, and keep follow-up from getting lost — starting with " +
+          deliverable +
+          "."
+        );
+      }
+
+      function homeServicesClientProposalData(lead) {
+        var deliverable = homeServicesRecommendedDeliverable(lead);
+        var diag = homeServicesDiagnosis(lead);
+        var pack = homeServicesPack(lead);
+        return {
+          business: lead.business_name || "your business",
+          contact: lead.contact_name || "there",
+          businessType: pack.niche_lower || "home services",
+          mainIssue: diag.diagnosis || homeServicesIssueLabel(diag.leak),
+          deliverable: deliverable,
+          scope: homeServicesProposalScopeForDeliverable(deliverable),
+          fixes: uniqueLimitedBullets(
+            [
+              homeServicesIssueLabel(diag.leak),
+              "Missed or delayed requests",
+              "Weak quote / photo intake",
+              "Estimate follow-up getting lost",
+              "Owner cannot see what needs action",
+            ],
+            5
+          ),
+          ownerApproved: clientProposalOwnerApprovedBullets(),
+          notOverbuild: clientProposalNotOverbuildBullets(),
+          nextStep:
+            diag.nextAction ||
+            "Confirm the quote request process, routing, and follow-up rules on a short workflow call.",
+          outcome: homeServicesProposalOutcome(lead, deliverable),
+        };
       }
 
       function homeServicesCopyContext(row) {
@@ -21463,8 +21876,8 @@
           applyHomeServicesTokens(ctx.pack.proposalSummary, ctx),
           "",
           "Main focus: " + ctx.issue,
-          "Best first deliverable: " + ctx.offer,
-          "First step: smallest useful build for " + ctx.issue + " (not a vague AI package).",
+          "Recommended first deliverable: " + ctx.offer,
+          "First step: smallest useful build for " + ctx.issue + " (deliverable-first — not a vague package name).",
           "",
           "What is NOT guaranteed: jobs, claims, financing approvals, energy savings, rankings, reviews, appointments, or revenue.",
           "",
@@ -21737,7 +22150,7 @@
         var vpack = buildHomeServicesVerticalPack(row);
         var pricing = calcPricingBuilder(row);
         var text = aiPlugLeadSourceText(row);
-        var adsModule = /google ads|facebook ads|meta ads|ppc|paid ads|ad campaign/i.test(text)
+        var adsModule = HOME_SERVICES_PAID_ADS_PATTERN.test(text)
           ? "\nPaid ads module may apply: Google Ads / Meta / TikTok setup + landing page (ad spend always separate)."
           : "";
         return [
@@ -22260,8 +22673,7 @@
             "Missed calls, quote requests, photo intake, service area, appointment scheduling, estimate follow-up, no-response leads, review requests, seasonal offers, and job pipeline visibility.",
           mainOpportunity: diag.diagnosis,
           firstSystem: diag.firstOffer,
-          suggestedPackage:
-            "Phase 1 · " + diag.firstOffer + " (module: " + resolveServiceModuleKey(calcPricingBuilder(row).recommendedPackage) + ")",
+          suggestedPackage: "Best first build · " + diag.firstOffer,
           pricePosition:
             INTERNAL_PRICING_DISCLAIMER +
             " Phase-one focus: " +
@@ -26587,10 +26999,10 @@
           restaurantSnapshotItem("Home services niche", snap.niche, false) +
           restaurantSnapshotItem("Diagnosed leak", snap.leak, false) +
           restaurantSnapshotItem("Main opportunity", snap.diagnosis, true) +
-          restaurantSnapshotItem("Customer path focus", snap.queueFocus, true) +
-          restaurantSnapshotItem("First useful AI system", snap.firstSystem, false) +
-          restaurantSnapshotItem("Suggested first package", snap.suggestedPackage, false) +
-          restaurantSnapshotItem("Suggested price position", snap.pricePosition, false) +
+          restaurantSnapshotItem("Request flow focus", snap.queueFocus, true) +
+          restaurantSnapshotItem("Recommended first deliverable", snap.firstSystem, false) +
+          restaurantSnapshotItem("Best first build", snap.firstSystem, false) +
+          restaurantSnapshotItem("Internal price guidance", snap.pricePosition, true) +
           restaurantSnapshotItem("Next home services action", snap.nextAction, true) +
           "</div>" +
           homeServicesAiPlugTermsHtml() +
@@ -26645,7 +27057,7 @@
           "</div>" +
           '<div class="owner-dash-restaurant-command-block" data-command-section="pricing" data-command-view="full">' +
           '<h3 class="owner-dash-detail-section-title">Pricing Builder</h3>' +
-          '<p class="owner-dash-detail-section-note">Price the smallest useful intake, routing, or follow-up path first — not a full system upfront.</p>' +
+          '<p class="owner-dash-detail-section-note">Internal price guidance only — confirm scope before quoting. Ad spend separate when ads apply. Not a final quote.</p>' +
           '<pre class="owner-dash-followup-template">' +
           esc(buildHomeServicesPricingGuidance(lead)) +
           "</pre>" +
@@ -29623,7 +30035,7 @@
           },
           launched: {
             status: currentKey === "lost" || currentKey === "not a fit" ? null : "Won",
-            note: "Home services: customer path launched.",
+            note: "Home services: request flow launched.",
             activity: "Home services — Launched",
             label: "Launched",
             tone: "ok",
