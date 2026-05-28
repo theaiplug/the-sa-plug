@@ -6703,60 +6703,82 @@
         email: "[confirm restaurant email]",
       };
 
+      /* PRICING IS NOT LOCKED. DO NOT HARD-CODE NEW NUMBERS WITHOUT OWNER APPROVAL. */
+      var OWNER_PRICING_DRAFT_CAUTION =
+        "Draft internal pricing guidance only. Do not quote until pricing is approved by owner.";
+      var OWNER_PRICING_RANGE_CONFIRM =
+        "Owner approval needed — confirm scope before quoting.";
+      var OWNER_PRICING_PARTNER_PRICE_LABEL =
+        "Owner-approved partner pricing only — confirm program terms before quoting.";
+      var OWNER_PRICING_AI_BUILD_LABEL = "Custom quote — quote after scope is confirmed";
+      var OWNER_PRICING_SNAPSHOT = {
+        suggestedStartingRange: "Owner approval needed",
+        paymentStructure: "Confirm after scope is approved",
+        monthlySupport: "Discuss after launch needs are clear",
+        confidence: "Pending discovery",
+        reason:
+          "Pricing is not locked. Confirm workflow, build scope, approval steps, launch needs, and support expectations before quoting.",
+      };
+      var OWNER_PRICING_GOOD_BETTER_BEST = {
+        good: "Starter — draft only",
+        better: "Growth — confirm after discovery",
+        best: "Premium — custom quote",
+      };
+
       var RESTAURANT_MANUAL_OFFER_MAP = {
         "Starter Visibility": {
           packageName: "Starter Visibility",
-          price: "$399 / 90 days",
+          price: OWNER_PRICING_PARTNER_PRICE_LABEL,
           angle: "Start with a low-friction visitor visibility test before adding systems.",
         },
         "Featured Visitor Placement": {
           packageName: "Featured Visitor Placement",
-          price: "$750 / 90 days",
+          price: OWNER_PRICING_PARTNER_PRICE_LABEL,
           angle: "Improve visitor-facing placement when people are deciding where to eat.",
         },
         "Route Partner": {
           packageName: "Route Partner",
-          price: "$1,250 / 90 days",
+          price: OWNER_PRICING_PARTNER_PRICE_LABEL,
           angle: "Fit the restaurant into situation-based visitor routes and private recommendation paths.",
         },
         "Website + Local SEO Upgrade": {
           packageName: "Website + Local SEO Upgrade",
-          price: "From $1,500",
+          price: OWNER_PRICING_AI_BUILD_LABEL,
           angle: "Make the mobile customer path clearer from search, menu, maps, and reservations.",
         },
         "Lead + Inquiry System": {
           packageName: "Lead + Inquiry System",
-          price: "From $2,500",
+          price: OWNER_PRICING_AI_BUILD_LABEL,
           angle: "Capture group, catering, and private dining requests before they get lost.",
         },
         "AI Restaurant Concierge": {
           packageName: "AI Restaurant Concierge",
-          price: "From $3,500",
+          price: OWNER_PRICING_AI_BUILD_LABEL,
           angle: "Help guests get owner-approved answers without replacing staff.",
         },
         "QR Funnel System": {
           packageName: "QR Funnel System",
-          price: "From $1,000",
+          price: OWNER_PRICING_AI_BUILD_LABEL,
           angle: "Turn scans into a cleaner next step for menus, reviews, inquiries, or offers.",
         },
         "Review + Repeat Guest System": {
           packageName: "Review + Repeat Guest System",
-          price: "From $1,500",
+          price: OWNER_PRICING_AI_BUILD_LABEL,
           angle: "Improve review follow-up and repeat-guest paths with owner approval.",
         },
         "Full AI Restaurant Growth System": {
           packageName: "Full AI Restaurant Growth System",
-          price: "From $7,500+",
+          price: OWNER_PRICING_AI_BUILD_LABEL,
           angle: "Map the full growth system after the first useful workflow is clear.",
         },
         "Monthly Growth Management": {
           packageName: "Monthly Growth Management",
-          price: "$500–$2,500/month",
+          price: OWNER_PRICING_SNAPSHOT.monthlySupport,
           angle: "Keep visitor visibility, reporting, follow-up, and growth improvements moving monthly.",
         },
         "Restaurant Founding Growth Bundle": {
           packageName: "Visibility plus capture system",
-          price: "$2,500–$5,000 setup",
+          price: OWNER_PRICING_RANGE_CONFIRM,
           angle: "Pair visitor visibility with the first useful capture or follow-up system.",
         },
         "Not sure yet": {
@@ -6887,14 +6909,14 @@
       ];
       var RESTAURANT_PROPOSAL_RANGE_OPTIONS = [
         "No quote yet",
-        "$399 / 90 days",
-        "$750 / 90 days",
-        "$1,250 / 90 days",
-        "$1,000–$2,500 setup",
-        "$2,500–$5,000 setup",
-        "$3,500–$7,500 setup",
-        "$7,500+",
-        "$500–$2,500/mo",
+        "Owner approval needed — confirm scope before quoting.",
+        "Owner approval needed",
+        "Draft only",
+        "Confirm after discovery",
+        "Quote after scope is confirmed",
+        "Custom quote",
+        "Owner-approved partner pricing only — confirm program terms",
+        "Discuss after launch needs are clear",
         "Custom",
       ];
       var RESTAURANT_PROPOSAL_NEXT_STEP_OPTIONS = [
@@ -8308,7 +8330,9 @@
       }
 
       function restaurantProposalRange(value) {
-        if (RESTAURANT_PROPOSAL_RANGE_OPTIONS.indexOf(value) !== -1) return value;
+        var clean = String(value || "").trim();
+        if (/\$|from \$|\/mo|\/ 90 days/i.test(clean)) return OWNER_PRICING_RANGE_CONFIRM;
+        if (RESTAURANT_PROPOSAL_RANGE_OPTIONS.indexOf(clean) !== -1) return clean;
         return "Custom";
       }
 
@@ -8360,7 +8384,7 @@
           return {
             suggestedFirstOffer: "Starter Visibility",
             suggestedPackageTier: "Starter",
-            suggestedStartingRange: "$399 / 90 days",
+            suggestedStartingRange: OWNER_PRICING_PARTNER_PRICE_LABEL,
             bestFirstDeliverable: "Restaurant listing, category placement, and basic visitor path review",
             ownerApprovedNextStep: "Make first contact",
             whatToInclude: "Category/listing copy, visitor-lane positioning, and basic website/map/reservation path review.",
@@ -8371,7 +8395,7 @@
           return {
             suggestedFirstOffer: "Featured Visitor Placement",
             suggestedPackageTier: "Growth",
-            suggestedStartingRange: "$1,000–$2,500 setup",
+            suggestedStartingRange: OWNER_PRICING_RANGE_CONFIRM,
             bestFirstDeliverable: "Featured visitor placement plus lead/inquiry path",
             ownerApprovedNextStep: "Ask discovery questions",
             whatToInclude: "Featured visitor positioning, CTA path review, and a simple inquiry or lead path if needed.",
@@ -8381,7 +8405,7 @@
         return {
           suggestedFirstOffer: "Restaurant Founding Growth Bundle",
           suggestedPackageTier: "Premium",
-          suggestedStartingRange: "$3,500–$7,500 setup",
+          suggestedStartingRange: OWNER_PRICING_RANGE_CONFIRM,
           bestFirstDeliverable: "Visitor visibility + QR/lead funnel + owner alert/reporting workflow",
           ownerApprovedNextStep: "Send proposal",
           whatToInclude: "Visitor visibility, QR or lead funnel, owner alerts, reporting, and approval checkpoints.",
@@ -8405,7 +8429,7 @@
         if (majorCount > 1) {
           direction.suggestedFirstOffer = "Restaurant Founding Growth Bundle";
           direction.suggestedPackageTier = "Premium";
-          direction.suggestedStartingRange = "$2,500–$5,000 setup";
+          direction.suggestedStartingRange = OWNER_PRICING_RANGE_CONFIRM;
           direction.bestFirstDeliverable = "Visitor visibility plus the first useful capture, QR, inquiry, or repeat-guest system";
           direction.ownerApprovedNextStep = "Send proposal";
           direction.whatToInclude = "Visitor placement, first funnel or inquiry path, owner alerts, reporting, and explicit approval checkpoints.";
@@ -8417,7 +8441,7 @@
           var routeLike = /business dinner|resort|river walk|date night|group dining|brunch|nightlife|visitor favorite/i.test(lane);
           direction.suggestedFirstOffer = routeLike ? "Route Partner" : "Featured Visitor Placement";
           direction.suggestedPackageTier = "Growth";
-          direction.suggestedStartingRange = routeLike ? "$1,250 / 90 days" : "$750 / 90 days";
+          direction.suggestedStartingRange = routeLike ? OWNER_PRICING_PARTNER_PRICE_LABEL : OWNER_PRICING_PARTNER_PRICE_LABEL;
           direction.bestFirstDeliverable = routeLike ? "Specific route/category placement and visitor use-case copy" : "Featured visitor placement and CTA/path review";
           direction.ownerApprovedNextStep = "Send partner overview";
           direction.whatToInclude = "Visitor-focused placement, route/category positioning, clear CTA review, and optional recap if included.";
@@ -8428,7 +8452,7 @@
         if (websiteWeak) {
           direction.suggestedFirstOffer = "Website + Local SEO Upgrade";
           direction.suggestedPackageTier = "Growth";
-          direction.suggestedStartingRange = "$1,000–$2,500 setup";
+          direction.suggestedStartingRange = OWNER_PRICING_RANGE_CONFIRM;
           direction.bestFirstDeliverable = "Mobile customer-path cleanup for website, menu, maps, and local search";
           direction.ownerApprovedNextStep = "Ask discovery questions";
           direction.whatToInclude = "Mobile path review, website/local SEO cleanup, menu/map/reservation CTA improvements, and owner-approved copy.";
@@ -8439,7 +8463,7 @@
         if (menuPathIssue) {
           direction.suggestedFirstOffer = "Lead + Inquiry System";
           direction.suggestedPackageTier = "Growth";
-          direction.suggestedStartingRange = "$1,000–$2,500 setup";
+          direction.suggestedStartingRange = OWNER_PRICING_RANGE_CONFIRM;
           direction.bestFirstDeliverable = "Menu, reservation, private dining, or inquiry path that routes guests to the right next step";
           direction.ownerApprovedNextStep = "Ask discovery questions";
           direction.whatToInclude = "CTA routing, reservation/menu/private dining intake, owner alerts, and simple reporting if needed.";
@@ -8450,7 +8474,7 @@
         if (qrHigh) {
           direction.suggestedFirstOffer = "QR Funnel System";
           direction.suggestedPackageTier = "Growth";
-          direction.suggestedStartingRange = "$1,000–$2,500 setup";
+          direction.suggestedStartingRange = OWNER_PRICING_RANGE_CONFIRM;
           direction.bestFirstDeliverable = "QR landing page or guided action path with owner alert/reporting workflow";
           direction.ownerApprovedNextStep = "Ask discovery questions";
           direction.whatToInclude = "QR landing path, menu/reservation/private dining routing, lead capture if needed, owner alerts, and simple reporting.";
@@ -8461,7 +8485,7 @@
         if (reviewHigh) {
           direction.suggestedFirstOffer = "Review + Repeat Guest System";
           direction.suggestedPackageTier = "Growth";
-          direction.suggestedStartingRange = "$1,000–$2,500 setup";
+          direction.suggestedStartingRange = OWNER_PRICING_RANGE_CONFIRM;
           direction.bestFirstDeliverable = "Review and repeat-guest follow-up path with owner-approved copy";
           direction.ownerApprovedNextStep = "Ask discovery questions";
           direction.whatToInclude = "Review path review, repeat-guest CTA, approved follow-up copy, and a simple tracking layer.";
@@ -8472,7 +8496,7 @@
         if (privateIssue) {
           direction.suggestedFirstOffer = "Lead + Inquiry System";
           direction.suggestedPackageTier = "Growth";
-          direction.suggestedStartingRange = "$1,000–$2,500 setup";
+          direction.suggestedStartingRange = OWNER_PRICING_RANGE_CONFIRM;
           direction.bestFirstDeliverable = "Private dining + catering intake / lead inquiry path";
           direction.ownerApprovedNextStep = "Ask discovery questions";
           direction.whatToInclude = "Private dining/catering intake questions, inquiry routing, owner alerts, and follow-up copy.";
@@ -8944,7 +8968,7 @@
           return {
             offer: "Restaurant Founding Growth Bundle",
             packageName: "Visibility plus capture system",
-            price: "$2,500–$5,000 setup",
+            price: OWNER_PRICING_RANGE_CONFIRM,
             angle: "Pair visitor visibility with the first useful capture or follow-up system.",
           };
         }
@@ -8952,7 +8976,7 @@
           return {
             offer: "Restaurant Partner Program",
             packageName: "Featured Visitor Placement",
-            price: "$750 / 90 days",
+            price: OWNER_PRICING_PARTNER_PRICE_LABEL,
             angle: "Improve visitor-facing placement when people are deciding where to eat.",
           };
         }
@@ -8960,7 +8984,7 @@
           return {
             offer: "Route Partner",
             packageName: "Route Partner",
-            price: "$1,250 / 90 days",
+            price: OWNER_PRICING_PARTNER_PRICE_LABEL,
             angle: "Fit the restaurant into situation-based visitor routes and private recommendation paths.",
           };
         }
@@ -8968,7 +8992,7 @@
           return {
             offer: "Website + Local SEO Upgrade",
             packageName: "Website + Local SEO Upgrade",
-            price: "From $1,500",
+            price: OWNER_PRICING_AI_BUILD_LABEL,
             angle: "Make the mobile customer path clearer from search, menu, maps, and reservations.",
           };
         }
@@ -8976,7 +9000,7 @@
           return {
             offer: "Lead + Inquiry System",
             packageName: "Lead + Inquiry System",
-            price: "From $2,500",
+            price: OWNER_PRICING_AI_BUILD_LABEL,
             angle: "Capture group, catering, and private dining requests before they get lost.",
           };
         }
@@ -8984,7 +9008,7 @@
           return {
             offer: "AI Restaurant Concierge",
             packageName: "AI Restaurant Concierge",
-            price: "From $3,500",
+            price: OWNER_PRICING_AI_BUILD_LABEL,
             angle: "Help guests get owner-approved answers without replacing staff.",
           };
         }
@@ -8992,7 +9016,7 @@
           return {
             offer: "QR Funnel System",
             packageName: "QR Funnel System",
-            price: "From $1,000",
+            price: OWNER_PRICING_AI_BUILD_LABEL,
             angle: "Turn scans into a cleaner next step for menus, reviews, inquiries, or offers.",
           };
         }
@@ -9000,7 +9024,7 @@
           return {
             offer: "Review + Repeat Guest System",
             packageName: "Review + Repeat Guest System",
-            price: "From $1,500",
+            price: OWNER_PRICING_AI_BUILD_LABEL,
             angle: "Improve review follow-up and repeat-guest paths with owner approval.",
           };
         }
@@ -9008,14 +9032,14 @@
           return {
             offer: "Full AI Restaurant Growth System",
             packageName: "Full AI Restaurant Growth System",
-            price: "From $7,500+",
+            price: OWNER_PRICING_AI_BUILD_LABEL,
             angle: "Map the full growth system after the first useful workflow is clear.",
           };
         }
         return {
           offer: "Restaurant Partner Program",
           packageName: "Featured Visitor Placement",
-          price: "$750 / 90 days",
+          price: OWNER_PRICING_PARTNER_PRICE_LABEL,
           angle: "Start with practical visitor visibility before overbuilding.",
         };
       }
@@ -13131,6 +13155,7 @@
           '<p class="owner-dash-detail-section-note">Internal proposal email and scope generator. Copy only - nothing sends, publishes, invoices, charges, or lists a restaurant automatically.</p></div>' +
           '<span class="owner-dash-restaurant-followup-badge">Internal only</span>' +
           "</div>" +
+          pricingDraftCautionHtml() +
           restaurantProposalPackageSnapshotHtml(row, values) +
           '<div class="owner-dash-restaurant-package-grid">' +
           '<label class="owner-dash-workflow-field owner-dash-restaurant-package-field--wide"><span class="owner-dash-workflow-label">Package type</span>' +
@@ -13148,8 +13173,10 @@
           '<label class="owner-dash-workflow-field owner-dash-restaurant-package-field--wide"><span class="owner-dash-workflow-label">Internal price/range note</span>' +
           '<input class="owner-dash-input" type="text" name="price_range_note" value="' +
           esc(values.priceRangeNote) +
-          '" placeholder="Example: Partner intro package, AI systems starter, combined package, custom quote, or hold until discovery." />' +
-          '<p class="owner-dash-restaurant-package-helper">Internal only. Do not show pricing publicly or lock pricing before discovery.</p></label>' +
+          '" placeholder="Owner approval needed — confirm scope before quoting (draft internal note only)." />' +
+          '<p class="owner-dash-restaurant-package-helper">Internal only. ' +
+          esc(OWNER_PRICING_DRAFT_CAUTION) +
+          "</p></label>" +
           '<label class="owner-dash-workflow-field owner-dash-restaurant-package-field--wide"><span class="owner-dash-workflow-label">What happens next</span>' +
           '<textarea class="owner-dash-textarea" name="next_steps" rows="5">' +
           esc(restaurantProposalPackageTextareaValue(values.nextSteps)) +
@@ -14921,97 +14948,99 @@
         ],
       };
 
-      /* v3 manual Chapter 23 ranges — used for AI Advantage pricing guidance only */
+      /* PRICING IS NOT LOCKED. DO NOT HARD-CODE NEW NUMBERS WITHOUT OWNER APPROVAL. */
+      /* v3 manual Chapter 23 — AI Advantage pricing guidance only (draft/internal; owner approval required). */
       var AI_ADVANTAGE_V3_PRICING_BY_SYSTEM = {
         "AI Growth Review": {
           offerPath: "AI Growth Review (diagnostic first)",
-          setupRange: "$497–$1,500",
+          setupRange: "Owner approval needed",
           monthlyRange: "None by default",
-          targetNote: "Best starting target: $750–$1,000",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "AI Website + Conversion System": {
           offerPath: "AI Website + Conversion System",
-          setupRange: "$2,500–$12,000+",
-          monthlyRange: "$250–$1,500+/mo",
-          targetNote: "Best starting target: $3,500–$7,500",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "AI Content + Social Media Engine": {
           offerPath: "AI Content + Social Media Engine",
-          setupRange: "$1,500–$6,000+",
-          monthlyRange: "$750–$4,000+/mo",
-          targetNote: "Best starting target: $2,500 setup + $1,500/mo",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "SEO + AI Search Visibility": {
           offerPath: "SEO + AI Search Visibility",
-          setupRange: "$1,500–$7,500+",
-          monthlyRange: "$750–$3,500+/mo",
-          targetNote: "Best starting target: $2,500 setup + $1,250/mo",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "Paid Campaign + Landing Page System": {
           offerPath: "Paid Campaign + Landing Page System",
-          setupRange: "$1,500–$7,500+",
-          monthlyRange: "$750–$3,500+/mo management (ad spend separate)",
-          targetNote: "Best starting target: $2,500 setup + $1,000/mo management",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "AI Chat Operator / Customer Experience": {
           offerPath: "AI Chat Operator / Customer Experience",
-          setupRange: "$2,500–$10,000+",
-          monthlyRange: "$500–$2,500+/mo",
-          targetNote: "Best starting target: $3,500–$6,500 setup + $750/mo",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "AI Phone / Voice Planning": {
           offerPath: "AI Phone / Voice Planning",
-          setupRange: "$1,500–$7,500+ planning",
+          setupRange: "Owner approval needed",
           monthlyRange: "Confirm after planning scope",
-          targetNote: "Best starting target: $2,500 planning",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "Smart Intake + Automation": {
           offerPath: "Smart Intake + Automation",
-          setupRange: "$1,500–$7,500+",
-          monthlyRange: "$750–$3,500+/mo",
-          targetNote: "Best starting target: $2,500 setup + $1,250/mo",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "Internal AI Assistants + Workflow Support": {
           offerPath: "Internal AI Assistants + Workflow Support",
-          setupRange: "$1,500–$8,000+",
-          monthlyRange: "$250–$2,000+/mo",
-          targetNote: "Best starting target: $2,500–$5,000 setup + $500/mo",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "QR Campaign / Menu Path": {
           offerPath: "QR Campaign / Menu Path",
-          setupRange: "$1,500–$10,000+",
-          monthlyRange: "$500–$3,000+/mo",
-          targetNote: "Best starting target: $2,500–$6,500 setup + $750/mo",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "Visitor Visibility Review": {
           offerPath: "Visitor Visibility Review",
-          setupRange: "$497–$1,500 review",
-          monthlyRange: "Partner/visibility fees vary by program",
-          targetNote: "Review fit before quoting visibility placement",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Partner/visibility fees — owner-approved program terms only",
+          targetNote:
+            "Review fit before quoting visibility placement. Do not mix partner program numbers into AI build pricing.",
         },
         "Provider Handoff Workflow": {
           offerPath: "Provider Handoff Workflow",
-          setupRange: "$1,500–$7,500+",
-          monthlyRange: "$750–$3,500+/mo",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
           targetNote: "Scope depends on routing, alerts, and provider rules",
         },
         "Consultation Intake + Qualification": {
           offerPath: "Consultation Intake + Qualification",
-          setupRange: "$1,500–$7,500+",
-          monthlyRange: "$750–$3,500+/mo",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
           targetNote: "Higher end when compliance/approval workflows are heavy",
         },
         "Product Answer / Customer Experience": {
           offerPath: "Product Answer / Customer Experience",
-          setupRange: "$2,500–$10,000+",
-          monthlyRange: "$500–$2,500+/mo",
-          targetNote: "Best starting target: $3,500–$6,500 setup + $750/mo",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "Full AI Growth System": {
           offerPath: "Full AI Growth System (phased)",
-          setupRange: "$7,500–$35,000+",
-          monthlyRange: "$1,500–$7,500+/mo",
-          targetNote: "Best starting target: $10,000–$18,000 setup + $2,500/mo",
+          setupRange: "Owner approval needed",
+          monthlyRange: "Discuss after launch needs are clear",
+          targetNote: "Quote after scope is confirmed — owner-approved only",
         },
         "Other / Custom": {
           offerPath: "Custom scope after AI Growth Review",
@@ -15456,6 +15485,8 @@
           "Pass-through costs: " + p.passThrough,
           "Scope exclusions: " + p.exclusions,
           "Reminder: " + p.noGuarantee,
+          "",
+          OWNER_PRICING_DRAFT_CAUTION,
           "",
           "Business type: " + c.businessType,
           "First useful system: " + c.firstSystem,
@@ -16611,15 +16642,15 @@
         "SMS approval timing",
       ];
 
+      /* PRICING IS NOT LOCKED. DO NOT HARD-CODE NEW NUMBERS WITHOUT OWNER APPROVAL. */
       var PRICING_LOGIC = {
         "Starter Website + Lead Path Fix": {
-          range: "$750–$1,500",
-          payment: "50% to start, 50% before launch",
-          monthly: "$150–$300/mo",
-          quotePosition:
-            "Start near $1,200 if scope includes page cleanup + lead path; start near $750 if very simple.",
-          deposit: "50% to start",
-          milestone: "50% before launch",
+          range: OWNER_PRICING_RANGE_CONFIRM,
+          payment: "Confirm after scope is approved",
+          monthly: OWNER_PRICING_SNAPSHOT.monthlySupport,
+          quotePosition: "Quote after scope is confirmed — owner-approved only.",
+          deposit: "Confirm after scope is approved",
+          milestone: "Confirm after scope is approved",
           lineItems: [
             "Landing page / customer path cleanup",
             "CTA and request flow improvement",
@@ -16627,18 +16658,18 @@
             "Owner-approved copy updates",
             "Launch QA",
           ],
-          confidenceBase: "Medium",
-          goodRange: "$750–$950",
-          betterRange: "$1,000–$1,500",
-          bestRange: "$1,500–$2,250",
+          confidenceBase: "Pending discovery",
+          goodRange: OWNER_PRICING_GOOD_BETTER_BEST.good,
+          betterRange: OWNER_PRICING_GOOD_BETTER_BEST.better,
+          bestRange: OWNER_PRICING_GOOD_BETTER_BEST.best,
         },
         "Lead Capture System": {
-          range: "$1,500–$3,500",
-          payment: "50% to start, 25% after intake/dashboard preview, 25% before launch",
-          monthly: "$300–$750/mo",
-          quotePosition: "Start near $2,500 for smart intake + alerts + basic dashboard.",
-          deposit: "50% to start",
-          milestone: "25% after intake/dashboard preview, 25% before launch",
+          range: OWNER_PRICING_RANGE_CONFIRM,
+          payment: "Confirm after scope is approved",
+          monthly: OWNER_PRICING_SNAPSHOT.monthlySupport,
+          quotePosition: "Quote after scope is confirmed — owner-approved only.",
+          deposit: "Confirm after scope is approved",
+          milestone: "Confirm after scope is approved",
           lineItems: [
             "Smart intake flow",
             "Request/question structure",
@@ -16647,19 +16678,18 @@
             "Follow-up copy tools",
             "Launch QA",
           ],
-          confidenceBase: "Medium",
-          goodRange: "$1,500–$2,000",
-          betterRange: "$2,250–$3,500",
-          bestRange: "$3,500–$5,000",
+          confidenceBase: "Pending discovery",
+          goodRange: OWNER_PRICING_GOOD_BETTER_BEST.good,
+          betterRange: OWNER_PRICING_GOOD_BETTER_BEST.better,
+          bestRange: OWNER_PRICING_GOOD_BETTER_BEST.best,
         },
         "Business Command System Package": {
-          range: "$3,500–$7,500",
-          payment: "40% to start, 30% after workflow/dashboard preview, 30% before launch",
-          monthly: "$750–$1,500/mo",
-          quotePosition:
-            "Start near $5,500 if the scope includes intake, dashboard, workflow statuses, and follow-up tools.",
-          deposit: "40% to start",
-          milestone: "30% after workflow/dashboard preview, 30% before launch",
+          range: OWNER_PRICING_RANGE_CONFIRM,
+          payment: "Confirm after scope is approved",
+          monthly: OWNER_PRICING_SNAPSHOT.monthlySupport,
+          quotePosition: "Quote after scope is confirmed — owner-approved only.",
+          deposit: "Confirm after scope is approved",
+          milestone: "Confirm after scope is approved",
           lineItems: [
             "Workflow mapping",
             "Intake / request path",
@@ -16669,19 +16699,19 @@
             "Proposal-ready workflow",
             "Launch QA",
           ],
-          confidenceBase: "Medium",
-          goodRange: "$3,500–$4,500",
-          betterRange: "$5,000–$7,500",
-          bestRange: "$7,500–$10,000",
+          confidenceBase: "Pending discovery",
+          goodRange: OWNER_PRICING_GOOD_BETTER_BEST.good,
+          betterRange: OWNER_PRICING_GOOD_BETTER_BEST.better,
+          bestRange: OWNER_PRICING_GOOD_BETTER_BEST.best,
         },
         "Full AI Growth System": {
-          range: "$7,500–$15,000+",
-          payment: "Phase 1 deposit, then milestone billing after phase scope is confirmed",
-          monthly: "$1,500–$3,500+/mo",
+          range: OWNER_PRICING_RANGE_CONFIRM,
+          payment: "Confirm after scope is approved",
+          monthly: OWNER_PRICING_SNAPSHOT.monthlySupport,
           quotePosition:
-            "Do not quote final number until discovery. Start with a paid Phase 1 planning/build sprint if needed.",
-          deposit: "Phase 1 deposit",
-          milestone: "Milestone billing after phase scope is confirmed",
+            "Do not quote final pricing until discovery. Use a paid Phase 1 planning/build sprint if scope requires it — owner-approved only.",
+          deposit: "Confirm after scope is approved",
+          milestone: "Confirm after scope is approved",
           lineItems: [
             "Website/customer path review",
             "Intake and lead capture system",
@@ -16691,11 +16721,13 @@
             "AI assistant planning",
             "Phase one launch QA",
           ],
-          confidenceBase: "Needs discovery",
-          goodRange: "$7,500–$9,500",
-          betterRange: "$10,000–$15,000",
-          bestRange: "$15,000+",
+          confidenceBase: "Pending discovery",
+          goodRange: OWNER_PRICING_GOOD_BETTER_BEST.good,
+          betterRange: OWNER_PRICING_GOOD_BETTER_BEST.better,
+          bestRange: OWNER_PRICING_GOOD_BETTER_BEST.best,
         },
+      };
+
       };
 
       var QUOTE_NOT_INCLUDED_ITEMS = [
@@ -16805,20 +16837,34 @@
         };
       }
 
+      function ownerPricingProjectTier(packageName, projectType) {
+        var combined = String(packageName || "") + " " + String(projectType || "");
+        if (/starter|foundation|fix/i.test(combined)) return "Starter";
+        if (/command|lead capture/i.test(combined)) return "Growth";
+        if (/full ai|growth system/i.test(combined)) return "Premium";
+        if (/custom/i.test(combined)) return "Custom";
+        return projectType || "Custom";
+      }
+
+      function pricingDraftCautionHtml() {
+        return (
+          '<p class="owner-dash-pricing-draft-caution"><strong>' + esc(OWNER_PRICING_DRAFT_CAUTION) + "</strong></p>"
+        );
+      }
+
       function calcPricingBuilder(lead) {
         var proposal = calcProposalEstimate(lead);
         var sig = leadSignals(lead);
         var logic = pricingLogicForPackage(proposal.recommendedPackage);
-        var confidence = pricingConfidence(lead, proposal, sig);
         var pricing = {
           business: lead.business_name || "Lead",
           recommendedPackage: proposal.recommendedPackage,
-          projectType: proposal.projectType || "first system",
-          priceRange: logic.range,
-          paymentStructure: logic.payment,
-          monthlySupport: logic.monthly,
-          confidence: confidence,
-          reason: pricingReason(lead, proposal, sig, confidence),
+          projectType: ownerPricingProjectTier(proposal.recommendedPackage, proposal.projectType),
+          priceRange: OWNER_PRICING_SNAPSHOT.suggestedStartingRange,
+          paymentStructure: OWNER_PRICING_SNAPSHOT.paymentStructure,
+          monthlySupport: OWNER_PRICING_SNAPSHOT.monthlySupport,
+          confidence: OWNER_PRICING_SNAPSHOT.confidence,
+          reason: OWNER_PRICING_SNAPSHOT.reason,
           mainPainPoint: proposal.mainPainPoint || "the main bottleneck",
           firstDeliverable: proposal.firstDeliverable || "the first useful system",
           logic: logic,
@@ -16840,9 +16886,9 @@
           recommendedPackage: p.recommendedPackage,
           projectType: p.projectType,
           priceRange: p.priceRange,
-          quotePosition: logic.quotePosition || "Use the range midpoint after scope, approvals, and timeline are confirmed.",
-          depositRecommendation: logic.deposit || "Initial project payment to start",
-          milestoneRecommendation: logic.milestone || "Milestone payment before launch or handoff",
+          quotePosition: logic.quotePosition || "Quote after scope is confirmed — owner-approved only.",
+          depositRecommendation: logic.deposit || "Confirm after scope is approved",
+          milestoneRecommendation: logic.milestone || "Confirm after scope is approved",
           paymentTerms: logic.payment || p.paymentStructure,
           monthlySupport: p.monthlySupport,
           quoteConfidence: p.confidence,
@@ -16864,6 +16910,12 @@
       function buildQuoteOutlineCopy(lead) {
         var q = calcQuoteInvoicePrep(lead);
         return [
+          "NOT A FINAL INVOICE",
+          "Owner-approved quote only.",
+          "No invoice, payment link, deposit request, or customer-facing message is sent from this dashboard.",
+          "",
+          OWNER_PRICING_DRAFT_CAUTION,
+          "",
           "Quote outline — " + q.business,
           "",
           "Recommended package:",
@@ -16900,6 +16952,12 @@
       function buildQuoteInvoiceNotesCopy(lead) {
         var q = calcQuoteInvoicePrep(lead);
         return [
+          "NOT A FINAL INVOICE",
+          "Owner-approved quote only.",
+          "No invoice, payment link, deposit request, or customer-facing message is sent from this dashboard.",
+          "",
+          OWNER_PRICING_DRAFT_CAUTION,
+          "",
           "Invoice notes — " + q.business,
           "",
           "Invoice title:",
@@ -16998,6 +17056,12 @@
       function buildQuotePrepBundleCopy(lead) {
         var q = calcQuoteInvoicePrep(lead);
         return [
+          "NOT A FINAL INVOICE",
+          "Owner-approved quote only.",
+          "No invoice, payment link, deposit request, or customer-facing message is sent from this dashboard.",
+          "",
+          OWNER_PRICING_DRAFT_CAUTION,
+          "",
           "Quote prep bundle — " + q.business,
           "",
           "Quote outline:",
@@ -18225,6 +18289,8 @@
       function buildPricingRecommendationCopy(lead) {
         var p = calcPricingBuilder(lead);
         return [
+          OWNER_PRICING_DRAFT_CAUTION,
+          "",
           "Internal pricing recommendation — " + p.business,
           "",
           "Recommended package:",
@@ -18283,15 +18349,15 @@
           "",
           "Good:",
           p.options.good.name + " — " + p.options.good.description,
-          "Internal range: " + p.options.good.range,
+          "Pricing guidance: " + p.options.good.range,
           "",
           "Better:",
           p.options.better.name + " — " + p.options.better.description,
-          "Internal range: " + p.options.better.range,
+          "Pricing guidance: " + p.options.better.range,
           "",
           "Best:",
           p.options.best.name + " — " + p.options.best.description,
-          "Internal range: " + p.options.best.range,
+          "Pricing guidance: " + p.options.best.range,
           "",
           "Best recommendation:",
           "Start with the smallest version that solves the real bottleneck, then expand once the workflow is proven.",
@@ -18429,7 +18495,7 @@
           esc(option.name) +
           "</h4><p>" +
           esc(option.description) +
-          '</p><strong>Internal range: ' +
+          '</p><strong>Pricing guidance: ' +
           esc(option.range) +
           "</strong></article>"
         );
@@ -18456,6 +18522,7 @@
           '<p class="owner-dash-detail-section-note">Internal pricing guidance for the first useful system. Copy only — nothing is sent automatically.</p></div>' +
           '<span class="owner-dash-pricing-badge">Internal guidance only</span>' +
           "</div>" +
+          pricingDraftCautionHtml() +
           '<div class="owner-dash-pricing-money-card">' +
           '<p class="owner-dash-pricing-card-label">Pricing Snapshot</p>' +
           '<div class="owner-dash-pricing-snapshot">' +
@@ -18499,7 +18566,9 @@
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="mark-pricing-discussed">Mark pricing discussed</button>' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="mark-quote-needed">Mark quote needed</button>' +
           "</div>" +
-          '<p class="owner-dash-pricing-safe-note">Internal guidance only. This is not a public quote and nothing is sent automatically.</p>' +
+          '<p class="owner-dash-pricing-safe-note">Internal guidance only. This is not a public quote and nothing is sent automatically. ' +
+          esc(OWNER_PRICING_DRAFT_CAUTION) +
+          "</p>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<span class="owner-dash-pricing-feedback" data-pricing-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
@@ -18549,9 +18618,11 @@
           '<section class="owner-dash-detail-section owner-dash-detail-section--quote-prep" data-quote-invoice-prep>' +
           '<div class="owner-dash-quote-head">' +
           '<div><h3 class="owner-dash-detail-section-title">Quote / Invoice Prep</h3>' +
-          '<p class="owner-dash-detail-section-note">Prepare a clean quote structure, deposit terms, and invoice notes. Copy only — nothing is sent automatically.</p></div>' +
+          '<p class="owner-dash-detail-section-note">Prepare a clean quote structure, deposit terms, and invoice notes. Copy only — nothing is sent automatically.</p>' +
+          '<p class="owner-dash-quote-invoice-warning"><strong>NOT A FINAL INVOICE</strong><br>Owner-approved quote only.<br>No invoice, payment link, deposit request, or customer-facing message is sent from this dashboard.</p></div>' +
           '<span class="owner-dash-quote-badge">Not a final invoice</span>' +
           "</div>" +
+          pricingDraftCautionHtml() +
           '<div class="owner-dash-quote-money-card">' +
           '<p class="owner-dash-quote-card-label">Quote Snapshot</p>' +
           '<div class="owner-dash-quote-snapshot">' +
@@ -18601,7 +18672,9 @@
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="mark-invoice-ready">Mark invoice ready</button>' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="mark-deposit-requested">Mark deposit requested</button>' +
           "</div>" +
-          '<p class="owner-dash-quote-safe-note">Internal guidance and copy-only prep. This is not a final invoice, and nothing is sent automatically.</p>' +
+          '<p class="owner-dash-quote-safe-note">Internal guidance and copy-only prep. This is not a final invoice, and nothing is sent automatically. ' +
+          esc(OWNER_PRICING_DRAFT_CAUTION) +
+          "</p>" +
           '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
           '<span class="owner-dash-quote-feedback" data-quote-feedback hidden aria-live="polite"></span>' +
           '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden>' +
@@ -18880,6 +18953,7 @@
           '<p class="owner-dash-detail-section-note">Create a polished first-offer summary the client can understand. Copy only — nothing is sent automatically.</p></div>' +
           '<span class="owner-dash-client-proposal-badge">Copy only</span>' +
           "</div>" +
+          pricingDraftCautionHtml() +
           '<div class="owner-dash-client-proposal-hero">' +
           "<h4>Recommended first system for " +
           esc(data.business) +
@@ -19100,6 +19174,7 @@
           '<p class="owner-dash-detail-section-note">Build a simple first offer from this lead. Copy only — nothing is sent automatically.</p></div>' +
           '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary owner-dash-proposal-ready-btn" data-action="move-proposal-ready">Move to Proposal Ready</button>' +
           "</div>" +
+          pricingDraftCautionHtml() +
           '<div class="owner-dash-proposal-types" aria-label="Proposal Type">' +
           PROPOSAL_TYPES.map(function (type) {
             return proposalTypeButton(type, proposal.type);
@@ -21273,6 +21348,8 @@
           "Aligned internal package: " + pricing.recommendedPackage,
           "Suggested starting range (internal guidance only): " + pricing.priceRange,
           "",
+          OWNER_PRICING_DRAFT_CAUTION,
+          "",
           vpack.pricingNote,
           "",
           "Phase-one focus: intake, routing, photo capture, scheduling visibility, or follow-up — not a full rebuild. Final quote depends on scope, routing depth, and owner approvals.",
@@ -21300,6 +21377,12 @@
           "- Follow-up owner when quote is not accepted",
           "",
           vpack.quotePrepGuidance,
+          "",
+          "NOT A FINAL INVOICE",
+          "Owner-approved quote only.",
+          "No invoice, payment link, deposit request, or customer-facing message is sent from this dashboard.",
+          "",
+          OWNER_PRICING_DRAFT_CAUTION,
           "",
           "Internal prep only — not a final invoice. Nothing sends automatically.",
           "",
@@ -22503,18 +22586,20 @@
         return [
           "The restaurant program has two sides.",
           "",
-          "The Restaurant Partner Program is for visitor visibility:",
-          "- Starter Visibility — $399 / 90 days",
-          "- Featured Visitor Placement — $750 / 90 days",
-          "- Route Partner — $1,250 / 90 days",
+          "The Restaurant Partner Program is for visitor visibility (owner-approved partner pricing only — confirm program terms before quoting):",
+          "- Starter Visibility — owner-approved partner pricing only",
+          "- Featured Visitor Placement — owner-approved partner pricing only",
+          "- Route Partner — owner-approved partner pricing only",
           "",
-          "The AI Restaurant Growth Systems are for restaurants that want stronger online systems:",
-          "- QR Funnel System — from $1,000",
-          "- Website + Local SEO Upgrade — from $1,500",
-          "- Lead + Inquiry System — from $2,500",
-          "- AI Restaurant Concierge — from $3,500",
-          "- Full AI Restaurant Growth System — from $7,500+",
-          "- Monthly Growth Management / Ongoing Growth Management — $500–$2,500/month",
+          "The AI Restaurant Growth Systems are for restaurants that want stronger online systems (separate from partner program pricing — custom quote after scope is confirmed):",
+          "- QR Funnel System — custom quote after scope is confirmed",
+          "- Website + Local SEO Upgrade — custom quote after scope is confirmed",
+          "- Lead + Inquiry System — custom quote after scope is confirmed",
+          "- AI Restaurant Concierge — custom quote after scope is confirmed",
+          "- Full AI Restaurant Growth System — custom quote after scope is confirmed",
+          "- Monthly Growth Management / Ongoing Growth Management — discuss after launch needs are clear",
+          "",
+          OWNER_PRICING_DRAFT_CAUTION,
           "",
           "I would not recommend overbuilding first. I’d start with the first useful system that matches your biggest gap.",
         ].join("\n");
@@ -24514,6 +24599,7 @@
           restaurantSnapshotItem("Owner-approved next step:", proposal.ownerApprovedNextStep, false) +
           "</div>" +
           restaurantProposalFormHtml(proposal) +
+          pricingDraftCautionHtml() +
           '<p class="owner-dash-restaurant-proposal-guardrail">' +
           esc(RESTAURANT_PROPOSAL_GUARDRAIL) +
           "</p>" +
@@ -25645,6 +25731,7 @@
           '<section class="owner-dash-detail-section owner-dash-detail-section--ai-advantage-pricing">' +
           '<h3 class="owner-dash-detail-section-title">Pricing Recommendation</h3>' +
           '<p class="owner-dash-detail-section-note">Internal pricing guidance only — not a final invoice. No payment collection from this dashboard.</p>' +
+          pricingDraftCautionHtml() +
           '<div class="owner-dash-detail-grid">' +
           detailRow("Recommended offer path", p.offerPath, true) +
           detailRow("Setup range", p.setupRange) +
@@ -26159,6 +26246,7 @@
           '<div class="owner-dash-restaurant-command-block" data-command-section="pricing" data-command-view="full">' +
           '<h3 class="owner-dash-detail-section-title">Pricing Builder</h3>' +
           '<p class="owner-dash-detail-section-note">Price the smallest useful intake, routing, or follow-up path first — not a full system upfront.</p>' +
+          pricingDraftCautionHtml() +
           '<pre class="owner-dash-followup-template">' +
           esc(buildHomeServicesPricingGuidance(lead)) +
           "</pre>" +
@@ -26170,6 +26258,7 @@
           '<div class="owner-dash-restaurant-command-block" data-command-section="quote" data-command-view="full">' +
           '<h3 class="owner-dash-detail-section-title">Quote / Invoice Prep Guidance</h3>' +
           '<p class="owner-dash-detail-section-note">Prep scope for estimates and owner-approved customer steps — not auto-invoicing.</p>' +
+          pricingDraftCautionHtml() +
           '<pre class="owner-dash-followup-template">' +
           esc(buildHomeServicesQuotePrep(lead)) +
           "</pre>" +
