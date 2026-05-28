@@ -33,6 +33,27 @@ Owner Dashboard route: `/owner-dashboard/`
 Contact:
 - Phone: **(830) 355-3353**
 - Email: **aibusinessplug@gmail.com**
+## 2026-05-28 — Home Services Language Cleanup
+
+PR #131 cleaned up remaining Home Services / AI Plug dashboard language after live mobile review.
+
+Branch:
+- cursor/home-services-language-cleanup-936d
+
+File changed:
+- owner-dashboard/index.html
+
+Result:
+- Home Services proposal and pricing areas now use owner-facing deliverable language instead of vague AI/package language.
+- “customer path” was removed from Home Services client-facing copy.
+- “smart intake path” was removed.
+- Home Services proposals now lead with real deliverables such as missed-call follow-up, owner alert flow, quote request form, photo intake, estimate follow-up workflow, review request workflow, owner dashboard / CRM-lite, Google Ads setup + landing page, and monthly optimization support.
+- Restaurant Sales Mode was preserved.
+- Public pages were untouched.
+- Transportation logic was untouched.
+
+Rule:
+Future Home Services, contractor, professional services, and AI Plug sales-copy work must use plain business-owner language first. Use deliverables, not vague AI package names.
 
 ## Current Business Direction
 
