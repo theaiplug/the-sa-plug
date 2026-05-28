@@ -4554,9 +4554,35 @@
     .page-owner-dashboard .owner-dash-command-sheet--home-services .owner-dash-restaurant-snapshot strong,
     .page-owner-dashboard .owner-dash-command-sheet--home-services .owner-dash-restaurant-snapshot span,
     .page-owner-dashboard .owner-dash-command-sheet--home-services pre {
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      overflow-wrap: break-word;
+      word-break: normal;
+      hyphens: auto;
       white-space: pre-wrap;
+    }
+
+    .page-owner-dashboard .owner-dash-command-sheet--home-services a[href^="mailto:"],
+    .page-owner-dashboard .owner-dash-command-sheet--home-services a[href^="tel:"] {
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--home-services-owner-tools {
+      margin-top: 12px;
+      padding: 10px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      opacity: 0.94;
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--home-services-owner-tools h3 {
+      font-size: 0.92rem;
+      color: rgba(255, 246, 230, 0.82);
+    }
+
+    .page-owner-dashboard .owner-dash-detail-section--home-services-owner-tools .owner-dash-detail-section-note {
+      font-size: 0.78rem;
+      color: rgba(255, 246, 230, 0.62);
     }
 
     .page-owner-dashboard .owner-dash-ai-plug-term-grid {
@@ -4689,7 +4715,12 @@
 
       .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-command-section,
       .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-restaurant-command-block {
-        scroll-margin-top: 72px;
+        scroll-margin-top: 88px;
+      }
+
+      .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-restaurant-guardrails,
+      .page-owner-dashboard .owner-dash-command-sheet--home-services-os .owner-dash-restaurant-two-col {
+        grid-template-columns: 1fr;
       }
 
       .page-owner-dashboard .owner-dash-command-nav {
@@ -15878,10 +15909,31 @@
         return "Lead Capture System";
       }
 
+      function recommendProposalTypeForHomeServices(lead) {
+        var diag = homeServicesDiagnosis(lead);
+        var offer = String(diag.firstOffer || "").toLowerCase();
+        var leak = String(diag.leak || "").toLowerCase();
+        if (/owner visibility|dashboard|pipeline|command/.test(offer + " " + leak)) {
+          return "Business Command System";
+        }
+        if (/seo|local seo|visibility upgrade|growth|content|media/.test(offer)) {
+          return "Lead Capture System";
+        }
+        if (/website|landing|page cleanup|starter/.test(offer)) {
+          return "Starter Fix";
+        }
+        if (/missed|recovery|intake|photo|routing|follow-up|follow up|quote|scheduling|review/.test(offer + " " + leak)) {
+          return "Lead Capture System";
+        }
+        return "Lead Capture System";
+      }
+
       function selectedProposalType(lead) {
         var key = proposalSelectionKey(lead);
         var selected = key ? state.proposalSelections[key] : "";
-        return proposalTypeIsValid(selected) ? selected : recommendProposalType(lead);
+        if (proposalTypeIsValid(selected)) return selected;
+        if (isHomeServicesRow(lead)) return recommendProposalTypeForHomeServices(lead);
+        return recommendProposalType(lead);
       }
 
       function proposalPackageForType(type) {
@@ -20234,17 +20286,17 @@
         "Roofing": {
           niche: "Roofing",
           niche_lower: "roofing",
-          objectives: "inspection requests, leak calls, storm calls, roof photos, estimate follow-up, claim-aware (not claim-outcome) language.",
-          opportunitiesLeak: "Storm calls come in fast, homeowners send roof photos by text that get buried, inspection requests miss roof age/leak location/insurance status/urgency, estimates go out but follow-up is loose, and tire-kicker requests mix with real jobs.",
+          objectives: "roof inspection requests, leak calls, storm inquiry and photo intake, estimate follow-up, service area / storm area clarity, dispatcher/owner handoff, review requests — claim-aware language only (not claim-outcome or adjuster advice).",
+          opportunitiesLeak: "Storm inquiries come in fast, leak calls overlap with field work, homeowners text roof photos that get buried, inspection requests miss roof age/leak location/insurance-notice status/urgency, estimates go out but estimate follow-up is loose, and tire-kicker requests mix with real jobs.",
           bestSystems: "Roof Inspection Request System, Storm Inquiry + Photo Intake Funnel, Estimate Follow-Up Workflow, Service Area / Storm Area Local SEO Upgrade, Review + Referral Request System.",
           discovery: [
             "How do roof inspection requests come in today?",
             "What happens when someone calls about a leak while you are on a roof or in the field?",
-            "Do homeowners text roof photos to different people?",
-            "How do you track inspection requests after a storm?",
-            "Who follows up after an estimate is sent?",
-            "Do you separate repairs, replacements, storm claims, and low-fit requests?",
-            "Which service areas or storm areas matter most?",
+            "Do homeowners text roof photos to different people before dispatch sees them?",
+            "How do storm inquiry calls and photo intake get tracked after a weather event?",
+            "Who follows up after an estimate is sent or a quote is not accepted?",
+            "Do you separate repairs, replacements, storm-related inquiries, and low-fit requests?",
+            "Which service areas or storm areas matter most for scheduling?",
           ],
           tenSecondPitch: "We help roofers keep inspection requests, leak calls, roof photos, and estimate follow-up from getting lost.",
           fifteenSecondPitch: "We build a cleaner path for roofing leads so leak calls, storm inquiries, photos, inspection requests, and follow-up route to the right person instead of getting buried in texts.",
@@ -20477,15 +20529,17 @@
         "Plumbing": {
           niche: "Plumbing",
           niche_lower: "plumbing",
-          objectives: "service calls, emergency leaks, water heater replacements, drain / sewer jobs, follow-up.",
-          opportunitiesLeak: "Emergency calls overlap with scheduled work, intake misses location / severity / water-off status, water heater and sewer jobs are not followed up, and reviews / referrals are inconsistent.",
+          objectives: "clogged drains, leaks, water heaters, emergency vs scheduled calls, dispatch/photo intake, quote-not-accepted follow-up, service area clarity, and review requests.",
+          opportunitiesLeak: "Emergency calls overlap with scheduled work, intake misses location / severity / water-off status, clogged drain and water heater jobs lack photo intake, quote-not-accepted follow-up is loose, and reviews / referrals are inconsistent.",
           bestSystems: "Plumbing Service Intake System, Emergency Routing Workflow, Water Heater / Sewer Job Follow-Up Workflow, Review + Referral Request System, Service Area Local SEO Upgrade.",
           discovery: [
             "How do plumbing calls and emergencies come in today?",
-            "What details do you need before dispatching?",
-            "How do you handle after-hours calls?",
-            "How do you follow up on larger jobs?",
-            "Which service areas matter most?",
+            "How are clogged drains, leaks, water heaters, and sewer jobs triaged?",
+            "What photo or video intake do you need before dispatch (leak location, water heater age, drain backup)?",
+            "How do emergency calls vs scheduled service route to the owner or dispatcher?",
+            "What happens when a quote is sent but not accepted — who follows up?",
+            "How do you handle after-hours calls and service-area questions?",
+            "When do you ask for reviews after completed plumbing work?",
           ],
           tenSecondPitch: "We help plumbers organize service calls, emergencies, water heater and sewer jobs, and follow-up.",
           fifteenSecondPitch: "We build a cleaner path for plumbing requests so emergencies, scheduled service, larger jobs, and follow-up do not get scattered.",
@@ -21162,7 +21216,14 @@
         var pack = homeServicesPack(row);
         var list = (pack.discovery || []).slice();
         var niche = homeServicesNicheKey(row);
-        if (niche === "Plumbing") {
+        if (niche === "Roofing") {
+          list = list.concat([
+            "How do roof inspection requests and leak calls get prioritized when crews are in the field?",
+            "What storm inquiry / photo intake path do you use after hail or wind events?",
+            "How do you confirm service area vs storm area before scheduling an inspection?",
+            "Who owns estimate follow-up and quote-not-accepted follow-up?",
+          ]);
+        } else if (niche === "Plumbing") {
           list = list.concat([
             "How do clogged drains, water heaters, leaks, and sewer jobs get triaged?",
             "What photo/video intake do you need before dispatch (leak location, water heater age, drain backup)?",
@@ -21202,16 +21263,21 @@
       function buildHomeServicesPricingGuidance(row) {
         var ctx = homeServicesCopyContext(row);
         var vpack = buildHomeServicesVerticalPack(row);
+        var pricing = calcPricingBuilder(row);
         return [
           "Home Services pricing guidance — " + ctx.business,
           "",
           "Niche: " + ctx.niche,
           "Diagnosed leak: " + ctx.leak,
           "Recommended first system: " + ctx.offer,
+          "Aligned internal package: " + pricing.recommendedPackage,
+          "Suggested starting range (internal guidance only): " + pricing.priceRange,
           "",
           vpack.pricingNote,
           "",
-          "Phase-one focus: intake, routing, photo capture, scheduling visibility, or follow-up — not a full rebuild.",
+          "Phase-one focus: intake, routing, photo capture, scheduling visibility, or follow-up — not a full rebuild. Final quote depends on scope, routing depth, and owner approvals.",
+          "",
+          "Pricing note: " + pricing.reason,
           "",
           ctx.pack.safeClaims,
           "",
@@ -21359,7 +21425,7 @@
 
       function homeServicesGuardrailsCard(pack) {
         return (
-          '<p class="owner-dash-restaurant-guardrail-note">Copy only — nothing sends automatically. No payment, invoice, email, SMS, or public listing automation from this dashboard. AI does not replace dispatchers, estimators, or field staff.</p>' +
+          '<p class="owner-dash-restaurant-guardrail-note">Copy only — nothing sends automatically. No payment, invoice, email, SMS, or public listing automation from this dashboard. AI does not replace dispatchers, estimators, or field staff. Customer-facing messages require owner approval before launch.</p>' +
           '<div class="owner-dash-restaurant-guardrails">' +
           homeServicesCardList("Do not promise", AI_PLUG_GUARDRAILS_DO_NOT_PROMISE) +
           homeServicesCardList("Allowed positioning", [
@@ -21713,11 +21779,11 @@
             "Missed calls, quote requests, photo intake, service area, appointment scheduling, estimate follow-up, no-response leads, review requests, seasonal offers, and job pipeline visibility.",
           mainOpportunity: diag.diagnosis,
           firstSystem: diag.firstOffer,
-          suggestedPackage: "Phase 1 · " + diag.firstOffer + " (owner-approved workflow for " + diag.niche + ")",
+          suggestedPackage: "Phase 1 · " + diag.firstOffer + " (" + (proposalPackageForType(recommendProposalTypeForHomeServices(row)).recommendedPackage || "Lead Capture System") + " tier — owner-approved workflow for " + diag.niche + ")",
           pricePosition:
-            "No quote yet — confirm job type, service area, photo/intake fields, and scheduling rules after discovery. Phase-one focus: " +
+            "No final quote yet — confirm job type, service area, photo/intake fields, and scheduling rules after discovery. Phase-one focus: " +
             diag.firstOffer +
-            ".",
+            ". Internal range follows the aligned package tier after discovery (guidance only).",
           proposalEstimateGuidance:
             "Estimate phase one around " +
             diag.leak +
@@ -25253,12 +25319,31 @@
         );
       }
 
+      function homeServicesQuickCopyBlock(lead) {
+        if (!lead || !isHomeServicesRow(lead)) return "";
+        var niche = homeServicesNicheKey(lead);
+        return (
+          '<section class="owner-dash-command-quick-copy owner-dash-command-quick-copy--home-services" data-command-view="quick-only">' +
+          '<h3 class="owner-dash-detail-section-title">Home Services Quick Actions</h3>' +
+          '<p class="owner-dash-detail-section-note">Lightweight copy for ' + esc(niche) + '. Open Full Training View for the complete command system, pricing builder, and delivery checklists.</p>' +
+          '<div class="owner-dash-command-quick-copy-actions">' +
+          homeServicesCopyButton("home-services-first-outreach", "Copy first outreach", true) +
+          homeServicesCopyButton("home-services-text-reply", "Copy text reply", false) +
+          homeServicesCopyButton("home-services-call-opener", "Copy call opener", false) +
+          homeServicesCopyButton("home-services-follow-up", "Copy follow-up", false) +
+          homeServicesCopyButton("home-services-discovery-questions", "Copy discovery questions", false) +
+          '</div><p class="owner-dash-stage-safe-note">Copy only — nothing sends automatically. No invoices, payments, SMS, email, or public listings are triggered here.</p>' +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          "</section>"
+        );
+      }
+
       function homeServicesGenericOwnerToolsBlock(lead) {
         if (!lead || !isHomeServicesRow(lead)) return "";
         return (
-          '<section class="owner-dash-detail-section owner-dash-detail-section--tools owner-dash-command-quick-copy" data-command-section="owner-tools">' +
-          '<h3 class="owner-dash-detail-section-title">Owner Tools / Copy Tools</h3>' +
-          '<p class="owner-dash-detail-section-note">Generic contact and CRM copy helpers. Use the Home Services command sections above for niche-specific plumbing and trade copy.</p>' +
+          '<section class="owner-dash-detail-section owner-dash-detail-section--tools owner-dash-detail-section--home-services-owner-tools owner-dash-command-quick-copy" data-command-section="owner-tools" data-command-view="full">' +
+          '<h3 class="owner-dash-detail-section-title">Owner Tools / Copy Tools (fallback)</h3>' +
+          '<p class="owner-dash-detail-section-note">Secondary generic helpers only. Use the Home Services command system above for niche-specific trade copy, pricing, and follow-up.</p>' +
           '<div class="owner-dash-command-quick-copy-actions">' +
           commandQuickCopyButton("copy-field", "phone", "Copy phone", false) +
           commandQuickCopyButton("copy-field", "email", "Copy email", false) +
@@ -25997,16 +26082,16 @@
         var pack = homeServicesPack(lead);
         var discovery = homeServicesDiscoveryList(lead);
         var hsGuardrail =
-          "Internal home services sales guidance only. Nothing is sent, published, invoiced, charged, or promised automatically.";
+          "Internal home services sales guidance only. Copy only — nothing sends automatically. No invoices, payments, SMS, email, or public listings are triggered here. AI does not replace dispatchers, estimators, or field staff. Customer-facing messages require owner approval.";
         return (
           '<section class="owner-dash-detail-section owner-dash-detail-section--home-services-command owner-dash-home-services-command owner-dash-restaurant-command" data-home-services-command data-command-section="sales">' +
-          '<div class="owner-dash-restaurant-head">' +
+          '<div class="owner-dash-restaurant-head" data-command-view="full">' +
           '<div><h3 class="owner-dash-detail-section-title">Home Services + Contractors Command</h3>' +
-          '<p class="owner-dash-detail-section-note">Home services sales operating system: missed calls, quote requests, photo intake, service area, scheduling, estimates, job follow-up, dispatcher handoff, and review requests. Copy only — nothing sends automatically. No restaurant language in this lane.</p></div>' +
+          '<p class="owner-dash-detail-section-note">Home services sales operating system: missed calls, quote requests, photo intake, service area, scheduling, estimate follow-up, dispatcher/owner handoff, review requests, and job pipeline visibility. Copy only — nothing sends automatically. Customer-facing messages require owner approval. No restaurant language in this lane.</p></div>' +
           '<span class="owner-dash-restaurant-mode-badge">Home Services · ' +
           esc(snap.niche) +
           "</span></div>" +
-          '<div class="owner-dash-restaurant-command-block" data-command-section="snapshot"><p class="owner-dash-restaurant-card-label">Home Services Snapshot</p>' +
+          '<div class="owner-dash-restaurant-command-block" data-command-section="snapshot" data-command-view="full"><p class="owner-dash-restaurant-card-label">Home Services Snapshot</p>' +
           '<div class="owner-dash-restaurant-snapshot">' +
           restaurantSnapshotItem("Business name", snap.business, false) +
           restaurantSnapshotItem("Contact", snap.contact, false) +
@@ -26513,6 +26598,7 @@
           commandSection("snapshot", "", nextActionHtml(displayNextAction)) +
           commandSection("snapshot", "quick-only", businessCommandSnapshotBlock(lead, priority, displayNextAction)) +
           (homeServicesOs ? homeServicesSalesCommandBlock(lead) : "") +
+          (homeServicesOs ? commandSection("copy-tools", "quick-only", homeServicesQuickCopyBlock(lead)) : "") +
           (!homeServicesOs ? commandSection("copy-tools", "quick-only", businessCommandQuickCopyBlock(lead)) : "") +
           verticalSections +
           (verticalOs || homeServicesOs
@@ -26791,6 +26877,9 @@
         if (isCompactCommandSheetNav()) {
           var nav = sheet.querySelector(".owner-dash-command-nav");
           var offset = nav ? Math.ceil(nav.getBoundingClientRect().height) + 14 : 14;
+          if (sheet.classList.contains("owner-dash-command-sheet--home-services-os")) {
+            offset = Math.max(offset, 88);
+          }
           var top = window.pageYOffset + target.getBoundingClientRect().top - offset;
           window.scrollTo({ behavior: "smooth", top: Math.max(0, top) });
           return;
@@ -26902,6 +26991,23 @@
         return "";
       }
 
+      function normalizeCopyText(text) {
+        return String(text || "")
+          .replace(/ /g, " ")
+          .replace(/follow-\s+up/gi, "follow-up")
+          .replace(/custom\s+er/gi, "customer")
+          .replace(/autom\s+atically/gi, "automatically")
+          .replace(/leadrou\s+ting/gi, "lead routing")
+          .replace(/roadm\s+ap/gi, "roadmap")
+          .replace(/prosect/gi, "prospect")
+          .replace(/Ststem/g, "System")
+          .replace(/O\s+pportunity/g, "Opportunity")
+          .replace(/O\s+ptimization/g, "Optimization")
+          .replace(/A\s+ction/g, "Action")
+          .replace(/R\s+ecovery/g, "Recovery")
+          .trim();
+      }
+
       function copyFromDetail(kind, sourceBtn) {
         var sheet = els.detailBody && els.detailBody.querySelector(".owner-dash-detail-sheet");
         if (!sheet || !state.detailOpen) return;
@@ -26934,7 +27040,7 @@
           setCopyFeedback(section, "Nothing to copy.", true);
           return;
         }
-        text = String(text).trim();
+        text = normalizeCopyText(text);
         hideManualCopy(section);
         function onSuccess() {
           setCopyFeedback(section, "Copied.");
