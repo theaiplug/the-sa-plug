@@ -3724,6 +3724,35 @@
       }
     }
 
+    /* Owner Dashboard v34 - AI Advantage First classification cards */
+    .page-owner-dashboard .owner-dash-ai-advantage-card {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .page-owner-dashboard .owner-dash-ai-advantage-card dt {
+      color: rgba(186, 230, 253, 0.82);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .page-owner-dashboard .owner-dash-ai-advantage-card dd {
+      margin: 0 0 6px;
+      color: #f8fafc;
+      font-size: 0.84rem;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    .page-owner-dashboard .owner-dash-ai-advantage-summary-grid .owner-dash-detail-value {
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
     /* Owner Dashboard v32 - AI Plug Business Command */
     .page-owner-dashboard .owner-dash-biz-command,
     .page-owner-dashboard .owner-dash-biz-command * {
@@ -4822,7 +4851,7 @@
         <div class="owner-dash-biz-command-head">
           <p class="eyebrow eyebrow-on-dark">AI PLUG BUSINESS COMMAND · PARENT OS</p>
           <h2 id="owner-dash-ai-plug-business-command-heading">AI Plug Business Command</h2>
-          <p class="owner-dash-biz-command-subtitle">Parent business operating system for The AI Plug. Diagnose where any business is losing opportunities between calls, forms, messages, questions, follow-up, and owner visibility — then choose the smallest useful system. Vertical lanes (Restaurants, Home Services, Transportation / Concierge, future niches) live inside this command.</p>
+          <p class="owner-dash-biz-command-subtitle">AI Advantage First command for The AI Plug — Practical AI Adoption + Growth Systems. Classify each business lead by business type, service lane, first useful AI system, problem, awareness, and guardrail risk before outreach or build. Vertical lanes (Restaurants, Home Services, Transportation / Concierge, future niches) stay inside this command.</p>
           <p class="owner-dash-biz-command-guardrail">Internal command center only. Copy / status / owner workflow tools — nothing sends, publishes, invoices, charges, or promises automatically.</p>
         </div>
         <div class="owner-dash-biz-command-verticals" role="group" aria-label="Business pipeline vertical lanes">
@@ -6040,6 +6069,14 @@
         { key: "renewal-upsell", label: "Renewal / Upsell Opportunity", status: "Renewal / Upsell Opportunity", marker: "AI Plug stage: Renewal / Upsell Opportunity.", tone: "ok" },
         { key: "not-now", label: "Not Now", status: "Not Now", marker: "AI Plug stage: Not Now.", tone: "pending" },
         { key: "lost-not-fit", label: "Lost / Not a Fit", status: "Lost", marker: "AI Plug stage: Lost / Not a Fit.", tone: "error" },
+        { key: "needs-review", label: "Needs Review", status: "Needs Review", marker: "AI Plug stage: Needs Review.", tone: "pending" },
+        { key: "review-recommended", label: "Review Recommended", status: "Review Recommended", marker: "AI Plug stage: Review Recommended.", tone: "ok" },
+        { key: "scope-revision-needed", label: "Scope Revision Needed", status: "Scope Revision Needed", marker: "AI Plug stage: Scope Revision Needed.", tone: "pending" },
+        { key: "won-deposit-paid", label: "Won / Deposit Paid", status: "Won / Deposit Paid", marker: "AI Plug stage: Won / Deposit Paid. Manual deposit tracking only.", tone: "ok" },
+        { key: "in-delivery", label: "In Delivery", status: "In Delivery", marker: "AI Plug stage: In Delivery.", tone: "ok" },
+        { key: "launched", label: "Launched", status: "Launched", marker: "AI Plug stage: Launched.", tone: "ok" },
+        { key: "monthly-management", label: "Monthly Management", status: "Monthly Management", marker: "AI Plug stage: Monthly Management.", tone: "ok" },
+        { key: "not-fit", label: "Not Fit", status: "Not Fit", marker: "AI Plug stage: Not Fit.", tone: "error" },
       ];
 
       var AI_PLUG_DISCOVERY_GROUPS = [
@@ -13329,12 +13366,25 @@
       }
 
       function buildBusinessSummary(lead) {
-        return [
+        var c = lead && !isRestaurantRow(lead) ? aiAdvantageClassify(lead) : null;
+        var lines = [
           "Where To Go SA / The AI Plug Lead",
           "Business: " + (lead.business_name || "—"),
           "Contact: " + (lead.contact_name || "—"),
           "Phone: " + (lead.contact_phone || "—"),
           "Email: " + (lead.contact_email || "—"),
+        ];
+        if (c) {
+          lines.push(
+            "Business type: " + aiAdvantageDisplay(c.businessType, "Not classified yet"),
+            "Service lane: " + aiAdvantageDisplay(c.serviceLane, "Not classified yet"),
+            "First useful system: " + aiAdvantageDisplay(c.firstSystem, "Not classified yet"),
+            "Problem type: " + aiAdvantageDisplay(c.problemType, "Not classified yet"),
+            "AI awareness: " + aiAdvantageDisplay(c.aiAwareness, "Not classified yet"),
+            "Guardrail risk: " + aiAdvantageDisplay(c.guardrailRisk, "Needs review")
+          );
+        }
+        lines.push(
           "Problem: " + (lead.current_problem || "—"),
           "Interested in: " + (lead.services_interested || "—"),
           "Urgency: " + (lead.urgency || "—"),
@@ -13342,8 +13392,10 @@
           "Recommended system: " + (lead.recommended_system || "—"),
           "AI Summary: " + (lead.ai_summary || "—"),
           "Status: " + (displayStatus(lead.status) || "—"),
-          "Owner notes: " + (lead.owner_notes || "—"),
-        ].join("\n");
+          "Next action: " + (c ? aiAdvantageDisplay(c.nextAction, "Needs review") : "—"),
+          "Owner notes: " + (lead.owner_notes || "—")
+        );
+        return lines.join("\n");
       }
 
       function buildTransportSummary(row) {
@@ -14397,21 +14449,18 @@
       ];
 
       var AI_PLUG_OBJECTION_RESPONSES = [
-        ["I already have a website.", "That makes sense. I am not trying to replace a website just because it exists. The question is whether calls, forms, DMs, questions, and follow-up are connected after someone visits it. The smallest useful next step is a customer-path review so we can see whether the website is actually helping the request get captured and routed."],
-        ["I do not need AI.", "I get that. The useful part is not AI for its own sake. It is better answers, intake, routing, follow-up, and owner visibility with approval. The smallest next step is to identify one repeated question or intake problem AI can support without replacing your team."],
-        ["Can you guarantee leads?", "No, and I would not want to promise that. What we can improve is the path after interest: capture, routing, follow-up, and visibility. The next step is to find the leak and decide whether a small system would make the process cleaner."],
-        ["This sounds expensive.", "That is a fair concern. I would not start with a giant build. The safest move is to diagnose the main leak and choose the smallest useful first system, then expand only after it proves useful."],
-        ["I do not have time.", "That is exactly why the first step should be simple. I can review the current path and ask only the few questions needed to identify where requests get missed. Then we can decide whether it is worth a short discovery call."],
-        ["My staff already handles this.", "Good. The goal is not to replace staff. It is to make sure calls, forms, messages, and follow-up are easier for staff to see, route, and work. The smallest next step is mapping what staff handle now and where things still slip."],
-        ["I just need more customers.", "I understand. Before spending effort chasing more attention, I would check whether current opportunities are being captured and followed up. The next step is a quick leak diagnosis so we do not pour more interest into a broken path."],
-        ["I am not technical.", "You do not need to be. I would keep this in plain business terms: what customers ask, where requests go, who sees them, and what happens next. The next step is a simple workflow map."],
-        ["I need to think about it.", "That makes sense. You do not need to decide on a build now. The simple next action is to confirm the main leak and the smallest useful first step, then you can decide if it is worth moving forward."],
-        ["Send me information.", "Absolutely. I will send a short summary focused on the likely leak, the first system I would review, what it improves, and what it does not guarantee. After that, the next step can be a quick call only if it seems useful."],
-        ["We already have software.", "That can help. The question is whether the software connects the whole customer path: calls, forms, DMs, routing, follow-up, and owner visibility. The next step is to review where the existing tools are not connected."],
-        ["We tried marketing before.", "I hear that. This is not a promise that marketing will create results. The first move is operational: make the current customer path clearer so opportunities are captured, routed, and followed up before adding more campaigns."],
-        ["We are too small for this.", "That may be true for a full system. It is usually not true for a small intake or follow-up fix. The next step is to pick one leak that creates the most friction and decide if a small fix is worth it."],
-        ["I do not want a chatbot.", "Fair. A chatbot is only one possible tool, and it may not be the right first move. We can start with forms, routing, follow-up copy, or owner visibility before any AI operator is considered."],
-        ["How do I know this will work?", "You should not have to take that on faith. We start small, define what the system is supposed to improve, avoid guarantees, and review whether the workflow is clearer after launch. The next step is a focused diagnosis."],
+        ["I already have a website.", "That makes sense. The question is whether calls, forms, messages, questions, and follow-up are connected after someone visits. The safest first step is usually an AI Growth Review or a focused conversion path review — not a full rebuild."],
+        ["I do not need AI.", "Fair. The useful part is not AI for its own sake. It is a clearer customer path, better intake, routing, follow-up, and owner visibility with approval. We can start with the first useful system that fixes one real leak."],
+        ["I do not want a chatbot.", "Understood. A chatbot is only one option and often not the first move. We can start with intake, routing, follow-up, or owner visibility before any customer-facing AI is considered."],
+        ["Can you guarantee leads?", "No — and I would not promise leads, traffic, revenue, bookings, rankings, or reviews. What we can improve is how opportunities are captured, routed, followed up, and reviewed by the owner."],
+        ["This sounds expensive.", "That is fair. I would not start with a giant package. The safest path is to diagnose the main leak, recommend the smallest useful first system, and quote only after scope is clear."],
+        ["My staff handles it.", "Good — the goal is not to replace staff. It is to make calls, forms, messages, and follow-up easier to see, route, and work without things slipping."],
+        ["I already run ads.", "Ads can create attention, but a weak path after the click wastes spend. The first useful step is often fixing intake, landing clarity, or follow-up before adding more campaign volume."],
+        ["We already have software.", "That can help. The question is whether tools connect the full path: attention → intake → routing → follow-up → owner visibility. We can map where they disconnect."],
+        ["I need to think about it.", "Makes sense. You do not need to decide on a build now. The next step can be confirming the main problem, the first useful system, and what is excluded — then you decide."],
+        ["Send me information.", "Absolutely. I will send a short summary: the likely problem, recommended first system, what it helps with, what it does not include, and what is not guaranteed."],
+        ["We tried marketing before.", "I hear that. This is not a promise that marketing will create results. The first move is operational: capture, route, and follow up on the opportunities you already get."],
+        ["What if AI says something wrong?", "That is exactly why approval boundaries matter. Customer-facing AI should use owner-approved answers, escalation rules, and a do-not-say list — not go live without review."],
       ];
 
       var AI_PLUG_FOLLOW_UP_MESSAGES = [
@@ -14424,6 +14473,578 @@
         ["Close / next-step message", "The next step is confirming the first phase: [recommended system], required assets, approval person, access, launch expectations, and follow-up cadence. Nothing goes live or customer-facing without approval."],
         ["Not-a-fit / hold message", "Thanks for sharing the details. I do not think this is a fit for a build yet. I would hold until the customer-path leak, decision maker, timing, or first useful system is clearer."],
       ];
+
+      var AI_ADVANTAGE_V3_BUSINESS_TYPES = [
+        "Home Services + Contractors",
+        "Hospitality + Local Experience",
+        "Restaurants",
+        "Professional Services",
+        "Transportation + Concierge",
+        "Local Brands + Retail",
+        "Other / Custom",
+      ];
+
+      var AI_ADVANTAGE_V3_SERVICE_LANES = [
+        "AI Growth Review",
+        "AI Marketing Systems",
+        "AI Customer Experience",
+        "AI Intake + Automation",
+        "AI Business Assistants",
+        "AI Growth Management",
+        "Full AI Growth System",
+        "Restaurant Partner Program / Visitor Visibility",
+        "Other / Custom",
+      ];
+
+      var AI_ADVANTAGE_V3_FIRST_SYSTEMS = [
+        "AI Growth Review",
+        "AI Website + Conversion System",
+        "AI Content + Social Media Engine",
+        "SEO + AI Search Visibility",
+        "Paid Campaign + Landing Page System",
+        "AI Chat Operator / Customer Experience",
+        "AI Phone / Voice Planning",
+        "Smart Intake + Automation",
+        "Internal AI Assistants + Workflow Support",
+        "QR Campaign / Menu Path",
+        "Visitor Visibility Review",
+        "Provider Handoff Workflow",
+        "Consultation Intake + Qualification",
+        "Product Answer / Customer Experience",
+        "Full AI Growth System",
+        "Other / Custom",
+      ];
+
+      var AI_ADVANTAGE_V3_PROBLEM_TYPES = [
+        "AI unclear / needs review",
+        "marketing output weak",
+        "search visibility weak",
+        "repeated customer questions",
+        "intake/request details messy",
+        "follow-up inconsistent",
+        "staff/owner busywork",
+        "internal assistant opportunity",
+        "owner visibility weak",
+        "paid campaign readiness",
+        "voice/phone planning",
+        "private event/catering/group inquiries",
+        "consultation qualification",
+        "product questions",
+        "QR/event interest capture",
+        "transportation provider handoff",
+        "multiple connected needs",
+        "other / custom",
+      ];
+
+      var AI_ADVANTAGE_V3_AI_AWARENESS = [
+        "Unaware",
+        "Curious but unclear",
+        "Has tried basic AI",
+        "Actively exploring AI",
+        "Ready to build",
+        "Already using AI but needs structure",
+        "Skeptical / cautious",
+      ];
+
+      var AI_ADVANTAGE_V3_GUARDRAIL_RISK = ["Low", "Medium", "High"];
+
+      var AI_ADVANTAGE_V3_DISCOVERY_BY_TYPE = {
+        "Home Services + Contractors": [
+          "Where do quote requests get messy?",
+          "Do customers send job photos?",
+          "What information is usually missing?",
+          "What follow-up gets missed?",
+          "What should AI never say?",
+        ],
+        Restaurants: [
+          "Are you more focused on visitor visibility, private events, catering, QR paths, or guest questions?",
+          "Where do private event inquiries come from?",
+          "What details are usually missing?",
+          "What should not be promised publicly?",
+        ],
+        "Professional Services": [
+          "What makes a consultation qualified?",
+          "What process questions repeat?",
+          "What should AI never answer?",
+          "Who approves public-facing language?",
+        ],
+        "Transportation + Concierge": [
+          "What pickup details are usually missing?",
+          "Who confirms availability?",
+          "What should AI never promise?",
+          "Do you need route pages, request intake, provider handoff, or voice planning?",
+        ],
+        "Local Brands + Retail": [
+          "What product questions repeat?",
+          "Do QR codes or events capture interest?",
+          "What product claims must be approved?",
+          "What content is hard to create?",
+        ],
+        "Hospitality + Local Experience": [
+          "Where do visitor or event inquiries come from today?",
+          "What details are usually missing before staff can respond?",
+          "What should not be promised about availability or placement?",
+          "What follow-up path should stay manual?",
+        ],
+        "Other / Custom": [
+          "How do customers usually find you and take the first action?",
+          "Where do requests or questions break down?",
+          "What should AI never say or promise?",
+          "Who approves customer-facing language?",
+        ],
+      };
+
+      var AI_ADVANTAGE_V3_PRICING_BY_SYSTEM = {
+        "AI Growth Review": {
+          offerPath: "AI Growth Review (diagnostic first)",
+          setupRange: "$500–$1,200",
+          monthlyRange: "Optional $150–$300/mo after launch",
+          packageKey: "Starter Website + Lead Path Fix",
+        },
+        "AI Website + Conversion System": {
+          offerPath: "AI Website + Conversion System",
+          setupRange: "$750–$2,500",
+          monthlyRange: "$150–$500/mo",
+          packageKey: "Starter Website + Lead Path Fix",
+        },
+        "Smart Intake + Automation": {
+          offerPath: "Smart Intake + Automation",
+          setupRange: "$1,500–$3,500",
+          monthlyRange: "$300–$750/mo",
+          packageKey: "Lead Capture System",
+        },
+        "Full AI Growth System": {
+          offerPath: "Full AI Growth System (phased)",
+          setupRange: "$7,500–$15,000+",
+          monthlyRange: "$1,500–$3,500+/mo",
+          packageKey: "Full AI Growth System",
+        },
+      };
+
+      function aiAdvantageDisplay(value, fallback) {
+        var v = value == null ? "" : String(value).trim();
+        return v || fallback || "Needs review";
+      }
+
+      function aiAdvantageMarker(lead, marker) {
+        return ownerNoteMarkerValue(lead, marker) || ownerNoteMarkerValue(lead, "AI Advantage " + marker);
+      }
+
+      function aiAdvantageMatchOption(options, value) {
+        var raw = String(value || "").trim();
+        if (!raw) return "";
+        var lower = raw.toLowerCase();
+        for (var i = 0; i < options.length; i += 1) {
+          if (options[i].toLowerCase() === lower) return options[i];
+        }
+        for (var j = 0; j < options.length; j += 1) {
+          if (lower.indexOf(options[j].toLowerCase()) !== -1 || options[j].toLowerCase().indexOf(lower) !== -1) {
+            return options[j];
+          }
+        }
+        return raw;
+      }
+
+      function aiAdvantageDeriveBusinessType(lead) {
+        var saved = aiAdvantageMarker(lead, "business type:");
+        if (saved) return aiAdvantageMatchOption(AI_ADVANTAGE_V3_BUSINESS_TYPES, saved);
+        if (isRestaurantRow(lead)) return "Restaurants";
+        if (isHomeServicesRow(lead)) return "Home Services + Contractors";
+        var vertical = businessVerticalLabel(lead);
+        if (/transport/i.test(vertical)) return "Transportation + Concierge";
+        if (/restaurant|hospitality|bar|nightlife|event|venue|tour|attraction/i.test(vertical)) {
+          return /restaurant/i.test(vertical) ? "Restaurants" : "Hospitality + Local Experience";
+        }
+        var text = leadContextText(lead);
+        if (/attorney|law|consult|insurance|medical|wellness|financial|real estate|professional/i.test(text)) {
+          return "Professional Services";
+        }
+        if (/retail|brand|product|boutique|shop/i.test(text)) return "Local Brands + Retail";
+        if (/roof|hvac|plumb|electric|remodel|contractor|home service|flooring|restoration/i.test(text)) {
+          return "Home Services + Contractors";
+        }
+        if (/transport|concierge|pickup|shuttle|airport|route/i.test(text)) return "Transportation + Concierge";
+        return "Other / Custom";
+      }
+
+      function aiAdvantageDeriveProblemType(lead, diagnosis) {
+        var saved = aiAdvantageMarker(lead, "problem type:");
+        if (saved) return aiAdvantageMatchOption(AI_ADVANTAGE_V3_PROBLEM_TYPES, saved);
+        var text = leadContextText(lead);
+        if (/ai unclear|not sure|don't know where to start|needs review/i.test(text)) return "AI unclear / needs review";
+        if (/private event|catering|group dining|banquet/i.test(text)) return "private event/catering/group inquiries";
+        if (/consult|qualif|intake form|booking consult/i.test(text)) return "consultation qualification";
+        if (/product question|sku|inventory|ingredient/i.test(text)) return "product questions";
+        if (/qr|scan|menu path|event capture/i.test(text)) return "QR/event interest capture";
+        if (/transport|pickup|provider handoff|route/i.test(text)) return "transportation provider handoff";
+        if (/seo|search visibility|google|ranking/i.test(text)) return "search visibility weak";
+        if (/content|social|posting|marketing output/i.test(text)) return "marketing output weak";
+        if (/repeat|faq|same question/i.test(text)) return "repeated customer questions";
+        if (/intake|messy|missing detail|quote request|photo/i.test(text)) return "intake/request details messy";
+        if (/follow[- ]?up|callback|no response/i.test(text)) return "follow-up inconsistent";
+        if (/busywork|internal|workflow|assistant/i.test(text)) return "internal assistant opportunity";
+        if (/dashboard|visibility|owner can't see/i.test(text)) return "owner visibility weak";
+        if (/ad|campaign|landing page|paid/i.test(text)) return "paid campaign readiness";
+        if (/phone|voice|missed call|voicemail/i.test(text)) return "voice/phone planning";
+        if (diagnosis && diagnosis.leak) {
+          if (/intake|form/i.test(diagnosis.leak)) return "intake/request details messy";
+          if (/follow/i.test(diagnosis.leak)) return "follow-up inconsistent";
+          if (/visibility|owner/i.test(diagnosis.leak)) return "owner visibility weak";
+        }
+        if (countLeadPainPoints(leadSignals(lead)) >= 3) return "multiple connected needs";
+        return "other / custom";
+      }
+
+      function aiAdvantageDeriveAiAwareness(lead) {
+        var saved = aiAdvantageMarker(lead, "AI awareness:");
+        if (saved) return aiAdvantageMatchOption(AI_ADVANTAGE_V3_AI_AWARENESS, saved);
+        var text = leadContextText(lead);
+        if (/skeptic|cautious|don't trust|worried|scared/i.test(text)) return "Skeptical / cautious";
+        if (/already use|using chatgpt|have ai|implemented/i.test(text)) return "Already using AI but needs structure";
+        if (/ready to build|let's build|start now|asap/i.test(text)) return "Ready to build";
+        if (/exploring|researching|comparing vendors/i.test(text)) return "Actively exploring AI";
+        if (/tried|experiment|chatgpt once/i.test(text)) return "Has tried basic AI";
+        if (/curious|interested|learning/i.test(text)) return "Curious but unclear";
+        if (/don't know|not sure|what is ai/i.test(text)) return "Unaware";
+        return "Curious but unclear";
+      }
+
+      function aiAdvantageDeriveGuardrailRisk(lead) {
+        var saved = aiAdvantageMarker(lead, "guardrail risk:");
+        if (saved) return aiAdvantageMatchOption(AI_ADVANTAGE_V3_GUARDRAIL_RISK, saved);
+        var text = [
+          lead.business_industry,
+          lead.current_problem,
+          lead.services_interested,
+          lead.ai_summary,
+          lead.owner_notes,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        if (
+          /attorney|lawyer|legal|medical|doctor|clinic|tax|financial|insurance|emergency|diagnos|allergen|reservation guarantee|pickup guarantee|health claim|unapproved ai|guarantee leads/i.test(
+            text
+          )
+        ) {
+          return "High";
+        }
+        if (/restaurant|transport|home service|quote|availability|booking|chatbot|phone ai|paid campaign/i.test(text)) {
+          return "Medium";
+        }
+        return "Low";
+      }
+
+      function aiAdvantageMapOfferToFirstSystem(lead) {
+        var saved = aiAdvantageMarker(lead, "first useful system:");
+        if (saved) return aiAdvantageMatchOption(AI_ADVANTAGE_V3_FIRST_SYSTEMS, saved);
+        var rec = String(lead.recommended_system || "").toLowerCase();
+        var ladder = aiPlugRecommendLadderOffer(lead);
+        var offer = String((ladder && ladder.offer) || "").toLowerCase();
+        var combined = rec + " " + offer + " " + leadContextText(lead);
+        if (/growth review|audit|diagnostic|starter website path audit/i.test(combined)) return "AI Growth Review";
+        if (/media|content|social/i.test(combined)) return "AI Content + Social Media Engine";
+        if (/seo|search visibility|local search/i.test(combined)) return "SEO + AI Search Visibility";
+        if (/landing|campaign|paid/i.test(combined)) return "Paid Campaign + Landing Page System";
+        if (/chat|operator|website chat/i.test(combined)) return "AI Chat Operator / Customer Experience";
+        if (/phone|voice|missed call/i.test(combined)) return "AI Phone / Voice Planning";
+        if (/qr|funnel|menu/i.test(combined)) return "QR Campaign / Menu Path";
+        if (/intake|smart form|form starter/i.test(combined)) return "Smart Intake + Automation";
+        if (/assistant|internal|workflow/i.test(combined)) return "Internal AI Assistants + Workflow Support";
+        if (/visitor visibility|partner program/i.test(combined)) return "Visitor Visibility Review";
+        if (/handoff|provider/i.test(combined)) return "Provider Handoff Workflow";
+        if (/consult|qualification/i.test(combined)) return "Consultation Intake + Qualification";
+        if (/product answer|product question/i.test(combined)) return "Product Answer / Customer Experience";
+        if (/full|operating system|command center/i.test(combined)) return "Full AI Growth System";
+        if (/website|foundation|conversion/i.test(combined)) return "AI Website + Conversion System";
+        return "AI Growth Review";
+      }
+
+      function aiAdvantageDeriveServiceLane(lead, firstSystem, businessType) {
+        var saved = aiAdvantageMarker(lead, "service lane:");
+        if (saved) return aiAdvantageMatchOption(AI_ADVANTAGE_V3_SERVICE_LANES, saved);
+        if (businessType === "Restaurants" && /visibility|partner|visitor/i.test(String(firstSystem).toLowerCase())) {
+          return "Restaurant Partner Program / Visitor Visibility";
+        }
+        if (firstSystem === "AI Growth Review") return "AI Growth Review";
+        if (/content|seo|paid|marketing/i.test(firstSystem)) return "AI Marketing Systems";
+        if (/chat|phone|product answer|customer experience/i.test(firstSystem)) return "AI Customer Experience";
+        if (/intake|automation|handoff|consultation/i.test(firstSystem)) return "AI Intake + Automation";
+        if (/assistant|workflow/i.test(firstSystem)) return "AI Business Assistants";
+        if (firstSystem === "Full AI Growth System") return "Full AI Growth System";
+        return "AI Growth Management";
+      }
+
+      function aiAdvantageClassify(lead) {
+        if (!lead) {
+          return {
+            businessType: "Not classified yet",
+            serviceLane: "Not classified yet",
+            firstSystem: "Not classified yet",
+            problemType: "Not classified yet",
+            aiAwareness: "Not classified yet",
+            guardrailRisk: "Needs review",
+            nextAction: "Needs review",
+          };
+        }
+        var diagnosis = aiPlugDiagnosis(lead);
+        var businessType = aiAdvantageDeriveBusinessType(lead);
+        var firstSystem = aiAdvantageMapOfferToFirstSystem(lead);
+        var serviceLane = aiAdvantageDeriveServiceLane(lead, firstSystem, businessType);
+        var problemType = aiAdvantageDeriveProblemType(lead, diagnosis);
+        var aiAwareness = aiAdvantageDeriveAiAwareness(lead);
+        var guardrailRisk = aiAdvantageDeriveGuardrailRisk(lead);
+        var nextAction = aiAdvantageMarker(lead, "next action:") || calcBusinessNextAction(lead, calcBusinessPriority(lead));
+        return {
+          businessType: businessType,
+          serviceLane: serviceLane,
+          firstSystem: firstSystem,
+          problemType: problemType,
+          aiAwareness: aiAwareness,
+          guardrailRisk: guardrailRisk,
+          nextAction: nextAction,
+          diagnosis: diagnosis,
+        };
+      }
+
+      function aiAdvantageFirstSystemDetail(lead, classification) {
+        var c = classification || aiAdvantageClassify(lead);
+        var ladder = aiPlugRecommendLadderOffer(lead);
+        var system = c.firstSystem;
+        var why =
+          (ladder && ladder.bestFor) ||
+          "Matches the diagnosed customer-path leak and the smallest useful first move for this business type.";
+        var solves =
+          (ladder && ladder.solves) ||
+          "Improves how attention turns into captured requests, routing, follow-up, or owner visibility.";
+        var excluded =
+          "Guaranteed leads, traffic, revenue, bookings, reservations, rankings, reviews, automatic customer messages, payments/invoices, and staff replacement.";
+        var approval =
+          c.guardrailRisk === "High"
+            ? "Manager review required before any customer-facing AI, claims, availability language, or campaign promises."
+            : "Owner-approved wording, routing rules, and do-not-say list before launch.";
+        if (system === "AI Growth Review") {
+          excluded = "No build quote, no automation launch, and no outcome guarantees until review is complete.";
+        }
+        return { system: system, why: why, solves: solves, excluded: excluded, approval: approval };
+      }
+
+      function aiAdvantageGrowthReviewContent(lead) {
+        var c = aiAdvantageClassify(lead);
+        var text = leadContextText(lead);
+        return {
+          attentionNow: aiAdvantageDisplay(
+            businessServicesLeakFromRow(lead) || lead.customer_flow_issue,
+            "Needs review — confirm how customers find the business today (search, referrals, social, walk-in, ads, QR)."
+          ),
+          requestsBreak: aiAdvantageDisplay(
+            lead.current_problem || c.diagnosis.diagnosis,
+            "Needs review — where do calls, forms, DMs, or messages fail to become a clear next step?"
+          ),
+          repeatedQuestions: /repeat|faq|same question/i.test(text)
+            ? "Likely repeated customer questions — document top questions and approval boundaries."
+            : "Needs review — list the top 5 questions customers ask before staff can help.",
+          intakeFollowUp: c.problemType.indexOf("intake") !== -1 || c.problemType.indexOf("follow-up") !== -1
+            ? c.diagnosis.diagnosis
+            : "Needs review — confirm intake fields, routing, and follow-up timing.",
+          internalAssistant: c.problemType.indexOf("assistant") !== -1 || c.problemType.indexOf("busywork") !== -1
+            ? "Possible internal assistant opportunity — start with summaries, routing, or draft follow-up for approval."
+            : "Not primary yet unless staff time on repeat tasks is confirmed.",
+          recommendedSystem: c.firstSystem,
+          shouldWait: c.guardrailRisk === "High"
+            ? "Customer-facing AI, availability promises, regulated advice, and campaign guarantees until scope is approved."
+            : "Full rebuild, multiple automations, and paid scale until the first system proves useful.",
+          guardrailNotes:
+            c.guardrailRisk +
+            " risk — " +
+            (c.guardrailRisk === "High"
+              ? "treat legal/medical/financial, emergency, transportation availability, restaurant reservations/allergens, and unapproved AI as manager-review items."
+              : "no guaranteed outcomes; keep staff in the loop; manual send only."),
+        };
+      }
+
+      function aiAdvantageMonthlyFit(lead, classification) {
+        var c = classification || aiAdvantageClassify(lead);
+        var stage = dealStageInfo(lead || {}).key;
+        var live = stage === "live" || stage === "launched" || stage === "monthly-management" || stage === "monthly-recap-due";
+        var fit = "maybe";
+        if (live || /ongoing|monthly|management|retainer|support/i.test(leadContextText(lead))) fit = "yes";
+        if (c.guardrailRisk === "High" && !live) fit = "maybe";
+        if (normStatus(lead.status) === "not a fit" || normStatus(lead.status) === "lost") fit = "no";
+        var plan = "AI Growth Plan";
+        if (c.firstSystem === "AI Growth Review" || c.aiAwareness === "Unaware") plan = "AI Care Plan";
+        if (c.firstSystem === "Full AI Growth System" || c.problemType === "multiple connected needs") plan = "AI Advantage Partner Plan";
+        return { fit: fit, plan: plan };
+      }
+
+      function aiAdvantagePricingGuidance(lead) {
+        var c = aiAdvantageClassify(lead);
+        var preset = AI_ADVANTAGE_V3_PRICING_BY_SYSTEM[c.firstSystem] || AI_ADVANTAGE_V3_PRICING_BY_SYSTEM["AI Growth Review"];
+        var logic = pricingLogicForPackage(preset.packageKey);
+        return {
+          offerPath: preset.offerPath,
+          setupRange: (logic && logic.range) || preset.setupRange,
+          monthlyRange: (logic && logic.monthly) || preset.monthlyRange,
+          complexity: aiPlugRecommendLadderOffer(lead).complexity || "Confirm after discovery",
+          passThrough: "Ad spend, third-party tools, photography, and licensing are pass-through unless included in writing.",
+          exclusions: "No guaranteed leads, traffic, revenue, bookings, rankings, reviews, or automatic customer messaging.",
+          noGuarantee: "Pricing guidance only — not a final invoice. Confirm scope, assets, approvals, and timeline before quoting.",
+        };
+      }
+
+      function buildAiAdvantageDiscoveryScript(lead) {
+        var c = aiAdvantageClassify(lead);
+        var questions = AI_ADVANTAGE_V3_DISCOVERY_BY_TYPE[c.businessType] || AI_ADVANTAGE_V3_DISCOVERY_BY_TYPE["Other / Custom"];
+        var lines = [
+          "AI Advantage discovery script — " + (lead.business_name || "Business"),
+          "Business type: " + c.businessType,
+          "Problem type: " + c.problemType,
+          "Recommended first system: " + c.firstSystem,
+          "",
+          "Questions:",
+        ];
+        questions.forEach(function (q) {
+          lines.push("- " + q);
+        });
+        lines.push("", "First diagnosis question: " + c.diagnosis.firstQuestion, "", aiPlugSafeCopyFooter());
+        return lines.join("\n");
+      }
+
+      function buildAiAdvantageProposalSummary(lead) {
+        var c = aiAdvantageClassify(lead);
+        var detail = aiAdvantageFirstSystemDetail(lead, c);
+        var problem = lead.current_problem || c.diagnosis.diagnosis || c.problemType;
+        var guardrail =
+          c.guardrailRisk === "High"
+            ? "high guardrail review"
+            : "owner-approved language and manual follow-up";
+        return [
+          "Based on what you shared, the safest first step is " + detail.system + ".",
+          "The main issue appears to be " + problem + ".",
+          "This would help with " + detail.solves + " while keeping " + guardrail + " clear.",
+          "This does not include " + detail.excluded + ".",
+          "",
+          "Service lane: " + c.serviceLane,
+          "Approvals needed: " + detail.approval,
+          "Next step: " + c.nextAction,
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildAiAdvantageDeliveryHandoff(lead) {
+        var c = aiAdvantageClassify(lead);
+        var detail = aiAdvantageFirstSystemDetail(lead, c);
+        return [
+          "AI Advantage delivery handoff — " + (lead.business_name || "Business"),
+          "",
+          "Approved offer: [confirm]",
+          "Business type: " + c.businessType,
+          "Service lane: " + c.serviceLane,
+          "Starting point: " + c.firstSystem,
+          "Problem being solved: " + (lead.current_problem || c.problemType),
+          "Required assets: website access, brand assets, forms, routing contacts, examples, service menus/packages",
+          "Required access: website/admin, form destinations, alert email/SMS destinations, tools list",
+          "Required approvals: public wording, offers, AI boundaries, routing rules",
+          "AI answer boundaries: owner-approved FAQ + escalation to human",
+          "Do-not-say list: availability guarantees, regulated advice, outcome guarantees, unapproved claims",
+          "Forms/intake fields: [confirm per discovery]",
+          "Routing/alert rules: [confirm per discovery]",
+          "Launch QA required: mobile path, intake, alerts, approved copy, tracking",
+          "Monthly support included: " + aiAdvantageMonthlyFit(lead, c).plan,
+          "First post-launch review date: [set after launch]",
+          "",
+          "First deliverable focus: " + detail.system,
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildAiAdvantageMonthlyRecap(lead) {
+        var c = aiAdvantageClassify(lead);
+        var monthly = aiAdvantageMonthlyFit(lead, c);
+        return [
+          "Monthly AI Growth Management — " + (lead.business_name || "Business"),
+          "",
+          "Monthly fit: " + monthly.fit,
+          "Suggested plan: " + monthly.plan,
+          "What to review monthly: intake quality, response timing, owner visibility, content/campaign path if included",
+          "What to update monthly: approved copy, forms, routing, FAQ boundaries, recap notes",
+          "Next improvement opportunity: [after usage review]",
+          "Renewal/upsell trigger: first system stable + owner sees value in visibility/follow-up",
+          "",
+          "Monthly recap template:",
+          "What we reviewed:",
+          "What we updated:",
+          "What we noticed:",
+          "Approval needed:",
+          "Recommended next improvement:",
+          "What should wait:",
+          "Next month focus:",
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildAiAdvantageGrowthReviewCopy(lead) {
+        var review = aiAdvantageGrowthReviewContent(lead);
+        var c = aiAdvantageClassify(lead);
+        return [
+          "AI Growth Review — " + (lead.business_name || "Business"),
+          "",
+          "How this business gets attention now:",
+          review.attentionNow,
+          "",
+          "Where requests/questions break:",
+          review.requestsBreak,
+          "",
+          "Repeated customer questions:",
+          review.repeatedQuestions,
+          "",
+          "Intake or follow-up issue:",
+          review.intakeFollowUp,
+          "",
+          "Internal assistant opportunity:",
+          review.internalAssistant,
+          "",
+          "Recommended first useful AI system:",
+          review.recommendedSystem,
+          "",
+          "What should wait:",
+          review.shouldWait,
+          "",
+          "Guardrail notes:",
+          review.guardrailNotes,
+          "",
+          "Business type: " + c.businessType,
+          "Problem type: " + c.problemType,
+          "Guardrail risk: " + c.guardrailRisk,
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
+
+      function buildAiAdvantagePricingGuidanceText(lead) {
+        var p = aiAdvantagePricingGuidance(lead);
+        var c = aiAdvantageClassify(lead);
+        return [
+          "AI Advantage pricing guidance — " + (lead.business_name || "Business"),
+          "",
+          "Recommended offer path: " + p.offerPath,
+          "Setup range: " + p.setupRange,
+          "Monthly range: " + p.monthlyRange,
+          "Complexity notes: " + p.complexity,
+          "Pass-through costs: " + p.passThrough,
+          "Scope exclusions: " + p.exclusions,
+          "Reminder: " + p.noGuarantee,
+          "",
+          "Business type: " + c.businessType,
+          "First useful system: " + c.firstSystem,
+          "Guardrail risk: " + c.guardrailRisk,
+          "",
+          aiPlugSafeCopyFooter(),
+        ].join("\n");
+      }
 
       function aiPlugFitPriority(lead) {
         var diagnosis = aiPlugDiagnosis(lead || {});
@@ -18777,6 +19398,9 @@
       }
 
       function buildAiPlugDiscoveryQuestionsText(lead) {
+        if (lead && !isRestaurantRow(lead)) {
+          return buildAiAdvantageDiscoveryScript(lead);
+        }
         var d = aiPlugCopyData(lead);
         var lines = ["Business discovery questions - " + d.business, "", "Start with:", "- " + d.diagnosis.firstQuestion, ""];
         AI_PLUG_DISCOVERY_GROUPS.forEach(function (group) {
@@ -18900,6 +19524,9 @@
       }
 
       function buildAiPlugProposalDirectionText(lead) {
+        if (lead && !isRestaurantRow(lead)) {
+          return buildAiAdvantageProposalSummary(lead);
+        }
         var d = aiPlugCopyData(lead);
         return [
           "Proposal direction - " + d.business,
@@ -19034,6 +19661,9 @@
       }
 
       function buildAiPlugDeliveryHandoffText(lead) {
+        if (lead && !isRestaurantRow(lead)) {
+          return buildAiAdvantageDeliveryHandoff(lead);
+        }
         var d = aiPlugCopyData(lead);
         return [
           "AI Plug delivery handoff - " + d.business,
@@ -19139,19 +19769,26 @@
 
       function buildAiPlugOwnerNotesMarkers(lead) {
         var d = aiPlugCopyData(lead);
-        var existingVertical = ownerNoteMarkerValue(lead, "AI Plug vertical:") || "General";
+        var c = aiAdvantageClassify(lead);
+        var existingVertical = ownerNoteMarkerValue(lead, "AI Plug vertical:") || businessVerticalLabel(lead) || "General";
         var existingLeak = ownerNoteMarkerValue(lead, "AI Plug leak:") || d.diagnosis.leak;
         var existingOffer = ownerNoteMarkerValue(lead, "AI Plug first offer:") || d.offer.offer;
         var existingNextAction = ownerNoteMarkerValue(lead, "AI Plug next action:") || d.diagnosis.nextAction;
         return [
-          "Paste these lines into Owner Notes for " + d.business + " to save the AI Plug classification:",
+          "Paste these lines into Owner Notes for " + d.business + " to save the AI Advantage / AI Plug classification:",
           "",
+          "Business type: " + c.businessType,
+          "Service lane: " + c.serviceLane,
+          "First useful system: " + c.firstSystem,
+          "Problem type: " + c.problemType,
+          "AI awareness: " + c.aiAwareness,
+          "Guardrail risk: " + c.guardrailRisk,
           "AI Plug vertical: " + existingVertical,
           "AI Plug leak: " + existingLeak,
           "AI Plug first offer: " + existingOffer,
           "AI Plug next action: " + existingNextAction,
           "",
-          "(The dashboard reads these markers back so the diagnosed leak, first offer, and next action stay sticky for this lead.)",
+          "(The dashboard reads these markers back so classification, leak, first offer, and next action stay sticky for this lead.)",
         ].join("\n");
       }
 
@@ -20236,6 +20873,12 @@
         if (kind === "ai-plug-renewal-upsell-message") return buildAiPlugRenewalUpsellText(lead);
         if (kind === "ai-plug-full-sales-bundle") return buildAiPlugFullSalesBundle(lead);
         if (kind === "ai-plug-owner-notes-markers") return buildAiPlugOwnerNotesMarkers(lead);
+        if (kind === "ai-advantage-discovery-script") return buildAiAdvantageDiscoveryScript(lead);
+        if (kind === "ai-advantage-proposal-summary") return buildAiAdvantageProposalSummary(lead);
+        if (kind === "ai-advantage-pricing-guidance") return buildAiAdvantagePricingGuidanceText(lead);
+        if (kind === "ai-advantage-delivery-handoff") return buildAiAdvantageDeliveryHandoff(lead);
+        if (kind === "ai-advantage-monthly-recap") return buildAiAdvantageMonthlyRecap(lead);
+        if (kind === "ai-advantage-growth-review") return buildAiAdvantageGrowthReviewCopy(lead);
         if (String(kind || "").indexOf("home-services-") === 0) return homeServicesTextForKind(kind, lead);
         if (String(kind || "").indexOf("ai-plug-") === 0) return buildAiPlugSalesCopy(kind, lead);
         return "";
@@ -22892,6 +23535,7 @@
       var BUSINESS_COMMAND_NAV_ITEMS = [
         { key: "snapshot", label: "Snapshot" },
         { key: "notes", label: "Notes" },
+        { key: "advantage", label: "AI Advantage" },
         { key: "diagnosis", label: "Diagnosis" },
         { key: "offers", label: "Offers" },
         { key: "discovery", label: "Discovery" },
@@ -22911,6 +23555,7 @@
         { key: "snapshot", label: "Snapshot" },
         { key: "home-services", label: "Home Services" },
         { key: "notes", label: "Notes" },
+        { key: "advantage", label: "AI Advantage" },
         { key: "diagnosis", label: "Diagnosis" },
         { key: "offers", label: "Offers" },
         { key: "discovery", label: "Discovery" },
@@ -23044,7 +23689,8 @@
       }
 
       function businessCommandSnapshotBlock(lead, priority, nextAction) {
-        var hs = !isRestaurantRow(lead) && isHomeServicesRow(lead);
+        var restaurant = isRestaurantRow(lead);
+        var hs = !restaurant && isHomeServicesRow(lead);
         var hsDiag = hs ? homeServicesDiagnosis(lead) : null;
         return (
           '<section class="owner-dash-detail-section owner-dash-command-snapshot">' +
@@ -23055,6 +23701,11 @@
           detailRow("Contact", lead.contact_name) +
           detailRow("Phone / email", [lead.contact_phone, lead.contact_email].filter(Boolean).join(" / ")) +
           detailRow("Vertical lane", businessVerticalLabel(lead)) +
+          (restaurant || hs
+            ? ""
+            : detailRow("Business type", aiAdvantageDisplay(aiAdvantageClassify(lead).businessType, "Not classified yet")) +
+              detailRow("First useful system", aiAdvantageDisplay(aiAdvantageClassify(lead).firstSystem, "Not classified yet")) +
+              detailRow("Guardrail risk", aiAdvantageDisplay(aiAdvantageClassify(lead).guardrailRisk, "Needs review"))) +
           (hs ? detailRow("Home services niche", hsDiag.niche) : "") +
           detailRow("Business problem", lead.current_problem || businessServicesFixFirstFromRow(lead), true) +
           detailRow("Customer-path leak", aiPlugDiagnosis(lead).leak, true) +
@@ -23126,7 +23777,10 @@
             commandQuickCopyButton("copy-deal", "ai-plug-launch-checklist", "Copy launch checklist", false) +
             commandQuickCopyButton("copy-deal", "ai-plug-monthly-recap", "Copy monthly recap", false) +
             commandQuickCopyButton("copy-deal", "ai-plug-renewal-upsell-message", "Copy renewal / upsell", false) +
-            commandQuickCopyButton("copy-deal", "ai-plug-full-sales-bundle", "Copy full AI Plug sales bundle", true);
+            commandQuickCopyButton("copy-deal", "ai-plug-full-sales-bundle", "Copy full AI Plug sales bundle", true) +
+            commandQuickCopyButton("copy-deal", "ai-advantage-discovery-script", "Copy discovery script", false) +
+            commandQuickCopyButton("copy-deal", "ai-advantage-proposal-summary", "Copy AI Advantage proposal", false) +
+            commandQuickCopyButton("copy-deal", "ai-advantage-pricing-guidance", "Copy pricing guidance", false);
         }
         return (
           '<section class="owner-dash-command-quick-copy" data-command-view="quick-only">' +
@@ -23228,6 +23882,235 @@
         }
         html += "</div>";
         return collapsibleBlock("Show AI transcript", html, "owner-dash-collapsible--ai");
+      }
+
+      function aiAdvantageCopyActions(copyKind, primaryLabel, secondaryKinds) {
+        var html =
+          '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--primary" data-action="copy-deal" data-copy-kind="' +
+          esc(copyKind) +
+          '">' +
+          esc(primaryLabel) +
+          "</button>";
+        (secondaryKinds || []).forEach(function (item) {
+          html +=
+            '<button type="button" class="owner-dash-btn owner-dash-btn--compact owner-dash-btn--secondary" data-action="copy-deal" data-copy-kind="' +
+            esc(item.kind) +
+            '">' +
+            esc(item.label) +
+            "</button>";
+        });
+        return (
+          '<div class="owner-dash-proposal-actions">' +
+          html +
+          "</div>" +
+          '<span class="owner-dash-detail-copy-feedback" data-copy-feedback hidden aria-live="polite"></span>' +
+          '<div class="owner-dash-detail-manual-copy" data-manual-copy hidden><p class="owner-dash-detail-manual-copy-label">Select and copy:</p><textarea class="owner-dash-textarea owner-dash-detail-manual-copy-text" rows="8" readonly></textarea></div>'
+        );
+      }
+
+      function aiAdvantageLeadSummaryBlock(lead) {
+        if (!lead || isRestaurantRow(lead)) return "";
+        var c = aiAdvantageClassify(lead);
+        var website = lead.business_website;
+        var websiteHref =
+          website && !/^https?:\/\//i.test(String(website)) ? "https://" + String(website).trim() : website;
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-advantage-summary">' +
+          '<h3 class="owner-dash-detail-section-title">AI Plug Lead Summary</h3>' +
+          '<p class="owner-dash-detail-section-note">AI Advantage First classification. Missing fields show safe placeholders — nothing sends automatically.</p>' +
+          '<div class="owner-dash-detail-grid owner-dash-ai-advantage-summary-grid">' +
+          detailRow("Business name", lead.business_name || "Needs review") +
+          detailRow("Contact name", lead.contact_name || "Needs review") +
+          detailRow("Phone / email", [lead.contact_phone, lead.contact_email].filter(Boolean).join(" / ") || "Needs review") +
+          detailRowLink("Website / social", websiteHref, website || "Needs review") +
+          detailRow("Source page", lead.page_path || "Not classified yet") +
+          detailRow("Status / stage", displayStatus(lead.status) || "Needs review") +
+          detailRow("Business type", aiAdvantageDisplay(c.businessType, "Not classified yet")) +
+          detailRow("Service lane", aiAdvantageDisplay(c.serviceLane, "Not classified yet")) +
+          detailRow("First useful system", aiAdvantageDisplay(c.firstSystem, "Not classified yet")) +
+          detailRow("Problem type", aiAdvantageDisplay(c.problemType, "Not classified yet")) +
+          detailRow("AI awareness", aiAdvantageDisplay(c.aiAwareness, "Not classified yet")) +
+          detailRow("Guardrail risk", aiAdvantageDisplay(c.guardrailRisk, "Needs review")) +
+          detailRow("Next action", aiAdvantageDisplay(c.nextAction, "Needs review"), true) +
+          "</div>" +
+          aiAdvantageCopyActions("ai-advantage-growth-review", "Copy summary + growth review", [
+            { kind: "ai-plug-owner-notes-markers", label: "Copy classification markers" },
+          ]) +
+          "</section>"
+        );
+      }
+
+      function aiAdvantageGrowthReviewBlock(lead) {
+        if (!lead || isRestaurantRow(lead)) return "";
+        var review = aiAdvantageGrowthReviewContent(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-growth-review">' +
+          '<h3 class="owner-dash-detail-section-title">AI Growth Review</h3>' +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("How this business gets attention now", review.attentionNow, true) +
+          detailRow("Where requests/questions break", review.requestsBreak, true) +
+          detailRow("Repeated customer questions", review.repeatedQuestions, true) +
+          detailRow("Intake or follow-up issue", review.intakeFollowUp, true) +
+          detailRow("Internal assistant opportunity", review.internalAssistant, true) +
+          detailRow("Recommended first useful AI system", review.recommendedSystem, true) +
+          detailRow("What should wait", review.shouldWait, true) +
+          detailRow("Guardrail notes", review.guardrailNotes, true) +
+          "</div>" +
+          aiAdvantageCopyActions("ai-advantage-growth-review", "Copy AI Growth Review", []) +
+          "</section>"
+        );
+      }
+
+      function aiAdvantageFirstSystemBlock(lead) {
+        if (!lead || isRestaurantRow(lead)) return "";
+        var detail = aiAdvantageFirstSystemDetail(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-first-system">' +
+          '<h3 class="owner-dash-detail-section-title">Recommended First System</h3>' +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Recommended system", detail.system, true) +
+          detailRow("Why this fits", detail.why, true) +
+          detailRow("What it solves", detail.solves, true) +
+          detailRow("What is excluded", detail.excluded, true) +
+          detailRow("Approval needed", detail.approval, true) +
+          "</div>" +
+          aiAdvantageCopyActions("ai-advantage-proposal-summary", "Copy proposal summary", [
+            { kind: "ai-plug-offer-recommendation", label: "Copy offer recommendation" },
+          ]) +
+          "</section>"
+        );
+      }
+
+      function aiAdvantageDiscoveryScriptBlock(lead) {
+        if (!lead || isRestaurantRow(lead)) return "";
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-discovery-script">' +
+          '<h3 class="owner-dash-detail-section-title">Discovery Script Builder</h3>' +
+          '<p class="owner-dash-detail-section-note">Questions adapt to business type and problem type. Copy and use on calls or discovery.</p>' +
+          '<pre class="owner-dash-followup-template">' +
+          esc(buildAiAdvantageDiscoveryScript(lead)) +
+          "</pre>" +
+          aiAdvantageCopyActions("ai-advantage-discovery-script", "Copy discovery script", [
+            { kind: "ai-plug-discovery-questions", label: "Copy full discovery list" },
+          ]) +
+          "</section>"
+        );
+      }
+
+      function aiAdvantagePricingPanelBlock(lead) {
+        if (!lead || isRestaurantRow(lead)) return "";
+        var p = aiAdvantagePricingGuidance(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-advantage-pricing">' +
+          '<h3 class="owner-dash-detail-section-title">Pricing Recommendation</h3>' +
+          '<p class="owner-dash-detail-section-note">Internal pricing guidance only — not a final invoice. No payment collection from this dashboard.</p>' +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Recommended offer path", p.offerPath, true) +
+          detailRow("Setup range", p.setupRange) +
+          detailRow("Monthly range", p.monthlyRange) +
+          detailRow("Complexity notes", p.complexity, true) +
+          detailRow("Pass-through costs", p.passThrough, true) +
+          detailRow("Scope exclusions", p.exclusions, true) +
+          detailRow("No-guarantee reminder", p.noGuarantee, true) +
+          "</div>" +
+          aiAdvantageCopyActions("ai-advantage-pricing-guidance", "Copy pricing guidance", [
+            { kind: "ai-plug-pricing-reply", label: "Copy pricing reply" },
+          ]) +
+          "</section>"
+        );
+      }
+
+      function aiAdvantageProposalSummaryBlock(lead) {
+        if (!lead || isRestaurantRow(lead)) return "";
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-proposal-summary">' +
+          '<h3 class="owner-dash-detail-section-title">Proposal Summary Builder</h3>' +
+          '<pre class="owner-dash-followup-template">' +
+          esc(buildAiAdvantageProposalSummary(lead)) +
+          "</pre>" +
+          aiAdvantageCopyActions("ai-advantage-proposal-summary", "Copy proposal summary", []) +
+          "</section>"
+        );
+      }
+
+      function aiAdvantageDeliveryHandoffPanelBlock(lead) {
+        if (!lead || isRestaurantRow(lead)) return "";
+        var c = aiAdvantageClassify(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-advantage-handoff">' +
+          '<h3 class="owner-dash-detail-section-title">Delivery Handoff</h3>' +
+          '<p class="owner-dash-detail-section-note">Save confirmed values in owner notes. Fields below use classification + safe defaults when data is missing.</p>' +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Approved offer", ownerNoteMarkerValue(lead, "Approved offer:") || "Needs review") +
+          detailRow("Business type", c.businessType) +
+          detailRow("Service lane", c.serviceLane) +
+          detailRow("Starting point", c.firstSystem) +
+          detailRow("Problem being solved", lead.current_problem || c.problemType, true) +
+          detailRow("Required assets", "Website, brand assets, menus/packages, photos, examples") +
+          detailRow("Required access", "Website/admin, forms, alert destinations, tool list") +
+          detailRow("Required approvals", "Public copy, offers, AI boundaries, routing") +
+          detailRow("AI answer boundaries", "Approved FAQ + human escalation") +
+          detailRow("Do-not-say list", "Guarantees, availability promises, regulated advice, unapproved claims", true) +
+          detailRow("Forms/intake fields", ownerNoteMarkerValue(lead, "Forms/intake fields:") || "Confirm in discovery") +
+          detailRow("Routing/alert rules", ownerNoteMarkerValue(lead, "Routing/alert rules:") || "Confirm in discovery") +
+          detailRow("Launch QA required", "Mobile path, intake, alerts, approved copy") +
+          detailRow("Monthly support included", aiAdvantageMonthlyFit(lead, c).plan) +
+          detailRow("First post-launch review date", ownerNoteMarkerValue(lead, "First post-launch review date:") || "Set after launch") +
+          "</div>" +
+          aiAdvantageCopyActions("ai-advantage-delivery-handoff", "Copy delivery handoff", []) +
+          "</section>"
+        );
+      }
+
+      function aiAdvantageMonthlyManagementBlock(lead) {
+        if (!lead || isRestaurantRow(lead)) return "";
+        var monthly = aiAdvantageMonthlyFit(lead);
+        return (
+          '<section class="owner-dash-detail-section owner-dash-detail-section--ai-monthly-mgmt">' +
+          '<h3 class="owner-dash-detail-section-title">Monthly AI Growth Management</h3>' +
+          '<div class="owner-dash-detail-grid">' +
+          detailRow("Monthly fit", monthly.fit) +
+          detailRow("Suggested plan", monthly.plan) +
+          detailRow("What to review monthly", "Intake quality, response timing, owner visibility, approved copy boundaries") +
+          detailRow("What to update monthly", "Forms, routing, FAQ, recap notes, improvement backlog") +
+          detailRow("Next improvement opportunity", "After first system proves useful — expand intake, content, or visibility") +
+          detailRow("Renewal/upsell trigger", "Stable usage + owner sees value in visibility and follow-up") +
+          "</div>" +
+          '<pre class="owner-dash-followup-template">' +
+          esc(buildAiAdvantageMonthlyRecap(lead)) +
+          "</pre>" +
+          aiAdvantageCopyActions("ai-advantage-monthly-recap", "Copy monthly recap", [
+            { kind: "ai-plug-monthly-recap", label: "Copy standard monthly recap" },
+          ]) +
+          "</section>"
+        );
+      }
+
+      function aiAdvantageCompactCardHtml(lead) {
+        if (!lead || isRestaurantRow(lead)) return "";
+        var c = aiAdvantageClassify(lead);
+        return (
+          '<dl class="owner-dash-fields owner-dash-fields--compact owner-dash-ai-advantage-card">' +
+          '<dt>Business type</dt><dd>' +
+          esc(aiAdvantageDisplay(c.businessType, "Not classified yet")) +
+          "</dd>" +
+          '<dt>Service lane</dt><dd>' +
+          esc(aiAdvantageDisplay(c.serviceLane, "Not classified yet")) +
+          "</dd>" +
+          '<dt>First system</dt><dd>' +
+          esc(aiAdvantageDisplay(c.firstSystem, "Not classified yet")) +
+          "</dd>" +
+          '<dt>Problem</dt><dd>' +
+          esc(aiAdvantageDisplay(c.problemType, "Not classified yet")) +
+          "</dd>" +
+          '<dt>AI awareness</dt><dd>' +
+          esc(aiAdvantageDisplay(c.aiAwareness, "Not classified yet")) +
+          "</dd>" +
+          '<dt>Guardrail</dt><dd>' +
+          esc(aiAdvantageDisplay(c.guardrailRisk, "Needs review")) +
+          "</dd>" +
+          "</dl>"
+        );
       }
 
       function aiPlugDiagnosisBlock(lead) {
@@ -23890,30 +24773,46 @@
           commandSection("snapshot", "quick-only", businessCommandSnapshotBlock(lead, priority, nextAction)) +
           commandSection("copy-tools", "quick-only", businessCommandQuickCopyBlock(lead)) +
           (homeServices ? commandSection("home-services", "", homeServicesCommandBlock(lead)) : "") +
+          (restaurant ? "" : commandSection("advantage", "full", aiAdvantageLeadSummaryBlock(lead) + aiAdvantageGrowthReviewBlock(lead))) +
           (restaurant ? "" : commandSection("diagnosis", "full", aiPlugDiagnosisBlock(lead) + aiPlugFitPriorityBlock(lead) + aiPlugNicheBlock(lead))) +
-          (restaurant ? "" : commandSection("offers", "full", aiPlugOfferEngineBlock(lead))) +
+          (restaurant ? "" : commandSection("offers", "full", aiPlugOfferEngineBlock(lead) + aiAdvantagePricingPanelBlock(lead))) +
           (restaurant ? "" : commandSection("copy-tools", "full", aiPlugCopyToolsBlock(lead))) +
-          (restaurant ? "" : commandSection("discovery", "full", aiPlugDiscoveryBlock(lead))) +
+          (restaurant ? "" : commandSection("discovery", "full", aiAdvantageDiscoveryScriptBlock(lead) + aiPlugDiscoveryBlock(lead))) +
           commandSection("opportunity", "full", opportunityBuilderBlock(lead)) +
           (restaurant ? restaurantSalesCommandBlock(lead) : "") +
-          (restaurant ? "" : commandSection("deal", "full", aiPlugPitchScriptBlock(lead) + aiPlugSalesCommandBlock(lead) + aiPlugObjectionHandlerBlock(lead))) +
+          (restaurant ? "" : commandSection("deal", "full", aiAdvantageFirstSystemBlock(lead) + aiPlugPitchScriptBlock(lead) + aiPlugSalesCommandBlock(lead) + aiPlugObjectionHandlerBlock(lead))) +
           commandSection("deal", "full", dealBuilderBlock(lead) + dealStageTrackerBlock(lead)) +
           commandSection(
             "proposal",
             "full",
-            (restaurant ? "" : aiPlugProposalDirectionBlock(lead)) + proposalEstimateBlock(lead) + clientProposalSheetBlock(lead) + pricingBuilderBlock(lead) + quoteInvoicePrepBlock(lead)
+            (restaurant ? "" : aiAdvantageProposalSummaryBlock(lead) + aiPlugProposalDirectionBlock(lead)) +
+            proposalEstimateBlock(lead) +
+            clientProposalSheetBlock(lead) +
+            pricingBuilderBlock(lead) +
+            quoteInvoicePrepBlock(lead)
           ) +
           commandSection("follow-up", "full", (restaurant ? "" : aiPlugLifecycleCommandBlock("Follow-Up Command Center", "Copy-ready manual follow-ups for first touch, warm follow-up, no response, post-discovery, after proposal, send-info, close, and hold.", buildAiPlugFollowUpCenterText(lead), "ai-plug-follow-up-center", "Copy follow-up email")) + followUpCommandCenterBlock(lead)) +
           commandSection("close", "full", (restaurant ? "" : aiPlugLifecycleCommandBlock("Close / Onboarding Command", "After interest, confirm scope, collect assets, set approval points, and keep launch expectations safe.", buildAiPlugCloseOnboardingText(lead), "ai-plug-close-onboarding", "Copy next-step close")) + closeOnboardingCommandBlock(lead)) +
-          commandSection("delivery", "full", (restaurant ? "" : aiPlugDeliveryHandoffBlock(lead) + aiPlugLifecycleCommandBlock("Project Delivery Command", "Choose what to build first from the diagnosed customer-path leak.", buildAiPlugProjectDeliveryText(lead), "ai-plug-project-delivery", "Copy project delivery command")) + projectDeliveryCommandBlock(lead) + (restaurant ? "" : aiPlugQaRecapBlock(lead))) +
-          commandSection("support", "full", (restaurant ? "" : aiPlugLifecycleCommandBlock("Client Support / Retention Command", "Guide check-ins, optimization, monthly recap, testimonial, referral, and responsible upsell.", buildAiPlugRetentionText(lead), "ai-plug-client-retention", "Copy retention command")) + clientSupportRetentionCommandBlock(lead)) +
+          commandSection(
+            "delivery",
+            "full",
+            (restaurant ? "" : aiAdvantageDeliveryHandoffPanelBlock(lead) + aiPlugDeliveryHandoffBlock(lead) + aiPlugLifecycleCommandBlock("Project Delivery Command", "Choose what to build first from the diagnosed customer-path leak.", buildAiPlugProjectDeliveryText(lead), "ai-plug-project-delivery", "Copy project delivery command")) +
+              projectDeliveryCommandBlock(lead) +
+              (restaurant ? "" : aiPlugQaRecapBlock(lead))
+          ) +
+          commandSection(
+            "support",
+            "full",
+            (restaurant ? "" : aiAdvantageMonthlyManagementBlock(lead) + aiPlugLifecycleCommandBlock("Client Support / Retention Command", "Guide check-ins, optimization, monthly recap, testimonial, referral, and responsible upsell.", buildAiPlugRetentionText(lead), "ai-plug-client-retention", "Copy retention command")) +
+              clientSupportRetentionCommandBlock(lead)
+          ) +
           (restaurant ? "" : commandSection("rep", "full", aiPlugRepCommandBlock())) +
           (restaurant ? "" : commandSection("guardrails", "full", aiPlugGuardrailsBlock())) +
           commandSection("copy-tools", "full", groupedToolsBlock("business_leads")) +
           commandSection("close", "", quickStatusBlock("business_leads", lead.status)) +
           commandSection("notes", "", workflowBlock("business_leads", lead)) +
           commandSection("support", "full", activityTimelineBlock("business_leads", lead)) +
-          commandSection("snapshot", "full", businessLeadDetailsBlock(lead) + businessAiTranscriptBlock(lead)) +
+          commandSection("snapshot", "full", (restaurant ? "" : aiAdvantageLeadSummaryBlock(lead)) + businessLeadDetailsBlock(lead) + businessAiTranscriptBlock(lead)) +
           "</div>"
         );
       }
@@ -30062,6 +30961,7 @@
               block("Interest", businessServicesInterestFromRow(lead) || lead.services_interested) +
               blockPreview("AI summary preview", preview) +
               "</dl>" +
+              aiAdvantageCompactCardHtml(lead) +
               restaurantCardMetaHtml(lead) +
               dealCardRow(lead) +
               dealStageCardRow(lead) +
