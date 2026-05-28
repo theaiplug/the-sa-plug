@@ -61,13 +61,13 @@ PR #133 added:
 `/docs/THE_AI_PLUG_PRICING_LOCK_V1.md`
 
 Status:
-**DRAFT — OWNER REVIEW REQUIRED**
+DRAFT — OWNER REVIEW REQUIRED
 
 Important:
 This is not approved pricing yet. Do not use it for quotes, proposals, manuals, dashboard pricing, public sales sheets, or client-facing pricing until Willie approves it.
 
 Pricing approval gate:
-**PRICING LOCKED — APPROVED BY WILLIE**
+PRICING LOCKED — APPROVED BY WILLIE
 
 Next required step:
 Review the pricing lock service-by-service and approve, revise, or remove each pricing range before any dashboard/manual/sales-copy pricing updates.
