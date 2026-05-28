@@ -1,6 +1,6 @@
 # Dashboard Status
 
-Last updated: 2026-05-27
+Last updated: 2026-05-28
 
 ## Purpose
 
@@ -123,6 +123,53 @@ Preserve:
 - existing form routing
 - owner dashboard visibility
 - safe handling of pickup / route / provider details
+
+## PR #123 — AI Plug Business Command + Vertical Command System (2026-05-28)
+
+Branch: `cursor/fix-ai-plug-vertical-command-e7c2`
+
+### Root cause fixed
+
+`aiPlugDiagnosis()` called `aiPlugRecommendLadderOffer()`, which called `aiPlugDiagnosis()` again — infinite recursion and stack overflow. That crashed `renderAiPlugBusinessCommand()` and showed “temporarily unavailable.”
+
+### Fix
+
+- Extracted `aiPlugDetectLeakKey()` and `aiPlugOfferFromLeakKey()` to break the cycle.
+- Added defensive try/catch in diagnosis, lead previews, and queue rendering.
+- Unclassified leads show **Needs classification** instead of taking down the whole section.
+
+### Vertical command panels (business lead detail)
+
+| Vertical | Command block |
+|----------|----------------|
+| Home Services + Contractors | Existing Home Services Command (unchanged depth) |
+| Hospitality + Local Experience | New vertical command panel + copy tools |
+| Restaurants | Restaurant Sales Mode (unchanged) |
+| Professional Services | New vertical command panel + copy tools |
+| Transportation + Concierge | New vertical command panel + copy tools |
+| Local Brands + Retail | New vertical command panel + copy tools |
+| Other / Custom | New vertical command panel + copy tools |
+
+Each vertical panel includes: summary, queue focus, discovery, objections, pricing guidance, proposal summary, delivery handoff, monthly recap prompts, guardrails, and copy buttons.
+
+### AI Plug Business Command filters
+
+Vertical lane filters updated: Home Services, Hospitality, Restaurants, Professional Services, Transportation, Local Brands, Other / Custom.
+
+### Files changed
+
+- `owner-dashboard/index.html`
+- `docs/DASHBOARD_STATUS.md`
+
+### Schema / Netlify
+
+No schema changes. No Netlify function changes.
+
+### QA still manual
+
+Live Supabase load, copy button content, Restaurant Sales Mode, Transportation Requests, and mobile layout on a real device.
+
+---
 
 ## AI Advantage First Dashboard Update
 
