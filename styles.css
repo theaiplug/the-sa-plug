@@ -5150,14 +5150,24 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   }
 }
 
-/* Nav active (this page only) */
+/* Nav active — keep full CTA brightness (do not mute on current page) */
 .page-business-services .nav a.nav-cta[aria-current="page"] {
-  background: linear-gradient(135deg, rgba(242, 178, 26, 0.42), rgba(20, 184, 166, 0.28)) !important;
-  border: 1px solid rgba(242, 178, 26, 0.55) !important;
+  background: linear-gradient(135deg, var(--orange), var(--gold)) !important;
+  border: none !important;
   box-shadow:
-    0 0 0 1px rgba(255, 246, 230, 0.2),
-    0 8px 22px rgba(0, 0, 0, 0.22) !important;
-  color: var(--navy) !important;
+    0 8px 22px rgba(255, 139, 31, 0.42),
+    0 0 0 2px rgba(255, 246, 230, 0.38) !important;
+  color: var(--white) !important;
+  font-weight: 850;
+}
+
+@media (max-width: 900px) {
+  .page-business-services .nav a.nav-cta[aria-current="page"] {
+    color: var(--navy) !important;
+    box-shadow:
+      0 10px 26px rgba(255, 139, 31, 0.42),
+      0 0 0 2px rgba(255, 246, 230, 0.35) !important;
+  }
 }
 
 /* --- Section heads --- */
