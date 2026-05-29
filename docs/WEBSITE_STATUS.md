@@ -1,6 +1,6 @@
 # Website Status
 
-Last updated: 2026-05-29 (Business Services bridge page rebuild)
+Last updated: 2026-05-29 (Business Services bridge — simplified operator + footer CTA)
 
 ## Purpose
 Tracks the public Where To Go SA website: pages, visitor experience, CTAs, brand direction, SEO, public funnels, public business-services pages, social links, and public-facing content.
