@@ -26363,25 +26363,40 @@ body.owner-dash-detail-open {
 }
 
 /* ----- Form studio — “we build the form for you” flagship ----- */
-.page-business-bridge .ai-bs-form-studio-section {
+.page-business-bridge .ai-bs-form-studio-section.section-cream {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse 120% 80% at 0% 0%, rgba(20, 184, 166, 0.14), transparent 52%),
-    radial-gradient(ellipse 90% 70% at 100% 20%, rgba(242, 178, 26, 0.16), transparent 48%),
-    radial-gradient(circle at 50% 100%, rgba(255, 106, 77, 0.08), transparent 42%),
-    linear-gradient(175deg, #fffdf8 0%, #f8efe2 38%, #efe4d4 100%);
+  background: #fffbf4;
+  color: var(--navy);
 }
 
-.page-business-bridge .ai-bs-form-studio-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(11, 29, 58, 0.04) 0.6px, transparent 0.6px);
-  background-size: 20px 20px;
-  opacity: 0.35;
-  mask-image: linear-gradient(180deg, black 0%, transparent 88%);
+.page-business-bridge .ai-bs-form-studio-section.section-cream::before {
+  display: none;
+}
+
+.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier,
+.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier :is(p, li, span, strong, h2) {
+  color: inherit;
+}
+
+.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__kicker {
+  color: #0d9488;
+}
+
+.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__title {
+  color: var(--navy);
+}
+
+.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__lede {
+  color: rgba(11, 29, 58, 0.82);
+}
+
+.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__step-text {
+  color: rgba(11, 29, 58, 0.84);
+}
+
+.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__step-text strong {
+  color: var(--navy);
 }
 
 .page-business-bridge .ai-bs-form-studio-wrap {
@@ -26453,9 +26468,9 @@ body.owner-dash-detail-open {
   align-items: start;
   padding: 14px 16px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(11, 29, 58, 0.08);
-  box-shadow: 0 10px 28px rgba(11, 29, 58, 0.05);
+  background: #fffdf9;
+  border: 1px solid rgba(11, 29, 58, 0.1);
+  box-shadow: 0 10px 28px rgba(11, 29, 58, 0.06);
 }
 
 .page-business-bridge .ai-bs-form-atelier__step-n {
@@ -26583,11 +26598,11 @@ body.owner-dash-detail-open {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 246, 230, 0.45);
+  color: rgba(255, 246, 230, 0.72);
 }
 
 .page-business-bridge .ai-bs-form-progress__item--current {
-  color: var(--gold);
+  color: #ffe08a;
 }
 
 .page-business-bridge .ai-bs-form-progress__line {
@@ -26688,7 +26703,7 @@ body.owner-dash-detail-open {
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 246, 230, 0.62);
+  color: rgba(255, 248, 235, 0.92);
 }
 
 .page-business-bridge .ai-bs-crafted-label em {
@@ -26696,7 +26711,7 @@ body.owner-dash-detail-open {
   font-weight: 650;
   letter-spacing: 0.04em;
   text-transform: none;
-  color: rgba(255, 246, 230, 0.38);
+  color: rgba(255, 248, 235, 0.65);
 }
 
 .page-business-bridge .ai-bs-crafted-field input:not([type="checkbox"]),
@@ -26763,13 +26778,18 @@ body.owner-dash-detail-open {
   margin: 12px 0 0;
   font-size: 0.82rem;
   line-height: 1.45;
-  color: rgba(255, 246, 230, 0.5);
+  color: rgba(255, 248, 235, 0.78);
 }
 
 .page-business-bridge .ai-bs-crafted-footer {
   margin-top: 8px;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 246, 230, 0.12);
+}
+
+.page-business-bridge .ai-bs-crafted-form.ai-bs-intake-form .transport-intake-submit,
+.page-business-bridge .ai-bs-crafted-form .ai-bs-crafted-submit {
+  margin-top: 0;
 }
 
 .page-business-bridge .ai-bs-crafted-consent {
@@ -26786,8 +26806,12 @@ body.owner-dash-detail-open {
   gap: 12px;
   font-size: 0.82rem;
   line-height: 1.52;
-  color: rgba(255, 246, 230, 0.72);
+  color: rgba(255, 248, 235, 0.9);
   cursor: pointer;
+}
+
+.page-business-bridge .ai-bs-crafted-consent .sms-consent-checkbox span {
+  color: rgba(255, 248, 235, 0.9);
 }
 
 .page-business-bridge .ai-bs-crafted-consent input[type="checkbox"] {
