@@ -26206,10 +26206,15 @@ body.owner-dash-detail-open {
   }
 }
 
-/* ----- Business bridge page (/business-services.html rebuild) ----- */
+/* ----- Business bridge page (/business-services.html) — premium polish ----- */
 .page-business-bridge {
-  --bridge-navy: #050d1a;
-  --bridge-navy-mid: #0a1830;
+  --bridge-navy-deep: #040a14;
+  --bridge-navy: #071222;
+  --bridge-navy-mid: #0c1a32;
+  --bridge-navy-rich: #0f2444;
+  --bridge-cream-top: #fffbf4;
+  --bridge-cream-mid: #f6ede0;
+  --bridge-cream-base: #ede3d4;
 }
 
 .page-business-bridge main {
@@ -26217,6 +26222,7 @@ body.owner-dash-detail-open {
   flex-direction: column;
   gap: 0;
   margin: 0;
+  background: var(--bridge-navy-deep);
 }
 
 .page-business-bridge main > .section,
@@ -26225,99 +26231,307 @@ body.owner-dash-detail-open {
   border-radius: 0;
 }
 
-.page-business-bridge main > .transport-concierge-main > .section {
-  margin: 0;
-  border-radius: 0;
-  border-block: none;
-}
-
+.page-business-bridge main > .section.dark-showcase,
+.page-business-bridge main > .section.section-cream,
 .page-business-bridge .ai-bs-bridge-cta {
-  background:
-    radial-gradient(ellipse 70% 55% at 18% 22%, rgba(20, 184, 166, 0.12), transparent 52%),
-    linear-gradient(168deg, #050d1a 0%, #0a1830 52%, #060c18 100%);
-  border-block: none;
+  border-top: none;
+  border-bottom: none;
 }
 
-.page-business-bridge .ai-bs-bridge-cta-inner {
-  text-align: center;
+/* Hero → categories blend */
+.page-business-bridge .ai-bs-hero.hero-fiesta-dark {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.page-business-bridge .ai-bs-hero.hero-fiesta-dark::after {
+  background: linear-gradient(
+    180deg,
+    transparent 58%,
+    rgba(4, 10, 22, 0.55) 82%,
+    var(--bridge-navy-deep) 100%
+  );
+}
+
+.page-business-bridge .ai-bs-hero .ai-bs-hero-support {
   max-width: 36rem;
-  margin-inline: auto;
-  display: grid;
-  gap: clamp(12px, 2vw, 16px);
-}
-
-.page-business-bridge .ai-bs-bridge-cta-inner .ai-strategic-title {
   margin: 0;
+  font-size: clamp(1rem, 0.28vw + 0.94rem, 1.06rem);
+  line-height: 1.62;
+  color: rgba(255, 246, 230, 0.9);
 }
 
-.page-business-bridge .ai-bs-bridge-cta-inner .section-text {
-  margin: 0;
+/* Who this helps — richer navy band */
+.page-business-bridge .ai-bs-bridge-categories.dark-showcase {
+  background:
+    radial-gradient(ellipse 85% 55% at 12% 0%, rgba(20, 184, 166, 0.24), transparent 58%),
+    radial-gradient(circle at 88% 92%, rgba(242, 178, 26, 0.2), transparent 44%),
+    radial-gradient(circle at 72% 18%, rgba(255, 106, 77, 0.12), transparent 40%),
+    linear-gradient(168deg, var(--bridge-navy-deep) 0%, var(--bridge-navy-mid) 42%, #0b1d3a 72%, var(--bridge-navy) 100%);
 }
 
-.page-business-bridge .ai-bs-bridge-cta-inner .hero-cta-row {
-  justify-content: center;
-  margin-top: 4px;
+.page-business-bridge .ai-bs-bridge-categories .routes-band-inner {
+  gap: clamp(28px, 4vw, 40px);
+}
+
+.page-business-bridge .ai-bs-bridge-categories .ai-band-head {
+  max-width: 42rem;
+}
+
+.page-business-bridge .ai-bs-bridge-categories .ai-band-head .ai-strategic-title {
+  color: #fff8eb;
+}
+
+.page-business-bridge .ai-bs-bridge-categories .ai-bs-pillar-lede {
+  color: rgba(255, 235, 210, 0.86);
+}
+
+.page-business-bridge .ai-bs-bridge-categories .ai-bs-pillar-lede a {
+  color: #5eead4;
+  font-weight: 750;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(94, 234, 212, 0.42);
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.page-business-bridge .ai-bs-bridge-categories .ai-bs-pillar-lede a:hover {
+  color: #99f6e4;
+  border-bottom-color: rgba(153, 246, 228, 0.72);
+}
+
+.page-business-bridge .ai-bs-bridge-categories .ai-bs-category-grid {
+  margin-top: clamp(4px, 1vw, 8px);
+}
+
+.page-business-bridge .ai-bs-category-card {
+  border-color: rgba(255, 246, 230, 0.16);
+  background:
+    radial-gradient(circle at 14% 0%, rgba(20, 184, 166, 0.16), transparent 44%),
+    linear-gradient(168deg, rgba(255, 246, 230, 0.07) 0%, rgba(3, 10, 24, 0.62) 100%);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 246, 230, 0.08);
+}
+
+.page-business-bridge .ai-bs-category-card--featured {
+  border-color: rgba(242, 178, 26, 0.42);
+  background:
+    radial-gradient(circle at 14% 0%, rgba(242, 178, 26, 0.2), transparent 44%),
+    linear-gradient(168deg, rgba(255, 246, 230, 0.09) 0%, rgba(3, 10, 24, 0.68) 100%);
+}
+
+.page-business-bridge .ai-bs-category-thumb {
+  box-shadow: inset 0 -1px 0 rgba(255, 246, 230, 0.08);
+}
+
+.page-business-bridge .ai-bs-category-actions {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+/* Operator band — seamless navy, no wrapper gap */
+.page-business-bridge .ai-bs-bridge-operator-wrap {
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(20, 184, 166, 0.18), transparent 58%),
+    radial-gradient(circle at 8% 100%, rgba(242, 178, 26, 0.12), transparent 42%),
+    linear-gradient(168deg, var(--bridge-navy) 0%, var(--bridge-navy-rich) 48%, #10274a 100%);
+}
+
+.page-business-bridge .ai-bs-bridge-operator-wrap .section-navy-routes {
+  background: transparent;
+  border: none;
+  padding-left: clamp(16px, 4vw, 24px);
+  padding-right: clamp(16px, 4vw, 24px);
+}
+
+.page-business-bridge .ai-bs-bridge-operator-wrap .section-navy-routes::after {
+  opacity: 0.55;
+}
+
+.page-business-bridge .ai-bs-bridge-operator-wrap .transport-route-operator .live-concierge-section {
+  border-bottom: none;
+}
+
+.page-business-bridge .ai-bs-bridge-operator-wrap .live-concierge-card {
+  border-color: rgba(255, 246, 230, 0.16);
+  box-shadow:
+    0 28px 56px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 246, 230, 0.1);
+}
+
+.page-business-bridge .ai-bs-bridge-operator-wrap .business-operator-project-intro {
+  border-top-color: rgba(255, 246, 230, 0.14);
+}
+
+/* Form section — warm premium cream */
+.page-business-bridge .ai-bs-bridge-form-section.section-cream {
+  position: relative;
+  background:
+    radial-gradient(ellipse 100% 55% at 50% 0%, rgba(20, 184, 166, 0.1), transparent 58%),
+    radial-gradient(circle at 6% 96%, rgba(242, 178, 26, 0.14), transparent 46%),
+    radial-gradient(circle at 94% 88%, rgba(255, 106, 77, 0.08), transparent 40%),
+    linear-gradient(180deg, var(--bridge-cream-top) 0%, var(--bridge-cream-mid) 52%, var(--bridge-cream-base) 100%);
+}
+
+.page-business-bridge .ai-bs-bridge-form-section.section-cream::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 184, 166, 0.85) 0%,
+    rgba(242, 178, 26, 0.9) 50%,
+    rgba(255, 106, 77, 0.75) 100%
+  );
 }
 
 .page-business-bridge .ai-bs-bridge-form-inner {
-  max-width: 640px;
+  max-width: 680px;
   margin-inline: auto;
 }
 
 .page-business-bridge .ai-bs-bridge-form-card {
-  padding: clamp(22px, 3.5vw, 32px);
-  border-radius: calc(var(--radius) + 4px);
-  border: 1px solid rgba(11, 29, 58, 0.1);
-  background: rgba(255, 255, 255, 0.92);
+  padding: clamp(24px, 3.8vw, 36px);
+  border-radius: calc(var(--radius) + 6px);
+  border: 1px solid rgba(11, 29, 58, 0.14);
+  background: #fffdf9;
   box-shadow:
-    0 24px 48px rgba(11, 29, 58, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 2px 4px rgba(11, 29, 58, 0.04),
+    0 22px 52px rgba(11, 29, 58, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .page-business-bridge .ai-bs-bridge-form-head {
-  margin-bottom: clamp(18px, 2.5vw, 24px);
+  margin-bottom: clamp(20px, 2.8vw, 28px);
+  padding-bottom: clamp(16px, 2.2vw, 20px);
+  border-bottom: 1px solid rgba(11, 29, 58, 0.08);
 }
 
 .page-business-bridge .ai-bs-bridge-form-head .ai-strategic-title {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: var(--navy);
+  font-size: clamp(1.45rem, 2.2vw + 0.85rem, 1.85rem);
 }
 
 .page-business-bridge .ai-bs-bridge-form-lede {
   margin: 0;
-  font-size: clamp(0.92rem, 0.24vw + 0.86rem, 0.98rem);
-  line-height: 1.55;
-  color: rgba(11, 29, 58, 0.78);
+  font-size: clamp(0.94rem, 0.22vw + 0.88rem, 1rem);
+  line-height: 1.58;
+  color: rgba(11, 29, 58, 0.76);
 }
 
 .page-business-bridge .ai-bs-bridge-form .transport-intake-grid {
-  gap: 14px;
+  gap: 16px;
+}
+
+.page-business-bridge .ai-bs-bridge-form .transport-field span {
+  font-weight: 700;
+  color: rgba(11, 29, 58, 0.88);
+}
+
+.page-business-bridge .ai-bs-bridge-form input:not([type="checkbox"]),
+.page-business-bridge .ai-bs-bridge-form select,
+.page-business-bridge .ai-bs-bridge-form textarea {
+  border-color: rgba(11, 29, 58, 0.16);
+  background: #fffefb;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.page-business-bridge .ai-bs-bridge-form input:not([type="checkbox"]):focus,
+.page-business-bridge .ai-bs-bridge-form select:focus,
+.page-business-bridge .ai-bs-bridge-form textarea:focus {
+  border-color: rgba(20, 184, 166, 0.55);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.14);
+  outline: none;
 }
 
 .page-business-bridge .ai-bs-bridge-consent {
-  margin-top: 18px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(11, 29, 58, 0.04);
+  border: 1px solid rgba(11, 29, 58, 0.08);
 }
 
 .page-business-bridge .ai-bs-bridge-consent .sms-consent-checkbox {
   align-items: flex-start;
   gap: 12px;
   font-size: 0.86rem;
-  line-height: 1.5;
+  line-height: 1.52;
   color: rgba(11, 29, 58, 0.82);
 }
 
 .page-business-bridge .ai-bs-bridge-form .ai-bs-form-submit {
   width: 100%;
-  margin-top: 18px;
+  margin-top: 20px;
+  min-height: 50px;
+  font-weight: 850;
+}
+
+.page-business-bridge .ai-bs-bridge-form .transport-intake-error--ok {
+  margin-bottom: 12px;
+}
+
+/* Short CTA — deep navy cap */
+.page-business-bridge .ai-bs-bridge-cta {
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 0%, rgba(20, 184, 166, 0.22), transparent 55%),
+    radial-gradient(circle at 10% 100%, rgba(242, 178, 26, 0.14), transparent 42%),
+    linear-gradient(168deg, var(--bridge-navy-deep) 0%, var(--bridge-navy-mid) 55%, var(--bridge-navy-deep) 100%);
+}
+
+.page-business-bridge .ai-bs-bridge-cta-inner {
+  text-align: center;
+  max-width: 38rem;
+  margin-inline: auto;
+  display: grid;
+  gap: clamp(14px, 2.2vw, 18px);
+}
+
+.page-business-bridge .ai-bs-bridge-cta-inner .ai-strategic-title {
+  margin: 0;
+  color: #fff8eb;
+  font-size: clamp(1.35rem, 2vw + 0.75rem, 1.75rem);
+}
+
+.page-business-bridge .ai-bs-bridge-cta-inner .section-text {
+  margin: 0;
+  color: rgba(255, 235, 210, 0.86);
+}
+
+.page-business-bridge .ai-bs-bridge-cta-inner .hero-cta-row {
+  justify-content: center;
+  margin-top: 6px;
+}
+
+/* Footer — flush with page navy */
+.page-business-bridge .footer.dark-showcase {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(20, 184, 166, 0.14), transparent 40%),
+    radial-gradient(circle at 88% 100%, rgba(242, 178, 26, 0.1), transparent 38%),
+    linear-gradient(165deg, var(--bridge-navy-deep) 0%, #0b1d3a 55%, #102a50 100%);
+  border-top: 1px solid rgba(255, 246, 230, 0.12);
 }
 
 @media (max-width: 520px) {
+  .page-business-bridge .ai-bs-hero-cta.hero-cta-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .page-business-bridge .ai-bs-bridge-form-card {
-    padding: 18px 16px;
+    padding: 20px 16px;
   }
 
   .page-business-bridge .ai-bs-bridge-cta-inner .hero-cta-row .btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .page-business-bridge .ai-bs-category-actions .btn {
+    width: 100%;
   }
 }
