@@ -1,6 +1,6 @@
 # Website Status
 
-Last updated: 2026-05-29 (homepage AI Plug teaser + visitor footer cleanup)
+Last updated: 2026-05-29 (Business Services bridge page rebuild)
 
 ## Purpose
 Tracks the public Where To Go SA website: pages, visitor experience, CTAs, brand direction, SEO, public funnels, public business-services pages, social links, and public-facing content.
@@ -87,23 +87,19 @@ Core direction:
 - The page should not sound like a generic website company, SaaS tool, AI gimmick, or dashboard demo.
 
 ## Completed / Current Business Services Page Flow
-The Business Services page was rebuilt/polished into a more conversion-first flow.
+The Business Services page was rebuilt as a **premium bridge page** — restrained, visitor-guide-adjacent, not a long AI agency sales page.
 
-Current preferred flow:
-1. Hero — AI systems for businesses that need more than a website.
-2. Problem — where leads leak out.
-3. Live proof — Where To Go SA as working example.
-4. Simple starting paths — better website path, better lead system, full AI business system.
-5. Business Operator / diagnostic prompt.
-6. Project request form.
-7. What The AI Plug builds once the problem is clear.
-8. Trust / guardrails.
-9. Final CTA.
+Current flow (5 sections):
+1. Hero — The business side behind Where To Go SA.
+2. Who this can help — 5 compact category cards (no sub-page CTAs).
+3. The operator — human, premium operator perspective (static copy, no chat widget).
+4. What the business side can build — compact capability list + guardrails.
+5. Start the conversation — form with all helper copy inside the form card.
 
 Important:
-- Do not force the old layout if it weakens conversion.
+- Not a dashboard demo, not a service-lane grid, not a business-types directory on this page.
 - Do not use dashboard/internal language publicly.
-- The Business Services page should make a business owner want to inquire because it clearly names a problem they feel.
+- Form routes to Business Leads via `business-lead-form.js` → `/.netlify/functions/business-lead`.
 
 ## Business Services Form / Routing Status
 Business Services page submissions should route to the internal Owner Dashboard / Business Leads flow.
@@ -116,7 +112,7 @@ Known desired metadata:
 - `page_path: /business-services.html`
 
 Public success language should stay safe:
-“Request received. The AI Plug will review your business type, bottleneck, and best starting point.”
+“Request received. We'll review your business type, current situation, and best starting point before following up.”
 
 Do not promise instant results, guaranteed leads, guaranteed bookings, revenue, rankings, or guaranteed outcomes.
 
@@ -530,6 +526,7 @@ Use phrases like:
 ## Files / Areas Likely Affected By Website Work
 - `index.html`
 - `business-services.html`
+- `business-lead-form.js`
 - Business Types / AI Plug category page file if separate
 - Home Services page file if separate
 - Transportation / Concierge page file
