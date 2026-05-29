@@ -1,6 +1,6 @@
 # Website Status
 
-Last updated: 2026-05-25
+Last updated: 2026-05-29
 
 ## Purpose
 Tracks the public Where To Go SA website: pages, visitor experience, CTAs, brand direction, SEO, public funnels, public business-services pages, social links, and public-facing content.
@@ -394,23 +394,23 @@ Confirmed test lead:
 Future website work should preserve that routing and should not rebuild the internal dashboard system.
 
 ## Transportation + Concierge Page Direction
-The transportation page now makes more sense as a visitor-facing service and future provider/partner lead routing opportunity.
-
-Current strategic direction:
-Where To Go SA helps visitors plan routes and can route transportation requests to the right provider or human follow-up. The first version does not require becoming a transportation company.
+Public positioning is **scheduled private local concierge experiences** for San Antonio visitors — not instant rides, ride requests, or rideshare replacement language.
 
 Best public framing:
-- Visitors need help with airport, resort, downtown, night-out, convention, group, and event movement.
-- The value is better request intake and routing, not simply “rides.”
-- The request should collect pickup area, destination, timing, group size, luggage, trip type, and whether they need a plan or only transportation.
-- Later, this can evolve into partner/provider routing for licensed transportation operators, black car services, shuttle providers, taxis, private drivers, tour/transport providers, and concierge partners.
+- Book a local concierge for your San Antonio visit.
+- Reserve concierge time with experience types (city night out, resort guest route, family/first-time visitor, convention free time, nearby day trip, custom local plan).
+- Package-style starting rates: 2h from $250, 3h from $375, 4–5h from $600, 6–8h from $900–$1,200, custom quoted.
+- Homepage section previews experiences + “starts at $250” teaser; full pricing on `driver-concierge.html`.
+- Booking form at `#transportation-request` routes to `/.netlify/functions/transportation-request` (Supabase + owner alerts). Live calendar/payment not active yet — form notes review-first scheduling.
+
+Avoid on public pages:
+- instant ride / ride request / taxi or Uber replacement / dispatch / “private concierge by the hour” as main headline / defensive “not instant pickup” copy.
 
 Important:
-- Keep visitor-facing transportation pages visitor-first.
+- Keep visitor-facing pages visitor-first and premium.
 - Do not overpromise availability.
-- Do not imply illegal/unlicensed transportation service.
-- Use careful wording around provider handoff, availability, route details, and applicable transportation/insurance/local requirements.
-- Transportation leads should remain separate from restaurant leads and general AI Plug business leads.
+- Transportation leads stay separate from restaurant and AI Plug business leads.
+- Do not edit `owner-dashboard/index.html` for website-thread concierge copy work.
 
 ## Ask A Local / Operator Direction
 Ask A Local is a major proof point for The AI Plug.
