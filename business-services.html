@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=business-bridge-premium-20260529" />
+  <link rel="stylesheet" href="styles.css?v=business-form-studio-cream-20260529" />
 </head>
 <body class="page-business-services page-business-bridge ai-services-page">
   <header class="site-header">
@@ -101,6 +101,18 @@
           <p class="section-text section-text-light ai-bs-pillar-lede"><a href="/business-services/business-types/">Explore all business types &rarr;</a></p>
         </header>
         <div class="ai-bs-category-grid ai-bs-category-grid--six" role="list">
+          <article class="ai-bs-category-card" role="listitem">
+            <figure class="ai-bs-category-thumb">
+              <img src="assets/professional-services-hero-consultation.png" alt="Professional services consultation and authority context" width="1672" height="941" loading="lazy" decoding="async" />
+            </figure>
+            <h3 class="ai-bs-category-title">Professional Services</h3>
+            <p class="ai-bs-category-includes">Attorneys, consultants, real estate, insurance, medical &amp; wellness, financial-style local services, B2B services.</p>
+            <p class="ai-bs-category-copy">Marketing plus AI systems: SEO, authority content, Google Ads when appropriate, consultation landing pages, qualification, intake, and follow-up.</p>
+            <div class="ai-bs-category-actions">
+              <a class="btn btn-primary ai-bs-category-cta" href="/business-services/professional-services/#professional-services-inquiry">Explore professional services AI</a>
+              <a class="btn btn-secondary hero-secondary-btn ai-bs-category-cta ai-bs-category-cta--soft" href="/business-services/professional-services/">Request consultation AI review</a>
+            </div>
+          </article>
           <article class="ai-bs-category-card ai-bs-category-card--featured" role="listitem">
             <figure class="ai-bs-category-thumb">
               <img src="assets/home-services-roofing-inspection.png" alt="Home services contractor trade and quote intake context" width="1448" height="1086" loading="lazy" decoding="async" />
@@ -139,14 +151,14 @@
           </article>
           <article class="ai-bs-category-card" role="listitem">
             <figure class="ai-bs-category-thumb">
-              <img src="assets/professional-services-hero-consultation.png" alt="Professional services consultation and authority context" width="1672" height="941" loading="lazy" decoding="async" />
+              <img src="assets/hospitality-local-brand-interest.png" alt="Visitor-facing local brand and retail foot traffic context" width="1448" height="1086" loading="lazy" decoding="async" />
             </figure>
-            <h3 class="ai-bs-category-title">Professional Services</h3>
-            <p class="ai-bs-category-includes">Attorneys, consultants, real estate, insurance, medical &amp; wellness, financial-style local services, B2B services.</p>
-            <p class="ai-bs-category-copy">Marketing plus AI systems: SEO, authority content, Google Ads when appropriate, consultation landing pages, qualification, intake, and follow-up.</p>
+            <h3 class="ai-bs-category-title">Local Brands + Retail</h3>
+            <p class="ai-bs-category-includes">Retail shops, local brands, pop-ups, makers, boutiques, and neighborhood businesses with campaign-driven traffic.</p>
+            <p class="ai-bs-category-copy">AI can support product questions, social content, QR campaigns, promotions, customer education, and repeat-customer follow-up.</p>
             <div class="ai-bs-category-actions">
-              <a class="btn btn-primary ai-bs-category-cta" href="/business-services/professional-services/#professional-services-inquiry">Explore professional services AI</a>
-              <a class="btn btn-secondary hero-secondary-btn ai-bs-category-cta ai-bs-category-cta--soft" href="/business-services/professional-services/">Request consultation AI review</a>
+              <a class="btn btn-primary ai-bs-category-cta" href="#start-conversation" data-bs-business-type="Local brand">Request local brand AI review</a>
+              <a class="btn btn-secondary hero-secondary-btn ai-bs-category-cta ai-bs-category-cta--soft" href="#business-operator">Ask the business operator</a>
             </div>
           </article>
           <article class="ai-bs-category-card" role="listitem">
@@ -159,18 +171,6 @@
             <div class="ai-bs-category-actions">
               <a class="btn btn-primary ai-bs-category-cta" href="#start-conversation" data-bs-business-type="Transportation / concierge">Request transportation AI review</a>
               <a class="btn btn-secondary hero-secondary-btn ai-bs-category-cta ai-bs-category-cta--soft" href="driver-concierge.html#transportation-request">See transport request flow</a>
-            </div>
-          </article>
-          <article class="ai-bs-category-card" role="listitem">
-            <figure class="ai-bs-category-thumb">
-              <img src="assets/hospitality-local-brand-interest.png" alt="Visitor-facing local brand and retail foot traffic context" width="1448" height="1086" loading="lazy" decoding="async" />
-            </figure>
-            <h3 class="ai-bs-category-title">Local Brands + Retail</h3>
-            <p class="ai-bs-category-includes">Retail shops, local brands, pop-ups, makers, boutiques, and neighborhood businesses with campaign-driven traffic.</p>
-            <p class="ai-bs-category-copy">AI can support product questions, social content, QR campaigns, promotions, customer education, and repeat-customer follow-up.</p>
-            <div class="ai-bs-category-actions">
-              <a class="btn btn-primary ai-bs-category-cta" href="#start-conversation" data-bs-business-type="Local brand">Request local brand AI review</a>
-              <a class="btn btn-secondary hero-secondary-btn ai-bs-category-cta ai-bs-category-cta--soft" href="#business-operator">Ask the business operator</a>
             </div>
           </article>
         </div>
@@ -298,98 +298,147 @@
       </section>
     </div>
 
-    <!-- 4. Start the conversation -->
-    <section class="section section-cream ai-bs-bridge-form-section ai-bs-sec-major" id="start-conversation" aria-labelledby="form-heading">
-      <div class="routes-band-inner ai-bs-bridge-form-inner">
-        <div class="ai-bs-bridge-form-card">
-          <header class="ai-bs-bridge-form-head">
-            <h2 id="form-heading" class="ai-strategic-title">Start the conversation</h2>
-            <p class="section-text ai-bs-bridge-form-lede">Tell us what kind of business you run and where requests, questions, or follow-up are getting messy.</p>
-          </header>
+    <!-- 4. Start the conversation — form studio -->
+    <section class="section section-cream ai-bs-bridge-form-section ai-bs-form-studio-section ai-bs-sec-major" id="start-conversation" aria-labelledby="form-heading">
+      <div class="routes-band-inner ai-bs-form-studio-wrap">
+        <div class="ai-bs-form-studio">
+          <aside class="ai-bs-form-atelier" aria-labelledby="form-heading">
+            <p class="ai-bs-form-atelier__kicker">We build the form for you</p>
+            <h2 id="form-heading" class="ai-bs-form-atelier__title">Start the conversation.</h2>
+            <p class="ai-bs-form-atelier__lede">This is the same intake quality we build for clients&mdash;clear sections, smart fields, and a path that actually captures what you need before follow-up starts.</p>
+            <ol class="ai-bs-form-atelier__steps" aria-label="What you will fill out">
+              <li class="ai-bs-form-atelier__step">
+                <span class="ai-bs-form-atelier__step-n" aria-hidden="true">01</span>
+                <span class="ai-bs-form-atelier__step-text"><strong>Your business</strong> &mdash; type, name, and where people find you online.</span>
+              </li>
+              <li class="ai-bs-form-atelier__step">
+                <span class="ai-bs-form-atelier__step-n" aria-hidden="true">02</span>
+                <span class="ai-bs-form-atelier__step-text"><strong>Contact</strong> &mdash; who we should reach and how.</span>
+              </li>
+              <li class="ai-bs-form-atelier__step">
+                <span class="ai-bs-form-atelier__step-n" aria-hidden="true">03</span>
+                <span class="ai-bs-form-atelier__step-text"><strong>Your situation</strong> &mdash; where requests break down and what you want fixed first.</span>
+              </li>
+            </ol>
+            <ul class="ai-bs-form-atelier__proof" aria-label="What happens after you submit">
+              <li>Reviewed by a real operator</li>
+              <li>Practical next step, not a generic pitch</li>
+              <li>Proof-of-work from Where To Go SA</li>
+            </ul>
+          </aside>
 
-          <form class="transport-intake-form ai-bs-intake-form ai-bs-bridge-form" id="business-lead-form" novalidate aria-label="Business request form">
-            <p id="business-lead-intake-error" class="transport-intake-error" hidden role="alert"></p>
-            <p id="business-lead-confirm" class="transport-intake-error transport-intake-error--ok" hidden role="status"></p>
+          <div class="ai-bs-form-canvas">
+            <div class="ai-bs-form-canvas__frame" aria-hidden="true"></div>
+            <form class="transport-intake-form ai-bs-intake-form ai-bs-bridge-form ai-bs-crafted-form" id="business-lead-form" novalidate aria-label="Business request form">
+              <div class="ai-bs-crafted-form__top">
+                <p class="ai-bs-crafted-form__badge">Business request</p>
+                <nav class="ai-bs-form-progress" aria-label="Form sections">
+                  <span class="ai-bs-form-progress__item ai-bs-form-progress__item--current">Business</span>
+                  <span class="ai-bs-form-progress__line" aria-hidden="true"></span>
+                  <span class="ai-bs-form-progress__item">Contact</span>
+                  <span class="ai-bs-form-progress__line" aria-hidden="true"></span>
+                  <span class="ai-bs-form-progress__item">Goals</span>
+                </nav>
+              </div>
 
-            <div class="transport-intake-grid">
-              <label class="transport-field transport-field--full">
-                <span>Business name</span>
-                <input type="text" name="business_name" id="business-name" autocomplete="organization" />
-              </label>
-              <label class="transport-field">
-                <span>Contact name</span>
-                <input type="text" name="contact_name" id="business-contact-name" required autocomplete="name" />
-              </label>
-              <label class="transport-field">
-                <span>Email</span>
-                <input type="email" name="contact_email" id="business-contact-email" autocomplete="email" />
-              </label>
-              <label class="transport-field">
-                <span>Phone</span>
-                <input type="tel" name="contact_phone" id="business-contact-phone" autocomplete="tel" />
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Website or social link</span>
-                <input type="url" name="business_website" id="business-website" placeholder="https://" />
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Business type</span>
-                <select name="business_industry" id="business-industry" required>
-                  <option value="">Choose one</option>
-                  <option value="Restaurant / hospitality">Restaurant / hospitality</option>
-                  <option value="Transportation / concierge">Transportation / concierge</option>
-                  <option value="Home services">Home services</option>
-                  <option value="Professional service">Professional service</option>
-                  <option value="Local brand">Local brand / retail</option>
-                  <option value="Other">Other</option>
-                </select>
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>What do you want help with?</span>
-                <textarea name="need_help" id="business-need-help" rows="3" required placeholder="Website, intake, follow-up, visibility, approved answers…"></textarea>
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Where are opportunities getting lost?</span>
-                <textarea name="messy_where" id="business-messy-where" rows="3" required placeholder="Missed calls, weak forms, scattered messages, slow follow-up…"></textarea>
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Message</span>
-                <textarea name="notes" id="business-notes" rows="3" placeholder="Optional — anything else that helps"></textarea>
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Preferred contact method</span>
-                <select name="preferred_contact_method" id="business-preferred-contact" required>
-                  <option value="">Choose one</option>
-                  <option value="email">Email</option>
-                  <option value="phone">Phone call</option>
-                  <option value="text">Text / SMS</option>
-                </select>
-              </label>
-            </div>
+              <p id="business-lead-intake-error" class="transport-intake-error ai-bs-crafted-alert" hidden role="alert"></p>
+              <p id="business-lead-confirm" class="transport-intake-error transport-intake-error--ok ai-bs-crafted-alert" hidden role="status"></p>
 
-            <div class="sms-consent-block ai-bs-bridge-consent">
-              <label class="sms-consent-checkbox">
-                <input type="checkbox" name="contact_consent" value="yes" required />
-                <span>By submitting, you agree Where To Go SA / The AI Plug may contact you about your request. Message/data rates may apply for texts. Reply STOP to opt out.</span>
-              </label>
-            </div>
+              <fieldset class="ai-bs-crafted-block" id="bs-form-business">
+                <legend class="ai-bs-crafted-block__legend">
+                  <span class="ai-bs-crafted-block__num" aria-hidden="true">01</span>
+                  Your business
+                </legend>
+                <div class="ai-bs-crafted-grid">
+                  <label class="ai-bs-crafted-field ai-bs-crafted-field--full">
+                    <span class="ai-bs-crafted-label">Business name</span>
+                    <input type="text" name="business_name" id="business-name" autocomplete="organization" placeholder="Your business or brand" />
+                  </label>
+                  <label class="ai-bs-crafted-field ai-bs-crafted-field--full">
+                    <span class="ai-bs-crafted-label">Business type</span>
+                    <select name="business_industry" id="business-industry" required>
+                      <option value="">Select your category</option>
+                      <option value="Restaurant / hospitality">Restaurant / hospitality</option>
+                      <option value="Transportation / concierge">Transportation / concierge</option>
+                      <option value="Home services">Home services</option>
+                      <option value="Professional service">Professional service</option>
+                      <option value="Local brand">Local brand / retail</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </label>
+                  <label class="ai-bs-crafted-field ai-bs-crafted-field--full">
+                    <span class="ai-bs-crafted-label">Website or social</span>
+                    <input type="url" name="business_website" id="business-website" placeholder="https:// or @handle" inputmode="url" />
+                  </label>
+                </div>
+              </fieldset>
 
-            <button type="submit" class="btn btn-primary transport-intake-submit ai-bs-form-submit" id="business-lead-submit">
-              Send business request
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
+              <fieldset class="ai-bs-crafted-block" id="bs-form-contact">
+                <legend class="ai-bs-crafted-block__legend">
+                  <span class="ai-bs-crafted-block__num" aria-hidden="true">02</span>
+                  Contact
+                </legend>
+                <div class="ai-bs-crafted-grid ai-bs-crafted-grid--pair">
+                  <label class="ai-bs-crafted-field">
+                    <span class="ai-bs-crafted-label">Your name</span>
+                    <input type="text" name="contact_name" id="business-contact-name" required autocomplete="name" placeholder="First and last" />
+                  </label>
+                  <label class="ai-bs-crafted-field">
+                    <span class="ai-bs-crafted-label">Preferred contact</span>
+                    <select name="preferred_contact_method" id="business-preferred-contact" required>
+                      <option value="">Select method</option>
+                      <option value="email">Email</option>
+                      <option value="phone">Phone call</option>
+                      <option value="text">Text / SMS</option>
+                    </select>
+                  </label>
+                  <label class="ai-bs-crafted-field">
+                    <span class="ai-bs-crafted-label">Email</span>
+                    <input type="email" name="contact_email" id="business-contact-email" autocomplete="email" placeholder="you@business.com" />
+                  </label>
+                  <label class="ai-bs-crafted-field">
+                    <span class="ai-bs-crafted-label">Phone</span>
+                    <input type="tel" name="contact_phone" id="business-contact-phone" autocomplete="tel" placeholder="(830) 555-0100" />
+                  </label>
+                </div>
+                <p class="ai-bs-crafted-hint">Email or phone required&mdash;both is fine.</p>
+              </fieldset>
 
-    <!-- 5. Short CTA -->
-    <section class="section dark-showcase ai-bs-bridge-cta ai-bs-sec-compact" aria-labelledby="bridge-cta-heading">
-      <div class="routes-band-inner ai-bs-bridge-cta-inner">
-        <h2 id="bridge-cta-heading" class="ai-strategic-title">Built for visitors. Powered by business systems.</h2>
-        <p class="section-text section-text-light">Where To Go SA proves the work in public. Send a request if your business needs a clearer path.</p>
-        <div class="hero-cta-row">
-          <a class="btn btn-primary" href="#start-conversation">Send business request</a>
-          <a class="btn btn-secondary hero-secondary-btn" href="index.html">See Where To Go SA</a>
+              <fieldset class="ai-bs-crafted-block" id="bs-form-goals">
+                <legend class="ai-bs-crafted-block__legend">
+                  <span class="ai-bs-crafted-block__num" aria-hidden="true">03</span>
+                  Your situation
+                </legend>
+                <div class="ai-bs-crafted-grid">
+                  <label class="ai-bs-crafted-field ai-bs-crafted-field--full">
+                    <span class="ai-bs-crafted-label">What do you want help with?</span>
+                    <textarea name="need_help" id="business-need-help" rows="3" required placeholder="Intake, follow-up, visibility, approved answers, a system like Where To Go SA…"></textarea>
+                  </label>
+                  <label class="ai-bs-crafted-field ai-bs-crafted-field--full">
+                    <span class="ai-bs-crafted-label">Where are opportunities getting lost?</span>
+                    <textarea name="messy_where" id="business-messy-where" rows="3" required placeholder="Missed calls, weak forms, scattered DMs, slow follow-up…"></textarea>
+                  </label>
+                  <label class="ai-bs-crafted-field ai-bs-crafted-field--full ai-bs-crafted-field--optional">
+                    <span class="ai-bs-crafted-label">Anything else <em>(optional)</em></span>
+                    <textarea name="notes" id="business-notes" rows="2" placeholder="Context that helps us respond well"></textarea>
+                  </label>
+                </div>
+              </fieldset>
+
+              <footer class="ai-bs-crafted-footer">
+                <div class="sms-consent-block ai-bs-crafted-consent">
+                  <label class="sms-consent-checkbox">
+                    <input type="checkbox" name="contact_consent" value="yes" required />
+                    <span>By submitting, you agree Where To Go SA / The AI Plug may contact you about your request. Message/data rates may apply for texts. Reply STOP to opt out.</span>
+                  </label>
+                </div>
+                <button type="submit" class="ai-bs-crafted-submit transport-intake-submit" id="business-lead-submit">
+                  <span class="ai-bs-crafted-submit__text">Send business request</span>
+                  <span class="ai-bs-crafted-submit__icon" aria-hidden="true">&rarr;</span>
+                </button>
+              </footer>
+            </form>
+          </div>
         </div>
       </div>
     </section>

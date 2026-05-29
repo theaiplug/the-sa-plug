@@ -1,6 +1,6 @@
 # Website Status
 
-Last updated: 2026-05-29 (Business Services bridge page rebuild)
+Last updated: 2026-05-29 (Business Services bridge — removed footer CTA strip)
 
 ## Purpose
 Tracks the public Where To Go SA website: pages, visitor experience, CTAs, brand direction, SEO, public funnels, public business-services pages, social links, and public-facing content.
@@ -89,12 +89,11 @@ Core direction:
 ## Completed / Current Business Services Page Flow
 The Business Services page was rebuilt as a **premium bridge page** — restrained, visitor-guide-adjacent, not a long AI agency sales page.
 
-Current flow (5 sections):
+Current flow (4 sections):
 1. Hero — The business side behind Where To Go SA (original hero visual + background).
 2. Who this helps — original category card grid with images and CTAs.
-3. Business Operator — live chat widget (not a static operator bio section).
-4. Start the conversation — simplified request form inside form card.
-5. Short CTA — compact closing band.
+3. Business Operator — live chat widget.
+4. Start the conversation — simplified request form inside form card (no separate navy CTA strip between the form and the footer).
 
 Important:
 - Not a dashboard demo, not a service-lane grid, not a business-types directory on this page.
