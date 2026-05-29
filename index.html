@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=concierge-home-20260529" />
+  <link rel="stylesheet" href="styles.css?v=concierge-home-20260529b" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -376,72 +376,82 @@
     </section>
 
     <section class="section dark-showcase transport-section transport-section--concierge-home" aria-labelledby="home-concierge-heading">
-      <div class="routes-band-inner home-concierge-shell">
-        <div class="home-concierge-hero">
-          <header class="home-concierge-intro">
-            <p class="eyebrow eyebrow-on-dark">Local concierge</p>
-            <h2 id="home-concierge-heading" class="home-concierge-heading">Book a local concierge for your San Antonio visit.</h2>
-            <p class="section-text section-text-light home-concierge-lede">Pick an available time, choose the kind of experience you want, and get help planning a better local route &mdash; from dinner downtown to resort evenings, family stops, convention free time, and nearby day trips.</p>
-            <div class="home-concierge-cta-row">
-              <a class="btn btn-primary" href="driver-concierge.html#transportation-request">Reserve Concierge Time</a>
-              <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#choose-experience">Explore Concierge Options</a>
-            </div>
-            <p class="home-concierge-rate">Local evening concierge &middot; <strong>starts at $250</strong> for 2 hours</p>
-          </header>
-          <a class="home-concierge-visual" href="driver-concierge.html#transportation-request" aria-label="Reserve local concierge time — open Transport + Concierge">
-            <div class="home-concierge-visual-media-wrap">
-              <img src="assets/transport-rooftop-evening-plan.png" alt="Warm evening San Antonio rooftop and city lights" class="home-concierge-visual-media" width="1200" height="800" decoding="async" loading="lazy" />
-              <div class="home-concierge-visual-overlay" aria-hidden="true"></div>
-              <div class="home-concierge-visual-caption">
-                <span class="home-concierge-visual-kicker">Visitor-first planning</span>
-                <span class="home-concierge-visual-title">Resort-to-downtown routes, city nights, and flexible local stops.</span>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="home-concierge-exp" aria-labelledby="home-concierge-exp-heading">
-          <h3 id="home-concierge-exp-heading" class="home-concierge-exp-heading">Concierge experiences</h3>
-          <ul class="home-concierge-exp-grid" role="list">
+      <div class="home-concierge-shell">
+        <header class="home-concierge-intro">
+          <p class="eyebrow eyebrow-on-dark">Local concierge</p>
+          <h2 id="home-concierge-heading" class="home-concierge-heading">Book a local concierge for your San Antonio visit.</h2>
+          <p class="section-text section-text-light home-concierge-lede">Pick an available time, choose the kind of experience you want, and get help planning a better local route &mdash; from dinner downtown to resort evenings, family stops, convention free time, and nearby day trips.</p>
+          <div class="home-concierge-cta-row">
+            <a class="btn btn-primary" href="driver-concierge.html#transportation-request">Reserve Concierge Time</a>
+            <a class="btn btn-secondary hero-secondary-btn" href="driver-concierge.html#choose-experience">Explore Concierge Options</a>
+          </div>
+          <p class="home-concierge-rate">Local evening concierge &middot; <strong>starts at $250</strong> for 2 hours</p>
+        </header>
+
+        <a class="home-concierge-visual" href="driver-concierge.html#transportation-request" aria-label="Reserve local concierge time — open Transport + Concierge">
+          <img src="assets/transport-rooftop-evening-plan.png" alt="" class="home-concierge-visual-img" width="1200" height="800" decoding="async" loading="lazy" />
+          <span class="home-concierge-visual-shade" aria-hidden="true"></span>
+          <span class="home-concierge-visual-caption">Resort-to-downtown routes, city nights, and flexible local stops.</span>
+        </a>
+
+        <div class="home-concierge-exp-panel" aria-labelledby="home-concierge-exp-heading">
+          <div class="home-concierge-exp-head">
+            <h3 id="home-concierge-exp-heading">Concierge experiences</h3>
+            <p class="home-concierge-exp-lead">Choose a plan, then reserve your time block on the concierge page.</p>
+          </div>
+          <ul class="home-concierge-exp-list" role="list">
             <li>
-              <a class="home-concierge-exp-card" href="driver-concierge.html#transportation-request">
-                <span class="home-concierge-exp-tag">Evening</span>
-                <span class="home-concierge-exp-title">City Night Out</span>
-                <span class="home-concierge-exp-copy">Dinner, Pearl, River Walk, rooftop drinks, or a first-night plan.</span>
+              <a class="home-concierge-exp-row" href="driver-concierge.html#transportation-request">
+                <span class="home-concierge-exp-row-main">
+                  <span class="home-concierge-exp-row-title">City Night Out</span>
+                  <span class="home-concierge-exp-row-copy">Dinner, Pearl, River Walk, rooftop drinks, or a first-night plan.</span>
+                </span>
+                <span class="home-concierge-exp-row-arrow" aria-hidden="true">&rarr;</span>
               </a>
             </li>
             <li>
-              <a class="home-concierge-exp-card" href="driver-concierge.html#transportation-request">
-                <span class="home-concierge-exp-tag">Resort</span>
-                <span class="home-concierge-exp-title">Resort Guest Route</span>
-                <span class="home-concierge-exp-copy">La Cantera, JW Marriott, Hyatt Hill Country, and downtown timing help.</span>
+              <a class="home-concierge-exp-row" href="driver-concierge.html#transportation-request">
+                <span class="home-concierge-exp-row-main">
+                  <span class="home-concierge-exp-row-title">Resort Guest Route</span>
+                  <span class="home-concierge-exp-row-copy">La Cantera, JW Marriott, Hyatt Hill Country, and downtown timing help.</span>
+                </span>
+                <span class="home-concierge-exp-row-arrow" aria-hidden="true">&rarr;</span>
               </a>
             </li>
             <li>
-              <a class="home-concierge-exp-card" href="driver-concierge.html#transportation-request">
-                <span class="home-concierge-exp-tag">Family</span>
-                <span class="home-concierge-exp-title">Family / First-Time Visitor Plan</span>
-                <span class="home-concierge-exp-copy">Alamo, River Walk, Tower, Pearl, Market Square, and kid-friendly stops.</span>
+              <a class="home-concierge-exp-row" href="driver-concierge.html#transportation-request">
+                <span class="home-concierge-exp-row-main">
+                  <span class="home-concierge-exp-row-title">Family / First-Time Visitor Plan</span>
+                  <span class="home-concierge-exp-row-copy">Alamo, River Walk, Tower, Pearl, Market Square, and kid-friendly stops.</span>
+                </span>
+                <span class="home-concierge-exp-row-arrow" aria-hidden="true">&rarr;</span>
               </a>
             </li>
             <li>
-              <a class="home-concierge-exp-card" href="driver-concierge.html#transportation-request">
-                <span class="home-concierge-exp-tag">Business</span>
-                <span class="home-concierge-exp-title">Convention Free-Time Concierge</span>
-                <span class="home-concierge-exp-copy">One open evening, a dinner plan, or a half-day opening between sessions.</span>
+              <a class="home-concierge-exp-row" href="driver-concierge.html#transportation-request">
+                <span class="home-concierge-exp-row-main">
+                  <span class="home-concierge-exp-row-title">Convention Free-Time Concierge</span>
+                  <span class="home-concierge-exp-row-copy">One open evening, a dinner plan, or a half-day opening between sessions.</span>
+                </span>
+                <span class="home-concierge-exp-row-arrow" aria-hidden="true">&rarr;</span>
               </a>
             </li>
             <li>
-              <a class="home-concierge-exp-card" href="driver-concierge.html#transportation-request">
-                <span class="home-concierge-exp-tag">Day trip</span>
-                <span class="home-concierge-exp-title">Nearby Day Trip / Extended Route</span>
-                <span class="home-concierge-exp-copy">Fredericksburg, Boerne, Gruene, wineries, and routes within roughly two hours.</span>
+              <a class="home-concierge-exp-row" href="driver-concierge.html#transportation-request">
+                <span class="home-concierge-exp-row-main">
+                  <span class="home-concierge-exp-row-title">Nearby Day Trip / Extended Route</span>
+                  <span class="home-concierge-exp-row-copy">Fredericksburg, Boerne, Gruene, wineries, and routes within roughly two hours.</span>
+                </span>
+                <span class="home-concierge-exp-row-arrow" aria-hidden="true">&rarr;</span>
               </a>
             </li>
             <li>
-              <a class="home-concierge-exp-card" href="driver-concierge.html#transportation-request">
-                <span class="home-concierge-exp-tag">Custom</span>
-                <span class="home-concierge-exp-title">Custom Local Plan</span>
-                <span class="home-concierge-exp-copy">Special occasions, longer routes, unusual timing, or multi-stop visitor plans.</span>
+              <a class="home-concierge-exp-row" href="driver-concierge.html#transportation-request">
+                <span class="home-concierge-exp-row-main">
+                  <span class="home-concierge-exp-row-title">Custom Local Plan</span>
+                  <span class="home-concierge-exp-row-copy">Special occasions, longer routes, unusual timing, or multi-stop visitor plans.</span>
+                </span>
+                <span class="home-concierge-exp-row-arrow" aria-hidden="true">&rarr;</span>
               </a>
             </li>
           </ul>
