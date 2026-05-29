@@ -26217,193 +26217,46 @@ body.owner-dash-detail-open {
   flex-direction: column;
   gap: 0;
   margin: 0;
-  background: var(--bridge-navy);
 }
 
-.page-business-bridge main > .section {
+.page-business-bridge main > .section,
+.page-business-bridge main > .transport-concierge-main {
+  margin: 0;
+  border-radius: 0;
+}
+
+.page-business-bridge main > .transport-concierge-main > .section {
   margin: 0;
   border-radius: 0;
   border-block: none;
 }
 
-.page-business-bridge .ai-bs-bridge-hero.hero-fiesta-dark {
-  background-color: var(--bridge-navy);
-  background-image:
-    linear-gradient(165deg, rgba(5, 10, 24, 0.94) 0%, rgba(5, 10, 24, 0.72) 42%, rgba(5, 10, 24, 0.88) 100%),
-    radial-gradient(ellipse 80% 60% at 88% 18%, rgba(20, 184, 166, 0.14), transparent 52%),
-    radial-gradient(circle at 12% 88%, rgba(242, 178, 26, 0.1), transparent 42%),
-    url("assets/the-ai-plug-hero-background-v2.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.page-business-bridge .ai-bs-bridge-hero-band {
-  width: 100%;
-  max-width: 1160px;
-  margin-inline: auto;
-  padding-block: clamp(48px, 8vw, 88px);
-}
-
-.page-business-bridge .ai-bs-bridge-hero-inner {
-  max-width: 42rem;
-}
-
-.page-business-bridge .ai-bs-bridge-lede {
-  max-width: 38rem;
-  font-size: clamp(1rem, 0.35vw + 0.92rem, 1.08rem);
-  line-height: 1.62;
-  color: rgba(255, 246, 230, 0.88);
-}
-
-.page-business-bridge .ai-bs-bridge-hero-cta {
-  margin-top: clamp(18px, 2.5vw, 26px);
-}
-
-.page-business-bridge .ai-bs-bridge-section.dark-showcase {
+.page-business-bridge .ai-bs-bridge-cta {
   background:
     radial-gradient(ellipse 70% 55% at 18% 22%, rgba(20, 184, 166, 0.12), transparent 52%),
-    radial-gradient(circle at 88% 12%, rgba(255, 92, 168, 0.07), transparent 40%),
-    linear-gradient(168deg, var(--bridge-navy) 0%, var(--bridge-navy-mid) 52%, #060c18 100%);
+    linear-gradient(168deg, #050d1a 0%, #0a1830 52%, #060c18 100%);
+  border-block: none;
 }
 
-.page-business-bridge .ai-bs-bridge-section.section-cream {
-  background:
-    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(20, 184, 166, 0.06), transparent 58%),
-    linear-gradient(180deg, #fffbf6 0%, #f8f2e8 52%, #f0e9de 100%);
-}
-
-.page-business-bridge .ai-bs-bridge-head {
-  max-width: 40rem;
-}
-
-.page-business-bridge .ai-bs-bridge-help-grid {
-  list-style: none;
-  margin: clamp(20px, 3vw, 28px) 0 0;
-  padding: 0;
+.page-business-bridge .ai-bs-bridge-cta-inner {
+  text-align: center;
+  max-width: 36rem;
+  margin-inline: auto;
   display: grid;
   gap: clamp(12px, 2vw, 16px);
-  grid-template-columns: 1fr;
 }
 
-@media (min-width: 640px) {
-  .page-business-bridge .ai-bs-bridge-help-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .page-business-bridge .ai-bs-bridge-help-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .page-business-bridge .ai-bs-bridge-help-grid > li:last-child:nth-child(5) {
-    grid-column: 2;
-  }
-}
-
-.page-business-bridge .ai-bs-bridge-help-card {
-  min-width: 0;
-  padding: clamp(18px, 2.2vw, 22px);
-  border-radius: var(--radius);
-  border: 1px solid rgba(255, 246, 230, 0.12);
-  background:
-    radial-gradient(circle at 12% 0%, rgba(20, 184, 166, 0.1), transparent 42%),
-    linear-gradient(168deg, rgba(255, 246, 230, 0.05) 0%, rgba(4, 12, 28, 0.55) 100%);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
-}
-
-.page-business-bridge .ai-bs-bridge-help-card h3 {
-  margin: 0 0 8px;
-  font-size: clamp(1rem, 0.2vw + 0.94rem, 1.06rem);
-  font-weight: 850;
-  line-height: 1.28;
-  color: rgba(255, 246, 230, 0.97);
-}
-
-.page-business-bridge .ai-bs-bridge-help-card p {
+.page-business-bridge .ai-bs-bridge-cta-inner .ai-strategic-title {
   margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.55;
-  color: rgba(255, 235, 210, 0.86);
 }
 
-.page-business-bridge .ai-bs-bridge-operator-body {
-  max-width: 44rem;
-  display: grid;
-  gap: clamp(16px, 2.2vw, 22px);
-}
-
-.page-business-bridge .ai-bs-bridge-operator-body .section-text {
+.page-business-bridge .ai-bs-bridge-cta-inner .section-text {
   margin: 0;
-  font-size: clamp(0.98rem, 0.28vw + 0.9rem, 1.05rem);
-  line-height: 1.62;
-  color: rgba(11, 29, 58, 0.82);
 }
 
-.page-business-bridge .ai-bs-bridge-operator-points {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.page-business-bridge .ai-bs-bridge-operator-points li {
-  position: relative;
-  padding: 12px 14px 12px 18px;
-  border-radius: 12px;
-  border: 1px solid rgba(11, 29, 58, 0.1);
-  border-left: 4px solid var(--turquoise);
-  background: rgba(255, 255, 255, 0.72);
-  font-size: 0.92rem;
-  line-height: 1.5;
-  color: rgba(11, 29, 58, 0.88);
-}
-
-.page-business-bridge .ai-bs-bridge-build-lede {
-  max-width: 42rem;
-  margin-top: 8px;
-}
-
-.page-business-bridge .ai-bs-bridge-build-grid {
-  list-style: none;
-  margin: clamp(20px, 3vw, 28px) 0 0;
-  padding: 0;
-  display: grid;
-  gap: 10px;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 640px) {
-  .page-business-bridge .ai-bs-bridge-build-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 960px) {
-  .page-business-bridge .ai-bs-bridge-build-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.page-business-bridge .ai-bs-bridge-build-item {
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 246, 230, 0.14);
-  background: rgba(255, 246, 230, 0.06);
-  font-size: 0.92rem;
-  font-weight: 700;
-  line-height: 1.45;
-  color: rgba(255, 246, 230, 0.92);
-}
-
-.page-business-bridge .ai-bs-bridge-guardrail {
-  margin: clamp(18px, 2.5vw, 24px) 0 0;
-  max-width: 42rem;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: rgba(255, 235, 210, 0.72);
+.page-business-bridge .ai-bs-bridge-cta-inner .hero-cta-row {
+  justify-content: center;
+  margin-top: 4px;
 }
 
 .page-business-bridge .ai-bs-bridge-form-inner {
@@ -26459,12 +26312,12 @@ body.owner-dash-detail-open {
 }
 
 @media (max-width: 520px) {
-  .page-business-bridge .ai-bs-bridge-hero-cta .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
   .page-business-bridge .ai-bs-bridge-form-card {
     padding: 18px 16px;
+  }
+
+  .page-business-bridge .ai-bs-bridge-cta-inner .hero-cta-row .btn {
+    width: 100%;
+    justify-content: center;
   }
 }

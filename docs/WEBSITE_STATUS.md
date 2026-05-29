@@ -90,11 +90,11 @@ Core direction:
 The Business Services page was rebuilt as a **premium bridge page** — restrained, visitor-guide-adjacent, not a long AI agency sales page.
 
 Current flow (5 sections):
-1. Hero — The business side behind Where To Go SA.
-2. Who this can help — 5 compact category cards (no sub-page CTAs).
-3. The operator — human, premium operator perspective (static copy, no chat widget).
-4. What the business side can build — compact capability list + guardrails.
-5. Start the conversation — form with all helper copy inside the form card.
+1. Hero — The business side behind Where To Go SA (original hero visual + background).
+2. Who this helps — original category card grid with images and CTAs.
+3. Business Operator — live chat widget (not a static operator bio section).
+4. Start the conversation — simplified request form inside form card.
+5. Short CTA — compact closing band.
 
 Important:
 - Not a dashboard demo, not a service-lane grid, not a business-types directory on this page.

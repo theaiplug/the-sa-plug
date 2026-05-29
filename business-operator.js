@@ -463,7 +463,7 @@
       var businessType = el.getAttribute("data-bs-business-type");
       var interest = el.getAttribute("data-bs-interest") || (path && PATH_INTEREST_MAP[path]);
       var leak = path && PATH_LEAK_HINTS[path];
-      var hash = (el.getAttribute("href") || "").replace(/^#/, "") || "project-request";
+      var hash = (el.getAttribute("href") || "").replace(/^#/, "") || "start-conversation";
       window.setTimeout(function () {
         preselectIntake({
           businessType: businessType,
@@ -501,7 +501,7 @@
     );
   }
 
-  if (intakeForm && intakeSubmit) {
+  if (intakeForm && intakeSubmit && document.getElementById("business-leak-category")) {
     intakeForm.addEventListener("submit", function (e) {
       e.preventDefault();
       showIntakeMessage("", false);
