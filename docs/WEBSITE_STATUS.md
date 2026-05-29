@@ -1,6 +1,6 @@
 # Website Status
 
-Last updated: 2026-05-29
+Last updated: 2026-05-29 (homepage AI Plug teaser + visitor footer cleanup)
 
 ## Purpose
 Tracks the public Where To Go SA website: pages, visitor experience, CTAs, brand direction, SEO, public funnels, public business-services pages, social links, and public-facing content.
@@ -123,20 +123,32 @@ Do not promise instant results, guaranteed leads, guaranteed bookings, revenue, 
 ## Homepage AI Plug Section Direction
 The homepage should remain a visitor guide first.
 
-The AI Plug section on the homepage should be a **proof-of-work bridge**, not a full sales page.
+The AI Plug section on the homepage should be a **premium teaser**, not a full sales page.
+
+Current public layout (2026-05-29):
+- Image card with overlay copy preserved (**Built by The AI Plug** headline + subline on image).
+- One short supporting line beneath the image.
+- One primary CTA: **Explore AI Plug** → `business-services.html`.
+- No stacked feature cards or long explanatory paragraphs under the image on the homepage.
 
 Best framing:
 - **Built by The AI Plug**
-- Where To Go SA is the live example.
-- Visitor questions become clear next moves.
-- Requests can be captured, routed, and followed up.
-- Businesses can click through to AI Plug Services if they want a similar system.
+- Where To Go SA is visitor-first; The AI Plug is the business side behind the work.
+- Businesses can click through if they want that side of the work.
 
 Avoid:
 - turning the homepage into a generic agency homepage
 - making visitor pages feel like ads
 - over-explaining internal tools
+- stacked business feature cards on the homepage
 - using dashboard words like “lead classification,” “vertical lane,” or “internal workflow”
+
+## Visitor Footer Business Link
+Visitor-guide page footers should include **one** business-side link only:
+- Label: **AI Plug**
+- Target: `business-services.html` (or `../business-services.html` from nested paths)
+
+Do not add multiple business footer links (e.g. Business Types) on visitor-facing guide pages.
 
 ## Business Types / AI Plug Category Strategy
 The Business Types / AI Plug category page should use a small number of strong category landing pages, not every vertical as a top-level page.

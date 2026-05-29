@@ -25588,6 +25588,38 @@ body.owner-dash-detail-open {
   word-break: normal;
 }
 
+/* —— Teaser layout (image + one line + one CTA) —— */
+.page-home .home-ai-plug--teaser {
+  gap: clamp(1rem, 2.4vw, 1.35rem);
+  justify-items: center;
+  text-align: center;
+}
+
+.page-home .home-ai-plug__hero-card--teaser {
+  width: 100%;
+}
+
+.page-home .home-ai-plug__teaser-line {
+  margin: 0;
+  max-width: 32rem;
+  font-size: clamp(0.88rem, 0.18vw + 0.82rem, 0.96rem);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: rgba(255, 246, 230, 0.78);
+  text-wrap: balance;
+}
+
+.page-home .home-ai-plug__actions--teaser {
+  justify-content: center;
+  width: 100%;
+}
+
+.page-home .home-ai-plug__actions--teaser .home-ai-plug__btn {
+  flex: 0 1 auto;
+  min-width: min(100%, 14rem);
+}
+
 /* —— CTAs —— */
 .page-home .home-ai-plug__actions {
   display: flex;
