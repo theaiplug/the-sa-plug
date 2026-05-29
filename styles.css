@@ -26388,90 +26388,323 @@ body.owner-dash-detail-open {
 }
 
 .page-business-bridge .ai-bs-bridge-form-inner {
-  max-width: 680px;
+  max-width: 720px;
   margin-inline: auto;
 }
 
-.page-business-bridge .ai-bs-bridge-form-card {
-  padding: clamp(24px, 3.8vw, 36px);
-  border-radius: calc(var(--radius) + 6px);
-  border: 1px solid rgba(11, 29, 58, 0.14);
-  background: #fffdf9;
+/* Premium request card — flagship form shell */
+.page-business-bridge .ai-bs-bridge-form-card--premium {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  border-radius: calc(var(--radius) + 10px);
+  border: 1px solid rgba(11, 29, 58, 0.1);
+  background: linear-gradient(165deg, #fffffe 0%, #fffbf6 42%, #faf4ea 100%);
   box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.95) inset,
     0 2px 4px rgba(11, 29, 58, 0.04),
-    0 22px 52px rgba(11, 29, 58, 0.11),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
+    0 28px 64px rgba(11, 29, 58, 0.12),
+    0 64px 120px rgba(11, 29, 58, 0.06);
+}
+
+.page-business-bridge .ai-bs-bridge-form-card--premium::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 184, 166, 0.95) 0%,
+    rgba(242, 178, 26, 0.95) 48%,
+    rgba(255, 106, 77, 0.9) 100%
+  );
+}
+
+.page-business-bridge .ai-bs-bridge-form-card--premium::after {
+  content: "";
+  position: absolute;
+  inset: 4px 0 auto;
+  height: 120px;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 100% at 50% -20%, rgba(20, 184, 166, 0.08), transparent 70%);
 }
 
 .page-business-bridge .ai-bs-bridge-form-head {
-  margin-bottom: clamp(20px, 2.8vw, 28px);
-  padding-bottom: clamp(16px, 2.2vw, 20px);
-  border-bottom: 1px solid rgba(11, 29, 58, 0.08);
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: clamp(26px, 3.6vw, 36px) clamp(24px, 3.4vw, 36px) clamp(20px, 2.8vw, 28px);
+  border-bottom: 1px solid rgba(11, 29, 58, 0.07);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, transparent 100%);
+}
+
+.page-business-bridge .ai-bs-form-eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(20, 184, 166, 0.95);
 }
 
 .page-business-bridge .ai-bs-bridge-form-head .ai-strategic-title {
-  margin-bottom: 10px;
+  margin: 0 0 10px;
   color: var(--navy);
-  font-size: clamp(1.45rem, 2.2vw + 0.85rem, 1.85rem);
+  font-size: clamp(1.5rem, 2.4vw + 0.75rem, 1.95rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
 }
 
 .page-business-bridge .ai-bs-bridge-form-lede {
   margin: 0;
-  font-size: clamp(0.94rem, 0.22vw + 0.88rem, 1rem);
-  line-height: 1.58;
-  color: rgba(11, 29, 58, 0.76);
+  max-width: 36rem;
+  font-size: clamp(0.95rem, 0.24vw + 0.88rem, 1.03rem);
+  line-height: 1.6;
+  color: rgba(11, 29, 58, 0.74);
 }
 
-.page-business-bridge .ai-bs-bridge-form .transport-intake-grid {
-  gap: 16px;
+.page-business-bridge .ai-bs-form-shell {
+  position: relative;
+  z-index: 1;
+  padding: clamp(20px, 3vw, 28px) clamp(22px, 3.2vw, 32px) clamp(28px, 3.6vw, 36px);
 }
 
-.page-business-bridge .ai-bs-bridge-form .transport-field span {
-  font-weight: 700;
-  color: rgba(11, 29, 58, 0.88);
+.page-business-bridge .ai-bs-premium-form .transport-intake-section.ai-bs-form-section {
+  margin-top: clamp(16px, 2.2vw, 20px);
+  padding: clamp(18px, 2.4vw, 24px) clamp(18px, 2.2vw, 22px) clamp(20px, 2.4vw, 24px);
+  border-radius: calc(var(--radius) + 4px);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 253, 248, 0.88) 100%);
+  border: 1px solid rgba(11, 29, 58, 0.08);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 12px 32px rgba(11, 29, 58, 0.05);
 }
 
-.page-business-bridge .ai-bs-bridge-form input:not([type="checkbox"]),
-.page-business-bridge .ai-bs-bridge-form select,
-.page-business-bridge .ai-bs-bridge-form textarea {
-  border-color: rgba(11, 29, 58, 0.16);
+.page-business-bridge .ai-bs-premium-form .transport-intake-section.ai-bs-form-section:first-of-type {
+  margin-top: 0;
+}
+
+.page-business-bridge .ai-bs-premium-form .transport-intake-section__heading {
+  margin: 0 0 clamp(14px, 1.8vw, 18px);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(11, 29, 58, 0.08);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(11, 29, 58, 0.72);
+}
+
+.page-business-bridge .ai-bs-premium-form .transport-intake-grid {
+  display: grid;
+  gap: clamp(14px, 1.8vw, 18px) clamp(14px, 2vw, 20px);
+  grid-template-columns: 1fr 1fr;
+  min-width: 0;
+}
+
+.page-business-bridge .ai-bs-premium-form .transport-field--full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 640px) {
+  .page-business-bridge .ai-bs-premium-form .transport-intake-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.page-business-bridge .ai-bs-premium-form .transport-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.page-business-bridge .ai-bs-premium-form .transport-field span {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(11, 29, 58, 0.78);
+}
+
+.page-business-bridge .ai-bs-field-optional {
+  font-style: normal;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(11, 29, 58, 0.48);
+}
+
+.page-business-bridge .ai-bs-premium-form input:not([type="checkbox"]):not([type="hidden"]),
+.page-business-bridge .ai-bs-premium-form select,
+.page-business-bridge .ai-bs-premium-form textarea {
+  font: inherit;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  min-height: 50px;
+  line-height: 1.35;
+  border-radius: 12px;
+  border: 1px solid rgba(11, 29, 58, 0.14);
   background: #fffefb;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  color: var(--navy);
+  box-shadow:
+    0 1px 2px rgba(11, 29, 58, 0.04) inset,
+    0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.page-business-bridge .ai-bs-bridge-form input:not([type="checkbox"]):focus,
-.page-business-bridge .ai-bs-bridge-form select:focus,
-.page-business-bridge .ai-bs-bridge-form textarea:focus {
-  border-color: rgba(20, 184, 166, 0.55);
-  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.14);
+.page-business-bridge .ai-bs-premium-form textarea {
+  resize: vertical;
+  min-height: 5.5rem;
+  line-height: 1.55;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.page-business-bridge .ai-bs-premium-form input::placeholder,
+.page-business-bridge .ai-bs-premium-form textarea::placeholder {
+  color: rgba(11, 29, 58, 0.38);
+}
+
+.page-business-bridge .ai-bs-premium-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14' fill='none'%3E%3Cpath d='M3 5.5L7 9.5L11 5.5' stroke='%230b1d3a' stroke-opacity='0.55' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px;
+  cursor: pointer;
+}
+
+.page-business-bridge .ai-bs-premium-form input:not([type="checkbox"]):hover,
+.page-business-bridge .ai-bs-premium-form select:hover,
+.page-business-bridge .ai-bs-premium-form textarea:hover {
+  border-color: rgba(11, 29, 58, 0.22);
+  background-color: #fffffe;
+}
+
+.page-business-bridge .ai-bs-premium-form input:not([type="checkbox"]):focus,
+.page-business-bridge .ai-bs-premium-form select:focus,
+.page-business-bridge .ai-bs-premium-form textarea:focus {
+  border-color: rgba(20, 184, 166, 0.65);
+  background-color: #fff;
+  box-shadow:
+    0 0 0 4px rgba(20, 184, 166, 0.14),
+    0 1px 2px rgba(11, 29, 58, 0.04) inset;
   outline: none;
 }
 
-.page-business-bridge .ai-bs-bridge-consent {
-  margin-top: 20px;
-  padding: 14px 16px;
+.page-business-bridge .ai-bs-form-note {
+  margin: clamp(12px, 1.6vw, 14px) 0 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: rgba(11, 29, 58, 0.62);
+}
+
+.page-business-bridge .ai-bs-form-alert {
+  margin: 0 0 16px;
+  padding: 12px 14px;
   border-radius: 12px;
-  background: rgba(11, 29, 58, 0.04);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.page-business-bridge .ai-bs-premium-form .transport-intake-error:not(.transport-intake-error--ok) {
+  background: rgba(255, 106, 77, 0.1);
+  border: 1px solid rgba(255, 106, 77, 0.28);
+  color: var(--navy);
+}
+
+.page-business-bridge .ai-bs-premium-form .transport-intake-error--ok {
+  background: rgba(20, 184, 166, 0.12);
+  border: 1px solid rgba(20, 184, 166, 0.32);
+  color: var(--navy);
+}
+
+.page-business-bridge .ai-bs-form-consent {
+  margin-top: clamp(18px, 2.4vw, 22px);
+  padding: clamp(14px, 2vw, 18px) clamp(16px, 2.2vw, 18px);
+  border-radius: 14px;
+  background: rgba(11, 29, 58, 0.035);
   border: 1px solid rgba(11, 29, 58, 0.08);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
 }
 
-.page-business-bridge .ai-bs-bridge-consent .sms-consent-checkbox {
+.page-business-bridge .ai-bs-form-consent .sms-consent-checkbox {
   align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
   font-size: 0.86rem;
-  line-height: 1.52;
-  color: rgba(11, 29, 58, 0.82);
+  line-height: 1.55;
+  color: rgba(11, 29, 58, 0.8);
+  cursor: pointer;
 }
 
-.page-business-bridge .ai-bs-bridge-form .ai-bs-form-submit {
+.page-business-bridge .ai-bs-form-consent .sms-consent-checkbox input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 2px;
+  accent-color: var(--turquoise);
+  cursor: pointer;
+}
+
+.page-business-bridge .ai-bs-form-submit-wrap {
+  margin-top: clamp(20px, 2.6vw, 26px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.page-business-bridge .ai-bs-form-submit {
   width: 100%;
-  margin-top: 20px;
-  min-height: 50px;
+  margin: 0;
+  min-height: 54px;
+  padding: 14px 22px;
+  font-size: 1rem;
   font-weight: 850;
+  letter-spacing: 0.02em;
+  border-radius: 14px;
+  box-shadow:
+    0 14px 36px rgba(255, 139, 31, 0.34),
+    0 4px 12px rgba(11, 29, 58, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.page-business-bridge .ai-bs-bridge-form .transport-intake-error--ok {
-  margin-bottom: 12px;
+.page-business-bridge .ai-bs-form-submit:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 18px 42px rgba(255, 139, 31, 0.38),
+    0 6px 16px rgba(11, 29, 58, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.page-business-bridge .ai-bs-form-submit:active {
+  transform: translateY(0);
+}
+
+.page-business-bridge .ai-bs-form-submit-arrow {
+  display: inline-block;
+  margin-left: 4px;
+  transition: transform 0.18s ease;
+}
+
+.page-business-bridge .ai-bs-form-submit:hover .ai-bs-form-submit-arrow {
+  transform: translateX(3px);
+}
+
+.page-business-bridge .ai-bs-form-trust {
+  margin: 0;
+  text-align: center;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: rgba(11, 29, 58, 0.58);
 }
 
 /* Form → footer: no extra navy strip (bridge CTA band removed from HTML) */
@@ -26499,8 +26732,16 @@ body.owner-dash-detail-open {
     justify-content: center;
   }
 
-  .page-business-bridge .ai-bs-bridge-form-card {
-    padding: 20px 16px;
+  .page-business-bridge .ai-bs-bridge-form-head {
+    padding-inline: 18px;
+  }
+
+  .page-business-bridge .ai-bs-form-shell {
+    padding-inline: 16px;
+  }
+
+  .page-business-bridge .ai-bs-premium-form .transport-intake-section.ai-bs-form-section {
+    padding-inline: 14px;
   }
 
   .page-business-bridge .ai-bs-category-actions .btn {

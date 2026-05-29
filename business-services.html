@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=business-bridge-no-footer-strip-20260529" />
+  <link rel="stylesheet" href="styles.css?v=business-bridge-premium-form-20260529" />
 </head>
 <body class="page-business-services page-business-bridge ai-services-page">
   <header class="site-header">
@@ -301,83 +301,105 @@
     <!-- 4. Start the conversation -->
     <section class="section section-cream ai-bs-bridge-form-section ai-bs-sec-major" id="start-conversation" aria-labelledby="form-heading">
       <div class="routes-band-inner ai-bs-bridge-form-inner">
-        <div class="ai-bs-bridge-form-card">
+        <div class="ai-bs-bridge-form-card ai-bs-bridge-form-card--premium">
           <header class="ai-bs-bridge-form-head">
+            <p class="eyebrow ai-bs-form-eyebrow">Business request</p>
             <h2 id="form-heading" class="ai-strategic-title">Start the conversation</h2>
-            <p class="section-text ai-bs-bridge-form-lede">Tell us what kind of business you run and where requests, questions, or follow-up are getting messy.</p>
+            <p class="ai-bs-bridge-form-lede">Tell us what kind of business you run and where requests, questions, or follow-up are getting messy.</p>
           </header>
 
-          <form class="transport-intake-form ai-bs-intake-form ai-bs-bridge-form" id="business-lead-form" novalidate aria-label="Business request form">
-            <p id="business-lead-intake-error" class="transport-intake-error" hidden role="alert"></p>
-            <p id="business-lead-confirm" class="transport-intake-error transport-intake-error--ok" hidden role="status"></p>
+          <div class="ai-bs-form-shell">
+            <form class="transport-intake-form ai-bs-intake-form ai-bs-bridge-form ai-bs-premium-form" id="business-lead-form" novalidate aria-label="Business request form">
+              <p id="business-lead-intake-error" class="transport-intake-error ai-bs-form-alert" hidden role="alert"></p>
+              <p id="business-lead-confirm" class="transport-intake-error transport-intake-error--ok ai-bs-form-alert" hidden role="status"></p>
 
-            <div class="transport-intake-grid">
-              <label class="transport-field transport-field--full">
-                <span>Business name</span>
-                <input type="text" name="business_name" id="business-name" autocomplete="organization" />
-              </label>
-              <label class="transport-field">
-                <span>Contact name</span>
-                <input type="text" name="contact_name" id="business-contact-name" required autocomplete="name" />
-              </label>
-              <label class="transport-field">
-                <span>Email</span>
-                <input type="email" name="contact_email" id="business-contact-email" autocomplete="email" />
-              </label>
-              <label class="transport-field">
-                <span>Phone</span>
-                <input type="tel" name="contact_phone" id="business-contact-phone" autocomplete="tel" />
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Website or social link</span>
-                <input type="url" name="business_website" id="business-website" placeholder="https://" />
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Business type</span>
-                <select name="business_industry" id="business-industry" required>
-                  <option value="">Choose one</option>
-                  <option value="Restaurant / hospitality">Restaurant / hospitality</option>
-                  <option value="Transportation / concierge">Transportation / concierge</option>
-                  <option value="Home services">Home services</option>
-                  <option value="Professional service">Professional service</option>
-                  <option value="Local brand">Local brand / retail</option>
-                  <option value="Other">Other</option>
-                </select>
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>What do you want help with?</span>
-                <textarea name="need_help" id="business-need-help" rows="3" required placeholder="Website, intake, follow-up, visibility, approved answers…"></textarea>
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Where are opportunities getting lost?</span>
-                <textarea name="messy_where" id="business-messy-where" rows="3" required placeholder="Missed calls, weak forms, scattered messages, slow follow-up…"></textarea>
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Message</span>
-                <textarea name="notes" id="business-notes" rows="3" placeholder="Optional — anything else that helps"></textarea>
-              </label>
-              <label class="transport-field transport-field--full">
-                <span>Preferred contact method</span>
-                <select name="preferred_contact_method" id="business-preferred-contact" required>
-                  <option value="">Choose one</option>
-                  <option value="email">Email</option>
-                  <option value="phone">Phone call</option>
-                  <option value="text">Text / SMS</option>
-                </select>
-              </label>
-            </div>
+              <div class="transport-intake-section ai-bs-form-section">
+                <h3 class="transport-intake-section__heading">Your business</h3>
+                <div class="transport-intake-grid">
+                  <label class="transport-field transport-field--full">
+                    <span>Business name</span>
+                    <input type="text" name="business_name" id="business-name" autocomplete="organization" placeholder="Your business or brand name" />
+                  </label>
+                  <label class="transport-field transport-field--full">
+                    <span>Business type</span>
+                    <select name="business_industry" id="business-industry" required>
+                      <option value="">Choose one</option>
+                      <option value="Restaurant / hospitality">Restaurant / hospitality</option>
+                      <option value="Transportation / concierge">Transportation / concierge</option>
+                      <option value="Home services">Home services</option>
+                      <option value="Professional service">Professional service</option>
+                      <option value="Local brand">Local brand / retail</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </label>
+                  <label class="transport-field transport-field--full">
+                    <span>Website or social link</span>
+                    <input type="url" name="business_website" id="business-website" placeholder="https://yoursite.com or Instagram link" inputmode="url" />
+                  </label>
+                </div>
+              </div>
 
-            <div class="sms-consent-block ai-bs-bridge-consent">
-              <label class="sms-consent-checkbox">
-                <input type="checkbox" name="contact_consent" value="yes" required />
-                <span>By submitting, you agree Where To Go SA / The AI Plug may contact you about your request. Message/data rates may apply for texts. Reply STOP to opt out.</span>
-              </label>
-            </div>
+              <div class="transport-intake-section ai-bs-form-section">
+                <h3 class="transport-intake-section__heading">Contact</h3>
+                <div class="transport-intake-grid">
+                  <label class="transport-field">
+                    <span>Contact name</span>
+                    <input type="text" name="contact_name" id="business-contact-name" required autocomplete="name" placeholder="Your name" />
+                  </label>
+                  <label class="transport-field">
+                    <span>Preferred contact</span>
+                    <select name="preferred_contact_method" id="business-preferred-contact" required>
+                      <option value="">Choose one</option>
+                      <option value="email">Email</option>
+                      <option value="phone">Phone call</option>
+                      <option value="text">Text / SMS</option>
+                    </select>
+                  </label>
+                  <label class="transport-field">
+                    <span>Email</span>
+                    <input type="email" name="contact_email" id="business-contact-email" autocomplete="email" placeholder="you@business.com" />
+                  </label>
+                  <label class="transport-field">
+                    <span>Phone</span>
+                    <input type="tel" name="contact_phone" id="business-contact-phone" autocomplete="tel" placeholder="(830) 555-0100" />
+                  </label>
+                </div>
+                <p class="ai-bs-form-note">Provide a valid email or phone (or both) so we can follow up.</p>
+              </div>
 
-            <button type="submit" class="btn btn-primary transport-intake-submit ai-bs-form-submit" id="business-lead-submit">
-              Send business request
-            </button>
-          </form>
+              <div class="transport-intake-section ai-bs-form-section">
+                <h3 class="transport-intake-section__heading">Where you need help</h3>
+                <div class="transport-intake-grid">
+                  <label class="transport-field transport-field--full">
+                    <span>What do you want help with?</span>
+                    <textarea name="need_help" id="business-need-help" rows="3" required placeholder="Example: better intake, follow-up, visibility, approved answers for repeat questions…"></textarea>
+                  </label>
+                  <label class="transport-field transport-field--full">
+                    <span>Where are opportunities getting lost?</span>
+                    <textarea name="messy_where" id="business-messy-where" rows="3" required placeholder="Example: missed calls, weak forms, scattered DMs, slow follow-up…"></textarea>
+                  </label>
+                  <label class="transport-field transport-field--full transport-field--optional">
+                    <span>Message <em class="ai-bs-field-optional">optional</em></span>
+                    <textarea name="notes" id="business-notes" rows="3" placeholder="Anything else that helps us understand your situation"></textarea>
+                  </label>
+                </div>
+              </div>
+
+              <div class="sms-consent-block ai-bs-bridge-consent ai-bs-form-consent">
+                <label class="sms-consent-checkbox">
+                  <input type="checkbox" name="contact_consent" value="yes" required />
+                  <span>By submitting, you agree Where To Go SA / The AI Plug may contact you about your request. Message/data rates may apply for texts. Reply STOP to opt out.</span>
+                </label>
+              </div>
+
+              <div class="ai-bs-form-submit-wrap">
+                <button type="submit" class="btn btn-primary transport-intake-submit ai-bs-form-submit" id="business-lead-submit">
+                  Send business request <span class="ai-bs-form-submit-arrow" aria-hidden="true">&rarr;</span>
+                </button>
+                <p class="ai-bs-form-trust">We review every request for fit and a practical starting point&mdash;not a generic agency pitch.</p>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
