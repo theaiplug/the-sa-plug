@@ -5,7 +5,6 @@
     "Route help is having trouble loading right now. Try again in a moment, or use Uber, Lyft, hotel transportation, a taxi, or another licensed option if timing is tight.";
 
   var root = document.getElementById("transport-route-operator");
-  if (!root) return;
 
   var logEl = document.getElementById("transport-route-log");
   var form = document.getElementById("transport-route-form");
@@ -13,7 +12,7 @@
   var sendBtn = document.getElementById("transport-route-send");
   var statusEl = document.getElementById("transport-route-status");
   var errorBanner = document.getElementById("transport-route-error");
-  var chips = root.querySelectorAll("[data-transport-chip]");
+  var chips = root ? root.querySelectorAll("[data-transport-chip]") : [];
   var transcriptEl = document.getElementById("transport-route-transcript");
   var threadEl = document.getElementById("transport-route-thread");
   var conversationEl = document.getElementById("transport-route-conversation");
@@ -305,7 +304,7 @@
       });
   }
 
-  if (form && input) {
+  if (root && form && input) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       sendMessage(input.value);
@@ -365,8 +364,8 @@
 
   function smsConsentNote(fd) {
     return (
-      "SMS consent (optional): " +
-      (fd.get("sms_consent") === "yes" ? "Yes — opted in" : "No — not opted in")
+      "Contact consent: " +
+      (fd.get("sms_consent") === "yes" ? "Yes — agreed to email/SMS follow-up" : "No — not provided")
     );
   }
 
@@ -390,13 +389,19 @@
       var visitorPhone = String(fd.get("visitor_phone") || "").trim();
 
       if (!visitorEmail && !visitorPhone) {
-        showIntakeMessage("Please include an email or phone so Where To Go SA can follow up about your request.", true);
+        showIntakeMessage("Please include an email or phone so we can follow up about your reservation.", true);
         if (intakeSubmit) intakeSubmit.disabled = false;
         return;
       }
 
       if (!transportNeeds.length) {
-        showIntakeMessage("Please choose at least one transportation need.", true);
+        showIntakeMessage("Please choose a time block for your reservation.", true);
+        if (intakeSubmit) intakeSubmit.disabled = false;
+        return;
+      }
+
+      if (fd.get("sms_consent") !== "yes") {
+        showIntakeMessage("Please confirm consent so we can contact you about your reservation.", true);
         if (intakeSubmit) intakeSubmit.disabled = false;
         return;
       }
@@ -435,7 +440,7 @@
         source: "transportation_page",
         lead_type: "transportation_request",
         status: "New",
-        next_action: "review route request",
+        next_action: "review concierge reservation",
       };
 
       fetch(REQ_URL, {
@@ -461,7 +466,7 @@
           if (confirmEl) {
             confirmEl.hidden = false;
             confirmEl.textContent =
-              "Request received. Where To Go SA will review your route details and best next step. Availability, pricing, and provider fit are not guaranteed.";
+              "Thanks — we received your concierge request. We'll review your timing, route, group size, and requested experience, then follow up with confirmation details.";
             confirmEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
           }
           showIntakeMessage("", false);
@@ -475,6 +480,8 @@
     });
   }
 
-  setStatus("Live · ready", true);
-  syncTranscriptVisibility();
+  if (root) {
+    setStatus("Live · ready", true);
+    syncTranscriptVisibility();
+  }
 })();
