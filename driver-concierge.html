@@ -2400,32 +2400,171 @@
       min-height: clamp(200px, 36vw, 260px);
     }
 
+    .transport-concierge-main .tc-rates-band.premium-atmosphere {
+      background-position: center 42%;
+    }
+
     .transport-concierge-main .tc-rates-band .tc-pricing-grid {
       margin: 0;
     }
 
-    .transport-concierge-main .tc-rates-band .tc-pricing-card {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 246, 230, 0.16);
-      box-shadow: 0 16px 40px rgba(2, 6, 14, 0.28);
+    .transport-concierge-main .tc-rates-band .tc-pricing-card:not(.tc-pricing-card--custom) {
+      background: linear-gradient(165deg, #fffefb 0%, #fff4e6 100%);
+      border: 1px solid rgba(255, 246, 230, 0.72);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.65) inset,
+        0 22px 52px rgba(2, 6, 14, 0.38);
     }
 
-    .transport-concierge-main .tc-rates-band .tc-pricing-card h3,
-    .transport-concierge-main .tc-rates-band .tc-pricing-duration {
-      color: #fff8eb;
+    .transport-concierge-main .tc-rates-band .tc-pricing-card:not(.tc-pricing-card--custom) h3,
+    .transport-concierge-main .tc-rates-band .tc-pricing-card:not(.tc-pricing-card--custom) .tc-pricing-duration,
+    .transport-concierge-main .tc-rates-band .tc-pricing-card:not(.tc-pricing-card--custom) .tc-pricing-rate {
+      color: var(--navy);
     }
 
-    .transport-concierge-main .tc-rates-band .tc-pricing-card p {
-      color: rgba(255, 246, 230, 0.84);
+    .transport-concierge-main .tc-rates-band .tc-pricing-card:not(.tc-pricing-card--custom) .tc-pricing-duration {
+      color: #0d7a6f;
     }
 
-    .transport-concierge-main .tc-rates-band .tc-pricing-rate {
+    .transport-concierge-main .tc-rates-band .tc-pricing-card:not(.tc-pricing-card--custom) .tc-pricing-rate {
+      color: #0a3d5c;
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-card:not(.tc-pricing-card--custom) p {
+      color: var(--slate);
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-card--featured:not(.tc-pricing-card--custom) {
+      border-color: rgba(20, 184, 166, 0.55);
+      box-shadow:
+        0 0 0 1px rgba(20, 184, 166, 0.22) inset,
+        0 26px 58px rgba(2, 6, 14, 0.42);
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-card--custom {
+      grid-column: 1 / -1;
+      display: grid;
+      gap: 12px 20px;
+      align-items: start;
+      padding: clamp(18px, 2.4vw, 24px) clamp(18px, 2.6vw, 26px);
+      background: linear-gradient(135deg, #071426 0%, #0f2848 52%, #153456 100%);
+      border: 1px solid rgba(242, 178, 26, 0.42);
+      border-left: 4px solid var(--gold);
+      box-shadow:
+        0 0 0 1px rgba(255, 246, 230, 0.08) inset,
+        0 24px 56px rgba(2, 6, 14, 0.45);
+    }
+
+    @media (min-width: 720px) {
+      .transport-concierge-main .tc-rates-band .tc-pricing-card--custom {
+        grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
+        align-items: center;
+      }
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-card--custom .tc-pricing-duration {
+      color: rgba(20, 184, 166, 0.95);
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-card--custom .tc-pricing-rate {
+      margin: 4px 0 8px;
+      font-size: clamp(1.2rem, 0.6vw + 1rem, 1.45rem);
       color: var(--gold);
     }
 
+    .transport-concierge-main .tc-rates-band .tc-pricing-card--custom h3 {
+      margin: 0;
+      color: #fff8eb;
+      font-size: clamp(1.05rem, 0.4vw + 0.96rem, 1.2rem);
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-card--custom .tc-pricing-card__detail {
+      margin: 0;
+      color: rgba(255, 246, 230, 0.92);
+      font-size: 0.92rem;
+      line-height: 1.58;
+    }
+
     .transport-concierge-main .tc-rates-band .tc-pricing-note {
-      color: rgba(255, 246, 230, 0.78);
       margin-top: clamp(16px, 2vw, 22px);
+      color: var(--navy);
+      background: rgba(255, 254, 251, 0.94);
+      border: 1px solid rgba(255, 246, 230, 0.65);
+      box-shadow: 0 14px 36px rgba(2, 6, 14, 0.22);
+    }
+
+    .transport-concierge-main .tc-included-band.section-navy-solid {
+      padding-block: clamp(40px, 5vw, 60px);
+    }
+
+    .transport-concierge-main .tc-path-head--on-navy h2 {
+      color: var(--on-dark-heading);
+    }
+
+    .transport-concierge-main .tc-path-head--on-navy .section-text-light {
+      color: var(--on-dark-body);
+    }
+
+    .transport-concierge-main .tc-included-grid {
+      display: grid;
+      gap: clamp(10px, 1.35vw, 14px);
+      grid-template-columns: 1fr;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    @media (min-width: 520px) {
+      .transport-concierge-main .tc-included-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 900px) {
+      .transport-concierge-main .tc-included-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .transport-concierge-main .tc-included-tile {
+      display: flex;
+      align-items: center;
+      min-height: 3.5rem;
+      margin: 0;
+      padding: 14px 14px 14px 40px;
+      border-radius: calc(var(--radius) - 2px);
+      font-size: 0.9rem;
+      font-weight: 760;
+      line-height: 1.4;
+      letter-spacing: -0.012em;
+      color: #fff8eb;
+      background: linear-gradient(165deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+      border: 1px solid rgba(255, 246, 230, 0.2);
+      border-left: 3px solid var(--gold);
+      box-shadow: 0 12px 28px rgba(2, 6, 14, 0.28);
+      position: relative;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .transport-concierge-main .tc-included-tile::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      width: 11px;
+      height: 11px;
+      margin-top: -5.5px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(242, 178, 26, 0.2);
+    }
+
+    @media (hover: hover) {
+      .transport-concierge-main .tc-included-tile:hover {
+        transform: translateY(-2px);
+        border-color: rgba(242, 178, 26, 0.45);
+        box-shadow: 0 16px 34px rgba(2, 6, 14, 0.34);
+      }
     }
 
     .transport-concierge-main .tc-how-steps {
@@ -2622,12 +2761,7 @@
     .transport-concierge-main .tc-included-band {
       max-width: none;
       margin: 0;
-      padding: clamp(38px, 5vw, 56px) clamp(16px, 4.5vw, 74px);
-    }
-
-    .transport-concierge-main .tc-included-band > .routes-band-inner {
-      max-width: 1180px;
-      margin: 0 auto;
+      padding-inline: 0;
     }
 
     .page-concierge .transport-concierge-main > .section.band,
@@ -3110,9 +3244,9 @@
 
     <div class="home-fiesta-divider" role="presentation" aria-hidden="true"></div>
 
-    <section class="section band section-navy-routes tc-rates-band" id="where-we-help" aria-labelledby="where-we-help-heading">
+    <section class="section band premium-atmosphere tc-rates-band" id="where-we-help" aria-labelledby="where-we-help-heading" style="--premium-atmosphere-photo: url(&quot;assets/sunset_dining_at_a_luxury_resort.png&quot;);">
       <div class="routes-band-inner">
-        <header class="path-hub-head tc-path-head tc-path-head--on-navy">
+        <header class="path-hub-head tc-path-head">
           <p class="eyebrow eyebrow-on-dark">Where we can help</p>
           <h2 id="where-we-help-heading">Service options and starting rates</h2>
           <p class="section-text section-text-light">Choose the reserved block that fits your experience. Custom plans are quoted after review.</p>
@@ -3142,11 +3276,13 @@
             <p class="tc-pricing-rate">Starts at $900&ndash;$1,200</p>
             <p>Best for Fredericksburg, Boerne, Gruene, New Braunfels, wineries, scenic routes, or custom nearby experiences.</p>
           </article>
-          <article class="tc-pricing-card">
-            <p class="tc-pricing-duration">Custom Private Concierge</p>
-            <h3>Quoted after review</h3>
-            <p class="tc-pricing-rate">Custom pricing</p>
-            <p>Best for special events, groups, unusual timing, longer routes, or multi-stop plans.</p>
+          <article class="tc-pricing-card tc-pricing-card--custom">
+            <div class="tc-pricing-card__lead">
+              <p class="tc-pricing-duration">Custom Private Concierge</p>
+              <p class="tc-pricing-rate">Quoted after review</p>
+              <h3>Built around your route</h3>
+            </div>
+            <p class="tc-pricing-card__detail">Special events, groups, unusual timing, longer routes, or multi-stop plans — we confirm scope and pricing before finalizing.</p>
           </article>
         </div>
         <p class="tc-pricing-note">Final pricing may depend on date, timing, distance, route complexity, group size, wait time, and special requests. Parking, tickets, meals, tolls, and extended travel may be separate.</p>
@@ -3197,22 +3333,22 @@
 
     <div class="home-fiesta-divider home-fiesta-divider--on-light" role="presentation" aria-hidden="true"></div>
 
-    <section class="section section-cream tc-included-band" id="concierge-included" aria-labelledby="included-heading">
+    <section class="section band section-navy-solid tc-included-band" id="concierge-included" aria-labelledby="included-heading">
       <div class="routes-band-inner">
-        <header class="tc-rebuild-head tc-premium-head">
-          <p class="eyebrow">What&rsquo;s included</p>
+        <header class="path-hub-head tc-path-head tc-path-head--on-navy">
+          <p class="eyebrow eyebrow-on-dark">What&rsquo;s included</p>
           <h2 id="included-heading">Your reserved local concierge block</h2>
-          <p class="section-text">Visitor planning and local route help during your reserved time.</p>
+          <p class="section-text section-text-light">Visitor planning and local route help during your reserved time — the practical support behind a better San Antonio day.</p>
         </header>
-        <ul class="tc-benefit-grid">
-          <li>Local route planning</li>
-          <li>Restaurant and stop recommendations</li>
-          <li>Timing help</li>
-          <li>Flexible stops during the reserved block</li>
-          <li>Wait time inside the reserved block</li>
-          <li>Resort / downtown / convention / day-trip planning</li>
-          <li>Direct communication before the reservation</li>
-          <li>Help making better use of limited time in the area</li>
+        <ul class="tc-included-grid">
+          <li class="tc-included-tile">Local route planning</li>
+          <li class="tc-included-tile">Restaurant and stop recommendations</li>
+          <li class="tc-included-tile">Timing help</li>
+          <li class="tc-included-tile">Flexible stops during the reserved block</li>
+          <li class="tc-included-tile">Wait time inside the reserved block</li>
+          <li class="tc-included-tile">Resort / downtown / convention / day-trip planning</li>
+          <li class="tc-included-tile">Direct communication before the reservation</li>
+          <li class="tc-included-tile">Help making better use of limited time in the area</li>
         </ul>
       </div>
     </section>
