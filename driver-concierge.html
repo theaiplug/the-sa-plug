@@ -12,19 +12,19 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>San Antonio Transportation + Concierge | Where To Go SA</title>
-  <meta name="description" content="Get San Antonio transportation and concierge-style route help for airport timing, resort stays, downtown nights, family logistics, dinner plans, and local visitor questions." />
+  <title>Private San Antonio Concierge by the Hour | Where To Go SA</title>
+  <meta name="description" content="Schedule private local concierge time in San Antonio — local route help, flexible stops, dinner and night-out planning, resort-to-downtown timing, and custom visitor time blocks. Reviewed for availability; not an instant ride request." />
   <link rel="canonical" href="https://wheretogosa.com/driver-concierge.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://wheretogosa.com/driver-concierge.html" />
-  <meta property="og:title" content="San Antonio Transportation + Concierge | Where To Go SA" />
+  <meta property="og:title" content="Private San Antonio Concierge by the Hour | Where To Go SA" />
   <meta property="og:site_name" content="Where To Go SA" />
-  <meta property="og:description" content="Get San Antonio transportation and concierge-style route help for airport timing, resort stays, downtown nights, family logistics, dinner plans, and local visitor questions." />
+  <meta property="og:description" content="Schedule private local concierge time in San Antonio with flexible stops, local recommendations, and private concierge-style transportation support. Scheduled requests reviewed for availability." />
   <meta property="og:image" content="https://wheretogosa.com/assets/where-to-go-sa-primary-logo-lockup.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@wheretogosa" />
-  <meta name="twitter:title" content="San Antonio Transportation + Concierge | Where To Go SA" />
-  <meta name="twitter:description" content="Get San Antonio transportation and concierge-style route help for airport timing, resort stays, downtown nights, family logistics, dinner plans, and local visitor questions." />
+  <meta name="twitter:title" content="Private San Antonio Concierge by the Hour | Where To Go SA" />
+  <meta name="twitter:description" content="Schedule private local concierge time in San Antonio — flexible plans, local route help, and concierge-style support by the hour. Not an instant ride request." />
   <meta name="twitter:image" content="https://wheretogosa.com/assets/where-to-go-sa-primary-logo-lockup.png" />
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/wtgsa-favicon-32.png" />
@@ -2004,6 +2004,242 @@
         box-sizing: border-box;
       }
     }
+
+    /* Private concierge reposition */
+    .transport-concierge-main .tc-sense-grid {
+      display: grid;
+      gap: clamp(14px, 2vw, 18px);
+      grid-template-columns: 1fr;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .transport-concierge-main .tc-sense-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 900px) {
+      .transport-concierge-main .tc-sense-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .transport-concierge-main .tc-sense-card {
+      border-radius: calc(var(--radius) + 4px);
+      padding: clamp(16px, 2vw, 22px);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+      box-shadow: 0 14px 34px rgba(11, 29, 58, 0.08);
+    }
+
+    .transport-concierge-main .tc-sense-card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1.02rem;
+      line-height: 1.22;
+    }
+
+    .transport-concierge-main .tc-sense-card p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 0.9rem;
+      line-height: 1.58;
+    }
+
+    .transport-concierge-main .tc-request-list {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .transport-concierge-main .tc-request-list li {
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+      box-shadow: 0 8px 20px rgba(11, 29, 58, 0.06);
+    }
+
+    .transport-concierge-main .tc-pricing-grid {
+      display: grid;
+      gap: clamp(14px, 2vw, 18px);
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .transport-concierge-main .tc-pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 980px) {
+      .transport-concierge-main .tc-pricing-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .transport-concierge-main .tc-pricing-card {
+      border-radius: calc(var(--radius) + 6px);
+      padding: clamp(16px, 2.2vw, 22px);
+      background: linear-gradient(165deg, #fffefb 0%, #faf3ea 100%);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+      box-shadow: 0 16px 38px rgba(11, 29, 58, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .transport-concierge-main .tc-pricing-card--featured {
+      border-color: rgba(20, 184, 166, 0.45);
+      box-shadow:
+        0 0 0 1px rgba(20, 184, 166, 0.2),
+        0 20px 44px rgba(11, 29, 58, 0.12);
+    }
+
+    .transport-concierge-main .tc-pricing-card h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.05rem, 0.4vw + 0.96rem, 1.18rem);
+      line-height: 1.2;
+    }
+
+    .transport-concierge-main .tc-pricing-duration {
+      margin: 0;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--turquoise);
+    }
+
+    .transport-concierge-main .tc-pricing-rate {
+      margin: 0;
+      font-size: clamp(1.1rem, 0.5vw + 0.95rem, 1.28rem);
+      font-weight: 850;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .transport-concierge-main .tc-pricing-card p {
+      margin: 0;
+      flex: 1;
+      color: var(--slate);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .transport-concierge-main .tc-pricing-note {
+      margin: clamp(16px, 2vw, 22px) 0 0;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--slate);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px dashed rgba(11, 29, 58, 0.14);
+      max-width: 52rem;
+    }
+
+    .transport-concierge-main .tc-inout-grid {
+      display: grid;
+      gap: clamp(14px, 2vw, 18px);
+      grid-template-columns: 1fr;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 720px) {
+      .transport-concierge-main .tc-inout-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .transport-concierge-main .tc-inout-panel {
+      border-radius: calc(var(--radius) + 4px);
+      padding: clamp(16px, 2.2vw, 24px);
+      border: 1px solid rgba(11, 29, 58, 0.1);
+    }
+
+    .transport-concierge-main .tc-inout-panel--yes {
+      background: linear-gradient(165deg, rgba(20, 184, 166, 0.1) 0%, #fffefb 55%);
+    }
+
+    .transport-concierge-main .tc-inout-panel--no {
+      background: linear-gradient(165deg, #fffdfb 0%, #f8f4ff 100%);
+    }
+
+    .transport-concierge-main .tc-inout-panel h3 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: 1.08rem;
+    }
+
+    .transport-concierge-main .tc-inout-panel ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--slate);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .transport-concierge-main .tc-inout-panel li {
+      margin-bottom: 7px;
+    }
+
+    .transport-concierge-main .tc-inout-panel li:last-child {
+      margin-bottom: 0;
+    }
+
+    .transport-concierge-main .transport-radio-grid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 520px) {
+      .transport-concierge-main .transport-radio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .transport-concierge-main .transport-radio-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(11, 29, 58, 0.12);
+      background: rgba(255, 252, 246, 0.95);
+      cursor: pointer;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: var(--navy);
+    }
+
+    .transport-concierge-main .transport-radio-option:has(input:checked) {
+      border-color: rgba(20, 184, 166, 0.55);
+      background: rgba(20, 184, 166, 0.08);
+    }
+
+    .transport-concierge-main .transport-radio-option input {
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .transport-concierge-main .tc-form-guardrail {
+      margin: 14px 0 0;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--slate);
+    }
   </style>
 </head>
 <body>
@@ -2019,7 +2255,7 @@
       <a href="downtown.html">Downtown</a>
       <a href="summer-family.html">Family</a>
       <a href="resort-food.html">Resort Guides</a>
-      <a href="driver-concierge.html#route-operator" aria-current="page">Transport + Concierge</a>
+      <a href="driver-concierge.html#transportation-request" aria-current="page">Transport + Concierge</a>
       <a href="/ask/">Ask A Local</a>
       <a href="business-services.html" class="nav-cta">AI Business Services</a>
     </nav>
@@ -2031,177 +2267,178 @@
       <div class="hero-fiesta-inner hero-inner-band">
         <div class="hero-shell">
           <div class="hero-content secondary-hero-copy">
-            <p class="eyebrow eyebrow-on-dark eyebrow-hero tc-hero-eyebrow-hero">Transportation + Concierge</p>
-            <h1 id="tc-hero-heading" class="hero-title">Plan the San Antonio move before you book the ride.</h1>
-            <p class="tc-hero-lead">Airport arrivals, resort nights, River Walk dinners, convention traffic, family plans, and late-night returns all need different moves. Where To Go SA helps visitors think through the route and request transportation help when needed.</p>
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero tc-hero-eyebrow-hero">Private local concierge</p>
+            <h1 id="tc-hero-heading" class="hero-title">Private San Antonio concierge help by the hour.</h1>
+            <p class="tc-hero-lead">Need more than a quick ride? Where To Go SA can help visitors plan a few hours in the city with local recommendations, flexible stops, timing help, and private concierge-style transportation support.</p>
+            <ul class="tc-hero-chips" aria-label="Concierge highlights">
+              <li class="tc-hero-chip">Scheduled requests only</li>
+              <li class="tc-hero-chip">Reviewed for availability</li>
+              <li class="tc-hero-chip">Flexible San Antonio plan</li>
+            </ul>
             <div class="hero-cta-row">
-              <a class="btn btn-primary" href="#route-operator">Plan my transportation move</a>
-              <a href="#transportation-request" class="btn btn-secondary hero-secondary-btn">Request transportation help</a>
+              <a class="btn btn-primary" href="#transportation-request">Request Private Concierge Time</a>
+              <a href="/ask/" class="btn btn-secondary hero-secondary-btn">Ask about my San Antonio plan</a>
             </div>
-            <p class="tc-hero-support tc-hero-disclaimer">Request review and provider fit may vary. Where To Go SA is a visitor guide and request-routing resource, not an emergency transportation service.</p>
+            <p class="tc-hero-support tc-hero-disclaimer">Scheduled requests only. This is not an instant ride request. Final confirmation is required before any concierge time is booked. No guaranteed availability.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="tc-rebuild-section tc-request-band" id="common-moves" aria-labelledby="common-routes-heading">
+    <section class="tc-rebuild-section section-cream" id="when-concierge-makes-sense" aria-labelledby="when-sense-heading">
       <div class="tc-rebuild-inner">
         <header class="tc-rebuild-head">
-          <p class="eyebrow">Common visitor moves</p>
-          <h2 id="common-routes-heading">What kind of move are you making?</h2>
-          <p class="section-text">Choose the situation closest to yours. Each one can start with route planning, then move into a transportation request if needed.</p>
+          <p class="eyebrow">When this makes sense</p>
+          <h2 id="when-sense-heading">Private concierge time is for planned San Antonio visits</h2>
+          <p class="section-text">This works best when you want local guidance and flexible movement inside a scheduled time block &mdash; not a last-second pickup.</p>
         </header>
-        <div class="tc-move-grid" role="list">
-          <article class="tc-move-card" role="listitem">
-            <h3>Airport arrival or departure</h3>
-            <p>Flight timing, luggage, hotel/resort destination, and pickup/drop-off planning.</p>
-            <div class="tc-card-actions"><a class="tc-card-link" href="#route-operator" data-transport-route-prompt="I'm arriving at or leaving SAT and need airport timing, luggage, pickup or drop-off planning.">Ask operator</a><a class="tc-card-link" href="#transportation-request">Send request</a></div>
+        <div class="tc-sense-grid">
+          <article class="tc-sense-card">
+            <h3>Dinner or night out</h3>
+            <p>Restaurant timing, Pearl or River Walk stops, and a clear return plan inside your booked window.</p>
           </article>
-          <article class="tc-move-card" role="listitem">
+          <article class="tc-sense-card">
             <h3>Resort to downtown</h3>
-            <p>JW Marriott, La Cantera, Hyatt Hill Country, River Walk, Pearl, restaurants, and return timing.</p>
-            <div class="tc-card-actions"><a class="tc-card-link" href="#route-operator" data-transport-route-prompt="I'm staying at a San Antonio resort and need help planning a resort to downtown route and return timing.">Ask operator</a><a class="tc-card-link" href="#transportation-request">Send request</a></div>
+            <p>La Cantera, JW Marriott, Hyatt Hill Country, and other resort guests who want a flexible downtown evening without guessing the route.</p>
           </article>
-          <article class="tc-move-card" role="listitem">
-            <h3>Downtown / River Walk night</h3>
-            <p>Dinner, drinks, walkability, pickup spots, late-night return, and group movement.</p>
-            <div class="tc-card-actions"><a class="tc-card-link" href="#route-operator" data-transport-route-prompt="I'm planning a downtown or River Walk night and need pickup spots, walkability, and return timing.">Ask operator</a><a class="tc-card-link" href="#transportation-request">Send request</a></div>
+          <article class="tc-sense-card">
+            <h3>Convention visitors</h3>
+            <p>Hotels, convention center timing, client dinners, and practical local route help between meetings.</p>
           </article>
-          <article class="tc-move-card" role="listitem">
-            <h3>Convention or business dinner</h3>
-            <p>Downtown hotels, convention center, Pearl, steakhouses, timing, and client dinner moves.</p>
-            <div class="tc-card-actions"><a class="tc-card-link" href="#route-operator" data-transport-route-prompt="I need a convention or business dinner transportation route with hotel, convention center, restaurant, and timing details.">Ask operator</a><a class="tc-card-link" href="#transportation-request">Send request</a></div>
+          <article class="tc-sense-card">
+            <h3>Family-friendly routing</h3>
+            <p>Kids, strollers, bags, and a calmer plan across a few stops instead of rushing point to point.</p>
           </article>
-          <article class="tc-move-card" role="listitem">
-            <h3>Family or group outing</h3>
-            <p>Kids, luggage, strollers, group size, timing, and simple route planning.</p>
-            <div class="tc-card-actions"><a class="tc-card-link" href="#route-operator" data-transport-route-prompt="I have a family or group outing and need a simple route plan with kids, bags, strollers, group size, and timing.">Ask operator</a><a class="tc-card-link" href="#transportation-request">Send request</a></div>
+          <article class="tc-sense-card">
+            <h3>Pearl / River Walk / Market Square</h3>
+            <p>Neighborhood timing, walk-and-ride balance, and flexible stops inside one concierge block.</p>
           </article>
-          <article class="tc-move-card" role="listitem">
-            <h3>Late-night return</h3>
-            <p>Safe timing, pickup areas, surge awareness, and realistic next steps.</p>
-            <div class="tc-card-actions"><a class="tc-card-link" href="#route-operator" data-transport-route-prompt="I need a late-night return plan with pickup areas, timing, surge awareness, and realistic next steps.">Ask operator</a><a class="tc-card-link" href="#transportation-request">Send request</a></div>
-          </article>
-          <article class="tc-move-card" role="listitem">
-            <h3>Day trip or surrounding area</h3>
-            <p>New Braunfels, Fredericksburg, Hill Country, outlet trips, wineries, attractions, and longer route planning.</p>
-            <div class="tc-card-actions"><a class="tc-card-link" href="#route-operator" data-transport-route-prompt="I need a day trip or surrounding-area route from San Antonio, with timing and return planning.">Ask operator</a><a class="tc-card-link" href="#transportation-request">Send request</a></div>
-          </article>
-          <article class="tc-move-card" role="listitem">
-            <h3>Custom route help</h3>
-            <p>When visitors know the destination but not the best plan.</p>
-            <div class="tc-card-actions"><a class="tc-card-link" href="#route-operator" data-transport-route-prompt="I know where I'm going but need help choosing the best San Antonio route plan.">Ask operator</a><a class="tc-card-link" href="#transportation-request">Send request</a></div>
+          <article class="tc-sense-card">
+            <h3>Custom San Antonio time blocks</h3>
+            <p>When you know the day you are in town but want a local plan built around your group and pace.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="tc-rebuild-section" id="plan-before-ride" aria-labelledby="plan-before-ride-heading">
+    <section class="tc-rebuild-section tc-rebuild-dark" id="what-you-can-request" aria-labelledby="what-request-heading">
       <div class="tc-rebuild-inner">
         <header class="tc-rebuild-head">
-          <p class="eyebrow">Plan before the ride</p>
-          <h2 id="plan-before-ride-heading">Sometimes the best answer is not just &ldquo;get a car.&rdquo;</h2>
-          <p class="section-text">Visitors may need a quick route tip, a timing recommendation, a rideshare strategy, a resort/downtown plan, a group option, or a provider referral. Where To Go SA helps organize the request before anyone wastes time guessing.</p>
+          <p class="eyebrow">What you can request</p>
+          <h2 id="what-request-heading">Local route help with private concierge-style support</h2>
+          <p class="section-text">Tell us how you want to spend your time. We review the plan, timing, and availability before anything is confirmed.</p>
         </header>
-        <div class="tc-flow-grid" aria-label="Transportation planning flow">
-          <article class="tc-flow-card" data-step="1"><h3>Question</h3><p>What are you trying to do?</p></article>
-          <span class="tc-flow-arrow" aria-hidden="true">&rarr;</span>
-          <article class="tc-flow-card" data-step="2"><h3>Route details</h3><p>Pickup area, destination, group size, luggage, and timing.</p></article>
-          <span class="tc-flow-arrow" aria-hidden="true">&rarr;</span>
-          <article class="tc-flow-card" data-step="3"><h3>Timing + group needs</h3><p>Now, later today, scheduled date, airport/resort/downtown context, and party needs.</p></article>
-          <span class="tc-flow-arrow" aria-hidden="true">&rarr;</span>
-          <article class="tc-flow-card" data-step="4"><h3>Best next step</h3><p>Advice, rideshare tip, concierge help, provider request, or partner referral.</p></article>
-          <span class="tc-flow-arrow" aria-hidden="true">&rarr;</span>
-          <article class="tc-flow-card" data-step="5"><h3>Request routed</h3><p>If transportation help is needed, the request becomes a structured lead.</p></article>
-        </div>
+        <ul class="tc-request-list">
+          <li>Local route planning and timing advice</li>
+          <li>Flexible stops inside your booked window</li>
+          <li>Dinner, Pearl, River Walk, or Market Square routing</li>
+          <li>Resort-to-downtown or airport timing help</li>
+          <li>Convention visitor or business dinner planning</li>
+          <li>Family or group-friendly San Antonio routes</li>
+          <li>Custom multi-stop plans quoted after review</li>
+        </ul>
       </div>
     </section>
 
-    <section class="section band section-navy-routes live-concierge-section transport-route-operator" id="route-operator" aria-labelledby="transport-route-heading">
-      <div class="routes-band-inner live-concierge-inner" id="transport-route-operator">
-        <header class="live-concierge__head">
-          <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">Transportation Operator</p>
-          <h2 id="transport-route-heading" class="live-concierge__title">Ask the Transportation Operator</h2>
-          <p class="section-text section-text-light live-concierge__lead">Tell us where you are, where you are going, and what kind of help you need. The operator helps narrow the route before you send a request.</p>
-          <ul class="tc-operator-labels" aria-label="Operator request categories">
-            <li>advice only</li><li>rideshare route guidance</li><li>transportation help request</li><li>group transportation need</li><li>airport/resort route</li><li>downtown/night-out route</li><li>convention/business route</li><li>day trip/custom route</li><li>provider referral candidate</li>
+    <section class="tc-rebuild-section tc-request-band" id="concierge-pricing" aria-labelledby="concierge-pricing-heading">
+      <div class="tc-rebuild-inner">
+        <header class="tc-rebuild-head">
+          <p class="eyebrow">Concierge time options</p>
+          <h2 id="concierge-pricing-heading">Starting rates for private local concierge time</h2>
+          <p class="section-text">These are starting points for scheduled private concierge blocks. Final pricing is confirmed after review.</p>
+        </header>
+        <div class="tc-pricing-grid">
+          <article class="tc-pricing-card">
+            <p class="tc-pricing-duration">Quick Local Window</p>
+            <h3>2 hours</h3>
+            <p class="tc-pricing-rate">Starts at $250</p>
+            <p>Best for one simple dinner, hotel-to-downtown, or quick local help.</p>
+          </article>
+          <article class="tc-pricing-card tc-pricing-card--featured">
+            <p class="tc-pricing-duration">Private Concierge Block</p>
+            <h3>3 hours</h3>
+            <p class="tc-pricing-rate">Starts at $375</p>
+            <p>Best for dinner plus one or two stops, Pearl/River Walk/Market Square timing, or a flexible visitor plan.</p>
+          </article>
+          <article class="tc-pricing-card">
+            <p class="tc-pricing-duration">Half-Day Local Concierge</p>
+            <h3>4&ndash;5 hours</h3>
+            <p class="tc-pricing-rate">Starts at $600</p>
+            <p>Best for families, resort guests, business travelers with open time, or custom city routes.</p>
+          </article>
+          <article class="tc-pricing-card">
+            <p class="tc-pricing-duration">Full-Day Local Concierge</p>
+            <h3>Up to 8 hours</h3>
+            <p class="tc-pricing-rate">Starts at $1,000</p>
+            <p>Best for bigger plans, flexible routing, special occasions, or custom local days.</p>
+          </article>
+          <article class="tc-pricing-card">
+            <p class="tc-pricing-duration">Custom Request</p>
+            <h3>Quoted after review</h3>
+            <p class="tc-pricing-rate">Custom pricing</p>
+            <p>Share your date, group, stops, and timing. We reply after reviewing route complexity and availability.</p>
+          </article>
+        </div>
+        <p class="tc-pricing-note">Final pricing depends on date, timing, distance, group size, route complexity, wait time, and availability.</p>
+      </div>
+    </section>
+
+    <section class="tc-rebuild-section section-cream" id="concierge-included" aria-labelledby="included-heading">
+      <div class="tc-rebuild-inner">
+        <header class="tc-rebuild-head">
+          <p class="eyebrow">What is included</p>
+          <h2 id="included-heading">Inside your scheduled concierge block</h2>
+        </header>
+        <div class="tc-inout-panel tc-inout-panel--yes">
+          <ul>
+            <li>Local route planning</li>
+            <li>Recommendation help</li>
+            <li>Scheduled time block</li>
+            <li>Flexible stops within the booked window</li>
+            <li>Wait time inside the time block</li>
+            <li>Local visitor guidance</li>
+            <li>Timing advice</li>
+            <li>Direct communication before confirmation</li>
           </ul>
-          <p class="live-concierge__status" id="transport-route-status" aria-live="polite">Route help · ready</p>
-        </header>
-
-        <div class="live-concierge-studio">
-          <div class="live-concierge-card">
-            <div class="live-concierge__image-band">
-              <div class="live-concierge__image-band-media">
-                <img src="assets/transport-common-airport-downtown.png" alt="Downtown hotel approach and airport transfer timing" width="1448" height="1086" decoding="async" loading="eager" />
-              </div>
-            </div>
-            <div class="live-concierge__glass-panel">
-              <div class="live-concierge__panel-copy">
-                <p class="live-concierge__panel-intro">Quick prompts</p>
-                <p class="live-concierge__panel-support">Pick a prompt or describe your move in your own words. Contact details are collected only in the request form below.</p>
-              </div>
-              <div class="live-concierge__chip-board">
-                <div class="live-concierge__chip-cluster" role="group" aria-labelledby="transport-chip-label">
-                  <p class="live-concierge__lane-label" id="transport-chip-label">Start here</p>
-                  <div class="live-concierge__chips live-concierge__chips--lane">
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="I'm arriving at the airport and need route, timing, luggage, and pickup/drop-off guidance.">I'm arriving at the airport</button>
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="I'm staying at a resort and need help deciding the transportation move.">I'm staying at a resort</button>
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="I need to get downtown and want the route plan first.">I need to get downtown</button>
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="I'm going to the River Walk and need pickup/drop-off and return guidance.">I'm going to the River Walk</button>
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="I have a group and need route planning or transportation options.">I have a group</button>
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="I need a business dinner route with timing and client movement details.">I need a business dinner route</button>
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="I need a late-night return plan with realistic pickup and backup options.">I need a late-night return plan</button>
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="I need a day trip route or longer route planning from San Antonio.">I need a day trip route</button>
-                    <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-transport-chip data-transport-chip-text="I'm not sure if I need a ride or just route advice.">I'm not sure if I need a ride or just advice</button>
-                  </div>
-                </div>
-              </div>
-              <div class="live-concierge__main-card">
-                <div class="live-concierge__error" id="transport-route-error" hidden role="alert"></div>
-                <div class="live-concierge__thread" id="transport-route-thread">
-                  <div class="live-concierge__conversation" id="transport-route-conversation">
-                    <div class="live-concierge__answer-surface" id="transport-route-answer-surface" aria-live="polite">
-                      <div class="live-concierge__preview" id="transport-route-preview">
-                        <p class="live-concierge__preview-text" id="transport-route-preview-text">Start with where you are, where you are going, when, group size, and whether you need advice only or a transportation request.</p>
-                      </div>
-                      <div class="live-concierge__transcript" id="transport-route-transcript" hidden>
-                        <div class="live-concierge__log" id="transport-route-log" role="log" aria-relevant="additions" aria-label="Transportation operator conversation"></div>
-                      </div>
-                    </div>
-                    <div class="live-concierge__composer-stack" id="transport-route-composer">
-                      <p class="live-concierge__composer-kicker visually-hidden" id="transport-route-composer-kicker" hidden>Follow-up</p>
-                      <form class="live-concierge__form" id="transport-route-form" aria-label="Transportation operator question">
-                        <label class="live-concierge__input-label visually-hidden" for="transport-route-input">Your transportation question</label>
-                        <div class="live-concierge__composer-unit">
-                          <textarea id="transport-route-input" class="live-concierge__input" name="message" rows="2" maxlength="12000" required autocomplete="off" placeholder="Example: I'm at La Cantera with 5 people. Should we rideshare downtown or stay nearby tonight?"></textarea>
-                          <button type="submit" class="live-concierge__send" id="transport-route-send">Plan route <span aria-hidden="true">&rarr;</span></button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
+    <section class="tc-rebuild-section" id="concierge-not-included" aria-labelledby="not-included-heading">
+      <div class="tc-rebuild-inner">
+        <header class="tc-rebuild-head">
+          <p class="eyebrow">What is not included</p>
+          <h2 id="not-included-heading">Please plan around these limits</h2>
+        </header>
+        <div class="tc-inout-panel tc-inout-panel--no">
+          <ul>
+            <li>Instant pickup</li>
+            <li>Guaranteed availability</li>
+            <li>Alcohol, tickets, meals, parking, or attraction fees</li>
+            <li>Unsafe or illegal requests</li>
+            <li>Large group transportation unless approved</li>
+            <li>Long-distance trips unless quoted separately</li>
+            <li>Medical or emergency transportation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <span id="route-operator" class="visually-hidden" tabindex="-1">Private concierge request</span>
     <section class="tc-rebuild-section tc-request-band" id="transportation-request" aria-labelledby="transport-request-heading">
       <div class="tc-rebuild-inner tc-request-shell">
         <div>
           <header class="tc-rebuild-head">
-            <p class="eyebrow">Transportation request intake</p>
-            <h2 id="transport-request-heading">Request transportation help</h2>
-            <p class="section-text">Share the route details and we&rsquo;ll review the best next step. Availability, pricing, provider fit, and timing are not guaranteed.</p>
+            <p class="eyebrow">Request form</p>
+            <h2 id="transport-request-heading">Request Private Concierge Time</h2>
+            <p class="section-text">Share your date, timing, hotel or pickup area, group size, and plan type. Where To Go SA reviews every scheduled request for availability before confirming. This is not an instant ride request.</p>
           </header>
           <div class="tc-request-note">
-            <p>Best requests answer: where are you, where are you going, when, how many people, and which situation applies: airport, resort, downtown, convention, night out, family, event, or day trip. Then tell us whether you need advice only, provider options, or concierge routing.</p>
+            <p>Include your preferred time block, stops or neighborhoods, and anything that affects timing. Customer-facing communication requires your consent below. Message and data rates may apply for text communication.</p>
           </div>
         </div>
         <div class="transport-request-card">
-          <form class="transport-intake-form" id="transport-intake-form" novalidate aria-label="Transportation request form">
+          <form class="transport-intake-form" id="transport-intake-form" novalidate aria-label="Private concierge request form">
             <p id="transport-intake-error" class="transport-intake-error" hidden role="alert"></p>
             <p id="transport-route-confirmation" class="transport-intake-error transport-intake-error--ok" hidden role="status"></p>
 
@@ -2209,115 +2446,70 @@
               <h3 class="transport-intake-section__heading">Contact</h3>
               <div class="transport-intake-grid">
                 <label class="transport-field"><span>Name</span><input type="text" name="visitor_name" id="transport-visitor-name" autocomplete="name" required /></label>
-                <label class="transport-field"><span>Email</span><input type="email" name="visitor_email" id="transport-visitor-email" autocomplete="email" /></label>
                 <label class="transport-field"><span>Phone</span><input type="tel" name="visitor_phone" id="transport-visitor-phone" autocomplete="tel" /></label>
+                <label class="transport-field"><span>Email</span><input type="email" name="visitor_email" id="transport-visitor-email" autocomplete="email" /></label>
                 <label class="transport-field"><span>Preferred contact method</span><select name="preferred_contact_method" id="transport-preferred-contact"><option value="">Choose one</option><option>Email</option><option>SMS</option><option>Phone call</option><option>No preference</option></select></label>
               </div>
             </div>
 
             <div class="transport-intake-section">
-              <h3 class="transport-intake-section__heading">Route</h3>
+              <h3 class="transport-intake-section__heading">Your visit</h3>
               <div class="transport-intake-grid">
-                <label class="transport-field transport-field--full"><span>Pickup area / location</span><input type="text" name="pickup_area" id="transport-pickup-area" required placeholder="Hotel, resort, airport, neighborhood, or landmark" /></label>
-                <label class="transport-field transport-field--full"><span>Destination</span><input type="text" name="destination" id="transport-destination" required /></label>
-                <label class="transport-field"><span>Date</span><input type="date" name="requested_date" id="transport-requested-date" required /></label>
-                <label class="transport-field"><span>Time or timing window</span><input type="text" name="time_window" id="transport-time-window" required placeholder="e.g. today 6-8 p.m., after baggage, 10:30 p.m." /></label>
-                <label class="transport-field"><span>Number of people</span><input type="text" name="party_size" id="transport-party-size" required placeholder="e.g. 2 adults, 3 kids" /></label>
-                <label class="transport-field"><span>Luggage / bags</span><input type="text" name="luggage" id="transport-luggage" placeholder="Bags, clubs, stroller, carry-ons" /></label>
-                <label class="transport-field transport-field--full"><span>Trip type</span><select name="trip_type" id="transport-trip-type" required><option value="">Choose one</option><option>Airport arrival</option><option>Airport departure</option><option>Resort to downtown</option><option>Downtown / River Walk</option><option>Convention / business</option><option>Family / group</option><option>Night out</option><option>Day trip</option><option>Custom route</option></select></label>
+                <label class="transport-field transport-field--full"><span>Hotel / pickup area</span><input type="text" name="pickup_area" id="transport-pickup-area" required placeholder="Hotel, resort, neighborhood, or landmark" /></label>
+                <label class="transport-field transport-field--full"><span>Stops or plan focus</span><input type="text" name="destination" id="transport-destination" required placeholder="Pearl, River Walk dinner, Market Square — or flexible plan" /></label>
+                <label class="transport-field"><span>Date requested</span><input type="date" name="requested_date" id="transport-requested-date" required /></label>
+                <label class="transport-field"><span>Start time</span><input type="text" name="time_window" id="transport-time-window" required placeholder="e.g. 5:30 p.m. pickup at hotel" /></label>
+                <label class="transport-field"><span>Number of people</span><input type="text" name="party_size" id="transport-party-size" required placeholder="e.g. 2 adults, 1 child" /></label>
+                <label class="transport-field"><span>Luggage or bags</span><input type="text" name="luggage" id="transport-luggage" placeholder="Carry-ons, stroller, clubs, etc." /></label>
+                <label class="transport-field transport-field--full"><span>Plan type</span><select name="trip_type" id="transport-trip-type" required><option value="">Choose one</option><option>Dinner / night out</option><option>Resort to downtown</option><option>Convention visitor plan</option><option>Family outing</option><option>Pearl / River Walk / Market Square</option><option>Airport / resort timing</option><option>Custom San Antonio route</option></select></label>
               </div>
             </div>
 
             <div class="transport-intake-section">
               <fieldset class="transport-intake-fieldset">
-                <legend class="transport-intake-section__heading">What do you need?</legend>
-                <div class="transport-check-grid">
-                  <label class="transport-check-option"><input type="checkbox" name="transportation_need" value="Route advice only" /> <span>Route advice only</span></label>
-                  <label class="transport-check-option"><input type="checkbox" name="transportation_need" value="Rideshare guidance" /> <span>Rideshare pickup/drop-off guidance</span></label>
-                  <label class="transport-check-option"><input type="checkbox" name="transportation_need" value="Transportation help request" /> <span>Transportation help request</span></label>
-                  <label class="transport-check-option"><input type="checkbox" name="transportation_need" value="Group transportation option" /> <span>Group transportation option</span></label>
-                  <label class="transport-check-option"><input type="checkbox" name="transportation_need" value="Airport/resort help" /> <span>Airport/resort help</span></label>
-                  <label class="transport-check-option"><input type="checkbox" name="transportation_need" value="Business dinner route" /> <span>Business dinner route</span></label>
-                  <label class="transport-check-option"><input type="checkbox" name="transportation_need" value="Night-out return plan" /> <span>Night-out return plan</span></label>
-                  <label class="transport-check-option"><input type="checkbox" name="transportation_need" value="Day trip / longer route" /> <span>Day trip / longer route</span></label>
-                  <label class="transport-check-option"><input type="checkbox" name="transportation_need" value="Provider referral if available" /> <span>Provider referral if available</span></label>
-                  <label class="transport-check-option"><input type="checkbox" name="transportation_need" value="Not sure yet" /> <span>Not sure yet</span></label>
+                <legend class="transport-intake-section__heading">Preferred time block</legend>
+                <div class="transport-radio-grid">
+                  <label class="transport-radio-option"><input type="radio" name="transportation_need" value="Private concierge — 2 hours (Quick Local Window)" required /> <span>2 hours — Quick Local Window</span></label>
+                  <label class="transport-radio-option"><input type="radio" name="transportation_need" value="Private concierge — 3 hours (Private Concierge Block)" /> <span>3 hours — Private Concierge Block</span></label>
+                  <label class="transport-radio-option"><input type="radio" name="transportation_need" value="Private concierge — 4-5 hours (Half-Day Local Concierge)" /> <span>4–5 hours — Half-Day Local Concierge</span></label>
+                  <label class="transport-radio-option"><input type="radio" name="transportation_need" value="Private concierge — full day (Full-Day Local Concierge)" /> <span>Full day — Full-Day Local Concierge</span></label>
+                  <label class="transport-radio-option transport-field--full"><input type="radio" name="transportation_need" value="Private concierge — custom (quoted after review)" /> <span>Custom — quoted after review</span></label>
                 </div>
               </fieldset>
+              <p class="tc-form-guardrail">Scheduled requests only. Final confirmation required. No guaranteed availability.</p>
             </div>
 
             <div class="transport-intake-section">
-              <h3 class="transport-intake-section__heading">Optional details</h3>
+              <h3 class="transport-intake-section__heading">Message</h3>
               <div class="transport-intake-grid">
-                <label class="transport-field"><span>Flight number if airport related</span><input type="text" name="flight_number" id="transport-flight-number" /></label>
-                <label class="transport-field"><span>Hotel / resort</span><input type="text" name="hotel_or_resort" id="transport-hotel-resort" /></label>
-                <label class="transport-field transport-field--full"><span>Accessibility needs</span><input type="text" name="accessibility_needs" id="transport-accessibility" /></label>
-                <label class="transport-field transport-field--full"><span>Child seats needed</span><input type="text" name="child_seats_needed" id="transport-child-seats" placeholder="If needed, include ages or seat types" /></label>
-                <label class="transport-field transport-field--full"><span>Notes / special timing</span><textarea name="notes" id="transport-notes" rows="4" placeholder="Add route details, timing constraints, pickup notes, or anything the reviewer should know."></textarea></label>
+                <label class="transport-field transport-field--full"><span>Tell us about your San Antonio plan</span><textarea name="notes" id="transport-notes" rows="5" placeholder="Restaurants, neighborhoods, timing constraints, accessibility needs, or special occasion details."></textarea></label>
                 <input type="hidden" name="ai_summary" id="transport-ai-summary" />
               </div>
             </div>
 
             <div class="sms-consent-block" id="transport-sms-consent">
               <label class="sms-consent-checkbox">
-                <input type="checkbox" name="sms_consent" value="yes" />
-                <span>I agree to receive SMS messages from Where To Go SA about my request. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help.</span>
+                <input type="checkbox" name="sms_consent" value="yes" required />
+                <span>I agree that Where To Go SA may contact me by email or SMS about this scheduled concierge request. Message and data rates may apply. Reply STOP to opt out or HELP for help.</span>
               </label>
-              <p class="sms-consent-help">SMS consent is optional and is not required to submit this form. We may still contact you by email or phone about your request. Message and data rates may apply. Reply STOP to opt out or HELP for help. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</p>
+              <p class="sms-consent-help">Customer-facing communication requires consent. SMS consent helps us confirm timing and route details by text when needed. Message and data rates may apply. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</p>
             </div>
-            <button type="submit" class="btn btn-primary transport-intake-submit" id="transport-submit-intake">Send transportation request</button>
+            <button type="submit" class="btn btn-primary transport-intake-submit" id="transport-submit-intake">Request Private Concierge Time</button>
           </form>
         </div>
       </div>
     </section>
 
-    <section class="tc-rebuild-section" id="request-review" aria-labelledby="request-review-heading">
-      <div class="tc-rebuild-inner">
-        <header class="tc-rebuild-head">
-          <p class="eyebrow">Routing / review</p>
-          <h2 id="request-review-heading">What happens after you send a request?</h2>
-        </header>
-        <div class="tc-review-grid">
-          <article class="tc-review-card"><h3>1. We review the route</h3><p>Pickup area, destination, timing, group size, and trip type.</p></article>
-          <article class="tc-review-card"><h3>2. We identify the next step</h3><p>Advice, rideshare guidance, provider option, partner referral, or follow-up.</p></article>
-          <article class="tc-review-card"><h3>3. We route when appropriate</h3><p>Requests may be routed based on timing, fit, availability, provider type, and compliance.</p></article>
-          <article class="tc-review-card"><h3>4. You stay informed</h3><p>If follow-up is available, we use the contact method you provided.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="tc-rebuild-section tc-partner-band" id="transportation-partners" aria-labelledby="transport-partner-heading">
-      <div class="tc-rebuild-inner">
-        <div class="tc-partner-card">
-          <p class="eyebrow">Provider / partner opportunity</p>
-          <h2 id="transport-partner-heading">Transportation providers can partner with Where To Go SA</h2>
-          <p>Transportation providers and concierge businesses can use practical AI systems for local SEO, route landing pages, Google Ads or paid campaigns when appropriate, group request funnels, approved route answers, intake, provider handoff, follow-up, and ongoing AI adaptation &mdash; built by The AI Plug. Availability, bookings, and ad results are not guaranteed.</p>
-          <div class="hero-cta-row">
-            <a class="btn btn-primary" href="business-services.html#project-request" data-bs-business-type="Transportation / concierge">Request a transportation AI review</a>
-            <a class="btn btn-secondary hero-secondary-btn" href="business-services.html">See AI Business Services</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="tc-rebuild-section" id="transportation-guardrails" aria-labelledby="transport-guardrails-heading">
-      <div class="tc-rebuild-inner">
-        <div class="tc-guardrail-card">
-          <h2 id="transport-guardrails-heading">Safety and availability guardrail</h2>
-          <p>Where To Go SA is a visitor guide and request-routing resource. Submitting a request does not guarantee transportation, driver availability, pricing, provider acceptance, pickup time, or service. If timing is urgent, use Uber, Lyft, hotel transportation, taxi, or another licensed option.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="tc-final tc-final--immersive transport-section" aria-labelledby="tc-final-heading">
+    <section class="tc-final tc-final--immersive transport-section" id="transportation-trust" aria-labelledby="tc-final-heading">
       <div class="tc-final-inner">
-        <p class="tc-final-eyebrow">Transportation + Concierge</p>
-        <h2 id="tc-final-heading">Need help with a San Antonio route?</h2>
-        <p class="section-text">Start with the route plan, then send a structured request if you need transportation help reviewed.</p>
+        <p class="tc-final-eyebrow">Availability &amp; trust</p>
+        <h2 id="tc-final-heading">Scheduled private concierge requests are reviewed first</h2>
+        <p class="section-text">Where To Go SA is a premium San Antonio visitor guide. Submitting a request does not guarantee availability, pricing, or confirmation. Every request is reviewed for date, timing, route, and fit before you receive a reply. This is not an instant ride request.</p>
         <div class="tc-final-actions">
-          <a class="btn btn-primary" href="#route-operator">Plan my transportation move</a>
-          <a class="btn btn-secondary hero-secondary-btn" href="#transportation-request">Request transportation help</a>
+          <a class="btn btn-primary" href="#transportation-request">Request Private Concierge Time</a>
+          <a class="btn btn-secondary hero-secondary-btn" href="/ask/">Ask about my San Antonio plan</a>
         </div>
+        <p class="tc-final-footnote">Final confirmation required. No guaranteed availability. For urgent medical or emergency needs, contact appropriate emergency services or your hotel front desk.</p>
       </div>
     </section>
   </main>
@@ -2336,7 +2528,7 @@
       <a href="downtown.html#dt-pearl-guide">Pearl</a>
       <a href="summer-family.html">Family</a>
       <a href="resort-food.html">Resort Guides</a>
-      <a href="driver-concierge.html#route-operator">Transport + Concierge</a>
+      <a href="driver-concierge.html#transportation-request">Transport + Concierge</a>
       <a href="/ask/">Ask A Local</a>
       <a href="business-services.html">AI Business Services</a>
       <a href="/business-services/business-types/">Business Types</a>
