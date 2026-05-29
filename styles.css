@@ -26225,7 +26225,8 @@ body.owner-dash-detail-open {
   background: var(--bridge-navy-deep);
 }
 
-.page-business-bridge main > .section {
+.page-business-bridge main > .section,
+.page-business-bridge main > .transport-concierge-main {
   margin: 0;
   border-radius: 0;
 }
@@ -26327,171 +26328,38 @@ body.owner-dash-detail-open {
   padding-top: 8px;
 }
 
-/* Business operator — compact routing panel (Start Here pattern) */
-.page-business-bridge .ai-bs-operator-band {
+/* Operator band — seamless navy, no wrapper gap */
+.page-business-bridge .ai-bs-bridge-operator-wrap {
   background:
     radial-gradient(ellipse 90% 60% at 50% 0%, rgba(20, 184, 166, 0.18), transparent 58%),
     radial-gradient(circle at 8% 100%, rgba(242, 178, 26, 0.12), transparent 42%),
     linear-gradient(168deg, var(--bridge-navy) 0%, var(--bridge-navy-rich) 48%, #10274a 100%);
 }
 
-.page-business-bridge .ai-bs-operator-band > .routes-band-inner {
-  gap: 0;
+.page-business-bridge .ai-bs-bridge-operator-wrap .section-navy-routes {
+  background: transparent;
+  border: none;
+  padding-left: clamp(16px, 4vw, 24px);
+  padding-right: clamp(16px, 4vw, 24px);
 }
 
-.page-business-bridge .ai-bs-operator-panel {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  overflow: hidden;
-  border-radius: calc(var(--radius) + 8px);
-  border: 1px solid rgba(255, 246, 230, 0.16);
-  background: rgba(7, 16, 34, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+.page-business-bridge .ai-bs-bridge-operator-wrap .section-navy-routes::after {
+  opacity: 0.55;
+}
+
+.page-business-bridge .ai-bs-bridge-operator-wrap .transport-route-operator .live-concierge-section {
+  border-bottom: none;
+}
+
+.page-business-bridge .ai-bs-bridge-operator-wrap .live-concierge-card {
+  border-color: rgba(255, 246, 230, 0.16);
   box-shadow:
     0 28px 56px rgba(0, 0, 0, 0.38),
-    inset 0 1px 0 rgba(255, 246, 230, 0.06);
+    inset 0 1px 0 rgba(255, 246, 230, 0.1);
 }
 
-.page-business-bridge .ai-bs-operator-panel::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 3px;
-  z-index: 3;
-  background: linear-gradient(
-    90deg,
-    rgba(242, 178, 26, 0.15) 0%,
-    rgba(242, 178, 26, 0.75) 50%,
-    rgba(242, 178, 26, 0.15) 100%
-  );
-}
-
-@media (min-width: 720px) {
-  .page-business-bridge .ai-bs-operator-panel {
-    grid-template-columns: minmax(220px, 36%) minmax(0, 1fr);
-    min-height: 240px;
-  }
-}
-
-.page-business-bridge .ai-bs-operator-panel__visual {
-  position: relative;
-  min-height: clamp(148px, 34vw, 200px);
-  overflow: hidden;
-}
-
-@media (min-width: 720px) {
-  .page-business-bridge .ai-bs-operator-panel__visual {
-    min-height: 100%;
-  }
-}
-
-.page-business-bridge .ai-bs-operator-panel__visual img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 38%;
-}
-
-.page-business-bridge .ai-bs-operator-panel__visual-shade {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent 62%, rgba(5, 10, 24, 0.18) 100%);
-}
-
-@media (max-width: 719px) {
-  .page-business-bridge .ai-bs-operator-panel__visual-shade {
-    background: linear-gradient(180deg, transparent 78%, rgba(5, 10, 24, 0.22) 100%);
-  }
-}
-
-.page-business-bridge .ai-bs-operator-panel__body {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: clamp(10px, 1.6vw, 14px);
-  padding: clamp(18px, 2.8vw, 28px) clamp(18px, 3vw, 32px) clamp(20px, 3vw, 30px);
-}
-
-.page-business-bridge .ai-bs-operator-panel__accent {
-  width: 100%;
-  max-width: 200px;
-  height: 2px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, rgba(242, 178, 26, 0.95), rgba(242, 178, 26, 0.35), transparent);
-}
-
-.page-business-bridge .ai-bs-operator-panel__body .eyebrow {
-  margin-bottom: 0;
-}
-
-.page-business-bridge .ai-bs-operator-panel h2 {
-  margin: 0;
-  font-size: clamp(1.35rem, 2.4vw + 0.4rem, 1.85rem);
-  line-height: 1.12;
-  letter-spacing: -0.028em;
-  font-weight: 860;
-  color: var(--cream);
-  text-wrap: balance;
-  max-width: 22ch;
-}
-
-.page-business-bridge .ai-bs-operator-panel__copy {
-  margin: 0;
-  max-width: 38rem;
-  font-size: clamp(0.92rem, 0.3vw + 0.84rem, 1.02rem);
-  line-height: 1.6;
-  color: rgba(255, 246, 230, 0.86);
-}
-
-.page-business-bridge .ai-bs-operator-panel__actions {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: clamp(12px, 1.8vw, 16px);
-  padding-top: 4px;
-}
-
-.page-business-bridge .ai-bs-operator-panel__actions .btn-primary {
-  width: 100%;
-  justify-content: center;
-  min-height: 48px;
-}
-
-@media (min-width: 480px) {
-  .page-business-bridge .ai-bs-operator-panel__actions .btn-primary {
-    width: auto;
-    align-self: flex-start;
-  }
-}
-
-.page-business-bridge .ai-bs-operator-panel__chips.route-chip-row {
-  margin: 0;
-  padding: 0;
-  gap: 8px 10px;
-}
-
-.page-business-bridge .ai-bs-operator-panel__chips .route-chip {
-  border-color: rgba(255, 246, 230, 0.22);
-  background: rgba(255, 246, 230, 0.07);
-  color: rgba(255, 246, 230, 0.92);
-  font-size: 0.8rem;
-  padding: 9px 14px;
-  letter-spacing: normal;
-}
-
-.page-business-bridge .ai-bs-operator-panel__chips .route-chip:hover {
-  background: rgba(255, 246, 230, 0.14);
-  border-color: rgba(242, 178, 26, 0.55);
-  color: var(--cream);
+.page-business-bridge .ai-bs-bridge-operator-wrap .business-operator-project-intro {
+  border-top-color: rgba(255, 246, 230, 0.14);
 }
 
 /* Form section — warm premium cream */
@@ -26606,42 +26474,18 @@ body.owner-dash-detail-open {
   margin-bottom: 12px;
 }
 
-/* Final CTA — compact card inside form section (no extra footer strip) */
-.page-business-bridge .ai-bs-final-cta {
-  margin-top: clamp(28px, 4vw, 40px);
-  padding-top: clamp(24px, 3.2vw, 32px);
-  border-top: 1px solid rgba(11, 29, 58, 0.1);
+/* Form → footer: no extra navy strip (bridge CTA band removed from HTML) */
+.page-business-bridge .ai-bs-bridge-form-section.section-cream {
+  margin-bottom: 0;
 }
 
-.page-business-bridge .ai-bs-final-cta h2 {
-  margin: 0 0 10px;
-  font-size: clamp(1.2rem, 1.8vw + 0.7rem, 1.5rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--navy);
-  max-width: 28ch;
+.page-business-bridge main > .section.ai-bs-bridge-form-section.ai-bs-sec-major {
+  padding-bottom: clamp(40px, 5vw, 52px);
 }
 
-.page-business-bridge .ai-bs-final-cta__copy {
-  margin: 0 0 clamp(16px, 2vw, 20px);
-  max-width: 36rem;
-  font-size: clamp(0.92rem, 0.2vw + 0.86rem, 0.98rem);
-  line-height: 1.58;
-  color: rgba(11, 29, 58, 0.76);
-}
-
-.page-business-bridge .ai-bs-final-cta__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 12px;
-}
-
-.page-business-bridge .ai-bs-final-cta__actions .btn {
-  min-height: 48px;
-}
-
-/* Footer — flush with page navy */
+/* Footer — flush with form; cream section meets navy footer directly */
 .page-business-bridge .footer.dark-showcase {
+  margin-top: 0;
   background:
     radial-gradient(circle at 18% 0%, rgba(20, 184, 166, 0.14), transparent 40%),
     radial-gradient(circle at 88% 100%, rgba(242, 178, 26, 0.1), transparent 38%),
@@ -26657,11 +26501,6 @@ body.owner-dash-detail-open {
 
   .page-business-bridge .ai-bs-bridge-form-card {
     padding: 20px 16px;
-  }
-
-  .page-business-bridge .ai-bs-final-cta__actions .btn {
-    width: 100%;
-    justify-content: center;
   }
 
   .page-business-bridge .ai-bs-category-actions .btn {
