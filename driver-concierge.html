@@ -12,19 +12,19 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Private San Antonio Concierge by the Hour | Where To Go SA</title>
-  <meta name="description" content="Schedule private local concierge time in San Antonio — local route help, flexible stops, dinner and night-out planning, resort-to-downtown timing, and custom visitor time blocks. Reviewed for availability; not an instant ride request." />
+  <title>Book a Local Concierge | San Antonio Visitor Planning | Where To Go SA</title>
+  <meta name="description" content="Reserve local concierge time for your San Antonio visit — city nights out, resort routes, family plans, convention free time, and nearby day trips with local route help and flexible stops." />
   <link rel="canonical" href="https://wheretogosa.com/driver-concierge.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://wheretogosa.com/driver-concierge.html" />
-  <meta property="og:title" content="Private San Antonio Concierge by the Hour | Where To Go SA" />
+  <meta property="og:title" content="Book a Local Concierge | Where To Go SA" />
   <meta property="og:site_name" content="Where To Go SA" />
-  <meta property="og:description" content="Schedule private local concierge time in San Antonio with flexible stops, local recommendations, and private concierge-style transportation support. Scheduled requests reviewed for availability." />
+  <meta property="og:description" content="Reserve local concierge time for your San Antonio visit with flexible stops, local route help, and visitor planning for downtown, resorts, families, and nearby day trips." />
   <meta property="og:image" content="https://wheretogosa.com/assets/where-to-go-sa-primary-logo-lockup.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@wheretogosa" />
-  <meta name="twitter:title" content="Private San Antonio Concierge by the Hour | Where To Go SA" />
-  <meta name="twitter:description" content="Schedule private local concierge time in San Antonio — flexible plans, local route help, and concierge-style support by the hour. Not an instant ride request." />
+  <meta name="twitter:title" content="Book a Local Concierge | Where To Go SA" />
+  <meta name="twitter:description" content="Reserve local concierge time for your San Antonio visit — city nights, resort routes, family plans, and nearby day trips with local route help." />
   <meta name="twitter:image" content="https://wheretogosa.com/assets/where-to-go-sa-primary-logo-lockup.png" />
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/wtgsa-favicon-32.png" />
@@ -2234,11 +2234,137 @@
       flex-shrink: 0;
     }
 
-    .transport-concierge-main .tc-form-guardrail {
-      margin: 14px 0 0;
-      font-size: 0.84rem;
+    .transport-concierge-main .tc-how-grid {
+      display: grid;
+      gap: clamp(14px, 2vw, 18px);
+      grid-template-columns: 1fr;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 720px) {
+      .transport-concierge-main .tc-how-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .transport-concierge-main .tc-how-step {
+      border-radius: calc(var(--radius) + 4px);
+      padding: clamp(16px, 2vw, 20px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 246, 230, 0.16);
+    }
+
+    .transport-concierge-main .tc-how-step strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #fff8eb;
+      font-size: 0.92rem;
+    }
+
+    .transport-concierge-main .tc-how-step p {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.52;
+      color: rgba(255, 246, 230, 0.86);
+    }
+
+    .transport-concierge-main .tc-good-to-know {
+      max-width: 44rem;
+      margin: 0;
+      padding: 0;
+      color: var(--slate);
+      font-size: 0.95rem;
+      line-height: 1.62;
+    }
+
+    .transport-concierge-main .tc-booking-section {
+      padding: clamp(38px, 5vw, 68px) clamp(14px, 4vw, 48px);
+    }
+
+    .transport-concierge-main .tc-booking-wrap {
+      width: 100%;
+      max-width: min(44rem, 100%);
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .transport-concierge-main .tc-booking-section .transport-request-card {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: clamp(18px, 3vw, 28px);
+      box-sizing: border-box;
+    }
+
+    .transport-concierge-main .tc-booking-intro {
+      margin: 0 0 clamp(18px, 2.4vw, 24px);
+      padding-bottom: clamp(16px, 2vw, 20px);
+      border-bottom: 1px solid rgba(11, 29, 58, 0.1);
+    }
+
+    .transport-concierge-main .tc-booking-intro .eyebrow {
+      margin-bottom: 8px;
+      color: #bf2a76;
+    }
+
+    .transport-concierge-main .tc-booking-intro h2 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: clamp(1.45rem, 2.4vw + 0.5rem, 1.85rem);
+      line-height: 1.14;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+
+    .transport-concierge-main .tc-booking-intro p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 0.94rem;
+      line-height: 1.58;
+    }
+
+    .transport-concierge-main .tc-calendar-placeholder {
+      margin: 0 0 clamp(18px, 2.4vw, 22px);
+      padding: clamp(14px, 2vw, 18px);
+      border-radius: calc(var(--radius) + 2px);
+      background: linear-gradient(145deg, rgba(20, 184, 166, 0.1) 0%, rgba(255, 252, 246, 0.95) 100%);
+      border: 1px dashed rgba(20, 184, 166, 0.35);
+    }
+
+    .transport-concierge-main .tc-calendar-placeholder__title {
+      margin: 0 0 6px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--turquoise);
+    }
+
+    .transport-concierge-main .tc-calendar-placeholder__text {
+      margin: 0;
+      font-size: 0.88rem;
       line-height: 1.55;
       color: var(--slate);
+    }
+
+    .transport-concierge-main .tc-booking-section .transport-intake-form select {
+      min-height: 48px;
+      font-size: 1rem;
+    }
+
+    .transport-concierge-main .tc-booking-section .transport-field span {
+      line-height: 1.35;
+    }
+
+    .transport-concierge-main .tc-experience-card__tag {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--turquoise);
     }
   </style>
 </head>
@@ -2267,222 +2393,191 @@
       <div class="hero-fiesta-inner hero-inner-band">
         <div class="hero-shell">
           <div class="hero-content secondary-hero-copy">
-            <p class="eyebrow eyebrow-on-dark eyebrow-hero tc-hero-eyebrow-hero">Private local concierge</p>
-            <h1 id="tc-hero-heading" class="hero-title">Private San Antonio concierge help by the hour.</h1>
-            <p class="tc-hero-lead">Need more than a quick ride? Where To Go SA can help visitors plan a few hours in the city with local recommendations, flexible stops, timing help, and private concierge-style transportation support.</p>
+            <p class="eyebrow eyebrow-on-dark eyebrow-hero tc-hero-eyebrow-hero">Local concierge</p>
+            <h1 id="tc-hero-heading" class="hero-title">Book a local concierge for your San Antonio visit.</h1>
+            <p class="tc-hero-lead">Pick an available time, choose the kind of experience you want, and get help planning a better local route &mdash; from dinner downtown to resort evenings, family stops, convention free time, and nearby day trips.</p>
             <ul class="tc-hero-chips" aria-label="Concierge highlights">
-              <li class="tc-hero-chip">Scheduled requests only</li>
-              <li class="tc-hero-chip">Reviewed for availability</li>
-              <li class="tc-hero-chip">Flexible San Antonio plan</li>
+              <li class="tc-hero-chip">Reserve concierge time</li>
+              <li class="tc-hero-chip">Local route help</li>
+              <li class="tc-hero-chip">Flexible stops</li>
             </ul>
             <div class="hero-cta-row">
-              <a class="btn btn-primary" href="#transportation-request">Request Private Concierge Time</a>
+              <a class="btn btn-primary" href="#transportation-request">Reserve Concierge Time</a>
               <a href="/ask/" class="btn btn-secondary hero-secondary-btn">Ask about my San Antonio plan</a>
             </div>
-            <p class="tc-hero-support tc-hero-disclaimer">Scheduled requests only. This is not an instant ride request. Final confirmation is required before any concierge time is booked. No guaranteed availability.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="tc-rebuild-section section-cream" id="when-concierge-makes-sense" aria-labelledby="when-sense-heading">
+    <section class="tc-rebuild-section section-cream" id="choose-experience" aria-labelledby="choose-experience-heading">
       <div class="tc-rebuild-inner">
         <header class="tc-rebuild-head">
-          <p class="eyebrow">When this makes sense</p>
-          <h2 id="when-sense-heading">Private concierge time is for planned San Antonio visits</h2>
-          <p class="section-text">This works best when you want local guidance and flexible movement inside a scheduled time block &mdash; not a last-second pickup.</p>
+          <p class="eyebrow">Choose your experience</p>
+          <h2 id="choose-experience-heading">What kind of San Antonio visit are you planning?</h2>
+          <p class="section-text">Pick the experience that fits your trip. You&rsquo;ll choose your time block when you reserve.</p>
         </header>
         <div class="tc-sense-grid">
           <article class="tc-sense-card">
-            <h3>Dinner or night out</h3>
-            <p>Restaurant timing, Pearl or River Walk stops, and a clear return plan inside your booked window.</p>
+            <p class="tc-experience-card__tag">Experience 1</p>
+            <h3>City Night Out</h3>
+            <p>Dinner, Pearl, River Walk, rooftop drinks, Market Square, Tower, or a first-night plan.</p>
           </article>
           <article class="tc-sense-card">
-            <h3>Resort to downtown</h3>
-            <p>La Cantera, JW Marriott, Hyatt Hill Country, and other resort guests who want a flexible downtown evening without guessing the route.</p>
+            <p class="tc-experience-card__tag">Experience 2</p>
+            <h3>Resort Guest Route</h3>
+            <p>JW Marriott, La Cantera, Hyatt Hill Country, downtown dinner, Pearl, local stops, and timing help.</p>
           </article>
           <article class="tc-sense-card">
-            <h3>Convention visitors</h3>
-            <p>Hotels, convention center timing, client dinners, and practical local route help between meetings.</p>
+            <p class="tc-experience-card__tag">Experience 3</p>
+            <h3>Family / First-Time Visitor Plan</h3>
+            <p>Alamo/River Walk timing, Tower, Pearl, Market Square, missions, and kid-friendly stops.</p>
           </article>
           <article class="tc-sense-card">
-            <h3>Family-friendly routing</h3>
-            <p>Kids, strollers, bags, and a calmer plan across a few stops instead of rushing point to point.</p>
+            <p class="tc-experience-card__tag">Experience 4</p>
+            <h3>Convention Free-Time Concierge</h3>
+            <p>For business travelers with one open evening, a dinner plan, or a half-day opening.</p>
           </article>
           <article class="tc-sense-card">
-            <h3>Pearl / River Walk / Market Square</h3>
-            <p>Neighborhood timing, walk-and-ride balance, and flexible stops inside one concierge block.</p>
+            <p class="tc-experience-card__tag">Experience 5</p>
+            <h3>Nearby Day Trip / Extended Route</h3>
+            <p>Fredericksburg, Boerne, Gruene, New Braunfels, Bandera, Wimberley, Canyon Lake, Natural Bridge Caverns, wineries, scenic stops, or custom routes within roughly two hours when available.</p>
           </article>
           <article class="tc-sense-card">
-            <h3>Custom San Antonio time blocks</h3>
-            <p>When you know the day you are in town but want a local plan built around your group and pace.</p>
+            <p class="tc-experience-card__tag">Experience 6</p>
+            <h3>Custom Local Plan</h3>
+            <p>Special occasions, longer routes, unusual timing, multiple stops, or a custom visitor plan.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="tc-rebuild-section tc-rebuild-dark" id="what-you-can-request" aria-labelledby="what-request-heading">
+    <section class="tc-rebuild-section tc-request-band" id="where-we-help" aria-labelledby="where-we-help-heading">
       <div class="tc-rebuild-inner">
         <header class="tc-rebuild-head">
-          <p class="eyebrow">What you can request</p>
-          <h2 id="what-request-heading">Local route help with private concierge-style support</h2>
-          <p class="section-text">Tell us how you want to spend your time. We review the plan, timing, and availability before anything is confirmed.</p>
-        </header>
-        <ul class="tc-request-list">
-          <li>Local route planning and timing advice</li>
-          <li>Flexible stops inside your booked window</li>
-          <li>Dinner, Pearl, River Walk, or Market Square routing</li>
-          <li>Resort-to-downtown or airport timing help</li>
-          <li>Convention visitor or business dinner planning</li>
-          <li>Family or group-friendly San Antonio routes</li>
-          <li>Custom multi-stop plans quoted after review</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="tc-rebuild-section tc-request-band" id="concierge-pricing" aria-labelledby="concierge-pricing-heading">
-      <div class="tc-rebuild-inner">
-        <header class="tc-rebuild-head">
-          <p class="eyebrow">Concierge time options</p>
-          <h2 id="concierge-pricing-heading">Starting rates for private local concierge time</h2>
-          <p class="section-text">These are starting points for scheduled private concierge blocks. Final pricing is confirmed after review.</p>
+          <p class="eyebrow">Where we can help</p>
+          <h2 id="where-we-help-heading">Service options and starting rates</h2>
+          <p class="section-text">Choose the reserved block that fits your experience. Custom plans are quoted after review.</p>
         </header>
         <div class="tc-pricing-grid">
           <article class="tc-pricing-card">
-            <p class="tc-pricing-duration">Quick Local Window</p>
+            <p class="tc-pricing-duration">Local Evening Concierge</p>
             <h3>2 hours</h3>
             <p class="tc-pricing-rate">Starts at $250</p>
-            <p>Best for one simple dinner, hotel-to-downtown, or quick local help.</p>
+            <p>Best for dinner, downtown, River Walk, Pearl, rooftop drinks, Market Square, or a simple local evening.</p>
           </article>
           <article class="tc-pricing-card tc-pricing-card--featured">
             <p class="tc-pricing-duration">Private Concierge Block</p>
             <h3>3 hours</h3>
             <p class="tc-pricing-rate">Starts at $375</p>
-            <p>Best for dinner plus one or two stops, Pearl/River Walk/Market Square timing, or a flexible visitor plan.</p>
+            <p>Best for dinner plus one or two stops, resort-to-downtown timing, or a flexible visitor plan.</p>
           </article>
           <article class="tc-pricing-card">
-            <p class="tc-pricing-duration">Half-Day Local Concierge</p>
+            <p class="tc-pricing-duration">Half-Day Local Experience</p>
             <h3>4&ndash;5 hours</h3>
             <p class="tc-pricing-rate">Starts at $600</p>
-            <p>Best for families, resort guests, business travelers with open time, or custom city routes.</p>
+            <p>Best for families, business travelers with free time, resort guests, or first-time visitor routes.</p>
           </article>
           <article class="tc-pricing-card">
-            <p class="tc-pricing-duration">Full-Day Local Concierge</p>
-            <h3>Up to 8 hours</h3>
-            <p class="tc-pricing-rate">Starts at $1,000</p>
-            <p>Best for bigger plans, flexible routing, special occasions, or custom local days.</p>
+            <p class="tc-pricing-duration">Nearby Day Trip / Extended Route</p>
+            <h3>6&ndash;8 hours</h3>
+            <p class="tc-pricing-rate">Starts at $900&ndash;$1,200</p>
+            <p>Best for Fredericksburg, Boerne, Gruene, New Braunfels, wineries, scenic routes, or custom nearby experiences.</p>
           </article>
           <article class="tc-pricing-card">
-            <p class="tc-pricing-duration">Custom Request</p>
+            <p class="tc-pricing-duration">Custom Private Concierge</p>
             <h3>Quoted after review</h3>
             <p class="tc-pricing-rate">Custom pricing</p>
-            <p>Share your date, group, stops, and timing. We reply after reviewing route complexity and availability.</p>
+            <p>Best for special events, groups, unusual timing, longer routes, or multi-stop plans.</p>
           </article>
         </div>
-        <p class="tc-pricing-note">Final pricing depends on date, timing, distance, group size, route complexity, wait time, and availability.</p>
+        <p class="tc-pricing-note">Final pricing may depend on date, timing, distance, route complexity, group size, wait time, and special requests. Parking, tickets, meals, tolls, and extended travel may be separate.</p>
+      </div>
+    </section>
+
+    <section class="tc-rebuild-section tc-rebuild-dark" id="how-it-works" aria-labelledby="how-it-works-heading">
+      <div class="tc-rebuild-inner">
+        <header class="tc-rebuild-head">
+          <p class="eyebrow">How it works</p>
+          <h2 id="how-it-works-heading">A simple reservation flow</h2>
+        </header>
+        <div class="tc-how-grid">
+          <article class="tc-how-step"><strong>1. Choose</strong><p>Pick your experience type and the time block that fits your day.</p></article>
+          <article class="tc-how-step"><strong>2. Share details</strong><p>Tell us your date, pickup area, group size, and the places you want to include.</p></article>
+          <article class="tc-how-step"><strong>3. Review</strong><p>We review timing, route, and available calendar openings.</p></article>
+          <article class="tc-how-step"><strong>4. Confirm</strong><p>We follow up with confirmation details for your local concierge reservation.</p></article>
+        </div>
       </div>
     </section>
 
     <section class="tc-rebuild-section section-cream" id="concierge-included" aria-labelledby="included-heading">
       <div class="tc-rebuild-inner">
         <header class="tc-rebuild-head">
-          <p class="eyebrow">What is included</p>
-          <h2 id="included-heading">Inside your scheduled concierge block</h2>
+          <p class="eyebrow">What&rsquo;s included</p>
+          <h2 id="included-heading">Your reserved local concierge block</h2>
         </header>
         <div class="tc-inout-panel tc-inout-panel--yes">
           <ul>
             <li>Local route planning</li>
-            <li>Recommendation help</li>
-            <li>Scheduled time block</li>
-            <li>Flexible stops within the booked window</li>
-            <li>Wait time inside the time block</li>
-            <li>Local visitor guidance</li>
-            <li>Timing advice</li>
-            <li>Direct communication before confirmation</li>
+            <li>Restaurant and stop recommendations</li>
+            <li>Timing help</li>
+            <li>Flexible stops during the reserved block</li>
+            <li>Wait time inside the reserved block</li>
+            <li>Resort / downtown / convention / day-trip planning</li>
+            <li>Direct communication before the reservation</li>
+            <li>Help making better use of limited time in the area</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="tc-rebuild-section" id="concierge-not-included" aria-labelledby="not-included-heading">
-      <div class="tc-rebuild-inner">
-        <header class="tc-rebuild-head">
-          <p class="eyebrow">What is not included</p>
-          <h2 id="not-included-heading">Please plan around these limits</h2>
-        </header>
-        <div class="tc-inout-panel tc-inout-panel--no">
-          <ul>
-            <li>Instant pickup</li>
-            <li>Guaranteed availability</li>
-            <li>Alcohol, tickets, meals, parking, or attraction fees</li>
-            <li>Unsafe or illegal requests</li>
-            <li>Large group transportation unless approved</li>
-            <li>Long-distance trips unless quoted separately</li>
-            <li>Medical or emergency transportation</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <span id="route-operator" class="visually-hidden" tabindex="-1">Private concierge request</span>
-    <section class="tc-rebuild-section tc-request-band" id="transportation-request" aria-labelledby="transport-request-heading">
-      <div class="tc-rebuild-inner tc-request-shell">
-        <div>
-          <header class="tc-rebuild-head">
-            <p class="eyebrow">Request form</p>
-            <h2 id="transport-request-heading">Request Private Concierge Time</h2>
-            <p class="section-text">Share your date, timing, hotel or pickup area, group size, and plan type. Where To Go SA reviews every scheduled request for availability before confirming. This is not an instant ride request.</p>
-          </header>
-          <div class="tc-request-note">
-            <p>Include your preferred time block, stops or neighborhoods, and anything that affects timing. Customer-facing communication requires your consent below. Message and data rates may apply for text communication.</p>
-          </div>
-        </div>
+    <span id="route-operator" class="visually-hidden" tabindex="-1">Concierge reservation</span>
+    <section class="tc-rebuild-section tc-request-band tc-booking-section" id="transportation-request" aria-labelledby="transport-request-heading">
+      <div class="tc-rebuild-inner tc-booking-wrap">
         <div class="transport-request-card">
-          <form class="transport-intake-form" id="transport-intake-form" novalidate aria-label="Private concierge request form">
+          <form class="transport-intake-form" id="transport-intake-form" novalidate aria-label="Reserve local concierge time">
+            <header class="tc-booking-intro">
+              <p class="eyebrow">Booking</p>
+              <h2 id="transport-request-heading">Reserve your local concierge time</h2>
+              <p>Choose the type of experience you want, share your timing and pickup area, and we&rsquo;ll use the details to confirm your reservation or custom plan.</p>
+            </header>
+
+            <div class="tc-calendar-placeholder" role="region" aria-label="Booking calendar">
+              <p class="tc-calendar-placeholder__title">Available calendar openings</p>
+              <p class="tc-calendar-placeholder__text">Live calendar and payment booking will connect here. For now, submit the form below with your preferred date and time block. We&rsquo;ll review availability and follow up with confirmation details.</p>
+            </div>
+
             <p id="transport-intake-error" class="transport-intake-error" hidden role="alert"></p>
             <p id="transport-route-confirmation" class="transport-intake-error transport-intake-error--ok" hidden role="status"></p>
 
             <div class="transport-intake-section">
-              <h3 class="transport-intake-section__heading">Contact</h3>
+              <h3 class="transport-intake-section__heading">Your details</h3>
               <div class="transport-intake-grid">
                 <label class="transport-field"><span>Name</span><input type="text" name="visitor_name" id="transport-visitor-name" autocomplete="name" required /></label>
                 <label class="transport-field"><span>Phone</span><input type="tel" name="visitor_phone" id="transport-visitor-phone" autocomplete="tel" /></label>
                 <label class="transport-field"><span>Email</span><input type="email" name="visitor_email" id="transport-visitor-email" autocomplete="email" /></label>
-                <label class="transport-field"><span>Preferred contact method</span><select name="preferred_contact_method" id="transport-preferred-contact"><option value="">Choose one</option><option>Email</option><option>SMS</option><option>Phone call</option><option>No preference</option></select></label>
               </div>
             </div>
 
             <div class="transport-intake-section">
-              <h3 class="transport-intake-section__heading">Your visit</h3>
+              <h3 class="transport-intake-section__heading">Visit timing</h3>
               <div class="transport-intake-grid">
-                <label class="transport-field transport-field--full"><span>Hotel / pickup area</span><input type="text" name="pickup_area" id="transport-pickup-area" required placeholder="Hotel, resort, neighborhood, or landmark" /></label>
-                <label class="transport-field transport-field--full"><span>Stops or plan focus</span><input type="text" name="destination" id="transport-destination" required placeholder="Pearl, River Walk dinner, Market Square — or flexible plan" /></label>
-                <label class="transport-field"><span>Date requested</span><input type="date" name="requested_date" id="transport-requested-date" required /></label>
-                <label class="transport-field"><span>Start time</span><input type="text" name="time_window" id="transport-time-window" required placeholder="e.g. 5:30 p.m. pickup at hotel" /></label>
+                <label class="transport-field transport-field--full"><span>Hotel / pickup area</span><input type="text" name="pickup_area" id="transport-pickup-area" required placeholder="Hotel, resort, or neighborhood" /></label>
+                <label class="transport-field"><span>Requested date</span><input type="date" name="requested_date" id="transport-requested-date" required /></label>
+                <label class="transport-field"><span>Preferred start time</span><input type="text" name="time_window" id="transport-time-window" required placeholder="e.g. 5:30 p.m." /></label>
                 <label class="transport-field"><span>Number of people</span><input type="text" name="party_size" id="transport-party-size" required placeholder="e.g. 2 adults, 1 child" /></label>
-                <label class="transport-field"><span>Luggage or bags</span><input type="text" name="luggage" id="transport-luggage" placeholder="Carry-ons, stroller, clubs, etc." /></label>
-                <label class="transport-field transport-field--full"><span>Plan type</span><select name="trip_type" id="transport-trip-type" required><option value="">Choose one</option><option>Dinner / night out</option><option>Resort to downtown</option><option>Convention visitor plan</option><option>Family outing</option><option>Pearl / River Walk / Market Square</option><option>Airport / resort timing</option><option>Custom San Antonio route</option></select></label>
+                <label class="transport-field"><span>Luggage or bags?</span><input type="text" name="luggage" id="transport-luggage" placeholder="Optional — stroller, carry-ons, etc." /></label>
               </div>
             </div>
 
             <div class="transport-intake-section">
-              <fieldset class="transport-intake-fieldset">
-                <legend class="transport-intake-section__heading">Preferred time block</legend>
-                <div class="transport-radio-grid">
-                  <label class="transport-radio-option"><input type="radio" name="transportation_need" value="Private concierge — 2 hours (Quick Local Window)" required /> <span>2 hours — Quick Local Window</span></label>
-                  <label class="transport-radio-option"><input type="radio" name="transportation_need" value="Private concierge — 3 hours (Private Concierge Block)" /> <span>3 hours — Private Concierge Block</span></label>
-                  <label class="transport-radio-option"><input type="radio" name="transportation_need" value="Private concierge — 4-5 hours (Half-Day Local Concierge)" /> <span>4–5 hours — Half-Day Local Concierge</span></label>
-                  <label class="transport-radio-option"><input type="radio" name="transportation_need" value="Private concierge — full day (Full-Day Local Concierge)" /> <span>Full day — Full-Day Local Concierge</span></label>
-                  <label class="transport-radio-option transport-field--full"><input type="radio" name="transportation_need" value="Private concierge — custom (quoted after review)" /> <span>Custom — quoted after review</span></label>
-                </div>
-              </fieldset>
-              <p class="tc-form-guardrail">Scheduled requests only. Final confirmation required. No guaranteed availability.</p>
-            </div>
-
-            <div class="transport-intake-section">
-              <h3 class="transport-intake-section__heading">Message</h3>
+              <h3 class="transport-intake-section__heading">Experience &amp; time block</h3>
               <div class="transport-intake-grid">
-                <label class="transport-field transport-field--full"><span>Tell us about your San Antonio plan</span><textarea name="notes" id="transport-notes" rows="5" placeholder="Restaurants, neighborhoods, timing constraints, accessibility needs, or special occasion details."></textarea></label>
+                <label class="transport-field transport-field--full"><span>Experience type</span><select name="trip_type" id="transport-trip-type" required><option value="">Choose experience</option><option>City Night Out</option><option>Resort Guest Route</option><option>Family / First-Time Visitor Plan</option><option>Convention Free-Time Concierge</option><option>Nearby Day Trip / Extended Route</option><option>Custom Local Plan</option></select></label>
+                <label class="transport-field transport-field--full"><span>Time block</span><select name="transportation_need" id="transport-time-block" required><option value="">Choose time block</option><option value="Local Evening Concierge — 2 hours">2 hours — Local Evening Concierge</option><option value="Private Concierge Block — 3 hours">3 hours — Private Concierge Block</option><option value="Half-Day Local Experience — 4-5 hours">4–5 hours — Half-Day Local Experience</option><option value="Nearby Day Trip / Extended Route — 6-8 hours">6–8 hours — Nearby Day Trip / Extended Route</option><option value="Custom Private Concierge">Custom</option></select></label>
+                <label class="transport-field transport-field--full"><span>Main places you want to include</span><input type="text" name="destination" id="transport-destination" required placeholder="Pearl, River Walk, dinner downtown, winery route, etc." /></label>
+                <label class="transport-field transport-field--full"><span>Anything we should know?</span><textarea name="notes" id="transport-notes" rows="4" placeholder="Special occasion, accessibility needs, must-see stops, or timing notes."></textarea></label>
+                <label class="transport-field transport-field--full"><span>Preferred contact method</span><select name="preferred_contact_method" id="transport-preferred-contact"><option value="">Choose one</option><option>Email</option><option>SMS</option><option>Phone call</option><option>No preference</option></select></label>
                 <input type="hidden" name="ai_summary" id="transport-ai-summary" />
               </div>
             </div>
@@ -2490,26 +2585,35 @@
             <div class="sms-consent-block" id="transport-sms-consent">
               <label class="sms-consent-checkbox">
                 <input type="checkbox" name="sms_consent" value="yes" required />
-                <span>I agree that Where To Go SA may contact me by email or SMS about this scheduled concierge request. Message and data rates may apply. Reply STOP to opt out or HELP for help.</span>
+                <span>By submitting, you agree Where To Go SA may contact you about your reservation request. Message/data rates may apply for texts. Reply STOP to opt out.</span>
               </label>
-              <p class="sms-consent-help">Customer-facing communication requires consent. SMS consent helps us confirm timing and route details by text when needed. Message and data rates may apply. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</p>
+              <p class="sms-consent-help">See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</p>
             </div>
-            <button type="submit" class="btn btn-primary transport-intake-submit" id="transport-submit-intake">Request Private Concierge Time</button>
+            <button type="submit" class="btn btn-primary transport-intake-submit" id="transport-submit-intake">Reserve Concierge Time</button>
           </form>
         </div>
       </div>
     </section>
 
+    <section class="tc-rebuild-section" id="good-to-know" aria-labelledby="good-to-know-heading">
+      <div class="tc-rebuild-inner">
+        <header class="tc-rebuild-head">
+          <p class="eyebrow">Good to know</p>
+          <h2 id="good-to-know-heading">Before you reserve</h2>
+        </header>
+        <p class="tc-good-to-know">Reservations are based on available calendar openings. Final details may depend on route, timing, group size, distance, and special requests. Parking, tickets, meals, tolls, and extended travel may be separate. For custom trips, details are confirmed before finalizing.</p>
+      </div>
+    </section>
+
     <section class="tc-final tc-final--immersive transport-section" id="transportation-trust" aria-labelledby="tc-final-heading">
       <div class="tc-final-inner">
-        <p class="tc-final-eyebrow">Availability &amp; trust</p>
-        <h2 id="tc-final-heading">Scheduled private concierge requests are reviewed first</h2>
-        <p class="section-text">Where To Go SA is a premium San Antonio visitor guide. Submitting a request does not guarantee availability, pricing, or confirmation. Every request is reviewed for date, timing, route, and fit before you receive a reply. This is not an instant ride request.</p>
+        <p class="tc-final-eyebrow">San Antonio visitor planning</p>
+        <h2 id="tc-final-heading">Ready to plan a better local day?</h2>
+        <p class="section-text">Reserve concierge time for a private local experience with route help, flexible stops, and visitor planning built around your trip.</p>
         <div class="tc-final-actions">
-          <a class="btn btn-primary" href="#transportation-request">Request Private Concierge Time</a>
+          <a class="btn btn-primary" href="#transportation-request">Reserve Concierge Time</a>
           <a class="btn btn-secondary hero-secondary-btn" href="/ask/">Ask about my San Antonio plan</a>
         </div>
-        <p class="tc-final-footnote">Final confirmation required. No guaranteed availability. For urgent medical or emergency needs, contact appropriate emergency services or your hotel front desk.</p>
       </div>
     </section>
   </main>

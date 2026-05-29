@@ -389,19 +389,19 @@
       var visitorPhone = String(fd.get("visitor_phone") || "").trim();
 
       if (!visitorEmail && !visitorPhone) {
-        showIntakeMessage("Please include an email or phone so Where To Go SA can follow up about your request.", true);
+        showIntakeMessage("Please include an email or phone so we can follow up about your reservation.", true);
         if (intakeSubmit) intakeSubmit.disabled = false;
         return;
       }
 
       if (!transportNeeds.length) {
-        showIntakeMessage("Please choose a preferred concierge time block.", true);
+        showIntakeMessage("Please choose a time block for your reservation.", true);
         if (intakeSubmit) intakeSubmit.disabled = false;
         return;
       }
 
       if (fd.get("sms_consent") !== "yes") {
-        showIntakeMessage("Please confirm consent so Where To Go SA can contact you about this request.", true);
+        showIntakeMessage("Please confirm consent so we can contact you about your reservation.", true);
         if (intakeSubmit) intakeSubmit.disabled = false;
         return;
       }
@@ -440,7 +440,7 @@
         source: "transportation_page",
         lead_type: "transportation_request",
         status: "New",
-        next_action: "review private concierge request",
+        next_action: "review concierge reservation",
       };
 
       fetch(REQ_URL, {
@@ -466,7 +466,7 @@
           if (confirmEl) {
             confirmEl.hidden = false;
             confirmEl.textContent =
-              "Request received. Where To Go SA will review the date, timing, route, and availability before confirming. This is not an instant ride request.";
+              "Thanks — we received your concierge request. We'll review your timing, route, group size, and requested experience, then follow up with confirmation details.";
             confirmEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
           }
           showIntakeMessage("", false);
