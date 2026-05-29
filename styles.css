@@ -4536,6 +4536,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 .page-home main > .section.premium-atmosphere,
 .page-home .home-guide-directory.band,
 .page-home .transport-section.transport-section--story,
+.page-home .transport-section.transport-section--concierge-home,
 .page-home .home-ask-launcher-compact.section-ask-premium,
 .page-home .home-trust-band--light.trust-strip--home-proof,
 .page-home .home-ai-plug-section {
@@ -4552,7 +4553,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 @media (max-width: 768px) {
-  .page-home :is(.routes-band-inner, .transport-story-shell) {
+  .page-home :is(.routes-band-inner, .transport-story-shell, .home-concierge-shell) {
     padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
   }
 }
@@ -10605,6 +10606,325 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
   .page-home .transport-story-card:hover .transport-story-card-media {
     transform: scale(1.02);
+  }
+}
+
+/* Homepage — local concierge (open layout, no nested cards) */
+.page-home .transport-section.transport-section--concierge-home {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  padding-top: clamp(36px, 5vw, 56px);
+  padding-bottom: clamp(36px, 5vw, 56px);
+  border-top: none;
+  border-bottom: none;
+  /* Own atmosphere — avoid generic dark-showcase wash + white glass mud */
+  background:
+    radial-gradient(ellipse 95% 70% at 50% -15%, rgba(255, 139, 31, 0.14), transparent 52%),
+    radial-gradient(ellipse 75% 55% at 6% 35%, rgba(20, 184, 166, 0.24), transparent 54%),
+    radial-gradient(ellipse 70% 50% at 94% 65%, rgba(242, 178, 26, 0.16), transparent 50%),
+    radial-gradient(ellipse 55% 45% at 38% 100%, rgba(97, 45, 120, 0.12), transparent 55%),
+    linear-gradient(168deg, #03080f 0%, #071222 32%, #0b1d3a 62%, #102a4a 100%);
+  box-shadow: none;
+}
+
+.page-home .transport-section.transport-section--concierge-home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(3, 8, 15, 0.55) 0%, transparent 22%),
+    radial-gradient(ellipse 100% 50% at 50% 100%, rgba(2, 6, 14, 0.45), transparent 65%);
+}
+
+.page-home .transport-section.transport-section--concierge-home::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 184, 166, 0.95) 0%,
+    rgba(242, 178, 26, 0.95) 48%,
+    rgba(255, 106, 77, 0.9) 100%
+  );
+}
+
+.page-home .home-concierge-shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--home-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--home-shell-pad);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 44px);
+}
+
+.page-home .home-concierge-intro {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vw, 20px);
+  width: 100%;
+  max-width: none;
+}
+
+.page-home .home-concierge-heading {
+  margin: 0;
+  font-size: clamp(1.85rem, 6.2vw + 0.5rem, 2.65rem);
+  line-height: 1.08;
+  letter-spacing: -0.034em;
+  font-weight: 860;
+  text-wrap: balance;
+  color: #fff8eb;
+}
+
+.page-home .home-concierge-lede.section-text-light {
+  margin: 0;
+  max-width: none;
+  width: 100%;
+  font-size: clamp(1.02rem, 0.55vw + 0.94rem, 1.12rem);
+  line-height: 1.62;
+  letter-spacing: normal;
+  text-wrap: pretty;
+}
+
+.page-home .home-concierge-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 14px;
+  margin-top: clamp(2px, 0.6vw, 6px);
+}
+
+.page-home .home-concierge-cta-row .btn {
+  min-width: min(100%, 12.5rem);
+  padding-inline: clamp(18px, 3vw, 24px);
+}
+
+.page-home .home-concierge-rate {
+  margin: 0;
+  font-size: clamp(0.92rem, 0.2vw + 0.86rem, 1rem);
+  line-height: 1.55;
+  color: rgba(255, 246, 230, 0.82);
+}
+
+.page-home .home-concierge-rate strong {
+  color: rgba(253, 224, 150, 0.98);
+  font-weight: 820;
+}
+
+.page-home .home-concierge-visual {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: clamp(16px, 2.4vw, 22px);
+  min-height: clamp(220px, 56vw, 380px);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 28px 60px rgba(2, 6, 14, 0.45);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.page-home .home-concierge-visual:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 36px 72px rgba(2, 6, 14, 0.52);
+}
+
+.page-home .home-concierge-visual:focus-visible {
+  outline: 3px solid rgba(242, 178, 26, 0.95);
+  outline-offset: 4px;
+}
+
+.page-home .home-concierge-visual-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 36%;
+  display: block;
+}
+
+.page-home .home-concierge-visual-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 78% 8%, rgba(255, 139, 31, 0.16), transparent 55%),
+    linear-gradient(to top, rgba(5, 10, 24, 0.82) 0%, rgba(5, 10, 24, 0.2) 52%, transparent 100%);
+}
+
+.page-home .home-concierge-visual-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  margin: 0;
+  padding: clamp(18px, 3.2vw, 28px);
+  max-width: none;
+  font-size: clamp(1rem, 0.35vw + 0.92rem, 1.14rem);
+  font-weight: 760;
+  line-height: 1.45;
+  letter-spacing: -0.016em;
+  color: #fff8eb;
+  text-shadow: 0 2px 24px rgba(5, 10, 24, 0.5);
+}
+
+.page-home .home-concierge-exp-panel {
+  width: 100%;
+  border-radius: clamp(16px, 2.4vw, 22px);
+  border: 1px solid rgba(20, 184, 166, 0.28);
+  background: linear-gradient(165deg, rgba(7, 16, 34, 0.94) 0%, rgba(4, 10, 22, 0.98) 100%);
+  box-shadow:
+    0 22px 50px rgba(2, 6, 14, 0.42),
+    inset 0 1px 0 rgba(20, 184, 166, 0.12);
+}
+
+.page-home .home-concierge-exp-head {
+  padding: clamp(18px, 3vw, 26px) clamp(18px, 3vw, 26px) clamp(12px, 2vw, 16px);
+  border-bottom: 1px solid rgba(20, 184, 166, 0.16);
+}
+
+.page-home .home-concierge-exp-head h3 {
+  margin: 0 0 8px;
+  font-size: clamp(1.12rem, 0.4vw + 1rem, 1.32rem);
+  font-weight: 850;
+  letter-spacing: -0.022em;
+  color: #fff8eb;
+}
+
+.page-home .home-concierge-exp-lead {
+  margin: 0;
+  max-width: none;
+  font-size: clamp(0.96rem, 0.25vw + 0.9rem, 1.02rem);
+  line-height: 1.55;
+  color: rgba(255, 246, 230, 0.78);
+}
+
+.page-home .home-concierge-exp-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-home .home-concierge-exp-list > li + li {
+  border-top: 1px solid rgba(20, 184, 166, 0.14);
+}
+
+.page-home .home-concierge-exp-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(14px, 2.5vw, 22px);
+  padding: clamp(18px, 3.2vw, 24px) clamp(18px, 3vw, 26px);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s ease;
+}
+
+.page-home .home-concierge-exp-row:hover {
+  background: rgba(20, 184, 166, 0.1);
+}
+
+.page-home .home-concierge-exp-row:focus-visible {
+  outline: 3px solid rgba(242, 178, 26, 0.95);
+  outline-offset: -3px;
+}
+
+.page-home .home-concierge-exp-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.page-home .home-concierge-exp-row-title {
+  font-size: clamp(1.02rem, 0.35vw + 0.94rem, 1.1rem);
+  font-weight: 840;
+  letter-spacing: -0.02em;
+  line-height: 1.28;
+  color: #fff8eb;
+}
+
+.page-home .home-concierge-exp-row-copy {
+  font-size: clamp(0.94rem, 0.2vw + 0.88rem, 1rem);
+  line-height: 1.55;
+  color: rgba(255, 246, 230, 0.8);
+  max-width: none;
+}
+
+.page-home .home-concierge-exp-row-arrow {
+  flex-shrink: 0;
+  margin-top: 0.15em;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: rgba(45, 212, 191, 0.95);
+  line-height: 1;
+}
+
+@media (min-width: 960px) {
+  .page-home .home-concierge-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    grid-template-areas:
+      "intro intro"
+      "visual visual"
+      "panel panel";
+    gap: clamp(32px, 3.6vw, 48px);
+  }
+
+  .page-home .home-concierge-intro {
+    grid-area: intro;
+    max-width: min(52rem, 100%);
+  }
+
+  .page-home .home-concierge-visual {
+    grid-area: visual;
+    min-height: clamp(280px, 32vw, 400px);
+  }
+
+  .page-home .home-concierge-exp-panel {
+    grid-area: panel;
+  }
+
+  .page-home .home-concierge-exp-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-home .home-concierge-exp-list > li:nth-child(odd) {
+    border-right: 1px solid rgba(20, 184, 166, 0.14);
+  }
+
+  .page-home .home-concierge-exp-list > li:nth-child(2) {
+    border-top: 0;
+  }
+
+  .page-home .home-concierge-exp-list > li:nth-child(n + 3) {
+    border-top: 1px solid rgba(20, 184, 166, 0.14);
+  }
+}
+
+@media (max-width: 419px) {
+  .page-home .home-concierge-cta-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-home .home-concierge-visual:hover {
+    transform: none;
   }
 }
 
@@ -24955,6 +25275,15 @@ body.owner-dash-detail-open {
   padding-top: clamp(18px, 3.2vw, 26px);
 }
 
+.page-home .transport-section.transport-section--concierge-home:has(+ .home-fiesta-divider) {
+  padding-bottom: clamp(28px, 4vw, 40px);
+  border-bottom: none;
+}
+
+.page-home .home-fiesta-divider--transport-ai {
+  opacity: 1;
+}
+
 .page-home .home-ai-plug-section::before {
   content: "";
   position: absolute;
@@ -25709,28 +26038,23 @@ body.owner-dash-detail-open {
   display: none;
 }
 
-/* Transport — tighter homepage block */
-.page-home .transport-section.transport-section--story {
-  padding-top: clamp(22px, 3vw, 32px);
-  padding-bottom: clamp(20px, 2.8vw, 28px);
-}
+/* Transport — homepage concierge mobile type */
+@media (max-width: 520px) {
+  .page-home .home-concierge-shell {
+    gap: clamp(24px, 6vw, 32px);
+  }
 
-.page-home .transport-story-heading {
-  font-size: clamp(1.35rem, 1.8vw + 0.75rem, 1.95rem);
-}
+  .page-home .home-concierge-heading {
+    font-size: clamp(1.78rem, 7.5vw + 0.35rem, 2.15rem);
+  }
 
-.page-home .transport-story-lede {
-  font-size: clamp(0.9rem, 0.2vw + 0.84rem, 0.98rem);
-  line-height: 1.52;
-  letter-spacing: normal;
-  word-spacing: normal;
-}
+  .page-home .home-concierge-lede.section-text-light {
+    font-size: clamp(1.04rem, 4.2vw, 1.1rem);
+    line-height: 1.64;
+  }
 
-@media (min-width: 960px) {
-  .page-home .transport-story-body {
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 1fr);
-    gap: clamp(18px, 2.4vw, 28px);
-    padding: clamp(16px, 2.2vw, 22px);
+  .page-home .home-concierge-exp-row {
+    padding-block: clamp(20px, 5vw, 24px);
   }
 }
 
