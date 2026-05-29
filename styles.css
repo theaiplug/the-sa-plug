@@ -26362,16 +26362,57 @@ body.owner-dash-detail-open {
   border-top-color: rgba(255, 246, 230, 0.14);
 }
 
-/* ----- Form studio — “we build the form for you” flagship ----- */
+/* ----- Form studio — premium light atmosphere ----- */
 .page-business-bridge .ai-bs-form-studio-section.section-cream {
+  --bs-form-surface: #fff9f0;
+  --bs-form-surface-mid: #f4e9dc;
+  --bs-form-surface-deep: #e6d9c6;
   position: relative;
   overflow: hidden;
-  background: #fffbf4;
+  isolation: isolate;
   color: var(--navy);
+  background-color: var(--bs-form-surface);
+  background-image:
+    radial-gradient(ellipse 130% 95% at 4% -15%, rgba(20, 184, 166, 0.26), transparent 58%),
+    radial-gradient(ellipse 95% 80% at 102% 8%, rgba(242, 178, 26, 0.32), transparent 54%),
+    radial-gradient(ellipse 75% 60% at 88% 92%, rgba(255, 106, 77, 0.14), transparent 52%),
+    radial-gradient(ellipse 55% 50% at 18% 78%, rgba(20, 184, 166, 0.12), transparent 48%),
+    linear-gradient(
+      168deg,
+      #fffef9 0%,
+      var(--bs-form-surface) 32%,
+      var(--bs-form-surface-mid) 62%,
+      var(--bs-form-surface-deep) 100%
+    );
 }
 
 .page-business-bridge .ai-bs-form-studio-section.section-cream::before {
-  display: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(rgba(11, 29, 58, 0.045) 0.5px, transparent 0.5px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 90% 80% at 48% 42%, black 15%, transparent 70%);
+}
+
+.page-business-bridge .ai-bs-form-studio-section.section-cream::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 184, 166, 0.9) 0%,
+    rgba(242, 178, 26, 0.95) 48%,
+    rgba(255, 106, 77, 0.88) 100%
+  );
 }
 
 .page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier,
@@ -26380,7 +26421,7 @@ body.owner-dash-detail-open {
 }
 
 .page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__kicker {
-  color: #0d9488;
+  color: #0f766e;
 }
 
 .page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__title {
@@ -26388,11 +26429,11 @@ body.owner-dash-detail-open {
 }
 
 .page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__lede {
-  color: rgba(11, 29, 58, 0.82);
+  color: rgba(11, 29, 58, 0.84);
 }
 
 .page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__step-text {
-  color: rgba(11, 29, 58, 0.84);
+  color: rgba(11, 29, 58, 0.86);
 }
 
 .page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__step-text strong {
@@ -26468,9 +26509,13 @@ body.owner-dash-detail-open {
   align-items: start;
   padding: 14px 16px;
   border-radius: 14px;
-  background: #fffdf9;
-  border: 1px solid rgba(11, 29, 58, 0.1);
-  box-shadow: 0 10px 28px rgba(11, 29, 58, 0.06);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 14px 36px rgba(11, 29, 58, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 .page-business-bridge .ai-bs-form-atelier__step-n {
@@ -26514,9 +26559,12 @@ body.owner-dash-detail-open {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: rgba(11, 29, 58, 0.82);
-  background: rgba(11, 29, 58, 0.05);
+  color: rgba(11, 29, 58, 0.88);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(11, 29, 58, 0.1);
+  box-shadow: 0 6px 16px rgba(11, 29, 58, 0.05);
 }
 
 .page-business-bridge .ai-bs-form-atelier__proof li::before {
@@ -26538,8 +26586,9 @@ body.owner-dash-detail-open {
     rgba(20, 184, 166, 0.7) 100%
   );
   box-shadow:
-    0 32px 80px rgba(4, 10, 22, 0.45),
-    0 0 0 1px rgba(255, 246, 230, 0.12);
+    0 40px 90px rgba(11, 29, 58, 0.22),
+    0 16px 40px rgba(4, 10, 22, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.35);
 }
 
 .page-business-bridge .ai-bs-form-canvas__frame {
