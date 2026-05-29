@@ -1366,6 +1366,34 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
     radial-gradient(circle at 92% 20%, rgba(255, 106, 77, 0.14), transparent 24%);
 }
 
+/* Solid navy — flat brand navy only (no photos, scrims, or gradient mixes) */
+.section-navy-solid {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+  color: var(--on-dark-body);
+  background-color: var(--navy);
+  background-image: none;
+  border: none;
+}
+
+.section-navy-solid::before,
+.section-navy-solid::after {
+  display: none;
+}
+
+.section-navy-solid :is(h2, h3) {
+  color: var(--on-dark-heading);
+}
+
+.section-navy-solid .section-text {
+  color: var(--on-dark-body);
+}
+
+.section-navy-solid .eyebrow:not(.eyebrow-on-dark) {
+  color: var(--gold);
+}
+
 .section-navy-routes h2,
 .section-navy-routes .section-text,
 .section-navy-routes .eyebrow {
@@ -8242,23 +8270,17 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
     padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
   }
 
-  .page-ask .ask-product-value--light .ask-product-band-shell {
+  .page-ask .ask-product-value--light .ask-product-band-shell,
+  .page-ask .ask-product-value.section-navy-solid .ask-product-band-shell {
     padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
   }
 }
 
-/* Start Here — band positions (subtle scroll parallax on one photo) */
-.page-start-here .sh-ask-band.premium-atmosphere {
+/* Start Here — Ask A Local band (solid navy) */
+.page-start-here .sh-ask-band.section-navy-solid {
   margin-top: -1px;
-  background-image:
-    linear-gradient(
-      180deg,
-      var(--premium-scrim-seam-top) 0%,
-      var(--premium-scrim-mid) 42%,
-      var(--premium-scrim-bottom) 100%
-    ),
-    var(--premium-atmosphere-photo);
-  background-position: center 28%;
+  background-color: var(--navy);
+  background-image: none;
 }
 
 .page-start-here .path-hub-section.premium-atmosphere.sh-lanes-hub {
@@ -8305,6 +8327,58 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   padding-block: var(--ask-section-pad);
   margin-bottom: 0;
   background-position: center 56%;
+}
+
+.page-ask .ask-product-value.section-navy-solid,
+.page-ask .ask-product-human.section-navy-solid {
+  padding-block: var(--ask-section-pad);
+  background-color: var(--navy);
+  background-image: none;
+}
+
+.page-ask .ask-product-human.section-navy-solid {
+  margin-bottom: 0;
+}
+
+.page-ask .ask-product-value.section-navy-solid .ask-product-band-shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--sh-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--sh-shell-pad);
+  box-sizing: border-box;
+}
+
+.page-ask .ask-product-value.section-navy-solid .ask-product-section-head--on-dark .eyebrow.eyebrow-on-dark {
+  color: rgba(20, 184, 166, 0.92);
+}
+
+.page-ask .ask-product-value.section-navy-solid .ask-product-section-head--on-dark h2 {
+  color: rgba(255, 248, 235, 0.98);
+}
+
+.page-ask .ask-product-value.section-navy-solid .ask-product-section-head--on-dark .section-text {
+  color: rgba(255, 248, 235, 0.84);
+}
+
+.page-ask .ask-product-value.section-navy-solid .ask-product-value-list li {
+  color: rgba(255, 246, 230, 0.94);
+  background: rgba(255, 246, 230, 0.06);
+  border-top: 1px solid rgba(255, 246, 230, 0.1);
+  border-right: 1px solid rgba(255, 246, 230, 0.08);
+  border-bottom: 1px solid rgba(255, 246, 230, 0.08);
+  box-shadow: 0 1px 0 rgba(255, 246, 230, 0.04) inset;
+}
+
+@media (hover: hover) {
+  .page-ask .ask-product-value.section-navy-solid .ask-product-value-list li:hover {
+    background: rgba(255, 246, 230, 0.1);
+    border-color: rgba(242, 178, 26, 0.35);
+    box-shadow:
+      0 1px 0 rgba(255, 246, 230, 0.06) inset,
+      0 18px 36px rgba(0, 0, 0, 0.22);
+  }
 }
 
 .page-start-here .sh-lanes-hub.premium-atmosphere {
