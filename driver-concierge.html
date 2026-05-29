@@ -2328,36 +2328,12 @@
       line-height: 1.58;
     }
 
-    .transport-concierge-main .tc-calendar-placeholder {
-      margin: 0 0 clamp(18px, 2.4vw, 22px);
-      padding: clamp(14px, 2vw, 18px);
-      border-radius: calc(var(--radius) + 2px);
-      background: linear-gradient(145deg, rgba(20, 184, 166, 0.1) 0%, rgba(255, 252, 246, 0.95) 100%);
-      border: 1px dashed rgba(20, 184, 166, 0.35);
-    }
-
-    .transport-concierge-main .tc-calendar-placeholder__title {
-      margin: 0 0 6px;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--turquoise);
-    }
-
-    .transport-concierge-main .tc-calendar-placeholder__text {
-      margin: 0;
-      font-size: 0.88rem;
-      line-height: 1.55;
-      color: var(--slate);
-    }
-
-    .transport-concierge-main .tc-booking-section .transport-intake-form select {
+    .transport-concierge-main .tc-booking-band .transport-intake-form select {
       min-height: 48px;
       font-size: 1rem;
     }
 
-    .transport-concierge-main .tc-booking-section .transport-field span {
+    .transport-concierge-main .tc-booking-band .transport-field span {
       line-height: 1.35;
     }
 
@@ -2369,6 +2345,305 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--turquoise);
+    }
+
+    /* —— Site-rhythm bands (navy + image backgrounds) —— */
+    .transport-concierge-main .tc-exp-hub.premium-atmosphere {
+      background-position: center 36%;
+    }
+
+    .transport-concierge-main .tc-how-hub.premium-atmosphere {
+      background-position: center 42%;
+    }
+
+    .transport-concierge-main .tc-path-head {
+      max-width: 48rem;
+      margin-bottom: 0;
+    }
+
+    .transport-concierge-main .tc-path-head h2 {
+      color: var(--cream);
+      margin: 0 0 10px;
+      font-size: clamp(1.55rem, 2.6vw + 0.55rem, 2.35rem);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+
+    .transport-concierge-main .tc-path-head .section-text-light {
+      margin: 0;
+      max-width: 44rem;
+    }
+
+    .transport-concierge-main .tc-exp-lane-grid {
+      display: grid;
+      gap: clamp(14px, 1.6vw, 18px);
+      grid-template-columns: 1fr;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    @media (min-width: 560px) {
+      .transport-concierge-main .tc-exp-lane-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 960px) {
+      .transport-concierge-main .tc-exp-lane-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .transport-concierge-main .tc-exp-lane-grid .image-route-card {
+      min-height: clamp(200px, 36vw, 260px);
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-grid {
+      margin: 0;
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 246, 230, 0.16);
+      box-shadow: 0 16px 40px rgba(2, 6, 14, 0.28);
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-card h3,
+    .transport-concierge-main .tc-rates-band .tc-pricing-duration {
+      color: #fff8eb;
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-card p {
+      color: rgba(255, 246, 230, 0.84);
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-rate {
+      color: var(--gold);
+    }
+
+    .transport-concierge-main .tc-rates-band .tc-pricing-note {
+      color: rgba(255, 246, 230, 0.78);
+      margin-top: clamp(16px, 2vw, 22px);
+    }
+
+    .transport-concierge-main .tc-how-steps {
+      display: grid;
+      gap: clamp(14px, 1.8vw, 18px);
+      grid-template-columns: 1fr;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    @media (min-width: 720px) {
+      .transport-concierge-main .tc-how-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+      }
+    }
+
+    .transport-concierge-main .tc-how-steps .tc-how-step {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 14px 16px;
+      align-items: start;
+      margin: 0;
+      padding: clamp(18px, 2.2vw, 22px) clamp(16px, 2vw, 20px);
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid rgba(255, 246, 230, 0.16);
+      background: rgba(7, 16, 34, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow:
+        0 20px 44px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 246, 230, 0.06);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .transport-concierge-main .tc-how-steps .tc-how-step {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(7, 16, 34, 0.9);
+      }
+    }
+
+    .transport-concierge-main .tc-how-step__num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.15rem;
+      height: 2.15rem;
+      border-radius: 0.65rem;
+      font-size: 0.92rem;
+      font-weight: 900;
+      color: var(--navy);
+      background: linear-gradient(145deg, var(--gold), var(--orange));
+      box-shadow: 0 8px 18px rgba(11, 29, 58, 0.2);
+    }
+
+    .transport-concierge-main .tc-how-step__body h3 {
+      margin: 0 0 8px;
+      font-size: clamp(1rem, 0.35vw + 0.92rem, 1.08rem);
+      font-weight: 850;
+      color: #fff8eb;
+      line-height: 1.22;
+    }
+
+    .transport-concierge-main .tc-how-step__body p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.86);
+    }
+
+    .transport-concierge-main .tc-booking-band {
+      padding-block: clamp(38px, 5vw, 56px);
+    }
+
+    .transport-concierge-main .tc-booking-band-head {
+      max-width: 44rem;
+      margin-bottom: clamp(20px, 2.8vw, 28px);
+    }
+
+    .transport-concierge-main .tc-booking-band-head h2 {
+      margin: 0 0 10px;
+      color: var(--on-dark-heading);
+      font-size: clamp(1.55rem, 2.6vw + 0.55rem, 2.2rem);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+
+    .transport-concierge-main .tc-booking-band-head .section-text {
+      margin: 0;
+      color: var(--on-dark-body);
+      max-width: 42rem;
+    }
+
+    .transport-concierge-main .tc-booking-split {
+      display: grid;
+      gap: clamp(16px, 2.4vw, 22px);
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+
+    @media (min-width: 900px) {
+      .transport-concierge-main .tc-booking-split {
+        grid-template-columns: minmax(240px, 0.92fr) minmax(0, 1.08fr);
+      }
+    }
+
+    .transport-concierge-main .tc-booking-aside {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      overflow: hidden;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255, 246, 230, 0.16);
+      background: rgba(7, 16, 34, 0.55);
+      box-shadow: 0 24px 52px rgba(0, 0, 0, 0.32);
+    }
+
+    @media (min-width: 900px) {
+      .transport-concierge-main .tc-booking-aside {
+        grid-template-rows: minmax(140px, 34%) minmax(0, 1fr);
+      }
+    }
+
+    .transport-concierge-main .tc-booking-aside__visual {
+      position: relative;
+      margin: 0;
+      min-height: clamp(148px, 32vw, 200px);
+      overflow: hidden;
+    }
+
+    .transport-concierge-main .tc-booking-aside__visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+
+    .transport-concierge-main .tc-booking-aside__shade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 55%, rgba(5, 10, 24, 0.35) 100%);
+    }
+
+    .transport-concierge-main .tc-booking-aside__panel {
+      padding: clamp(16px, 2.2vw, 22px);
+      color: rgba(255, 246, 230, 0.9);
+    }
+
+    .transport-concierge-main .tc-booking-aside__label {
+      margin: 0 0 10px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(20, 184, 166, 0.95);
+    }
+
+    .transport-concierge-main .tc-opening-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 14px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .transport-concierge-main .tc-opening-chips li {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 750;
+      color: #fff8eb;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 246, 230, 0.18);
+    }
+
+    .transport-concierge-main .tc-booking-aside__note {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: rgba(255, 246, 230, 0.78);
+    }
+
+    .transport-concierge-main .tc-booking-band .transport-request-card {
+      margin: 0;
+      height: 100%;
+    }
+
+    .transport-concierge-main .tc-included-band {
+      max-width: none;
+      margin: 0;
+      padding: clamp(38px, 5vw, 56px) clamp(16px, 4.5vw, 74px);
+    }
+
+    .transport-concierge-main .tc-included-band > .routes-band-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .page-concierge .transport-concierge-main > .section.band,
+    .page-concierge .transport-concierge-main > .premium-atmosphere,
+    .page-concierge .transport-concierge-main > .section-navy-routes,
+    .page-concierge .transport-concierge-main > .section-navy-solid {
+      padding-inline: 0;
+    }
+
+    .page-concierge .section-navy-solid > .routes-band-inner,
+    .page-concierge .section-navy-routes > .routes-band-inner {
+      width: 100%;
+      max-width: var(--sh-shell-max);
+      margin-inline: auto;
+      padding-inline: var(--sh-shell-pad);
+      box-sizing: border-box;
     }
 
     /* —— Premium concierge polish (A++ layer) —— */
@@ -2653,18 +2928,11 @@
       box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.16);
     }
 
-    .transport-concierge-main .tc-booking-section {
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(20, 184, 166, 0.14), transparent 55%),
-        linear-gradient(180deg, #f8f4ef 0%, #efe8df 48%, #e8e2d8 100%);
-      border-block: 1px solid rgba(11, 29, 58, 0.08);
+    .transport-concierge-main .tc-hero-support:not(.tc-hero-disclaimer) {
+      margin-top: clamp(12px, 1.6vw, 18px);
     }
 
-    .transport-concierge-main .tc-booking-wrap {
-      max-width: min(52rem, 100%);
-    }
-
-    .transport-concierge-main .tc-booking-section .transport-request-card {
+    .transport-concierge-main .tc-booking-band .transport-request-card {
       position: relative;
       padding: 0;
       overflow: hidden;
@@ -2675,50 +2943,15 @@
         0 28px 70px rgba(11, 29, 58, 0.14);
     }
 
-    .transport-concierge-main .tc-booking-section .transport-request-card::before {
+    .transport-concierge-main .tc-booking-band .transport-request-card::before {
       content: "";
       display: block;
       height: 4px;
       background: linear-gradient(90deg, var(--turquoise) 0%, var(--gold) 55%, var(--coral) 100%);
     }
 
-    .transport-concierge-main .tc-booking-section .transport-intake-form {
+    .transport-concierge-main .tc-booking-band .transport-intake-form {
       padding: clamp(18px, 3vw, 28px);
-    }
-
-    .transport-concierge-main .tc-calendar-placeholder {
-      display: grid;
-      gap: 14px;
-      border-style: solid;
-      border-color: rgba(11, 29, 58, 0.1);
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 252, 246, 0.92) 100%);
-      box-shadow: 0 10px 28px rgba(11, 29, 58, 0.06);
-    }
-
-    .transport-concierge-main .tc-calendar-mock {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 6px;
-    }
-
-    .transport-concierge-main .tc-calendar-mock span {
-      aspect-ratio: 1;
-      border-radius: 8px;
-      background: rgba(11, 29, 58, 0.06);
-      border: 1px solid rgba(11, 29, 58, 0.06);
-    }
-
-    .transport-concierge-main .tc-calendar-mock span:nth-child(10),
-    .transport-concierge-main .tc-calendar-mock span:nth-child(14),
-    .transport-concierge-main .tc-calendar-mock span:nth-child(18) {
-      background: rgba(20, 184, 166, 0.22);
-      border-color: rgba(20, 184, 166, 0.35);
-    }
-
-    .transport-concierge-main .tc-calendar-mock span:nth-child(22) {
-      background: rgba(242, 178, 26, 0.28);
-      border-color: rgba(242, 178, 26, 0.45);
     }
 
     .transport-concierge-main .tc-good-to-know-card {
@@ -2730,7 +2963,7 @@
       box-shadow: 0 12px 32px rgba(11, 29, 58, 0.06);
     }
 
-    .transport-concierge-main .tc-booking-section .transport-intake-submit {
+    .transport-concierge-main .tc-booking-band .transport-intake-submit {
       min-height: 54px;
       font-size: 1rem;
       font-weight: 850;
@@ -2738,15 +2971,6 @@
       box-shadow:
         0 12px 32px rgba(255, 139, 31, 0.32),
         0 4px 12px rgba(11, 29, 58, 0.1);
-    }
-
-    .transport-concierge-main #where-we-help {
-      background:
-        linear-gradient(90deg, rgba(11, 29, 58, 0.028) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(11, 29, 58, 0.028) 1px, transparent 1px),
-        radial-gradient(ellipse 80% 70% at 12% 0%, rgba(20, 184, 166, 0.1), transparent 52%),
-        linear-gradient(180deg, #fff9f1 0%, #f6ebe0 100%);
-      background-size: 34px 34px, 34px 34px, auto, auto;
     }
   </style>
 </head>
@@ -2793,9 +3017,11 @@
       </div>
     </section>
 
-    <section class="page-jump-band page-jump-band--cream" aria-labelledby="tc-jump-title">
+    <div class="home-fiesta-divider" role="presentation" aria-hidden="true"></div>
+
+    <section class="page-jump-band page-jump-band--dark" aria-labelledby="tc-jump-title">
       <div class="page-jump-band-inner">
-        <p class="eyebrow">On this page</p>
+        <p class="eyebrow eyebrow-on-dark">On this page</p>
         <h2 id="tc-jump-title" class="page-jump-title">Plan your concierge reservation</h2>
         <div class="page-jump-chip-row">
           <a class="page-jump-chip" href="#choose-experience">Experiences</a>
@@ -2808,92 +3034,89 @@
       </div>
     </section>
 
-    <section class="tc-rebuild-section section-cream" id="choose-experience" aria-labelledby="choose-experience-heading">
-      <div class="tc-rebuild-inner">
-        <header class="tc-rebuild-head tc-premium-head">
-          <p class="eyebrow">Choose your experience</p>
+    <div class="home-fiesta-divider" role="presentation" aria-hidden="true"></div>
+
+    <section class="section band premium-atmosphere tc-exp-hub" id="choose-experience" aria-labelledby="choose-experience-heading">
+      <div class="routes-band-inner">
+        <header class="path-hub-head tc-path-head">
+          <p class="eyebrow eyebrow-on-dark">Choose your experience</p>
           <h2 id="choose-experience-heading">What kind of San Antonio visit are you planning?</h2>
-          <p class="section-text">Six common visitor plans. Pick the one closest to your trip, then reserve your time block below.</p>
+          <p class="section-text section-text-light">Six common visitor plans. Pick the one closest to your trip, then reserve your time block below.</p>
         </header>
-        <div class="tc-exp-grid">
-          <article class="tc-exp-card">
-            <figure class="tc-exp-card__media">
-              <img src="assets/transport-riverwalk-night-out.png" alt="Evening on the San Antonio River Walk" width="720" height="450" decoding="async" loading="lazy" />
-              <span class="tc-exp-card__shade" aria-hidden="true"></span>
-            </figure>
-            <div class="tc-exp-card__body">
+        <div class="tc-exp-lane-grid" role="list">
+          <a href="#transportation-request" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/transport-riverwalk-night-out.png" alt="Evening on the San Antonio River Walk" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Evening</span>
               <h3>City Night Out</h3>
               <p>Dinner, Pearl, River Walk, rooftop drinks, Market Square, Tower, or a first-night plan.</p>
-              <a class="tc-exp-card__link" href="#transportation-request">Reserve this experience</a>
-            </div>
-          </article>
-          <article class="tc-exp-card">
-            <figure class="tc-exp-card__media">
-              <img src="assets/transport-common-resort-riverwalk.png" alt="Resort guest route toward downtown San Antonio" width="720" height="450" decoding="async" loading="lazy" />
-              <span class="tc-exp-card__shade" aria-hidden="true"></span>
-            </figure>
-            <div class="tc-exp-card__body">
+              <span class="image-route-card__cta">Reserve this experience</span>
+            </span>
+          </a>
+          <a href="#transportation-request" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/transport-common-resort-riverwalk.png" alt="Resort guest route toward downtown San Antonio" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Resort</span>
               <h3>Resort Guest Route</h3>
-              <p>JW Marriott, La Cantera, Hyatt Hill Country, downtown dinner, Pearl, local stops, and timing help.</p>
-              <a class="tc-exp-card__link" href="#transportation-request">Reserve this experience</a>
-            </div>
-          </article>
-          <article class="tc-exp-card">
-            <figure class="tc-exp-card__media">
-              <img src="assets/transport-common-family-themepark.png" alt="Family-friendly San Antonio outing" width="720" height="450" decoding="async" loading="lazy" />
-              <span class="tc-exp-card__shade" aria-hidden="true"></span>
-            </figure>
-            <div class="tc-exp-card__body">
+              <p>JW Marriott, La Cantera, Hyatt Hill Country, downtown dinner, Pearl, and timing help.</p>
+              <span class="image-route-card__cta">Reserve this experience</span>
+            </span>
+          </a>
+          <a href="#transportation-request" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/transport-common-family-themepark.png" alt="Family-friendly San Antonio outing" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Family</span>
               <h3>Family / First-Time Visitor Plan</h3>
               <p>Alamo/River Walk timing, Tower, Pearl, Market Square, missions, and kid-friendly stops.</p>
-              <a class="tc-exp-card__link" href="#transportation-request">Reserve this experience</a>
-            </div>
-          </article>
-          <article class="tc-exp-card">
-            <figure class="tc-exp-card__media">
-              <img src="assets/transport-common-convention-dinner.png" alt="Convention visitor dinner and downtown timing" width="720" height="450" decoding="async" loading="lazy" />
-              <span class="tc-exp-card__shade" aria-hidden="true"></span>
-            </figure>
-            <div class="tc-exp-card__body">
+              <span class="image-route-card__cta">Reserve this experience</span>
+            </span>
+          </a>
+          <a href="#transportation-request" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/transport-common-convention-dinner.png" alt="Convention visitor dinner and downtown timing" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Business</span>
               <h3>Convention Free-Time Concierge</h3>
               <p>For business travelers with one open evening, a dinner plan, or a half-day opening.</p>
-              <a class="tc-exp-card__link" href="#transportation-request">Reserve this experience</a>
-            </div>
-          </article>
-          <article class="tc-exp-card">
-            <figure class="tc-exp-card__media">
-              <img src="assets/transport-scenic-riverfront-arrival.png" alt="Scenic nearby day trip route from San Antonio" width="720" height="450" decoding="async" loading="lazy" />
-              <span class="tc-exp-card__shade" aria-hidden="true"></span>
-            </figure>
-            <div class="tc-exp-card__body">
+              <span class="image-route-card__cta">Reserve this experience</span>
+            </span>
+          </a>
+          <a href="#transportation-request" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/transport-scenic-riverfront-arrival.png" alt="Scenic nearby day trip route from San Antonio" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Day trip</span>
               <h3>Nearby Day Trip / Extended Route</h3>
-              <p>Fredericksburg, Boerne, Gruene, New Braunfels, wineries, scenic stops, or custom routes within roughly two hours when available.</p>
-              <a class="tc-exp-card__link" href="#transportation-request">Reserve this experience</a>
-            </div>
-          </article>
-          <article class="tc-exp-card">
-            <figure class="tc-exp-card__media">
-              <img src="assets/transport-good-fit-route-planning.png" alt="Custom local San Antonio visitor plan" width="720" height="450" decoding="async" loading="lazy" />
-              <span class="tc-exp-card__shade" aria-hidden="true"></span>
-            </figure>
-            <div class="tc-exp-card__body">
+              <p>Fredericksburg, Boerne, Gruene, wineries, and custom routes within roughly two hours when available.</p>
+              <span class="image-route-card__cta">Reserve this experience</span>
+            </span>
+          </a>
+          <a href="#transportation-request" class="image-route-card" role="listitem">
+            <img class="image-route-card__media" src="assets/transport-good-fit-route-planning.png" alt="Custom local San Antonio visitor plan" width="720" height="480" decoding="async" loading="lazy" />
+            <span class="image-route-card__shade" aria-hidden="true"></span>
+            <span class="image-route-card__body">
+              <span class="eyebrow">Custom</span>
               <h3>Custom Local Plan</h3>
               <p>Special occasions, longer routes, unusual timing, multiple stops, or a custom visitor plan.</p>
-              <a class="tc-exp-card__link" href="#transportation-request">Reserve this experience</a>
-            </div>
-          </article>
+              <span class="image-route-card__cta">Reserve this experience</span>
+            </span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="tc-rebuild-section tc-request-band" id="where-we-help" aria-labelledby="where-we-help-heading">
-      <div class="tc-rebuild-inner">
-        <header class="tc-rebuild-head tc-premium-head">
-          <p class="eyebrow">Where we can help</p>
+    <div class="home-fiesta-divider" role="presentation" aria-hidden="true"></div>
+
+    <section class="section band section-navy-routes tc-rates-band" id="where-we-help" aria-labelledby="where-we-help-heading">
+      <div class="routes-band-inner">
+        <header class="path-hub-head tc-path-head tc-path-head--on-navy">
+          <p class="eyebrow eyebrow-on-dark">Where we can help</p>
           <h2 id="where-we-help-heading">Service options and starting rates</h2>
-          <p class="section-text">Choose the reserved block that fits your experience. Custom plans are quoted after review.</p>
+          <p class="section-text section-text-light">Choose the reserved block that fits your experience. Custom plans are quoted after review.</p>
         </header>
-        <div class="tc-pricing-band-inner">
         <div class="tc-pricing-grid">
           <article class="tc-pricing-card">
             <p class="tc-pricing-duration">Local Evening Concierge</p>
@@ -2927,40 +3150,55 @@
           </article>
         </div>
         <p class="tc-pricing-note">Final pricing may depend on date, timing, distance, route complexity, group size, wait time, and special requests. Parking, tickets, meals, tolls, and extended travel may be separate.</p>
-        </div>
       </div>
     </section>
 
-    <section class="tc-rebuild-section tc-rebuild-dark" id="how-it-works" aria-labelledby="how-it-works-heading">
-      <div class="tc-rebuild-inner">
-        <header class="tc-rebuild-head tc-premium-head">
-          <p class="eyebrow">How it works</p>
+    <div class="home-fiesta-divider" role="presentation" aria-hidden="true"></div>
+
+    <section class="section band premium-atmosphere tc-how-hub" id="how-it-works" aria-labelledby="how-it-works-heading" style="--premium-atmosphere-photo: url(&quot;assets/transport-downtown-hotel-night-arrival.png&quot;);">
+      <div class="routes-band-inner">
+        <header class="path-hub-head tc-path-head">
+          <p class="eyebrow eyebrow-on-dark">How it works</p>
           <h2 id="how-it-works-heading">A simple reservation flow</h2>
-          <p class="section-text">Share your plan, we review the opening, then confirm the details with you directly.</p>
+          <p class="section-text section-text-light">Share your plan, we review the opening, then confirm the details with you directly.</p>
         </header>
-        <div class="tc-timeline">
-          <article class="tc-timeline-step">
-            <h3>Choose</h3>
-            <p>Pick your experience type and the time block that fits your day.</p>
-          </article>
-          <article class="tc-timeline-step">
-            <h3>Share details</h3>
-            <p>Tell us your date, pickup area, group size, and the places you want to include.</p>
-          </article>
-          <article class="tc-timeline-step">
-            <h3>Review</h3>
-            <p>We review timing, route, and available calendar openings.</p>
-          </article>
-          <article class="tc-timeline-step">
-            <h3>Confirm</h3>
-            <p>We follow up with confirmation details for your local concierge reservation.</p>
-          </article>
-        </div>
+        <ol class="tc-how-steps">
+          <li class="tc-how-step">
+            <span class="tc-how-step__num" aria-hidden="true">1</span>
+            <div class="tc-how-step__body">
+              <h3>Choose your experience</h3>
+              <p>Pick the visitor plan and reserved time block that fits your day.</p>
+            </div>
+          </li>
+          <li class="tc-how-step">
+            <span class="tc-how-step__num" aria-hidden="true">2</span>
+            <div class="tc-how-step__body">
+              <h3>Share your details</h3>
+              <p>Tell us your date, pickup area, group size, and the places you want to include.</p>
+            </div>
+          </li>
+          <li class="tc-how-step">
+            <span class="tc-how-step__num" aria-hidden="true">3</span>
+            <div class="tc-how-step__body">
+              <h3>We review timing</h3>
+              <p>We check route fit, calendar openings, and whether the block matches your plan.</p>
+            </div>
+          </li>
+          <li class="tc-how-step">
+            <span class="tc-how-step__num" aria-hidden="true">4</span>
+            <div class="tc-how-step__body">
+              <h3>Confirm your reservation</h3>
+              <p>We follow up with confirmation details for your local concierge reservation.</p>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <section class="tc-rebuild-section section-cream" id="concierge-included" aria-labelledby="included-heading">
-      <div class="tc-rebuild-inner">
+    <div class="home-fiesta-divider home-fiesta-divider--on-light" role="presentation" aria-hidden="true"></div>
+
+    <section class="section section-cream tc-included-band" id="concierge-included" aria-labelledby="included-heading">
+      <div class="routes-band-inner">
         <header class="tc-rebuild-head tc-premium-head">
           <p class="eyebrow">What&rsquo;s included</p>
           <h2 id="included-heading">Your reserved local concierge block</h2>
@@ -2979,28 +3217,36 @@
       </div>
     </section>
 
+    <div class="home-fiesta-divider" role="presentation" aria-hidden="true"></div>
+
     <span id="route-operator" class="visually-hidden" tabindex="-1">Concierge reservation</span>
-    <section class="tc-rebuild-section tc-request-band tc-booking-section" id="transportation-request" aria-labelledby="transport-request-heading">
-      <div class="tc-rebuild-inner tc-booking-wrap">
-        <div class="transport-request-card">
-          <form class="transport-intake-form" id="transport-intake-form" novalidate aria-label="Reserve local concierge time">
-            <header class="tc-booking-intro">
-              <p class="eyebrow">Booking</p>
-              <h2 id="transport-request-heading">Reserve your local concierge time</h2>
-              <p>Choose the type of experience you want, share your timing and pickup area, and we&rsquo;ll use the details to confirm your reservation or custom plan.</p>
-            </header>
-
-            <div class="tc-calendar-placeholder" role="region" aria-label="Booking calendar preview">
-              <p class="tc-calendar-placeholder__title">Available calendar openings</p>
-              <p class="tc-calendar-placeholder__text">Live scheduling will appear here. For now, choose your preferred date and time block in the form — highlighted days show the kind of openings we review first.</p>
-              <div class="tc-calendar-mock" aria-hidden="true">
-                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-              </div>
+    <section class="section band section-navy-solid tc-booking-band" id="transportation-request" aria-labelledby="transport-request-heading">
+      <div class="routes-band-inner">
+        <header class="tc-booking-band-head">
+          <p class="eyebrow eyebrow-on-dark">Booking</p>
+          <h2 id="transport-request-heading">Reserve your local concierge time</h2>
+          <p class="section-text">Choose your experience, share timing and pickup area, and we&rsquo;ll confirm your reservation or custom plan.</p>
+        </header>
+        <div class="tc-booking-split">
+          <aside class="tc-booking-aside" aria-label="Scheduling notes">
+            <figure class="tc-booking-aside__visual">
+              <img src="assets/elegant_arrival_at_mediterranean_hotel_entrance.png" alt="" width="900" height="600" decoding="async" loading="lazy" />
+              <span class="tc-booking-aside__shade" aria-hidden="true"></span>
+            </figure>
+            <div class="tc-booking-aside__panel">
+              <p class="tc-booking-aside__label">Typical openings we review first</p>
+              <ul class="tc-opening-chips">
+                <li>Thu&ndash;Sat evenings</li>
+                <li>Sunday brunch routes</li>
+                <li>Convention free nights</li>
+                <li>Resort-to-downtown blocks</li>
+                <li>Half-day &amp; day-trip windows</li>
+              </ul>
+              <p class="tc-booking-aside__note">Live calendar scheduling is coming soon. For now, pick your preferred date and time block in the form &mdash; we confirm availability after review.</p>
             </div>
-
+          </aside>
+          <div class="transport-request-card">
+          <form class="transport-intake-form" id="transport-intake-form" novalidate aria-label="Reserve local concierge time">
             <p id="transport-intake-error" class="transport-intake-error" hidden role="alert"></p>
             <p id="transport-route-confirmation" class="transport-intake-error transport-intake-error--ok" hidden role="status"></p>
 
@@ -3045,11 +3291,14 @@
             </div>
             <button type="submit" class="btn btn-primary transport-intake-submit" id="transport-submit-intake">Reserve Concierge Time</button>
           </form>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="tc-rebuild-section section-cream" id="good-to-know" aria-labelledby="good-to-know-heading">
+    <div class="home-fiesta-divider home-fiesta-divider--on-light" role="presentation" aria-hidden="true"></div>
+
+    <section class="section section-cream" id="good-to-know" aria-labelledby="good-to-know-heading">
       <div class="tc-rebuild-inner">
         <header class="tc-rebuild-head tc-premium-head">
           <p class="eyebrow">Good to know</p>
