@@ -89,12 +89,11 @@ Core direction:
 ## Completed / Current Business Services Page Flow
 The Business Services page was rebuilt as a **premium bridge page** — restrained, visitor-guide-adjacent, not a long AI agency sales page.
 
-Current flow (5 sections):
+Current flow (4 sections):
 1. Hero — The business side behind Where To Go SA (original hero visual + background).
 2. Who this helps — original category card grid with images and CTAs.
-3. Business Operator — live chat widget (not a static operator bio section).
-4. Start the conversation — simplified request form inside form card.
-5. Short CTA — compact closing band.
+3. Business Operator — compact routing panel (Start Here pattern): primary CTA to form + quick-start chips that prefill the request form (no embedded live chat on this page).
+4. Start the conversation — simplified request form inside form card, with a compact closing CTA at the bottom of the card (no separate navy strip above the footer).
 
 Important:
 - Not a dashboard demo, not a service-lane grid, not a business-types directory on this page.

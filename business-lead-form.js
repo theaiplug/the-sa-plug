@@ -10,6 +10,48 @@
 
   if (!form || !submitBtn) return;
 
+  var needHelpEl = document.getElementById("business-need-help");
+  var messyWhereEl = document.getElementById("business-messy-where");
+  var industryEl = document.getElementById("business-industry");
+
+  var INDUSTRY_ALIASES = {
+    "Transportation / concierge": "Transportation / concierge",
+    "Local brand": "Local brand / retail",
+  };
+
+  function scrollToForm() {
+    var target = document.getElementById("start-conversation");
+    if (target && target.scrollIntoView) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function preselectFromLink(el) {
+    if (!el) return;
+    var businessType = el.getAttribute("data-bs-business-type");
+    var promptMessy = el.getAttribute("data-bs-prompt-messy");
+    var promptNeed = el.getAttribute("data-bs-prompt-need");
+
+    if (businessType && industryEl) {
+      industryEl.value = INDUSTRY_ALIASES[businessType] || businessType;
+    }
+    if (promptMessy && messyWhereEl && !String(messyWhereEl.value || "").trim()) {
+      messyWhereEl.value = promptMessy;
+    }
+    if (promptNeed && needHelpEl && !String(needHelpEl.value || "").trim()) {
+      needHelpEl.value = promptNeed;
+    }
+    scrollToForm();
+  }
+
+  document.querySelectorAll("[data-bs-business-type], [data-bs-prompt-messy], [data-bs-prompt-need]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      window.setTimeout(function () {
+        preselectFromLink(el);
+      }, 80);
+    });
+  });
+
   function showError(text) {
     if (!errorEl) return;
     errorEl.hidden = !text;
