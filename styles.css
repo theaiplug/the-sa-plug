@@ -142,11 +142,11 @@ main {
   Inner subpages: default sections sit on the global dark canvas — lock readable
   fiesta-on-dark type below.
 */
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section):not(.premium-atmosphere):not(.ask-product-atmosphere):not(.ask-product-value--light) {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section):not(.premium-atmosphere):not(.ask-product-atmosphere):not(.ask-product-value--light):not(.ai-bs-form-studio-premium) {
   color: var(--on-dark-body-soft);
 }
 
-main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section):not(.premium-atmosphere):not(.ask-product-atmosphere):not(.ask-product-value--light) :is(h2, h3) {
+main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(.section-blush):not(.section-turquoise-wash):not(.section-navy-routes):not(.section-ask):not(.section-ask-premium):not(.section-after-inner-hero):not(.section-fiesta-featured):not(.section-explore-dark):not(.section-cta):not(.dark-showcase):not(.band):not(.ai-proof-section):not(.home-ai-plug-section):not(.transport-section):not(.fam-quick-match):not(.fam-pick-section):not(.fam-stacks-section):not(.premium-atmosphere):not(.ask-product-atmosphere):not(.ask-product-value--light):not(.ai-bs-form-studio-premium) :is(h2, h3) {
   color: var(--on-dark-heading);
 }
 
@@ -26367,12 +26367,10 @@ body.owner-dash-detail-open {
 
 /* ----- Form studio — premium atmosphere (outside the form card) ----- */
 .page-business-bridge main > .section.ai-bs-form-studio-section.ai-bs-form-studio-premium {
-  --bs-form-panel: rgba(255, 251, 244, 0.94);
-  --bs-form-panel-border: rgba(255, 246, 230, 0.22);
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  color: var(--cream);
+  color: var(--on-dark-body-soft);
   background-color: #061018;
   background-image:
     radial-gradient(ellipse 120% 90% at 0% 0%, rgba(20, 184, 166, 0.32), transparent 55%),
@@ -26410,27 +26408,11 @@ body.owner-dash-detail-open {
   );
 }
 
-.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier,
-.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier :is(p, li, span, strong, h2) {
-  color: inherit;
-}
-
-.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__step-text {
-  color: rgba(11, 29, 58, 0.88);
-}
-
-.page-business-bridge .ai-bs-form-studio-section .ai-bs-form-atelier__step-text strong {
-  color: var(--navy);
-}
-
-.page-business-bridge .ai-bs-form-studio-wrap {
-  max-width: 1120px;
-  margin-inline: auto;
-}
-
 .page-business-bridge .ai-bs-form-studio-wrap {
   position: relative;
   z-index: 1;
+  max-width: 1120px;
+  margin-inline: auto;
 }
 
 .page-business-bridge .ai-bs-form-studio {
@@ -26448,30 +26430,9 @@ body.owner-dash-detail-open {
   }
 }
 
-/* Left — premium editorial panel (outside form card) */
+/* Left — editorial copy on dark (no nested light card) */
 .page-business-bridge .ai-bs-form-atelier {
-  position: relative;
-  padding: clamp(22px, 3vw, 30px) clamp(22px, 3.2vw, 28px);
-  border-radius: calc(var(--radius) + 10px);
-  background:
-    radial-gradient(ellipse 90% 70% at 0% 0%, rgba(242, 178, 26, 0.14), transparent 55%),
-    radial-gradient(circle at 100% 100%, rgba(20, 184, 166, 0.12), transparent 48%),
-    var(--bs-form-panel, rgba(255, 251, 244, 0.94));
-  border: 1px solid var(--bs-form-panel-border, rgba(255, 246, 230, 0.22));
-  box-shadow:
-    0 32px 72px rgba(0, 0, 0, 0.38),
-    0 12px 32px rgba(4, 10, 22, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(14px);
-}
-
-.page-business-bridge .ai-bs-form-atelier::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  box-shadow: inset 0 0 0 1px rgba(11, 29, 58, 0.06);
+  padding: clamp(4px, 1vw, 8px) 0;
 }
 
 .page-business-bridge .ai-bs-form-atelier__kicker {
@@ -26480,7 +26441,7 @@ body.owner-dash-detail-open {
   font-weight: 850;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #0d9488;
+  color: #5eead4;
 }
 
 .page-business-bridge .ai-bs-form-atelier__title {
@@ -26489,10 +26450,9 @@ body.owner-dash-detail-open {
   line-height: 1.06;
   letter-spacing: -0.035em;
   font-weight: 900;
-  color: var(--navy);
+  color: var(--on-dark-heading);
   text-wrap: balance;
   max-width: 14ch;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .page-business-bridge .ai-bs-form-atelier__lede {
@@ -26500,7 +26460,7 @@ body.owner-dash-detail-open {
   max-width: 34rem;
   font-size: clamp(1rem, 0.3vw + 0.92rem, 1.08rem);
   line-height: 1.62;
-  color: rgba(11, 29, 58, 0.8);
+  color: var(--on-dark-body);
 }
 
 .page-business-bridge .ai-bs-form-atelier__steps {
@@ -26519,11 +26479,11 @@ body.owner-dash-detail-open {
   align-items: start;
   padding: 14px 16px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(11, 29, 58, 0.08);
-  box-shadow:
-    0 14px 32px rgba(11, 29, 58, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(20, 184, 166, 0.14), transparent 48%),
+    linear-gradient(168deg, rgba(255, 246, 230, 0.08) 0%, rgba(3, 10, 24, 0.72) 100%);
+  border: 1px solid rgba(255, 246, 230, 0.14);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
 }
 
 .page-business-bridge .ai-bs-form-atelier__step-n {
@@ -26537,19 +26497,19 @@ body.owner-dash-detail-open {
   font-weight: 900;
   letter-spacing: 0.06em;
   color: var(--navy-deep);
-  background: linear-gradient(145deg, #ffe08a 0%, var(--gold) 42%, rgba(20, 184, 166, 0.35) 100%);
-  border: 1px solid rgba(11, 29, 58, 0.12);
-  box-shadow: 0 6px 16px rgba(242, 178, 26, 0.28);
+  background: linear-gradient(145deg, #ffe08a 0%, var(--gold) 48%, #ff9a4d 100%);
+  border: 1px solid rgba(255, 246, 230, 0.35);
+  box-shadow: 0 6px 16px rgba(242, 178, 26, 0.32);
 }
 
 .page-business-bridge .ai-bs-form-atelier__step-text {
   font-size: 0.92rem;
   line-height: 1.52;
-  color: rgba(11, 29, 58, 0.82);
+  color: var(--on-dark-body);
 }
 
 .page-business-bridge .ai-bs-form-atelier__step-text strong {
-  color: var(--navy);
+  color: var(--on-dark-heading);
   font-weight: 800;
 }
 
@@ -26560,7 +26520,7 @@ body.owner-dash-detail-open {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 10px;
-  border-top: 1px solid rgba(11, 29, 58, 0.08);
+  border-top: 1px solid rgba(255, 246, 230, 0.12);
 }
 
 .page-business-bridge .ai-bs-form-atelier__proof li {
@@ -26569,15 +26529,14 @@ body.owner-dash-detail-open {
   font-size: 0.76rem;
   font-weight: 750;
   letter-spacing: 0.02em;
-  color: rgba(11, 29, 58, 0.9);
-  background: linear-gradient(145deg, rgba(20, 184, 166, 0.14), rgba(242, 178, 26, 0.12));
-  border: 1px solid rgba(11, 29, 58, 0.1);
-  box-shadow: 0 6px 14px rgba(11, 29, 58, 0.06);
+  color: rgba(255, 246, 230, 0.92);
+  background: rgba(255, 246, 230, 0.08);
+  border: 1px solid rgba(255, 246, 230, 0.18);
 }
 
 .page-business-bridge .ai-bs-form-atelier__proof li::before {
   content: "✓ ";
-  color: #0d9488;
+  color: #5eead4;
   font-weight: 900;
 }
 
