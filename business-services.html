@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=business-form-studio-readable-20260529e" />
+  <link rel="stylesheet" href="styles.css?v=business-operator-ask-studio-20260530a" />
 </head>
 <body class="page-business-services page-business-bridge ai-services-page">
   <header class="site-header">
@@ -171,87 +171,52 @@
       </div>
     </section>
 
-    <!-- 3. Business operator chat -->
-    <div class="transport-concierge-main ai-bs-bridge-operator-wrap" id="business-operator">
+    <!-- 3. Business operator chat (Ask A Local studio layout) -->
+    <div class="ai-bs-bridge-operator-wrap" id="business-operator">
       <section
-        class="section band section-navy-routes live-concierge-section transport-route-operator ai-bs-business-operator ai-bs-sec-major"
+        class="section band section-navy-routes live-concierge-section ask-product-atmosphere ask-product-tool-section ai-bs-business-operator ai-bs-sec-major"
         aria-labelledby="business-operator-heading"
       >
-        <div class="routes-band-inner live-concierge-inner" id="business-operator-module">
-          <header class="live-concierge__head">
-            <p class="eyebrow eyebrow-on-dark live-concierge__eyebrow">BUSINESS OPERATOR</p>
-            <h2 id="business-operator-heading" class="live-concierge__title">Not sure where to start? Ask the Business Operator.</h2>
-            <p class="section-text section-text-light live-concierge__lead">
+        <div class="routes-band-inner ask-product-inner ask-product-shell" id="business-operator-module">
+          <header class="ai-band-head ai-band-head--dark ai-bs-operator-intro">
+            <p class="eyebrow eyebrow-on-dark">BUSINESS OPERATOR</p>
+            <h2 id="business-operator-heading" class="ai-strategic-title">Not sure where to start? Ask the Business Operator.</h2>
+            <p class="section-text section-text-light">
               Describe your business and where requests feel messy. The operator helps narrow marketing, intake, follow-up, customer questions, and practical next steps.
             </p>
-            <p class="live-concierge__status" id="business-op-status" aria-live="polite">Business operator · ready</p>
           </header>
 
-          <div class="live-concierge-studio">
-            <div class="live-concierge-card">
-              <div class="live-concierge__image-band">
-                <div class="live-concierge__image-band-media">
-                  <img
-                    src="/assets/business-services/the-ai-plug-ai-growth-review-operator.png"
-                    alt="Business operator helping organize marketing, customer questions, intake, and follow-up opportunities"
-                    width="1448"
-                    height="1086"
-                    decoding="async"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+          <div class="ask-product-tool-wrap" id="business-operator-tool">
+            <div class="live-concierge-studio ask-local-tool ask-product-tool">
+              <div class="live-concierge-card ask-product-tool-card">
+                <header class="ask-product-tool-head">
+                  <p class="ask-product-tool-kicker eyebrow eyebrow-on-dark">Business operator studio</p>
+                  <p class="live-concierge__status ask-product-tool-status" id="business-op-status" aria-live="polite">Business operator · ready</p>
+                </header>
 
-              <div class="live-concierge__glass-panel">
-                <div class="live-concierge__panel-copy">
-                  <p class="live-concierge__panel-intro">Find a practical starting point</p>
-                  <p class="live-concierge__panel-support">
-                    Use quick prompts or plain language. The operator suggests where to start based on how your business actually operates.
-                  </p>
-                </div>
-                <div class="live-concierge__chip-board">
-                  <div class="live-concierge__chip-cluster" role="group" aria-labelledby="business-chip-label">
-                    <p class="live-concierge__lane-label" id="business-chip-label">Quick prompts</p>
-                    <div class="live-concierge__chips live-concierge__chips--lane">
-                      <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-business-chip data-business-chip-text="Customers ask the same questions and staff repeats answers">
-                        Same questions repeatedly
-                      </button>
-                      <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-business-chip data-business-chip-text="Calls get missed after hours and follow-up is slow">
-                        Missed calls / slow follow-up
-                      </button>
-                      <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-business-chip data-business-chip-text="Our forms do not collect enough detail to respond well">
-                        Intake needs more detail
-                      </button>
-                      <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-business-chip data-business-chip-text="DMs and texts are scattered across Instagram, Facebook, text, and email">
-                        Messages are scattered
-                      </button>
-                      <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-business-chip data-business-chip-text="I want a system like Where To Go SA for my business">
-                        Want a system like Where To Go SA
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <div class="live-concierge__glass-panel live-concierge__glass-panel--tool-first">
+                  <div class="live-concierge__main-card">
+                    <div class="live-concierge__error" id="business-op-error" hidden role="alert"></div>
+                    <div id="business-op-confirmation" class="transport-route-confirmation" hidden role="status"></div>
 
-                <div class="live-concierge__main-card">
-                  <div class="live-concierge__error" id="business-op-error" hidden role="alert"></div>
-                  <div id="business-op-confirmation" class="transport-route-confirmation" hidden role="status"></div>
-
-                  <div class="live-concierge__thread" id="business-op-thread">
-                    <div class="live-concierge__conversation" id="business-op-conversation">
-                      <div class="live-concierge__answer-surface" aria-live="polite">
-                        <div class="live-concierge__preview" id="business-op-preview">
-                          <p class="live-concierge__preview-text" id="business-op-preview-text">
-                            What kind of business do you run, and where are requests, questions, or follow-up getting messy? I&rsquo;ll help narrow a practical starting point.
-                          </p>
-                        </div>
-                        <div class="live-concierge__transcript" id="business-op-transcript" hidden>
-                          <div class="live-concierge__log" id="business-op-log" role="log" aria-relevant="additions" aria-label="Business operator conversation"></div>
+                    <div class="live-concierge__thread" id="business-op-thread">
+                      <div class="live-concierge__conversation" id="business-op-conversation">
+                        <div class="live-concierge__answer-surface" id="business-op-answer-surface" aria-live="polite">
+                          <div class="live-concierge__preview live-concierge__preview--placeholder" id="business-op-preview">
+                            <p class="live-concierge__preview-heading">Describe your business situation.</p>
+                            <p class="live-concierge__preview-text" id="business-op-preview-text">
+                              Tell us what you run, where requests or questions pile up, and what feels messy first. Your operator answer will appear here.
+                            </p>
+                          </div>
+                          <div class="live-concierge__transcript" id="business-op-transcript" hidden>
+                            <div class="live-concierge__log" id="business-op-log" role="log" aria-relevant="additions" aria-label="Business operator conversation"></div>
+                          </div>
                         </div>
                       </div>
 
                       <div class="live-concierge__composer-stack" id="business-op-composer">
                         <form class="live-concierge__form" id="business-op-form" aria-label="Business operator message">
-                          <label class="live-concierge__input-label visually-hidden" for="business-op-input">Your message</label>
+                          <label class="live-concierge__input-label" for="business-op-input">Your message</label>
                           <div class="live-concierge__composer-unit">
                             <textarea
                               id="business-op-input"
@@ -263,30 +228,58 @@
                               autocomplete="off"
                               placeholder="Example: We get restaurant inquiries from visitors, but private event questions and follow-up live in too many places — where should we start?"
                             ></textarea>
-                            <button type="submit" class="live-concierge__send" id="business-op-send">
-                              Ask the operator <span aria-hidden="true">&rarr;</span>
-                            </button>
                           </div>
+                          <button type="submit" class="btn btn-primary live-concierge__send" id="business-op-send">
+                            Ask the operator <span aria-hidden="true">&rarr;</span>
+                          </button>
                         </form>
+                        <p class="live-concierge__engage-hint">The more context you give &mdash; business type, where leads come from, and what breaks down &mdash; the sharper the starting path.</p>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="transport-human-intro business-operator-project-intro">
-                  <p class="business-operator-request-helper">Ready to send a request? Use the form below.</p>
-                  <a class="btn btn-secondary transport-show-intake" id="business-operator-show-intake" href="#start-conversation">Start a business conversation</a>
-                </div>
-
-                <details class="business-operator-backup-details transport-human-intake-fallback">
-                  <summary>Backup contact option</summary>
-                  <div class="business-operator-backup-body">
-                    <p class="business-operator-backup-note">Use this only if the operator or request flow is not working.</p>
-                    <p class="business-operator-backup-link"><a href="mailto:aibusinessplug@gmail.com">Email aibusinessplug@gmail.com</a></p>
-                  </div>
-                </details>
               </div>
             </div>
+          </div>
+
+          <div class="ask-product-prompts" id="business-op-prompts" aria-labelledby="business-op-prompts-heading">
+            <header class="ask-product-prompts-head">
+              <p class="eyebrow eyebrow-on-dark ask-product-prompts-eyebrow">Quick start</p>
+              <h3 id="business-op-prompts-heading" class="ask-product-prompts-title">Common situations to start with</h3>
+              <p class="ask-product-prompts-lead">Tap one to ask, or type your own situation above.</p>
+            </header>
+            <div class="ask-product-prompt-group">
+              <p class="ask-product-prompt-group-label">Where it hurts</p>
+              <div class="live-concierge__chips live-concierge__chips--lane ask-product-prompt-chips" role="group" aria-label="Quick prompts">
+                <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-business-chip data-business-chip-text="Customers ask the same questions and staff repeats answers">
+                  Same questions repeatedly
+                </button>
+                <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-business-chip data-business-chip-text="Calls get missed after hours and follow-up is slow">
+                  Missed calls / slow follow-up
+                </button>
+                <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-business-chip data-business-chip-text="Our forms do not collect enough detail to respond well">
+                  Intake needs more detail
+                </button>
+                <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-business-chip data-business-chip-text="DMs and texts are scattered across Instagram, Facebook, text, and email">
+                  Messages are scattered
+                </button>
+                <button type="button" class="live-concierge__chip live-concierge__chip--lane" data-business-chip data-business-chip-text="I want a system like Where To Go SA for my business">
+                  Want a system like Where To Go SA
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ai-bs-operator-followup">
+            <p class="business-operator-request-helper">Ready to send a request? Use the form below.</p>
+            <a class="btn btn-secondary" id="business-operator-show-intake" href="#start-conversation">Start a business conversation</a>
+            <details class="business-operator-backup-details">
+              <summary>Backup contact option</summary>
+              <div class="business-operator-backup-body">
+                <p class="business-operator-backup-note">Use this only if the operator or request flow is not working.</p>
+                <p class="business-operator-backup-link"><a href="mailto:aibusinessplug@gmail.com">Email aibusinessplug@gmail.com</a></p>
+              </div>
+            </details>
           </div>
         </div>
       </section>
