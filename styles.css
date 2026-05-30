@@ -4693,7 +4693,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 
 @media (prefers-reduced-motion: reduce) {
   .page-home .home-ask-bridge .home-ask-entry-inner,
-  .page-ask .ask-product-example-card,
+  :is(.page-ask, .page-business-services) .ask-product-example-card,
   .start-here-main .sh-ask-panel,
   .start-here-main .sh-final-cta {
     backdrop-filter: none;
@@ -4704,7 +4704,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
     background: rgba(7, 16, 34, 0.88);
   }
 
-  .page-ask .ask-product-example-card {
+  :is(.page-ask, .page-business-services) .ask-product-example-card {
     background: rgba(7, 16, 34, 0.92);
   }
 }
@@ -7081,13 +7081,6 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   }
 }
 
-.page-business-services .ai-bs-business-operator .live-concierge__image-band-media img {
-  width: 100%;
-  height: auto;
-  max-height: clamp(200px, 36vw, 360px);
-  object-fit: cover;
-  object-position: center top;
-}
 
 .page-business-services .ai-bs-proof-flow {
   margin-top: clamp(2px, 0.8vw, 6px);
@@ -8217,6 +8210,10 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   --premium-atmosphere-photo: url("/assets/evening_riverwalk_with_vibrant_ambiance.png");
 }
 
+.page-business-services {
+  --premium-atmosphere-photo: url("/assets/evening_riverwalk_with_vibrant_ambiance.png");
+}
+
 .page-start-here {
   --premium-atmosphere-photo: url("assets/evening_riverwalk_with_vibrant_ambiance.png");
 }
@@ -8228,7 +8225,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 :is(.page-ask, .page-start-here, .page-concierge) .premium-atmosphere,
-:is(.page-ask, .page-start-here) .ask-product-atmosphere {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-product-atmosphere {
   position: relative;
   isolation: isolate;
   max-width: none;
@@ -8250,22 +8247,22 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 :is(.page-ask, .page-start-here, .page-concierge) .premium-atmosphere::after,
-:is(.page-ask, .page-start-here) .ask-product-atmosphere::after {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-product-atmosphere::after {
   display: none;
 }
 
 :is(.page-ask, .page-start-here, .page-concierge) .premium-atmosphere > .routes-band-inner,
-:is(.page-ask, .page-start-here) .ask-product-atmosphere > .routes-band-inner,
-:is(.page-ask, .page-start-here) .premium-atmosphere .ask-product-prompts,
-:is(.page-ask, .page-start-here) .ask-product-atmosphere .ask-product-prompts,
-:is(.page-ask, .page-start-here) .premium-atmosphere .ask-product-section-head,
-:is(.page-ask, .page-start-here) .ask-product-atmosphere .ask-product-section-head {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-product-atmosphere > .routes-band-inner,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .premium-atmosphere .ask-product-prompts,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-product-atmosphere .ask-product-prompts,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .premium-atmosphere .ask-product-section-head,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-product-atmosphere .ask-product-section-head {
   position: relative;
   z-index: 1;
 }
 
 :is(.page-start-here, .page-ask, .page-concierge) .premium-atmosphere > .routes-band-inner,
-.page-ask .ask-product-atmosphere > .routes-band-inner.ask-product-band-shell {
+:is(.page-ask, .page-business-services) .ask-product-atmosphere > .routes-band-inner.ask-product-band-shell {
   width: 100%;
   max-width: var(--sh-shell-max);
   margin-inline: auto;
@@ -8279,7 +8276,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   }
 
   :is(.page-start-here, .page-ask, .page-concierge) .premium-atmosphere > .routes-band-inner,
-  .page-ask .ask-product-atmosphere > .routes-band-inner.ask-product-band-shell {
+  :is(.page-ask, .page-business-services) .ask-product-atmosphere > .routes-band-inner.ask-product-band-shell {
     padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
   }
 
@@ -8287,8 +8284,8 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
     padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
   }
 
-  .page-ask .ask-product-value--light .ask-product-band-shell,
-  .page-ask .ask-product-value.section-navy-solid .ask-product-band-shell {
+  :is(.page-ask, .page-business-services) .ask-product-value--light .ask-product-band-shell,
+  :is(.page-ask, .page-business-services) .ask-product-value.section-navy-solid .ask-product-band-shell {
     padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
   }
 }
@@ -8315,7 +8312,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 /* Ask — band positions (same photo, light scrim) */
-.page-ask .ask-product-tool-section.ask-product-atmosphere {
+:is(.page-ask, .page-business-services) .ask-product-tool-section.ask-product-atmosphere {
   margin-top: -1px;
   background-image:
     linear-gradient(
@@ -8328,36 +8325,36 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   background-position: center 30%;
 }
 
-.page-ask .ask-product-value.ask-product-atmosphere {
+:is(.page-ask, .page-business-services) .ask-product-value.ask-product-atmosphere {
   padding-block: var(--ask-section-pad);
   background-position: center 40%;
 }
 
-.page-ask .ask-product-examples.ask-product-atmosphere {
+:is(.page-ask, .page-business-services) .ask-product-examples.ask-product-atmosphere {
   position: relative;
   padding-inline: 0;
   padding-block: var(--ask-section-pad);
   background-position: center 48%;
 }
 
-.page-ask .ask-product-human.ask-product-atmosphere {
+:is(.page-ask, .page-business-services) .ask-product-human.ask-product-atmosphere {
   padding-block: var(--ask-section-pad);
   margin-bottom: 0;
   background-position: center 56%;
 }
 
-.page-ask .ask-product-value.section-navy-solid,
-.page-ask .ask-product-human.section-navy-solid {
+:is(.page-ask, .page-business-services) .ask-product-value.section-navy-solid,
+:is(.page-ask, .page-business-services) .ask-product-human.section-navy-solid {
   padding-block: var(--ask-section-pad);
   background-color: var(--navy);
   background-image: none;
 }
 
-.page-ask .ask-product-human.section-navy-solid {
+:is(.page-ask, .page-business-services) .ask-product-human.section-navy-solid {
   margin-bottom: 0;
 }
 
-.page-ask .ask-product-value.section-navy-solid .ask-product-band-shell {
+:is(.page-ask, .page-business-services) .ask-product-value.section-navy-solid .ask-product-band-shell {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -8367,19 +8364,19 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   box-sizing: border-box;
 }
 
-.page-ask .ask-product-value.section-navy-solid .ask-product-section-head--on-dark .eyebrow.eyebrow-on-dark {
+:is(.page-ask, .page-business-services) .ask-product-value.section-navy-solid .ask-product-section-head--on-dark .eyebrow.eyebrow-on-dark {
   color: rgba(20, 184, 166, 0.92);
 }
 
-.page-ask .ask-product-value.section-navy-solid .ask-product-section-head--on-dark h2 {
+:is(.page-ask, .page-business-services) .ask-product-value.section-navy-solid .ask-product-section-head--on-dark h2 {
   color: rgba(255, 248, 235, 0.98);
 }
 
-.page-ask .ask-product-value.section-navy-solid .ask-product-section-head--on-dark .section-text {
+:is(.page-ask, .page-business-services) .ask-product-value.section-navy-solid .ask-product-section-head--on-dark .section-text {
   color: rgba(255, 248, 235, 0.84);
 }
 
-.page-ask .ask-product-value.section-navy-solid .ask-product-value-list li {
+:is(.page-ask, .page-business-services) .ask-product-value.section-navy-solid .ask-product-value-list li {
   color: rgba(255, 246, 230, 0.94);
   background: rgba(255, 246, 230, 0.06);
   border-top: 1px solid rgba(255, 246, 230, 0.1);
@@ -8389,7 +8386,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 @media (hover: hover) {
-  .page-ask .ask-product-value.section-navy-solid .ask-product-value-list li:hover {
+  :is(.page-ask, .page-business-services) .ask-product-value.section-navy-solid .ask-product-value-list li:hover {
     background: rgba(255, 246, 230, 0.1);
     border-color: rgba(242, 178, 26, 0.35);
     box-shadow:
@@ -8417,7 +8414,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 :is(.page-ask, .page-start-here) .footer.premium-atmosphere-footer.dark-showcase,
-:is(.page-ask, .page-start-here) .footer.ask-product-footer.dark-showcase {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .footer.ask-product-footer.dark-showcase {
   position: relative;
   isolation: isolate;
   margin-top: 0;
@@ -8445,13 +8442,13 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 :is(.page-ask, .page-start-here) .footer.premium-atmosphere-footer.dark-showcase > *,
-:is(.page-ask, .page-start-here) .footer.ask-product-footer.dark-showcase > * {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .footer.ask-product-footer.dark-showcase > * {
   position: relative;
   z-index: 1;
 }
 
 :is(.page-ask, .page-start-here) .footer.premium-atmosphere-footer .footer-links a,
-:is(.page-ask, .page-start-here) .footer.ask-product-footer .footer-links a {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .footer.ask-product-footer .footer-links a {
   border-color: rgba(255, 246, 230, 0.22);
   background: rgba(8, 18, 34, 0.55);
   backdrop-filter: blur(6px);
@@ -8459,7 +8456,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 :is(.page-ask, .page-start-here) .footer.premium-atmosphere-footer .footer-links a:hover,
-:is(.page-ask, .page-start-here) .footer.ask-product-footer .footer-links a:hover {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .footer.ask-product-footer .footer-links a:hover {
   border-color: rgba(242, 178, 26, 0.42);
   background: rgba(12, 24, 44, 0.72);
 }
@@ -12097,7 +12094,7 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
 }
 
 /* Legacy Ask guide layout only — product page uses .ask-product-main (no extra main pad) */
-body.page-ask main:not(.ask-product-main) {
+body:is(.page-ask, .page-business-services) main:not(.ask-product-main) {
   padding-bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 56px));
 }
 
@@ -12593,7 +12590,7 @@ body.page-ask main:not(.ask-product-main) {
   z-index: 1;
 }
 
-.page-ask #human-help.section-cream:not(.ask-product-human) {
+:is(.page-ask, .page-business-services) #human-help.section-cream:not(.ask-product-human) {
   padding-bottom: max(clamp(44px, 5vw, 56px), calc(env(safe-area-inset-bottom, 0px) + 36px));
 }
 
@@ -13781,21 +13778,21 @@ body.page-ask main:not(.ask-product-main) {
 }
 
 /* Ask + Start Here — Ask A Local tool layout (image → answer → chat input) */
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__image-band-media {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__image-band-media {
   border-radius: calc(var(--radius) + 8px) calc(var(--radius) + 8px) 0 0;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__glass-panel--tool-first {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__glass-panel--tool-first {
   border-top: none;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__thread {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__thread {
   display: flex;
   flex-direction: column;
   gap: clamp(10px, 1.8vw, 14px);
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__conversation {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__conversation {
   border: none;
   border-radius: 0;
   background: transparent;
@@ -13803,28 +13800,28 @@ body.page-ask main:not(.ask-product-main) {
   overflow: visible;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__conversation:not(.live-concierge__conversation--started) {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__conversation:not(.live-concierge__conversation--started) {
   border: none;
   box-shadow: none;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__conversation--started {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__conversation--started {
   border: none;
   box-shadow: none;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__answer-surface {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__answer-surface {
   border: none;
   border-bottom: none;
   background: transparent;
   padding: 0;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__answer-surface:has(.live-concierge__preview--placeholder) {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__answer-surface:has(.live-concierge__preview--placeholder) {
   padding: 0;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__preview--placeholder {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__preview--placeholder {
   min-height: clamp(108px, 24vw, 140px);
   margin: 0;
   padding: clamp(16px, 2.4vw, 22px);
@@ -13838,15 +13835,15 @@ body.page-ask main:not(.ask-product-main) {
   color: rgba(20, 184, 166, 0.95);
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__preview--placeholder .live-concierge__preview-text {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__preview--placeholder .live-concierge__preview-text {
   color: rgba(255, 248, 235, 0.86);
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__transcript {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__transcript {
   padding: 0;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__log {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__log {
   border-radius: calc(var(--radius) + 2px);
   border: 1px solid rgba(255, 246, 230, 0.14);
   background: linear-gradient(
@@ -13929,11 +13926,11 @@ body.page-ask main:not(.ask-product-main) {
     line-height: 1.18;
   }
 
-  :is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__image-band-media {
+  :is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__image-band-media {
     height: clamp(168px, 40vw, 220px);
   }
 
-  :is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__preview--placeholder {
+  :is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__preview--placeholder {
     min-height: clamp(96px, 28vw, 120px);
     padding: 14px 16px;
   }
@@ -13964,7 +13961,7 @@ body.page-ask main:not(.ask-product-main) {
   max-width: var(--ask-local-max);
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool.live-concierge-studio {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool.live-concierge-studio {
   width: 100%;
   max-width: none;
   margin-inline: 0;
@@ -13990,72 +13987,72 @@ body.page-ask main:not(.ask-product-main) {
   margin: clamp(12px, 2.8vw, 16px) 0 0;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge-card {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge-card {
   width: 100%;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__main-card,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__starter-chips,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__chip-board--categories {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__main-card,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__starter-chips,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__chip-board--categories {
   width: 100%;
   box-sizing: border-box;
   padding-left: var(--ask-local-gutter);
   padding-right: var(--ask-local-gutter);
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__main-card {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__main-card {
   padding-top: clamp(14px, 2.8vw, 18px);
   padding-bottom: clamp(10px, 2vw, 14px);
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__starter-chips {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__starter-chips {
   padding-top: clamp(16px, 3vw, 20px);
   padding-bottom: clamp(12px, 2.4vw, 16px);
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__chip-board--categories {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__chip-board--categories {
   padding-top: clamp(12px, 2.4vw, 16px);
   padding-bottom: max(clamp(24px, 3.5vw, 32px), calc(env(safe-area-inset-bottom, 0px) + 16px));
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__thread {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__thread {
   gap: clamp(14px, 3vw, 18px);
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__preview--placeholder,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__composer-stack,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__form,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__composer-unit,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__send,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__composer-stack > .live-concierge__engage-hint,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__chips--starter,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__category,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__trust-note {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__preview--placeholder,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__composer-stack,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__form,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__composer-unit,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__send,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__composer-stack > .live-concierge__engage-hint,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__chips--starter,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__category,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__trust-note {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
   padding-right: 0;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__form {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__form {
   display: flex;
   flex-direction: column;
   gap: clamp(10px, 2.5vw, 14px);
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__composer-unit,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__send {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__composer-unit,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__composer-stack .live-concierge__send {
   margin-left: 0;
   margin-right: 0;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__chips--starter {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__chips--starter {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
@@ -14063,7 +14060,7 @@ body.page-ask main:not(.ask-product-main) {
   padding: 0;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__chip--starter {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__chip--starter {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14072,21 +14069,21 @@ body.page-ask main:not(.ask-product-main) {
   min-height: 44px;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__starter-label,
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__categories-intro {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__starter-label,
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__categories-intro {
   margin-left: 0;
   margin-right: 0;
   text-align: left;
 }
 
-:is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__trust-note {
+:is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__trust-note {
   margin-top: clamp(14px, 2.8vw, 18px);
   text-align: left;
   text-wrap: pretty;
 }
 
 @media (max-width: 380px) {
-  :is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__chips--starter {
+  :is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__chips--starter {
     grid-template-columns: 1fr;
   }
 }
@@ -14106,8 +14103,8 @@ body.page-ask main:not(.ask-product-main) {
     margin-right: auto;
   }
 
-  :is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__starter-label,
-  :is(.page-ask, .page-start-here) .ask-local-tool .live-concierge__categories-intro {
+  :is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__starter-label,
+  :is(:is(.page-ask, .page-business-services), .page-start-here) .ask-local-tool .live-concierge__categories-intro {
     text-align: left;
   }
 }
@@ -14123,7 +14120,7 @@ body.page-ask main:not(.ask-product-main) {
  * 2. .ask-product-tool-card — full width of shell; inner padding clears rounded corners
  * 3. --ask-text-inset matches chip label padding — copy aligns to words inside pills, not pill edges
  */
-.page-ask .ask-product-main {
+:is(.page-ask, .page-business-services) .ask-product-main {
   --ask-shell-max: 45rem;
   --ask-shell-pad: clamp(20px, 5vw, 32px);
   --ask-card-pad-block: clamp(18px, 4.2vw, 24px);
@@ -14141,7 +14138,7 @@ body.page-ask main:not(.ask-product-main) {
   word-spacing: normal;
 }
 
-.page-ask .ask-product-shell {
+:is(.page-ask, .page-business-services) .ask-product-shell {
   width: 100%;
   max-width: var(--ask-shell-max);
   margin-inline: auto;
@@ -14190,7 +14187,7 @@ body.page-ask main:not(.ask-product-main) {
   );
 }
 
-.page-ask .ask-product-hero .hero-title {
+:is(.page-ask, .page-business-services) .ask-product-hero .hero-title {
   font-size: clamp(1.85rem, 4.2vw + 0.5rem, 2.65rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
@@ -14199,43 +14196,43 @@ body.page-ask main:not(.ask-product-main) {
     0 1px 3px rgba(2, 6, 14, 0.4);
 }
 
-.page-ask .ask-product-hero .hero-text-on-dark {
+:is(.page-ask, .page-business-services) .ask-product-hero .hero-text-on-dark {
   text-shadow: 0 1px 14px rgba(2, 6, 14, 0.5);
 }
 
-.page-ask .ask-product-hero .hero-content .eyebrow-hero {
+:is(.page-ask, .page-business-services) .ask-product-hero .hero-content .eyebrow-hero {
   margin-bottom: 0;
   color: rgba(242, 178, 26, 0.95);
   text-shadow: 0 1px 12px rgba(2, 6, 14, 0.35);
 }
 
-.page-ask .ask-product-hero.hero-fiesta-dark .hero-content.secondary-hero-copy {
+:is(.page-ask, .page-business-services) .ask-product-hero.hero-fiesta-dark .hero-content.secondary-hero-copy {
   gap: clamp(14px, 2.2vw, 18px);
 }
 
-.page-ask .ask-product-hero-actions.hero-cta-row,
-.page-ask .ask-product-hero-actions {
+:is(.page-ask, .page-business-services) .ask-product-hero-actions.hero-cta-row,
+:is(.page-ask, .page-business-services) .ask-product-hero-actions {
   margin-top: 0;
 }
 
-.page-ask .ask-product-hero-actions.hero-cta-row {
+:is(.page-ask, .page-business-services) .ask-product-hero-actions.hero-cta-row {
   gap: var(--ask-stack-sm) 14px;
 }
 
-.page-ask .ask-product-hero-actions .btn-primary {
+:is(.page-ask, .page-business-services) .ask-product-hero-actions .btn-primary {
   min-height: 50px;
   box-shadow:
     0 18px 40px rgba(255, 139, 31, 0.34),
     0 3px 0 rgba(255, 255, 255, 0.45) inset;
 }
 
-.page-ask .ask-product-hero-actions .btn-secondary-hero {
+:is(.page-ask, .page-business-services) .ask-product-hero-actions .btn-secondary-hero {
   min-height: 50px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
-.page-ask .ask-hero--cinematic .hero-fiesta-inner.hero-inner-band.ask-product-shell {
+:is(.page-ask, .page-business-services) .ask-hero--cinematic .hero-fiesta-inner.hero-inner-band.ask-product-shell {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -14250,26 +14247,26 @@ body.page-ask main:not(.ask-product-main) {
   padding-block: clamp(24px, 4vw, 40px) calc(clamp(24px, 4vw, 40px) + 5px);
 }
 
-.page-ask .ask-hero--cinematic .hero-shell.ask-product-hero-shell {
+:is(.page-ask, .page-business-services) .ask-hero--cinematic .hero-shell.ask-product-hero-shell {
   display: block;
   width: 100%;
   max-width: none;
 }
 
-.page-ask .ask-product-hero-eyebrow {
+:is(.page-ask, .page-business-services) .ask-product-hero-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.14em;
 }
 
-.page-ask .ask-product-hero .hero-title,
-.page-ask .ask-product-hero .hero-text-on-dark,
-.page-ask .ask-product-section-head h2,
-.page-ask .ask-product-section-head .section-text,
-.page-ask .ask-product-prompts-title,
-.page-ask .ask-product-prompts-lead,
-.page-ask .ask-product-example-card,
-.page-ask .ask-product-human-inner .section-text,
-.page-ask .ask-product-human-note {
+:is(.page-ask, .page-business-services) .ask-product-hero .hero-title,
+:is(.page-ask, .page-business-services) .ask-product-hero .hero-text-on-dark,
+:is(.page-ask, .page-business-services) .ask-product-section-head h2,
+:is(.page-ask, .page-business-services) .ask-product-section-head .section-text,
+:is(.page-ask, .page-business-services) .ask-product-prompts-title,
+:is(.page-ask, .page-business-services) .ask-product-prompts-lead,
+:is(.page-ask, .page-business-services) .ask-product-example-card,
+:is(.page-ask, .page-business-services) .ask-product-human-inner .section-text,
+:is(.page-ask, .page-business-services) .ask-product-human-note {
   letter-spacing: normal;
   word-spacing: normal;
   text-align: left;
@@ -14277,41 +14274,41 @@ body.page-ask main:not(.ask-product-main) {
   -webkit-hyphens: none;
 }
 
-.page-ask .ask-product-hero .hero-text-on-dark {
+:is(.page-ask, .page-business-services) .ask-product-hero .hero-text-on-dark {
   max-width: none;
 }
 
-.page-ask .ask-product-hero-support {
+:is(.page-ask, .page-business-services) .ask-product-hero-support {
   font-size: clamp(0.92rem, 0.22vw + 0.86rem, 1.02rem);
   line-height: 1.55;
   max-width: none;
 }
 
-.page-ask .ask-product-tool-section {
+:is(.page-ask, .page-business-services) .ask-product-tool-section {
   position: relative;
   padding-top: clamp(8px, 1.5vw, 14px);
   padding-bottom: clamp(36px, 5vw, 52px);
 }
 
-.page-ask .ask-product-tool-section.ask-product-atmosphere,
-.page-ask .ask-product-tool-section.section {
+:is(.page-ask, .page-business-services) .ask-product-tool-section.ask-product-atmosphere,
+:is(.page-ask, .page-business-services) .ask-product-tool-section.section {
   padding-inline: 0;
 }
 
-.page-ask .routes-band-inner.ask-product-inner.ask-product-shell {
+:is(.page-ask, .page-business-services) .routes-band-inner.ask-product-inner.ask-product-shell {
   display: flex;
   flex-direction: column;
   gap: clamp(28px, 4vw, 36px);
 }
 
 /* Cream / navy bands: section-head margin supplies rhythm (not routes-band-inner flex gap) */
-.page-ask .ask-product-value-inner.routes-band-inner,
-.page-ask .ask-product-examples-inner.routes-band-inner,
-.page-ask .ask-product-human-inner.routes-band-inner {
+:is(.page-ask, .page-business-services) .ask-product-value-inner.routes-band-inner,
+:is(.page-ask, .page-business-services) .ask-product-examples-inner.routes-band-inner,
+:is(.page-ask, .page-business-services) .ask-product-human-inner.routes-band-inner {
   gap: 0;
 }
 
-.page-ask .ask-product-tool.ask-local-tool.live-concierge-studio {
+:is(.page-ask, .page-business-services) .ask-product-tool.ask-local-tool.live-concierge-studio {
   width: 100%;
   max-width: none;
   margin-inline: 0;
@@ -14321,34 +14318,34 @@ body.page-ask main:not(.ask-product-main) {
  * Shared copy column (shell gutter + text inset) — headings, hero, prompts, and
  * cream-section notes align with example-card text and words inside prompt chips.
  */
-.page-ask .ask-product-hero .hero-content,
-.page-ask .ask-product-section-head,
-.page-ask .ask-product-prompts-head,
-.page-ask .ask-product-prompt-group-label,
-.page-ask .ask-product-human-note,
-.page-ask .ask-product-human-actions {
+:is(.page-ask, .page-business-services) .ask-product-hero .hero-content,
+:is(.page-ask, .page-business-services) .ask-product-section-head,
+:is(.page-ask, .page-business-services) .ask-product-prompts-head,
+:is(.page-ask, .page-business-services) .ask-product-prompt-group-label,
+:is(.page-ask, .page-business-services) .ask-product-human-note,
+:is(.page-ask, .page-business-services) .ask-product-human-actions {
   padding-left: var(--ask-text-inset);
   box-sizing: border-box;
 }
 
 /* Tool card: one horizontal inset on the card — no nested copy padding */
-.page-ask .ask-product-tool.ask-local-tool .live-concierge__main-card,
-.page-ask .ask-product-tool.ask-local-tool .live-concierge__glass-panel,
-.page-ask .ask-product-tool.ask-local-tool .live-concierge__answer-surface,
-.page-ask .ask-product-tool.ask-local-tool .live-concierge__answer-surface:has(.live-concierge__preview--placeholder) {
+:is(.page-ask, .page-business-services) .ask-product-tool.ask-local-tool .live-concierge__main-card,
+:is(.page-ask, .page-business-services) .ask-product-tool.ask-local-tool .live-concierge__glass-panel,
+:is(.page-ask, .page-business-services) .ask-product-tool.ask-local-tool .live-concierge__answer-surface,
+:is(.page-ask, .page-business-services) .ask-product-tool.ask-local-tool .live-concierge__answer-surface:has(.live-concierge__preview--placeholder) {
   padding: 0;
   padding-inline: 0;
 }
 
-.page-ask .ask-product-tool-wrap {
+:is(.page-ask, .page-business-services) .ask-product-tool-wrap {
   position: relative;
   isolation: isolate;
 }
 
-/* Ask A Local studio card — thick CTA-matched frame */
-.page-ask .ask-product-tool-card.live-concierge-card {
-  /* Shared edge with .btn-primary send — thicker on the card */
-  --ask-cta-edge: rgba(214, 118, 12, 0.68);
+/* Ask A Local studio card — CTA-matched frame (no inner top accent line) */
+:is(.page-ask, .page-business-services) .ask-product-tool-card.live-concierge-card {
+  /* Same warm edge as .btn-primary — solid gold/orange, not a separate top bar */
+  --ask-cta-edge: var(--gold);
   /* In-card chat copy + typed text share one column (composer field padding) */
   --ask-chat-field-pad: clamp(14px, 2.4vw, 18px);
   position: relative;
@@ -14366,28 +14363,17 @@ body.page-ask main:not(.ask-product-main) {
   background: linear-gradient(180deg, rgba(11, 24, 44, 1) 0%, #0a1628 42%, #081422 100%);
   box-shadow:
     0 24px 56px rgba(2, 6, 14, 0.5),
-    0 0 0 1px rgba(255, 139, 31, 0.14);
+    0 0 0 1px rgba(255, 139, 31, 0.18);
 }
 
-.page-ask .ask-product-tool-card.live-concierge-card::before {
+:is(.page-ask, .page-business-services) .ask-product-tool-card.live-concierge-card::before,
+:is(.page-ask, .page-business-services) .ask-product-tool-card.live-concierge-card::after {
   display: none;
 }
 
-.page-ask .ask-product-tool-card.live-concierge-card::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--orange) 0%, var(--gold) 100%);
-  pointer-events: none;
-  z-index: 4;
-}
-
-.page-ask .ask-product-tool-card .live-concierge__glass-panel,
-.page-ask .ask-product-tool-card .live-concierge__main-card,
-.page-ask .ask-product-tool.ask-local-tool .live-concierge__main-card {
+:is(.page-ask, .page-business-services) .ask-product-tool-card .live-concierge__glass-panel,
+:is(.page-ask, .page-business-services) .ask-product-tool-card .live-concierge__main-card,
+:is(.page-ask, .page-business-services) .ask-product-tool.ask-local-tool .live-concierge__main-card {
   position: relative;
   z-index: 1;
   padding: 0;
@@ -14396,7 +14382,7 @@ body.page-ask main:not(.ask-product-main) {
   box-shadow: none;
 }
 
-.page-ask .ask-product-tool-head {
+:is(.page-ask, .page-business-services) .ask-product-tool-head {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -14404,10 +14390,10 @@ body.page-ask main:not(.ask-product-main) {
   gap: var(--ask-stack-sm) var(--ask-stack-md);
   margin: 0 0 var(--ask-stack-md);
   padding: 0 var(--ask-chat-field-pad) var(--ask-stack-md);
-  border-bottom: 1px solid rgba(255, 139, 31, 0.22);
+  border-bottom: 1px solid rgba(242, 178, 26, 0.28);
 }
 
-.page-ask .ask-product-tool-kicker {
+:is(.page-ask, .page-business-services) .ask-product-tool-kicker {
   margin: 0;
   font-size: clamp(0.68rem, 0.14vw + 0.62rem, 0.74rem);
   font-weight: 800;
@@ -14417,7 +14403,7 @@ body.page-ask main:not(.ask-product-main) {
   text-shadow: 0 1px 14px rgba(242, 178, 26, 0.28);
 }
 
-.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status {
+:is(.page-ask, .page-business-services) .ask-product-tool-head .ask-product-tool-status.live-concierge__status {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -14445,7 +14431,7 @@ body.page-ask main:not(.ask-product-main) {
   text-align: left;
 }
 
-.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status::before {
+:is(.page-ask, .page-business-services) .ask-product-tool-head .ask-product-tool-status.live-concierge__status::before {
   content: "";
   display: block;
   flex: 0 0 auto;
@@ -14458,7 +14444,7 @@ body.page-ask main:not(.ask-product-main) {
     0 0 10px rgba(20, 184, 166, 0.7);
 }
 
-.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live {
+:is(.page-ask, .page-business-services) .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live {
   border-color: rgba(242, 178, 26, 0.52);
   color: rgba(255, 248, 235, 0.98);
   background:
@@ -14474,7 +14460,7 @@ body.page-ask main:not(.ask-product-main) {
     0 10px 26px rgba(2, 6, 14, 0.3);
 }
 
-.page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live::before {
+:is(.page-ask, .page-business-services) .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live::before {
   display: block;
   background: var(--gold);
   box-shadow:
@@ -14496,13 +14482,13 @@ body.page-ask main:not(.ask-product-main) {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-ask .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live::before {
+  :is(.page-ask, .page-business-services) .ask-product-tool-head .ask-product-tool-status.live-concierge__status--live::before {
     animation: none;
   }
 
-  .page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send:hover:not(:disabled),
-  .page-ask .ask-product-value-list li:hover,
-  .page-ask .ask-product-example-card:hover {
+  :is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack .live-concierge__send:hover:not(:disabled),
+  :is(.page-ask, .page-business-services) .ask-product-value-list li:hover,
+  :is(.page-ask, .page-business-services) .ask-product-example-card:hover {
     transform: none;
   }
 }
@@ -14511,15 +14497,15 @@ body.page-ask main:not(.ask-product-main) {
  * Single studio surface — no nested cards. One copy column (--ask-chat-field-pad)
  * shared by preview, label, textarea, and hint; only the input has a field outline.
  */
-.page-ask .ask-product-tool.ask-local-tool .live-concierge__conversation,
-.page-ask .ask-product-tool.ask-local-tool .live-concierge__conversation:not(.live-concierge__conversation--started) {
+:is(.page-ask, .page-business-services) .ask-product-tool.ask-local-tool .live-concierge__conversation,
+:is(.page-ask, .page-business-services) .ask-product-tool.ask-local-tool .live-concierge__conversation:not(.live-concierge__conversation--started) {
   border: none;
   background: transparent;
   box-shadow: none;
 }
 
-.page-ask .ask-product-tool.ask-local-tool .live-concierge__preview--placeholder,
-.page-ask .ask-product-tool .live-concierge__preview:not(.live-concierge__preview--placeholder) {
+:is(.page-ask, .page-business-services) .ask-product-tool.ask-local-tool .live-concierge__preview--placeholder,
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__preview:not(.live-concierge__preview--placeholder) {
   box-sizing: border-box;
   width: 100%;
   min-height: clamp(100px, 22vw, 128px);
@@ -14532,7 +14518,7 @@ body.page-ask main:not(.ask-product-main) {
   box-shadow: none;
 }
 
-.page-ask .ask-product-tool .live-concierge__log {
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__log {
   padding: clamp(4px, 1vw, 8px) var(--ask-chat-field-pad) clamp(16px, 2.6vw, 20px);
   border: none;
   border-radius: 0;
@@ -14540,13 +14526,13 @@ body.page-ask main:not(.ask-product-main) {
   box-shadow: none;
 }
 
-.page-ask .ask-product-tool.ask-local-tool .live-concierge__composer-stack .live-concierge__form {
+:is(.page-ask, .page-business-services) .ask-product-tool.ask-local-tool .live-concierge__composer-stack .live-concierge__form {
   display: flex;
   flex-direction: column;
   gap: var(--ask-stack-sm);
 }
 
-.page-ask .ask-product-tool .live-concierge__composer-stack {
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack {
   box-sizing: border-box;
   margin: 0;
   padding: var(--ask-stack-md) 0 0;
@@ -14557,41 +14543,89 @@ body.page-ask main:not(.ask-product-main) {
   box-shadow: none;
 }
 
-.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit {
-  padding: var(--ask-chat-field-pad);
-  border-radius: var(--radius);
-  border: 1px solid rgba(255, 246, 230, 0.14);
-  background: rgba(5, 12, 26, 0.72);
-  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.05);
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit:focus-within {
-  border-color: rgba(242, 178, 26, 0.38);
-  background: rgba(5, 12, 26, 0.88);
-  box-shadow: inset 0 1px 0 rgba(255, 246, 230, 0.07);
-}
-
-.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__input {
+/* Studio message field — one surface (label + textarea), no nested shrink box */
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  box-sizing: border-box;
   padding: 0;
-  font-size: clamp(0.98rem, 0.24vw + 0.92rem, 1.06rem);
-  line-height: 1.5;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid rgba(242, 178, 26, 0.32);
+  background: linear-gradient(168deg, rgba(9, 18, 36, 0.98) 0%, rgba(4, 10, 22, 0.99) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 230, 0.1),
+    0 10px 28px rgba(2, 6, 14, 0.32);
+  overflow: hidden;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
-.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__input::placeholder {
-  color: rgba(255, 248, 235, 0.52);
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack .live-concierge__composer-unit:focus-within {
+  border-color: rgba(242, 178, 26, 0.58);
+  background: linear-gradient(168deg, rgba(11, 22, 42, 0.99) 0%, rgba(5, 12, 26, 1) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 230, 0.12),
+    0 0 0 1px rgba(255, 139, 31, 0.18),
+    0 0 0 4px rgba(242, 178, 26, 0.12),
+    0 12px 32px rgba(2, 6, 14, 0.38);
 }
 
-.page-ask .ask-product-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-unit .live-concierge__input-label {
+  display: block;
+  margin: 0;
+  padding: 12px var(--ask-chat-field-pad) 8px;
+  border-bottom: 1px solid rgba(255, 246, 230, 0.1);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(242, 178, 26, 0.88);
+  background: rgba(255, 139, 31, 0.06);
+}
+
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack .live-concierge__input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-height: clamp(96px, 22vw, 120px);
+  max-height: 220px;
+  margin: 0;
+  padding: 14px var(--ask-chat-field-pad) 16px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  resize: vertical;
+  font-size: clamp(1rem, 0.26vw + 0.94rem, 1.08rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: rgba(255, 248, 235, 0.96);
+  outline: none;
+  box-shadow: none;
+  caret-color: var(--turquoise);
+}
+
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack .live-concierge__input::placeholder {
+  color: rgba(255, 248, 235, 0.48);
+  opacity: 1;
+}
+
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack > .live-concierge__engage-hint {
   margin: var(--ask-stack-sm) 0 0;
-  padding: 0 0 0 var(--ask-chat-field-pad);
+  padding: 0 2px;
   max-width: none;
   color: rgba(255, 248, 235, 0.55);
   font-size: clamp(0.74rem, 0.16vw + 0.7rem, 0.8rem);
   line-height: 1.5;
 }
 
-.page-ask .ask-product-tool .live-concierge__preview-heading {
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__preview-heading {
   margin: 0 0 var(--ask-stack-xs);
   font-size: clamp(1.1rem, 0.4vw + 1rem, 1.28rem);
   font-weight: 800;
@@ -14601,7 +14635,7 @@ body.page-ask main:not(.ask-product-main) {
   text-shadow: 0 1px 18px rgba(2, 6, 14, 0.35);
 }
 
-.page-ask .ask-product-tool .live-concierge__preview--placeholder .live-concierge__preview-text {
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__preview--placeholder .live-concierge__preview-text {
   margin: 0;
   font-size: clamp(0.9rem, 0.2vw + 0.86rem, 0.98rem);
   line-height: 1.55;
@@ -14609,25 +14643,18 @@ body.page-ask main:not(.ask-product-main) {
   color: rgba(255, 248, 235, 0.8);
 }
 
-.page-ask .ask-product-tool .live-concierge__input-label {
-  display: block;
-  margin: 0 0 var(--ask-stack-xs);
-  padding-left: var(--ask-chat-field-pad);
-  font-size: 0.74rem;
-  font-weight: 750;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 246, 230, 0.52);
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack > .live-concierge__form > .live-concierge__input-label {
+  display: none;
 }
 
 /* One primary CTA — same fill + edge as hero .btn-primary (no white rim / double stack) */
-.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary {
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary {
   width: 100%;
   min-height: 52px;
   margin: 0;
   padding: 14px 22px 15px;
   border-radius: var(--btn-radius);
-  border: 1px solid var(--ask-cta-edge, rgba(214, 118, 12, 0.68));
+  border: 1px solid var(--ask-cta-edge, var(--gold));
   font-size: clamp(0.98rem, 0.28vw + 0.92rem, 1.06rem);
   font-weight: 850;
   letter-spacing: 0.01em;
@@ -14637,42 +14664,42 @@ body.page-ask main:not(.ask-product-main) {
   filter: none;
 }
 
-.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary:hover:not(:disabled) {
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
   filter: none;
   border-color: rgba(214, 118, 12, 0.82);
   box-shadow: 0 22px 44px rgba(255, 139, 31, 0.38);
 }
 
-.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary:active:not(:disabled) {
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary:active:not(:disabled) {
   transform: translateY(0);
   box-shadow: 0 12px 28px rgba(255, 139, 31, 0.3);
 }
 
-.page-ask .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary:disabled {
+:is(.page-ask, .page-business-services) .ask-product-tool .live-concierge__composer-stack .live-concierge__send.btn-primary:disabled {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
-.page-ask .ask-product-prompts {
+:is(.page-ask, .page-business-services) .ask-product-prompts {
   padding-top: var(--ask-stack-md);
   border-top: 1px solid rgba(255, 246, 230, 0.12);
 }
 
-.page-ask .ask-product-prompts-head {
+:is(.page-ask, .page-business-services) .ask-product-prompts-head {
   margin-bottom: var(--ask-stack-lg);
 }
 
-.page-ask .ask-product-prompts-eyebrow {
+:is(.page-ask, .page-business-services) .ask-product-prompts-eyebrow {
   margin-bottom: var(--ask-stack-xs);
   font-size: clamp(0.64rem, 0.1vw + 0.6rem, 0.7rem);
   letter-spacing: 0.16em;
   color: rgba(20, 184, 166, 0.92);
 }
 
-.page-ask .ask-product-prompts-title {
+:is(.page-ask, .page-business-services) .ask-product-prompts-title {
   margin: 0 0 var(--ask-stack-xs);
   font-size: clamp(1.15rem, 0.45vw + 1rem, 1.35rem);
   font-weight: 800;
@@ -14681,18 +14708,18 @@ body.page-ask main:not(.ask-product-main) {
   line-height: 1.18;
 }
 
-.page-ask .ask-product-prompts-lead {
+:is(.page-ask, .page-business-services) .ask-product-prompts-lead {
   margin: 0;
   font-size: clamp(0.86rem, 0.18vw + 0.82rem, 0.94rem);
   line-height: 1.48;
   color: rgba(255, 248, 235, 0.68);
 }
 
-.page-ask .ask-product-prompt-group + .ask-product-prompt-group {
+:is(.page-ask, .page-business-services) .ask-product-prompt-group + .ask-product-prompt-group {
   margin-top: var(--ask-stack-md);
 }
 
-.page-ask .ask-product-prompt-group-label {
+:is(.page-ask, .page-business-services) .ask-product-prompt-group-label {
   margin: 0 0 var(--ask-stack-xs);
   font-size: 0.72rem;
   font-weight: 800;
@@ -14701,53 +14728,79 @@ body.page-ask main:not(.ask-product-main) {
   color: rgba(20, 184, 166, 0.88);
 }
 
-.page-ask .ask-product-prompt-chips {
+:is(.page-ask, .page-business-services) .ask-product-prompt-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--ask-stack-xs) var(--ask-stack-sm);
+  gap: 10px 12px;
 }
 
-.page-ask .ask-product-prompt-chips .live-concierge__chip--lane {
-  min-height: 2.5rem;
-  padding: 8px var(--ask-text-inset);
-  border-color: rgba(255, 246, 230, 0.2);
-  background:
-    linear-gradient(155deg, rgba(12, 24, 44, 0.92) 0%, rgba(5, 12, 26, 0.88) 100%);
+:is(.page-ask, .page-business-services) .ask-product-prompt-chips .live-concierge__chip--lane {
+  appearance: none;
+  cursor: pointer;
+  min-height: 2.875rem;
+  padding: 11px 16px 12px;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid rgba(242, 178, 26, 0.34);
+  background: linear-gradient(
+    158deg,
+    rgba(14, 28, 52, 0.98) 0%,
+    rgba(6, 14, 30, 0.96) 55%,
+    rgba(4, 10, 22, 0.98) 100%
+  );
   box-shadow:
-    0 1px 0 rgba(255, 246, 230, 0.08) inset,
-    0 6px 16px rgba(2, 6, 14, 0.2);
-  font-size: clamp(0.8rem, 0.16vw + 0.76rem, 0.86rem);
-  font-weight: 700;
-  letter-spacing: normal;
+    inset 0 1px 0 rgba(255, 246, 230, 0.12),
+    0 1px 0 rgba(255, 139, 31, 0.08),
+    0 8px 20px rgba(2, 6, 14, 0.32);
+  font-size: clamp(0.84rem, 0.18vw + 0.8rem, 0.92rem);
+  font-weight: 650;
+  letter-spacing: 0.01em;
   word-spacing: normal;
   text-align: left;
-  line-height: 1.35;
+  line-height: 1.38;
+  color: rgba(255, 248, 235, 0.94);
   transition:
     border-color 0.18s ease,
     background 0.18s ease,
     box-shadow 0.18s ease,
-    transform 0.14s ease;
+    transform 0.14s ease,
+    color 0.18s ease;
 }
 
-.page-ask .ask-product-prompt-chips .live-concierge__chip--lane:hover {
-  border-color: rgba(242, 178, 26, 0.45);
-  background:
-    linear-gradient(155deg, rgba(18, 32, 56, 0.96) 0%, rgba(8, 18, 34, 0.94) 100%);
+:is(.page-ask, .page-business-services) .ask-product-prompt-chips .live-concierge__chip--lane:hover {
+  border-color: rgba(242, 178, 26, 0.62);
+  color: rgba(255, 248, 235, 1);
+  background: linear-gradient(
+    158deg,
+    rgba(20, 38, 68, 0.99) 0%,
+    rgba(10, 22, 42, 0.98) 55%,
+    rgba(6, 14, 28, 0.99) 100%
+  );
   box-shadow:
-    0 1px 0 rgba(255, 246, 230, 0.1) inset,
-    0 10px 22px rgba(2, 6, 14, 0.28);
+    inset 0 1px 0 rgba(255, 246, 230, 0.16),
+    0 0 0 1px rgba(255, 139, 31, 0.14),
+    0 12px 28px rgba(2, 6, 14, 0.4);
+  transform: translateY(-1px);
 }
 
-.page-ask .ask-product-value.section,
-.page-ask .ask-product-human.section,
-.page-ask .ask-product-examples.section {
+:is(.page-ask, .page-business-services) .ask-product-prompt-chips .live-concierge__chip--lane:active {
+  transform: translateY(0);
+}
+
+:is(.page-ask, .page-business-services) .ask-product-prompt-chips .live-concierge__chip--lane:focus-visible {
+  outline: 3px solid rgba(242, 178, 26, 0.85);
+  outline-offset: 2px;
+}
+
+:is(.page-ask, .page-business-services) .ask-product-value.section,
+:is(.page-ask, .page-business-services) .ask-product-human.section,
+:is(.page-ask, .page-business-services) .ask-product-examples.section {
   max-width: none;
   margin-inline: 0;
   padding-inline: 0;
 }
 
 /* Ask — light value breather (matches Home trust band) */
-.page-ask .ask-product-value--light {
+:is(.page-ask, .page-business-services) .ask-product-value--light {
   position: relative;
   max-width: none;
   margin-inline: 0;
@@ -14759,7 +14812,7 @@ body.page-ask main:not(.ask-product-main) {
   border-block: 1px solid rgba(11, 29, 58, 0.07);
 }
 
-.page-ask .ask-product-value--light::before {
+:is(.page-ask, .page-business-services) .ask-product-value--light::before {
   content: "";
   position: absolute;
   top: 0;
@@ -14774,7 +14827,7 @@ body.page-ask main:not(.ask-product-main) {
   );
 }
 
-.page-ask .ask-product-value--light .ask-product-band-shell {
+:is(.page-ask, .page-business-services) .ask-product-value--light .ask-product-band-shell {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -14784,25 +14837,25 @@ body.page-ask main:not(.ask-product-main) {
   box-sizing: border-box;
 }
 
-.page-ask .ask-product-value--light.section-cream .ask-product-eyebrow {
+:is(.page-ask, .page-business-services) .ask-product-value--light.section-cream .ask-product-eyebrow {
   color: #0d9488;
 }
 
-.page-ask .ask-product-value--light.section-cream .ask-product-section-head h2 {
+:is(.page-ask, .page-business-services) .ask-product-value--light.section-cream .ask-product-section-head h2 {
   color: var(--navy);
   text-shadow: none;
 }
 
-.page-ask .ask-product-value--light.section-cream .ask-product-section-head .section-text {
+:is(.page-ask, .page-business-services) .ask-product-value--light.section-cream .ask-product-section-head .section-text {
   color: var(--slate);
 }
 
-.page-ask .ask-product-section-head {
+:is(.page-ask, .page-business-services) .ask-product-section-head {
   max-width: none;
   margin-bottom: var(--ask-stack-lg);
 }
 
-.page-ask .ask-product-eyebrow {
+:is(.page-ask, .page-business-services) .ask-product-eyebrow {
   margin-bottom: var(--ask-stack-xs);
   font-size: clamp(0.66rem, 0.1vw + 0.62rem, 0.72rem);
   font-weight: 900;
@@ -14810,7 +14863,7 @@ body.page-ask main:not(.ask-product-main) {
   color: var(--coral);
 }
 
-.page-ask .ask-product-section-head h2 {
+:is(.page-ask, .page-business-services) .ask-product-section-head h2 {
   margin: 0 0 var(--ask-stack-sm);
   font-size: clamp(1.45rem, 2.8vw + 0.45rem, 1.95rem);
   line-height: 1.12;
@@ -14818,28 +14871,28 @@ body.page-ask main:not(.ask-product-main) {
   color: var(--navy);
 }
 
-.page-ask .ask-product-section-head--on-dark .eyebrow.eyebrow-on-dark {
+:is(.page-ask, .page-business-services) .ask-product-section-head--on-dark .eyebrow.eyebrow-on-dark {
   margin-bottom: var(--ask-stack-xs);
   letter-spacing: 0.16em;
   color: rgba(20, 184, 166, 0.92);
 }
 
-.page-ask .ask-product-section-head--on-dark h2 {
+:is(.page-ask, .page-business-services) .ask-product-section-head--on-dark h2 {
   color: rgba(255, 248, 235, 0.98);
   text-shadow: 0 1px 20px rgba(2, 6, 14, 0.25);
 }
 
-.page-ask .ask-product-section-head .section-text {
+:is(.page-ask, .page-business-services) .ask-product-section-head .section-text {
   margin: 0;
   line-height: 1.52;
   color: var(--slate);
 }
 
-.page-ask .ask-product-section-head--on-dark .section-text {
+:is(.page-ask, .page-business-services) .ask-product-section-head--on-dark .section-text {
   color: rgba(255, 248, 235, 0.82);
 }
 
-.page-ask .ask-product-value-list {
+:is(.page-ask, .page-business-services) .ask-product-value-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -14849,12 +14902,12 @@ body.page-ask main:not(.ask-product-main) {
 }
 
 @media (min-width: 520px) {
-  .page-ask .ask-product-value-list {
+  :is(.page-ask, .page-business-services) .ask-product-value-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-.page-ask .ask-product-value-list li {
+:is(.page-ask, .page-business-services) .ask-product-value-list li {
   display: block;
   padding: 14px var(--ask-text-inset) 14px calc(var(--ask-text-inset) - 3px);
   border-left: 3px solid var(--gold);
@@ -14877,7 +14930,7 @@ body.page-ask main:not(.ask-product-main) {
 }
 
 @media (hover: hover) {
-  .page-ask .ask-product-value-list li:hover {
+  :is(.page-ask, .page-business-services) .ask-product-value-list li:hover {
     transform: translateY(-2px);
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.9) inset,
@@ -14885,7 +14938,7 @@ body.page-ask main:not(.ask-product-main) {
   }
 }
 
-.page-ask .ask-product-example-list {
+:is(.page-ask, .page-business-services) .ask-product-example-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -14893,7 +14946,7 @@ body.page-ask main:not(.ask-product-main) {
   gap: var(--ask-stack-md);
 }
 
-.page-ask .ask-product-example-card {
+:is(.page-ask, .page-business-services) .ask-product-example-card {
   height: 100%;
   padding: clamp(18px, 2.4vw, 22px) var(--ask-text-inset);
   border-radius: calc(var(--radius) + 6px);
@@ -14911,7 +14964,7 @@ body.page-ask main:not(.ask-product-main) {
 }
 
 @media (hover: hover) {
-  .page-ask .ask-product-example-card:hover {
+  :is(.page-ask, .page-business-services) .ask-product-example-card:hover {
     transform: translateY(-3px);
     border-color: rgba(242, 178, 26, 0.28);
     box-shadow:
@@ -14920,22 +14973,22 @@ body.page-ask main:not(.ask-product-main) {
   }
 }
 
-.page-ask .ask-product-example-q,
-.page-ask .ask-product-example-a {
+:is(.page-ask, .page-business-services) .ask-product-example-q,
+:is(.page-ask, .page-business-services) .ask-product-example-a {
   margin: 0;
   font-size: clamp(0.88rem, 0.18vw + 0.84rem, 0.95rem);
   line-height: 1.52;
   color: rgba(255, 248, 235, 0.88);
 }
 
-.page-ask .ask-product-example-q {
+:is(.page-ask, .page-business-services) .ask-product-example-q {
   margin-bottom: var(--ask-stack-sm);
   padding-bottom: var(--ask-stack-sm);
   border-bottom: 1px solid rgba(255, 246, 230, 0.1);
   font-weight: 600;
 }
 
-.page-ask .ask-product-example-label {
+:is(.page-ask, .page-business-services) .ask-product-example-label {
   display: block;
   margin-bottom: var(--ask-stack-xs);
   font-size: 0.68rem;
@@ -14945,11 +14998,11 @@ body.page-ask main:not(.ask-product-main) {
   color: rgba(20, 184, 166, 0.9);
 }
 
-.page-ask .ask-product-example-a .ask-product-example-label {
+:is(.page-ask, .page-business-services) .ask-product-example-a .ask-product-example-label {
   color: rgba(242, 178, 26, 0.88);
 }
 
-.page-ask .ask-product-human-note {
+:is(.page-ask, .page-business-services) .ask-product-human-note {
   margin: 0 0 var(--ask-stack-lg);
   max-width: none;
   font-size: clamp(0.9rem, 0.2vw + 0.86rem, 0.98rem);
@@ -14958,7 +15011,7 @@ body.page-ask main:not(.ask-product-main) {
   color: rgba(255, 248, 235, 0.78);
 }
 
-.page-ask .ask-product-human-actions {
+:is(.page-ask, .page-business-services) .ask-product-human-actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--ask-stack-sm) 14px;
@@ -14966,22 +15019,22 @@ body.page-ask main:not(.ask-product-main) {
   padding-right: var(--ask-text-inset);
 }
 
-.page-ask .ask-product-human-actions .btn {
+:is(.page-ask, .page-business-services) .ask-product-human-actions .btn {
   min-height: 48px;
   font-weight: 800;
 }
 
-.page-ask .ask-product-human-actions .btn-primary {
+:is(.page-ask, .page-business-services) .ask-product-human-actions .btn-primary {
   box-shadow:
     0 14px 32px rgba(255, 139, 31, 0.28),
     0 3px 0 rgba(255, 255, 255, 0.35) inset;
 }
 
-.page-ask .ask-product-human-actions .btn-secondary-hero {
+:is(.page-ask, .page-business-services) .ask-product-human-actions .btn-secondary-hero {
   box-shadow: 0 8px 22px rgba(2, 6, 14, 0.28);
 }
 
-.page-ask .ask-product-human-back {
+:is(.page-ask, .page-business-services) .ask-product-human-back {
   min-height: 48px;
 }
 
@@ -14998,33 +15051,33 @@ body.page-ask main:not(.ask-product-main) {
     background-position: center 38%;
   }
 
-  .page-ask .ask-product-tool-section {
+  :is(.page-ask, .page-business-services) .ask-product-tool-section {
     margin-top: 0;
   }
 
-  .page-ask .ask-product-example-list {
+  :is(.page-ask, .page-business-services) .ask-product-example-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
   }
 
-  .page-ask .ask-product-example-card {
+  :is(.page-ask, .page-business-services) .ask-product-example-card {
     height: 100%;
   }
 }
 
 @media (max-width: 380px) {
-  .page-ask .ask-product-main {
+  :is(.page-ask, .page-business-services) .ask-product-main {
     --ask-text-inset: 11px;
   }
 }
 
 @media (max-width: 768px) {
-  .page-ask .ask-product-main {
+  :is(.page-ask, .page-business-services) .ask-product-main {
     --ask-shell-pad: max(20px, env(safe-area-inset-left, 0px));
     --ask-card-pad-block: 18px;
   }
 
-  .page-ask .ask-product-shell {
+  :is(.page-ask, .page-business-services) .ask-product-shell {
     max-width: none;
     padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px));
   }
@@ -15034,28 +15087,28 @@ body.page-ask main:not(.ask-product-main) {
     background-position: center 36%;
   }
 
-  .page-ask .ask-product-hero .hero-title {
+  :is(.page-ask, .page-business-services) .ask-product-hero .hero-title {
     text-shadow: 0 2px 24px rgba(2, 6, 14, 0.5);
   }
 
-  .page-ask .ask-product-hero .hero-text-on-dark {
+  :is(.page-ask, .page-business-services) .ask-product-hero .hero-text-on-dark {
     text-shadow: 0 1px 16px rgba(2, 6, 14, 0.4);
   }
 
-  .page-ask .ask-product-tool-section.ask-product-atmosphere,
-  .page-ask .ask-product-examples.ask-product-atmosphere,
-  .page-ask .ask-product-value.ask-product-atmosphere,
-  .page-ask .ask-product-human.ask-product-atmosphere {
+  :is(.page-ask, .page-business-services) .ask-product-tool-section.ask-product-atmosphere,
+  :is(.page-ask, .page-business-services) .ask-product-examples.ask-product-atmosphere,
+  :is(.page-ask, .page-business-services) .ask-product-value.ask-product-atmosphere,
+  :is(.page-ask, .page-business-services) .ask-product-human.ask-product-atmosphere {
     padding-inline: 0;
   }
 
-  .page-ask .ask-product-example-list {
+  :is(.page-ask, .page-business-services) .ask-product-example-list {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .page-ask .ask-product-human-actions .btn {
+  :is(.page-ask, .page-business-services) .ask-product-human-actions .btn {
     width: 100%;
     justify-content: center;
   }
@@ -16422,7 +16475,7 @@ body:has(.transport-concierge-main) {
     border-bottom: 1px solid rgba(255, 246, 230, 0.08);
   }
 
-  .page-ask .ask-product-tool-card .live-concierge__glass-panel {
+  :is(.page-ask, .page-business-services) .ask-product-tool-card .live-concierge__glass-panel {
     padding-bottom: 0;
     border-bottom: none;
   }
@@ -26340,38 +26393,62 @@ body.owner-dash-detail-open {
   padding-top: 8px;
 }
 
-/* Operator band — seamless navy, no wrapper gap */
+/* Operator band — let ask-product-atmosphere photo + scrim match Ask A Local */
 .page-business-bridge .ai-bs-bridge-operator-wrap {
-  background:
-    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(20, 184, 166, 0.18), transparent 58%),
-    radial-gradient(circle at 8% 100%, rgba(242, 178, 26, 0.12), transparent 42%),
-    linear-gradient(168deg, var(--bridge-navy) 0%, var(--bridge-navy-rich) 48%, #10274a 100%);
-}
-
-.page-business-bridge .ai-bs-bridge-operator-wrap .section-navy-routes {
   background: transparent;
+}
+
+.page-business-bridge .ai-bs-bridge-operator-wrap .ask-product-tool-section.ask-product-atmosphere {
   border: none;
-  padding-left: clamp(16px, 4vw, 24px);
-  padding-right: clamp(16px, 4vw, 24px);
 }
 
-.page-business-bridge .ai-bs-bridge-operator-wrap .section-navy-routes::after {
-  opacity: 0.55;
+/* Business operator — Ask A Local studio tokens (shared with ask-product-main) */
+.page-business-services .ai-bs-business-operator {
+  --ask-shell-max: 45rem;
+  --ask-shell-pad: clamp(20px, 5vw, 32px);
+  --ask-card-pad-block: clamp(18px, 4.2vw, 24px);
+  --ask-section-pad: clamp(40px, 6vw, 56px);
+  --ask-stack-xs: 8px;
+  --ask-stack-sm: 12px;
+  --ask-stack-md: 16px;
+  --ask-stack-lg: 24px;
+  --ask-stack-xl: 32px;
+  --ask-text-inset: 14px;
+  --ask-cta-edge: var(--gold);
+  --ask-chat-field-pad: clamp(14px, 2.4vw, 18px);
 }
 
-.page-business-bridge .ai-bs-bridge-operator-wrap .transport-route-operator .live-concierge-section {
-  border-bottom: none;
+.page-business-services .ai-bs-business-operator .ask-product-section-head {
+  max-width: var(--ask-shell-max);
+  margin-inline: auto;
+  width: 100%;
+  text-align: left;
 }
 
-.page-business-bridge .ai-bs-bridge-operator-wrap .live-concierge-card {
-  border-color: rgba(255, 246, 230, 0.16);
-  box-shadow:
-    0 28px 56px rgba(0, 0, 0, 0.38),
-    inset 0 1px 0 rgba(255, 246, 230, 0.1);
+.page-business-services .ai-bs-business-operator .ask-product-section-head h2 {
+  max-width: 22ch;
 }
 
-.page-business-bridge .ai-bs-bridge-operator-wrap .business-operator-project-intro {
-  border-top-color: rgba(255, 246, 230, 0.14);
+.page-business-services .ai-bs-operator-followup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ask-stack-sm);
+  max-width: var(--ask-shell-max);
+  margin-inline: auto;
+  width: 100%;
+  padding-top: var(--ask-stack-xs);
+}
+
+.page-business-services .ai-bs-operator-followup .business-operator-request-helper {
+  margin: 0;
+  font-size: clamp(0.86rem, 0.18vw + 0.82rem, 0.94rem);
+  line-height: 1.5;
+  color: rgba(255, 248, 235, 0.72);
+}
+
+.page-business-services .ai-bs-operator-followup .business-operator-backup-details {
+  margin-top: var(--ask-stack-xs);
 }
 
 /* ----- Form studio — premium atmosphere (outside the form card) ----- */
