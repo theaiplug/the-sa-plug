@@ -55,6 +55,23 @@ Result:
 Rule:
 Future Home Services, contractor, professional services, and AI Plug sales-copy work must use plain business-owner language first. Use deliverables, not vague AI package names.
 
+## 2026-05-28 — Draft Pricing Lock Added
+
+PR #133 added:
+`/docs/THE_AI_PLUG_PRICING_LOCK_V1.md`
+
+Status:
+DRAFT — OWNER REVIEW REQUIRED
+
+Important:
+This is not approved pricing yet. Do not use it for quotes, proposals, manuals, dashboard pricing, public sales sheets, or client-facing pricing until Willie approves it.
+
+Pricing approval gate:
+PRICING LOCKED — APPROVED BY WILLIE
+
+Next required step:
+Review the pricing lock service-by-service and approve, revise, or remove each pricing range before any dashboard/manual/sales-copy pricing updates.
+
 ## Current Business Direction
 
 The AI Plug is now positioned as a **Practical AI Adoption + Growth Systems** company.
