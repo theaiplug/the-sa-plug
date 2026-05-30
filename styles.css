@@ -8210,6 +8210,10 @@ main > .section:not(.section-dark):not(.section-fiesta):not(.section-cream):not(
   --premium-atmosphere-photo: url("/assets/evening_riverwalk_with_vibrant_ambiance.png");
 }
 
+.page-business-services {
+  --premium-atmosphere-photo: url("/assets/evening_riverwalk_with_vibrant_ambiance.png");
+}
+
 .page-start-here {
   --premium-atmosphere-photo: url("assets/evening_riverwalk_with_vibrant_ambiance.png");
 }
@@ -14338,10 +14342,10 @@ body:is(.page-ask, .page-business-services) main:not(.ask-product-main) {
   isolation: isolate;
 }
 
-/* Ask A Local studio card — thick CTA-matched frame */
+/* Ask A Local studio card — CTA-matched frame (no inner top accent line) */
 :is(.page-ask, .page-business-services) .ask-product-tool-card.live-concierge-card {
-  /* Shared edge with .btn-primary send — thicker on the card */
-  --ask-cta-edge: rgba(214, 118, 12, 0.68);
+  /* Same warm edge as .btn-primary — solid gold/orange, not a separate top bar */
+  --ask-cta-edge: var(--gold);
   /* In-card chat copy + typed text share one column (composer field padding) */
   --ask-chat-field-pad: clamp(14px, 2.4vw, 18px);
   position: relative;
@@ -14359,23 +14363,12 @@ body:is(.page-ask, .page-business-services) main:not(.ask-product-main) {
   background: linear-gradient(180deg, rgba(11, 24, 44, 1) 0%, #0a1628 42%, #081422 100%);
   box-shadow:
     0 24px 56px rgba(2, 6, 14, 0.5),
-    0 0 0 1px rgba(255, 139, 31, 0.14);
+    0 0 0 1px rgba(255, 139, 31, 0.18);
 }
 
-:is(.page-ask, .page-business-services) .ask-product-tool-card.live-concierge-card::before {
-  display: none;
-}
-
+:is(.page-ask, .page-business-services) .ask-product-tool-card.live-concierge-card::before,
 :is(.page-ask, .page-business-services) .ask-product-tool-card.live-concierge-card::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--orange) 0%, var(--gold) 100%);
-  pointer-events: none;
-  z-index: 4;
+  display: none;
 }
 
 :is(.page-ask, .page-business-services) .ask-product-tool-card .live-concierge__glass-panel,
@@ -14397,7 +14390,7 @@ body:is(.page-ask, .page-business-services) main:not(.ask-product-main) {
   gap: var(--ask-stack-sm) var(--ask-stack-md);
   margin: 0 0 var(--ask-stack-md);
   padding: 0 var(--ask-chat-field-pad) var(--ask-stack-md);
-  border-bottom: 1px solid rgba(255, 139, 31, 0.22);
+  border-bottom: 1px solid rgba(242, 178, 26, 0.28);
 }
 
 :is(.page-ask, .page-business-services) .ask-product-tool-kicker {
@@ -14620,7 +14613,7 @@ body:is(.page-ask, .page-business-services) main:not(.ask-product-main) {
   margin: 0;
   padding: 14px 22px 15px;
   border-radius: var(--btn-radius);
-  border: 1px solid var(--ask-cta-edge, rgba(214, 118, 12, 0.68));
+  border: 1px solid var(--ask-cta-edge, var(--gold));
   font-size: clamp(0.98rem, 0.28vw + 0.92rem, 1.06rem);
   font-weight: 850;
   letter-spacing: 0.01em;
@@ -26333,27 +26326,13 @@ body.owner-dash-detail-open {
   padding-top: 8px;
 }
 
-/* Operator band — seamless navy, no wrapper gap */
+/* Operator band — let ask-product-atmosphere photo + scrim match Ask A Local */
 .page-business-bridge .ai-bs-bridge-operator-wrap {
-  background:
-    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(20, 184, 166, 0.18), transparent 58%),
-    radial-gradient(circle at 8% 100%, rgba(242, 178, 26, 0.12), transparent 42%),
-    linear-gradient(168deg, var(--bridge-navy) 0%, var(--bridge-navy-rich) 48%, #10274a 100%);
-}
-
-.page-business-bridge .ai-bs-bridge-operator-wrap .section-navy-routes {
   background: transparent;
+}
+
+.page-business-bridge .ai-bs-bridge-operator-wrap .ask-product-tool-section.ask-product-atmosphere {
   border: none;
-  padding-left: clamp(16px, 4vw, 24px);
-  padding-right: clamp(16px, 4vw, 24px);
-}
-
-.page-business-bridge .ai-bs-bridge-operator-wrap .section-navy-routes::after {
-  opacity: 0.55;
-}
-
-.page-business-bridge .ai-bs-bridge-operator-wrap .live-concierge-section {
-  border-bottom: none;
 }
 
 /* Business operator — Ask A Local studio tokens (shared with ask-product-main) */
@@ -26368,25 +26347,23 @@ body.owner-dash-detail-open {
   --ask-stack-lg: 24px;
   --ask-stack-xl: 32px;
   --ask-text-inset: 14px;
-  --ask-cta-edge: rgba(214, 118, 12, 0.68);
+  --ask-cta-edge: var(--gold);
   --ask-chat-field-pad: clamp(14px, 2.4vw, 18px);
 }
 
-.page-business-services .ai-bs-business-operator .ask-product-inner.ask-product-shell {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ask-stack-lg);
-}
-
-.page-business-services .ai-bs-operator-intro {
-  text-align: left;
+.page-business-services .ai-bs-business-operator .ask-product-section-head {
   max-width: var(--ask-shell-max);
   margin-inline: auto;
   width: 100%;
+  text-align: left;
 }
 
-.page-business-services .ai-bs-operator-intro .ai-strategic-title {
+.page-business-services .ai-bs-business-operator .ask-product-section-head h2 {
   max-width: 22ch;
+  font-size: clamp(1.45rem, 2.6vw + 0.55rem, 2rem);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+  color: var(--cream);
 }
 
 .page-business-services .ai-bs-operator-followup {
