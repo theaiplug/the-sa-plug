@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — the live site + house standard are the `wheretogosa-website` repo (Vercel; `docs/state-of-the-site.md`), canonical social handles are `wheretogosa-website/docs/social/profiles-and-setup.md`, the Fiesta/cream visual direction and AI Plug homepage/footer mandates below are superseded, and the phone in this file is DEAD (only line: 830-500-5112). Adopt nothing. Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # Website Status
 
 Last updated: 2026-05-29 (Business Services bridge — removed footer CTA strip)

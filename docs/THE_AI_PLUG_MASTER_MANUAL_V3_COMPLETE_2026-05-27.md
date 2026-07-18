@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — superseded manual generation; never train on or quote prices/scripts from it. Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # The AI Plug Master Manual v3 — Complete
 **AI Advantage First complete master manual**  
 **Date:** 2026-05-27  

@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — the GoHighLevel decision is settled (GHL adopted in production; see `wheretogosa-website/docs/ghl-playbook.md` — do not run the 7-day test), the wheretogosa.com URLs below no longer exist on the live domain, the continuation prompt is dead process, and the phone in this file is DEAD (only line: 830-500-5112). Adopt nothing. Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # The AI Plug — Ground-Up Business + Stack Decision v1
 
 **Status:** Current source-of-truth decision document  

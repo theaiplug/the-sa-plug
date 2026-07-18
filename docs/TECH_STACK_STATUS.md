@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — wheretogosa.com is served by Vercel from the `wheretogosa-website` repo; this repo deploys only to the-sa-plug.netlify.app and does NOT affect the public site; the phone in this file is DEAD (only line: 830-500-5112). Adopt nothing. Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # Tech Stack Status
 
 Last updated: 2026-05-22

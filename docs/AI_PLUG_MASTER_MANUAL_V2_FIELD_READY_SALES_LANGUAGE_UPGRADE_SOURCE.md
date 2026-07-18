@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — superseded manual generation (a byte-identical copy exists as `AI_PLUG_MASTER_MANUAL_V2_COMPLETE_TEXT_FOR_DASHBOARD_UPLOAD (1).md`); never train on or quote prices/scripts from it. Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # AI Plug Master Manual v2 — Complete Text for Dashboard / Knowledge Upload
 
 Use this as the full knowledge-source text from the expanded AI Plug Master Business Manual v2. This is intended to train a new rep/operator from zero and give another thread enough structured business logic to improve the AI Plug business side without turning the manual into dashboard UI instructions.

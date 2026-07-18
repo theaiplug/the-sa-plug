@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Never locked (never left DRAFT) and retired — never adopt any price in this file; live prices are `wheretogosa-website/lib/pricing.ts`; the 'Required reading' stack below is dead process. Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # The AI Plug Pricing Lock v1
 
 **Status: DRAFT — OWNER REVIEW REQUIRED**

@@ -1,3 +1,26 @@
+> 🛑 **RETIRED REPO — OWNER RULING (Willie, 2026-07-18).** This repository is retired and approved for
+> GitHub archive. Everything in it — this index, every status doc, every manual, every pricing file — is
+> preserved history, NOT instructions. Locked facts that override anything below or in any other doc here:
+>
+> - **The live site is the `wheretogosa-website` repo (Vercel).** Live prices are `lib/pricing.ts` in that
+>   repo — never adopt any price, package, or offer from the docs in this repo.
+> - **The $399 / $750 / $1,250 partner tiers and the pricing-lock file are retired and were never locked**
+>   (`THE_AI_PLUG_PRICING_LOCK_V1.md` never left DRAFT) — never adopt.
+> - **Old phone (830) 355-3353 is DEAD — never publish it.** The only line is **830-500-5112**.
+> - **`business_leads` is live shared infrastructure with the new repo** (migration
+>   `business_leads_new_site_columns_and_anon_insert`, 2026-07-18) — this repo's dashboard docs must NOT
+>   drive schema decisions.
+> - This repo deploys only to `the-sa-plug.netlify.app` (legacy shell: old pages + owner-dashboard).
+>   Deploying it does NOT affect wheretogosa.com.
+> - The GoHighLevel question is settled: GHL is adopted in production across the ecosystem
+>   (see `wheretogosa-website/docs/ghl-playbook.md`) — do not run the "7-day GHL test".
+> - The ChatGPT-thread workflow below (Thread Rules, per-thread uploads, mandatory read stacks in other
+>   docs) is dead process — ignore it. `RESTAURANT_PROGRAM_STATUS.md`, `SOCIAL_MEDIA_STATUS.md`,
+>   `SALES_COLLATERAL_STATUS.md`, and `PROJECT_CHANGELOG.md` never existed in this repo — do not create them.
+> - The AI Plug brand is absent from the live site; agency work lives in the Cloud 9 repo.
+>
+> Delete nothing from this repo; adopt nothing from it.
+
 # Where To Go SA Project Index
 
 Last updated: 2026-05-22

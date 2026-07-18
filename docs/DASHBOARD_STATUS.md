@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — wheretogosa.com/business-services and /owner-dashboard no longer exist on the live domain (the legacy shell survives only at the-sa-plug.netlify.app), `business_leads` is live shared infrastructure owned by the `wheretogosa-website` repo (this doc must NOT drive schema decisions), the read-stack/next-steps below are dead process (PR #121 merged long ago), and the phone in this file is DEAD (only line: 830-500-5112). Adopt nothing. Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # Dashboard Status
 
 Last updated: 2026-05-28

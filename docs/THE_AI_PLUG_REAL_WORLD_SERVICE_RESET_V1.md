@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — the 'Required Cursor instruction' and 'Immediate next step' below are dead process; never adopt prices or offers from this file (live prices: `wheretogosa-website/lib/pricing.ts`). Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # The AI Plug Real World Service Reset v1
 
 Last updated: 2026-05-28  

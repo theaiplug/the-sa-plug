@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — wheretogosa.com/business-services no longer exists on the live domain (legacy shell only at the-sa-plug.netlify.app) and the AI Plug brand is absent from the live site. Adopt nothing. Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # The AI Plug Live Business System Alignment
 **Current source-of-truth alignment file**  
 **Date:** 2026-05-27  

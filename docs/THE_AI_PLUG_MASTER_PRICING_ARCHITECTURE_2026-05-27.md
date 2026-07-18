@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — despite the 'source-of-truth' header below, never adopt any price or offer from this file (live prices: `wheretogosa-website/lib/pricing.ts`); the phone in this file is DEAD (only line: 830-500-5112). Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # The AI Plug Master Pricing Architecture
 **Working pricing source-of-truth draft**  
 **Date:** 2026-05-27  

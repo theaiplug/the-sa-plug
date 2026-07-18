@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — superseded vertical sales manual; never adopt prices, scripts, or offers from it (live prices: `wheretogosa-website/lib/pricing.ts`). Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # The AI Plug Home Services + Home Improvement Vertical Sales Manual
 
 ## Training Academy + Dashboard-Ready Business Logic Edition

@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — this plan completed long ago (PR #121 merged); its master-manual citation points at a byte-identical duplicate file; the do-not-rebuild list is superseded; the phone in this file is DEAD (only line: 830-500-5112). Adopt nothing. Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # The AI Plug Dashboard Update Plan
 **Current dashboard planning source-of-truth draft**  
 **Date:** 2026-05-27  

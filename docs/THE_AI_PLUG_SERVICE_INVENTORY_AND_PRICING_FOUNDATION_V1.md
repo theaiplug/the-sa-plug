@@ -1,3 +1,5 @@
+> 🛑 **RETIRED (owner ruling 2026-07-18):** Historical only — never adopt prices or packaging from this file (live prices: `wheretogosa-website/lib/pricing.ts`); the read-stack / 'Next Step' below are dead process. Full ruling: top of `WHERE_TO_GO_SA_PROJECT_INDEX.md`.
+
 # The AI Plug Service Inventory + Pricing Foundation v1
 
 Last updated: 2026-05-28  
